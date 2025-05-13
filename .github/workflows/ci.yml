@@ -1,4 +1,4 @@
-name: CI
+name: CI and Deploy
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 permissions:
   actions: read
-  contents: read
+  contents: write  # necesario para publicar en gh-pages
 
 jobs:
   main:
@@ -27,5 +27,16 @@ jobs:
       - run: npm ci --legacy-peer-deps
       - run: npx cypress install
 
-      # Ejecutar tareas en todos los proyectos, sin Nx Cloud ni SHAs sin e2e
-      - run: npx nx run-many -t lint test build
+      # Ejecuta lint y test
+      - run: npx nx run-many -t lint test
+
+      # Build solo del proyecto principal que se va a publicar
+      - run: npx nx build hunt-the-bishomalo --configuration=production
+
+      # Despliegue a GitHub Pages
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist/hunt-the-bishomalo/browser
