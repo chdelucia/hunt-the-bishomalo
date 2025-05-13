@@ -4,8 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ToastComponent } from './components';
 import { filter } from 'rxjs';
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-declare let gtag: Function;
+declare let gtag: (...args: any[]) => void;
 
 @Component({
   imports: [
