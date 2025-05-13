@@ -478,12 +478,14 @@ export class AchievementService {
     if(achieve && !achieve.unlocked){
       achieve.unlocked = true;
       this.completed.set(achieve);
-
-      gtag('event', 'achievement_unlocked', {
-        achievement_id: id,
-        achievement_name: achieve.title,
-        category: 'achievements'
-      });
+      
+      if (typeof gtag === 'function') {
+        gtag('event', 'achievement_unlocked', {
+          achievement_id: id,
+          achievement_name: achieve.title,
+          category: 'achievements'
+        });
+      }
     }
   }
 
