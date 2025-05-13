@@ -7,5 +7,5 @@ export const appRoutes: Route[] = [
     { path: 'logros', component: AchievementsComponent },
     { path: 'secret', component: JediMindTrickAnimationComponent },
     { path: 'home', component: HuntBishoComponent },
-    { path: '', redirectTo: '/home', pathMatch: 'full' }
+    { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
