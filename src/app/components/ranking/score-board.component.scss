@@ -1,0 +1,73 @@
+
+.scoreboard {
+  position: fixed;
+  top: 20px;
+  left: 110px; 
+  background-color: rgba(20, 20, 20, 0.8);
+  color: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: 300px;
+  max-height: 80vh;
+  overflow-y: auto; 
+  display: none; 
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease-in-out;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  font-family: "Segoe UI", sans-serif;
+  z-index: 25;
+
+  .title {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    border-bottom: 1px solid #666;
+    padding-bottom: 0.4rem;
+    font-weight: bold;
+  }
+}
+
+.scoreboard.show {
+  display: block;
+}
+
+.scoreboard table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.scoreboard td {
+  padding: 5px;
+  text-align: left;
+}
+
+.scoreboard td {
+  font-size: 0.9rem;
+}
+
+.scoreboard td:first-child {
+  font-weight: bold;
+}
+
+.trophy-icon {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 75px;
+  height: 85px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  z-index: 20;
+}
+
+.trophy-icon:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 600px) {
+  .scoreboard {
+    width: 250px;
+  }
+}

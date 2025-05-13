@@ -1,0 +1,26 @@
+<img 
+  src="trophy.png" 
+  class="trophy-icon"   
+  (click)="toggleLeaderboard()"
+  (keypress)="toggleLeaderboard()"
+  tabindex="1"
+  alt="leaderboard"
+>
+
+<div class="scoreboard" [class.show]="isLeaderboardVisible">
+  <div class="title">Leaderboard</div>
+  @if(leaderboard().length){
+    <table>
+      <tbody>
+        <tr *ngFor="let entry of leaderboard() | slice:0:10">
+          <td>{{ entry.playerName }}</td>
+          <td>{{ entry.timeInSeconds }} segundos</td>
+          <td>{{ entry.date | date:'dd/MM/yy' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  } @else {
+    <span>Sin ganadores aún</span>
+  }
+
+</div>

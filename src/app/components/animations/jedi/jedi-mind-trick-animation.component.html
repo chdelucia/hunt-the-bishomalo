@@ -1,0 +1,63 @@
+
+<div class="jedi-container" routerLink="/home">
+
+  <div class="force-text">
+    <div *ngIf="step >= 3" class="whisper-text" [ngClass]="'opacity-' + (step - 2)">
+      Contrata a Chris
+    </div>
+  </div>
+
+  <div class="animation-container" [ngClass]="'step-' + step">
+    <!-- Jedi -->
+    <div class="jedi">
+      <svg width="400" height="400" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Robe -->
+        <path d="M60 180 L100 120 L140 180" fill="#8B4513" stroke="#8B4513" stroke-width="2" stroke-linecap="round" />
+        <path d="M70 120 L100 180 L130 120" fill="#A0522D" stroke="#A0522D" stroke-width="2" stroke-linecap="round" />
+
+        <!-- Body -->
+        <rect x="85" y="70" width="30" height="50" fill="#A0522D" />
+
+        <!-- Head -->
+        <circle cx="100" cy="60" r="20" fill="#FFE4B5" />
+
+        <!-- Eyes -->
+        <circle cx="92" cy="55" r="3" fill="#000" />
+        <circle cx="108" cy="55" r="3" fill="#000" />
+
+        <!-- Mouth -->
+        <path d="M95 65 Q100 70 105 65" stroke="#000" stroke-width="1.5" stroke-linecap="round" />
+
+        <!-- Right hand -->
+        <rect *ngIf="step === 1" x="115" y="90" width="10" height="20" fill="#FFE4B5" rx="5" transform="rotate(0, 120, 100)" />
+        <rect *ngIf="step === 2" x="115" y="90" width="10" height="20" fill="#FFE4B5" rx="5" transform="rotate(20, 120, 100)" />
+        <rect *ngIf="step === 3" x="115" y="90" width="10" height="20" fill="#FFE4B5" rx="5" transform="rotate(40, 120, 100)" />
+        <rect *ngIf="step === 4" x="115" y="90" width="10" height="20" fill="#FFE4B5" rx="5" transform="rotate(20, 120, 100)" />
+        <rect *ngIf="step === 5" x="115" y="90" width="10" height="20" fill="#FFE4B5" rx="5" transform="rotate(0, 120, 100)" />
+        <rect *ngIf="step === 6" x="115" y="90" width="10" height="20" fill="#FFE4B5" rx="5" transform="rotate(-20, 120, 100)" />
+
+        <!-- Left hand -->
+        <rect x="75" y="90" width="10" height="20" fill="#FFE4B5" rx="5" />
+
+        <!-- Lightsaber -->
+        <rect x="130" y="85" width="5" height="15" fill="#808080" rx="2" />
+        <rect
+          x="132"
+          y="40"
+          width="1"
+          height="45"
+          [attr.fill]="step % 2 === 0 ? '#00BFFF' : '#87CEFA'"
+          rx="0.5"
+          filter="drop-shadow(0 0 5px #00BFFF)"
+        />
+      </svg>
+    </div>
+
+    <ng-container *ngFor="let wave of forceWaves; let i = index">
+      <div class="force-wave">
+      </div>
+    </ng-container>
+  </div>
+
+  <div #audioContainer></div>
+</div>

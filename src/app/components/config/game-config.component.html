@@ -1,0 +1,25 @@
+<form [formGroup]="configForm" (ngSubmit)="submitForm()" class="config-form">
+  <h2>Configuración de la Partida</h2>
+
+  <div class="form-group">
+    <label for="player">Nombre del jugador:</label>
+    <input id="player" type="text" formControlName="player" />
+  </div>
+
+  <div class="form-group">
+    <label for="size">Tamaño del tablero:</label>
+    <input id="size" type="number" formControlName="size" min="4"/>
+  </div>
+
+  <div class="form-group">
+    <label for="pits">Número de pozos:</label>
+    <input id="pits" type="number" formControlName="pits" min="1"/>
+  </div>
+
+  <div class="form-group">
+    <label for="arrows">Número de flechas:</label>
+    <input id="arrows" type="number" formControlName="arrows" min="1"/>
+  </div>
+
+  <button type="submit" [disabled]="configForm.invalid">Iniciar Juego</button>
+</form>

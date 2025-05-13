@@ -1,0 +1,90 @@
+.jedi-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 1999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.force-text {
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  transform: translateX(-50%);
+  width: 300px;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.whisper-text {
+  font-size: 36px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 10px rgba(135, 206, 250, 0.8);
+  transition: all 0.5s ease-in-out;
+  animation: whisperPulse 3s infinite;
+  filter: blur(0.5px);
+}
+
+.animation-container {
+  position: relative;
+  width: 400px;
+  height: 300px;
+}
+
+.jedi {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease-in-out;
+}
+
+.force-wave {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 2px solid rgba(250, 135, 175, 0.3);
+  transform: translate(-50%, -50%) scale(0.5);
+  opacity: 0.8;
+  animation: forcePulse 2s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes forcePulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0;
+  }
+}
+
+@keyframes whisperPulse {
+  0% {
+    text-shadow: 0 0 5px rgba(135, 206, 250, 0.8);
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(135, 206, 250, 1);
+    opacity: 1;
+    transform: scale(1.02);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(135, 206, 250, 0.8);
+    opacity: 0.7;
+    transform: scale(0.98);
+  }
+}

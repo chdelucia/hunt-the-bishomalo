@@ -1,0 +1,111 @@
+<div class="achievements-container">
+  <div class="achievements-content">
+    <div class="header-container">
+      <a routerLink="/home" class="back-link">
+        <i class="arrow-left-icon"></i>
+        <span>Volver al juego</span>
+      </a>
+    </div>
+
+    <div class="progress-container">
+      <div class="progress-header">
+        <div class="progress-info">
+          <h2 class="progress-title">Progreso de logros</h2>
+          <p class="progress-stats">
+            Has desbloqueado {{ unlockedCount }} de {{ achievements.length }} logros ({{ percentage }}%)
+          </p>
+        </div>
+        <div class="filter-buttons">
+          <button
+            (click)="setFilter('all')"
+            [ngClass]="{'active-filter': filter === 'all', 'inactive-filter': filter !== 'all'}"
+            class="filter-button"
+          >
+            Todos
+          </button>
+          <button
+            (click)="setFilter('unlocked')"
+            [ngClass]="{'active-filter': filter === 'unlocked', 'inactive-filter': filter !== 'unlocked'}"
+            class="filter-button"
+          >
+            Desbloqueados
+          </button>
+          <button
+            (click)="setFilter('locked')"
+            [ngClass]="{'active-filter': filter === 'locked', 'inactive-filter': filter !== 'locked'}"
+            class="filter-button"
+          >
+            Bloqueados
+          </button>
+        </div>
+      </div>
+
+      <div class="progress-bar-container">
+        <div
+          class="progress-bar"
+          [style.width.%]="percentage"
+        ></div>
+      </div>
+    </div>
+
+    <div class="achievements-grid">
+      <div
+        *ngFor="let achievement of filteredAchievements"
+        [ngClass]="{'achievement-unlocked': achievement.unlocked, 'achievement-locked': !achievement.unlocked}"
+        class="achievement-card"
+      >
+        <div class="achievement-content">
+          <div class="achievement-header">
+            <div
+              [ngClass]="{'icon-bg-unlocked': achievement.unlocked, 'icon-bg-locked': !achievement.unlocked}"
+              class="achievement-icon-container"
+            >
+              <div class="achievement-icon" [innerHTML]="getSanitizedSvg(achievement.svgIcon)"></div>
+            </div>
+            <div>
+              <h3 class="achievement-title">{{ achievement.title }}</h3>
+              <div
+                [ngClass]="'rarity-' + achievement.rarity"
+                class="rarity-badge"
+              >
+                {{ getRarityName(achievement.rarity) }}
+              </div>
+            </div>
+          </div>
+          <p class="achievement-description">{{ achievement.description }}</p>
+          <div *ngIf="achievement.unlocked" class="status-unlocked">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="status-icon"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span>Desbloqueado</span>
+          </div>
+          <div *ngIf="!achievement.unlocked" class="status-locked">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="status-icon"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span>Bloqueado</span>
+          </div>
+        </div>
+        <div *ngIf="achievement.unlocked" class="achievement-indicator"></div>
+      </div>
+    </div>
+  </div>
+</div>

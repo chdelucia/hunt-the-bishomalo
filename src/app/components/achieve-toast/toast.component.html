@@ -1,0 +1,11 @@
+<div class="toast-container">
+  <div
+    class="toast"
+    *ngFor="let toast of toasts()"
+  >
+    <div class="icon" [innerHTML]="toast.icon"></div>
+    <div class="text">
+      <strong>{{ toast.achievement.title }}</strong>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+@let board = game.board();
+@let boardSize = board.length;
+@let hunterData = hunter();
+@let settings = game.settings;
+
+
+<main [appVisualEffect]="game.message()">
+
+  <app-title [blackout]="settings?.blackout || false"/>
+
+  @if(settings?.blackout && hunterData.alive && !hunterData.hasWon){
+    <app-blackout />
+  }
+
+  <section class="board">
+    @if (settings) {
+      @for (row of board; track $index) {
+        <div class="row">
+          @for (cell of row; track $index) {
+            <app-game-cell class="size-{{boardSize}}"  [cell]="cell" [hunter]="hunterData"/>
+          }
+        </div>
+      }
+      <app-wumpus-attack-animation *ngIf="deathByWumpus()" (closeAnimation)="handleclose()"/>
+    } @else {
+      <app-game-config />
+    }
+  </section>
+
+  
+    <section class="game-message" aria-live="polite">
+      @if(game.message() && settings){
+        <p>{{ game.message()}}</p>
+      }@else{
+        <p>Activa el sonido e intenta no morir.</p>
+      }
+      @if(!hunterData.alive && settings){
+        <p class="newgame">Presiona R para reiniciar la partida</p>
+      }@else if (hunterData.hasWon && settings) {
+        <p class="newgame">Presiona N para empezar una nueva partida</p>
+      }
+    </section>
+
+  @if(settings) {
+    <app-game-controls [arrows]="hunter().arrows"/>
+  }
+</main>
+
+<app-scoreboard />
+
+<img class="achivements" routerLink="/logros" src="laurel.png" alt="" width="90">
