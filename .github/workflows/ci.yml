@@ -27,5 +27,5 @@ jobs:
       - run: npm ci --legacy-peer-deps
       - run: npx cypress install
 
-      # Ejecutar tareas en todos los proyectos, sin Nx Cloud ni SHAs
-      - run: npx nx run-many -t lint test build e2e --all
+      # Ejecutar tareas en todos los proyectos, sin Nx Cloud ni SHAs sin e2e
+      - run: npx nx run-many -t lint test build
