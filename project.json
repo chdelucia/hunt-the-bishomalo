@@ -12,7 +12,6 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/hunt-the-bishomalo",
-        "baseHref": "https://chdelucia.github.io/hunt-the-bishomalo/",
         "index": "./src/index.html",
         "browser": "./src/main.ts",
         "polyfills": ["zone.js"],
