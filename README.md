@@ -1,4 +1,4 @@
-# HuntTheBishomalo nunca muere
+# HuntTheBishomalo nunca
 
 ## Run tasks
 
