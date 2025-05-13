@@ -7,7 +7,6 @@ Te desafío a superar este juego **al 100%**. ¿Tienes lo que se necesita para e
 
 [🔥 **Empezar el reto** 🔥](https://hunt-the-bishomalo.vercel.app/)
 
-¡Te esperamos! 🚀
 
 
 ## Run tasks
