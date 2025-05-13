@@ -158,7 +158,7 @@ describe('GameEngineService (with useValue)', () => {
     mockStore.hunter.mockReturnValueOnce({ hasGold: false });
     mockStore.getCurrentCell.mockReturnValue({ isStart: false });
     service.exit();
-    expect(mockStore.setMessage).toHaveBeenCalledWith('¡No puedes salir todavía!');
+    expect(mockStore.setMessage).toHaveBeenCalledWith('¡Para salir dirígete a la entrada con la moneda!');
     expect(mockLeaderboard.addEntry).not.toHaveBeenCalled();
   });
 

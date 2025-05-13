@@ -173,7 +173,7 @@ export class GameEngineService {
       this.sound.stop();
       this.handleVictory();
     } else {
-      this.store.setMessage('¡No puedes salir todavía!');
+      this.store.setMessage('¡Para salir dirígete a la entrada con la moneda!');
     }
   }
 

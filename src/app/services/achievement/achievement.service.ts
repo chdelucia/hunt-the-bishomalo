@@ -406,32 +406,6 @@ export class AchievementService {
   </svg>`
 },
 {
-  id: 'completionist',
-  title: 'Coleccionista',
-  description: 'Has ganado una partida teniendo todos los logros del juego. ¡Eres una leyenda!',
-  unlocked: false,
-  rarity: 'legendary',
-  svgIcon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="12" cy="12" r="10" fill="#ecc94b" />
-    <circle cx="12" cy="12" r="8" fill="#f6e05e" />
-    <path d="M12 4 L 13 6 L 15 6.5 L 14 8.5 L 14.5 10.5 L 12 10 L 9.5 10.5 L 10 8.5 L 9 6.5 L 11 6 Z" fill="#faf089" />
-    <path d="M7 11 L 8 13 L 7 15 L 9 14.5 L 11 15.5 L 10.5 13.5 L 11.5 11.5 L 9.5 11.5 Z" fill="#faf089" />
-    <path d="M17 11 L 16 13 L 17 15 L 15 14.5 L 13 15.5 L 13.5 13.5 L 12.5 11.5 L 14.5 11.5 Z" fill="#faf089" />
-    <path d="M12 16 L 11 18 L 12 20 L 13 18 L 12 16 Z" fill="#faf089" />
-    <circle cx="12" cy="12" r="3" fill="#faf089" />
-    <circle cx="12" cy="12" r="2" fill="#f6e05e" />
-    <path d="M9 6 C 10 5, 14 5, 15 6" stroke="#b7791f" stroke-width="0.5" />
-    <path d="M6 10 C 5 11, 5 13, 6 14" stroke="#b7791f" stroke-width="0.5" />
-    <path d="M18 10 C 19 11, 19 13, 18 14" stroke="#b7791f" stroke-width="0.5" />
-    <path d="M9 18 C 10 19, 14 19, 15 18" stroke="#b7791f" stroke-width="0.5" />
-    <path d="M12 2 L 12 4" stroke="#b7791f" stroke-width="1" />
-    <path d="M12 20 L 12 22" stroke="#b7791f" stroke-width="1" />
-    <path d="M2 12 L 4 12" stroke="#b7791f" stroke-width="1" />
-    <path d="M20 12 L 22 12" stroke="#b7791f" stroke-width="1" />
-    <text x="9" y="13" font-family="sans-serif" font-size="3" font-weight="bold" fill="#b7791f">100%</text>
-  </svg>`
-},
-{
   id: 'secret',
   title: 'Secreto oculto 8x8',
   description: 'Encontraste al Jedi, que la fuerza te acompañe!',
@@ -461,7 +435,34 @@ export class AchievementService {
     <path d="M19 12 L 20 14 L 19 16 L 17 17" stroke="#1a1a1a" stroke-width="1" fill="none" />
     <path d="M7 17 C 8 19, 16 19, 17 17" stroke="#1a1a1a" stroke-width="1" fill="none" />
   </svg>`
-}
+},
+{
+  id: 'completionist',
+  title: 'Coleccionista',
+  description: 'Has ganado una partida teniendo todos los logros del juego. ¡Eres una leyenda!',
+  unlocked: false,
+  rarity: 'legendary',
+  svgIcon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="12" r="10" fill="#ecc94b" />
+    <circle cx="12" cy="12" r="8" fill="#f6e05e" />
+    <path d="M12 4 L 13 6 L 15 6.5 L 14 8.5 L 14.5 10.5 L 12 10 L 9.5 10.5 L 10 8.5 L 9 6.5 L 11 6 Z" fill="#faf089" />
+    <path d="M7 11 L 8 13 L 7 15 L 9 14.5 L 11 15.5 L 10.5 13.5 L 11.5 11.5 L 9.5 11.5 Z" fill="#faf089" />
+    <path d="M17 11 L 16 13 L 17 15 L 15 14.5 L 13 15.5 L 13.5 13.5 L 12.5 11.5 L 14.5 11.5 Z" fill="#faf089" />
+    <path d="M12 16 L 11 18 L 12 20 L 13 18 L 12 16 Z" fill="#faf089" />
+    <circle cx="12" cy="12" r="3" fill="#faf089" />
+    <circle cx="12" cy="12" r="2" fill="#f6e05e" />
+    <path d="M9 6 C 10 5, 14 5, 15 6" stroke="#b7791f" stroke-width="0.5" />
+    <path d="M6 10 C 5 11, 5 13, 6 14" stroke="#b7791f" stroke-width="0.5" />
+    <path d="M18 10 C 19 11, 19 13, 18 14" stroke="#b7791f" stroke-width="0.5" />
+    <path d="M9 18 C 10 19, 14 19, 15 18" stroke="#b7791f" stroke-width="0.5" />
+    <path d="M12 2 L 12 4" stroke="#b7791f" stroke-width="1" />
+    <path d="M12 20 L 12 22" stroke="#b7791f" stroke-width="1" />
+    <path d="M2 12 L 4 12" stroke="#b7791f" stroke-width="1" />
+    <path d="M20 12 L 22 12" stroke="#b7791f" stroke-width="1" />
+    <text x="9" y="13" font-family="sans-serif" font-size="3" font-weight="bold" fill="#b7791f">100%</text>
+  </svg>`
+},
+
     ];
   
   gameStore = inject(GameStoreService);
