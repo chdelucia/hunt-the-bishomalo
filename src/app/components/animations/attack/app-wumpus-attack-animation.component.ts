@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, output } from '@angular/core';
 import { signal, computed, OnDestroy } from '@angular/core';
 import { Subject, takeUntil, timer } from 'rxjs';
 
 @Component({
   selector: 'app-wumpus-attack-animation',
+  standalone: true,
   templateUrl: './app-wumpus-attack-animation.component.html',
   styleUrls: ['./app-wumpus-attack-animation.component.scss'],
   imports: [CommonModule],

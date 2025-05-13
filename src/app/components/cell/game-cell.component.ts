@@ -4,6 +4,7 @@ import { Cell, Hunter } from '../../models';
 
 @Component({
   selector: 'app-game-cell',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './game-cell.component.html',
   styleUrl: './game-cell.component.scss',

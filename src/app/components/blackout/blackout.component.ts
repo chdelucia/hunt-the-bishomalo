@@ -6,6 +6,7 @@ import { AchievementService } from 'src/app/services/achievement/achievement.ser
 
 @Component({
   selector: 'app-blackout',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './blackout.component.html',
   styleUrl: './blackout.component.scss',

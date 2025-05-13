@@ -5,10 +5,9 @@ import { RouterModule } from '@angular/router';
 import { Achievement } from 'src/app/models';
 import { AchievementService } from 'src/app/services/achievement/achievement.service';
 
-
-
 @Component({
   selector: 'app-achievements',
+  standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './achievements.component.html',
   styleUrl: './achievements.component.scss',
