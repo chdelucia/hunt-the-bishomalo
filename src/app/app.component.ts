@@ -1,7 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ToastComponent } from './components';
+import { filter } from 'rxjs';
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+declare let gtag: Function;
 
 @Component({
   imports: [
@@ -15,6 +19,17 @@ import { ToastComponent } from './components';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'hunt-the-bishomalo';
+    constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        gtag('config', 'G-298LKLF45E', {
+          page_path: event.urlAfterRedirects,
+        });
+      });
+  }
 }

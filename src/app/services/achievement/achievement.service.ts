@@ -3,6 +3,9 @@ import { Achievement, AchieveTypes, Cell, GameSound } from 'src/app/models';
 import { GameStoreService } from '../store/game-store.service';
 import { GameSoundService } from '../sound/game-sound.service';
 
+declare let gtag: (...args: any[]) => void;
+  
+
 @Injectable({
   providedIn: 'root'
 })
@@ -469,12 +472,18 @@ export class AchievementService {
   gameSound = inject(GameSoundService);    
   completed = signal<Achievement | undefined>(undefined);
     
-  
+
   activeAchievement(id: AchieveTypes):void {
     const achieve = this.achievements.find(item => item.id === id);
     if(achieve && !achieve.unlocked){
       achieve.unlocked = true;
       this.completed.set(achieve);
+
+      gtag('event', 'achievement_unlocked', {
+        achievement_id: id,
+        achievement_name: achieve.title,
+        category: 'achievements'
+      });
     }
   }
 
