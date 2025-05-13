@@ -1,23 +1,22 @@
 import { Injectable } from '@angular/core';
 import { GameSound } from 'src/app/models';
 
-
 const SOUND_PATHS: Record<GameSound, string> = {
   [GameSound.WUMPUS]: 'sounds/monster.mp3',
   [GameSound.GOLD]: 'sounds/gold.mp3',
   [GameSound.WIND]: 'sounds/wind.mp3',
   [GameSound.SCREAM]: 'sounds/scream.mp3',
   [GameSound.PAIN]: 'sounds/pain.mp3',
-  [GameSound.WRAT] : 'sounds/winrat.mp3',
-  [GameSound.WHONOR] : 'sounds/win.mp3',
-  [GameSound.ARROWS] : 'sounds/winwitharrows.mp3',
-  [GameSound.NOARROWS] : 'sounds/winwithoutarrows.mp3',
-  [GameSound.SHOOT] : 'sounds/bow-release.mp3',
-  [GameSound.HITWALL] : 'sounds/wallhit.mp3',
-  [GameSound.BLACKOUT] : 'sounds/blackout.mp3',
-  [GameSound.PICKUP] : 'sounds/coincollect.mp3',
-  [GameSound.WALK] : 'sounds/step.mp3',
-  [GameSound.FF7] : 'sounds/ff7.mp3',
+  [GameSound.WRAT]: 'sounds/winrat.mp3',
+  [GameSound.WHONOR]: 'sounds/win.mp3',
+  [GameSound.ARROWS]: 'sounds/winwitharrows.mp3',
+  [GameSound.NOARROWS]: 'sounds/winwithoutarrows.mp3',
+  [GameSound.SHOOT]: 'sounds/bow-release.mp3',
+  [GameSound.HITWALL]: 'sounds/wallhit.mp3',
+  [GameSound.BLACKOUT]: 'sounds/blackout.mp3',
+  [GameSound.PICKUP]: 'sounds/coincollect.mp3',
+  [GameSound.WALK]: 'sounds/step.mp3',
+  [GameSound.FF7]: 'sounds/ff7.mp3',
 };
 
 @Injectable({
@@ -26,22 +25,18 @@ const SOUND_PATHS: Record<GameSound, string> = {
 export class GameSoundService {
   private audioMap: Record<GameSound, HTMLAudioElement> = {} as Record<GameSound, HTMLAudioElement>;
 
-  constructor() {
-    for (const key of Object.values(GameSound)) {
-      this.preload(key, SOUND_PATHS[key]);
+  private getOrCreateAudio(key: GameSound): HTMLAudioElement {
+    if (!this.audioMap[key]) {
+      const path = SOUND_PATHS[key];
+      const audio = new Audio(path);
+      audio.volume = 0.6;
+      this.audioMap[key] = audio;
     }
-  }
-
-  private preload(key: GameSound, path: string) {
-    const audio = new Audio(path);
-    audio.volume = 0.6;
-    audio.loop = true;
-    this.audioMap[key] = audio;
+    return this.audioMap[key];
   }
 
   private play(key: GameSound, loop = true): void {
-    const audio = this.audioMap[key];
-    if (!audio) return;
+    const audio = this.getOrCreateAudio(key);
     audio.loop = loop;
     audio.currentTime = 0;
     audio.play();
