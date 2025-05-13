@@ -1,11 +1,29 @@
 import { Route } from '@angular/router';
-import { HuntBishoComponent } from './pages/hunt-bisho.component';
-import { AchievementsComponent, JediMindTrickAnimationComponent } from './components';
-
 
 export const appRoutes: Route[] = [
-    { path: 'logros', component: AchievementsComponent },
-    { path: 'secret', component: JediMindTrickAnimationComponent },
-    { path: 'home', component: HuntBishoComponent },
+    {
+        path: 'logros',
+        loadComponent: () =>
+        import('./components').then(
+            (mod) => mod.AchievementsComponent
+        ),
+        title: 'Logros | Bisho malo',
+    },
+    {
+        path: 'secret',
+        loadComponent: () =>
+        import('./components').then(
+            (mod) => mod.JediMindTrickAnimationComponent
+        ),
+        title: 'Jedi secreto | Bisho malo',
+    },
+    {
+        path: 'home',
+        loadComponent: () =>
+        import('./pages/hunt-bisho.component').then(
+            (mod) => mod.HuntBishoComponent
+        ),
+        title: 'Game Bisho malo',
+    },
     { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
