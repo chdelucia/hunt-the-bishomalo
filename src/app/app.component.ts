@@ -26,8 +26,10 @@ export class AppComponent implements OnInit {
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
-        gtag('config', 'G-298LKLF45E', {
+        gtag('event', 'page_view', {
           page_path: event.urlAfterRedirects,
+          page_location: window.location.href,
+          page_title: document.title
         });
       });
   }
