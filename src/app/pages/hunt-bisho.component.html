@@ -3,7 +3,6 @@
 @let hunterData = hunter();
 @let settings = game.settings;
 
-
 <main [appVisualEffect]="game.message()">
 
   <app-title [blackout]="settings?.blackout || false"/>
@@ -27,19 +26,12 @@
     }
   </section>
 
-  
-    <section class="game-message" aria-live="polite">
-      @if(game.message() && settings){
-        <p>{{ game.message()}}</p>
-      }@else{
-        <p>Activa el sonido e intenta no morir.</p>
-      }
-      @if(!hunterData.alive && settings){
-        <p class="newgame">Presiona R para reiniciar la partida</p>
-      }@else if (hunterData.hasWon && settings) {
-        <p class="newgame">Presiona N para empezar una nueva partida</p>
-      }
-    </section>
+  <app-game-message 
+    [message]="game.message()" 
+    [isAlive]="hunterData.alive"
+    [hasWon]="hunterData.hasWon"
+    [settings]="settings">
+  </app-game-message>
 
   @if(settings) {
     <app-game-controls [arrows]="hunter().arrows"/>

@@ -1,0 +1,23 @@
+.game-message{
+  text-align: center;
+  font-size: x-large;
+  margin-bottom: 3rem;
+  color: white;
+  font-family: 'Press Start 2P', monospace;
+}
+
+.newgame {
+  animation: blink 1s step-start infinite;
+  font-family: 'Press Start 2P', monospace;
+  color: #00ffea;
+  font-size: 16px;
+  text-align: center;
+  margin-top: 20px;
+  text-shadow: 0 0 5px #00ffea;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}

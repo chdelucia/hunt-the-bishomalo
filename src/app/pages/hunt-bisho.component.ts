@@ -7,6 +7,7 @@ import {
   GameCellComponent, 
   GameConfigComponent, 
   GameControlsComponent, 
+  GameMessageComponent, 
   ScoreboardComponent, 
   TitleComponent, 
 } from './../components';
@@ -26,6 +27,7 @@ import { RouterModule } from '@angular/router';
     TitleComponent,
     ScoreboardComponent,
     BlackoutComponent,
+    GameMessageComponent
 ],
   templateUrl: './hunt-bisho.component.html',
   styleUrl: './hunt-bisho.component.scss',
