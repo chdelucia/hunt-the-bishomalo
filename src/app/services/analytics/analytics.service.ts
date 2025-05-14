@@ -3,7 +3,12 @@ import { Injectable, isDevMode } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
-declare let gtag: (...args: any[]) => void;
+declare global {
+  interface Window {
+    dataLayer: any[];
+    gtag: (...args: any[]) => void;
+  }
+}
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +23,7 @@ export class AnalyticsService {
     this.router.events
       .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) => {
-        gtag('event', 'page_view', {
+        window.gtag('event', 'page_view', {
           page_path: event.urlAfterRedirects,
           page_location: window.location.href,
           page_title: document.title
@@ -27,8 +32,8 @@ export class AnalyticsService {
   }
 
   public sendEvent(eventName: string, params?: { [key: string]: any }): void {
-    if (!gtag) return;
-    gtag('event', eventName, params || {});
+    if (!window.gtag) return;
+    window.gtag('event', eventName, params || {});
   }
 
   public trackAchievementUnlocked(id: string, title: string): void {
