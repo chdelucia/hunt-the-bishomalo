@@ -1,10 +1,8 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router, RouterModule } from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ToastComponent } from './components';
-import { filter } from 'rxjs';
 
-declare let gtag: (...args: any[]) => void;
 
 @Component({
   imports: [
@@ -18,19 +16,6 @@ declare let gtag: (...args: any[]) => void;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'hunt-the-bishomalo';
-    constructor(private router: Router) {}
-
-  ngOnInit(): void {
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        gtag('event', 'page_view', {
-          page_path: event.urlAfterRedirects,
-          page_location: window.location.href,
-          page_title: document.title
-        });
-      });
-  }
 }

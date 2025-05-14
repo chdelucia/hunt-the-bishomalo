@@ -1,10 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { Achievement, AchieveTypes, Cell, GameSound } from 'src/app/models';
-import { GameStoreService } from '../store/game-store.service';
-import { GameSoundService } from '../sound/game-sound.service';
-
-declare let gtag: (...args: any[]) => void;
-  
+import { AnalyticsService, GameSoundService, GameStoreService } from 'src/app/services';
 
 @Injectable({
   providedIn: 'root'
@@ -469,7 +465,8 @@ export class AchievementService {
     ];
   
   gameStore = inject(GameStoreService);
-  gameSound = inject(GameSoundService);    
+  gameSound = inject(GameSoundService);   
+  analytics = inject(AnalyticsService) 
   completed = signal<Achievement | undefined>(undefined);
     
 
@@ -478,14 +475,8 @@ export class AchievementService {
     if(achieve && !achieve.unlocked){
       achieve.unlocked = true;
       this.completed.set(achieve);
-      
-      if (typeof gtag === 'function') {
-        gtag('event', 'achievement_unlocked', {
-          achievement_id: id,
-          achievement_name: achieve.title,
-          category: 'achievements'
-        });
-      }
+
+      this.analytics.trackAchievementUnlocked(id, achieve.title);
     }
   }
 
@@ -547,7 +538,8 @@ export class AchievementService {
     if((size*size - pits) === visited){
       this.activeAchievement(AchieveTypes.EXPERTCARTO);
     }
-    if (visited > size * 0.5) {
+
+    if (visited > size*size*0.5) {
       this.activeAchievement(AchieveTypes.NOVICECARTO);
     }
   }
