@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, output } from '@angular/core';
-import { signal, computed, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, output, signal, computed, OnDestroy } from '@angular/core';
 import { Subject, takeUntil, timer } from 'rxjs';
 
 @Component({

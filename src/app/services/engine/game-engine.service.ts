@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
 @Injectable({ providedIn: 'root' })
 export class GameEngineService {
   constructor(
-    private store: GameStoreService, 
-    private sound: GameSoundService,
-    private leaderBoard: LeaderboardService,
-    private achieve: AchievementService,
-    private router: Router
+    private readonly store: GameStoreService, 
+    private readonly sound: GameSoundService,
+    private readonly leaderBoard: LeaderboardService,
+    private readonly achieve: AchievementService,
+    private readonly router: Router
   ) {}
 
   initGame(config?: GameSettings): void {

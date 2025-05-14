@@ -1,11 +1,10 @@
-import { computed, Injectable } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 import { ScoreEntry } from 'src/app/models';
-import { signal } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class LeaderboardService {
   private readonly storageKey = 'hunt_the_bishomalo_leaderboard';
-  private _leaderboard = signal<ScoreEntry[]>(this.loadLeaderboardFromStorage());
+  private readonly _leaderboard = signal<ScoreEntry[]>(this.loadLeaderboardFromStorage());
   readonly leaderboard = computed(() => this._leaderboard());
 
   private loadLeaderboardFromStorage(): ScoreEntry[] {

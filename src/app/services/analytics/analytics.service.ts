@@ -15,7 +15,7 @@ declare global {
 })
 export class AnalyticsService {
 
-  constructor(private router: Router) {
+  constructor(private readonly router: Router) {
     this.trackPageViews();
   }
 

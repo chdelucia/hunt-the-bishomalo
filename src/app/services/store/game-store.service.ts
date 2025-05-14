@@ -3,8 +3,8 @@ import { Cell, Direction, Hunter, GameSettings } from '../../models';
 
 @Injectable({ providedIn: 'root' })
 export class GameStoreService {
-  private _board = signal<Cell[][]>([]);
-  private _hunter = signal<Hunter>({
+  private readonly _board = signal<Cell[][]>([]);
+  private readonly _hunter = signal<Hunter>({
     x: 0,
     y: 0,
     direction: Direction.RIGHT,
@@ -15,7 +15,7 @@ export class GameStoreService {
     wumpusKilled: false
   });
 
-  private _message = signal('');
+  private readonly _message = signal('');
   private _startTime: Date | null = null;
   private _settings!: GameSettings;
 

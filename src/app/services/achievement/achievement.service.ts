@@ -512,7 +512,7 @@ export class AchievementService {
   private calcDistance(cell: Cell): number {
     const {x, y} = this.gameStore.hunter();
     if(x === cell.x) return Math.abs(x - cell.x);
-    else if(y === cell.y) return Math.abs(x - cell.x);
+    else if(y === cell.y) return Math.abs(y - cell.y);
     return 0;
   }
 

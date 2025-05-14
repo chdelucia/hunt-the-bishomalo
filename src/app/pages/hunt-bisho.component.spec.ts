@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HuntBishoComponent } from './hunt-bisho.component';
 import { GameStoreService } from '../services';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 function createMockCell(overrides = {}) {
   return {

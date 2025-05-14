@@ -12,9 +12,9 @@ import { GameEngineService, GameStoreService } from 'src/app/services';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GameConfigComponent {
-  game = inject(GameEngineService);
-  gameStore = inject(GameStoreService);
-  private fb = inject(FormBuilder);
+  readonly game = inject(GameEngineService);
+  readonly gameStore = inject(GameStoreService);
+  private readonly fb = inject(FormBuilder);
 
   configForm: FormGroup = this.fb.group({
     player: [this.gameStore.prevName, Validators.required],

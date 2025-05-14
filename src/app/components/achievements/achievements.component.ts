@@ -13,7 +13,8 @@ import { AchievementService } from 'src/app/services/achievement/achievement.ser
   styleUrl: './achievements.component.scss',
 })
 export class AchievementsComponent implements OnInit {
-  achieveService = inject(AchievementService);
+  private readonly achieveService = inject(AchievementService);
+  private readonly sanitizer= inject(DomSanitizer);
   filter: 'all' | 'unlocked' | 'locked' = 'all';
   achievements: Achievement[] = this.achieveService.achievements;
   filteredAchievements: Achievement[] = [];
@@ -36,8 +37,6 @@ export class AchievementsComponent implements OnInit {
 
   unlockedCount = 0;
   percentage = 0;
-
-  constructor(private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.updateFilteredAchievements();

@@ -18,8 +18,8 @@ interface ToastData {
   styleUrl: './toast.component.scss',
 })
 export class ToastComponent {
-  private service = inject(AchievementService);
-  private sanitizer = inject(DomSanitizer);
+  private readonly service = inject(AchievementService);
+  private readonly sanitizer = inject(DomSanitizer);
   private idCounter = 0;
   toasts = signal<ToastData[]>([]);
 
