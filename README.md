@@ -34,3 +34,11 @@ to run the unit test:
 ```sh
 npx nx run test --code-coverage
 ```
+
+to run docker:
+```sh
+docker build --no-cache -t hunt-the-bishomalo-app .
+docker run -d -p 8080:80 --name huntbishomalo hunt-the-bishomalo-app
+docker start huntbishomalo
+
+```

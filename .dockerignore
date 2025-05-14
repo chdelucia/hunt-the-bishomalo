@@ -1,0 +1,41 @@
+# Node modules locales (se instalan dentro del contenedor)
+node_modules
+**/node_modules
+
+# Directorios de salida de builds
+dist
+tmp
+out
+coverage
+
+# Archivos del sistema operativo / IDE
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos de configuración de IDEs/editors
+.vscode
+.idea
+*.swp
+
+# Git
+.git
+.gitignore
+
+# Nx cache
+nx-report.json
+.nx/
+.cache/
+
+node_modules
+dist
+.angular
+.git
+.gitignore
+Dockerfile
+README.md
+*.log
+tmp
