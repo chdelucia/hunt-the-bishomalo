@@ -1,23 +1,24 @@
-name: CI and Deploy
+name: CI, Coverage & Deploy
 
 on:
   push:
     branches:
       - master
   pull_request:
+    types: [opened, synchronize, reopened]
 
 permissions:
   actions: read
-  contents: write  # necesario para publicar en gh-pages
+  contents: write  # Necesario para subir a gh-pages
 
 jobs:
-  main:
+  build-test-deploy:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
         with:
-          filter: tree:0
-          fetch-depth: 0
+          fetch-depth: 0  # Necesario para SonarCloud
 
       - uses: actions/setup-node@v4
         with:
@@ -25,10 +26,28 @@ jobs:
           cache: 'npm'
 
       - run: npm ci --legacy-peer-deps
+
       - run: npx cypress install
 
-      # Ejecuta lint y test
-      - run: npx nx run-many -t lint test
+      # ✅ Lint y test con coverage
+      - name: Lint and Test with Coverage
+        run: |
+          npx nx run-many -t lint
+          npx nx test hunt-the-bishomalo --coverage --coverageReporters=lcov
 
-      # Build solo del proyecto principal que se va a publicar
-      - run: npx nx build hunt-the-bishomalo --configuration=production --base-href="https://chdelucia.github.io/hunt-the-bishomalo/"
+      # ✅ Build Angular App
+      - name: Build App
+        run: npx nx build hunt-the-bishomalo --configuration=production --base-href="https://chdelucia.github.io/hunt-the-bishomalo/"
+
+      # ✅ SonarCloud Scan
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      # ✅ Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: dist/hunt-the-bishomalo/browser
