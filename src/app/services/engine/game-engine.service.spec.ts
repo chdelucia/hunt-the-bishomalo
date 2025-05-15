@@ -148,7 +148,7 @@ describe('GameEngineService (with useValue)', () => {
     const now = new Date();
     mockStore.startTime = new Date(now.getTime() - 5000);
     service.exit();
-    expect(mockStore.setMessage).toHaveBeenCalledWith(expect.stringContaining('¡Escapaste con el oro'));
+    expect(mockStore.setMessage).toHaveBeenCalledWith(expect.stringContaining('¡Escapaste en'));
     expect(mockLeaderboard.addEntry).toHaveBeenCalledWith(
       expect.objectContaining({ playerName: 'TestPlayer' })
     );
