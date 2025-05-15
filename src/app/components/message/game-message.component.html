@@ -1,5 +1,8 @@
 @let _settings = settings();
 
+@if(_settings){
+  <div class="level">Nivel {{ _settings.size - 4 + 1}}</div>
+}
 <section class="game-message" aria-live="polite">
       @if(message() && _settings){
         <p>{{ message() }}</p>
