@@ -54,6 +54,10 @@ export class GameStoreService {
       place().hasPit = true;
     }
 
+    for (let i = 0; i < (this._settings.wumpus - 1 || 0); i++) {
+      place().hasArrow = true;
+    }
+
     this._board.set(board);
     this.resetHunter();
     this._startTime = new Date();
