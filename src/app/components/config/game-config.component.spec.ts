@@ -31,8 +31,8 @@ describe('GameConfigComponent', () => {
     const form = component.configForm;
     expect(form.value).toEqual({
       player: 'Player',
-      size: 5,
-      pits: 3,
+      size: 4,
+      pits: 2,
       arrows: 1
     });
   });

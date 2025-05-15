@@ -11,6 +11,7 @@ describe('GameStoreService', () => {
     size: 4,
     pits: 2,
     arrows: 3,
+    wumpus: 1
   };
 
   beforeEach(() => {
