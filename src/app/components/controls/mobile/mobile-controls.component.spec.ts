@@ -17,7 +17,9 @@ describe('MobileControlsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MobileControlsComponent],
-      providers: [{ provide: GameEngineService, useValue: gameEngineMock }],
+      providers: [
+        { provide: GameEngineService, useValue: gameEngineMock }
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MobileControlsComponent);
