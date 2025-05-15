@@ -3,7 +3,7 @@
   position: fixed;
   top: 20px;
   left: 110px; 
-  background-color: rgba(20, 20, 20, 0.8);
+  background-color: rgba(20, 20, 20, 1);
   color: white;
   border-radius: 8px;
   padding: 1.5rem;
@@ -16,14 +16,42 @@
   font-family: "Segoe UI", sans-serif;
   z-index: 25;
 
-  .title {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    text-align: center;
-    border-bottom: 1px solid #666;
-    padding-bottom: 0.4rem;
-    font-weight: bold;
-  }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .title {
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.5rem;
+      text-align: center;
+      border-bottom: 1px solid #666;
+      padding-bottom: 0.4rem;
+      font-weight: bold;
+      font-family: 'Press Start 2P', monospace;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      margin:0;
+      padding: 0;
+      background: transparent;
+      border: none;
+      font-size: 2.5rem;
+      cursor: pointer;
+      line-height: 1;
+      min-width: 20px;
+      width: 40px;
+      &:hover{
+        cursor: pointer;
+        color: #00ff5e;
+      }
+    }
+
 }
 
 .scoreboard.show {
@@ -46,11 +74,8 @@
 }
 
 .trophy-icon {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  width: 75px;
-  height: 85px;
+  width: 90px;
+  height: 90px;
   cursor: pointer;
   transition: transform 0.2s ease;
   z-index: 20;

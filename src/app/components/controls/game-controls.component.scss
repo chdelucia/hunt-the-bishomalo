@@ -1,26 +1,55 @@
-.controls {
-    text-align: center;
+
+.controller-icon {
+  width: 90px;
+  height: 90px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  z-index: 20;
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 .game-controls {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: rgba(20, 20, 20, 0.8);
+  display: none;
+  top: 1.5rem;
+  right: 8rem;
+  background: rgba(20, 20, 20, 1);
   color: #fff;
   padding: 1rem 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  font-family: 'Segoe UI', sans-serif;
   z-index: 10;
-  width: 200px;
+  width: 280px;
+
+  &.show{ display: block;}
+
+  .close-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      margin:0;
+      padding: 0;
+      background: transparent;
+      border: none;
+      font-size: 2.5rem;
+      cursor: pointer;
+      line-height: 1;
+      min-width: 20px;
+      width: 40px;
+      &:hover{
+        cursor: pointer;
+        color: #00ff5e;
+      }
+  }
 
   .title {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
     text-align: center;
     border-bottom: 1px solid #666;
-    padding-bottom: 0.4rem;
+    padding-bottom: 0.4rem;  
   }
 
   .control-list {
@@ -41,7 +70,7 @@
       padding: 0.2rem 0.5rem;
       border-radius: 4px;
       font-weight: bold;
-      color: #0ff;
+      color: #00ff5e;
       font-family: monospace;
       min-width: 24px;
       text-align: center;

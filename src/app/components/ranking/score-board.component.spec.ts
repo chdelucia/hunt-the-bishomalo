@@ -32,10 +32,10 @@ describe('ScoreBoardComponent', () => {
   });
 
   it('should toggle leaderboard visibility', () => {
-    expect(component.isLeaderboardVisible).toBe(false);
+    expect(component.isLeaderboardVisible()).toBe(false);
     component.toggleLeaderboard();
-    expect(component.isLeaderboardVisible).toBe(true);
+    expect(component.isLeaderboardVisible()).toBe(true);
     component.toggleLeaderboard();
-    expect(component.isLeaderboardVisible).toBe(false);
+    expect(component.isLeaderboardVisible()).toBe(false);
   });
 });

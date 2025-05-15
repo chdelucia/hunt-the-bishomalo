@@ -5,6 +5,10 @@
 
 <main [appVisualEffect]="game.message()">
 
+  <app-menu>
+    <app-game-controls [arrows]="hunter().arrows"/>
+  </app-menu>
+
   <app-title [blackout]="settings?.blackout || false"/>
 
   @if(settings?.blackout && hunterData.alive && !hunterData.hasWon){
@@ -33,11 +37,8 @@
     [settings]="settings">
   </app-game-message>
 
-  @if(settings) {
-    <app-game-controls [arrows]="hunter().arrows"/>
-  }
+  <app-mobile-controls />
+
 </main>
 
-<app-scoreboard />
 
-<img class="achivements" routerLink="/logros" src="laurel.png" alt="" width="90">

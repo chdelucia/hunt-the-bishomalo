@@ -14,7 +14,7 @@ main {
   aspect-ratio: 1 / 1;
   border: 3px solid #333;
   width: fit-content;
-  min-width: 550px;
+  min-width: calc(min(95vw, 550px));
   margin: 0 auto;
   justify-content: center;
   align-items: center;
@@ -25,28 +25,10 @@ app-game-config {
   background-color: darkgrey;
 }
 
-@function calcCellSize($size) {
-  $base: 550px;
-  $cell: math.div($base, $size);
-  @return if($cell < 40px, 40px, $cell);
-}
-
 @for $i from 4 through 20 {
   app-game-cell.size-#{$i} {
-    --cellsize: #{calcCellSize($i)};
+    --cellsize: max(20px, calc(min(95vw, 550px) / #{$i}));
   }
 }
 
 app-title{ z-index: 10; position: relative;}
-
-.achivements{
-  position: absolute;
-  top: 20px;
-  left: 7.5rem;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  z-index: 20;
-  &:hover {
-    transform: scale(1.1);
-  }
-}

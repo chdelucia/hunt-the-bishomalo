@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostListener, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, inject, input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GameEngineService } from 'src/app/services/engine/game-engine.service';
 import { AchievementService } from 'src/app/services/achievement/achievement.service';
@@ -13,10 +13,12 @@ import { AchieveTypes } from 'src/app/models';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GameControlsComponent {
+  isVisible = signal(false);
+
   private readonly game = inject(GameEngineService);
   private readonly achieve = inject(AchievementService);
   readonly arrows = input.required<number>();
-  
+
   private readonly keyActionMap: Record<string, () => void> = {
     ArrowUp: () => this.moveForward(),
     Space: () => this.shootArrow(),
@@ -63,6 +65,10 @@ export class GameControlsComponent {
 
   resetGame(): void {
     this.game.initGame();
+  }
+
+  toggle(): void {
+    this.isVisible.update((value) => !value);
   }
 
 }

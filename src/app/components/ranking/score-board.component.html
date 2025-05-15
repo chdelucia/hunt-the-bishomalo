@@ -1,5 +1,5 @@
 <img 
-  src="trophy.png" 
+  src="leaderboard.svg" 
   class="trophy-icon"   
   (click)="toggleLeaderboard()"
   (keypress)="toggleLeaderboard()"
@@ -7,8 +7,17 @@
   alt="leaderboard"
 >
 
-<div class="scoreboard" [class.show]="isLeaderboardVisible">
+<aside class="scoreboard" [class.show]="isLeaderboardVisible()">
+  <button
+    class="close-btn"
+    (click)="toggleLeaderboard()"
+    aria-label="Cerrar leaderboard"
+  >
+    &times;
+  </button>
   <div class="title">Leaderboard</div>
+
+  
   @if(leaderboard().length){
     <table>
       <tbody>
@@ -23,4 +32,4 @@
     <span>Sin ganadores aún</span>
   }
 
-</div>
+</aside>

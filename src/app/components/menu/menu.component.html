@@ -1,0 +1,35 @@
+@let opened = isOpen();
+
+<div 
+    class="menu-toggle" 
+    [class.open]="opened"
+    (click)="toggleMenu()" 
+    (keypress)="toggleMenu()" 
+    role="button" 
+    tabindex="0"
+>
+  <div [ngClass]="{ 'bar': true, 'bar1': true, 'open': opened }"></div>
+  <div [ngClass]="{ 'bar': true, 'bar2': true, 'open': opened }"></div>
+  <div [ngClass]="{ 'bar': true, 'bar3': true, 'open': opened }"></div>
+</div>
+
+<div class="mobile-menu" *ngIf="opened">
+  <ul>
+    <li routerLink="/home">Inicio</li>
+    <li>Ranking</li>
+    <li routerLink="/logros">Logros</li>
+    <li>Controles</li>
+  </ul>
+</div>
+
+
+
+<div class="menu-desktop">
+  <div class="left-icons">
+    <app-scoreboard />
+    <img class="achivements" routerLink="/logros" src="trophy.svg" alt="logros" role="button">
+  </div>
+  <div class="right-icon">
+    <ng-content></ng-content>
+  </div>
+</div>

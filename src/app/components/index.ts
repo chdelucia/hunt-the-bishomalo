@@ -9,3 +9,5 @@ export * from './achieve-toast/toast.component';
 export * from './animations/jedi/jedi-mind-trick-animation.component';
 export * from './achievements/achievements.component';
 export * from './message/game-message.component';
+export * from './menu/menu.component';
+export * from './controls/mobile/mobile-controls.component';

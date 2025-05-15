@@ -1,5 +1,20 @@
 
-<aside class="game-controls" aria-label="Game Controls">
+<img 
+  src="controller.svg" 
+  class="controller-icon"   
+  (click)="toggle()"
+  (keypress)="toggle()"
+  tabindex="0"
+  alt="abrir controles"
+>
+<aside class="game-controls" aria-label="Game Controls" [class.show]="isVisible()">
+  <button
+    class="close-btn"
+    (click)="toggle()"
+    aria-label="Cerrar controles"
+  >
+    &times;
+  </button>
   <h2 class="title">Controles</h2>
   <ul class="control-list">
     <li><span class="key">⬆</span> Avanzar</li>

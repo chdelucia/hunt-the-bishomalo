@@ -1,5 +1,5 @@
 <form [formGroup]="configForm" (ngSubmit)="submitForm()" class="config-form">
-  <h2>Configuración de la Partida</h2>
+  <h2>Configuración</h2>
 
   <div class="form-group">
     <label for="player">Nombre del jugador:</label>
@@ -21,5 +21,5 @@
     <input id="arrows" type="number" formControlName="arrows" min="1"/>
   </div>
 
-  <button type="submit" [disabled]="configForm.invalid">Iniciar Juego</button>
+  <button type="submit" [disabled]="configForm.invalid">Jugar</button>
 </form>

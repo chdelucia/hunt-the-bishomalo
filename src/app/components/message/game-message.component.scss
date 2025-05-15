@@ -1,14 +1,12 @@
 .game-message{
   text-align: center;
   font-size: x-large;
-  margin-bottom: 3rem;
-  color: white;
-  font-family: 'Press Start 2P', monospace;
+  margin-bottom: 1.5rem;
+  color: #00ff5e;
 }
 
 .newgame {
   animation: blink 1s step-start infinite;
-  font-family: 'Press Start 2P', monospace;
   color: #00ffea;
   font-size: 16px;
   text-align: center;
