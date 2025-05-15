@@ -1,10 +1,12 @@
+@let _settings = settings();
+
 <section class="game-message" aria-live="polite">
-      @if(message() && settings()){
+      @if(message() && _settings){
         <p>{{ message() }}</p>
       }@else{
         <p>Activa el sonido, recoge la moneda y vuelve al inicio.</p>
       }
-      @if(!isAlive() && settings()){
+      @if(!isAlive() && _settings){
         <button 
           class="newgame" 
           (click)="restartGame()" 
@@ -12,7 +14,7 @@
         >
           Haz click para intertarlo de nuevo
         </button>
-      }@else if (hasWon() && settings()) {
+      }@else if (hasWon() && _settings) {
         <button 
           class="newgame" 
           (click)="nextLevel()" 

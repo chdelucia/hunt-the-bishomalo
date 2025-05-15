@@ -25,7 +25,12 @@ export class GameConfigComponent {
 
   submitForm(): void {
     if (this.configForm.valid) {
-      this.game.initGame({...this.configForm.value, blackout: this.applyBlackoutChance()});
+      this.game.initGame(
+        {
+          ...this.configForm.value, 
+          blackout: this.applyBlackoutChance()
+        }
+      );
     }
   }
 

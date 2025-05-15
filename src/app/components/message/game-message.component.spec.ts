@@ -68,4 +68,19 @@ describe('GameMessageComponent', () => {
   });
 
 
+  describe('nextLevel', () => {
+    it('should increment size and recalculate pits and wumpus', () => {
+      component.nextLevel();
+
+      expect(gameEngineMock.initGame).toHaveBeenCalledWith({
+        size: 5,
+        pits: 2,
+        wumpus: 1,
+        arrows: 1
+      });
+
+    });
+  });
+
+
 });

@@ -3,5 +3,6 @@ export interface GameSettings {
     pits: number; 
     arrows: number; 
     player: string;
+    wumpus: number;
     blackout?: boolean;
 }

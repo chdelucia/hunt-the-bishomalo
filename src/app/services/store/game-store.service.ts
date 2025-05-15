@@ -44,8 +44,12 @@ export class GameStoreService {
     );
 
     const place = () => this.placeRandom(board);
+
     place().hasGold = true;
-    place().hasWumpus = true;
+
+    for (let i = 0; i < (this._settings.wumpus || 1); i++) {
+      place().hasWumpus = true;
+    }
     for (let i = 0; i < this._settings.pits; i++) {
       place().hasPit = true;
     }

@@ -24,11 +24,15 @@ export class GameMessageComponent {
   nextLevel(): void {
     const size = this.settings().size + 1;
     const pits = this.calculatePits(size);
+    const wumpus = this.calculateWumpus(size);
+    const arrows = wumpus;
 
     const newSettings = {
       ...this.settings(),
       size,
-      pits
+      pits,
+      wumpus,
+      arrows
     };
 
     this.gameEngine.initGame(newSettings);
@@ -37,6 +41,12 @@ export class GameMessageComponent {
   private calculatePits(size: number): number {
     const totalCells = size * size;
     const basePercentage = 0.10;
+    return Math.max(1, Math.floor(totalCells * basePercentage));
+  }
+
+  private calculateWumpus(size: number): number {
+    const totalCells = size * size;
+    const basePercentage = 0.03;
     return Math.max(1, Math.floor(totalCells * basePercentage));
   }
 }
