@@ -1,5 +1,6 @@
 import { Injectable, computed, signal } from '@angular/core';
 import { Cell, Direction, Hunter, GameSettings } from '../../models';
+import { LocalstorageService } from '../localstorage/localstorage.service';
 
 @Injectable({ providedIn: 'root' })
 export class GameStoreService {
@@ -24,8 +25,27 @@ export class GameStoreService {
   readonly message = computed(() => this._message());
   prevName = 'Player';
 
+  private readonly storageKey = 'hunt_the_bishomalo_settings';
+ 
+  constructor(private readonly localStorageService: LocalstorageService){
+    this.syncSettingsWithStorage();
+  }
+
+  private syncSettingsWithStorage(): void {
+    const settings = this.localStorageService.getValue<GameSettings>(this.storageKey);
+    if(settings){
+      this._settings = settings;
+      this.initBoard();
+    }
+  }
+
+   private updateLocalStorageWithSettings(): void {
+    this.localStorageService.setValue<GameSettings>(this.storageKey, this._settings);
+  }
+
   setSettings(settings: GameSettings): void {
     this._settings = settings;
+    this.updateLocalStorageWithSettings();
   }
 
   resetSettings(): void {
