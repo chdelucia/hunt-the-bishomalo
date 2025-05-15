@@ -7,10 +7,6 @@
   height: 45px;
   z-index: 999;
 
-  &.open {
-    width: calc(100% - 4px);
-    border: 2px solid #00ffcc;
-  }
 
   .bar {
     position: absolute;
@@ -20,13 +16,13 @@
     transition: 0.3s ease;
   }
 
-  .bar1 { top: 10px; left: 10px; width:30px }
-  .bar2 { top: 20px; left: 10px; width:30px }
-  .bar3 { top: 30px; left: 10px; width:30px }
+  .bar1 { top: 15px; left: 15px; width:30px }
+  .bar2 { top: 25px; left: 15px; width:30px }
+  .bar3 { top: 35px; left: 15px; width:30px }
 
   .bar1.open {
     transform: rotate(45deg);
-    top: 20px;
+    top: 22px;
   }
 
   .bar2.open {
@@ -35,7 +31,7 @@
 
   .bar3.open {
     transform: rotate(-45deg);
-    top: 20px;
+    top: 22px;
   }
 }
 
