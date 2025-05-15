@@ -22,7 +22,7 @@ describe('GameMessageComponent', () => {
     fixture.componentRef.setInput('message', 'algo');
     fixture.componentRef.setInput('isAlive', true);
     fixture.componentRef.setInput('hasWon', false);
-    fixture.componentRef.setInput('settings', {});
+    fixture.componentRef.setInput('settings', {size: 4, pits:1, arrows: 1});
     fixture.detectChanges();
   });
 
@@ -35,8 +35,37 @@ describe('GameMessageComponent', () => {
     expect(gameEngineMock.initGame).toHaveBeenCalled();
   });
 
-  it('should call new game to start new config of game', () => {
-    component.newGame()
-    expect(gameEngineMock.newGame).toHaveBeenCalled();
+  describe('calculatePits', () => {
+    it('should return at least 1 pit for small boards', () => {
+      const pits = (component as any).calculatePits(2);
+      expect(pits).toBe(1);
+    });
+
+    it('should return 10% of total cells rounded down', () => {
+      const pits = (component as any).calculatePits(5);
+      expect(pits).toBe(2);
+    });
   });
+
+  describe('nextLevel', () => {
+    it('should increase board size and recalculate pits', () => {
+      component.nextLevel();
+
+      expect(gameEngineMock.initGame).toHaveBeenCalledWith(
+        expect.objectContaining({
+          size: 5,
+          pits: 2
+        })
+      );
+    });
+  });
+
+  describe('restartGame', () => {
+    it('should call initGame without arguments', () => {
+      component.restartGame();
+      expect(gameEngineMock.initGame).toHaveBeenCalledWith();
+    });
+  });
+
+
 });

@@ -18,8 +18,8 @@ export class GameConfigComponent {
 
   configForm: FormGroup = this.fb.group({
     player: [this.gameStore.prevName, Validators.required],
-    size: [5, [Validators.required, Validators.min(4), Validators.max(20)]],
-    pits: [3, [Validators.required, Validators.min(1)]],
+    size: [4, [Validators.required, Validators.min(4), Validators.max(20)]],
+    pits: [2, [Validators.required, Validators.min(1)]],
     arrows: [1, [Validators.required, Validators.min(1)]],
   });
 

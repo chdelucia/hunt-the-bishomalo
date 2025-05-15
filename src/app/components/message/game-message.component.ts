@@ -21,7 +21,22 @@ export class GameMessageComponent {
     this.gameEngine.initGame();  
   }
   
-  newGame(): void {
-    this.gameEngine.newGame();
+  nextLevel(): void {
+    const size = this.settings().size + 1;
+    const pits = this.calculatePits(size);
+
+    const newSettings = {
+      ...this.settings(),
+      size,
+      pits
+    };
+
+    this.gameEngine.initGame(newSettings);
+  }
+
+  private calculatePits(size: number): number {
+    const totalCells = size * size;
+    const basePercentage = 0.10;
+    return Math.max(1, Math.floor(totalCells * basePercentage));
   }
 }
