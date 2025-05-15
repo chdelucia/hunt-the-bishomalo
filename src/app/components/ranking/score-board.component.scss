@@ -73,16 +73,23 @@
   }
 }
 
-.trophy-icon {
-  width: 90px;
-  height: 90px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-  z-index: 20;
-}
+.trophy-icon{
+  min-width: 0;
+  background: none;
+  padding: 0;
+  margin: 0;
 
-.trophy-icon:hover {
-  transform: scale(1.1);
+  img {
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    z-index: 20;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
 @media (max-width: 600px) {

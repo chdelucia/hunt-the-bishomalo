@@ -1,11 +1,12 @@
-<img 
-  src="leaderboard.svg" 
-  class="trophy-icon"   
-  (click)="toggleLeaderboard()"
-  (keypress)="toggleLeaderboard()"
-  tabindex="0"
-  alt="leaderboard"
+
+<button 
+  class="trophy-icon" 
+  (click)="toggleLeaderboard()" 
+  aria-label="Mostrar tabla de clasificación"
 >
+  <img src="leaderboard.svg" alt="" aria-hidden="true" />
+</button>
+
 
 <aside class="scoreboard" [class.show]="isLeaderboardVisible()">
   <button

@@ -5,8 +5,12 @@
         <p>Activa el sonido, recoge la moneda y vuelve al inicio.</p>
       }
       @if(!isAlive() && settings()){
-        <p class="newgame" (click)="restartGame()" (keydown)="restartGame()" tabindex="0">Haz click para intertarlo de nuevo</p>
+        <p class="newgame" (click)="restartGame()" (keydown)="restartGame()" tabindex="0">
+          Haz click para intertarlo de nuevo
+        </p>
       }@else if (hasWon() && settings()) {
-        <p class="newgame" (click)="newGame()" (keydown)="newGame()" tabindex="0">Felicidades click para empezar una nueva partida</p>
+        <p class="newgame" (click)="newGame()" (keydown)="newGame()" tabindex="0">
+          Felicidades click para empezar una nueva partida
+        </p>
       }
 </section>

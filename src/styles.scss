@@ -7,7 +7,6 @@ body, html {
 }
 
   button {
-    min-width: 150px;
     width: fit-content;
     padding: 0.75rem;
     font-size: 1rem;
@@ -16,7 +15,6 @@ body, html {
     color: white;
     border: none;
     border-radius: 6px;
-    margin-right: 1rem;
 
     &:hover {
         cursor: pointer;

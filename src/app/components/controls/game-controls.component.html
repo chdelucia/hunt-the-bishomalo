@@ -1,12 +1,14 @@
 
-<img 
-  src="controller.svg" 
-  class="controller-icon"   
-  (click)="toggle()"
-  (keypress)="toggle()"
-  tabindex="0"
-  alt="abrir controles"
+<button 
+  class="controller-icon" 
+  (click)="toggle()" 
+  aria-label="Mostrar tabla de clasificación"
 >
+  <img 
+    src="controller.svg" 
+    alt="abrir controles"
+  >
+</button>
 <aside class="game-controls" aria-label="Game Controls" [class.show]="isVisible()">
   <button
     class="close-btn"
