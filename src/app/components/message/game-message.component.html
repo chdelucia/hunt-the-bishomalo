@@ -20,7 +20,11 @@
           (click)="nextLevel()" 
           aria-label="Nuevo nivel"
         >
-          Felicidades click para empezar el siguiente nivel
+          @if(_settings.size < 20){
+            <span>Felicidades click para empezar el siguiente nivel.</span>
+          } @else {
+            FELICIDADES!! Has completado todos los niveles!
+          }
         </button>
       }
 </section>
