@@ -36,8 +36,9 @@
     [hasWon]="hunterData.hasWon"
     [settings]="settings">
   </app-game-message>
-
-  <app-mobile-controls />
+  @if (settings) {
+    <app-mobile-controls />
+  }
 
 </main>
 

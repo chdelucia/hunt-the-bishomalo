@@ -1,11 +1,11 @@
 .menu-toggle {
   width: 30px;
-  height: 24px;
   position: absolute;
   cursor: pointer;
   display: none;
   border-bottom: 0;
   height: 45px;
+  z-index: 999;
 
   &.open {
     width: calc(100% - 4px);

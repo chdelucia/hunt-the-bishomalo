@@ -5,8 +5,8 @@
         <p>Activa el sonido, recoge la moneda y vuelve al inicio.</p>
       }
       @if(!isAlive() && settings()){
-        <p class="newgame" >Presiona R para reiniciar la partida</p>
+        <p class="newgame" (click)="restartGame()" (keydown)="restartGame()" role="button" tabindex="0">Haz click para intertarlo de nuevo</p>
       }@else if (hasWon() && settings()) {
-        <p class="newgame" >Presiona N para empezar una nueva partida</p>
+        <p class="newgame" (click)="newGame()" (keydown)="newGame()" role="button" tabindex="0">Felicidades click para empezar una nueva partida</p>
       }
 </section>
