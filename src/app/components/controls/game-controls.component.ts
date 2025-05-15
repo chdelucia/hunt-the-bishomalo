@@ -29,9 +29,7 @@ export class GameControlsComponent {
     KeyW: () => { this.moveForward(); this.achieve.activeAchievement(AchieveTypes.GAMER)},
     KeyA: () => {this.turnLeft(); this.achieve.activeAchievement(AchieveTypes.GAMER)},
     KeyD: () => {this.turnRight(); this.achieve.activeAchievement(AchieveTypes.GAMER)},
-    KeyQ: () => {this.exit(); this.achieve.activeAchievement(AchieveTypes.GAMER)},
     KeyN: () => this.game.newGame(),
-    Escape: () => this.exit()
   };
 
   @HostListener('window:keydown', ['$event'])

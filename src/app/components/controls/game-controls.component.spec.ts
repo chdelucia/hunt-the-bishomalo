@@ -68,12 +68,6 @@ describe('GameControlsComponent', () => {
     expect(mockGameService.initGame).toHaveBeenCalled();
   });
 
-  it('should call exit() on Escape key', () => {
-    const event = new KeyboardEvent('keydown', { code: 'Escape' });
-    window.dispatchEvent(event);
-    expect(mockGameService.exit).toHaveBeenCalled();
-  });
-
   it('should prevent default behavior for recognized keys', () => {
     const preventDefault = jest.fn();
     const event = new KeyboardEvent('keydown', { code: 'ArrowUp' });

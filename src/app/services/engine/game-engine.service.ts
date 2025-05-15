@@ -212,6 +212,7 @@ export class GameEngineService {
 
     this.store.markCellVisited(x, y);
 
+    if (this.canExitWithVictory()){ this.exit(); return; }
     if (this.handleDeadlyCell(cell)) return;
     if (this.handleGold(cell)) return;
     if (this.handleArrow(cell)) return;
