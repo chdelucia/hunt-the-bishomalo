@@ -76,7 +76,8 @@ describe('GameMessageComponent', () => {
         size: 5,
         pits: 2,
         wumpus: 1,
-        arrows: 1
+        arrows: 1,
+        blackout: false
       });
 
     });
