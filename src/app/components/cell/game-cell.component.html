@@ -9,7 +9,7 @@
     [class.hunter]="hasHunter"
 >
 
-    @if (!isAlive || _hunter.hasWon || true) {
+    @if (!isAlive || _hunter.hasWon) {
         @if (cell().hasWumpus) {
             <img [src]="'wumpus.svg'" alt="wumpus" aria-label="wumpus"/>
         }
