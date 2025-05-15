@@ -16,7 +16,7 @@ export class LeaderboardService {
 
   private loadLeaderboardFromStorage(): ScoreEntry[] {
     const raw = this.localStorageService.getValue<ScoreEntry[]>(this.storageKey);
-    return raw ? raw : [];
+    return raw ?? [];
   }
 
   addEntry(entry: ScoreEntry): void {

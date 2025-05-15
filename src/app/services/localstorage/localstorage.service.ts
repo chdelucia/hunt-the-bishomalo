@@ -13,6 +13,7 @@ export class LocalstorageService {
     try {
       return JSON.parse(item);
     } catch (e) {
+      console.log(e);
       return null;
     }
   }
