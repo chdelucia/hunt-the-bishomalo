@@ -6,7 +6,9 @@
 <main [appVisualEffect]="game.message()">
 
   <app-menu>
-    <app-game-controls [arrows]="hunter().arrows"/>
+    @if (settings) {
+      <app-game-controls [arrows]="hunter().arrows"/>
+    }
   </app-menu>
 
   <app-title [blackout]="settings?.blackout || false"/>
