@@ -3,3 +3,4 @@ export * from './score/leaderboard.service';
 export * from './sound/game-sound.service';
 export * from './store/game-store.service';
 export * from './analytics/analytics.service';
+export * from './localstorage/localstorage.service';

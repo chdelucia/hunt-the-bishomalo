@@ -1,27 +1,34 @@
 import { computed, Injectable, signal } from '@angular/core';
 import { ScoreEntry } from 'src/app/models';
+import { LocalstorageService } from '../localstorage/localstorage.service';
 
 @Injectable({ providedIn: 'root' })
 export class LeaderboardService {
   private readonly storageKey = 'hunt_the_bishomalo_leaderboard';
-  private readonly _leaderboard = signal<ScoreEntry[]>(this.loadLeaderboardFromStorage());
+  private readonly _leaderboard = signal<ScoreEntry[]>([]);
   readonly leaderboard = computed(() => this._leaderboard());
 
+  constructor(private readonly localStorageService: LocalstorageService) {
+    const stored = this.loadLeaderboardFromStorage();
+    this._leaderboard.set(stored);
+  }
+
+
   private loadLeaderboardFromStorage(): ScoreEntry[] {
-    const raw = localStorage.getItem(this.storageKey);
-    return raw ? JSON.parse(raw) : [];
+    const raw = this.localStorageService.getValue<ScoreEntry[]>(this.storageKey);
+    return raw ? raw : [];
   }
 
   addEntry(entry: ScoreEntry): void {
     const leaderboard = [...this._leaderboard(), entry];
     leaderboard.sort((a, b) => a.timeInSeconds - b.timeInSeconds);
-    localStorage.setItem(this.storageKey, JSON.stringify(leaderboard));
+    this.localStorageService.setValue<ScoreEntry[]>(this.storageKey, leaderboard);
     
     this._leaderboard.set(leaderboard);
   }
 
   clear(): void {
-    localStorage.removeItem(this.storageKey);
+    this.localStorageService.clearValue(this.storageKey);
     this._leaderboard.set([]);
   }
 }

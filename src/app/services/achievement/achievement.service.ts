@@ -1,6 +1,6 @@
-import { inject, Injectable, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Achievement, AchieveTypes, Cell, GameSound } from 'src/app/models';
-import { AnalyticsService, GameSoundService, GameStoreService } from 'src/app/services';
+import { AnalyticsService, GameSoundService, GameStoreService, LocalstorageService } from 'src/app/services';
 
 @Injectable({
   providedIn: 'root'
@@ -464,11 +464,36 @@ export class AchievementService {
 
     ];
   
-  gameStore = inject(GameStoreService);
-  gameSound = inject(GameSoundService);   
-  analytics = inject(AnalyticsService) 
+  private readonly storageKey = 'hunt_the_bishomalo_achievements';
+ 
+  constructor(
+    private readonly gameStore: GameStoreService,
+    private readonly gameSound: GameSoundService,
+    private readonly analytics: AnalyticsService,
+    private readonly localStoreService: LocalstorageService 
+  ){
+    this.syncAchievementsWithStorage();
+  }
+
   completed = signal<Achievement | undefined>(undefined);
-    
+
+  private updateLocalStorageWithNewId(id: string): void {
+    const storedIds = this.getStoredAchievementIds();
+    const updatedIds = [...storedIds, id];
+    this.localStoreService.setValue<string[]>(this.storageKey, updatedIds);
+  }
+
+  private syncAchievementsWithStorage(): void {
+    const storedIds = this.getStoredAchievementIds();
+    this.achievements.forEach(achieve => {
+      achieve.unlocked = storedIds.includes(achieve.id);
+    });
+  }
+
+  private getStoredAchievementIds(): string[] {
+    return this.localStoreService.getValue<string[]>(this.storageKey) || [];
+  }
+
 
   activeAchievement(id: AchieveTypes):void {
     const achieve = this.achievements.find(item => item.id === id);
@@ -476,6 +501,7 @@ export class AchievementService {
       achieve.unlocked = true;
       this.completed.set(achieve);
 
+      this.updateLocalStorageWithNewId(id);
       this.analytics.trackAchievementUnlocked(id, achieve.title);
     }
   }
