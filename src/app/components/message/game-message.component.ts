@@ -38,7 +38,7 @@ export class GameMessageComponent {
 
   private calculatePits(size: number): number {
     const totalCells = size * size;
-    const basePercentage = 0.11;
+    const basePercentage = 0.10;
     return Math.max(1, Math.floor(totalCells * basePercentage));
   }
 

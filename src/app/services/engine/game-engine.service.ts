@@ -188,7 +188,7 @@ export class GameEngineService {
     const seconds = this.calculateElapsedSeconds(endTime);
     const playerName = this.store.settings.player;
 
-    this.store.setMessage(`¡Escapaste con el oro en ${seconds} segundos! ¡Victoria!`);
+    this.store.setMessage(`¡Escapaste en ${seconds} segundos! ¡Victoria!`);
     this.store.updateHunter({ hasWon: true });
     this.leaderBoard.addEntry({ playerName, timeInSeconds: seconds, date: endTime });
     this.playVictorySound();
