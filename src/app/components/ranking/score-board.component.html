@@ -22,6 +22,7 @@
   @if(leaderboard().length){
     <table>
       <tbody>
+        <th></th>
         <tr *ngFor="let entry of leaderboard() | slice:0:10">
           <td>{{ entry.playerName }}</td>
           <td>{{ entry.timeInSeconds }} segundos</td>
