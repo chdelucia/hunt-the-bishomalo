@@ -208,6 +208,12 @@
 .achievement-title {
   font-size: 1.25rem;
   font-weight: 700;
+  overflow-wrap: break-word;
+  white-space: normal;
+
+  @media (max-width: 400px) {
+    font-size: .8rem;
+  }
 }
 
 .rarity-badge {
@@ -243,6 +249,12 @@
 .achievement-description {
   color: #a0aec0;
   margin-bottom: 1rem;
+  overflow-wrap: break-word;
+  white-space: normal;
+
+  @media (max-width: 400px) {
+    font-size: .7rem;
+  }
 }
 
 .status-unlocked {
