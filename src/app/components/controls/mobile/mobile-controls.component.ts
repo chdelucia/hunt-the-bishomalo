@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GameEngineService } from 'src/app/services';
 import { AchievementService } from 'src/app/services/achievement/achievement.service';
@@ -13,6 +13,8 @@ import { AchieveTypes } from 'src/app/models';
   styleUrl: './mobile-controls.component.scss',
 })
 export class MobileControlsComponent {
+  isFinish = input.required<boolean>();
+
   private readonly game = inject(GameEngineService);
   private readonly achieve = inject(AchievementService);
 

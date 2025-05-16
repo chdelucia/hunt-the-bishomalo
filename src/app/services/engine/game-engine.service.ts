@@ -5,20 +5,36 @@ import { GameSoundService } from '../sound/game-sound.service';
 import { LeaderboardService } from '../score/leaderboard.service';
 import { AchievementService } from '../achievement/achievement.service';
 import { Router } from '@angular/router';
+import { LocalstorageService } from '../localstorage/localstorage.service';
 
 @Injectable({ providedIn: 'root' })
 export class GameEngineService {
+  private readonly storageSettingsKey = 'hunt_the_bishomalo_settings';
+
   constructor(
     private readonly store: GameStoreService, 
     private readonly sound: GameSoundService,
     private readonly leaderBoard: LeaderboardService,
     private readonly achieve: AchievementService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly localStorageService: LocalstorageService
   ) {}
+
+  syncSettingsWithStorage(): void {
+    const settings = this.localStorageService.getValue<GameSettings>(this.storageSettingsKey);
+    if(settings) this.initGame(settings); 
+  }
+
+  private updateLocalStorageWithSettings(config: GameSettings): void {
+    this.localStorageService.setValue<GameSettings>(this.storageSettingsKey, config);
+  }
 
   initGame(config?: GameSettings): void {
     this.sound.stop();
-    if(config) this.store.setSettings(config);
+    if(config) {
+      this.store.setSettings(config);
+      this.updateLocalStorageWithSettings(config);
+  }
     this.store.initBoard();
     this.checkCurrentCell();
   }
@@ -222,6 +238,10 @@ export class GameEngineService {
   }
 
   private handleDeadlyCell(cell: Cell): boolean {
+    if (navigator.vibrate) {
+      navigator.vibrate([200, 100, 200]);
+    }
+
     if (cell.hasPit) {
       this.killHunter('¡Caíste en un pozo!');
       if(this.store.settings.blackout) this.achieve.activeAchievement(AchieveTypes.DEATHBYBLACKOUT);

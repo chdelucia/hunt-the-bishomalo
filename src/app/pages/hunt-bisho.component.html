@@ -1,6 +1,8 @@
 @let board = game.board();
 @let boardSize = board.length;
 @let hunterData = hunter();
+@let isAlive = hunterData.alive;
+@let hasWon = hunterData.hasWon;
 @let settings = game.settings;
 
 <main [appVisualEffect]="game.message()">
@@ -13,7 +15,7 @@
 
   <app-title [blackout]="settings?.blackout || false"/>
 
-  @if(settings?.blackout && hunterData.alive && !hunterData.hasWon){
+  @if(settings?.blackout && isAlive && !hasWon){
     <app-blackout />
   }
 
@@ -35,11 +37,11 @@
   <app-game-message 
     [message]="game.message()" 
     [isAlive]="hunterData.alive"
-    [hasWon]="hunterData.hasWon"
+    [hasWon]="hasWon"
     [settings]="settings">
   </app-game-message>
   @if (settings) {
-    <app-mobile-controls />
+    <app-mobile-controls [isFinish]="hasWon || !isAlive"/>
   }
 
 </main>

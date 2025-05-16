@@ -39,7 +39,9 @@ export class GameSoundService {
     const audio = this.getOrCreateAudio(key);
     audio.loop = loop;
     audio.currentTime = 0;
-    audio.play();
+    audio.play().catch((err) => {
+      console.info('Audio play failed:', err);
+    });
   }
 
   private stopAll(): void {

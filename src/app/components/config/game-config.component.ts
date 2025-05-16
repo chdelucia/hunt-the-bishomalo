@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { GameEngineService, GameStoreService } from 'src/app/services';
@@ -11,7 +11,7 @@ import { GameEngineService, GameStoreService } from 'src/app/services';
   styleUrls: ['./game-config.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GameConfigComponent {
+export class GameConfigComponent implements OnInit {
   readonly game = inject(GameEngineService);
   readonly gameStore = inject(GameStoreService);
   private readonly fb = inject(FormBuilder);
@@ -22,6 +22,10 @@ export class GameConfigComponent {
     pits: [2, [Validators.required, Validators.min(1)]],
     arrows: [1, [Validators.required, Validators.min(1)]],
   });
+
+  ngOnInit(): void {
+    this.game.syncSettingsWithStorage();
+  }
 
   submitForm(): void {
     if (this.configForm.valid) {
