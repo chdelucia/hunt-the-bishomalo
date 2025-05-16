@@ -18,7 +18,7 @@ export class GameStoreService {
 
   private readonly _message = signal('');
   private _startTime: Date | null = null;
-  private _settings = signal<GameSettings>({} as GameSettings);
+  private readonly _settings = signal<GameSettings>({} as GameSettings);
 
   readonly board = computed(() => this._board());
   readonly hunter = computed(() => this._hunter());
