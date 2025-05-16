@@ -98,4 +98,11 @@ describe('GameStoreService', () => {
     expect(service.settings()).toEqual(mockSettings);
     expect(service.startTime).toBeInstanceOf(Date);
   });
+
+  it('should reset setting signal', () => {
+    service.resetSettings();
+    expect(service.settings()).toStrictEqual({});
+    expect(service.prevName).toBe('Chris')
+  });
+
 });
