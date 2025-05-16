@@ -24,7 +24,7 @@ export class GameMessageComponent {
   });
 
   readonly _hasMessage = computed(() => !!this.message() && !!this.settings().size);
-  readonly _showFallbackMessage = computed(() => !this.message() || !this.settings().size);
+
 
   readonly _shouldShowRetry = computed(() => !this.isAlive() && !!this.settings().size);
   readonly _shouldShowNextLevel = computed(() => this.hasWon() && !!this.settings().size);
