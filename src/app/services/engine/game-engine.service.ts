@@ -18,7 +18,7 @@ export class GameEngineService {
     private readonly achieve: AchievementService,
     private readonly router: Router,
     private readonly localStorageService: LocalstorageService
-  ) {}
+  ) { }
 
   syncSettingsWithStorage(): void {
     const settings = this.localStorageService.getValue<GameSettings>(this.storageSettingsKey);

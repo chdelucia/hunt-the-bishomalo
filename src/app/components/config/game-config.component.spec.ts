@@ -3,7 +3,8 @@ import { GameConfigComponent } from './game-config.component';
 import { GameEngineService } from 'src/app/services';
 
 const gameEngineServiceMock = {
-    initGame: jest.fn()
+    initGame: jest.fn(),
+    syncSettingsWithStorage: jest.fn()
 };
 describe('GameConfigComponent', () => {
   let component: GameConfigComponent;
