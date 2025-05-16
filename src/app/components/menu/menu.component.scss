@@ -1,6 +1,6 @@
 .menu-toggle {
   width: 45px;
-  position: absolute;
+  position: fixed;
   cursor: pointer;
   display: none;
   border-bottom: 0;
@@ -51,7 +51,6 @@
     box-shadow: 0 4px 12px rgba(0, 255, 204, 0.2);
 
     li {
-      padding: 16px;
       border-bottom: 1px solid #00ffcc;
       text-align: center;
       transition: background 0.3s;
@@ -64,6 +63,17 @@
 
       &:last-child {
         border-bottom: none;
+      }
+
+      button {
+        background: none;
+        margin: 0;
+        padding: 16px;
+        font-family: "Press Start 2P", monospace;
+        width: 100%;
+        &.newgame{
+          color: red;
+        }
       }
     }
   }
@@ -110,5 +120,7 @@
 
   .mobile-menu {
     display: block;
+    position: relative;
+    z-index: 6;
   }
 }

@@ -239,10 +239,6 @@ export class GameEngineService {
   }
 
   private handleDeadlyCell(cell: Cell): boolean {
-    if (navigator.vibrate && (cell.hasPit || cell.hasWumpus)) {
-      navigator.vibrate([200, 100, 200]);
-    }
-
     if (cell.hasPit) {
       this.killHunter('¡Caíste en un pozo!');
       if(this.store.settings.blackout) this.achieve.activeAchievement(AchieveTypes.DEATHBYBLACKOUT);

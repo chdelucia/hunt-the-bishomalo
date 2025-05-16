@@ -1,2 +1,10 @@
-<app-toast />
+
+<app-menu>
+    @if (game.settings) {
+      <app-game-controls [arrows]="game.hunter().arrows"/>
+    }
+</app-menu>
+
 <router-outlet></router-outlet>
+
+<app-toast />

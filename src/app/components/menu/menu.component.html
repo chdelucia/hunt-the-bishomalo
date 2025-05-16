@@ -12,10 +12,10 @@
 
 <div class="mobile-menu" *ngIf="opened">
   <ul>
-    <li> &nbsp; </li>
-    <li routerLink="/home">Inicio</li>
-    <li>Ranking</li>
-    <li routerLink="/logros">Logros</li>
+    <li> <button>&nbsp;</button> </li>
+    <li><button (click)="nagivateTo('home')">Inicio</button></li>
+    <li><button (click)="nagivateTo('logros')">Logros</button></li>
+    <li><button (click)="newGame()" class="newgame">Nueva partida</button></li>
   </ul>
 </div>
 

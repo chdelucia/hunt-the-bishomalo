@@ -15,6 +15,9 @@
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
+  @media (max-width: 1024px) {
+    display: none;
+  }
 }
 
 .back-link {

@@ -30,7 +30,7 @@ export class GameStoreService {
   }
 
   resetSettings(): void {
-    this.prevName = this.settings.player;
+    this.prevName = this.settings?.player || this.prevName;
     this._settings = undefined as unknown as GameSettings;
   }
 
