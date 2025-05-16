@@ -6,11 +6,9 @@ import {
   BlackoutComponent,
   GameCellComponent, 
   GameConfigComponent, 
-  GameControlsComponent, 
   GameMessageComponent, 
   MobileControlsComponent, 
-  TitleComponent, 
-  MenuComponent
+  TitleComponent,
 } from './../components';
 import { VisualEffectDirective } from './../directives/visual-effect.directive';
 import { RouterModule } from '@angular/router';
