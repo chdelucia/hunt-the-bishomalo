@@ -22,17 +22,17 @@
         Haz click para intertarlo de nuevo
       </button>
     } @else if (_shouldShowNextLevel()) {
+      @if (_showCongrats()) {
       <button
         class="newgame"
         (click)="nextLevel()"
         aria-label="Nuevo nivel"
       >
-        @if (_showCongrats()) {
-          <span>Felicidades click para empezar el siguiente nivel.</span>
-        } @else {
-          <span>FELICIDADES!! Has completado todos los niveles!</span>
-        }
+          Felicidades click para empezar el siguiente nivel.
       </button>
+      }@else {
+      <button class="newgame" aria-label="Nuevo nivel">FELICIDADES!! Has completado todos los niveles!</button>
+      }
     }
   }
 
