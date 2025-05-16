@@ -95,7 +95,7 @@ describe('GameStoreService', () => {
 
   it('should store and expose settings and start time', () => {
     service.initBoard();
-    expect(service.settings).toEqual(mockSettings);
+    expect(service.settings()).toEqual(mockSettings);
     expect(service.startTime).toBeInstanceOf(Date);
   });
 });

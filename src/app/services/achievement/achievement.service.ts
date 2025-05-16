@@ -508,7 +508,7 @@ export class AchievementService {
 
   caclVictoryAchieve(seconds: number): void {
     const { arrows, wumpusKilled} = this.gameStore.hunter();
-    const { blackout, size } = this.gameStore.settings;
+    const { blackout, size } = this.gameStore.settings();
 
     if(blackout) this.activeAchievement(AchieveTypes.WINBLACKWOUT);
 
@@ -525,7 +525,7 @@ export class AchievementService {
   }
 
   handleWumpusKillAchieve(cell: Cell): void {
-    const { blackout } = this.gameStore.settings
+    const { blackout } = this.gameStore.settings();
     const distance = this.calcDistance(cell);
 
     if(blackout) this.activeAchievement(AchieveTypes.BLINDWUMPUSKILLED);
@@ -559,7 +559,7 @@ export class AchievementService {
 
   private cartographyAchieve():void {
     const visited = this.countVisitedCells();
-    const {size, pits} = this.gameStore.settings;
+    const {size, pits} = this.gameStore.settings();
 
     if((size*size - pits) === visited){
       this.activeAchievement(AchieveTypes.EXPERTCARTO);

@@ -19,12 +19,12 @@ function createMockCell(overrides = {}) {
 
 const mockStore = {
   hunter: jest.fn(),
-  settings: {
+  settings: jest.fn().mockReturnValue({
     size: 2,
     player: 'TestPlayer',
     arrows: 1,
     pits: 0
-  },
+  }),
   board: jest.fn(),
   startTime: new Date(),
   getCurrentCell: jest.fn(),

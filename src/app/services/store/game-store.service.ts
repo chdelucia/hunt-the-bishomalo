@@ -18,24 +18,26 @@ export class GameStoreService {
 
   private readonly _message = signal('');
   private _startTime: Date | null = null;
-  private _settings!: GameSettings;
+  private _settings = signal<GameSettings>({} as GameSettings);
 
   readonly board = computed(() => this._board());
   readonly hunter = computed(() => this._hunter());
   readonly message = computed(() => this._message());
+  readonly settings = computed(() => this._settings());
   prevName = 'Player';
  
   setSettings(settings: GameSettings): void {
-    this._settings = settings;
+    this._settings.set(settings);
   }
 
   resetSettings(): void {
-    this.prevName = this.settings?.player || this.prevName;
-    this._settings = undefined as unknown as GameSettings;
+    this.prevName = this._settings()?.player || this.prevName;
+    this._settings.set({} as GameSettings);
+    console.log(this.settings)
   }
 
   initBoard(): void {
-    const size = this._settings.size;
+    const size = this._settings().size;
     const board: Cell[][] = Array.from({ length: size }, (_, x) =>
       Array.from({ length: size }, (_, y) => ({
         x, y, visited: false,
@@ -48,14 +50,14 @@ export class GameStoreService {
 
     place().hasGold = true;
 
-    for (let i = 0; i < (this._settings.wumpus || 1); i++) {
+    for (let i = 0; i < (this._settings().wumpus || 1); i++) {
       place().hasWumpus = true;
     }
-    for (let i = 0; i < this._settings.pits; i++) {
+    for (let i = 0; i < this._settings().pits; i++) {
       place().hasPit = true;
     }
 
-    for (let i = 0; i < (this._settings.wumpus - 1 || 0); i++) {
+    for (let i = 0; i < (this._settings().wumpus - 1 || 0); i++) {
       place().hasArrow = true;
     }
 
@@ -66,7 +68,7 @@ export class GameStoreService {
 
   private placeRandom(board: Cell[][]): Cell {
     let cell: Cell;
-    const size = this._settings.size;
+    const size = this._settings().size;
     do {
       const x = Math.floor(Math.random() * size);
       const y = Math.floor(Math.random() * size);
@@ -82,7 +84,7 @@ export class GameStoreService {
       x: 0,
       y: 0,
       direction: Direction.RIGHT,
-      arrows: this._settings.arrows,
+      arrows: this._settings().arrows,
       alive: true,
       hasGold: false,
       hasWon: false,
@@ -100,10 +102,6 @@ export class GameStoreService {
 
   setMessage(message: string): void {
     this._message.set(message);
-  }
-
-  get settings(): GameSettings {
-    return this._settings;
   }
 
   get startTime() {

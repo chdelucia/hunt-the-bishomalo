@@ -1,15 +1,15 @@
-@let _settings = settings();
+@let settingsSize = settings().size;
 
-@if(_settings){
-  <div class="level">Nivel {{ _settings.size - 4 + 1}}</div>
+@if(settingsSize){
+  <div class="level">Nivel {{ settingsSize - 4 + 1}}</div>
 }
 <section class="game-message" aria-live="polite">
-      @if(message() && _settings){
+      @if(message() && settingsSize){
         <p>{{ message() }}</p>
       }@else{
         <p>Activa el sonido, recoge la moneda y vuelve al inicio.</p>
       }
-      @if(!isAlive() && _settings){
+      @if(!isAlive() && settingsSize){
         <button 
           class="newgame" 
           (click)="restartGame()" 
@@ -17,13 +17,13 @@
         >
           Haz click para intertarlo de nuevo
         </button>
-      }@else if (hasWon() && _settings) {
+      }@else if (hasWon() && settingsSize) {
         <button 
           class="newgame" 
           (click)="nextLevel()" 
           aria-label="Nuevo nivel"
         >
-          @if(_settings.size < 20){
+          @if(settingsSize < 20){
             <span>Felicidades click para empezar el siguiente nivel.</span>
           } @else {
             FELICIDADES!! Has completado todos los niveles!

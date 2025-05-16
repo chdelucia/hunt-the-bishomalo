@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal } from '@angular/core';
 import { AchieveTypes, Cell, Direction, GameSettings, GameSound } from '../../models';
 import { GameStoreService } from '../store/game-store.service';
 import { GameSoundService } from '../sound/game-sound.service';
@@ -10,6 +10,7 @@ import { LocalstorageService } from '../localstorage/localstorage.service';
 @Injectable({ providedIn: 'root' })
 export class GameEngineService {
   private readonly storageSettingsKey = 'hunt_the_bishomalo_settings';
+  private readonly settingsSignal!: Signal<GameSettings>;
 
   constructor(
     private readonly store: GameStoreService, 
@@ -18,7 +19,9 @@ export class GameEngineService {
     private readonly achieve: AchievementService,
     private readonly router: Router,
     private readonly localStorageService: LocalstorageService
-  ) { }
+  ) { 
+    this.settingsSignal = this.store.settings;
+  }
 
   syncSettingsWithStorage(): void {
     const settings = this.localStorageService.getValue<GameSettings>(this.storageSettingsKey);
@@ -34,7 +37,7 @@ export class GameEngineService {
     if(config) {
       this.store.setSettings(config);
       this.updateLocalStorageWithSettings(config);
-  }
+    }
     this.store.initBoard();
     this.checkCurrentCell();
   }
@@ -50,7 +53,7 @@ export class GameEngineService {
     const { x, y, direction, alive, hasWon } = this.store.hunter();
     if (!alive || hasWon) return;
 
-    const size = this.store.settings.size;
+    const size = this.settingsSignal().size;
     let newX = x, newY = y;
 
     switch (direction) {
@@ -107,7 +110,6 @@ export class GameEngineService {
     }
   }
 
-
   private canShoot(): boolean {
     const { alive, arrows } = this.store.hunter();
     if (!alive) return false;
@@ -135,7 +137,7 @@ export class GameEngineService {
     const direction = this.store.hunter().direction;
     let { x, y } = this.store.hunter();
     const board = this.store.board();
-    const size = this.store.settings.size;
+    const size = this.settingsSignal().size;
 
     let lastCell: Cell = board[x][y];
 
@@ -203,7 +205,7 @@ export class GameEngineService {
   private handleVictory(): void {
     const endTime = new Date();
     const seconds = this.calculateElapsedSeconds(endTime);
-    const playerName = this.store.settings.player;
+    const playerName = this.settingsSignal().player;
 
     this.store.setMessage(`¡Escapaste en ${seconds} segundos! ¡Victoria!`);
     this.store.updateHunter({ hasWon: true });
@@ -241,7 +243,7 @@ export class GameEngineService {
   private handleDeadlyCell(cell: Cell): boolean {
     if (cell.hasPit) {
       this.killHunter('¡Caíste en un pozo!');
-      if(this.store.settings.blackout) this.achieve.activeAchievement(AchieveTypes.DEATHBYBLACKOUT);
+      if(this.settingsSignal().blackout) this.achieve.activeAchievement(AchieveTypes.DEATHBYBLACKOUT);
       else if(this.store.hunter().wumpusKilled) this.achieve.activeAchievement(AchieveTypes.LASTBREATH);
       else this.achieve.activeAchievement(AchieveTypes.DEATHBYPIT);
       return true;
@@ -249,7 +251,7 @@ export class GameEngineService {
 
     if (cell.hasWumpus) {
       this.killHunter('¡El Wumpus te devoró!');
-      if(this.store.settings.blackout) this.achieve.activeAchievement(AchieveTypes.DEATHBYBLACKOUT);
+      if(this.settingsSignal().blackout) this.achieve.activeAchievement(AchieveTypes.DEATHBYBLACKOUT);
       else this.achieve.activeAchievement(AchieveTypes.DEATHBYWUMPUES);
       return true;
     }
@@ -299,7 +301,7 @@ export class GameEngineService {
 
   private getAdjacentCells(): Cell[] {
     const { x, y } = this.store.hunter();
-    const size = this.store.settings.size;
+    const size = this.settingsSignal().size;
     const board = this.store.board();
 
     const directions = [
