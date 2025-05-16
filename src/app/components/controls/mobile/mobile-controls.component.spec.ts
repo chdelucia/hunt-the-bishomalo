@@ -24,6 +24,7 @@ describe('MobileControlsComponent', () => {
 
     fixture = TestBed.createComponent(MobileControlsComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('isFinish', false);
     fixture.detectChanges();
   });
 
