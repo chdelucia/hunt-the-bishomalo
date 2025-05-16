@@ -530,15 +530,15 @@ export class AchievementService {
 
     if(blackout) this.activeAchievement(AchieveTypes.BLINDWUMPUSKILLED);
     else if(distance > 3) this.activeAchievement(AchieveTypes.SNIPER);
-    else if(distance === 1) this.activeAchievement(AchieveTypes.DEATHDUEL);
+    else if(distance ===  1) this.activeAchievement(AchieveTypes.DEATHDUEL);
     else this.activeAchievement(AchieveTypes.WUMPUSKILLED);
-
   }
 
   private calcDistance(cell: Cell): number {
     const {x, y} = this.gameStore.hunter();
-    if(x === cell.x) return Math.abs(x - cell.x);
-    else if(y === cell.y) return Math.abs(y - cell.y);
+
+    if(x === cell.x) return Math.abs(y - cell.y);
+    else if(y === cell.y) return Math.abs(x - cell.x);
     return 0;
   }
 
