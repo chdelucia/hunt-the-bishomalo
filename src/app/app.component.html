@@ -1,6 +1,6 @@
 
 <app-menu>
-    @if (game.settings) {
+    @if (game.board()) {
       <app-game-controls [arrows]="game.hunter().arrows"/>
     }
 </app-menu>
