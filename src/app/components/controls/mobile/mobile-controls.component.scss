@@ -1,6 +1,5 @@
 .mobile-controls {
   display: none;
-  z-index: 6;
 
   @media (max-width: 1024px) {
     display: flex;
@@ -11,6 +10,7 @@
     right: 0;
     padding: 1rem;
     z-index: 1000;
+    position: relative;
   }
  button{
   min-width: 100px;
