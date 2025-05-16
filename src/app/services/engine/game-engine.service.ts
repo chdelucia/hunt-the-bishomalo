@@ -41,6 +41,7 @@ export class GameEngineService {
 
   newGame():void{
     this.sound.stop();
+    this.localStorageService.clearValue(this.storageSettingsKey);
     this.store.resetSettings();
   }
 
