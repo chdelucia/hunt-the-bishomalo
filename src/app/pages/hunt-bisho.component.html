@@ -40,8 +40,7 @@
     [hasWon]="hasWon"
     [settings]="settings"
     [lives]="hunterData.lives"
-  >
-  </app-game-message>
+  />
 
   @if (settings.size) {
     <app-mobile-controls [isFinish]="hasWon || !isAlive"/>

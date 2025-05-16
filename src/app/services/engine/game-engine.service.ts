@@ -67,7 +67,7 @@ export class GameEngineService {
 
   moveForward(): void {
     this.sound.stop();
-    const { x, y, direction, alive, hasWon } = this.store.hunter();
+    const { x, y, direction, alive, hasWon } = this._hunter();
     if (!alive || hasWon) return;
 
     const size = this.settingsSignal().size;
@@ -104,12 +104,12 @@ export class GameEngineService {
   }
 
   turnLeft(): void {
-    const dir = (this.store.hunter().direction + 3) % 4;
+    const dir = (this._hunter().direction + 3) % 4;
     this.store.updateHunter({ direction: dir });
   }
 
   turnRight(): void {
-    const dir = (this.store.hunter().direction + 1) % 4;
+    const dir = (this._hunter().direction + 1) % 4;
     this.store.updateHunter({ direction: dir });
   }
 
@@ -128,7 +128,7 @@ export class GameEngineService {
   }
 
   private canShoot(): boolean {
-    const { alive, arrows } = this.store.hunter();
+    const { alive, arrows } = this._hunter();
     if (!alive) return false;
 
     if (!arrows) {
@@ -140,19 +140,19 @@ export class GameEngineService {
   }
 
   private addArrow(): void {
-    const { arrows } = this.store.hunter();
+    const { arrows } = this._hunter();
     this.store.updateHunter({ arrows: arrows + 1 });
   }
 
   private consumeArrow(): void {
-    const { arrows } = this.store.hunter();
+    const { arrows } = this._hunter();
     this.store.updateHunter({ arrows: arrows - 1 });
     this.sound.playSound(GameSound.SHOOT, false)
   }
 
   private processArrowFlight(): { hitWumpus: boolean; cell: Cell } {
-    const direction = this.store.hunter().direction;
-    let { x, y } = this.store.hunter();
+    const direction = this._hunter().direction;
+    let { x, y } = this._hunter();
     const board = this.store.board();
     const size = this.settingsSignal().size;
 
@@ -200,7 +200,7 @@ export class GameEngineService {
       cell.hasArrow = true;
     }
     this.store.setMessage('¡Flecha fallida!');
-    if(!this.store.hunter().arrows) this.achieve.activeAchievement(AchieveTypes.MISSEDSHOT);
+    if(!this._hunter().arrows) this.achieve.activeAchievement(AchieveTypes.MISSEDSHOT);
   }
 
 
@@ -214,7 +214,7 @@ export class GameEngineService {
   }
 
   private canExitWithVictory(): boolean {
-    const hunter = this.store.hunter();
+    const hunter = this._hunter();
     const cell = this.store.getCurrentCell();
     return (cell.isStart && hunter.hasGold) || false;
   }
@@ -238,7 +238,7 @@ export class GameEngineService {
   }
 
   private playVictorySound(): void {
-    const sound = this.store.hunter().wumpusKilled ? GameSound.WHONOR : GameSound.WRAT;
+    const sound = this._hunter().wumpusKilled ? GameSound.WHONOR : GameSound.WRAT;
     this.sound.playSound(sound, false);
   }
 
@@ -261,7 +261,7 @@ export class GameEngineService {
     if (cell.hasPit) {
       this.killHunter('¡Caíste en un pozo!');
       if(this.settingsSignal().blackout) this.achieve.activeAchievement(AchieveTypes.DEATHBYBLACKOUT);
-      else if(this.store.hunter().wumpusKilled) this.achieve.activeAchievement(AchieveTypes.LASTBREATH);
+      else if(this._hunter().wumpusKilled) this.achieve.activeAchievement(AchieveTypes.LASTBREATH);
       else this.achieve.activeAchievement(AchieveTypes.DEATHBYPIT);
       return true;
     }
@@ -277,7 +277,7 @@ export class GameEngineService {
   }
 
   private killHunter(message: string): void {
-    this.store.updateHunter({ alive: false, lives: this.store.hunter().lives - 1 });
+    this.store.updateHunter({ alive: false, lives: this._hunter().lives - 1 });
     this.store.setMessage(message);
     this.sound.playSound(GameSound.SCREAM, false);
   }
@@ -317,7 +317,7 @@ export class GameEngineService {
   }
 
   private getAdjacentCells(): Cell[] {
-    const { x, y } = this.store.hunter();
+    const { x, y } = this._hunter();
     const size = this.settingsSignal().size;
     const board = this.store.board();
 
