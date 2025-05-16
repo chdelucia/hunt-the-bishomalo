@@ -24,6 +24,7 @@ describe('GameMessageComponent', () => {
     fixture.componentRef.setInput('isAlive', true);
     fixture.componentRef.setInput('hasWon', false);
     fixture.componentRef.setInput('settings', {size: 4, pits:1, arrows: 1});
+    fixture.componentRef.setInput('lives', 8);
     fixture.detectChanges();
   });
 
@@ -103,5 +104,10 @@ describe('GameMessageComponent', () => {
     const button = fixture.nativeElement.querySelector('button.newgame');
     expect(button?.textContent).toContain('completado todos los niveles');
   });
+
+  it('should call new Game', () => {
+    component.newGame();
+    expect(gameEngineMock.newGame).toHaveBeenCalled();
+  })
 
 });

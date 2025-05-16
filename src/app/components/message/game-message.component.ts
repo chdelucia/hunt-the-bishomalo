@@ -17,6 +17,7 @@ export class GameMessageComponent {
   readonly isAlive = input.required<boolean>();
   readonly hasWon = input.required<boolean>();
   readonly settings = input.required<GameSettings>();
+  readonly lives = input.required<number>();
 
   readonly _hasMessage = computed(() => !!this.message() && !!this.settings().size);
   readonly _shouldShowRetry = computed(() => !this.isAlive() && !!this.settings().size);
@@ -24,13 +25,16 @@ export class GameMessageComponent {
   readonly _showCongrats = computed(() => this.settings().size < 20);
   readonly _hasCompletedAllLevels = computed(() => this.settings().size >= 20);
 
-
   restartGame(): void {
     this.gameEngine.initGame();  
   }
   
   nextLevel(): void {
     this.gameEngine.nextLevel();
+  }
+
+  newGame(): void{
+    this.gameEngine.newGame();
   }
 
 }

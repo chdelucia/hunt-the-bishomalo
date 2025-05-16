@@ -38,7 +38,9 @@
     [message]="game.message()" 
     [isAlive]="hunterData.alive"
     [hasWon]="hasWon"
-    [settings]="settings">
+    [settings]="settings"
+    [lives]="hunterData.lives"
+  >
   </app-game-message>
 
   @if (settings.size) {
