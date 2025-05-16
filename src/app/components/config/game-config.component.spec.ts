@@ -57,7 +57,7 @@ describe('GameConfigComponent', () => {
       size: 6,
       pits: 2,
       arrows: 3,
-      blackout: false
+      blackout: expect.any(Boolean)
     });
   });
 

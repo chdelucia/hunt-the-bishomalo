@@ -9,6 +9,8 @@ import {
   GameMessageComponent, 
   MobileControlsComponent, 
   TitleComponent,
+  GameLivesComponent,
+  GameLevelComponent
 } from './../components';
 import { VisualEffectDirective } from './../directives/visual-effect.directive';
 import { RouterModule } from '@angular/router';
@@ -25,7 +27,9 @@ import { RouterModule } from '@angular/router';
     TitleComponent,
     BlackoutComponent,
     GameMessageComponent,
-    MobileControlsComponent
+    MobileControlsComponent,
+    GameLivesComponent,
+    GameLevelComponent
 ],
   templateUrl: './hunt-bisho.component.html',
   styleUrl: './hunt-bisho.component.scss',

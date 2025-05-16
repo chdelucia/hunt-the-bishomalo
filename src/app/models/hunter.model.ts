@@ -9,4 +9,5 @@ export interface Hunter {
   hasGold: boolean;
   hasWon: boolean;
   wumpusKilled?: boolean;
+  lives: number;
 }

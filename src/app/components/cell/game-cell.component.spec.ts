@@ -3,7 +3,7 @@ import { GameCellComponent } from './game-cell.component';
 import { Cell, Hunter } from 'src/app/models';
 
 const mockCell: Cell = { x: 2, y: 3 };
-const mockHunter: Hunter = { x: 2, y: 3, direction: 1, arrows: 1, hasGold: false, alive: true, hasWon: false };
+const mockHunter: Hunter = { x: 2, y: 3, direction: 1, arrows: 1, hasGold: false, alive: true, hasWon: false, lives: 4 };
 
 describe('GameCellComponent', () => {
   let component: GameCellComponent;

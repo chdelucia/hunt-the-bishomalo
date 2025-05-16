@@ -11,3 +11,5 @@ export * from './achievements/achievements.component';
 export * from './message/game-message.component';
 export * from './menu/menu.component';
 export * from './controls/mobile/mobile-controls.component';
+export * from './lives/game-lives.component';
+export * from './level/game-level.component';

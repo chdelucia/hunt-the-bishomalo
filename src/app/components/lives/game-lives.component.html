@@ -1,0 +1,5 @@
+@for (item of livesArray(); track $index) {
+    <svg class="heart" [class.active]="lives() > $index" width="24" height="24" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 4h2V2h2v2h2V2h2v2h2v2h-2v2H8v2H6V8H4V6H2V4z" stroke="#8b0000" stroke-width="1"/>
+    </svg>
+}

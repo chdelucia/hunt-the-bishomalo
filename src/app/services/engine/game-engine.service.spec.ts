@@ -72,7 +72,8 @@ describe('GameEngineService (with useValue)', () => {
       direction: Direction.RIGHT,
       alive: true,
       arrows: 1,
-      hasGold: false
+      hasGold: false,
+      lives: 7
     });
 
     mockStore.getCurrentCell.mockReturnValue(createMockCell({ x: 0, y: 0 }));
@@ -165,14 +166,14 @@ describe('GameEngineService (with useValue)', () => {
   it('checkCurrentCell: detects pit', () => {
     mockStore.getCurrentCell.mockReturnValue(createMockCell({ hasPit: true, x: 0, y: 0 }));
     service['checkCurrentCell']();
-    expect(mockStore.updateHunter).toHaveBeenCalledWith({ alive: false });
+    expect(mockStore.updateHunter).toHaveBeenCalledWith({ alive: false, lives: 6 });
     expect(mockStore.setMessage).toHaveBeenCalledWith('¡Caíste en un pozo!');
   });
 
   it('checkCurrentCell: detects wumpus', () => {
     mockStore.getCurrentCell.mockReturnValue(createMockCell({ hasWumpus: true, x: 0, y: 0 }));
     service['checkCurrentCell']();
-    expect(mockStore.updateHunter).toHaveBeenCalledWith({ alive: false });
+    expect(mockStore.updateHunter).toHaveBeenCalledWith({ alive: false, lives: 6 });
     expect(mockStore.setMessage).toHaveBeenCalledWith('¡El Wumpus te devoró!');
   });
 
@@ -181,5 +182,33 @@ describe('GameEngineService (with useValue)', () => {
     service['checkCurrentCell']();
     expect(mockStore.updateHunter).toHaveBeenCalledWith({ hasGold: true });
     expect(mockStore.setMessage).toHaveBeenCalledWith('Has recogido el oro.');
+  });
+
+    describe('nextLevel', () => {
+    it('should increment size and recalculate pits and wumpus', () => {
+      const spyInit = jest.spyOn(service, 'initGame');
+      service.nextLevel();
+
+      expect(spyInit).toHaveBeenCalledWith({
+        size: 3,
+        pits: 1,
+        wumpus: 1,
+        arrows: 1,
+        blackout: false,
+        player: "TestPlayer"
+      });
+
+    });
+    it('should increase board size and recalculate pits', () => {
+      const spyInit = jest.spyOn(service, 'initGame');
+      service.nextLevel();
+
+      expect(spyInit).toHaveBeenCalledWith(
+        expect.objectContaining({
+          size: 3,
+          pits: 1
+        })
+      );
+    });
   });
 });

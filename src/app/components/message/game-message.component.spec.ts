@@ -5,6 +5,7 @@ import { GameEngineService } from 'src/app/services';
   const gameEngineMock = {
     initGame: jest.fn(),
     newGame: jest.fn(),
+    nextLevel: jest.fn()
   }
 
 describe('GameMessageComponent', () => {
@@ -30,34 +31,9 @@ describe('GameMessageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-    it('should call initGame to restar the game', () => {
+  it('should call initGame to restar the game', () => {
     component.restartGame()
     expect(gameEngineMock.initGame).toHaveBeenCalled();
-  });
-
-  describe('calculatePits', () => {
-    it('should return at least 1 pit for small boards', () => {
-      const pits = (component as any).calculatePits(2);
-      expect(pits).toBe(1);
-    });
-
-    it('should return 10% of total cells rounded down', () => {
-      const pits = (component as any).calculatePits(5);
-      expect(pits).toBe(2);
-    });
-  });
-
-  describe('nextLevel', () => {
-    it('should increase board size and recalculate pits', () => {
-      component.nextLevel();
-
-      expect(gameEngineMock.initGame).toHaveBeenCalledWith(
-        expect.objectContaining({
-          size: 5,
-          pits: 2
-        })
-      );
-    });
   });
 
   describe('restartGame', () => {
@@ -65,30 +41,6 @@ describe('GameMessageComponent', () => {
       component.restartGame();
       expect(gameEngineMock.initGame).toHaveBeenCalledWith();
     });
-  });
-
-
-  describe('nextLevel', () => {
-    it('should increment size and recalculate pits and wumpus', () => {
-      component.nextLevel();
-
-      expect(gameEngineMock.initGame).toHaveBeenCalledWith({
-        size: 5,
-        pits: 2,
-        wumpus: 1,
-        arrows: 1,
-        blackout: false
-      });
-
-    });
-  });
-
-  it('should show level number', () => {
-    fixture.componentRef.setInput('settings',{ size: 6, pits: 2, wumpus: 1 });
-    fixture.detectChanges();
-
-    const levelEl = fixture.nativeElement.querySelector('.level');
-    expect(levelEl?.textContent).toContain('Nivel 3'); // 6 - 4 + 1 = 3
   });
 
   it('should display message when present', () => {

@@ -1,5 +1,5 @@
 import { Injectable, Signal } from '@angular/core';
-import { AchieveTypes, Cell, Direction, GameSettings, GameSound } from '../../models';
+import { AchieveTypes, Cell, Direction, GameSettings, GameSound, Hunter } from '../../models';
 import { GameStoreService } from '../store/game-store.service';
 import { GameSoundService } from '../sound/game-sound.service';
 import { LeaderboardService } from '../score/leaderboard.service';
@@ -11,6 +11,7 @@ import { LocalstorageService } from '../localstorage/localstorage.service';
 export class GameEngineService {
   private readonly storageSettingsKey = 'hunt_the_bishomalo_settings';
   private readonly settingsSignal!: Signal<GameSettings>;
+  private readonly _hunter!: Signal<Hunter>;
 
   constructor(
     private readonly store: GameStoreService, 
@@ -21,6 +22,7 @@ export class GameEngineService {
     private readonly localStorageService: LocalstorageService
   ) { 
     this.settingsSignal = this.store.settings;
+    this._hunter = this.store.hunter;
   }
 
   syncSettingsWithStorage(): void {
@@ -45,7 +47,22 @@ export class GameEngineService {
   newGame():void{
     this.sound.stop();
     this.localStorageService.clearValue(this.storageSettingsKey);
+    this.store.resetHunter();
     this.store.resetSettings();
+  }
+
+  nextLevel(): void {
+    const size = this.settingsSignal().size + 1;
+
+    const newSettings = {
+      ...this.settingsSignal(),
+      size,
+      pits: this.calculatePits(size),
+      wumpus: this.calculateWumpus(size),
+      blackout: this.applyBlackoutChance(),
+    };
+
+    this.initGame(newSettings);
   }
 
   moveForward(): void {
@@ -260,7 +277,7 @@ export class GameEngineService {
   }
 
   private killHunter(message: string): void {
-    this.store.updateHunter({ alive: false });
+    this.store.updateHunter({ alive: false, lives: this.store.hunter().lives - 1 });
     this.store.setMessage(message);
     this.sound.playSound(GameSound.SCREAM, false);
   }
@@ -332,6 +349,23 @@ export class GameEngineService {
     }
 
     return null;
+  }
+
+  private calculatePits(size: number): number {
+    const totalCells = size * size;
+    const basePercentage = 0.10;
+    return Math.max(1, Math.floor(totalCells * basePercentage));
+  }
+
+  private calculateWumpus(size: number): number {
+    const totalCells = size * size;
+    const basePercentage = 0.04;
+    return Math.max(1, Math.floor(totalCells * basePercentage));
+  }
+
+  private applyBlackoutChance(): boolean {
+      const blackoutChance = 0.08;
+      return Math.random() < blackoutChance;
   }
 
 
