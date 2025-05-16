@@ -63,8 +63,14 @@ describe('GameSoundService', () => {
   });
 
   it('should stop wumpus sound', () => {
-    service.playSound(GameSound.WUMPUS); // Necesario para crear el audio
+    service.playSound(GameSound.WUMPUS);
     service.stopWumpus();
     expect(mockPause).toHaveBeenCalled();
   });
+
+  it('should stop all sounds', () => {
+    const spy = jest.spyOn(service as any, 'stopAll');
+    service.stop()
+    expect(spy).toHaveBeenCalled();
+  })
 });
