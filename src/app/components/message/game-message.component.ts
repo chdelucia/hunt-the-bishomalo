@@ -1,10 +1,11 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GameSettings } from 'src/app/models';
 import { GameEngineService } from 'src/app/services';
 
 @Component({
   selector: 'app-game-message',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './game-message.component.html',
   styleUrl: './game-message.component.scss',
@@ -16,6 +17,21 @@ export class GameMessageComponent {
   readonly isAlive = input.required<boolean>();
   readonly hasWon = input.required<boolean>();
   readonly settings = input.required<GameSettings>();
+
+  readonly _level = computed(() => {
+    const size = this.settings().size;
+    return size ? size - 4 + 1 : null;
+  });
+
+  readonly _hasMessage = computed(() => !!this.message() && !!this.settings().size);
+  readonly _showFallbackMessage = computed(() => !this.message() || !this.settings().size);
+
+  readonly _shouldShowRetry = computed(() => !this.isAlive() && !!this.settings().size);
+  readonly _shouldShowNextLevel = computed(() => this.hasWon() && !!this.settings().size);
+
+  readonly _showCongrats = computed(() => this.settings().size < 20);
+  readonly _hasCompletedAllLevels = computed(() => this.settings().size >= 20);
+
 
   restartGame(): void {
     this.gameEngine.initGame();  
