@@ -33,7 +33,6 @@ export class GameStoreService {
   resetSettings(): void {
     this.prevName = this._settings()?.player || this.prevName;
     this._settings.set({} as GameSettings);
-    console.log(this.settings)
   }
 
   initBoard(): void {
