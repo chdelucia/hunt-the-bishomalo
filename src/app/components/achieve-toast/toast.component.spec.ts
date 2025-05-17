@@ -21,9 +21,7 @@ describe('ToastComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CommonModule, ToastComponent],
-      providers: [
-        { provide: AchievementService, useValue: achievementServiceMock },
-      ],
+      providers: [{ provide: AchievementService, useValue: achievementServiceMock }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ToastComponent);
