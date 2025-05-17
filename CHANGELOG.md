@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.8](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.2.7...v1.2.8) (2025-05-17)
+
+
+### Bug Fixes
+
+* **ci:** fix posible fallo de desincronizacion antes del push ([adae4da](https://github.com/chdelucia/hunt-the-bishomalo/commit/adae4da643139b0383e7a3684b626355dedc01bc))
+
 ### [1.2.7](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.2.6...v1.2.7) (2025-05-17)
 
 
