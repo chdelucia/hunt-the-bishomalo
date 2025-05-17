@@ -5,4 +5,7 @@ export type GameEventEffectType =
   | 'arrow'
   | 'heart'
   | 'detector'
+  | 'gold'
+  | 'pit'
+  | 'wumpus'
   | 'double-gold';
