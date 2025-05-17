@@ -38,8 +38,8 @@ export class GameEventService {
       apply: (hunter, prev) => ({
         ...hunter,
         alive: true,
-        x: prev!.x,
-        y: prev!.y,
+        x: prev.x,
+        y: prev.y,
         inventory: this.removeItemByName(hunter, 'rebobinar'),
       }),
       message: '¡Rebobinaste el tiempo y volviste a tu posición anterior!',

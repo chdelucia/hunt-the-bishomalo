@@ -203,9 +203,7 @@ export class GameEngineService {
   }
 
   private handleMissedArrow(cell: Cell): void {
-    if (!cell.content) {
-      cell.content = CELL_CONTENTS.arrow;
-    }
+    cell.content ??= CELL_CONTENTS.arrow;
     this.store.setMessage('¡Flecha fallida!');
     if(!this._hunter().arrows) this.achieve.activeAchievement(AchieveTypes.MISSEDSHOT);
   }
