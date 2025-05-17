@@ -39,8 +39,6 @@ Te desafío a superar este juego **al 100%**. ¿Tienes lo que se necesita para e
 
 ## 🖼️ Vista previa del juego
 
-> *(Puedes reemplazar este link con una imagen real del tablero o un gif grabado del juego en acción)*
-
 ![Vista previa](https://hunt-the-bishomalo.vercel.app/assets/screenshot.png)
 
 ---
