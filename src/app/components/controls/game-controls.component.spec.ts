@@ -62,12 +62,6 @@ describe('GameControlsComponent', () => {
     expect(mockGameService.shootArrow).toHaveBeenCalled();
   });
 
-  it('should call initGame() on R key', () => {
-    const event = new KeyboardEvent('keydown', { code: 'KeyR' });
-    window.dispatchEvent(event);
-    expect(mockGameService.initGame).toHaveBeenCalled();
-  });
-
   it('should prevent default behavior for recognized keys', () => {
     const preventDefault = jest.fn();
     const event = new KeyboardEvent('keydown', { code: 'ArrowUp' });

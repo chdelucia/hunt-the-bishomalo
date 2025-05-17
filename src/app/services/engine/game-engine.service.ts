@@ -282,9 +282,7 @@ export class GameEngineService {
       if (result.message) this.store.setMessage(result.message);
       return false;
     }
-
     this.killHunter(deathMessage);
-    //this.store.updateHunter(result.hunter);
 
     if (this.settingsSignal().blackout) {
       this.achieve.activeAchievement(AchieveTypes.DEATHBYBLACKOUT);

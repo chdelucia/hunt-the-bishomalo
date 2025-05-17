@@ -25,7 +25,6 @@ export class GameControlsComponent {
     ArrowLeft: () => this.turnLeft(),
     ArrowRight: () => this.turnRight(),
     Enter: () => this.shootArrow(),
-    KeyR: () => this.resetGame(),
     KeyW: () => { this.moveForward(); this.achieve.activeAchievement(AchieveTypes.GAMER)},
     KeyA: () => {this.turnLeft(); this.achieve.activeAchievement(AchieveTypes.GAMER)},
     KeyD: () => {this.turnRight(); this.achieve.activeAchievement(AchieveTypes.GAMER)},
@@ -59,10 +58,6 @@ export class GameControlsComponent {
 
   exit(): void {
     this.game.exit();
-  }
-
-  resetGame(): void {
-    this.game.initGame();
   }
 
   toggle(): void {
