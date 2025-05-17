@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.2](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.5.1...v1.5.2) (2025-05-17)
+
+
+### Bug Fixes
+
+* **csp:** remove security ([d4c49eb](https://github.com/chdelucia/hunt-the-bishomalo/commit/d4c49ebba44bf1a6906d95513fd41d340837fef4))
+* **pettrier:** lint ([ecfceac](https://github.com/chdelucia/hunt-the-bishomalo/commit/ecfceaccd673b166db58b78285b828b4339a8ece))
+
 ### [1.5.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.5.0...v1.5.1) (2025-05-17)
 
 
