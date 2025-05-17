@@ -9,7 +9,15 @@ Te desafío a superar este juego **al 100%**. ¿Tienes lo que se necesita para e
 
 [🔥 **Empezar el reto** 🔥](https://hunt-the-bishomalo.vercel.app/)
 
+## 📊 Calidad del Proyecto (SonarCloud)
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=chdelucia_hunt-the-bishomalo&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=chdelucia_hunt-the-bishomalo)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=chdelucia_hunt-the-bishomalo&metric=bugs)](https://sonarcloud.io/summary/new_code?id=chdelucia_hunt-the-bishomalo)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=chdelucia_hunt-the-bishomalo&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=chdelucia_hunt-the-bishomalo)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=chdelucia_hunt-the-bishomalo&metric=coverage)](https://sonarcloud.io/summary/new_code?id=chdelucia_hunt-the-bishomalo)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=chdelucia_hunt-the-bishomalo&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=chdelucia_hunt-the-bishomalo)
+
+---
 
 ## Run tasks
 
