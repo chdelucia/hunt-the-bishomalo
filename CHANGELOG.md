@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.5.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.5.0...v1.5.1) (2025-05-17)
+
+
+### Bug Fixes
+
+* **analitics:** allow analitics ([ed02524](https://github.com/chdelucia/hunt-the-bishomalo/commit/ed025249c19c26e97ee8ebd3a1a13bb36402257a))
+* **CSP:** allow google tag manager ([28f78a3](https://github.com/chdelucia/hunt-the-bishomalo/commit/28f78a35a66aace4338fc9be11394e738f95b496))
+* **index:** pettrier ([e073de7](https://github.com/chdelucia/hunt-the-bishomalo/commit/e073de7a4311bcb7ef477671429d7ad93f50c44d))
+* **pettrier:** fix index ([061fa11](https://github.com/chdelucia/hunt-the-bishomalo/commit/061fa11463d5705d85ded4cfd045d743c195f080))
+
 ## [1.5.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.4.1...v1.5.0) (2025-05-17)
 
 
