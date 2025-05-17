@@ -1,0 +1,19 @@
+User-agent: *
+# Permitimos indexar todo el sitio
+Allow: /
+
+# Bloquear posibles rutas internas o endpoints que no tienen sentido para buscadores
+Disallow: /api/
+Disallow: /assets/
+Disallow: /node_modules/
+Disallow: /scripts/
+Disallow: /styles/
+Disallow: /test/
+Disallow: /e2e/
+
+# No indexar rutas de administración o login (si existen)
+Disallow: /admin/
+Disallow: /login/
+
+# Sitemap para que los bots encuentren todas las URLs indexables
+Sitemap: https://hunt-the-bishomalo.vercel.app/sitemap.xml
