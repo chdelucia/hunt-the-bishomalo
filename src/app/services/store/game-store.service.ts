@@ -42,25 +42,22 @@ export class GameStoreService {
   initBoard(): void {
     const size = this._settings().size;
     const board: Cell[][] = Array.from({ length: size }, (_, x) =>
-      Array.from({ length: size }, (_, y) => ({
-        x, y, visited: false,
-        hasGold: false, hasPit: false, hasWumpus: false,
-      }))
+      Array.from({ length: size }, (_, y) => ({x, y, visited: false}))
     );
 
     const place = () => this.placeRandom(board);
 
-    place().hasGold = true;
+    place().content = CELL_CONTENTS.gold;
 
     for (let i = 0; i < (this._settings().wumpus || 1); i++) {
-      place().hasWumpus = true;
+      place().content = CELL_CONTENTS.wumpus;
     }
     for (let i = 0; i < this._settings().pits; i++) {
-      place().hasPit = true;
+      place().content = CELL_CONTENTS.pit;
     }
 
     for (let i = 0; i < (this._settings().wumpus - 1 || 0); i++) {
-      place().content = CELL_CONTENTS.arrow
+      place().content = CELL_CONTENTS.arrow;
     }
 
     this.applyRandomEventOnce(board);
@@ -105,7 +102,7 @@ export class GameStoreService {
       const y = Math.floor(Math.random() * size);
       cell = board[x][y];
     } while (
-      cell.hasGold || cell.hasPit || cell.hasWumpus || (cell.x === 0 && cell.y === 0)
+      cell.content || (cell.x === 0 && cell.y === 0)
     );
     return cell;
   }

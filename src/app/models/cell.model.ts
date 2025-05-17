@@ -12,10 +12,6 @@ export interface Cell {
   x: number;
   y: number;
   visited?: boolean;
-  hasWumpus?: boolean;
-  hasGold?: boolean;
-  hasPit?: boolean;
-  hasArrow?: boolean;
   content?: CellContent;
 }
 

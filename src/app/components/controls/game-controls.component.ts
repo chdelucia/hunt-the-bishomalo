@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostListener, inject, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, inject, input, isDevMode, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GameEngineService } from 'src/app/services/engine/game-engine.service';
 import { AchievementService } from 'src/app/services/achievement/achievement.service';
@@ -25,6 +25,7 @@ export class GameControlsComponent {
     ArrowLeft: () => this.turnLeft(),
     ArrowRight: () => this.turnRight(),
     Enter: () => this.shootArrow(),
+    KeyR: () => this.resetGame(),
     KeyW: () => { this.moveForward(); this.achieve.activeAchievement(AchieveTypes.GAMER)},
     KeyA: () => {this.turnLeft(); this.achieve.activeAchievement(AchieveTypes.GAMER)},
     KeyD: () => {this.turnRight(); this.achieve.activeAchievement(AchieveTypes.GAMER)},
@@ -58,6 +59,10 @@ export class GameControlsComponent {
 
   exit(): void {
     this.game.exit();
+  }
+
+  resetGame(): void {
+    if(isDevMode()) this.game.initGame();
   }
 
   toggle(): void {

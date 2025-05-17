@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { GameEngineService } from './game-engine.service';
-import { Direction } from '../../models';
+import { CELL_CONTENTS, Direction } from '../../models';
 import { GameStoreService } from '../store/game-store.service';
 import { GameSoundService } from '../sound/game-sound.service';
 import { LeaderboardService } from '../score/leaderboard.service';
@@ -9,9 +9,6 @@ function createMockCell(overrides = {}) {
   return {
     x: 0,
     y: 0,
-    hasPit: false,
-    hasWumpus: false,
-    hasGold: false,
     ...overrides
   };
 }
@@ -124,7 +121,7 @@ describe('GameEngineService (with useValue)', () => {
       x: 0, y: 0, direction: Direction.RIGHT, arrows: 1, alive: true
     });
     const board = [
-      [{ hasWumpus: true }, { hasWumpus: false }]
+      [{ content: CELL_CONTENTS.wumpus }, { content: undefined }]
     ];
     mockStore.board.mockReturnValue(board);
     service.shootArrow();
@@ -135,7 +132,7 @@ describe('GameEngineService (with useValue)', () => {
 
   it('shootArrow: reports miss if Wumpus not found', () => {
     const board = [
-      [{ hasWumpus: false }, { hasWumpus: false }]
+      [{ content: undefined }, { content: undefined }]
     ];
     mockStore.board.mockReturnValue(board);
     service.shootArrow();
@@ -163,23 +160,23 @@ describe('GameEngineService (with useValue)', () => {
   });
 
   it('checkCurrentCell: detects pit', () => {
-    mockStore.getCurrentCell.mockReturnValue(createMockCell({ hasPit: true, x: 0, y: 0 }));
+    mockStore.getCurrentCell.mockReturnValue(createMockCell({ content: CELL_CONTENTS.pit, x: 0, y: 0 }));
     service['checkCurrentCell']();
-    expect(mockStore.updateHunter).toHaveBeenCalledWith({ alive: false, lives: 6 });
+    expect(mockStore.updateHunter).toHaveBeenCalledWith(expect.objectContaining({ alive: false, lives: 6 }));
     expect(mockStore.setMessage).toHaveBeenCalledWith('¡Caíste en un pozo!');
   });
 
   it('checkCurrentCell: detects wumpus', () => {
-    mockStore.getCurrentCell.mockReturnValue(createMockCell({ hasWumpus: true, x: 0, y: 0 }));
+    mockStore.getCurrentCell.mockReturnValue(createMockCell({ content: CELL_CONTENTS.wumpus, x: 0, y: 0 }));
     service['checkCurrentCell']();
-    expect(mockStore.updateHunter).toHaveBeenCalledWith({ alive: false, lives: 6 });
+    expect(mockStore.updateHunter).toHaveBeenCalledWith(expect.objectContaining({ alive: false, lives: 6 }));
     expect(mockStore.setMessage).toHaveBeenCalledWith('¡El Wumpus te devoró!');
   });
 
   it('checkCurrentCell: picks up gold', () => {
-    mockStore.getCurrentCell.mockReturnValue(createMockCell({ hasGold: true, x: 0, y: 0 }));
+    mockStore.getCurrentCell.mockReturnValue(createMockCell({ content: CELL_CONTENTS.gold, x: 0, y: 0 }));
     service['checkCurrentCell']();
-    expect(mockStore.updateHunter).toHaveBeenCalledWith({ hasGold: true });
+    expect(mockStore.updateHunter).toHaveBeenCalledWith(expect.objectContaining({ hasGold: true }));
     expect(mockStore.setMessage).toHaveBeenCalledWith('Has recogido el oro.');
   });
 

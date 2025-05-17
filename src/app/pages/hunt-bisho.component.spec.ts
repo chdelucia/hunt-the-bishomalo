@@ -8,9 +8,6 @@ function createMockCell(overrides = {}) {
   return {
     x: 0,
     y: 0,
-    hasPit: false,
-    hasWumpus: false,
-    hasGold: false,
     ...overrides
   };
 }

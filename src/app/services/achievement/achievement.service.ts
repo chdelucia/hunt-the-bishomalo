@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { effect, Injectable, signal } from '@angular/core';
 import { Achievement, AchieveTypes, Cell, GameSound } from 'src/app/models';
 import { AnalyticsService, GameSoundService, GameStoreService, LocalstorageService } from 'src/app/services';
 
@@ -473,6 +473,16 @@ export class AchievementService {
     private readonly localStoreService: LocalstorageService 
   ){
     this.syncAchievementsWithStorage();
+    effect(() => {
+      const hunter = this.gameStore.hunter();
+      if (!hunter.alive) {
+        if (this.gameStore.settings().blackout) {
+          this.activeAchievement(AchieveTypes.DEATHBYBLACKOUT);
+        } else if (hunter.wumpusKilled) {
+          this.activeAchievement(AchieveTypes.LASTBREATH);
+        } 
+      }
+    });
   }
 
   completed = signal<Achievement | undefined>(undefined);

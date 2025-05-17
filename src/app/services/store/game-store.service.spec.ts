@@ -36,9 +36,9 @@ describe('GameStoreService', () => {
 
     for (const row of board) {
       for (const cell of row) {
-        if (cell.hasGold) goldCount++;
-        if (cell.hasWumpus) wumpusCount++;
-        if (cell.hasPit) pitCount++;
+        if (cell.content?.type === 'gold') goldCount++;
+        if (cell.content?.type === 'wumpus') wumpusCount++;
+        if (cell.content?.type === 'pit') pitCount++;
       }
     }
 
@@ -67,7 +67,7 @@ describe('GameStoreService', () => {
 
   it('should update board state', () => {
     const newBoard = [
-      [{ x: 0, y: 0, visited: true, hasGold: false, hasPit: false, hasWumpus: false }]
+      [{ x: 0, y: 0, visited: true }]
     ];
     service.updateBoard(newBoard as any);
     expect(service.board()).toEqual(newBoard);

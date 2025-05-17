@@ -3,7 +3,7 @@ import { GameEventService } from './game-event.service';
 import { GameSoundService } from '../sound/game-sound.service';
 import { GameStoreService } from '../store/game-store.service';
 import { AchievementService } from '../achievement/achievement.service';
-import { Hunter } from '../../models';
+import { Cell, Hunter } from '../../models';
 
 describe('GameEventService', () => {
   let service: GameEventService;
@@ -63,7 +63,7 @@ describe('GameEventService', () => {
       inventory: [{ name: 'vida-extra', image: '', effect: 'revive' }],
     };
 
-    const result = service.applyEffectsOnDeath(hunter, 'pit');
+    const result = service.applyEffectsOnDeath(hunter, 'pit', {} as Cell);
     expect(result.hunter.alive).toBe(true);
     expect(result.hunter.inventory).toHaveLength(0);
     expect(result.message).toBe('¡Usaste una vida extra y volviste a la vida!');
@@ -76,7 +76,7 @@ describe('GameEventService', () => {
       inventory: [{ name: 'escudo', image: '', effect: 'shield' }],
     };
 
-    const result = service.applyEffectsOnDeath(hunter, 'wumpus');
+    const result = service.applyEffectsOnDeath(hunter, 'wumpus', {} as Cell);
     expect(result.hunter.alive).toBe(true);
     expect(result.hunter.inventory).toHaveLength(0);
     expect(result.message).toBe('¡Tu escudo bloqueó al Wumpus!');
@@ -140,7 +140,7 @@ describe('GameEventService', () => {
       inventory: [],
     };
 
-    const result = service.applyEffectsOnDeath(hunter, 'wumpus');
+    const result = service.applyEffectsOnDeath(hunter, 'wumpus', {} as Cell);
     expect(result.hunter.alive).toBe(false);
     expect(result.message).toBeUndefined();
   });

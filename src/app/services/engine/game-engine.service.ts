@@ -11,6 +11,7 @@ import {
 import { 
   AchieveTypes, 
   Cell, 
+  CELL_CONTENTS, 
   Direction, 
   GameSettings, 
   GameSound, 
@@ -168,7 +169,7 @@ export class GameEngineService {
       const cell = board[x][y];
       lastCell = cell;
 
-      if (cell.hasWumpus) {
+      if (cell.content?.type === 'wumpus') {
         return { hitWumpus: true, cell };
       }
 
@@ -192,7 +193,7 @@ export class GameEngineService {
   }
 
   private handleWumpusHit(cell: Cell): void {
-    cell.hasWumpus = false;
+    cell.content = undefined;
     this.store.setMessage('¡Has matado al Wumpus! ¡Grito!');
     this.sound.stopWumpus();
     this.sound.playSound(GameSound.PAIN, false);
@@ -202,8 +203,8 @@ export class GameEngineService {
   }
 
   private handleMissedArrow(cell: Cell): void {
-    if (!cell.hasPit && !cell.hasGold && !cell.hasWumpus) {
-      cell.hasArrow = true;
+    if (!cell.content) {
+      cell.content = CELL_CONTENTS.arrow;
     }
     this.store.setMessage('¡Flecha fallida!');
     if(!this._hunter().arrows) this.achieve.activeAchievement(AchieveTypes.MISSEDSHOT);
@@ -255,70 +256,26 @@ export class GameEngineService {
     this.store.markCellVisited(x, y);
 
     if (this.canExitWithVictory()){ this.exit(); return; }
-    if (this.handleDeadlyCell(cell)) return;
-    if (this.handleGold(cell)) return;
-    if (this.handleArrow(cell)) return;
+
+    const contentType = cell.content?.type;
+
+    if (contentType === 'pit' || contentType === 'wumpus') {
+      const survived = this.playerHasRevive(contentType, cell);
+      if (survived) return;
+    }
+
+    if(cell.content){
+      this.gameEvents.applyEffectByCellContent(this._hunter(), cell);
+      return;
+    }
 
     this.sound.playSound(GameSound.WALK, false);
     this.store.setMessage(this.getPerceptionMessage());
   }
 
-  private handleDeadlyCell(cell: Cell): boolean {
-    if (cell.hasPit) {
-      return this.tryToHandleDeadlyEvent('pit', '¡Caíste en un pozo!');
-    }
-    if (cell.hasWumpus) {
-      return this.tryToHandleDeadlyEvent('wumpus', '¡El Wumpus te devoró!');
-    }
-    return false;
-  }
-
-  private tryToHandleDeadlyEvent(cause: 'pit' | 'wumpus', deathMessage: string): boolean {
-    const hunter = this.store.hunter();
-    const result = this.gameEvents.applyEffectsOnDeath(hunter, cause);
-  
-    if (result.hunter.alive) {
-      this.store.updateHunter(result.hunter);
-      if (result.message) this.store.setMessage(result.message);
-      return false;
-    }
-    this.killHunter(deathMessage);
-
-    if (this.settingsSignal().blackout) {
-      this.achieve.activeAchievement(AchieveTypes.DEATHBYBLACKOUT);
-    } else if (hunter.wumpusKilled) {
-      this.achieve.activeAchievement(AchieveTypes.LASTBREATH);
-    } else {
-      this.achieve.activeAchievement(
-        cause === 'pit' ? AchieveTypes.DEATHBYPIT : AchieveTypes.DEATHBYWUMPUES
-      );
-      this.sound.playSound( cause === 'pit' ? GameSound.PITDIE : GameSound.SCREAM, false);
-    }
-    return true;
-  }
-
-  private killHunter(message: string): void {
-    this.store.updateHunter({ alive: false, lives: this._hunter().lives - 1 });
-    this.store.setMessage(message);
-  }
-
-  private handleGold(cell: Cell): boolean {
-    if (!cell.hasGold) return false;
-
-    this.store.updateHunter({ hasGold: true });
-    cell.hasGold = false;
-    this.store.setMessage('Has recogido el oro.');
-    this.sound.playSound(GameSound.PICKUP, false);
-    this.achieve.activeAchievement(AchieveTypes.PICKGOLD);
-    return true;
-  }
-
-  private handleArrow(cell: Cell): boolean {
-    if(cell.content){
-      return this.gameEvents.applyEffectByCellContent(this._hunter(), cell);
-    }
-
-    return false;
+  private playerHasRevive(cause: 'pit' | 'wumpus', cell: Cell): boolean {
+    const { hunter } = this.gameEvents.applyEffectsOnDeath(this._hunter(), cause, cell);
+    return hunter.alive;
   }
 
   private getPerceptionMessage(): string {
@@ -350,17 +307,17 @@ export class GameEngineService {
   }
 
   private getPerceptionFromCell(cell: Cell): string | null {
-    if (cell.hasWumpus) {
+    if (cell.content?.type === 'wumpus') {
       this.sound.playSound(GameSound.WUMPUS);
       return 'Sientes hedor.';
     }
 
-    if (cell.hasPit) {
+    if (cell.content?.type === 'pit') {
       this.sound.playSound(GameSound.WIND);
       return 'Sientes brisa.';
     }
 
-    if (cell.hasGold) {
+    if (cell.content?.type === 'gold') {
       this.sound.playSound(GameSound.GOLD);
       return 'Sientes un brillo.';
     }
