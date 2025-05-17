@@ -1,6 +1,6 @@
 # HuntTheBishomalo nunca
 
-Una version del Hunt the wumpus con angular 19
+Una version del Hunt the wumpus con angular 19 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/chdelucia/hunt-the-bishomalo)
 
 # 🚀 **Bienvenido al reto más épico de tu vida** 🚀
 
@@ -44,5 +44,3 @@ docker run -d -p 8080:80 --name huntbishomalo hunt-the-bishomalo-app
 docker start huntbishomalo
 
 ```
-
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/chdelucia/hunt-the-bishomalo)
