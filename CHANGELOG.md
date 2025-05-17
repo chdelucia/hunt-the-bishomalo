@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.1.2...v1.1.3) (2025-05-17)
+
+
+### Bug Fixes
+
+* **ci:** add rebase to keep commit msg instead of merge msg ([cffbeee](https://github.com/chdelucia/hunt-the-bishomalo/commit/cffbeee8e4ed5fb6bb44946f714efde58cc5b0b5))
+
 ### [1.1.2](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.1.1...v1.1.2) (2025-05-17)
 
 
