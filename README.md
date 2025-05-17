@@ -39,7 +39,7 @@ Te desafío a superar este juego **al 100%**. ¿Tienes lo que se necesita para e
 
 ## 🖼️ Vista previa del juego
 
-![Vista previa](https://hunt-the-bishomalo.vercel.app/assets/screenshot.png)
+![Vista previa](https://hunt-the-bishomalo.vercel.app/screenshot.png)
 
 ---
 
