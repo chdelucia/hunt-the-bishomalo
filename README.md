@@ -18,6 +18,7 @@ Te desafío a superar este juego **al 100%**. ¿Tienes lo que se necesita para e
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=chdelucia_hunt-the-bishomalo&metric=coverage)](https://sonarcloud.io/summary/new_code?id=chdelucia_hunt-the-bishomalo)
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=chdelucia_hunt-the-bishomalo&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=chdelucia_hunt-the-bishomalo)
 
+no me la contest
 ---
 
 ## 🖼️ Vista previa del juego
