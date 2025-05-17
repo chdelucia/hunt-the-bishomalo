@@ -1,8 +1,7 @@
-# HuntTheBishomalo nunca
+# 🏹 HuntTheBishomalo nunca
 
 Una version del Hunt the wumpus con angular 19 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/chdelucia/hunt-the-bishomalo)
 
-# 🚀 **Bienvenido al reto más épico de tu vida** 🚀
 
 Te desafío a superar este juego **al 100%**. ¿Tienes lo que se necesita para encontrar al Jedi oculto?
 
