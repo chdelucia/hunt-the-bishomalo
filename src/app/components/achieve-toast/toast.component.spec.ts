@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ToastComponent } from './toast.component';
 import { AchievementService } from 'src/app/services/achievement/achievement.service';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { Achievement } from 'src/app/models';
 
@@ -11,7 +10,6 @@ const achievementServiceMock = {
 describe('ToastComponent', () => {
   let component: ToastComponent;
   let fixture: ComponentFixture<ToastComponent>;
-  let sanitizerMock: Partial<DomSanitizer>;
 
   const fakeAchievement: Achievement = {
     id: '1',
@@ -21,15 +19,10 @@ describe('ToastComponent', () => {
   } as Achievement;
 
   beforeEach(async () => {
-    sanitizerMock = {
-      bypassSecurityTrustHtml: jest.fn((html: string) => html as unknown as SafeHtml),
-    };
-
     await TestBed.configureTestingModule({
       imports: [CommonModule, ToastComponent],
       providers: [
         { provide: AchievementService, useValue: achievementServiceMock },
-        { provide: DomSanitizer, useValue: sanitizerMock },
       ],
     }).compileComponents();
 
@@ -49,7 +42,6 @@ describe('ToastComponent', () => {
     const toasts = component.toasts();
     expect(toasts.length).toBe(1);
     expect(toasts[0].achievement).toEqual(fakeAchievement);
-    expect(sanitizerMock.bypassSecurityTrustHtml).toHaveBeenCalledWith(fakeAchievement.svgIcon);
   });
 
   it(

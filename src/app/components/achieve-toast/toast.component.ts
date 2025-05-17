@@ -2,12 +2,11 @@ import { Component, effect, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AchievementService } from 'src/app/services/achievement/achievement.service';
 import { Achievement } from 'src/app/models';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 interface ToastData {
   id: number;
   achievement: Achievement;
-  icon: SafeHtml;
+  icon: string;
 }
 
 @Component({
@@ -19,7 +18,6 @@ interface ToastData {
 })
 export class ToastComponent {
   private readonly service = inject(AchievementService);
-  private readonly sanitizer = inject(DomSanitizer);
   private idCounter = 0;
   toasts = signal<ToastData[]>([]);
 
@@ -37,7 +35,7 @@ export class ToastComponent {
     const toast: ToastData = {
       id,
       achievement,
-      icon: this.sanitizer.bypassSecurityTrustHtml(achievement.svgIcon),
+      icon: achievement.svgIcon,
     };
 
     this.toasts.update((prev) => [...prev, toast]);
