@@ -4,7 +4,6 @@ import { GameEngineService } from 'src/app/services';
 import { AchievementService } from 'src/app/services/achievement/achievement.service';
 import { AchieveTypes } from 'src/app/models';
 
-
 @Component({
   selector: 'app-mobile-controls',
   standalone: true,
@@ -28,6 +27,6 @@ export class MobileControlsComponent {
 
   shootArrow(): void {
     this.game.shootArrow();
-    this.achieve.activeAchievement(AchieveTypes.GAMER)
+    this.achieve.activeAchievement(AchieveTypes.GAMER);
   }
 }

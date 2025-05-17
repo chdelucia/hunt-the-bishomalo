@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ScoreboardComponent } from "../index";
+import { ScoreboardComponent } from '../index';
 import { Router, RouterModule } from '@angular/router';
 import { GameEngineService } from 'src/app/services';
 
@@ -14,7 +14,7 @@ import { GameEngineService } from 'src/app/services';
 export class MenuComponent {
   isOpen = signal(false);
   gameEngine = inject(GameEngineService);
-  router = inject(Router)
+  router = inject(Router);
 
   toggleMenu(): void {
     this.isOpen.update((open) => !open);

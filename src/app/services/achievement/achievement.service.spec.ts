@@ -52,16 +52,16 @@ describe('AchievementService', () => {
 
       service.activeAchievement(AchieveTypes.SPEEDRUNNER);
 
-      const updated = service.achievements.find(a => a.id === AchieveTypes.SPEEDRUNNER);
+      const updated = service.achievements.find((a) => a.id === AchieveTypes.SPEEDRUNNER);
 
       expect(updated?.unlocked).toBe(true);
       expect(mockLocalStorageService.setValue).toHaveBeenCalledWith(
         'hunt_the_bishomalo_achievements',
-        [AchieveTypes.SPEEDRUNNER]
+        [AchieveTypes.SPEEDRUNNER],
       );
       expect(mockAnalyticsService.trackAchievementUnlocked).toHaveBeenCalledWith(
         AchieveTypes.SPEEDRUNNER,
-        'Speedrunner'
+        'Speedrunner',
       );
     });
 
@@ -82,7 +82,7 @@ describe('AchievementService', () => {
       // Forzamos sync
       service['syncAchievementsWithStorage']();
 
-      const updated = service.achievements.find(a => a.id === AchieveTypes.SPEEDRUNNER);
+      const updated = service.achievements.find((a) => a.id === AchieveTypes.SPEEDRUNNER);
       expect(updated?.unlocked).toBe(true);
     });
   });

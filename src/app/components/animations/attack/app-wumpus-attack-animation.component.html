@@ -1,13 +1,18 @@
 <div class="overlay">
   <div class="animation step-{{ step() }}">
-
     <div
       class="player"
       [style.left]="getPlayerLeft()"
       [style.opacity]="step() < 5 ? 1 : 0.3"
       [style.transform]="'translateY(-50%)' + (step() >= 4 ? ' rotate(15deg)' : '')"
     >
-      <svg viewBox="0 0 24 24" width="80" height="80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        viewBox="0 0 24 24"
+        width="80"
+        height="80"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <circle cx="12" cy="12" r="10" fill="#4299e1" />
         <circle cx="12" cy="10" r="4" fill="#f6e05e" />
         <rect x="8" y="6" width="8" height="2" fill="#805ad5" rx="1" />
@@ -28,11 +33,14 @@
       </svg>
     </div>
 
-    <div
-      class="wumpus"
-      [style.transform]="'translateY(-50%) scale(' + getWumpusScale() + ')'"
-    >
-      <svg viewBox="0 0 24 24" width="120" height="120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div class="wumpus" [style.transform]="'translateY(-50%) scale(' + getWumpusScale() + ')'">
+      <svg
+        viewBox="0 0 24 24"
+        width="120"
+        height="120"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <circle cx="12" cy="12" r="10" fill="#e53e3e" />
         <circle cx="8" cy="10" r="2" fill="white" />
         <circle cx="16" cy="10" r="2" fill="white" />
@@ -40,9 +48,25 @@
         <circle cx="16" cy="10" r="1" fill="black" />
 
         <ng-container [ngSwitch]="step()">
-          <path *ngSwitchCase="1" d="M8 16 C 12 20, 16 16, 16 16" stroke="white" strokeWidth="1.5" />
-          <path *ngSwitchCase="2" d="M8 16 C 12 20, 16 16, 16 16" stroke="white" strokeWidth="1.5" />
-          <path *ngSwitchCase="3" d="M6 16 C 12 24, 18 16, 18 16" stroke="white" strokeWidth="2" fill="#800000" />
+          <path
+            *ngSwitchCase="1"
+            d="M8 16 C 12 20, 16 16, 16 16"
+            stroke="white"
+            strokeWidth="1.5"
+          />
+          <path
+            *ngSwitchCase="2"
+            d="M8 16 C 12 20, 16 16, 16 16"
+            stroke="white"
+            strokeWidth="1.5"
+          />
+          <path
+            *ngSwitchCase="3"
+            d="M6 16 C 12 24, 18 16, 18 16"
+            stroke="white"
+            strokeWidth="2"
+            fill="#800000"
+          />
           <g *ngSwitchDefault>
             <path d="M5 15 C 12 28, 19 15, 19 15" stroke="white" strokeWidth="2" fill="#800000" />
             <path d="M8 18 L 10 22" stroke="white" strokeWidth="1" />

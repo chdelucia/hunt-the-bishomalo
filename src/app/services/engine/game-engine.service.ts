@@ -1,21 +1,21 @@
 import { Injectable, Signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { 
+import {
   GameStoreService,
-  GameEventService, 
+  GameEventService,
   GameSoundService,
   LeaderboardService,
   AchievementService,
-  LocalstorageService 
+  LocalstorageService,
 } from '../index';
-import { 
-  AchieveTypes, 
-  Cell, 
-  CELL_CONTENTS, 
-  Direction, 
-  GameSettings, 
-  GameSound, 
-  Hunter 
+import {
+  AchieveTypes,
+  Cell,
+  CELL_CONTENTS,
+  Direction,
+  GameSettings,
+  GameSound,
+  Hunter,
 } from '../../models';
 
 @Injectable({ providedIn: 'root' })
@@ -25,21 +25,21 @@ export class GameEngineService {
   private readonly _hunter!: Signal<Hunter>;
 
   constructor(
-    private readonly store: GameStoreService, 
+    private readonly store: GameStoreService,
     private readonly sound: GameSoundService,
     private readonly leaderBoard: LeaderboardService,
     private readonly achieve: AchievementService,
     private readonly router: Router,
     private readonly localStorageService: LocalstorageService,
-    private readonly gameEvents: GameEventService
-  ) { 
+    private readonly gameEvents: GameEventService,
+  ) {
     this.settingsSignal = this.store.settings;
     this._hunter = this.store.hunter;
   }
 
   syncSettingsWithStorage(): void {
     const settings = this.localStorageService.getValue<GameSettings>(this.storageSettingsKey);
-    if(settings) this.initGame(settings); 
+    if (settings) this.initGame(settings);
   }
 
   private updateLocalStorageWithSettings(config: GameSettings): void {
@@ -48,7 +48,7 @@ export class GameEngineService {
 
   initGame(config?: GameSettings): void {
     this.sound.stop();
-    if(config) {
+    if (config) {
       this.store.setSettings(config);
       this.updateLocalStorageWithSettings(config);
     }
@@ -56,7 +56,7 @@ export class GameEngineService {
     this.checkCurrentCell();
   }
 
-  newGame():void{
+  newGame(): void {
     this.sound.stop();
     this.localStorageService.clearValue(this.storageSettingsKey);
     this.store.resetHunter();
@@ -83,19 +83,28 @@ export class GameEngineService {
     if (!alive || hasWon) return;
 
     const size = this.settingsSignal().size;
-    let newX = x, newY = y;
+    let newX = x,
+      newY = y;
 
     switch (direction) {
-      case Direction.UP: newX--; break;
-      case Direction.DOWN: newX++; break;
-      case Direction.LEFT: newY--; break;
-      case Direction.RIGHT: newY++; break;
+      case Direction.UP:
+        newX--;
+        break;
+      case Direction.DOWN:
+        newX++;
+        break;
+      case Direction.LEFT:
+        newY--;
+        break;
+      case Direction.RIGHT:
+        newY++;
+        break;
     }
 
     this.checkSecret(size, newX, newY);
- 
+
     if (newX < 0 || newY < 0 || newX >= size || newY >= size) {
-      if(this.store.message() === '¡Choque contra un muro!'){
+      if (this.store.message() === '¡Choque contra un muro!') {
         this.achieve.activeAchievement(AchieveTypes.HARDHEAD);
       }
       //this.store.setMessage(this.getPerceptionMessage() + ' ¡Choque contra un muro!');
@@ -109,8 +118,8 @@ export class GameEngineService {
     this.checkCurrentCell();
   }
 
-  private checkSecret(size:number, x:number, y: number): void {
-   if(size===8 && x === 7 && y === 8){
+  private checkSecret(size: number, x: number, y: number): void {
+    if (size === 8 && x === 7 && y === 8) {
       this.router.navigateByUrl('/secret');
     }
   }
@@ -154,7 +163,7 @@ export class GameEngineService {
   private consumeArrow(): void {
     const { arrows } = this._hunter();
     this.store.updateHunter({ arrows: arrows - 1 });
-    this.sound.playSound(GameSound.SHOOT, false)
+    this.sound.playSound(GameSound.SHOOT, false);
   }
 
   private processArrowFlight(): { hitWumpus: boolean; cell: Cell } {
@@ -185,10 +194,14 @@ export class GameEngineService {
 
   private nextPosition(x: number, y: number, dir: Direction): { x: number; y: number } {
     switch (dir) {
-      case Direction.UP: return { x: x - 1, y };
-      case Direction.DOWN: return { x: x + 1, y };
-      case Direction.LEFT: return { x, y: y - 1 };
-      case Direction.RIGHT: return { x, y: y + 1 };
+      case Direction.UP:
+        return { x: x - 1, y };
+      case Direction.DOWN:
+        return { x: x + 1, y };
+      case Direction.LEFT:
+        return { x, y: y - 1 };
+      case Direction.RIGHT:
+        return { x, y: y + 1 };
     }
   }
 
@@ -205,11 +218,10 @@ export class GameEngineService {
   private handleMissedArrow(cell: Cell): void {
     cell.content ??= CELL_CONTENTS.arrow;
     this.store.setMessage('¡Flecha fallida!');
-    if(!this._hunter().arrows) this.achieve.activeAchievement(AchieveTypes.MISSEDSHOT);
+    if (!this._hunter().arrows) this.achieve.activeAchievement(AchieveTypes.MISSEDSHOT);
   }
 
-
-  exit(): void { 
+  exit(): void {
     if (this.canExitWithVictory()) {
       this.sound.stop();
       this.handleVictory();
@@ -252,7 +264,10 @@ export class GameEngineService {
 
     this.store.markCellVisited(x, y);
 
-    if (this.canExitWithVictory()){ this.exit(); return; }
+    if (this.canExitWithVictory()) {
+      this.exit();
+      return;
+    }
 
     const contentType = cell.content?.type;
 
@@ -261,7 +276,7 @@ export class GameEngineService {
       if (survived) return;
     }
 
-    if(cell.content){
+    if (cell.content) {
       this.gameEvents.applyEffectByCellContent(this._hunter(), cell);
       return;
     }
@@ -293,8 +308,10 @@ export class GameEngineService {
     const board = this.store.board();
 
     const directions = [
-      { dx: -1, dy: 0 }, { dx: 1, dy: 0 },
-      { dx: 0, dy: -1 }, { dx: 0, dy: 1 }
+      { dx: -1, dy: 0 },
+      { dx: 1, dy: 0 },
+      { dx: 0, dy: -1 },
+      { dx: 0, dy: 1 },
     ];
 
     return directions
@@ -324,7 +341,7 @@ export class GameEngineService {
 
   private calculatePits(size: number): number {
     const totalCells = size * size;
-    const basePercentage = 0.10;
+    const basePercentage = 0.1;
     return Math.max(1, Math.floor(totalCells * basePercentage));
   }
 
@@ -335,8 +352,7 @@ export class GameEngineService {
   }
 
   private applyBlackoutChance(): boolean {
-      const blackoutChance = 0.08;
-      return Math.random() < blackoutChance;
+    const blackoutChance = 0.08;
+    return Math.random() < blackoutChance;
   }
-
 }

@@ -12,7 +12,7 @@ describe('GameLevelComponent', () => {
 
     fixture = TestBed.createComponent(GameLevelComponent);
     component = fixture.componentInstance;
-    fixture.componentRef.setInput('settings', {})
+    fixture.componentRef.setInput('settings', {});
     fixture.detectChanges();
   });
 
@@ -21,7 +21,7 @@ describe('GameLevelComponent', () => {
   });
 
   it('should show level number', () => {
-    fixture.componentRef.setInput('settings',{ size: 6, pits: 2, wumpus: 1 });
+    fixture.componentRef.setInput('settings', { size: 6, pits: 2, wumpus: 1 });
     fixture.detectChanges();
 
     const levelEl = fixture.nativeElement.querySelector('.level');

@@ -2,14 +2,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ScoreboardComponent } from './score-board.component';
 import { LeaderboardService } from 'src/app/services';
 
-  const mockLeaderboardData = [
-    { playerName: 'Alice', timeInSeconds: 100 },
-    { player: 'Bob', timeInSeconds: 80 }
-  ];
+const mockLeaderboardData = [
+  { playerName: 'Alice', timeInSeconds: 100 },
+  { player: 'Bob', timeInSeconds: 80 },
+];
 
-  const mockLeaderboardService = {
-    leaderboard: jest.fn().mockRejectedValue(mockLeaderboardData)
-  };
+const mockLeaderboardService = {
+  leaderboard: jest.fn().mockRejectedValue(mockLeaderboardData),
+};
 describe('ScoreBoardComponent', () => {
   let component: ScoreboardComponent;
   let fixture: ComponentFixture<ScoreboardComponent>;
@@ -17,9 +17,7 @@ describe('ScoreBoardComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [ScoreboardComponent],
-      providers: [
-        { provide: LeaderboardService, useValue: mockLeaderboardService }
-      ]
+      providers: [{ provide: LeaderboardService, useValue: mockLeaderboardService }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ScoreboardComponent);

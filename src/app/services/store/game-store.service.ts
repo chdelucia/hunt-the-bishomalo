@@ -14,7 +14,7 @@ export class GameStoreService {
     hasGold: false,
     hasWon: false,
     wumpusKilled: false,
-    lives: 8
+    lives: 8,
   });
 
   private readonly _message = signal('');
@@ -30,19 +30,19 @@ export class GameStoreService {
 
   prevName = 'Player';
 
-  constructor(private readonly localStorageService: LocalstorageService){
+  constructor(private readonly localStorageService: LocalstorageService) {
     this.syncHunterWithStorage();
   }
 
   syncHunterWithStorage(): void {
     const hunter = this.localStorageService.getValue<Hunter>(this.storageHunterKey);
-    if(hunter) this._hunter.set(hunter);
+    if (hunter) this._hunter.set(hunter);
   }
 
   initBoard(): void {
     const size = this._settings().size;
     const board: Cell[][] = Array.from({ length: size }, (_, x) =>
-      Array.from({ length: size }, (_, y) => ({x, y, visited: false}))
+      Array.from({ length: size }, (_, y) => ({ x, y, visited: false })),
     );
 
     const place = () => this.placeRandom(board);
@@ -74,7 +74,7 @@ export class GameStoreService {
 
     const chance = Math.min(
       baseChance + ((size - 4) / (20 - 4)) * (maxChance - baseChance),
-      maxChance
+      maxChance,
     );
 
     const shouldPlaceEvent = Math.random() < chance;
@@ -83,7 +83,6 @@ export class GameStoreService {
       this.placeRandom(board).content = CELL_CONTENTS.heart;
     }
   }
-
 
   setSettings(settings: GameSettings): void {
     this._settings.set(settings);
@@ -101,14 +100,12 @@ export class GameStoreService {
       const x = Math.floor(Math.random() * size);
       const y = Math.floor(Math.random() * size);
       cell = board[x][y];
-    } while (
-      cell.content || (cell.x === 0 && cell.y === 0)
-    );
+    } while (cell.content || (cell.x === 0 && cell.y === 0));
     return cell;
   }
 
   private setHunterForNextLevel(): void {
-    this.updateHunter({      
+    this.updateHunter({
       x: 0,
       y: 0,
       direction: Direction.RIGHT,
@@ -116,10 +113,10 @@ export class GameStoreService {
       alive: true,
       hasGold: false,
       hasWon: false,
-      wumpusKilled: false
-    })
+      wumpusKilled: false,
+    });
   }
-  
+
   resetHunter(): void {
     this._hunter.set({
       x: 0,
@@ -130,12 +127,12 @@ export class GameStoreService {
       hasGold: false,
       hasWon: false,
       wumpusKilled: false,
-      lives: 8
+      lives: 8,
     });
   }
 
   updateHunter(partial: Partial<Hunter>): void {
-    this._hunter.update(hunter => ({ ...hunter, ...partial }));
+    this._hunter.update((hunter) => ({ ...hunter, ...partial }));
     //TODO solo actualizar cuando se gana o se pierde no siempre
     this.localStorageService.setValue<Hunter>(this.storageHunterKey, this._hunter());
   }
@@ -158,7 +155,7 @@ export class GameStoreService {
   }
 
   markCellVisited(x: number, y: number): void {
-    this._board.update(board => {
+    this._board.update((board) => {
       board[x][y].visited = true;
       return [...board];
     });

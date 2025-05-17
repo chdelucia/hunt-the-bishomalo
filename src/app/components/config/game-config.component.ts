@@ -9,7 +9,7 @@ import { GameEngineService, GameStoreService } from 'src/app/services';
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './game-config.component.html',
   styleUrls: ['./game-config.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameConfigComponent implements OnInit {
   readonly game = inject(GameEngineService);
@@ -29,12 +29,10 @@ export class GameConfigComponent implements OnInit {
 
   submitForm(): void {
     if (this.configForm.valid) {
-      this.game.initGame(
-        {
-          ...this.configForm.value, 
-          blackout: this.applyBlackoutChance()
-        }
-      );
+      this.game.initGame({
+        ...this.configForm.value,
+        blackout: this.applyBlackoutChance(),
+      });
     }
   }
 

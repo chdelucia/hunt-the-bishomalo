@@ -32,9 +32,7 @@ export class GameEventService {
       type: 'rewind',
       itemName: 'rebobinar',
       canApply: (hunter, cause) =>
-        !hunter.alive &&
-        cause === 'pit' &&
-        this.hasItem(hunter, 'rebobinar'),
+        !hunter.alive && cause === 'pit' && this.hasItem(hunter, 'rebobinar'),
       apply: (hunter, prev) => ({
         ...hunter,
         alive: true,
@@ -66,7 +64,7 @@ export class GameEventService {
         this.gameStore.updateHunter({
           ...hunter,
           arrows: hunter.arrows + 1,
-        })
+        });
         cell.content = undefined;
         return hunter;
       },
@@ -81,7 +79,7 @@ export class GameEventService {
         this.gameStore.updateHunter({
           ...hunter,
           lives: hunter.lives + 1,
-        })
+        });
         cell.content = undefined;
         return hunter;
       },
@@ -97,7 +95,7 @@ export class GameEventService {
         this.gameStore.updateHunter({
           ...hunter,
           hasGold: true,
-        })
+        });
         cell.content = undefined;
         return hunter;
       },
@@ -114,7 +112,7 @@ export class GameEventService {
           ...hunter,
           alive: false,
           lives: hunter.lives - 1,
-        })
+        });
         return hunter;
       },
       message: '¡Caíste en un pozo!',
@@ -130,7 +128,7 @@ export class GameEventService {
           ...hunter,
           alive: false,
           lives: hunter.lives - 1,
-        })
+        });
         return hunter;
       },
       message: '¡El Wumpus te devoró!',
@@ -150,10 +148,14 @@ export class GameEventService {
   constructor(
     private readonly gameStore: GameStoreService,
     private readonly gameSound: GameSoundService,
-    private readonly gameAchieve: AchievementService
-  ){}
+    private readonly gameAchieve: AchievementService,
+  ) {}
 
-  applyEffectsOnDeath(hunter: Hunter, cause: CauseOfDeath, cell: Cell): { hunter: Hunter; message?: string } {
+  applyEffectsOnDeath(
+    hunter: Hunter,
+    cause: CauseOfDeath,
+    cell: Cell,
+  ): { hunter: Hunter; message?: string } {
     for (const effect of this.effects) {
       if (effect.canApply(hunter, cause)) {
         const updated = effect.apply(hunter, cell);
@@ -164,7 +166,11 @@ export class GameEventService {
     return { hunter };
   }
 
-  applyEffectByItemName(hunter: Hunter, itemName: string, cell: Cell): { hunter: Hunter; message?: string } {
+  applyEffectByItemName(
+    hunter: Hunter,
+    itemName: string,
+    cell: Cell,
+  ): { hunter: Hunter; message?: string } {
     const effect = this.effects.find((e) => e.itemName === itemName);
     if (effect?.canApply(hunter)) {
       return { hunter: effect.apply(hunter, cell), message: effect.message };
@@ -174,14 +180,13 @@ export class GameEventService {
 
   applyEffectByCellContent(hunter: Hunter, cell: Cell): boolean {
     const effect = this.effects.find((e) => e.type === cell.content?.type);
-    if(effect) {
+    if (effect) {
       effect.apply(hunter, cell);
       this.gameStore.setMessage(effect.message);
     }
-    
-    return !!effect
-  }
 
+    return !!effect;
+  }
 
   private hasItem(hunter: Hunter, name: string): boolean {
     return hunter.inventory?.some((item) => item.name === name) ?? false;

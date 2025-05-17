@@ -8,16 +8,14 @@ describe('AnalyticsService', () => {
   let routerEvents$: Subject<any>;
 
   const mockRouter = {
-    events: new Subject<any>()
+    events: new Subject<any>(),
   };
 
   beforeEach(() => {
     (window as any).gtag = jest.fn();
 
     TestBed.configureTestingModule({
-      providers: [
-        { provide: Router, useValue: mockRouter },
-      ],
+      providers: [{ provide: Router, useValue: mockRouter }],
     });
 
     service = TestBed.inject(AnalyticsService);
@@ -36,11 +34,15 @@ describe('AnalyticsService', () => {
     const navEvent = new NavigationEnd(1, '/start', '/start');
     routerEvents$.next(navEvent);
 
-    expect(window.gtag).toHaveBeenCalledWith('event', 'page_view', expect.objectContaining({
-      page_path: '/start',
-      page_location: window.location.href,
-      page_title: document.title,
-    }));
+    expect(window.gtag).toHaveBeenCalledWith(
+      'event',
+      'page_view',
+      expect.objectContaining({
+        page_path: '/start',
+        page_location: window.location.href,
+        page_title: document.title,
+      }),
+    );
   });
 
   describe('sendEvent', () => {
@@ -71,12 +73,15 @@ describe('AnalyticsService', () => {
 
       service.trackAchievementUnlocked('achv-123', 'Super Win');
 
-      expect(spy).toHaveBeenCalledWith('achievement_unlocked', expect.objectContaining({
-        achievement_id: 'achv-123',
-        achievement_name: 'Super Win',
-        category: 'achievements',
-        debug_mode: expect.any(Boolean),
-      }));
+      expect(spy).toHaveBeenCalledWith(
+        'achievement_unlocked',
+        expect.objectContaining({
+          achievement_id: 'achv-123',
+          achievement_name: 'Super Win',
+          category: 'achievements',
+          debug_mode: expect.any(Boolean),
+        }),
+      );
     });
   });
 });

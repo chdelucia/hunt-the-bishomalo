@@ -4,5 +4,5 @@ export enum GameAction {
   TurnRight = 'turnRight',
   ShootArrow = 'shootArrow',
   Exit = 'exit',
-  ResetGame = 'resetGame'
+  ResetGame = 'resetGame',
 }

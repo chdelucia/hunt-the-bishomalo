@@ -14,7 +14,6 @@ declare global {
   providedIn: 'root',
 })
 export class AnalyticsService {
-
   constructor(private readonly router: Router) {
     this.trackPageViews();
   }
@@ -26,7 +25,7 @@ export class AnalyticsService {
         window.gtag('event', 'page_view', {
           page_path: event.urlAfterRedirects,
           page_location: window.location.href,
-          page_title: document.title
+          page_title: document.title,
         });
       });
   }

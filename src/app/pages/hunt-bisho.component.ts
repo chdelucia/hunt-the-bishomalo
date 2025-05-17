@@ -4,13 +4,13 @@ import { GameStoreService } from './../services';
 import {
   AppWumpusAttackAnimationComponent,
   BlackoutComponent,
-  GameCellComponent, 
-  GameConfigComponent, 
-  GameMessageComponent, 
-  MobileControlsComponent, 
+  GameCellComponent,
+  GameConfigComponent,
+  GameMessageComponent,
+  MobileControlsComponent,
   TitleComponent,
   GameLivesComponent,
-  GameLevelComponent
+  GameLevelComponent,
 } from './../components';
 import { VisualEffectDirective } from './../directives/visual-effect.directive';
 import { RouterModule } from '@angular/router';
@@ -29,8 +29,8 @@ import { RouterModule } from '@angular/router';
     GameMessageComponent,
     MobileControlsComponent,
     GameLivesComponent,
-    GameLevelComponent
-],
+    GameLevelComponent,
+  ],
   templateUrl: './hunt-bisho.component.html',
   styleUrl: './hunt-bisho.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -41,7 +41,7 @@ export class HuntBishoComponent {
 
   deathByWumpus = computed(() => {
     const gameInstance = this.game;
-    return gameInstance?.message() === '¡El Wumpus te devoró!'
+    return gameInstance?.message() === '¡El Wumpus te devoró!';
   });
 
   handleclose(): void {

@@ -12,9 +12,9 @@
     z-index: 1000;
     position: relative;
   }
- button{
-  min-width: 100px;
- } 
+  button {
+    min-width: 100px;
+  }
 }
 
 .control-btn {
@@ -24,12 +24,13 @@
   padding: 1rem 1.5rem;
   border: none;
   border-radius: 8px;
-  font-family: "Press Start 2P", monospace;
+  font-family: 'Press Start 2P', monospace;
   box-shadow: 0 0 6px #00ffcc;
   cursor: pointer;
   transition: background 0.2s;
 
-  &:hover, &:active {
+  &:hover,
+  &:active {
     background: #00ddb3;
   }
 }

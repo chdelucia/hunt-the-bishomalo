@@ -8,24 +8,30 @@ import { Cell, Hunter } from '../../models';
   imports: [CommonModule],
   templateUrl: './game-cell.component.html',
   styleUrl: './game-cell.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameCellComponent {
   cell = input.required<Cell>();
   hunter = input.required<Hunter>();
 
-  readonly isHunterCell = (cell: Cell) => computed(() => {
-    const { x, y } = this.hunter();
-    return x === cell.x && y === cell.y;
-  });
+  readonly isHunterCell = (cell: Cell) =>
+    computed(() => {
+      const { x, y } = this.hunter();
+      return x === cell.x && y === cell.y;
+    });
 
   readonly rotation = computed(() => {
     switch (this.hunter().direction) {
-      case 0: return 270;
-      case 1: return 0;
-      case 2: return 90;
-      case 3: return 180;
-      default: return 0;
+      case 0:
+        return 270;
+      case 1:
+        return 0;
+      case 2:
+        return 90;
+      case 3:
+        return 180;
+      default:
+        return 0;
     }
   });
 

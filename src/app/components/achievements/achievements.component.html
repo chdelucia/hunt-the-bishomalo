@@ -12,27 +12,35 @@
         <div class="progress-info">
           <h2 class="progress-title">Progreso de logros</h2>
           <p class="progress-stats">
-            Has desbloqueado {{ unlockedCount }} de {{ achievements.length }} logros ({{ percentage }}%)
+            Has desbloqueado {{ unlockedCount }} de {{ achievements.length }} logros ({{
+              percentage
+            }}%)
           </p>
         </div>
         <div class="filter-buttons">
           <button
             (click)="setFilter('all')"
-            [ngClass]="{'active-filter': filter === 'all', 'inactive-filter': filter !== 'all'}"
+            [ngClass]="{ 'active-filter': filter === 'all', 'inactive-filter': filter !== 'all' }"
             class="filter-button"
           >
             Todos
           </button>
           <button
             (click)="setFilter('unlocked')"
-            [ngClass]="{'active-filter': filter === 'unlocked', 'inactive-filter': filter !== 'unlocked'}"
+            [ngClass]="{
+              'active-filter': filter === 'unlocked',
+              'inactive-filter': filter !== 'unlocked'
+            }"
             class="filter-button"
           >
             Desbloqueados
           </button>
           <button
             (click)="setFilter('locked')"
-            [ngClass]="{'active-filter': filter === 'locked', 'inactive-filter': filter !== 'locked'}"
+            [ngClass]="{
+              'active-filter': filter === 'locked',
+              'inactive-filter': filter !== 'locked'
+            }"
             class="filter-button"
           >
             Bloqueados
@@ -41,33 +49,36 @@
       </div>
 
       <div class="progress-bar-container">
-        <div
-          class="progress-bar"
-          [style.width.%]="percentage"
-        ></div>
+        <div class="progress-bar" [style.width.%]="percentage"></div>
       </div>
     </div>
 
     <div class="achievements-grid">
       <div
         *ngFor="let achievement of filteredAchievements"
-        [ngClass]="{'achievement-unlocked': achievement.unlocked, 'achievement-locked': !achievement.unlocked}"
+        [ngClass]="{
+          'achievement-unlocked': achievement.unlocked,
+          'achievement-locked': !achievement.unlocked
+        }"
         class="achievement-card"
       >
         <div class="achievement-content">
           <div class="achievement-header">
             <div
-              [ngClass]="{'icon-bg-unlocked': achievement.unlocked, 'icon-bg-locked': !achievement.unlocked}"
+              [ngClass]="{
+                'icon-bg-unlocked': achievement.unlocked,
+                'icon-bg-locked': !achievement.unlocked
+              }"
               class="achievement-icon-container"
             >
-              <div class="achievement-icon" [innerHTML]="getSanitizedSvg(achievement.svgIcon)"></div>
+              <div
+                class="achievement-icon"
+                [innerHTML]="getSanitizedSvg(achievement.svgIcon)"
+              ></div>
             </div>
             <div>
               <h3 class="achievement-title">{{ achievement.title }}</h3>
-              <div
-                [ngClass]="'rarity-' + achievement.rarity"
-                class="rarity-badge"
-              >
+              <div [ngClass]="'rarity-' + achievement.rarity" class="rarity-badge">
                 {{ getRarityName(achievement.rarity) }}
               </div>
             </div>

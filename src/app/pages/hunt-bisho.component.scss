@@ -27,11 +27,14 @@ main {
   }
 }
 
-app-title{ z-index: 10; position: relative;}
+app-title {
+  z-index: 10;
+  position: relative;
+}
 
 .player-info {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  margin-top: .2rem;
+  margin-top: 0.2rem;
 }

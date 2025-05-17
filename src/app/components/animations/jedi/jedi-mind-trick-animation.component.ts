@@ -6,7 +6,7 @@ import {
   ElementRef,
   ViewChild,
   NgZone,
-  ChangeDetectorRef
+  ChangeDetectorRef,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AchieveTypes } from 'src/app/models';
@@ -15,7 +15,7 @@ import { AchievementService } from 'src/app/services/achievement/achievement.ser
 @Component({
   selector: 'app-jedi-mind-trick-animation',
   standalone: true,
-  imports: [CommonModule,RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './jedi-mind-trick-animation.component.html',
   styleUrls: ['./jedi-mind-trick-animation.component.scss'],
 })
@@ -32,51 +32,51 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
   constructor(
     private readonly ngZone: NgZone,
     private readonly cdr: ChangeDetectorRef,
-    private readonly achieveService: AchievementService
+    private readonly achieveService: AchievementService,
   ) {}
 
   ngOnInit(): void {
     const schedule = [
-      { delay: 500, action: () => this.step = 2 },
+      { delay: 500, action: () => (this.step = 2) },
       {
         delay: 1000,
         action: () => {
           this.step = 3;
           this.playForceSound();
           this.createForceWave();
-        }
+        },
       },
       {
         delay: 1500,
         action: () => {
           this.step = 4;
           this.createForceWave();
-        }
+        },
       },
       {
         delay: 2000,
         action: () => {
           this.step = 5;
           this.createForceWave();
-        }
+        },
       },
-      { delay: 2500, action: () => this.step = 6 }
+      { delay: 2500, action: () => (this.step = 6) },
     ];
 
-    schedule.forEach(item => {
+    schedule.forEach((item) => {
       this.timers.push(
         setTimeout(() => {
           this.ngZone.run(() => {
             item.action();
             this.cdr.detectChanges();
           });
-        }, item.delay)
+        }, item.delay),
       );
     });
   }
 
   ngOnDestroy(): void {
-    this.timers.forEach(timer => clearTimeout(timer));
+    this.timers.forEach((timer) => clearTimeout(timer));
     if (this.echoTimeout) clearTimeout(this.echoTimeout);
     if (this.audioContext && this.audioContext.state !== 'closed') {
       window.speechSynthesis.cancel();
@@ -121,9 +121,9 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
       oscillator.stop(now + 2.5);
       modulator.stop(now + 2.5);
 
-      this.speakWhisper("Contrata a Chris", 0.4, 1000);
-      this.speakWhisper("Contrata a Chris", 0.2, 1300);
-      this.speakWhisper("Contrata a Chris", 0.1, 1600);
+      this.speakWhisper('Contrata a Chris', 0.4, 1000);
+      this.speakWhisper('Contrata a Chris', 0.2, 1300);
+      this.speakWhisper('Contrata a Chris', 0.1, 1600);
     });
   }
 
@@ -144,7 +144,7 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
 
     setTimeout(() => {
       this.ngZone.run(() => {
-        this.forceWaves = this.forceWaves.filter(w => w !== id);
+        this.forceWaves = this.forceWaves.filter((w) => w !== id);
         this.cdr.detectChanges();
       });
     }, 2000);

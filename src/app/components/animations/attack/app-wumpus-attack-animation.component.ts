@@ -1,5 +1,13 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, output, signal, computed, OnDestroy } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  output,
+  signal,
+  computed,
+  OnDestroy,
+} from '@angular/core';
 import { Subject, takeUntil, timer } from 'rxjs';
 
 @Component({
@@ -8,7 +16,7 @@ import { Subject, takeUntil, timer } from 'rxjs';
   templateUrl: './app-wumpus-attack-animation.component.html',
   styleUrls: ['./app-wumpus-attack-animation.component.scss'],
   imports: [CommonModule],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppWumpusAttackAnimationComponent implements OnInit, OnDestroy {
   step = signal(1);
@@ -20,13 +28,15 @@ export class AppWumpusAttackAnimationComponent implements OnInit, OnDestroy {
     const steps = [500, 1000, 1500, 2000, 3500];
 
     steps.forEach((delay, index) => {
-      timer(delay).pipe(takeUntil(this.destroy$)).subscribe(() => {
-        if (index < 4) {
-          this.step.set(index + 2);
-        } else {
-          this.closeAnimation.emit();
-        }
-      });
+      timer(delay)
+        .pipe(takeUntil(this.destroy$))
+        .subscribe(() => {
+          if (index < 4) {
+            this.step.set(index + 2);
+          } else {
+            this.closeAnimation.emit();
+          }
+        });
     });
   }
 
@@ -37,22 +47,31 @@ export class AppWumpusAttackAnimationComponent implements OnInit, OnDestroy {
 
   getPlayerLeft = computed(() => {
     switch (this.step()) {
-      case 1: return '-100px';
-      case 2: return '-50px';
-      case 3: return '0';
-      case 4: return '20px';
-      default: return '40px';
+      case 1:
+        return '-100px';
+      case 2:
+        return '-50px';
+      case 3:
+        return '0';
+      case 4:
+        return '20px';
+      default:
+        return '40px';
     }
   });
 
   getWumpusScale = computed(() => {
-      switch (this.step()) {
-        case 1: return 1;
-        case 2: return 1.2;
-        case 3: return 1.5;
-        case 4: return 1.8;
-        default: return 2;
-      }
+    switch (this.step()) {
+      case 1:
+        return 1;
+      case 2:
+        return 1.2;
+      case 3:
+        return 1.5;
+      case 4:
+        return 1.8;
+      default:
+        return 2;
+    }
   });
-  
 }

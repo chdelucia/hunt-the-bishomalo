@@ -1,27 +1,13 @@
-
-<button 
-  class="controller-icon" 
-  (click)="toggle()" 
-  aria-label="Mostrar tabla de clasificación"
->
-  <img 
-    src="controller.svg" 
-    alt="abrir controles"
-  >
+<button class="controller-icon" (click)="toggle()" aria-label="Mostrar tabla de clasificación">
+  <img src="controller.svg" alt="abrir controles" />
 </button>
 <aside class="game-controls" aria-label="Game Controls" [class.show]="isVisible()">
-  <button
-    class="close-btn"
-    (click)="toggle()"
-    aria-label="Cerrar controles"
-  >
-    &times;
-  </button>
+  <button class="close-btn" (click)="toggle()" aria-label="Cerrar controles">&times;</button>
   <h2 class="title">Controles</h2>
   <ul class="control-list">
     <li><span class="key">⬆</span> Avanzar</li>
     <li><span class="key">⬅ ➡</span> Girar</li>
-    <li><span class="key">↩</span> Disparar ({{arrows()}})</li>
+    <li><span class="key">↩</span> Disparar ({{ arrows() }})</li>
     <li><span class="key">N</span> Nueva partida</li>
   </ul>
 </aside>

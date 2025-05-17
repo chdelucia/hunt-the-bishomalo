@@ -8,15 +8,15 @@ import { LeaderboardService } from 'src/app/services/score/leaderboard.service';
   templateUrl: './score-board.component.html',
   styleUrls: ['./score-board.component.scss'],
   imports: [CommonModule],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScoreboardComponent {
-  private readonly leaderboardService = inject(LeaderboardService)
+  private readonly leaderboardService = inject(LeaderboardService);
   readonly leaderboard = this.leaderboardService.leaderboard;
-  
+
   isLeaderboardVisible = signal(false);
 
   toggleLeaderboard(): void {
-    this.isLeaderboardVisible.update(value => !value);
+    this.isLeaderboardVisible.update((value) => !value);
   }
 }

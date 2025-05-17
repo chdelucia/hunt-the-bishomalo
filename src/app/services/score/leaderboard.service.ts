@@ -13,7 +13,6 @@ export class LeaderboardService {
     this._leaderboard.set(stored);
   }
 
-
   private loadLeaderboardFromStorage(): ScoreEntry[] {
     const raw = this.localStorageService.getValue<ScoreEntry[]>(this.storageKey);
     return raw ?? [];
@@ -23,7 +22,7 @@ export class LeaderboardService {
     const leaderboard = [...this._leaderboard(), entry];
     leaderboard.sort((a, b) => a.timeInSeconds - b.timeInSeconds);
     this.localStorageService.setValue<ScoreEntry[]>(this.storageKey, leaderboard);
-    
+
     this._leaderboard.set(leaderboard);
   }
 

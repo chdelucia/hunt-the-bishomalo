@@ -2,15 +2,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameControlsComponent } from './game-controls.component';
 import { GameEngineService } from 'src/app/services';
 
-
-  const mockGameService = {
-    moveForward: jest.fn(),
-    turnLeft: jest.fn(),
-    turnRight: jest.fn(),
-    shootArrow: jest.fn(),
-    exit: jest.fn(),
-    initGame: jest.fn(),
-  };
+const mockGameService = {
+  moveForward: jest.fn(),
+  turnLeft: jest.fn(),
+  turnRight: jest.fn(),
+  shootArrow: jest.fn(),
+  exit: jest.fn(),
+  initGame: jest.fn(),
+};
 
 describe('GameControlsComponent', () => {
   let component: GameControlsComponent;
@@ -19,9 +18,7 @@ describe('GameControlsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [GameControlsComponent],
-      providers: [
-        { provide: GameEngineService, useValue: mockGameService }
-      ],
+      providers: [{ provide: GameEngineService, useValue: mockGameService }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GameControlsComponent);

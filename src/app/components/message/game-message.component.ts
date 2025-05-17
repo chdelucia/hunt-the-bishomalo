@@ -26,15 +26,14 @@ export class GameMessageComponent {
   readonly _hasCompletedAllLevels = computed(() => this.settings().size >= 20);
 
   restartGame(): void {
-    this.gameEngine.initGame();  
+    this.gameEngine.initGame();
   }
-  
+
   nextLevel(): void {
     this.gameEngine.nextLevel();
   }
 
-  newGame(): void{
+  newGame(): void {
     this.gameEngine.newGame();
   }
-
 }

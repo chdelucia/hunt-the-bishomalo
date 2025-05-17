@@ -14,5 +14,5 @@ export enum GameSound {
   PICKUP = 'pick',
   WALK = 'walk',
   FF7 = 'ff7',
-  PITDIE = 'pitdie'
+  PITDIE = 'pitdie',
 }

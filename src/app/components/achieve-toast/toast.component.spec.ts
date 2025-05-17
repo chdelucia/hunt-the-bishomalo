@@ -6,8 +6,8 @@ import { CommonModule } from '@angular/common';
 import { Achievement } from 'src/app/models';
 
 const achievementServiceMock = {
-      completed: jest.fn(),
-    };
+  completed: jest.fn(),
+};
 describe('ToastComponent', () => {
   let component: ToastComponent;
   let fixture: ComponentFixture<ToastComponent>;
@@ -52,15 +52,18 @@ describe('ToastComponent', () => {
     expect(sanitizerMock.bypassSecurityTrustHtml).toHaveBeenCalledWith(fakeAchievement.svgIcon);
   });
 
-  it('should remove toast after timeout', fakeTimersTest(() => {
-    (achievementServiceMock.completed as jest.Mock).mockReturnValue(fakeAchievement);
-    fixture.detectChanges();
+  it(
+    'should remove toast after timeout',
+    fakeTimersTest(() => {
+      (achievementServiceMock.completed as jest.Mock).mockReturnValue(fakeAchievement);
+      fixture.detectChanges();
 
-    expect(component.toasts().length).toBe(1);
+      expect(component.toasts().length).toBe(1);
 
-    jest.advanceTimersByTime(3000);
-    expect(component.toasts().length).toBe(0);
-  }));
+      jest.advanceTimersByTime(3000);
+      expect(component.toasts().length).toBe(0);
+    }),
+  );
 });
 
 function fakeTimersTest(fn: () => void) {

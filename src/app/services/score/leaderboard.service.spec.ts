@@ -3,7 +3,6 @@ import { LeaderboardService } from './leaderboard.service';
 import { LocalstorageService } from '../localstorage/localstorage.service';
 import { ScoreEntry } from 'src/app/models';
 
-
 const LocalstorageServiceMock = {
   getValue: jest.fn(),
   setValue: jest.fn(),
@@ -53,6 +52,8 @@ describe('LeaderboardService', () => {
     service.clear();
 
     expect(service.leaderboard()).toEqual([]);
-    expect(LocalstorageServiceMock.clearValue).toHaveBeenCalledWith('hunt_the_bishomalo_leaderboard');
+    expect(LocalstorageServiceMock.clearValue).toHaveBeenCalledWith(
+      'hunt_the_bishomalo_leaderboard',
+    );
   });
 });

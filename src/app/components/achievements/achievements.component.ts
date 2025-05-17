@@ -14,11 +14,11 @@ import { AchievementService } from 'src/app/services/achievement/achievement.ser
 })
 export class AchievementsComponent implements OnInit {
   private readonly achieveService = inject(AchievementService);
-  private readonly sanitizer= inject(DomSanitizer);
+  private readonly sanitizer = inject(DomSanitizer);
   filter: 'all' | 'unlocked' | 'locked' = 'all';
   achievements: Achievement[] = this.achieveService.achievements;
   filteredAchievements: Achievement[] = [];
-  
+
   rarityColors = {
     common: 'bg-gray-500',
     uncommon: 'bg-green-500',
@@ -43,7 +43,6 @@ export class AchievementsComponent implements OnInit {
     this.calculateProgress();
   }
 
-
   updateFilteredAchievements(): void {
     this.filteredAchievements = this.achievements.filter((achievement) => {
       if (this.filter === 'all') return true;
@@ -54,7 +53,7 @@ export class AchievementsComponent implements OnInit {
   }
 
   calculateProgress(): void {
-    this.unlockedCount = this.achievements.filter(a => a.unlocked).length;
+    this.unlockedCount = this.achievements.filter((a) => a.unlocked).length;
     this.percentage = Math.round((this.unlockedCount / this.achievements.length) * 100);
   }
 

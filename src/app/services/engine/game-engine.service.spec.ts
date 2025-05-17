@@ -9,7 +9,7 @@ function createMockCell(overrides = {}) {
   return {
     x: 0,
     y: 0,
-    ...overrides
+    ...overrides,
   };
 }
 
@@ -19,7 +19,7 @@ const mockStore = {
     size: 2,
     player: 'TestPlayer',
     arrows: 1,
-    pits: 0
+    pits: 0,
   }),
   board: jest.fn(),
   startTime: new Date(),
@@ -29,7 +29,7 @@ const mockStore = {
   setMessage: jest.fn(),
   updateBoard: jest.fn(),
   setSettings: jest.fn(),
-  initBoard: jest.fn()
+  initBoard: jest.fn(),
 };
 
 const mockSound = {
@@ -38,11 +38,11 @@ const mockSound = {
   playWumpus: jest.fn(),
   playwind: jest.fn(),
   playGold: jest.fn(),
-  playSound: jest.fn()
+  playSound: jest.fn(),
 };
 
 const mockLeaderboard = {
-  addEntry: jest.fn()
+  addEntry: jest.fn(),
 };
 
 describe('GameEngineService (with useValue)', () => {
@@ -54,8 +54,8 @@ describe('GameEngineService (with useValue)', () => {
         GameEngineService,
         { provide: GameStoreService, useValue: mockStore },
         { provide: GameSoundService, useValue: mockSound },
-        { provide: LeaderboardService, useValue: mockLeaderboard }
-      ]
+        { provide: LeaderboardService, useValue: mockLeaderboard },
+      ],
     });
 
     service = TestBed.inject(GameEngineService);
@@ -69,14 +69,14 @@ describe('GameEngineService (with useValue)', () => {
       alive: true,
       arrows: 1,
       hasGold: false,
-      lives: 7
+      lives: 7,
     });
 
     mockStore.getCurrentCell.mockReturnValue(createMockCell({ x: 0, y: 0 }));
 
     mockStore.board.mockReturnValue([
       [createMockCell({ x: 0, y: 0 }), createMockCell({ x: 0, y: 1 })],
-      [createMockCell({ x: 1, y: 0 }), createMockCell({ x: 1, y: 1 })]
+      [createMockCell({ x: 1, y: 0 }), createMockCell({ x: 1, y: 1 })],
     ]);
   });
 
@@ -118,11 +118,13 @@ describe('GameEngineService (with useValue)', () => {
 
   it('shootArrow: kills Wumpus if found', () => {
     mockStore.hunter.mockReturnValueOnce({
-      x: 0, y: 0, direction: Direction.RIGHT, arrows: 1, alive: true
+      x: 0,
+      y: 0,
+      direction: Direction.RIGHT,
+      arrows: 1,
+      alive: true,
     });
-    const board = [
-      [{ content: CELL_CONTENTS.wumpus }, { content: undefined }]
-    ];
+    const board = [[{ content: CELL_CONTENTS.wumpus }, { content: undefined }]];
     mockStore.board.mockReturnValue(board);
     service.shootArrow();
     expect(mockStore.setMessage).toHaveBeenCalledWith('¡Has matado al Wumpus! ¡Grito!');
@@ -131,9 +133,7 @@ describe('GameEngineService (with useValue)', () => {
   });
 
   it('shootArrow: reports miss if Wumpus not found', () => {
-    const board = [
-      [{ content: undefined }, { content: undefined }]
-    ];
+    const board = [[{ content: undefined }, { content: undefined }]];
     mockStore.board.mockReturnValue(board);
     service.shootArrow();
     expect(mockStore.setMessage).toHaveBeenCalledWith('¡Flecha fallida!');
@@ -141,46 +141,58 @@ describe('GameEngineService (with useValue)', () => {
 
   it('exit: with gold on start wins game', () => {
     mockStore.hunter.mockReturnValueOnce({ hasGold: true });
-    mockStore.getCurrentCell.mockReturnValue({ x: 0, y:0 });
+    mockStore.getCurrentCell.mockReturnValue({ x: 0, y: 0 });
     const now = new Date();
     mockStore.startTime = new Date(now.getTime() - 5000);
     service.exit();
     expect(mockStore.setMessage).toHaveBeenCalledWith(expect.stringContaining('¡Escapaste en'));
     expect(mockLeaderboard.addEntry).toHaveBeenCalledWith(
-      expect.objectContaining({ playerName: 'TestPlayer' })
+      expect.objectContaining({ playerName: 'TestPlayer' }),
     );
   });
 
   it('exit: without gold or not on start', () => {
     mockStore.hunter.mockReturnValueOnce({ hasGold: false });
-    mockStore.getCurrentCell.mockReturnValue({ x: 0, y:1 });
+    mockStore.getCurrentCell.mockReturnValue({ x: 0, y: 1 });
     service.exit();
-    expect(mockStore.setMessage).toHaveBeenCalledWith('¡Para salir dirígete a la entrada con la moneda!');
+    expect(mockStore.setMessage).toHaveBeenCalledWith(
+      '¡Para salir dirígete a la entrada con la moneda!',
+    );
     expect(mockLeaderboard.addEntry).not.toHaveBeenCalled();
   });
 
   it('checkCurrentCell: detects pit', () => {
-    mockStore.getCurrentCell.mockReturnValue(createMockCell({ content: CELL_CONTENTS.pit, x: 0, y: 0 }));
+    mockStore.getCurrentCell.mockReturnValue(
+      createMockCell({ content: CELL_CONTENTS.pit, x: 0, y: 0 }),
+    );
     service['checkCurrentCell']();
-    expect(mockStore.updateHunter).toHaveBeenCalledWith(expect.objectContaining({ alive: false, lives: 6 }));
+    expect(mockStore.updateHunter).toHaveBeenCalledWith(
+      expect.objectContaining({ alive: false, lives: 6 }),
+    );
     expect(mockStore.setMessage).toHaveBeenCalledWith('¡Caíste en un pozo!');
   });
 
   it('checkCurrentCell: detects wumpus', () => {
-    mockStore.getCurrentCell.mockReturnValue(createMockCell({ content: CELL_CONTENTS.wumpus, x: 0, y: 0 }));
+    mockStore.getCurrentCell.mockReturnValue(
+      createMockCell({ content: CELL_CONTENTS.wumpus, x: 0, y: 0 }),
+    );
     service['checkCurrentCell']();
-    expect(mockStore.updateHunter).toHaveBeenCalledWith(expect.objectContaining({ alive: false, lives: 6 }));
+    expect(mockStore.updateHunter).toHaveBeenCalledWith(
+      expect.objectContaining({ alive: false, lives: 6 }),
+    );
     expect(mockStore.setMessage).toHaveBeenCalledWith('¡El Wumpus te devoró!');
   });
 
   it('checkCurrentCell: picks up gold', () => {
-    mockStore.getCurrentCell.mockReturnValue(createMockCell({ content: CELL_CONTENTS.gold, x: 0, y: 0 }));
+    mockStore.getCurrentCell.mockReturnValue(
+      createMockCell({ content: CELL_CONTENTS.gold, x: 0, y: 0 }),
+    );
     service['checkCurrentCell']();
     expect(mockStore.updateHunter).toHaveBeenCalledWith(expect.objectContaining({ hasGold: true }));
     expect(mockStore.setMessage).toHaveBeenCalledWith('Has recogido el oro.');
   });
 
-    describe('nextLevel', () => {
+  describe('nextLevel', () => {
     it('should increment size and recalculate pits and wumpus', () => {
       const spyInit = jest.spyOn(service, 'initGame');
       service.nextLevel();
@@ -191,9 +203,8 @@ describe('GameEngineService (with useValue)', () => {
         wumpus: 1,
         arrows: 1,
         blackout: expect.any(Boolean),
-        player: "TestPlayer"
+        player: 'TestPlayer',
       });
-
     });
     it('should increase board size and recalculate pits', () => {
       const spyInit = jest.spyOn(service, 'initGame');
@@ -202,8 +213,8 @@ describe('GameEngineService (with useValue)', () => {
       expect(spyInit).toHaveBeenCalledWith(
         expect.objectContaining({
           size: 3,
-          pits: 1
-        })
+          pits: 1,
+        }),
       );
     });
   });

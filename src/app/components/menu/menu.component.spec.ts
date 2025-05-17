@@ -6,7 +6,6 @@ import { Component } from '@angular/core';
 
 // Ruta dummy para forRoot
 
-
 @Component({ template: '' })
 class DummyComponent {}
 
@@ -18,15 +17,13 @@ const routes = [
 
 const gameEngineServiceMock = {
   newGame: jest.fn(),
-} 
+};
 describe('MenuComponent', () => {
   let component: MenuComponent;
   let fixture: ComponentFixture<MenuComponent>;
   let router: Router;
 
   beforeEach(async () => {
-
-
     await TestBed.configureTestingModule({
       imports: [MenuComponent, RouterModule.forRoot(routes)],
       providers: [{ provide: GameEngineService, useValue: gameEngineServiceMock }],

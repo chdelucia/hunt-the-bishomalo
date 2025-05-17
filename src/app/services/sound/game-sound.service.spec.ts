@@ -18,7 +18,7 @@ describe('GameSoundService', () => {
         pause: mockPause,
         currentTime: 0,
         loop: false,
-        volume: 1
+        volume: 1,
       } as unknown as HTMLAudioElement;
     });
 
@@ -70,7 +70,7 @@ describe('GameSoundService', () => {
 
   it('should stop all sounds', () => {
     const spy = jest.spyOn(service as never, 'stopAll');
-    service.stop()
+    service.stop();
     expect(spy).toHaveBeenCalled();
-  })
+  });
 });

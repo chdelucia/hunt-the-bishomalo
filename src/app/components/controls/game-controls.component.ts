@@ -1,4 +1,12 @@
-import { ChangeDetectionStrategy, Component, HostListener, inject, input, isDevMode, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  inject,
+  input,
+  isDevMode,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GameEngineService } from 'src/app/services/engine/game-engine.service';
 import { AchievementService } from 'src/app/services/achievement/achievement.service';
@@ -10,7 +18,7 @@ import { AchieveTypes } from 'src/app/models';
   imports: [CommonModule],
   templateUrl: './game-controls.component.html',
   styleUrl: './game-controls.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameControlsComponent {
   isVisible = signal(false);
@@ -26,9 +34,18 @@ export class GameControlsComponent {
     ArrowRight: () => this.turnRight(),
     Enter: () => this.shootArrow(),
     KeyR: () => this.resetGame(),
-    KeyW: () => { this.moveForward(); this.achieve.activeAchievement(AchieveTypes.GAMER)},
-    KeyA: () => {this.turnLeft(); this.achieve.activeAchievement(AchieveTypes.GAMER)},
-    KeyD: () => {this.turnRight(); this.achieve.activeAchievement(AchieveTypes.GAMER)},
+    KeyW: () => {
+      this.moveForward();
+      this.achieve.activeAchievement(AchieveTypes.GAMER);
+    },
+    KeyA: () => {
+      this.turnLeft();
+      this.achieve.activeAchievement(AchieveTypes.GAMER);
+    },
+    KeyD: () => {
+      this.turnRight();
+      this.achieve.activeAchievement(AchieveTypes.GAMER);
+    },
     KeyN: () => this.game.newGame(),
   };
 
@@ -62,11 +79,10 @@ export class GameControlsComponent {
   }
 
   resetGame(): void {
-    if(isDevMode()) this.game.initGame();
+    if (isDevMode()) this.game.initGame();
   }
 
   toggle(): void {
     this.isVisible.update((value) => !value);
   }
-
 }

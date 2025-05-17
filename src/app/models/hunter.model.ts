@@ -1,5 +1,5 @@
-import { Direction } from "./direction.enum";
-import { GameItem } from "./game-item.model";
+import { Direction } from './direction.enum';
+import { GameItem } from './game-item.model';
 
 export interface Hunter {
   x: number;

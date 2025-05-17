@@ -2,11 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameMessageComponent } from './game-message.component';
 import { GameEngineService } from 'src/app/services';
 
-  const gameEngineMock = {
-    initGame: jest.fn(),
-    newGame: jest.fn(),
-    nextLevel: jest.fn()
-  }
+const gameEngineMock = {
+  initGame: jest.fn(),
+  newGame: jest.fn(),
+  nextLevel: jest.fn(),
+};
 
 describe('GameMessageComponent', () => {
   let component: GameMessageComponent;
@@ -23,7 +23,7 @@ describe('GameMessageComponent', () => {
     fixture.componentRef.setInput('message', 'algo');
     fixture.componentRef.setInput('isAlive', true);
     fixture.componentRef.setInput('hasWon', false);
-    fixture.componentRef.setInput('settings', {size: 4, pits:1, arrows: 1});
+    fixture.componentRef.setInput('settings', { size: 4, pits: 1, arrows: 1 });
     fixture.componentRef.setInput('lives', 8);
     fixture.detectChanges();
   });
@@ -33,7 +33,7 @@ describe('GameMessageComponent', () => {
   });
 
   it('should call initGame to restar the game', () => {
-    component.restartGame()
+    component.restartGame();
     expect(gameEngineMock.initGame).toHaveBeenCalled();
   });
 
@@ -45,8 +45,8 @@ describe('GameMessageComponent', () => {
   });
 
   it('should display message when present', () => {
-    fixture.componentRef.setInput('message','¡Has ganado!');
-    fixture.componentRef.setInput('settings',{ size: 5, pits: 1, wumpus: 1 });
+    fixture.componentRef.setInput('message', '¡Has ganado!');
+    fixture.componentRef.setInput('settings', { size: 5, pits: 1, wumpus: 1 });
 
     fixture.detectChanges();
 
@@ -56,7 +56,7 @@ describe('GameMessageComponent', () => {
 
   it('should show default message when no message is provided', () => {
     fixture.componentRef.setInput('message', '');
-    fixture.componentRef.setInput('settings',{ size: 5, pits: 1, wumpus: 1 });
+    fixture.componentRef.setInput('settings', { size: 5, pits: 1, wumpus: 1 });
 
     fixture.detectChanges();
 
@@ -65,8 +65,8 @@ describe('GameMessageComponent', () => {
   });
 
   it('should show retry button when player is dead', () => {
-    fixture.componentRef.setInput('isAlive',false);
-    fixture.componentRef.setInput('settings',{ size: 5, pits: 1, wumpus: 1 });
+    fixture.componentRef.setInput('isAlive', false);
+    fixture.componentRef.setInput('settings', { size: 5, pits: 1, wumpus: 1 });
 
     fixture.detectChanges();
 
@@ -75,8 +75,8 @@ describe('GameMessageComponent', () => {
   });
 
   it('should call restartGame when retry button is clicked', () => {
-    fixture.componentRef.setInput('isAlive',false);
-    fixture.componentRef.setInput('settings',{ size: 5, pits: 1, wumpus: 1 });
+    fixture.componentRef.setInput('isAlive', false);
+    fixture.componentRef.setInput('settings', { size: 5, pits: 1, wumpus: 1 });
     fixture.detectChanges();
 
     const button = fixture.nativeElement.querySelector('button.newgame');
@@ -86,8 +86,8 @@ describe('GameMessageComponent', () => {
   });
 
   it('should show next level button when player has won', () => {
-    fixture.componentRef.setInput('hasWon',true);
-    fixture.componentRef.setInput('settings',{ size: 6, pits: 1, wumpus: 1 }); // size < 20
+    fixture.componentRef.setInput('hasWon', true);
+    fixture.componentRef.setInput('settings', { size: 6, pits: 1, wumpus: 1 }); // size < 20
 
     fixture.detectChanges();
 
@@ -96,8 +96,8 @@ describe('GameMessageComponent', () => {
   });
 
   it('should show final message when level 20 is reached', () => {
-    fixture.componentRef.setInput('hasWon',true);
-    fixture.componentRef.setInput('settings',{ size: 20, pits: 1, wumpus: 1 });
+    fixture.componentRef.setInput('hasWon', true);
+    fixture.componentRef.setInput('settings', { size: 20, pits: 1, wumpus: 1 });
 
     fixture.detectChanges();
 
@@ -108,6 +108,5 @@ describe('GameMessageComponent', () => {
   it('should call new Game', () => {
     component.newGame();
     expect(gameEngineMock.newGame).toHaveBeenCalled();
-  })
-
+  });
 });

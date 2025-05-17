@@ -11,7 +11,7 @@ describe('GameStoreService', () => {
     size: 4,
     pits: 2,
     arrows: 3,
-    wumpus: 1
+    wumpus: 1,
   };
 
   beforeEach(() => {
@@ -66,9 +66,7 @@ describe('GameStoreService', () => {
   });
 
   it('should update board state', () => {
-    const newBoard = [
-      [{ x: 0, y: 0, visited: true }]
-    ];
+    const newBoard = [[{ x: 0, y: 0, visited: true }]];
     service.updateBoard(newBoard);
     expect(service.board()).toEqual(newBoard);
   });
@@ -101,7 +99,6 @@ describe('GameStoreService', () => {
   it('should reset setting signal', () => {
     service.resetSettings();
     expect(service.settings()).toStrictEqual({});
-    expect(service.prevName).toBe('Chris')
+    expect(service.prevName).toBe('Chris');
   });
-
 });

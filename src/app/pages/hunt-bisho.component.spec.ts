@@ -8,7 +8,7 @@ function createMockCell(overrides = {}) {
   return {
     x: 0,
     y: 0,
-    ...overrides
+    ...overrides,
   };
 }
 
@@ -18,9 +18,9 @@ const mockGameStoreService = {
   message: jest.fn().mockReturnValue('¡El Wumpus te devoró!'),
   setMessage: jest.fn(),
   board: jest.fn().mockReturnValue([
-      [createMockCell({ x: 0, y: 0 }), createMockCell({ x: 0, y: 1 })],
-      [createMockCell({ x: 1, y: 0 }), createMockCell({ x: 1, y: 1 })]
-    ])
+    [createMockCell({ x: 0, y: 0 }), createMockCell({ x: 0, y: 1 })],
+    [createMockCell({ x: 1, y: 0 }), createMockCell({ x: 1, y: 1 })],
+  ]),
 };
 
 describe('HuntBishoComponent', () => {
@@ -34,16 +34,14 @@ describe('HuntBishoComponent', () => {
         pause: jest.fn(),
         currentTime: 0,
         loop: false,
-        volume: 1
+        volume: 1,
       } as unknown as HTMLAudioElement;
     });
 
     await TestBed.configureTestingModule({
       imports: [HuntBishoComponent, RouterModule.forRoot([])],
-      providers: [
-        { provide: GameStoreService, useValue: mockGameStoreService }
-      ],
-      schemas: [NO_ERRORS_SCHEMA]
+      providers: [{ provide: GameStoreService, useValue: mockGameStoreService }],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HuntBishoComponent);
@@ -55,15 +53,12 @@ describe('HuntBishoComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  
   it('should compute deathByWumpus as true when message is from wumpus', () => {
     expect(component.deathByWumpus()).toBe(true);
   });
 
   it('should call setMessage with GAME OVER prefix on handleClose', () => {
     component.handleclose();
-    expect(mockGameStoreService.setMessage).toHaveBeenCalledWith(
-      'GAME OVER ¡El Wumpus te devoró!'
-    );
+    expect(mockGameStoreService.setMessage).toHaveBeenCalledWith('GAME OVER ¡El Wumpus te devoró!');
   });
 });

@@ -1,32 +1,32 @@
-
-body, html {
-    margin: 0;
-    padding: 0;
-    background-color: #1a202c;
-    font-family: 'Press Start 2P', monospace;
+body,
+html {
+  margin: 0;
+  padding: 0;
+  background-color: #1a202c;
+  font-family: 'Press Start 2P', monospace;
 }
 
-  button {
-    width: fit-content;
-    padding: 0.75rem;
-    font-size: 1rem;
-    font-weight: bold;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 6px;
+button {
+  width: fit-content;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
 
-    &:hover {
-        cursor: pointer;
-        background-color: #1a70cc;
-    }
-    &:disabled {
-      background-color: #a0aec0;
-      cursor: not-allowed;
-    }
+  &:hover {
+    cursor: pointer;
+    background-color: #1a70cc;
   }
+  &:disabled {
+    background-color: #a0aec0;
+    cursor: not-allowed;
+  }
+}
 
-  .effect-layer {
+.effect-layer {
   position: absolute;
   top: 0;
   left: 0;
@@ -98,7 +98,8 @@ body, html {
 }
 
 @keyframes sparklePulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
     transform: scale(0.5);
   }

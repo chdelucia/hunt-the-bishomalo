@@ -2,15 +2,12 @@ import { Directive, ElementRef, Input, OnChanges, Renderer2 } from '@angular/cor
 
 @Directive({
   selector: '[appVisualEffect]',
-  standalone: true
+  standalone: true,
 })
 export class VisualEffectDirective implements OnChanges {
   @Input('appVisualEffect') perception = '';
 
-  constructor(
-    private readonly el: ElementRef, 
-    private readonly renderer: Renderer2
-  ) {}
+  constructor(private readonly el: ElementRef, private readonly renderer: Renderer2) {}
 
   ngOnChanges(): void {
     this.clearEffects();

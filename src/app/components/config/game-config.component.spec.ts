@@ -3,8 +3,8 @@ import { GameConfigComponent } from './game-config.component';
 import { GameEngineService } from 'src/app/services';
 
 const gameEngineServiceMock = {
-    initGame: jest.fn(),
-    syncSettingsWithStorage: jest.fn()
+  initGame: jest.fn(),
+  syncSettingsWithStorage: jest.fn(),
 };
 describe('GameConfigComponent', () => {
   let component: GameConfigComponent;
@@ -13,9 +13,7 @@ describe('GameConfigComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [GameConfigComponent],
-      providers: [
-        { provide: GameEngineService, useValue: gameEngineServiceMock }
-      ]
+      providers: [{ provide: GameEngineService, useValue: gameEngineServiceMock }],
     }).compileComponents();
 
     jest.clearAllMocks();
@@ -34,7 +32,7 @@ describe('GameConfigComponent', () => {
       player: 'Player',
       size: 4,
       pits: 2,
-      arrows: 1
+      arrows: 1,
     });
   });
 
@@ -48,7 +46,7 @@ describe('GameConfigComponent', () => {
       player: 'Ana',
       size: 6,
       pits: 2,
-      arrows: 3
+      arrows: 3,
     });
 
     component.submitForm();
@@ -57,7 +55,7 @@ describe('GameConfigComponent', () => {
       size: 6,
       pits: 2,
       arrows: 3,
-      blackout: expect.any(Boolean)
+      blackout: expect.any(Boolean),
     });
   });
 
@@ -66,7 +64,7 @@ describe('GameConfigComponent', () => {
       player: '',
       size: 3,
       pits: 0,
-      arrows: 0
+      arrows: 0,
     });
 
     component.submitForm();

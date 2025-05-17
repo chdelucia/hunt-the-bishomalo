@@ -1,7 +1,7 @@
 .cell {
-  flex: 1; 
-  aspect-ratio: 1 / 1; 
-  border: 1px solid #ccc; 
+  flex: 1;
+  aspect-ratio: 1 / 1;
+  border: 1px solid #ccc;
   box-sizing: border-box;
   height: var(--cellsize, 30px);
   background-color: rgba(55, 65, 81, 0.8);
@@ -18,23 +18,20 @@
   }
 
   &.hunter {
-    background-color: #f8f8f8;  
+    background-color: #f8f8f8;
     animation: fadeFog 1s ease-out forwards;
   }
 
   &.visited {
-    background-color: #f8f8f8; 
+    background-color: #f8f8f8;
   }
 }
-
 
 @keyframes fadeFog {
   from {
     background-color: rgba(55, 65, 81, 0.8);
   }
   to {
-    background-color: #f8f8f8; 
+    background-color: #f8f8f8;
   }
 }
-
-

@@ -15,7 +15,6 @@ describe('AppWumpusAttackAnimationComponent', () => {
     fixture.detectChanges();
   });
 
-
   afterEach(() => {
     jest.clearAllTimers();
     jest.clearAllMocks();
@@ -31,7 +30,6 @@ describe('AppWumpusAttackAnimationComponent', () => {
     expect(component.step()).toBe(1);
     tick(3500);
     expect(component.step()).toBe(1);
-  
   }));
 
   it('should return correct player position', () => {

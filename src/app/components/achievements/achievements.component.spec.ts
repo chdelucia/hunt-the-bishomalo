@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AchievementsComponent } from './achievements.component';
 import { RouterModule } from '@angular/router';
 
-
 describe('AchievementsComponent', () => {
   let component: AchievementsComponent;
   let fixture: ComponentFixture<AchievementsComponent>;

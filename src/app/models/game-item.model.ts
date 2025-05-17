@@ -1,4 +1,4 @@
-import { GameEventEffectType } from "./game-effects.types";
+import { GameEventEffectType } from './game-effects.types';
 
 export interface GameItem {
   name: string;

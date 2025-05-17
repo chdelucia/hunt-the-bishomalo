@@ -54,7 +54,7 @@ describe('GameEventService', () => {
     hasWon: false,
     wumpusKilled: false,
     inventory: [],
-    lives: 8
+    lives: 8,
   };
 
   it('should revive hunter with revive item', () => {
@@ -68,7 +68,6 @@ describe('GameEventService', () => {
     expect(result.hunter.inventory).toHaveLength(0);
     expect(result.message).toBe('¡Usaste una vida extra y volviste a la vida!');
   });
-
 
   it('should shield hunter if killed by wumpus and has shield', () => {
     const hunter: Hunter = {
@@ -97,7 +96,9 @@ describe('GameEventService', () => {
 
     expect(mockPlaySound).toHaveBeenCalled();
     expect(mockActiveAchievement).toHaveBeenCalled();
-    expect(mockUpdateHunter).toHaveBeenCalledWith(expect.objectContaining({ arrows: hunter.arrows + 1 }));
+    expect(mockUpdateHunter).toHaveBeenCalledWith(
+      expect.objectContaining({ arrows: hunter.arrows + 1 }),
+    );
     expect(mockSetMessage).toHaveBeenCalledWith('Has recogido una flecha.');
   });
 

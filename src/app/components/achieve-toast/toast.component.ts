@@ -43,7 +43,7 @@ export class ToastComponent {
     this.toasts.update((prev) => [...prev, toast]);
 
     setTimeout(() => {
-      this.toasts.update((prev) => prev.filter(t => t.id !== id));
+      this.toasts.update((prev) => prev.filter((t) => t.id !== id));
     }, 3000);
   }
 }

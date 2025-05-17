@@ -6,7 +6,7 @@ import { VisualEffectDirective } from './visual-effect.directive';
 @Component({
   template: `<div [appVisualEffect]="effect"></div>`,
   standalone: true,
-  imports: [VisualEffectDirective]
+  imports: [VisualEffectDirective],
 })
 class TestHostComponent {
   effect = '';
@@ -18,7 +18,7 @@ describe('VisualEffectDirective', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [TestHostComponent]
+      imports: [TestHostComponent],
     });
 
     fixture = TestBed.createComponent(TestHostComponent);

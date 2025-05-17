@@ -1,41 +1,35 @@
-@let board = game.board();
-@let boardSize = board.length;
-@let hunterData = hunter();
-@let isAlive = hunterData.alive;
-@let hasWon = hunterData.hasWon;
-@let settings = game.settings();
+@let board = game.board(); @let boardSize = board.length; @let hunterData = hunter(); @let isAlive =
+hunterData.alive; @let hasWon = hunterData.hasWon; @let settings = game.settings();
 
 <main [appVisualEffect]="game.message()">
-
-  <app-title [blackout]="settings?.blackout || false"/>
+  <app-title [blackout]="settings?.blackout || false" />
 
   @if(settings?.blackout && isAlive && !hasWon){
-    <app-blackout />
+  <app-blackout />
   }
   <section class="board">
-    @if (settings.size) {
-      @for (row of board; track $index) {
-        <div class="row">
-          @for (cell of row; track $index) {
-            <app-game-cell class="size-{{boardSize}}"  [cell]="cell" [hunter]="hunterData"/>
-          }
-        </div>
+    @if (settings.size) { @for (row of board; track $index) {
+    <div class="row">
+      @for (cell of row; track $index) {
+      <app-game-cell class="size-{{ boardSize }}" [cell]="cell" [hunter]="hunterData" />
       }
-      <app-wumpus-attack-animation *ngIf="deathByWumpus()" (closeAnimation)="handleclose()"/>
+    </div>
+    }
+    <app-wumpus-attack-animation *ngIf="deathByWumpus()" (closeAnimation)="handleclose()" />
     } @else {
-      <app-game-config />
+    <app-game-config />
     }
   </section>
 
   @if (settings.size) {
-    <section class="player-info">
-      <app-game-level [settings]="settings"></app-game-level>
-      <app-game-lives [lives]="hunterData.lives"></app-game-lives>
-    </section>
+  <section class="player-info">
+    <app-game-level [settings]="settings"></app-game-level>
+    <app-game-lives [lives]="hunterData.lives"></app-game-lives>
+  </section>
   }
 
-  <app-game-message 
-    [message]="game.message()" 
+  <app-game-message
+    [message]="game.message()"
     [isAlive]="hunterData.alive"
     [hasWon]="hasWon"
     [settings]="settings"
@@ -43,9 +37,6 @@
   />
 
   @if (settings.size) {
-    <app-mobile-controls [isFinish]="hasWon || !isAlive"/>
+  <app-mobile-controls [isFinish]="hasWon || !isAlive" />
   }
-
 </main>
-
-

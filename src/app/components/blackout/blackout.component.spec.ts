@@ -6,8 +6,9 @@ describe('BlackoutComponent', () => {
   let fixture: ComponentFixture<BlackoutComponent>;
 
   beforeEach(async () => {
-    jest.spyOn(window.HTMLMediaElement.prototype, 'play')
-    .mockImplementation(() => Promise.resolve());
+    jest
+      .spyOn(window.HTMLMediaElement.prototype, 'play')
+      .mockImplementation(() => Promise.resolve());
 
     jest.spyOn(window, 'Audio').mockImplementation(() => {
       return {
@@ -15,7 +16,7 @@ describe('BlackoutComponent', () => {
         pause: jest.fn(),
         currentTime: 0,
         loop: false,
-        volume: 1
+        volume: 1,
       } as unknown as HTMLAudioElement;
     });
     await TestBed.configureTestingModule({

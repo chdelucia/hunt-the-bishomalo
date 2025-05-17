@@ -12,6 +12,4 @@ export class GameLivesComponent {
   lives = input.required<number>();
 
   livesArray = signal<number[]>(Array(8).fill(0));
-
 }
-
