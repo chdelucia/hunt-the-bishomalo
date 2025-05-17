@@ -9,6 +9,8 @@ Te desafío a superar este juego **al 100%**. ¿Tienes lo que se necesita para e
 
 [🔥 **Empezar el reto** 🔥](https://hunt-the-bishomalo.vercel.app/)
 
+
+
 ## 📊 Calidad del Proyecto (SonarCloud)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=chdelucia_hunt-the-bishomalo&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=chdelucia_hunt-the-bishomalo)
