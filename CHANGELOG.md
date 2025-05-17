@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.4.1...v1.5.0) (2025-05-17)
+
+
+### Features
+
+* **security:** add CSP para google security ([16540df](https://github.com/chdelucia/hunt-the-bishomalo/commit/16540df46bf33a7d53ad036bae47c63c3e28a2a5))
+* **seo:** add robots sitemap and scp ([a97975c](https://github.com/chdelucia/hunt-the-bishomalo/commit/a97975c646165f9e3bde599ec9dba9a84a8a72e6))
+
 ### [1.4.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.4.0...v1.4.1) (2025-05-17)
 
 ## [1.4.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.3.0...v1.4.0) (2025-05-17)
