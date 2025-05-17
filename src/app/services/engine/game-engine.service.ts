@@ -243,8 +243,7 @@ export class GameEngineService {
   }
 
   private playVictorySound(): void {
-    const sound = this._hunter().wumpusKilled ? GameSound.WHONOR : GameSound.WRAT;
-    this.sound.playSound(sound, false);
+    this.sound.playSound(GameSound.WHONOR, false);
   }
 
   private checkCurrentCell(): void {
