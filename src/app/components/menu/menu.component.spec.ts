@@ -2,8 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MenuComponent } from './menu.component';
 import { GameEngineService } from 'src/app/services';
 import { Router, RouterModule } from '@angular/router';
-import { Location } from '@angular/common';
-import { of } from 'rxjs';
 import { Component } from '@angular/core';
 
 // Ruta dummy para forRoot
