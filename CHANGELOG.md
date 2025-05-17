@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.1.4...v1.2.0) (2025-05-17)
+
+
+### Features
+
+* **sounds:** modify victory sounds ([0718d8b](https://github.com/chdelucia/hunt-the-bishomalo/commit/0718d8b29e3faafd05a721f122ce1139cb3b9a16))
+
 ### [1.1.4](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.1.3...v1.1.4) (2025-05-17)
 
 
