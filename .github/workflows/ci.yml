@@ -54,6 +54,7 @@ jobs:
       
       # ✅ Auto-versioning with standard-version changelog
       - name: Create Release with standard-version
+        id: versioning
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -61,11 +62,13 @@ jobs:
           npm install --no-save standard-version
           npm run release
           git push --follow-tags origin master
+          echo "new_tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
 
       # ✅ Publicar GitHub Release
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ steps.versioning.outputs.new_tag }}
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
