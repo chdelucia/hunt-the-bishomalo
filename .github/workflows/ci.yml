@@ -60,13 +60,17 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           git fetch origin master
+          git checkout master
           git reset --hard origin/master
 
           npm install --no-save standard-version
-          npm run release
 
-          git push --follow-tags origin master
+          # Standard version SIN PUSH automático (sólo genera commit + tag)
+          npx standard-version --commit-all --no-verify
+
+          git push origin master --follow-tags
           echo "new_tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
+
 
       # ✅ Publicar GitHub Release
       - name: Create GitHub Release

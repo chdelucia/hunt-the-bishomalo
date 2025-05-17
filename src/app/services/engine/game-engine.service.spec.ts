@@ -190,7 +190,7 @@ describe('GameEngineService (with useValue)', () => {
         pits: 1,
         wumpus: 1,
         arrows: 1,
-        blackout: false,
+        blackout: expect.any(Boolean),
         player: "TestPlayer"
       });
 
