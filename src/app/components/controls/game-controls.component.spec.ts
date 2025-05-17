@@ -59,6 +59,35 @@ describe('GameControlsComponent', () => {
     expect(mockGameService.shootArrow).toHaveBeenCalled();
   });
 
+  it('should call shootArrow() on space key', () => {
+    const event = new KeyboardEvent('keydown', { code: 'Space' });
+    window.dispatchEvent(event);
+    expect(mockGameService.shootArrow).toHaveBeenCalled();
+  });
+
+  it('should call moveforaw() on W key', () => {
+    const event = new KeyboardEvent('keydown', { code: 'KeyW' });
+    window.dispatchEvent(event);
+    expect(mockGameService.moveForward).toHaveBeenCalled();
+  });
+  it('should call tur left() on A key', () => {
+    const event = new KeyboardEvent('keydown', { code: 'KeyA' });
+    window.dispatchEvent(event);
+    expect(mockGameService.turnLeft).toHaveBeenCalled();
+  });
+
+  it('should call tur right() on D key', () => {
+    const event = new KeyboardEvent('keydown', { code: 'KeyD' });
+    window.dispatchEvent(event);
+    expect(mockGameService.turnRight).toHaveBeenCalled();
+  });
+
+  it('should call tur right() on R key', () => {
+    const event = new KeyboardEvent('keydown', { code: 'KeyR' });
+    window.dispatchEvent(event);
+    expect(mockGameService.initGame).toHaveBeenCalled();
+  });
+
   it('should prevent default behavior for recognized keys', () => {
     const preventDefault = jest.fn();
     const event = new KeyboardEvent('keydown', { code: 'ArrowUp' });

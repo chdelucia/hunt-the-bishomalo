@@ -66,4 +66,34 @@ describe('GameCellComponent', () => {
     fixture.detectChanges();
     expect(component.bowImage()).toBe('bowempty.svg');
   });
+
+  function setHunterDirection(direction: number) {
+    fixture.componentRef.setInput('hunter', { direction });
+    fixture.detectChanges();
+  }
+
+  it('should return 270 when direction is 0', () => {
+    setHunterDirection(0);
+    expect(component.rotation()).toBe(270);
+  });
+
+  it('should return 0 when direction is 1', () => {
+    setHunterDirection(1);
+    expect(component.rotation()).toBe(0);
+  });
+
+  it('should return 90 when direction is 2', () => {
+    setHunterDirection(2);
+    expect(component.rotation()).toBe(90);
+  });
+
+  it('should return 180 when direction is 3', () => {
+    setHunterDirection(3);
+    expect(component.rotation()).toBe(180);
+  });
+
+  it('should return 0 for unknown direction', () => {
+    setHunterDirection(999);
+    expect(component.rotation()).toBe(0);
+  });
 });
