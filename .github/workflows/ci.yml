@@ -61,6 +61,8 @@ jobs:
 
           npm install --no-save standard-version
           npm run release
+
+          git pull --rebase origin master
           git push --follow-tags origin master
           echo "new_tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
 
