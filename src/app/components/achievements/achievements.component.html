@@ -71,10 +71,11 @@
               }"
               class="achievement-icon-container"
             >
-              <div
+              <img
                 class="achievement-icon"
-                [innerHTML]="getSanitizedSvg(achievement.svgIcon)"
-              ></div>
+                [src]="'achievements/'+achievement.svgIcon + '.svg'"
+                [alt]="achievement.title"
+              />
             </div>
             <div>
               <h3 class="achievement-title">{{ achievement.title }}</h3>

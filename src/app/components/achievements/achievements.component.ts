@@ -14,7 +14,7 @@ import { AchievementService } from 'src/app/services/achievement/achievement.ser
 })
 export class AchievementsComponent implements OnInit {
   private readonly achieveService = inject(AchievementService);
-  private readonly sanitizer = inject(DomSanitizer);
+
   filter: 'all' | 'unlocked' | 'locked' = 'all';
   achievements: Achievement[] = this.achieveService.achievements;
   filteredAchievements: Achievement[] = [];
@@ -60,10 +60,6 @@ export class AchievementsComponent implements OnInit {
   setFilter(newFilter: 'all' | 'unlocked' | 'locked'): void {
     this.filter = newFilter;
     this.updateFilteredAchievements();
-  }
-
-  getSanitizedSvg(svg: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(svg);
   }
 
   getRarityColor(rarity: string): string {

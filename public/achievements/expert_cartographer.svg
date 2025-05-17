@@ -1,0 +1,27 @@
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="4" y="4" width="16" height="16" rx="2" fill="#4299e1" />
+    <path d="M7 7 L 17 7" stroke="#e2e8f0" stroke-width="1" stroke-linecap="round" />
+    <path d="M7 10 L 17 10" stroke="#e2e8f0" stroke-width="1" stroke-linecap="round" />
+    <path d="M7 13 L 17 13" stroke="#e2e8f0" stroke-width="1" stroke-linecap="round" />
+    <path d="M7 16 L 17 16" stroke="#e2e8f0" stroke-width="1" stroke-linecap="round" />
+    <path d="M7 7 L 7 17" stroke="#e2e8f0" stroke-width="1" stroke-linecap="round" />
+    <path d="M10 7 L 10 17" stroke="#e2e8f0" stroke-width="1" stroke-linecap="round" />
+    <path d="M13 7 L 13 17" stroke="#e2e8f0" stroke-width="1" stroke-linecap="round" />
+    <path d="M16 7 L 16 17" stroke="#e2e8f0" stroke-width="1" stroke-linecap="round" />
+    <rect x="7" y="7" width="3" height="3" fill="#3182ce" />
+    <rect x="10" y="7" width="3" height="3" fill="#3182ce" />
+    <rect x="13" y="7" width="3" height="3" fill="#3182ce" />
+    <rect x="16" y="7" width="1" height="3" fill="#3182ce" />
+    <rect x="7" y="10" width="3" height="3" fill="#3182ce" />
+    <rect x="10" y="10" width="3" height="3" fill="#3182ce" />
+    <rect x="13" y="10" width="3" height="3" fill="#3182ce" />
+    <rect x="16" y="10" width="1" height="3" fill="#3182ce" />
+    <rect x="7" y="13" width="3" height="3" fill="#3182ce" />
+    <rect x="10" y="13" width="3" height="3" fill="#3182ce" />
+    <rect x="13" y="13" width="3" height="3" fill="#3182ce" />
+    <rect x="16" y="13" width="1" height="3" fill="#3182ce" />
+    <rect x="7" y="16" width="3" height="1" fill="#3182ce" />
+    <rect x="10" y="16" width="3" height="1" fill="#3182ce" />
+    <rect x="13" y="16" width="3" height="1" fill="#3182ce" />
+    <rect x="16" y="16" width="1" height="1" fill="#3182ce" />
+  </svg>

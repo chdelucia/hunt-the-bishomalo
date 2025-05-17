@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - master
-    tags-ignore:
-      - '*'
   pull_request:
     types: [opened, synchronize, reopened]
 
@@ -15,7 +13,6 @@ permissions:
 
 jobs:
   build-test-deploy:
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
 
     steps:
