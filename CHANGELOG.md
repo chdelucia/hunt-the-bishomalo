@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.2.0...v1.2.1) (2025-05-17)
+
+
+### Bug Fixes
+
+* **config:** fix precommits ([2e041eb](https://github.com/chdelucia/hunt-the-bishomalo/commit/2e041ebebc4f888e4f09f97fa2f0e761f21ec967))
+* **linter:** add prettier to pre commits ([76183fc](https://github.com/chdelucia/hunt-the-bishomalo/commit/76183fcb5ba76f2b86d303993af0ec9094f49f71))
+
 ## [1.2.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.1.4...v1.2.0) (2025-05-17)
 
 
