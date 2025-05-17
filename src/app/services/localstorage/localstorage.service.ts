@@ -13,7 +13,7 @@ export class LocalstorageService {
     try {
       return JSON.parse(item);
     } catch (e) {
-      if(isDevMode()) console.log(e);
+      if (isDevMode()) console.log(e);
       return null;
     }
   }
