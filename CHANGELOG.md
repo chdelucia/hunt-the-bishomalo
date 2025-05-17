@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.7](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.2.6...v1.2.7) (2025-05-17)
+
+
+### Bug Fixes
+
+* **toast:** fix toast svg icons ([aea4cbd](https://github.com/chdelucia/hunt-the-bishomalo/commit/aea4cbd6742a1d3c1ec9d5e36c20ea5bcb4af0db))
+* **toast:** prettier ([f8f3232](https://github.com/chdelucia/hunt-the-bishomalo/commit/f8f32323c14b848e1d224bb453b1e60641fe7cd7))
+
 ### [1.2.6](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.2.5...v1.2.6) (2025-05-17)
 
 
