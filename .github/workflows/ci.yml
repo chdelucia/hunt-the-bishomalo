@@ -59,13 +59,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git fetch origin master
-          git checkout master
-          git reset --hard origin/master
-
           npm install --no-save standard-version
 
-          # Standard version SIN PUSH automático (sólo genera commit + tag)
           npx standard-version --commit-all --no-verify
 
           git push origin master --follow-tags
