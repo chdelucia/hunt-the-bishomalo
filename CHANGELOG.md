@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.4](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.1.3...v1.1.4) (2025-05-17)
+
+
+### Bug Fixes
+
+* **ci:** last try to rebase ([a7f04c2](https://github.com/chdelucia/hunt-the-bishomalo/commit/a7f04c2519d6716539ff43a637ad5e1390692ef1))
+* **test:** fix unit test fails when blackout joins to scene ([aa72092](https://github.com/chdelucia/hunt-the-bishomalo/commit/aa720926fb1f77873d33c2aeb7bf188a0bdb4222))
+
 ### [1.1.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.1.2...v1.1.3) (2025-05-17)
 
 
