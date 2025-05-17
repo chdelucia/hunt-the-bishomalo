@@ -20,23 +20,6 @@ Te desafío a superar este juego **al 100%**. ¿Tienes lo que se necesita para e
 
 ---
 
----
-
-## 🏆 Logros Desbloqueables
-
-| Logro                | Condición                                         |
-|----------------------|--------------------------------------------------|
-| 💀 **Death by Blackout** | Morir cuando está activado el blackout             |
-| 🛡️ **Last Breath**       | Morir después de matar al Wumpus                  |
-| 🏹 **PickArrow**         | Recoger una flecha extra del mapa                 |
-| 💓 **Extra Life**        | Revivir con un corazón especial                   |
-| ⏪ **Rewind Time**       | Usar rebobinar para volver a la celda anterior   |
-| 🪙 **Double Gold**       | Duplicar el oro con el ítem `oro-doble`          |
-
-> *Los logros se activan automáticamente en función del progreso del jugador.*
-
----
-
 ## 🖼️ Vista previa del juego
 
 ![Vista previa](https://hunt-the-bishomalo.vercel.app/screenshot.png)
