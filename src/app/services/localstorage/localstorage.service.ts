@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, isDevMode } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ export class LocalstorageService {
     try {
       return JSON.parse(item);
     } catch (e) {
-      console.log(e);
+      if(isDevMode()) console.log(e);
       return null;
     }
   }
