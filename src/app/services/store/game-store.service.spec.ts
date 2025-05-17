@@ -67,7 +67,7 @@ describe('GameStoreService', () => {
 
   it('should update board state', () => {
     const newBoard = [
-      [{ x: 0, y: 0, visited: true, hasGold: false, hasPit: false, hasWumpus: false, isStart: true }]
+      [{ x: 0, y: 0, visited: true, hasGold: false, hasPit: false, hasWumpus: false }]
     ];
     service.updateBoard(newBoard as any);
     expect(service.board()).toEqual(newBoard);
@@ -83,7 +83,6 @@ describe('GameStoreService', () => {
     const cell = service.getCurrentCell();
     expect(cell.x).toBe(0);
     expect(cell.y).toBe(0);
-    expect(cell.isStart).toBe(true);
   });
 
   it('should mark a cell as visited', () => {

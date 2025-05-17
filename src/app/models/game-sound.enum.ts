@@ -13,5 +13,6 @@ export enum GameSound {
   BLACKOUT = 'blackout',
   PICKUP = 'pick',
   WALK = 'walk',
-  FF7 = 'ff7'
+  FF7 = 'ff7',
+  PITDIE = 'pitdie'
 }

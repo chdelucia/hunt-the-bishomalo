@@ -12,7 +12,6 @@ function createMockCell(overrides = {}) {
     hasPit: false,
     hasWumpus: false,
     hasGold: false,
-    isStart: false,
     ...overrides
   };
 }
@@ -145,7 +144,7 @@ describe('GameEngineService (with useValue)', () => {
 
   it('exit: with gold on start wins game', () => {
     mockStore.hunter.mockReturnValueOnce({ hasGold: true });
-    mockStore.getCurrentCell.mockReturnValue({ isStart: true });
+    mockStore.getCurrentCell.mockReturnValue({ x: 0, y:0 });
     const now = new Date();
     mockStore.startTime = new Date(now.getTime() - 5000);
     service.exit();
@@ -157,7 +156,7 @@ describe('GameEngineService (with useValue)', () => {
 
   it('exit: without gold or not on start', () => {
     mockStore.hunter.mockReturnValueOnce({ hasGold: false });
-    mockStore.getCurrentCell.mockReturnValue({ isStart: false });
+    mockStore.getCurrentCell.mockReturnValue({ x: 0, y:1 });
     service.exit();
     expect(mockStore.setMessage).toHaveBeenCalledWith('¡Para salir dirígete a la entrada con la moneda!');
     expect(mockLeaderboard.addEntry).not.toHaveBeenCalled();

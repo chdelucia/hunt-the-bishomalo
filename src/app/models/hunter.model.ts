@@ -1,4 +1,5 @@
 import { Direction } from "./direction.enum";
+import { GameItem } from "./game-item.model";
 
 export interface Hunter {
   x: number;
@@ -10,4 +11,6 @@ export interface Hunter {
   hasWon: boolean;
   wumpusKilled?: boolean;
   lives: number;
+  inventory?: GameItem[];
+  gold?: number;
 }

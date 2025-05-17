@@ -1,11 +1,21 @@
 import { Injectable, Signal } from '@angular/core';
-import { AchieveTypes, Cell, Direction, GameSettings, GameSound, Hunter } from '../../models';
-import { GameStoreService } from '../store/game-store.service';
-import { GameSoundService } from '../sound/game-sound.service';
-import { LeaderboardService } from '../score/leaderboard.service';
-import { AchievementService } from '../achievement/achievement.service';
 import { Router } from '@angular/router';
-import { LocalstorageService } from '../localstorage/localstorage.service';
+import { 
+  GameStoreService,
+  GameEventService, 
+  GameSoundService,
+  LeaderboardService,
+  AchievementService,
+  LocalstorageService 
+} from '../index';
+import { 
+  AchieveTypes, 
+  Cell, 
+  Direction, 
+  GameSettings, 
+  GameSound, 
+  Hunter 
+} from '../../models';
 
 @Injectable({ providedIn: 'root' })
 export class GameEngineService {
@@ -19,7 +29,8 @@ export class GameEngineService {
     private readonly leaderBoard: LeaderboardService,
     private readonly achieve: AchievementService,
     private readonly router: Router,
-    private readonly localStorageService: LocalstorageService
+    private readonly localStorageService: LocalstorageService,
+    private readonly gameEvents: GameEventService
   ) { 
     this.settingsSignal = this.store.settings;
     this._hunter = this.store.hunter;
@@ -139,11 +150,6 @@ export class GameEngineService {
     return true;
   }
 
-  private addArrow(): void {
-    const { arrows } = this._hunter();
-    this.store.updateHunter({ arrows: arrows + 1 });
-  }
-
   private consumeArrow(): void {
     const { arrows } = this._hunter();
     this.store.updateHunter({ arrows: arrows - 1 });
@@ -204,7 +210,7 @@ export class GameEngineService {
   }
 
 
-  exit(): void {
+  exit(): void { 
     if (this.canExitWithVictory()) {
       this.sound.stop();
       this.handleVictory();
@@ -216,7 +222,7 @@ export class GameEngineService {
   private canExitWithVictory(): boolean {
     const hunter = this._hunter();
     const cell = this.store.getCurrentCell();
-    return (cell.isStart && hunter.hasGold) || false;
+    return (!cell.x && !cell.y && hunter.hasGold) || false;
   }
 
   private handleVictory(): void {
@@ -259,27 +265,43 @@ export class GameEngineService {
 
   private handleDeadlyCell(cell: Cell): boolean {
     if (cell.hasPit) {
-      this.killHunter('¡Caíste en un pozo!');
-      if(this.settingsSignal().blackout) this.achieve.activeAchievement(AchieveTypes.DEATHBYBLACKOUT);
-      else if(this._hunter().wumpusKilled) this.achieve.activeAchievement(AchieveTypes.LASTBREATH);
-      else this.achieve.activeAchievement(AchieveTypes.DEATHBYPIT);
-      return true;
+      return this.tryToHandleDeadlyEvent('pit', '¡Caíste en un pozo!');
     }
-
     if (cell.hasWumpus) {
-      this.killHunter('¡El Wumpus te devoró!');
-      if(this.settingsSignal().blackout) this.achieve.activeAchievement(AchieveTypes.DEATHBYBLACKOUT);
-      else this.achieve.activeAchievement(AchieveTypes.DEATHBYWUMPUES);
-      return true;
+      return this.tryToHandleDeadlyEvent('wumpus', '¡El Wumpus te devoró!');
+    }
+    return false;
+  }
+
+  private tryToHandleDeadlyEvent(cause: 'pit' | 'wumpus', deathMessage: string): boolean {
+    const hunter = this.store.hunter();
+    const result = this.gameEvents.applyEffectsOnDeath(hunter, cause);
+  
+    if (result.hunter.alive) {
+      this.store.updateHunter(result.hunter);
+      if (result.message) this.store.setMessage(result.message);
+      return false;
     }
 
-    return false;
+    this.killHunter(deathMessage);
+    //this.store.updateHunter(result.hunter);
+
+    if (this.settingsSignal().blackout) {
+      this.achieve.activeAchievement(AchieveTypes.DEATHBYBLACKOUT);
+    } else if (hunter.wumpusKilled) {
+      this.achieve.activeAchievement(AchieveTypes.LASTBREATH);
+    } else {
+      this.achieve.activeAchievement(
+        cause === 'pit' ? AchieveTypes.DEATHBYPIT : AchieveTypes.DEATHBYWUMPUES
+      );
+      this.sound.playSound( cause === 'pit' ? GameSound.PITDIE : GameSound.SCREAM, false);
+    }
+    return true;
   }
 
   private killHunter(message: string): void {
     this.store.updateHunter({ alive: false, lives: this._hunter().lives - 1 });
     this.store.setMessage(message);
-    this.sound.playSound(GameSound.SCREAM, false);
   }
 
   private handleGold(cell: Cell): boolean {
@@ -294,14 +316,11 @@ export class GameEngineService {
   }
 
   private handleArrow(cell: Cell): boolean {
-    if (!cell.hasArrow) return false;
+    if(cell.content){
+      return this.gameEvents.applyEffectByCellContent(this._hunter(), cell);
+    }
 
-    cell.hasArrow = false;
-    this.addArrow();
-    this.store.setMessage('Has recogido una flecha.');
-    this.sound.playSound(GameSound.PICKUP, false);
-    this.achieve.activeAchievement(AchieveTypes.PICKARROW);
-    return true;
+    return false;
   }
 
   private getPerceptionMessage(): string {
@@ -367,6 +386,5 @@ export class GameEngineService {
       const blackoutChance = 0.08;
       return Math.random() < blackoutChance;
   }
-
 
 }

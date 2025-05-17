@@ -1,5 +1,5 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { Cell, Direction, Hunter, GameSettings } from '../../models';
+import { Cell, Direction, Hunter, GameSettings, CELL_CONTENTS } from '../../models';
 import { LocalstorageService } from '../localstorage/localstorage.service';
 
 @Injectable({ providedIn: 'root' })
@@ -45,7 +45,6 @@ export class GameStoreService {
       Array.from({ length: size }, (_, y) => ({
         x, y, visited: false,
         hasGold: false, hasPit: false, hasWumpus: false,
-        isStart: x === 0 && y === 0,
       }))
     );
 
@@ -61,13 +60,33 @@ export class GameStoreService {
     }
 
     for (let i = 0; i < (this._settings().wumpus - 1 || 0); i++) {
-      place().hasArrow = true;
+      place().content = CELL_CONTENTS.arrow
     }
+
+    this.applyRandomEventOnce(board);
 
     this._board.set(board);
     this.setHunterForNextLevel();
     this._startTime = new Date();
   }
+
+  applyRandomEventOnce(board: Cell[][]): void {
+    const baseChance = 0.1;
+    const maxChance = 0.25;
+    const size = this.settings().size;
+
+    const chance = Math.min(
+      baseChance + ((size - 4) / (20 - 4)) * (maxChance - baseChance),
+      maxChance
+    );
+
+    const shouldPlaceEvent = Math.random() < chance;
+
+    if (shouldPlaceEvent) {
+      this.placeRandom(board).content = CELL_CONTENTS.heart;
+    }
+  }
+
 
   setSettings(settings: GameSettings): void {
     this._settings.set(settings);

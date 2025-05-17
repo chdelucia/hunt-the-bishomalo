@@ -494,7 +494,6 @@ export class AchievementService {
     return this.localStoreService.getValue<string[]>(this.storageKey) || [];
   }
 
-
   activeAchievement(id: AchieveTypes):void {
     const achieve = this.achievements.find(item => item.id === id);
     if(achieve && !achieve.unlocked){

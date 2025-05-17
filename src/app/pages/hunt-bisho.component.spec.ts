@@ -11,7 +11,6 @@ function createMockCell(overrides = {}) {
     hasPit: false,
     hasWumpus: false,
     hasGold: false,
-    isStart: false,
     ...overrides
   };
 }

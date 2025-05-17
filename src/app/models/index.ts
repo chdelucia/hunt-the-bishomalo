@@ -7,3 +7,5 @@ export * from './game-score.model';
 export * from './game-sound.enum';
 export * from './achive.model';
 export * from './achieve.enum';
+export * from './game-effects.types';
+export * from './game-item.model';

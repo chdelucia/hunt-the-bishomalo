@@ -17,6 +17,7 @@ const SOUND_PATHS: Record<GameSound, string> = {
   [GameSound.PICKUP]: 'sounds/coincollect.mp3',
   [GameSound.WALK]: 'sounds/step.mp3',
   [GameSound.FF7]: 'sounds/ff7.mp3',
+  [GameSound.PITDIE]: 'sounds/pitdie.mp3'
 };
 
 @Injectable({
