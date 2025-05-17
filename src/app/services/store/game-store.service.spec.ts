@@ -69,7 +69,7 @@ describe('GameStoreService', () => {
     const newBoard = [
       [{ x: 0, y: 0, visited: true }]
     ];
-    service.updateBoard(newBoard as any);
+    service.updateBoard(newBoard);
     expect(service.board()).toEqual(newBoard);
   });
 

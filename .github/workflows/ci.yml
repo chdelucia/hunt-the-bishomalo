@@ -59,7 +59,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           npm install --no-save standard-version
-          npx standard-version
+          npm run release
           git push --follow-tags origin master
 
       # ✅ Publicar GitHub Release

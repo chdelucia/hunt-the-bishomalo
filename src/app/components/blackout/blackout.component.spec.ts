@@ -9,7 +9,7 @@ describe('BlackoutComponent', () => {
     jest.spyOn(window.HTMLMediaElement.prototype, 'play')
     .mockImplementation(() => Promise.resolve());
 
-    jest.spyOn(window as any, 'Audio').mockImplementation(() => {
+    jest.spyOn(window, 'Audio').mockImplementation(() => {
       return {
         play: jest.fn(() => Promise.resolve()),
         pause: jest.fn(),

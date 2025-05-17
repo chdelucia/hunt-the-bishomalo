@@ -16,16 +16,16 @@ const routes = [
   { path: 'test-url', component: DummyComponent },
 ];
 
+const gameEngineServiceMock = {
+  newGame: jest.fn(),
+} 
 describe('MenuComponent', () => {
   let component: MenuComponent;
   let fixture: ComponentFixture<MenuComponent>;
-  let gameEngineServiceMock: jest.Mocked<GameEngineService>;
   let router: Router;
 
   beforeEach(async () => {
-    gameEngineServiceMock = {
-      newGame: jest.fn(),
-    } as any;
+
 
     await TestBed.configureTestingModule({
       imports: [MenuComponent, RouterModule.forRoot(routes)],

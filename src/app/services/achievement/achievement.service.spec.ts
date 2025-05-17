@@ -3,7 +3,7 @@ import { AchievementService } from './achievement.service';
 import { LocalstorageService } from '../localstorage/localstorage.service';
 import { GameSoundService } from '../sound/game-sound.service';
 import { AnalyticsService } from '../analytics/analytics.service';
-import { AchieveTypes, Achievement } from 'src/app/models';
+import { AchieveTypes } from 'src/app/models';
 import { GameStoreService } from '../store/game-store.service';
 
 const mockLocalStorageService = {
@@ -80,7 +80,7 @@ describe('AchievementService', () => {
       mockLocalStorageService.getValue.mockReturnValue([AchieveTypes.SPEEDRUNNER]);
 
       // Forzamos sync
-      (service as any).syncAchievementsWithStorage();
+      service['syncAchievementsWithStorage']();
 
       const updated = service.achievements.find(a => a.id === AchieveTypes.SPEEDRUNNER);
       expect(updated?.unlocked).toBe(true);
@@ -90,10 +90,10 @@ describe('AchievementService', () => {
   describe('getStoredAchievementIds', () => {
     it('should return array from storage or empty', () => {
       mockLocalStorageService.getValue.mockReturnValueOnce(undefined);
-      expect((service as any).getStoredAchievementIds()).toEqual([]);
+      expect(service['getStoredAchievementIds']()).toEqual([]);
 
       mockLocalStorageService.getValue.mockReturnValueOnce(['A']);
-      expect((service as any).getStoredAchievementIds()).toEqual(['A']);
+      expect(service['getStoredAchievementIds']()).toEqual(['A']);
     });
   });
 });

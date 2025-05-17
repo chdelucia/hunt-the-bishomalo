@@ -12,7 +12,7 @@ describe('GameSoundService', () => {
     mockPlay = jest.fn(() => Promise.resolve());
     mockPause = jest.fn();
 
-    jest.spyOn(window as any, 'Audio').mockImplementation(() => {
+    jest.spyOn(window, 'Audio').mockImplementation(() => {
       return {
         play: mockPlay,
         pause: mockPause,
@@ -69,7 +69,7 @@ describe('GameSoundService', () => {
   });
 
   it('should stop all sounds', () => {
-    const spy = jest.spyOn(service as any, 'stopAll');
+    const spy = jest.spyOn(service as never, 'stopAll');
     service.stop()
     expect(spy).toHaveBeenCalled();
   })
