@@ -1,4 +1,5 @@
 import { Route } from '@angular/router';
+import { secretGuard } from './guards/secret.guard';
 
 export const appRoutes: Route[] = [
   {
@@ -8,6 +9,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: 'secret',
+    canActivate: [secretGuard],
     loadComponent: () => import('./components').then((mod) => mod.JediMindTrickAnimationComponent),
     title: 'Jedi secreto | Bisho malo',
   },
