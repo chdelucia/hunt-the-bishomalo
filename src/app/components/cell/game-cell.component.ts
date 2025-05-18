@@ -37,9 +37,9 @@ export class GameCellComponent {
 
   readonly bowImage = computed(() => {
     const { arrows, hasGold } = this.hunter();
-    if (arrows && hasGold) return 'bowgold.svg';
-    if (arrows && !hasGold) return 'bow.svg';
-    if (!arrows && hasGold) return 'bowgoldempty.svg';
-    return 'bowempty.svg';
+    if (arrows && hasGold) return 'chars/default/bowgold.svg';
+    if (arrows && !hasGold) return 'chars/default/bow.svg';
+    if (!arrows && hasGold) return 'chars/default/bowgoldempty.svg';
+    return 'chars/default/bowempty.svg';
   });
 }
