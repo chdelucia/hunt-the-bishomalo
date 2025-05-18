@@ -130,7 +130,8 @@
 
   .mobile-menu {
     display: block;
-    position: relative;
+    position: fixed;
     z-index: 6;
+    width: 100%;
   }
 }
