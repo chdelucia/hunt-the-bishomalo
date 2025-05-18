@@ -74,7 +74,7 @@ export class GameEventService {
       type: 'heart',
       itemName: 'extra-heart',
       canApply: (hunter) => this.hasItem(hunter, 'extra-heart'),
-      apply: (hunter, cell) => this.extraHeart(hunter,cell),
+      apply: (hunter, cell) => this.extraHeart(hunter, cell),
       message: 'Has conseguido una vida extra.',
     },
     {
@@ -191,8 +191,8 @@ export class GameEventService {
   private extraHeart(hunter: Hunter, cell: Cell): Hunter {
     this.gameSound.playSound(GameSound.PICKUP, false);
     this.gameStore.updateHunter({
-        ...hunter,
-        lives: Math.min(hunter.lives + 1, 8),
+      ...hunter,
+      lives: Math.min(hunter.lives + 1, 8),
     });
     cell.content = undefined;
     return hunter;
@@ -208,5 +208,4 @@ export class GameEventService {
     cell.content = undefined;
     return hunter;
   }
-
 }

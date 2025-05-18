@@ -219,9 +219,9 @@ export class GameEngineService {
   private getDrop(cell: Cell): void {
     const roll = Math.random() * 100;
 
-    if (roll < 3) cell.content = CELL_CONTENTS.extrawumpus;    
-    else if (roll < 20) cell.content = CELL_CONTENTS.extraheart;      
-    else if (roll < 30) cell.content = CELL_CONTENTS.extragold;         
+    if (roll < 3) cell.content = CELL_CONTENTS.extrawumpus;
+    else if (roll < 20) cell.content = CELL_CONTENTS.extraheart;
+    else if (roll < 30) cell.content = CELL_CONTENTS.extragold;
   }
 
   private handleMissedArrow(): void {

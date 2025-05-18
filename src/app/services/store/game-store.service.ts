@@ -134,8 +134,8 @@ export class GameStoreService {
   updateHunter(partial: Partial<Hunter>): void {
     this._hunter.update((hunter) => ({ ...hunter, ...partial }));
 
-    if(!partial.alive || partial.hasWon)
-    this.localStorageService.setValue<Hunter>(this.storageHunterKey, this._hunter());
+    if (!partial.alive || partial.hasWon)
+      this.localStorageService.setValue<Hunter>(this.storageHunterKey, this._hunter());
   }
 
   updateBoard(newBoard: Cell[][]): void {
