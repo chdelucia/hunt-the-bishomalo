@@ -213,6 +213,15 @@ export class GameEngineService {
     this.store.updateBoard([...this.store.board()]);
     this.store.updateHunter({ wumpusKilled: true });
     this.achieve.handleWumpusKillAchieve(cell);
+    this.getDrop(cell);
+  }
+
+  private getDrop(cell: Cell): void {
+    const roll = Math.random() * 100;
+
+    if (roll < 3) cell.content = CELL_CONTENTS.extrawumpus;    
+    else if (roll < 20) cell.content = CELL_CONTENTS.extraheart;      
+    else if (roll < 30) cell.content = CELL_CONTENTS.extragold;         
   }
 
   private handleMissedArrow(): void {
@@ -320,17 +329,17 @@ export class GameEngineService {
   }
 
   private getPerceptionFromCell(cell: Cell): string | null {
-    if (cell.content?.type === 'wumpus') {
+    if (cell.content === CELL_CONTENTS.wumpus) {
       this.sound.playSound(GameSound.WUMPUS);
       return 'Sientes hedor.';
     }
 
-    if (cell.content?.type === 'pit') {
+    if (cell.content === CELL_CONTENTS.pit) {
       this.sound.playSound(GameSound.WIND);
       return 'Sientes brisa.';
     }
 
-    if (cell.content?.type === 'gold') {
+    if (cell.content === CELL_CONTENTS.gold) {
       this.sound.playSound(GameSound.GOLD);
       return 'Sientes un brillo.';
     }

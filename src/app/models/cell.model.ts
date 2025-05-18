@@ -1,4 +1,4 @@
-export type CellContentType = 'wumpus' | 'gold' | 'pit' | 'arrow' | 'heart';
+export type CellContentType = 'wumpus' | 'gold' | 'pit' | 'arrow' | 'heart' | 'extragold' | 'extraheart' | 'extrawumpus';
 
 export interface CellContent {
   type: CellContentType;
@@ -45,4 +45,22 @@ export const CELL_CONTENTS: Record<CellContentType, CellContent> = {
     alt: 'extra life',
     ariaLabel: 'heart',
   },
+  extrawumpus: {
+    type: 'wumpus',
+    image: 'question.png',
+    alt: 'wumpus',
+    ariaLabel: 'wumpus',
+  },
+  extragold: {
+    type: 'gold',
+    image: 'question.png',
+    alt: 'secret',
+    ariaLabel: 'secret',
+  },
+  extraheart: {
+    type: 'heart',
+    image: 'question.png',
+    alt: 'secret',
+    ariaLabel: 'secret',
+  }
 };

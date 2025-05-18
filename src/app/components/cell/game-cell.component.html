@@ -4,7 +4,7 @@
 <div class="cell" [class.visited]="cell().visited" [class.hunter]="hasHunter">
   @if ((!isAlive || _hunter.hasWon) && content) {
   <img [ngSrc]="content.image" [alt]="content.alt" fill />
-  } @if(hasHunter && isAlive){
+  } @else if(hasHunter && isAlive){
   <img
     [ngSrc]="bowImage()"
     [attr.alt]="hasGold ? 'hunter with gold' : 'hunter'"
@@ -13,5 +13,7 @@
     priority
     fill
   />
+  } @else if (content && content.image === 'question.png') {
+    <img [ngSrc]="content.image" [alt]="content.alt" fill />
   }
 </div>

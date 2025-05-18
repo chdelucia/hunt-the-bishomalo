@@ -8,4 +8,5 @@ export type GameEventEffectType =
   | 'gold'
   | 'pit'
   | 'wumpus'
-  | 'double-gold';
+  | 'double-gold'
+  | 'extraheart'

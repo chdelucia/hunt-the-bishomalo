@@ -74,31 +74,14 @@ export class GameEventService {
       type: 'heart',
       itemName: 'extra-heart',
       canApply: (hunter) => this.hasItem(hunter, 'extra-heart'),
-      apply: (hunter, cell) => {
-        this.gameSound.playSound(GameSound.PICKUP, false);
-        this.gameStore.updateHunter({
-          ...hunter,
-          lives: hunter.lives + 1,
-        });
-        cell.content = undefined;
-        return hunter;
-      },
+      apply: (hunter, cell) => this.extraHeart(hunter,cell),
       message: 'Has conseguido una vida extra.',
     },
     {
       type: 'gold',
       itemName: 'extra-goldem',
       canApply: (hunter) => this.hasItem(hunter, 'extra-goldem'),
-      apply: (hunter, cell) => {
-        this.gameSound.playSound(GameSound.PICKUP, false);
-        this.gameAchieve.activeAchievement(AchieveTypes.PICKGOLD);
-        this.gameStore.updateHunter({
-          ...hunter,
-          hasGold: true,
-        });
-        cell.content = undefined;
-        return hunter;
-      },
+      apply: (hunter, cell) => this.extraGold(hunter, cell),
       message: 'Has recogido el oro.',
     },
     {
@@ -204,4 +187,26 @@ export class GameEventService {
     }
     return result;
   }
+
+  private extraHeart(hunter: Hunter, cell: Cell): Hunter {
+    this.gameSound.playSound(GameSound.PICKUP, false);
+    this.gameStore.updateHunter({
+        ...hunter,
+        lives: Math.min(hunter.lives + 1, 8),
+    });
+    cell.content = undefined;
+    return hunter;
+  }
+
+  private extraGold(hunter: Hunter, cell: Cell): Hunter {
+    this.gameSound.playSound(GameSound.PICKUP, false);
+    this.gameAchieve.activeAchievement(AchieveTypes.PICKGOLD);
+    this.gameStore.updateHunter({
+      ...hunter,
+      hasGold: true,
+    });
+    cell.content = undefined;
+    return hunter;
+  }
+
 }
