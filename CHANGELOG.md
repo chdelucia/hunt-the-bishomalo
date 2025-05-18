@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.7.0...v1.8.0) (2025-05-18)
+
+
+### Features
+
+* **drops:** add drops after kill wumpus ([1eb7c0f](https://github.com/chdelucia/hunt-the-bishomalo/commit/1eb7c0f785ae10d9af6d99936b682ec7aa57719d))
+
+
+### Bug Fixes
+
+* **pettrier:** fix blank spaces ([b987832](https://github.com/chdelucia/hunt-the-bishomalo/commit/b9878320b44b9ba3383516b2818f3bd627d3df2a))
+
 ## [1.7.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.6.3...v1.7.0) (2025-05-18)
 
 
