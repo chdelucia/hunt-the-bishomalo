@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.8.0...v1.9.0) (2025-05-18)
+
+
+### Features
+
+* **guards:** add guard to jedi ([58e04dd](https://github.com/chdelucia/hunt-the-bishomalo/commit/58e04dd8135dbfa3991e344c5d43490a8ce1f346))
+
+
+### Bug Fixes
+
+* **router:** add guards ([aa8d2d1](https://github.com/chdelucia/hunt-the-bishomalo/commit/aa8d2d1f111f30158e6554a3f0618b1435443aaf))
+
 ## [1.8.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.7.0...v1.8.0) (2025-05-18)
 
 
