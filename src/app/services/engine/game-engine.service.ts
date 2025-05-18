@@ -144,7 +144,7 @@ export class GameEngineService {
     if (result.hitWumpus) {
       this.handleWumpusHit(result.cell);
     } else {
-      this.handleMissedArrow(result.cell);
+      this.handleMissedArrow();
     }
   }
 
@@ -215,8 +215,7 @@ export class GameEngineService {
     this.achieve.handleWumpusKillAchieve(cell);
   }
 
-  private handleMissedArrow(cell: Cell): void {
-    cell.content ??= CELL_CONTENTS.arrow;
+  private handleMissedArrow(): void {
     this.store.setMessage('¡Flecha fallida!');
     if (!this._hunter().arrows) this.achieve.activeAchievement(AchieveTypes.MISSEDSHOT);
   }
