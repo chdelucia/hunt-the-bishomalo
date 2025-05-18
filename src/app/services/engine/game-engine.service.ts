@@ -118,14 +118,13 @@ export class GameEngineService {
     this.checkCurrentCell();
   }
 
-
   private checkSecret(size: number, x: number, y: number): void {
     if (size === 8 && x === 7 && y === 8) {
       this.router.navigate(['/secret'], {
-      state: {
-        fromSecretPath: true
-      },
-    })
+        state: {
+          fromSecretPath: true,
+        },
+      });
     }
   }
 
