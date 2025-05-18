@@ -1,6 +1,6 @@
 .game-message {
   text-align: center;
-  font-size: x-large;
+  font-size: large;
   margin-bottom: 1.5rem;
   color: #00ff5e;
 }
@@ -9,7 +9,7 @@
   background: none;
   animation: blink 3s step-start infinite;
   color: #00ffea;
-  font-size: 16px;
+  font-size: 1.4rem;
   text-align: center;
   margin-top: 20px;
   text-shadow: 0 0 5px #00ffea;
@@ -25,6 +25,6 @@
 
 @media (max-width: 1024px) {
   .game-message {
-    font-size: large;
+    font-size: medium;
   }
 }
