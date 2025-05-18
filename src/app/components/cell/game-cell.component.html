@@ -3,13 +3,15 @@
 
 <div class="cell" [class.visited]="cell().visited" [class.hunter]="hasHunter">
   @if (!isAlive || _hunter.hasWon) { @if (cell().content) {
-  <img [src]="cell().content?.image" alt="arrow" aria-label="arrow" />
+    <img [src]="cell().content?.image" alt="arrow" aria-label="arrow" />
   } } @if(hasHunter && isAlive){
   <img
-    [src]="bowImage()"
+    [ngSrc]="bowImage()"
     [attr.alt]="hasGold ? 'hunter with gold' : 'hunter'"
     [attr.aria-label]="hasGold ? 'hunter with gold' : 'hunter'"
     [style.transform]="'rotate(' + rotation() + 'deg)'"
+    priority
+    fill
   />
   }
 </div>
