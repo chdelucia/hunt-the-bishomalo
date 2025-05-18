@@ -73,8 +73,9 @@
             >
               <img
                 class="achievement-icon"
-                [src]="'achievements/' + achievement.svgIcon + '.svg'"
+                [ngSrc]="'achievements/' + achievement.svgIcon + '.svg'"
                 [alt]="achievement.title"
+                fill
               />
             </div>
             <div>

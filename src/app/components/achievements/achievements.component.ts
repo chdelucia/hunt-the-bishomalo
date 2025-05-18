@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Achievement } from 'src/app/models';
 import { AchievementService } from 'src/app/services/achievement/achievement.service';
@@ -7,7 +7,7 @@ import { AchievementService } from 'src/app/services/achievement/achievement.ser
 @Component({
   selector: 'app-achievements',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, NgOptimizedImage],
   templateUrl: './achievements.component.html',
   styleUrl: './achievements.component.scss',
 })

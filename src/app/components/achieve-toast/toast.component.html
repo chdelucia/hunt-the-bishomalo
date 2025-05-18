@@ -2,8 +2,11 @@
   <div class="toast" *ngFor="let toast of toasts()">
     <img
       class="icon"
-      [src]="'achievements/' + toast.achievement.svgIcon + '.svg'"
+      [ngSrc]="'achievements/' + toast.achievement.svgIcon + '.svg'"
       [alt]="toast.achievement.title"
+      priority
+      width="40"
+      height="40"
     />
     <div class="text">
       <strong>{{ toast.achievement.title }}</strong>
