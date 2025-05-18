@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.6.3...v1.7.0) (2025-05-18)
+
+
+### Features
+
+* **arrows:** dont allow user to recover wasted arrow ([451e039](https://github.com/chdelucia/hunt-the-bishomalo/commit/451e03911ac6e854667abab23a67e65c51b5982d))
+
 ### [1.6.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.6.2...v1.6.3) (2025-05-18)
 
 
