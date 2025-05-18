@@ -68,7 +68,7 @@ export class GameStoreService {
   }
 
   applyRandomEventOnce(board: Cell[][]): void {
-    const baseChance = 0.1;
+    const baseChance = 0.11;
     const maxChance = 0.25;
     const size = this.settings().size;
 
@@ -79,7 +79,7 @@ export class GameStoreService {
 
     const shouldPlaceEvent = Math.random() < chance;
 
-    if (shouldPlaceEvent) {
+    if (shouldPlaceEvent && this._hunter().lives < 8) {
       this.placeRandom(board).content = CELL_CONTENTS.heart;
     }
   }
