@@ -38,7 +38,6 @@ export class GameCellComponent {
     }
   });
 
-
   readonly bowImage = computed(() => {
     const { arrows } = this.hunter();
     const { selectedChar } = this.settings();
