@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.14.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.13.1...v1.14.0) (2025-05-19)
+
+
+### Features
+
+* **lvl:** add more levels ([d086cac](https://github.com/chdelucia/hunt-the-bishomalo/commit/d086caccf9c322bc78439c4c6e4814cf8ffb4e86))
+
 ### [1.13.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.13.0...v1.13.1) (2025-05-19)
 
 
