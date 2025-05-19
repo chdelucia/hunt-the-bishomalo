@@ -81,7 +81,14 @@ describe('GameEngineService (with useValue)', () => {
   });
 
   it('initGame: calls stop, setSettings, initBoard and checkCurrentCell', () => {
-    const config = { size: 2, player: 'Player', arrows: 3, pits: 2, wumpus: 1, selectedChar: Chars.LARA };
+    const config = {
+      size: 2,
+      player: 'Player',
+      arrows: 3,
+      pits: 2,
+      wumpus: 1,
+      selectedChar: Chars.LARA,
+    };
     service.initGame(config);
 
     expect(mockSound.stop).toHaveBeenCalled();

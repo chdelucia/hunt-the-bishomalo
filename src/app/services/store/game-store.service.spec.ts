@@ -12,7 +12,7 @@ describe('GameStoreService', () => {
     pits: 2,
     arrows: 3,
     wumpus: 1,
-    selectedChar: Chars.DEFAULT
+    selectedChar: Chars.DEFAULT,
   };
 
   beforeEach(() => {

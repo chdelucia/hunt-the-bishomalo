@@ -15,20 +15,20 @@
 
   <div class="char-selector">
     @for(char of chars; track $index) {
-          <img
-            [ngSrc]="$index === 0 ? `chars/${char}/bow.svg` : `chars/${char}/bow.png`"
-            [alt]="char"
-            draggable="false"
-            width="60"
-            height="80"
-            [class.active]="configForm.get('selectedChar')?.value === char"
-            [class.grayscale]="configForm.get('selectedChar')?.value !== char"
-            (click)="selectChar(char)"
-            (keydown)="selectChar(char)"
-            tabindex="0"
-          />
+    <img
+      [ngSrc]="$index === 0 ? `chars/${char}/bow.svg` : `chars/${char}/bow.png`"
+      [alt]="char"
+      draggable="false"
+      width="60"
+      height="80"
+      [class.active]="configForm.get('selectedChar')?.value === char"
+      [class.grayscale]="configForm.get('selectedChar')?.value !== char"
+      (click)="selectChar(char)"
+      (keydown)="selectChar(char)"
+      tabindex="0"
+    />
     }
-    </div>
+  </div>
 
   <button type="submit" [disabled]="configForm.invalid" class="start-game">Jugar</button>
 </form>

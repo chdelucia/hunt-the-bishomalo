@@ -10,8 +10,8 @@ const gameEngineServiceMock = {
 
 const gameSoundMock = {
   playSound: jest.fn(),
-  stop: jest.fn()
-}
+  stop: jest.fn(),
+};
 
 describe('GameConfigComponent', () => {
   let component: GameConfigComponent;
@@ -22,7 +22,7 @@ describe('GameConfigComponent', () => {
       imports: [GameConfigComponent],
       providers: [
         { provide: GameEngineService, useValue: gameEngineServiceMock },
-        { provide: GameSoundService, useValue: gameSoundMock}
+        { provide: GameSoundService, useValue: gameSoundMock },
       ],
     }).compileComponents();
 
@@ -43,7 +43,7 @@ describe('GameConfigComponent', () => {
       size: 4,
       pits: 2,
       arrows: 1,
-      selectedChar: "default",
+      selectedChar: 'default',
     });
   });
 
@@ -58,7 +58,7 @@ describe('GameConfigComponent', () => {
       size: 6,
       pits: 2,
       arrows: 3,
-      selectedChar: "default",
+      selectedChar: 'default',
     });
 
     component.submitForm();
@@ -68,7 +68,7 @@ describe('GameConfigComponent', () => {
       pits: 2,
       arrows: 3,
       blackout: expect.any(Boolean),
-      selectedChar: "default",
+      selectedChar: 'default',
     });
   });
 
@@ -78,7 +78,7 @@ describe('GameConfigComponent', () => {
       size: 3,
       pits: 0,
       arrows: 0,
-      selectedChar: "default",
+      selectedChar: 'default',
     });
 
     component.submitForm();
@@ -90,5 +90,5 @@ describe('GameConfigComponent', () => {
     expect(gameSoundMock.stop).toHaveBeenCalled();
     expect(gameSoundMock.playSound).toHaveBeenCalledWith(Chars.LARA, false);
     expect(component.configForm.get('selectedChar')?.value).toBe(Chars.LARA);
-  })
+  });
 });

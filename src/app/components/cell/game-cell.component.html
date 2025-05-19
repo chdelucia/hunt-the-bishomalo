@@ -5,17 +5,16 @@
   @if ((!isAlive || _hunter.hasWon || showItems) && content) {
   <img [ngSrc]="content.image" [alt]="content.alt" fill />
   } @else if(hasHunter && isAlive){
-    <img
-      [ngSrc]="bowImage()"
-      [attr.alt]="hasGold ? 'hunter with gold' : 'hunter'"
-      [style.transform]="rotation() !== 180 ? 'rotate(' + rotation() + 'deg)' : 'scaleX(-1)'"
-      priority
-      fill
-    />
-    @if(hasGold){
-      <img class="gold" ngSrc="boardicons/gold.svg" alt="gold" width="20" height="20">
-    }
-  } @else if (content && content.image === 'question.png') {
+  <img
+    [ngSrc]="bowImage()"
+    [attr.alt]="hasGold ? 'hunter with gold' : 'hunter'"
+    [style.transform]="rotation() !== 180 ? 'rotate(' + rotation() + 'deg)' : 'scaleX(-1)'"
+    priority
+    fill
+  />
+  @if(hasGold){
+  <img class="gold" ngSrc="boardicons/gold.svg" alt="gold" width="20" height="20" />
+  } } @else if (content && content.image === 'question.png') {
   <img [ngSrc]="content.image" [alt]="content.alt" fill />
   }
 </div>

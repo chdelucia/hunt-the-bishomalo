@@ -15,7 +15,7 @@ export class GameStoreService {
     hasWon: false,
     wumpusKilled: 0,
     lives: 8,
-    chars: [Chars.DEFAULT]
+    chars: [Chars.DEFAULT],
   });
 
   private readonly _message = signal('');

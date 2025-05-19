@@ -14,8 +14,8 @@ const hunterSignal = signal({ chars: ['default', 'lara'] });
 const gameStoreMock = {
   updateHunter: jest.fn(),
   stop: jest.fn(),
-  hunter: jest.fn().mockReturnValue(hunterSignal)
-}
+  hunter: jest.fn().mockReturnValue(hunterSignal),
+};
 
 describe('CharactersComponent', () => {
   let component: CharactersComponent;
@@ -25,8 +25,8 @@ describe('CharactersComponent', () => {
     await TestBed.configureTestingModule({
       imports: [CharactersComponent, RouterModule.forRoot([])],
       providers: [
-          { provide: GameEngineService, useValue: gameEngineServiceMock },
-          { provide: GameStoreService, useValue: gameStoreMock}
+        { provide: GameEngineService, useValue: gameEngineServiceMock },
+        { provide: GameStoreService, useValue: gameStoreMock },
       ],
     }).compileComponents();
 
@@ -45,6 +45,4 @@ describe('CharactersComponent', () => {
     expect(gameStoreMock.updateHunter).toHaveBeenCalled();
     expect(gameEngineServiceMock.newGame).toHaveBeenCalled();
   });
-
-  
 });

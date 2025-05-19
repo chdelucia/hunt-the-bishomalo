@@ -5,7 +5,7 @@ export enum Chars {
   DEFAULT = 'default',
   LINK = 'link',
   LARA = 'lara',
-  LEGOLAS = 'legolas'
+  LEGOLAS = 'legolas',
 }
 
 export interface Hunter {
@@ -20,5 +20,5 @@ export interface Hunter {
   lives: number;
   inventory?: GameItem[];
   gold?: number;
-  chars?: Chars[]
+  chars?: Chars[];
 }

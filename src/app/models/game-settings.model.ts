@@ -1,4 +1,4 @@
-import { Chars } from "./hunter.model";
+import { Chars } from './hunter.model';
 
 export interface GameSettings {
   size: number;

@@ -1,16 +1,16 @@
 .prizes {
-    text-align: center;
-    align-content: center;
-    height: 80vh;
-    p{
-        font-size: x-large;
-        color: #00ff5e;
-        margin: 4rem 0;
-    }
+  text-align: center;
+  align-content: center;
+  height: 80vh;
+  p {
+    font-size: x-large;
+    color: #00ff5e;
+    margin: 4rem 0;
+  }
 
-    button {
-        font-family: 'Press Start 2P', monospace;
-    }
+  button {
+    font-family: 'Press Start 2P', monospace;
+  }
 }
 .character-container {
   display: flex;
@@ -24,7 +24,7 @@
 @media (max-width: 400px) {
   .character {
     flex: 0 0 45%;
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
   }
 }
 
@@ -37,39 +37,36 @@
   text-align: center;
   width: 120px;
   user-select: none;
-    img {
-        width: 100%;
-        border-radius: 10px;
-        pointer-events: none;
-    }
+  img {
+    width: 100%;
+    border-radius: 10px;
+    pointer-events: none;
+  }
 
-    &:hover:not(.character.owned) {
-        filter: grayscale(0%);
-        box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.7);
-    }
+  &:hover:not(.character.owned) {
+    filter: grayscale(0%);
+    box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.7);
+  }
 
-    &.selected {
-        filter: grayscale(0%);
-        box-shadow: 0 0 20px 6px rgba(255, 215, 0, 0.9);
-        .char-name {
-            color: #ffffff;
-        }
-    }
-
-    &.owned {
-        filter: grayscale(0%);
-        .char-name {
-            color: #ffffff;
-        }
-    }
-
+  &.selected {
+    filter: grayscale(0%);
+    box-shadow: 0 0 20px 6px rgba(255, 215, 0, 0.9);
     .char-name {
-        margin-top: 0.5rem;
-        font-weight: bold;
-        text-transform: capitalize;
-        color: #333;
+      color: #ffffff;
     }
+  }
+
+  &.owned {
+    filter: grayscale(0%);
+    .char-name {
+      color: #ffffff;
+    }
+  }
+
+  .char-name {
+    margin-top: 0.5rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: #333;
+  }
 }
-
-
-

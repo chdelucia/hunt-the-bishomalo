@@ -23,7 +23,7 @@ export class GameConfigComponent implements OnInit {
     size: [4, [Validators.required, Validators.min(4), Validators.max(20)]],
     pits: [2, [Validators.required, Validators.min(1)]],
     arrows: [1, [Validators.required, Validators.min(1)]],
-    selectedChar: [Chars.DEFAULT, [Validators.required]]
+    selectedChar: [Chars.DEFAULT, [Validators.required]],
   });
 
   ngOnInit(): void {
