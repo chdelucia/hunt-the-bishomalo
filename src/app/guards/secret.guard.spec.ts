@@ -39,7 +39,7 @@ describe('secretGuard (Jest)', () => {
 
     const result = executeGuard(mockRoute, mockState);
     expect(result).toBe(false);
-    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('/home');
+    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('home');
   });
 
   it('should deny activation and redirect to /home if navigation is undefined', () => {
@@ -47,6 +47,6 @@ describe('secretGuard (Jest)', () => {
 
     const result = executeGuard(mockRoute, mockState);
     expect(result).toBe(false);
-    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('/home');
+    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('home');
   });
 });

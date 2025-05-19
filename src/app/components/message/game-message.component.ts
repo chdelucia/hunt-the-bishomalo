@@ -1,7 +1,8 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GameSettings } from 'src/app/models';
+import { GameSettings, RouteTypes } from 'src/app/models';
 import { GameEngineService } from 'src/app/services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game-message',
@@ -12,6 +13,7 @@ import { GameEngineService } from 'src/app/services';
 })
 export class GameMessageComponent {
   private readonly gameEngine = inject(GameEngineService);
+  private readonly router = inject(Router);
 
   readonly message = input.required<string>();
   readonly isAlive = input.required<boolean>();
@@ -35,5 +37,13 @@ export class GameMessageComponent {
 
   newGame(): void {
     this.gameEngine.newGame();
+  }
+
+  goToprizeScreen(): void {
+    this.router.navigate([RouteTypes.CHARS], {
+      state: {
+        fromSecretPath: true,
+      },
+    });
   }
 }

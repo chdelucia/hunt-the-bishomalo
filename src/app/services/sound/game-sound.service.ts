@@ -23,6 +23,7 @@ const SOUND_PATHS: Record<GameSound, string> = {
   [GameSound.LINK]: 'sounds/zeldaintro.mp3',
   [GameSound.LEGOLAS]: 'sounds/legolasintro.mp3',
   [GameSound.PENTA]: 'sounds/pentakill.mp3',
+  [GameSound.FINISH]: 'sounds/ending.mp3',
 };
 
 @Injectable({

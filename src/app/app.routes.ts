@@ -16,6 +16,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: RouteTypes.CHARS,
+    canActivate: [secretGuard],
     loadComponent: () => import('./components').then((mod) => mod.CharactersComponent),
     title: 'Jedi secreto | Bisho malo',
   },

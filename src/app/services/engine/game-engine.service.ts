@@ -16,12 +16,13 @@ import {
   GameSettings,
   GameSound,
   Hunter,
+  RouteTypes,
 } from '../../models';
 
 @Injectable({ providedIn: 'root' })
 export class GameEngineService {
   private readonly storageSettingsKey = 'hunt_the_bishomalo_settings';
-  private readonly settingsSignal!: Signal<GameSettings>;
+  private readonly _settings!: Signal<GameSettings>;
   private readonly _hunter!: Signal<Hunter>;
 
   constructor(
@@ -33,7 +34,7 @@ export class GameEngineService {
     private readonly localStorageService: LocalstorageService,
     private readonly gameEvents: GameEventService,
   ) {
-    this.settingsSignal = this.store.settings;
+    this._settings = this.store.settings;
     this._hunter = this.store.hunter;
   }
 
@@ -64,10 +65,10 @@ export class GameEngineService {
   }
 
   nextLevel(): void {
-    const size = this.settingsSignal().size + 1;
+    const size = this._settings().size + 1;
 
     const newSettings = {
-      ...this.settingsSignal(),
+      ...this._settings(),
       size,
       pits: this.calculatePits(size),
       wumpus: this.calculateWumpus(size),
@@ -82,7 +83,7 @@ export class GameEngineService {
     const { x, y, direction, alive, hasWon } = this._hunter();
     if (!alive || hasWon) return;
 
-    const size = this.settingsSignal().size;
+    const size = this._settings().size;
     let newX = x,
       newY = y;
 
@@ -118,7 +119,7 @@ export class GameEngineService {
 
   private checkSecret(size: number, x: number, y: number): void {
     if (size === 8 && x === 7 && y === 8) {
-      this.router.navigate(['/secret'], {
+      this.router.navigate([RouteTypes.JEDI], {
         state: {
           fromSecretPath: true,
         },
@@ -172,7 +173,7 @@ export class GameEngineService {
     const { direction } = this._hunter();
     let { x, y } = this._hunter();
     const board = this.store.board();
-    const size = this.settingsSignal().size;
+    const size = this._settings().size;
 
     let lastCell: Cell = board[x][y];
 
@@ -249,7 +250,7 @@ export class GameEngineService {
   private handleVictory(): void {
     const endTime = new Date();
     const seconds = this.calculateElapsedSeconds(endTime);
-    const playerName = this.settingsSignal().player;
+    const playerName = this._settings().player;
 
     this.store.setMessage(`¡Escapaste en ${seconds} segundos! ¡Victoria!`);
     this.store.updateHunter({ hasWon: true });
@@ -265,7 +266,11 @@ export class GameEngineService {
   }
 
   private playVictorySound(): void {
-    this.sound.playSound(GameSound.WHONOR, false);
+    if (this._settings().size === 23) {
+      this.sound.playSound(GameSound.FINISH, false);
+    } else {
+      this.sound.playSound(GameSound.WHONOR, false);
+    }
   }
 
   private checkCurrentCell(): void {
@@ -312,7 +317,7 @@ export class GameEngineService {
 
   private getAdjacentCells(): Cell[] {
     const { x, y } = this._hunter();
-    const size = this.settingsSignal().size;
+    const size = this._settings().size;
     const board = this.store.board();
 
     const directions = [
