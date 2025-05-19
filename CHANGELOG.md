@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.13.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.13.0...v1.13.1) (2025-05-19)
+
+
+### Bug Fixes
+
+* noseya ([d520156](https://github.com/chdelucia/hunt-the-bishomalo/commit/d5201562559756972d923aa1f9e1e8f87c2af02c))
+* **priority:** remove priority img ([4e09ce8](https://github.com/chdelucia/hunt-the-bishomalo/commit/4e09ce8614a9a0515bc2f758b9501352364ee846))
+
 ## [1.13.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.12.0...v1.13.0) (2025-05-19)
 
 
