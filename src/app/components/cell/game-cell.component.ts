@@ -38,7 +38,7 @@ export class GameCellComponent {
     }
   });
 
-  //TODO mucha perdida memoria aqui
+
   readonly bowImage = computed(() => {
     const { arrows } = this.hunter();
     const { selectedChar } = this.settings();
