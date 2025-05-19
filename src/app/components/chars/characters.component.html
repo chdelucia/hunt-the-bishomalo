@@ -1,0 +1,31 @@
+@let onwedChars = gameStore.hunter().chars;
+
+<section class="prizes">
+    <p class="title">Selecciona tu premio</p>
+
+    <div class="character-container">
+    
+    @for(char of chars; track $index) {
+        <div
+            class="character"
+            [class.selected]="char === selectedChar()"
+            [class.owned]="onwedChars?.includes(char)"
+            (click)="onwedChars?.includes(char) ? null : selectedChar.set(char)"
+            (keyup)="onwedChars?.includes(char) ? null : selectedChar.set(char)"
+            tabindex="0"
+        >
+            <img
+                [ngSrc]="$index === 0 ? `chars/${char}/bow.svg` : `chars/${char}/bow.png`"
+                [alt]="char"
+                draggable="false"
+                width="120"
+                height="180"
+                priority
+            />
+            <div class="char-name">{{char}}</div>
+        </div>
+    }
+    </div>
+
+    <button [disabled]="!selectedChar()" (click)="onClick()">Confirmar personaje</button>
+</section>

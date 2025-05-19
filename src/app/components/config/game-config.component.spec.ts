@@ -1,11 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameConfigComponent } from './game-config.component';
-import { GameEngineService } from 'src/app/services';
+import { GameEngineService, GameSoundService } from 'src/app/services';
+import { Chars } from 'src/app/models';
 
 const gameEngineServiceMock = {
   initGame: jest.fn(),
   syncSettingsWithStorage: jest.fn(),
 };
+
+const gameSoundMock = {
+  playSound: jest.fn(),
+  stop: jest.fn()
+}
+
 describe('GameConfigComponent', () => {
   let component: GameConfigComponent;
   let fixture: ComponentFixture<GameConfigComponent>;
@@ -13,7 +20,10 @@ describe('GameConfigComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [GameConfigComponent],
-      providers: [{ provide: GameEngineService, useValue: gameEngineServiceMock }],
+      providers: [
+        { provide: GameEngineService, useValue: gameEngineServiceMock },
+        { provide: GameSoundService, useValue: gameSoundMock}
+      ],
     }).compileComponents();
 
     jest.clearAllMocks();
@@ -33,6 +43,7 @@ describe('GameConfigComponent', () => {
       size: 4,
       pits: 2,
       arrows: 1,
+      selectedChar: "default",
     });
   });
 
@@ -47,6 +58,7 @@ describe('GameConfigComponent', () => {
       size: 6,
       pits: 2,
       arrows: 3,
+      selectedChar: "default",
     });
 
     component.submitForm();
@@ -56,6 +68,7 @@ describe('GameConfigComponent', () => {
       pits: 2,
       arrows: 3,
       blackout: expect.any(Boolean),
+      selectedChar: "default",
     });
   });
 
@@ -65,9 +78,17 @@ describe('GameConfigComponent', () => {
       size: 3,
       pits: 0,
       arrows: 0,
+      selectedChar: "default",
     });
 
     component.submitForm();
     expect(gameEngineServiceMock.initGame).not.toHaveBeenCalled();
   });
+
+  it('should select char', () => {
+    component.selectChar(Chars.LARA);
+    expect(gameSoundMock.stop).toHaveBeenCalled();
+    expect(gameSoundMock.playSound).toHaveBeenCalledWith(Chars.LARA, false);
+    expect(component.configForm.get('selectedChar')?.value).toBe(Chars.LARA);
+  })
 });

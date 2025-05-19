@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { GameEngineService } from './game-engine.service';
-import { CELL_CONTENTS, Direction } from '../../models';
+import { CELL_CONTENTS, Chars, Direction } from '../../models';
 import { GameStoreService } from '../store/game-store.service';
 import { GameSoundService } from '../sound/game-sound.service';
 import { LeaderboardService } from '../score/leaderboard.service';
@@ -81,7 +81,7 @@ describe('GameEngineService (with useValue)', () => {
   });
 
   it('initGame: calls stop, setSettings, initBoard and checkCurrentCell', () => {
-    const config = { size: 2, player: 'Player', arrows: 3, pits: 2, wumpus: 1 };
+    const config = { size: 2, player: 'Player', arrows: 3, pits: 2, wumpus: 1, selectedChar: Chars.LARA };
     service.initGame(config);
 
     expect(mockSound.stop).toHaveBeenCalled();

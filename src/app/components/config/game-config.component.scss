@@ -36,3 +36,28 @@
     font-family: 'Press Start 2P', monospace;
   }
 }
+
+.char-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+img {
+  cursor: pointer;
+  transition: filter 0.3s ease, transform 0.2s ease;
+  border-radius: 6px;
+}
+
+img.grayscale {
+  filter: grayscale(100%);
+  opacity: 0.6;
+}
+
+img.active {
+  filter: none;
+  border: 2px solid #4caf50;
+  transform: scale(1.05);
+}

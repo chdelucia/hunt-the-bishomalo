@@ -18,6 +18,12 @@
   &.visited {
     background-color: #f8f8f8;
   }
+
+  .gold{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
 }
 
 @keyframes fadeFog {
@@ -28,3 +34,17 @@
     background-color: #f8f8f8;
   }
 }
+
+.rotation-0 {
+  transform: rotate(0deg);
+}
+.rotation-90 {
+  transform: rotate(90deg);
+}
+.rotation-180 {
+  transform: scaleX(-1);
+}
+.rotation-270 {
+  transform: rotate(270deg);
+}
+

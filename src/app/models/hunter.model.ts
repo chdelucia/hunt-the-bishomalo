@@ -1,6 +1,13 @@
 import { Direction } from './direction.enum';
 import { GameItem } from './game-item.model';
 
+export enum Chars {
+  DEFAULT = 'default',
+  LINK = 'link',
+  LARA = 'lara',
+  LEGOLAS = 'legolas'
+}
+
 export interface Hunter {
   x: number;
   y: number;
@@ -13,4 +20,5 @@ export interface Hunter {
   lives: number;
   inventory?: GameItem[];
   gold?: number;
+  chars?: Chars[]
 }

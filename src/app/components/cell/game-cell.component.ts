@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input, isDevMode } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Cell, Hunter } from '../../models';
+import { Cell, Chars, GameSettings, Hunter } from '../../models';
 
 @Component({
   selector: 'app-game-cell',
@@ -13,6 +13,8 @@ import { Cell, Hunter } from '../../models';
 export class GameCellComponent {
   cell = input.required<Cell>();
   hunter = input.required<Hunter>();
+  settings = input.required<GameSettings>();
+
   readonly showItems = isDevMode();
 
   readonly isHunterCell = (cell: Cell) =>
@@ -37,10 +39,12 @@ export class GameCellComponent {
   });
 
   readonly bowImage = computed(() => {
-    const { arrows, hasGold } = this.hunter();
-    if (arrows && hasGold) return 'chars/default/bowgold.svg';
-    if (arrows && !hasGold) return 'chars/default/bow.svg';
-    if (!arrows && hasGold) return 'chars/default/bowgoldempty.svg';
-    return 'chars/default/bowempty.svg';
+    const { arrows } = this.hunter();
+    const { selectedChar } = this.settings();
+  
+    const extension = selectedChar === Chars.DEFAULT ? 'svg' : 'png'
+    if (arrows) return `chars/${selectedChar}/bow.${extension}`;
+    return `chars/${selectedChar}/bowempty.${extension}`;
+
   });
 }

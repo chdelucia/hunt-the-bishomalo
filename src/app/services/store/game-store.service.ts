@@ -1,5 +1,5 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { Cell, Direction, Hunter, GameSettings, CELL_CONTENTS } from '../../models';
+import { Cell, Direction, Hunter, GameSettings, CELL_CONTENTS, Chars } from '../../models';
 import { LocalstorageService } from '../localstorage/localstorage.service';
 
 @Injectable({ providedIn: 'root' })
@@ -15,6 +15,7 @@ export class GameStoreService {
     hasWon: false,
     wumpusKilled: 0,
     lives: 8,
+    chars: [Chars.DEFAULT]
   });
 
   private readonly _message = signal('');
@@ -64,6 +65,7 @@ export class GameStoreService {
 
     this._board.set(board);
     this.setHunterForNextLevel();
+
     this._startTime = new Date();
   }
 
@@ -118,7 +120,7 @@ export class GameStoreService {
   }
 
   resetHunter(): void {
-    this._hunter.set({
+    this.updateHunter({
       x: 0,
       y: 0,
       direction: Direction.RIGHT,
@@ -129,6 +131,7 @@ export class GameStoreService {
       wumpusKilled: 0,
       lives: 8,
     });
+    this.localStorageService.setValue<Hunter>(this.storageHunterKey, this._hunter());
   }
 
   updateHunter(partial: Partial<Hunter>): void {

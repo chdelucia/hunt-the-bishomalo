@@ -18,6 +18,10 @@ const SOUND_PATHS: Record<GameSound, string> = {
   [GameSound.WALK]: 'sounds/step.mp3',
   [GameSound.FF7]: 'sounds/ff7.mp3',
   [GameSound.PITDIE]: 'sounds/pitdie.mp3',
+  [GameSound.DEFAULT]: '',
+  [GameSound.LARA]: 'sounds/tombraiderintro.mp3',
+  [GameSound.LINK]: 'sounds/zeldaintro.mp3',
+  [GameSound.LEGOLAS]: 'sounds/legolasintro.mp3',
 };
 
 @Injectable({

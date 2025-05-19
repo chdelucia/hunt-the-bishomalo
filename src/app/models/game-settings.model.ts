@@ -1,3 +1,5 @@
+import { Chars } from "./hunter.model";
+
 export interface GameSettings {
   size: number;
   pits: number;
@@ -5,4 +7,5 @@ export interface GameSettings {
   player: string;
   wumpus: number;
   blackout?: boolean;
+  selectedChar: Chars;
 }

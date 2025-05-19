@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { GameStoreService } from './game-store.service';
-import { Direction, GameSettings } from 'src/app/models';
+import { Chars, Direction, GameSettings } from 'src/app/models';
 
 describe('GameStoreService', () => {
   let service: GameStoreService;
@@ -12,6 +12,7 @@ describe('GameStoreService', () => {
     pits: 2,
     arrows: 3,
     wumpus: 1,
+    selectedChar: Chars.DEFAULT
   };
 
   beforeEach(() => {

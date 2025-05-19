@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameCellComponent } from './game-cell.component';
-import { Cell, Hunter } from 'src/app/models';
+import { Cell, Chars, Hunter } from 'src/app/models';
 
 const mockCell: Cell = { x: 2, y: 3 };
 const mockHunter: Hunter = {
@@ -14,6 +14,14 @@ const mockHunter: Hunter = {
   lives: 4,
   wumpusKilled: 0,
 };
+const mockSettings = {
+  player: 'Chris',
+  size: 4,
+  pits: 2,
+  arrows: 3,
+  wumpus: 1,
+  selectedChar: Chars.DEFAULT
+}
 
 describe('GameCellComponent', () => {
   let component: GameCellComponent;
@@ -29,6 +37,7 @@ describe('GameCellComponent', () => {
 
     fixture.componentRef.setInput('cell', mockCell);
     fixture.componentRef.setInput('hunter', mockHunter);
+    fixture.componentRef.setInput('settings', mockSettings);
 
     fixture.detectChanges();
   });
@@ -53,13 +62,13 @@ describe('GameCellComponent', () => {
   it('should return bowgold.svg if hunter has gold and arrows', () => {
     fixture.componentRef.setInput('hunter', { ...mockHunter, hasGold: true });
     fixture.detectChanges();
-    expect(component.bowImage()).toContain('bowgold.svg');
+    expect(component.bowImage()).toContain('bow.svg');
   });
 
   it('should return bowgoldempty.svg if hunter has gold but no arrows', () => {
     fixture.componentRef.setInput('hunter', { ...mockHunter, hasGold: true, arrows: 0 });
     fixture.detectChanges();
-    expect(component.bowImage()).toContain('bowgoldempty.svg');
+    expect(component.bowImage()).toContain('bowempty.svg');
   });
 
   it('should return bowempty.svg if hunter has no gold and no arrows', () => {

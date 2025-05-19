@@ -1,3 +1,5 @@
+@let chars = gameStore.hunter().chars;
+
 <form [formGroup]="configForm" (ngSubmit)="submitForm()" class="config-form">
   <h2>Configuración</h2>
 
@@ -7,19 +9,26 @@
   </div>
 
   <div class="form-group">
-    <label for="size">Tamaño del tablero:</label>
-    <input id="size" type="number" formControlName="size" min="4" max="20" />
+    <label for="size">Nivel (max 20):</label>
+    <input id="size" type="number" formControlName="size" min="1" max="20" />
   </div>
 
-  <div class="form-group">
-    <label for="pits">Número de pozos:</label>
-    <input id="pits" type="number" formControlName="pits" min="1" />
-  </div>
-
-  <div class="form-group">
-    <label for="arrows">Número de flechas:</label>
-    <input id="arrows" type="number" formControlName="arrows" min="1" />
-  </div>
+  <div class="char-selector">
+    @for(char of chars; track $index) {
+          <img
+            [ngSrc]="$index === 0 ? `chars/${char}/bow.svg` : `chars/${char}/bow.png`"
+            [alt]="char"
+            draggable="false"
+            width="60"
+            height="80"
+            [class.active]="configForm.get('selectedChar')?.value === char"
+            [class.grayscale]="configForm.get('selectedChar')?.value !== char"
+            (click)="selectChar(char)"
+            (keydown)="selectChar(char)"
+            tabindex="0"
+          />
+    }
+    </div>
 
   <button type="submit" [disabled]="configForm.invalid" class="start-game">Jugar</button>
 </form>

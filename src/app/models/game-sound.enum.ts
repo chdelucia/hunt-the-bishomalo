@@ -15,4 +15,8 @@ export enum GameSound {
   WALK = 'walk',
   FF7 = 'ff7',
   PITDIE = 'pitdie',
+  DEFAULT = 'default',
+  LINK = 'link',
+  LARA = 'lara',
+  LEGOLAS = 'legolas'
 }
