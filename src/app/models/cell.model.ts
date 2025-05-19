@@ -6,7 +6,8 @@ export type CellContentType =
   | 'heart'
   | 'extragold'
   | 'extraheart'
-  | 'extrawumpus';
+  | 'extrawumpus'
+  | 'extraarrow';
 
 export interface CellContent {
   type: CellContentType;
@@ -69,6 +70,12 @@ export const CELL_CONTENTS: Record<CellContentType, CellContent> = {
   },
   extraheart: {
     type: 'heart',
+    image: 'boardicons/question.png',
+    alt: 'secret',
+    ariaLabel: 'secret',
+  },
+  extraarrow: {
+    type: 'arrow',
     image: 'boardicons/question.png',
     alt: 'secret',
     ariaLabel: 'secret',
