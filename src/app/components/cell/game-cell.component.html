@@ -1,5 +1,5 @@
 @let hasHunter = isHunterCell(cell())(); @let _hunter = hunter(); @let hasGold = _hunter.hasGold;
-@let isAlive = _hunter.alive; @let content = cell().content;
+@let isAlive = _hunter.alive; @let content = cell().content; @let size = settings().size;
 
 <div class="cell" [class.visited]="cell().visited" [class.hunter]="hasHunter">
   @if ((!isAlive || _hunter.hasWon || showItems) && content) {
@@ -12,8 +12,15 @@
     priority
     fill
   />
-  @if(hasGold){
-  <img class="gold" ngSrc="boardicons/gold.svg" alt="gold" width="20" height="20" />
+
+  @if(hasGold && size < 12){
+  <img
+    class="gold"
+    ngSrc="boardicons/gold.svg"
+    alt="gold"
+    [width]="20 - size / 2"
+    [height]="20 - size / 2"
+  />
   } } @else if (content && content.image === 'question.png') {
   <img [ngSrc]="content.image" [alt]="content.alt" fill />
   }

@@ -185,6 +185,14 @@ export const ACHIEVEMENTS_LIST = [
     svgIcon: `last_breath`,
   },
   {
+    id: 'pentakill',
+    title: 'Pentakill',
+    description: 'Has matado a 5 enemigos seguidos',
+    unlocked: false,
+    rarity: 'legendary',
+    svgIcon: `penta`,
+  },
+  {
     id: 'secret',
     title: 'Secreto oculto 8x8',
     description: 'Encontraste al Jedi, que la fuerza te acompañe!',

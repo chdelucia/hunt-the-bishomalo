@@ -8,11 +8,14 @@
     <input id="player" type="text" formControlName="player" />
   </div>
 
-  <div class="form-group">
+  <div *ngIf="isDevMode" class="form-group">
     <label for="size">Nivel (max 20):</label>
     <input id="size" type="number" formControlName="size" min="1" max="20" />
   </div>
 
+  <div class="form-group">
+    <label for="selectedChar">Seleciona personaje:</label>
+  </div>
   <div class="char-selector">
     @for(char of chars; track $index) {
     <img

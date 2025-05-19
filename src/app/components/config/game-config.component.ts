@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, isDevMode, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { GameEngineService, GameSoundService, GameStoreService } from 'src/app/services';
@@ -18,9 +18,11 @@ export class GameConfigComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly gameSound = inject(GameSoundService);
 
+  isDevMode = isDevMode();
+
   configForm: FormGroup = this.fb.group({
     player: [this.gameStore.prevName, Validators.required],
-    size: [4, [Validators.required, Validators.min(4), Validators.max(20)]],
+    size: [1, [Validators.required, Validators.min(1), Validators.max(20)]],
     pits: [2, [Validators.required, Validators.min(1)]],
     arrows: [1, [Validators.required, Validators.min(1)]],
     selectedChar: [Chars.DEFAULT, [Validators.required]],
@@ -34,6 +36,7 @@ export class GameConfigComponent implements OnInit {
     if (this.configForm.valid) {
       this.gameEngine.initGame({
         ...this.configForm.value,
+        size: this.configForm.value.size + 3,
         blackout: this.applyBlackoutChance(),
       });
     }

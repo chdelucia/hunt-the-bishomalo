@@ -23,4 +23,5 @@ export enum AchieveTypes {
   LASTBREATH = 'last_breath',
   FINAL = 'completionist',
   JEDI = 'secret',
+  PENTA = 'pentakill',
 }

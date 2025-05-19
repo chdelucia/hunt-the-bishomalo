@@ -19,4 +19,5 @@ export enum GameSound {
   LINK = 'link',
   LARA = 'lara',
   LEGOLAS = 'legolas',
+  PENTA = 'penta',
 }

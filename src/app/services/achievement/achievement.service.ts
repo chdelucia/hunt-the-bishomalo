@@ -32,6 +32,10 @@ export class AchievementService {
           this.activeAchievement(AchieveTypes.LASTBREATH);
         }
       }
+      if (hunter.wumpusKilled > 4) {
+        this.activeAchievement(AchieveTypes.PENTA);
+        this.gameSound.playSound(GameSound.PENTA, false);
+      }
     });
   }
 

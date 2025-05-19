@@ -40,7 +40,7 @@ describe('GameConfigComponent', () => {
     const form = component.configForm;
     expect(form.value).toEqual({
       player: 'Player',
-      size: 4,
+      size: 1,
       pits: 2,
       arrows: 1,
       selectedChar: 'default',
@@ -55,7 +55,7 @@ describe('GameConfigComponent', () => {
   it('should call initGame with form values when form is valid', () => {
     component.configForm.setValue({
       player: 'Ana',
-      size: 6,
+      size: 9,
       pits: 2,
       arrows: 3,
       selectedChar: 'default',
@@ -64,7 +64,7 @@ describe('GameConfigComponent', () => {
     component.submitForm();
     expect(gameEngineServiceMock.initGame).toHaveBeenCalledWith({
       player: 'Ana',
-      size: 6,
+      size: 12,
       pits: 2,
       arrows: 3,
       blackout: expect.any(Boolean),
