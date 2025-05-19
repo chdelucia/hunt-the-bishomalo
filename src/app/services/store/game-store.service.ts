@@ -13,7 +13,7 @@ export class GameStoreService {
     alive: true,
     hasGold: false,
     hasWon: false,
-    wumpusKilled: false,
+    wumpusKilled: 0,
     lives: 8,
   });
 
@@ -113,7 +113,7 @@ export class GameStoreService {
       alive: true,
       hasGold: false,
       hasWon: false,
-      wumpusKilled: false,
+      wumpusKilled: 0,
     });
   }
 
@@ -126,7 +126,7 @@ export class GameStoreService {
       alive: true,
       hasGold: false,
       hasWon: false,
-      wumpusKilled: false,
+      wumpusKilled: 0,
       lives: 8,
     });
   }
@@ -134,8 +134,10 @@ export class GameStoreService {
   updateHunter(partial: Partial<Hunter>): void {
     this._hunter.update((hunter) => ({ ...hunter, ...partial }));
 
-    if (!partial.alive || partial.hasWon)
-      this.localStorageService.setValue<Hunter>(this.storageHunterKey, this._hunter());
+    if (!partial.alive || partial.hasWon) {
+      const hunterLo = { ...this._hunter(), hasGold: false, hasWon: false, wumpusKilled: 0 };
+      this.localStorageService.setValue<Hunter>(this.storageHunterKey, hunterLo);
+    }
   }
 
   updateBoard(newBoard: Cell[][]): void {
@@ -153,12 +155,5 @@ export class GameStoreService {
   getCurrentCell(): Cell {
     const { x, y } = this._hunter();
     return this._board()[x][y];
-  }
-
-  markCellVisited(x: number, y: number): void {
-    this._board.update((board) => {
-      board[x][y].visited = true;
-      return [...board];
-    });
   }
 }

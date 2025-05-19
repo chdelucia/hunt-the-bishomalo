@@ -12,6 +12,7 @@ const mockHunter: Hunter = {
   alive: true,
   hasWon: false,
   lives: 4,
+  wumpusKilled: 0,
 };
 
 describe('GameCellComponent', () => {

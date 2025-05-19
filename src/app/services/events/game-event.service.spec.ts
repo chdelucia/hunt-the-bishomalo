@@ -52,7 +52,7 @@ describe('GameEventService', () => {
     arrows: 1,
     hasGold: false,
     hasWon: false,
-    wumpusKilled: false,
+    wumpusKilled: 0,
     inventory: [],
     lives: 8,
   };

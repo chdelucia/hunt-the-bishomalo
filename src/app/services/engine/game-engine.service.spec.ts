@@ -25,7 +25,6 @@ const mockStore = {
   startTime: new Date(),
   getCurrentCell: jest.fn(),
   updateHunter: jest.fn(),
-  markCellVisited: jest.fn(),
   setMessage: jest.fn(),
   updateBoard: jest.fn(),
   setSettings: jest.fn(),
@@ -70,6 +69,7 @@ describe('GameEngineService (with useValue)', () => {
       arrows: 1,
       hasGold: false,
       lives: 7,
+      wumpusKilled: 0,
     });
 
     mockStore.getCurrentCell.mockReturnValue(createMockCell({ x: 0, y: 0 }));
@@ -87,7 +87,6 @@ describe('GameEngineService (with useValue)', () => {
     expect(mockSound.stop).toHaveBeenCalled();
     expect(mockStore.setSettings).toHaveBeenCalledWith(config);
     expect(mockStore.initBoard).toHaveBeenCalled();
-    expect(mockStore.markCellVisited).toHaveBeenCalledWith(0, 0);
   });
 
   it('moveForward: should move and check current cell', () => {
@@ -95,7 +94,6 @@ describe('GameEngineService (with useValue)', () => {
 
     expect(mockSound.stop).toHaveBeenCalled();
     expect(mockStore.updateHunter).toHaveBeenCalledWith({ x: 0, y: 1 });
-    expect(mockStore.markCellVisited).toHaveBeenCalled();
   });
 
   it('turnLeft: rotates direction correctly', () => {
@@ -129,7 +127,6 @@ describe('GameEngineService (with useValue)', () => {
     service.shootArrow();
     expect(mockStore.setMessage).toHaveBeenCalledWith('¡Has matado al Wumpus! ¡Grito!');
     expect(mockSound.stopWumpus).toHaveBeenCalled();
-    expect(mockStore.updateBoard).toHaveBeenCalled();
   });
 
   it('shootArrow: reports miss if Wumpus not found', () => {

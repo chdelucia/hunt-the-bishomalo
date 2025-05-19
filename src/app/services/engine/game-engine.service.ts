@@ -107,8 +107,6 @@ export class GameEngineService {
       if (this.store.message() === '¡Choque contra un muro!') {
         this.achieve.activeAchievement(AchieveTypes.HARDHEAD);
       }
-      //this.store.setMessage(this.getPerceptionMessage() + ' ¡Choque contra un muro!');
-      // Para hacer el juego mas dificil, lo mismo para pick el gold y la arrow
       this.store.setMessage('¡Choque contra un muro!');
       this.sound.playSound(GameSound.HITWALL, false);
       return;
@@ -171,7 +169,7 @@ export class GameEngineService {
   }
 
   private processArrowFlight(): { hitWumpus: boolean; cell: Cell } {
-    const direction = this._hunter().direction;
+    const { direction } = this._hunter();
     let { x, y } = this._hunter();
     const board = this.store.board();
     const size = this.settingsSignal().size;
@@ -182,7 +180,7 @@ export class GameEngineService {
       const cell = board[x][y];
       lastCell = cell;
 
-      if (cell.content?.type === 'wumpus') {
+      if (cell.content === CELL_CONTENTS.wumpus) {
         return { hitWumpus: true, cell };
       }
 
@@ -214,8 +212,8 @@ export class GameEngineService {
     this.store.setMessage('¡Has matado al Wumpus! ¡Grito!');
     this.sound.stopWumpus();
     this.sound.playSound(GameSound.PAIN, false);
-    this.store.updateBoard([...this.store.board()]);
-    this.store.updateHunter({ wumpusKilled: true });
+    const wumpues = this._hunter()?.wumpusKilled;
+    this.store.updateHunter({ wumpusKilled: wumpues + 1 });
     this.achieve.handleWumpusKillAchieve(cell);
     this.getDrop(cell);
   }
@@ -272,9 +270,7 @@ export class GameEngineService {
 
   private checkCurrentCell(): void {
     const cell = this.store.getCurrentCell();
-    const { x, y } = cell;
-
-    this.store.markCellVisited(x, y);
+    cell.visited = true;
 
     if (this.canExitWithVictory()) {
       this.exit();

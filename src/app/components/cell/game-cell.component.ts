@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, isDevMode } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Cell, Hunter } from '../../models';
 
@@ -13,6 +13,7 @@ import { Cell, Hunter } from '../../models';
 export class GameCellComponent {
   cell = input.required<Cell>();
   hunter = input.required<Hunter>();
+  readonly showItems = isDevMode();
 
   readonly isHunterCell = (cell: Cell) =>
     computed(() => {

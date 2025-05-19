@@ -1,5 +1,13 @@
-import { Injectable } from '@angular/core';
-import { AchieveTypes, Cell, GameEventEffectType, GameItem, GameSound, Hunter } from '../../models';
+import { computed, effect, Injectable } from '@angular/core';
+import {
+  AchieveTypes,
+  Cell,
+  CELL_CONTENTS,
+  GameEventEffectType,
+  GameItem,
+  GameSound,
+  Hunter,
+} from '../../models';
 import { GameStoreService } from '../store/game-store.service';
 import { GameSoundService } from '../sound/game-sound.service';
 import { AchievementService } from '../achievement/achievement.service';

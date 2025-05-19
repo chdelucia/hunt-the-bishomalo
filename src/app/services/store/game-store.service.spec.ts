@@ -83,13 +83,6 @@ describe('GameStoreService', () => {
     expect(cell.y).toBe(0);
   });
 
-  it('should mark a cell as visited', () => {
-    service.initBoard();
-    service.markCellVisited(1, 1);
-    const cell = service.board()[1][1];
-    expect(cell.visited).toBe(true);
-  });
-
   it('should store and expose settings and start time', () => {
     service.initBoard();
     expect(service.settings()).toEqual(mockSettings);
