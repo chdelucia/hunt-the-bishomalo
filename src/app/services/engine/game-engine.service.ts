@@ -249,21 +249,9 @@ export class GameEngineService {
   }
 
   private handleVictory(): void {
-    const endTime = new Date();
-    const seconds = this.calculateElapsedSeconds(endTime);
-    const playerName = this._settings().player;
-
     this.store.setMessage(`¡Victoria!`);
     this.store.updateHunter({ hasWon: true });
-    this.leaderBoard.addEntry({ playerName, timeInSeconds: seconds, date: endTime });
     this.playVictorySound();
-    this.achieve.caclVictoryAchieve(seconds);
-  }
-
-  private calculateElapsedSeconds(endTime: Date): number {
-    return this.store.startTime
-      ? Math.round((endTime.getTime() - this.store.startTime.getTime()) / 1000)
-      : 0;
   }
 
   private playVictorySound(): void {

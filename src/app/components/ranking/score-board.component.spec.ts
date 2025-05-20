@@ -8,7 +8,7 @@ const mockLeaderboardData = [
 ];
 
 const mockLeaderboardService = {
-  leaderboard: jest.fn().mockRejectedValue(mockLeaderboardData),
+  _leaderboard: mockLeaderboardData,
 };
 describe('ScoreBoardComponent', () => {
   let component: ScoreboardComponent;

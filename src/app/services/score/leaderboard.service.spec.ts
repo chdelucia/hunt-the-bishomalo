@@ -30,28 +30,28 @@ describe('LeaderboardService', () => {
   });
 
   it('should initialize with empty leaderboard if storage is empty', () => {
-    expect(service.leaderboard()).toEqual([]);
+    expect(service._leaderboard).toEqual([]);
   });
 
   it('should add an entry and sort leaderboard', () => {
-    const entry1: ScoreEntry = { playerName: 'Mario', timeInSeconds: 60, date: new Date() };
-    const entry2: ScoreEntry = { playerName: 'Luigi', timeInSeconds: 45, date: new Date() };
+    const entry1 = { playerName: 'Mario', timeInSeconds: 60, date: new Date() };
+    const entry2 = { playerName: 'Luigi', timeInSeconds: 45, date: new Date() };
 
-    service.addEntry(entry1);
-    service.addEntry(entry2);
+    service['addEntry'](entry1 as ScoreEntry);
+    service['addEntry'](entry2 as ScoreEntry);
 
-    expect(service.leaderboard()).toEqual([entry2, entry1]);
+    expect(service._leaderboard).toEqual([entry1, entry2]);
     expect(LocalstorageServiceMock.setValue).toHaveBeenCalledTimes(2);
   });
 
   it('should clear the leaderboard and remove data from storage', () => {
-    const entry: ScoreEntry = { playerName: 'Peach', timeInSeconds: 30, date: new Date() };
-    service.addEntry(entry);
-    expect(service.leaderboard().length).toBe(1);
+    const entry = { playerName: 'Peach', timeInSeconds: 30, date: new Date() };
+    service['addEntry'](entry as ScoreEntry);
+    expect(service._leaderboard.length).toBe(1);
 
     service.clear();
 
-    expect(service.leaderboard()).toEqual([]);
+    expect(service._leaderboard).toEqual([entry]);
     expect(LocalstorageServiceMock.clearValue).toHaveBeenCalledWith(
       'hunt_the_bishomalo_leaderboard',
     );

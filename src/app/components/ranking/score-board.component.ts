@@ -12,7 +12,7 @@ import { LeaderboardService } from 'src/app/services/score/leaderboard.service';
 })
 export class ScoreboardComponent {
   private readonly leaderboardService = inject(LeaderboardService);
-  readonly leaderboard = this.leaderboardService.leaderboard;
+  readonly leaderboard = this.leaderboardService._leaderboard;
 
   isLeaderboardVisible = signal(false);
 

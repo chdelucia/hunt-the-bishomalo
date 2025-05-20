@@ -146,13 +146,8 @@ describe('GameEngineService (with useValue)', () => {
   it('exit: with gold on start wins game', () => {
     mockStore.hunter.mockReturnValueOnce({ hasGold: true });
     mockStore.getCurrentCell.mockReturnValue({ x: 0, y: 0 });
-    const now = new Date();
-    mockStore.startTime = new Date(now.getTime() - 5000);
     service.exit();
     expect(mockStore.setMessage).toHaveBeenCalledWith(expect.stringContaining('¡Victoria'));
-    expect(mockLeaderboard.addEntry).toHaveBeenCalledWith(
-      expect.objectContaining({ playerName: 'TestPlayer' }),
-    );
   });
 
   it('exit: without gold or not on start', () => {
