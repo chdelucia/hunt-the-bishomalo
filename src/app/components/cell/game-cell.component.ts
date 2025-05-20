@@ -14,6 +14,10 @@ export class GameCellComponent {
   cell = input.required<Cell>();
   hunter = input.required<Hunter>();
   settings = input.required<GameSettings>();
+  hasLantern = computed(
+    () => this.hunter().inventory?.find((x) => x.effect === 'lantern') && this.settings().blackout,
+  );
+  hasShield = computed(() => this.hunter().inventory?.find((x) => x.effect === 'shield'));
 
   readonly showItems = isDevMode();
 

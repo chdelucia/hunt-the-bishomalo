@@ -3,4 +3,7 @@ export enum RouteTypes {
   CHARS = 'chars',
   HOME = 'home',
   JEDI = 'secret',
+  SHOP = 'tienda',
+  CREDITS = 'creditos',
+  RULES = 'intrucciones',
 }

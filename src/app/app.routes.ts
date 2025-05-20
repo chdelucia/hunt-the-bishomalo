@@ -21,6 +21,12 @@ export const appRoutes: Route[] = [
     title: 'Selecciona tu recompensa | Bisho malo',
   },
   {
+    path: RouteTypes.SHOP,
+    canActivate: [secretGuard],
+    loadComponent: () => import('./pages').then((mod) => mod.ShopComponent),
+    title: 'Tienda de objetos | Bisho malo',
+  },
+  {
     path: RouteTypes.HOME,
     loadComponent: () => import('./pages').then((mod) => mod.HuntBishoComponent),
     title: 'Game Bisho malo',

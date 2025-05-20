@@ -1,0 +1,62 @@
+<div class="tienda-container">
+  <div class="tienda-content">
+    <div class="tienda-info-panel">
+      <h1 class="tienda-titulo">Tienda de objetos</h1>
+      <p class="tienda-subtitulo">Compra objetos para ayudarte en el siguiente nivel.</p>
+
+      <div class="monedas-inventario">
+        <div class="monedas-container">
+          <img src="boardicons/gold.svg" alt="oro" />
+          <span class="monedas-texto">{{ gold() }} monedas</span>
+        </div>
+
+        <div class="inventario-container">
+          @for (entry of inventory(); track entry.name) {
+          <div class="inventario-item">
+            <img [src]="'shop/' + entry.icon" alt="a" width="40" height="40" />x1
+          </div>
+          }
+        </div>
+      </div>
+
+      <div class="mensaje-compra">{{ message() }}</div>
+      <div class="next-button">
+        <button class="boton-siguiente" (click)="nextLevel()">Siguiente nivel</button>
+      </div>
+    </div>
+
+    <div class="productos-grid">
+      @for (producto of productos; track producto.name) {
+      <div class="producto-card">
+        <div class="producto-content">
+          <div class="producto-icono-container">
+            <img [src]="'shop/' + producto.icon" alt="a" width="90" height="90" />
+          </div>
+          <div class="producto-info">
+            <p class="producto-name">{{ producto.name }}</p>
+            <p class="producto-descripcion">{{ producto.description }}</p>
+            <div class="producto-footer">
+              <div class="producto-price">
+                <img src="boardicons/gold.svg" alt="oro" />
+                <span class="price-texto">{{ producto.price }}</span>
+              </div>
+              <button class="boton-comprar" (click)="buyProduct(producto)">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    <p class="disclaimer">
+      <small
+        >La tieda no se hace responsable de el mal uso de los objetos. Esque ya tenia los corazones
+        maximos... esque ya tenia una linterna...</small
+      >
+      <b>#haberEstudiao</b>
+    </p>
+
+    <p class="disclaimer">
+      <small>Los objetos no se puede acumular. No devolvemos el dinero.</small>
+    </p>
+  </div>
+</div>

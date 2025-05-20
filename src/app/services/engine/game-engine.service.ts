@@ -54,7 +54,7 @@ export class GameEngineService {
       this.updateLocalStorageWithSettings(config);
     }
     this.store.initBoard();
-    this.checkCurrentCell();
+    this.checkCurrentCell(0, 0);
   }
 
   newGame(): void {
@@ -114,7 +114,7 @@ export class GameEngineService {
     }
 
     this.store.updateHunter({ x: newX, y: newY });
-    this.checkCurrentCell();
+    this.checkCurrentCell(x, y);
   }
 
   private checkSecret(size: number, x: number, y: number): void {
@@ -253,7 +253,7 @@ export class GameEngineService {
     const seconds = this.calculateElapsedSeconds(endTime);
     const playerName = this._settings().player;
 
-    this.store.setMessage(`¡Escapaste en ${seconds} segundos! ¡Victoria!`);
+    this.store.setMessage(`¡Victoria!`);
     this.store.updateHunter({ hasWon: true });
     this.leaderBoard.addEntry({ playerName, timeInSeconds: seconds, date: endTime });
     this.playVictorySound();
@@ -274,7 +274,7 @@ export class GameEngineService {
     }
   }
 
-  private checkCurrentCell(): void {
+  private checkCurrentCell(x: number, y: number): void {
     const cell = this.store.getCurrentCell();
     cell.visited = true;
 
@@ -286,7 +286,7 @@ export class GameEngineService {
     const contentType = cell.content?.type;
 
     if (contentType === 'pit' || contentType === 'wumpus') {
-      const survived = this.playerHasRevive(contentType, cell);
+      const survived = this.playerHasRevive(contentType, cell, { x, y });
       if (survived) return;
     }
 
@@ -299,8 +299,12 @@ export class GameEngineService {
     this.store.setMessage(this.getPerceptionMessage());
   }
 
-  private playerHasRevive(cause: 'pit' | 'wumpus', cell: Cell): boolean {
-    const { hunter } = this.gameEvents.applyEffectsOnDeath(this._hunter(), cause, cell);
+  private playerHasRevive(
+    cause: 'pit' | 'wumpus',
+    cell: Cell,
+    prev: { x: number; y: number },
+  ): boolean {
+    const { hunter } = this.gameEvents.applyEffectsOnDeath(this._hunter(), cause, cell, prev);
     return hunter.alive;
   }
 

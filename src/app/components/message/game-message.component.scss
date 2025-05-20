@@ -2,13 +2,13 @@
   text-align: center;
   font-size: large;
   margin-bottom: 1.5rem;
-  color: #00ff5e;
+  color: var(--color-primary);
 }
 
 .newgame {
   background: none;
   animation: blink 3s step-start infinite;
-  color: #00ffea;
+  color: var(--color-primary);
   font-size: 1.4rem;
   text-align: center;
   margin-top: 20px;

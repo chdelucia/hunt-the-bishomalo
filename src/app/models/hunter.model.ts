@@ -19,6 +19,6 @@ export interface Hunter {
   wumpusKilled: number;
   lives: number;
   inventory?: GameItem[];
-  gold?: number;
+  gold: number;
   chars?: Chars[];
 }

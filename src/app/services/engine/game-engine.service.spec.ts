@@ -149,7 +149,7 @@ describe('GameEngineService (with useValue)', () => {
     const now = new Date();
     mockStore.startTime = new Date(now.getTime() - 5000);
     service.exit();
-    expect(mockStore.setMessage).toHaveBeenCalledWith(expect.stringContaining('¡Escapaste en'));
+    expect(mockStore.setMessage).toHaveBeenCalledWith(expect.stringContaining('¡Victoria'));
     expect(mockLeaderboard.addEntry).toHaveBeenCalledWith(
       expect.objectContaining({ playerName: 'TestPlayer' }),
     );
@@ -169,7 +169,7 @@ describe('GameEngineService (with useValue)', () => {
     mockStore.getCurrentCell.mockReturnValue(
       createMockCell({ content: CELL_CONTENTS.pit, x: 0, y: 0 }),
     );
-    service['checkCurrentCell']();
+    service['checkCurrentCell'](0, 0);
     expect(mockStore.updateHunter).toHaveBeenCalledWith(
       expect.objectContaining({ alive: false, lives: 6 }),
     );
@@ -180,7 +180,7 @@ describe('GameEngineService (with useValue)', () => {
     mockStore.getCurrentCell.mockReturnValue(
       createMockCell({ content: CELL_CONTENTS.wumpus, x: 0, y: 0 }),
     );
-    service['checkCurrentCell']();
+    service['checkCurrentCell'](0, 0);
     expect(mockStore.updateHunter).toHaveBeenCalledWith(
       expect.objectContaining({ alive: false, lives: 6 }),
     );
@@ -191,7 +191,7 @@ describe('GameEngineService (with useValue)', () => {
     mockStore.getCurrentCell.mockReturnValue(
       createMockCell({ content: CELL_CONTENTS.gold, x: 0, y: 0 }),
     );
-    service['checkCurrentCell']();
+    service['checkCurrentCell'](0, 0);
     expect(mockStore.updateHunter).toHaveBeenCalledWith(expect.objectContaining({ hasGold: true }));
     expect(mockStore.setMessage).toHaveBeenCalledWith('Has recogido el oro.');
   });

@@ -1,0 +1,18 @@
+<svg
+          width="48"
+          height="48"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="icono-tiempo"
+        >
+          <path
+            d="M12 2v4m0 16v-4M4 12H2m20 0h-2m-2-6l-1.5 1.5M5.5 18.5L7 17M19.5 5.5L18 7m-12.5 11.5L7 17"
+            stroke="#38bdf8"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <circle cx="12" cy="12" r="7" fill="#38bdf8" fillOpacity="0.6" />
+          <path d="M12 9v3l2 2" stroke="#1e3a8a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>

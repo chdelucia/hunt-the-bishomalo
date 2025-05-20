@@ -1,12 +1,37 @@
+:root {
+  --color-primary: #00ff5e;
+  --color-background: #111827;
+  --color-panel: #1f2937;
+  --color-border: #374151;
+  --color-text: #4ade80;
+  --color-text-secondary: #9ca3af;
+  --color-button: #15803d;
+  --color-button-hover: #16a34a;
+  --color-button-next: #1d4ed8;
+  --color-button-next-hover: #2563eb;
+  --color-yellow: #facc15;
+  --color-red: #ef4444;
+  --color-blue: #60a5fa;
+  --color-purple: #a855f7;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body,
 html {
   margin: 0;
   padding: 0;
   background-color: #1a202c;
   font-family: 'Press Start 2P', monospace;
+  image-rendering: pixelated;
 }
 
 button {
+  font-family: 'Press Start 2P', monospace;
   width: fit-content;
   padding: 0.75rem;
   font-size: 1rem;
@@ -14,7 +39,6 @@ button {
   background-color: #007bff;
   color: white;
   border: none;
-  border-radius: 6px;
 
   &:hover {
     cursor: pointer;

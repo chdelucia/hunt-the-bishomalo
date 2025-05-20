@@ -21,4 +21,6 @@ export enum GameSound {
   LEGOLAS = 'legolas',
   PENTA = 'penta',
   FINISH = 'finish',
+  SHIELD = 'shield',
+  REWIND = 'rewind',
 }

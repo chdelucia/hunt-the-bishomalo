@@ -32,7 +32,11 @@ export class GameMessageComponent {
   }
 
   nextLevel(): void {
-    this.gameEngine.nextLevel();
+    this.router.navigate([RouteTypes.SHOP], {
+      state: {
+        fromSecretPath: true,
+      },
+    });
   }
 
   newGame(): void {

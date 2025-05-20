@@ -47,3 +47,14 @@
 .rotation-270 {
   transform: rotate(270deg);
 }
+
+.lantern {
+  z-index: 9;
+  box-shadow: 0 0 12px 4px rgba(255, 255, 0, 0.8);
+  border-radius: 50%;
+}
+
+.shieldx {
+  box-shadow: 0 0 12px 4px rgba(0, 200, 255, 0.8);
+  border-radius: 50%;
+}

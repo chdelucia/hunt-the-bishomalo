@@ -55,37 +55,36 @@ describe('GameEventService', () => {
     wumpusKilled: 0,
     inventory: [],
     lives: 8,
+    gold: 0,
   };
 
   it('should revive hunter with revive item', () => {
     const hunter: Hunter = {
       ...baseHunter,
-      inventory: [{ name: 'vida-extra', image: '', effect: 'revive' }],
+      inventory: [{ name: 'vida-extra', icon: '', effect: 'rewind' }],
     };
 
-    const result = service.applyEffectsOnDeath(hunter, 'pit', {} as Cell);
+    const result = service.applyEffectsOnDeath(hunter, 'pit', {} as Cell, { x: 1, y: 0 });
     expect(result.hunter.alive).toBe(true);
-    expect(result.hunter.inventory).toHaveLength(0);
-    expect(result.message).toBe('¡Usaste una vida extra y volviste a la vida!');
+    expect(result.message).toContain('¡Rebobinaste');
   });
 
   it('should shield hunter if killed by wumpus and has shield', () => {
     const hunter: Hunter = {
       ...baseHunter,
-      inventory: [{ name: 'escudo', image: '', effect: 'shield' }],
+      inventory: [{ name: 'escudo', icon: '', effect: 'shield' }],
     };
 
-    const result = service.applyEffectsOnDeath(hunter, 'wumpus', {} as Cell);
+    const result = service.applyEffectsOnDeath(hunter, 'wumpus', {} as Cell, { x: 1, y: 0 });
     expect(result.hunter.alive).toBe(true);
-    expect(result.hunter.inventory).toHaveLength(0);
-    expect(result.message).toBe('¡Tu escudo bloqueó al Wumpus!');
+    expect(result.message).toContain('¡Tu escudo bloqueó al Wumpus!');
   });
 
   it('should apply extra arrow and update hunter', () => {
     const hunter: Hunter = {
       ...baseHunter,
       alive: true,
-      inventory: [{ name: 'flecha-extra', image: '', effect: 'arrow' }],
+      inventory: [{ name: 'flecha-extra', icon: '', effect: 'arrow' }],
     };
 
     service.applyEffectByCellContent(hunter, {
@@ -107,7 +106,7 @@ describe('GameEventService', () => {
       ...baseHunter,
       alive: true,
       lives: 1,
-      inventory: [{ name: 'extra-heart', image: '', effect: 'heart' }],
+      inventory: [{ name: 'extra-heart', icon: '', effect: 'heart' }],
     };
 
     service.applyEffectByCellContent(hunter, {
@@ -121,19 +120,6 @@ describe('GameEventService', () => {
     expect(mockSetMessage).toHaveBeenCalledWith('Has conseguido una vida extra.');
   });
 
-  it('should apply double gold and remove item', () => {
-    const hunter: Hunter = {
-      ...baseHunter,
-      hasGold: true,
-      alive: true,
-      inventory: [{ name: 'oro-doble', image: '', effect: 'double-gold' }],
-    };
-
-    const result = service.applyEffectByItemName(hunter, 'oro-doble', { x: 0, y: 0 });
-    expect(result.hunter.inventory).toHaveLength(0);
-    expect(result.message).toBe('¡Tu oro se duplicó!');
-  });
-
   it('should return original hunter if no item is applicable', () => {
     const hunter: Hunter = {
       ...baseHunter,
@@ -141,7 +127,7 @@ describe('GameEventService', () => {
       inventory: [],
     };
 
-    const result = service.applyEffectsOnDeath(hunter, 'wumpus', {} as Cell);
+    const result = service.applyEffectsOnDeath(hunter, 'wumpus', {} as Cell, { x: 1, y: 0 });
     expect(result.hunter.alive).toBe(false);
     expect(result.message).toBeUndefined();
   });

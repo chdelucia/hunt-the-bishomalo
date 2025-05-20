@@ -1,0 +1,17 @@
+<svg
+          width="48"
+          height="48"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="icono-linterna"
+        >
+          <path
+            d="M9 21h6m-3-8v8M7 13h10l-3.5-10h-3L7 13z"
+            stroke="#fde047"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="#fde047"
+          />
+        </svg>

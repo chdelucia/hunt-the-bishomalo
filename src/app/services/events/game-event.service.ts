@@ -9,7 +9,7 @@ type CauseOfDeath = 'pit' | 'wumpus';
 export interface GameEventEffect {
   type: GameEventEffectType;
   itemName: string;
-  apply: (hunter: Hunter, cell: Cell) => Hunter;
+  apply: (hunter: Hunter, cell: Cell, prev?: { x: number; y: number }) => Hunter;
   canApply: (hunter: Hunter, cause?: CauseOfDeath) => boolean;
   message: string;
 }
@@ -18,41 +18,39 @@ export interface GameEventEffect {
 export class GameEventService {
   private readonly effects: GameEventEffect[] = [
     {
-      type: 'revive',
-      itemName: 'vida-extra',
-      canApply: (hunter) => !hunter.alive && this.hasItem(hunter, 'vida-extra'),
-      apply: (hunter) => ({
-        ...hunter,
-        alive: true,
-        inventory: this.removeItemByName(hunter, 'vida-extra'),
-      }),
-      message: '¡Usaste una vida extra y volviste a la vida!',
-    },
-    {
       type: 'rewind',
       itemName: 'rebobinar',
-      canApply: (hunter, cause) =>
-        !hunter.alive && cause === 'pit' && this.hasItem(hunter, 'rebobinar'),
-      apply: (hunter, prev) => ({
-        ...hunter,
-        alive: true,
-        x: prev.x,
-        y: prev.y,
-        inventory: this.removeItemByName(hunter, 'rebobinar'),
-      }),
+      canApply: (hunter, cause) => cause === 'pit' && this.hasItem(hunter, 'rewind'),
+      apply: (hunter, cell, prev) => {
+        this.gameSound.playSound(GameSound.REWIND, false);
+        this.gameStore.updateHunter({
+          ...hunter,
+          alive: true,
+          x: prev?.x,
+          y: prev?.y,
+          inventory: this.removeItemByName(hunter, 'rewind'),
+        });
+
+        return { ...hunter, alive: true };
+      },
       message: '¡Rebobinaste el tiempo y volviste a tu posición anterior!',
     },
     {
       type: 'shield',
       itemName: 'escudo',
-      canApply: (hunter, cause) =>
-        !hunter.alive && cause === 'wumpus' && this.hasItem(hunter, 'escudo'),
-      apply: (hunter) => ({
-        ...hunter,
-        alive: true,
-        inventory: this.removeItemByName(hunter, 'escudo'),
-      }),
-      message: '¡Tu escudo bloqueó al Wumpus!',
+      canApply: (hunter, cause) => cause === 'wumpus' && this.hasItem(hunter, 'shield'),
+      apply: (hunter, cell, prev) => {
+        this.gameSound.playSound(GameSound.SHIELD, false);
+        this.gameStore.updateHunter({
+          ...hunter,
+          alive: true,
+          x: prev?.x,
+          y: prev?.y,
+          inventory: this.removeItemByName(hunter, 'shield'),
+        });
+        return { ...hunter, alive: true };
+      },
+      message: '¡Tu escudo bloqueó al Wumpus! pero se rompió.',
     },
     {
       type: 'arrow',
@@ -116,16 +114,6 @@ export class GameEventService {
       },
       message: '¡El Wumpus te devoró!',
     },
-    {
-      type: 'double-gold',
-      itemName: 'oro-doble',
-      canApply: (hunter) => hunter.hasGold && this.hasItem(hunter, 'oro-doble'),
-      apply: (hunter) => ({
-        ...hunter,
-        inventory: this.removeItemByName(hunter, 'oro-doble'),
-      }),
-      message: '¡Tu oro se duplicó!',
-    },
   ];
 
   constructor(
@@ -138,10 +126,12 @@ export class GameEventService {
     hunter: Hunter,
     cause: CauseOfDeath,
     cell: Cell,
+    prev: { x: number; y: number },
   ): { hunter: Hunter; message?: string } {
     for (const effect of this.effects) {
       if (effect.canApply(hunter, cause)) {
-        const updated = effect.apply(hunter, cell);
+        const updated = effect.apply(hunter, cell, prev);
+        this.gameStore.setMessage(effect.message);
         return { hunter: updated, message: effect.message };
       }
     }
@@ -172,14 +162,14 @@ export class GameEventService {
   }
 
   private hasItem(hunter: Hunter, name: string): boolean {
-    return hunter.inventory?.some((item) => item.name === name) ?? false;
+    return hunter.inventory?.some((item) => item.effect === name) ?? false;
   }
 
   private removeItemByName(hunter: Hunter, name: string): GameItem[] {
     let found = false;
     const result = [];
     for (const item of hunter.inventory || []) {
-      if (!found && item.name === name) {
+      if (!found && item.effect === name) {
         found = true;
         continue;
       }
@@ -204,7 +194,7 @@ export class GameEventService {
     this.gameStore.updateHunter({
       ...hunter,
       hasGold: true,
-      gold: (hunter.gold || 0) + 20,
+      gold: (hunter.gold || 0) + 40,
     });
     cell.content = undefined;
     return hunter;

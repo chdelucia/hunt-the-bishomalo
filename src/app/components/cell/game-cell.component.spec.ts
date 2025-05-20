@@ -13,6 +13,7 @@ const mockHunter: Hunter = {
   hasWon: false,
   lives: 4,
   wumpusKilled: 0,
+  gold: 0,
 };
 const mockSettings = {
   player: 'Chris',
