@@ -104,5 +104,4 @@ describe('GameMessageComponent', () => {
     const button = fixture.nativeElement.querySelector('button.newgame');
     expect(button?.textContent).toContain('completado todos los niveles');
   });
-
 });

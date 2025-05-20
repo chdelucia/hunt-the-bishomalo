@@ -12,6 +12,7 @@ const gameEngineMock = {
 
 const gameSoundMock = {
   playSound: jest.fn(),
+  stop: jest.fn(),
 };
 describe('EndCreditsComponent', () => {
   let component: EndCreditsComponent;
@@ -20,9 +21,11 @@ describe('EndCreditsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [EndCreditsComponent, RouterModule.forRoot([])],
-      providers: [{provide: GameEngineService, useValue: gameEngineMock},
-        {provide: GameSoundService, useValue: gameSoundMock}],
-      schemas: [NO_ERRORS_SCHEMA]
+      providers: [
+        { provide: GameEngineService, useValue: gameEngineMock },
+        { provide: GameSoundService, useValue: gameSoundMock },
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(EndCreditsComponent);

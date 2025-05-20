@@ -53,9 +53,9 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
   private animationFrameId = 0;
 
   constructor(
-    private readonly router: Router, 
+    private readonly router: Router,
     private readonly gameEngine: GameEngineService,
-    private readonly gameSound: GameSoundService
+    private readonly gameSound: GameSoundService,
   ) {
     this.startAutoScroll();
   }
