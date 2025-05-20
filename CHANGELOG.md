@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.6.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v2.5.1...v2.6.0) (2025-05-20)
+
+
+### Features
+
+* **score:** add new system of player score ([2713ca5](https://github.com/chdelucia/hunt-the-bishomalo/commit/2713ca506993b63e204a6010d01904ed08e7e870))
+
 ### [2.5.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v2.5.0...v2.5.1) (2025-05-20)
 
 
