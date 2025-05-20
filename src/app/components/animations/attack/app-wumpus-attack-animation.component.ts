@@ -7,8 +7,10 @@ import {
   signal,
   computed,
   OnDestroy,
+  inject,
 } from '@angular/core';
 import { Subject, takeUntil, timer } from 'rxjs';
+import { GameStoreService } from 'src/app/services';
 
 @Component({
   selector: 'app-wumpus-attack-animation',
@@ -23,6 +25,7 @@ export class AppWumpusAttackAnimationComponent implements OnInit, OnDestroy {
   closeAnimation = output<void>();
 
   private readonly destroy$ = new Subject<void>();
+  readonly gameStore = inject(GameStoreService);
 
   ngOnInit(): void {
     const steps = [500, 1000, 1500, 2000, 3500];

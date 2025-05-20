@@ -1,3 +1,4 @@
+@let selected = this.gameStore.settings().selectedChar;
 <div class="overlay">
   <div class="animation step-{{ step() }}">
     <div
@@ -6,31 +7,12 @@
       [style.opacity]="step() < 5 ? 1 : 0.3"
       [style.transform]="'translateY(-50%)' + (step() >= 4 ? ' rotate(15deg)' : '')"
     >
-      <svg
-        viewBox="0 0 24 24"
-        width="80"
-        height="80"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <circle cx="12" cy="12" r="10" fill="#4299e1" />
-        <circle cx="12" cy="10" r="4" fill="#f6e05e" />
-        <rect x="8" y="6" width="8" height="2" fill="#805ad5" rx="1" />
-        <rect x="9" y="14" width="2" height="6" fill="#f6e05e" />
-        <rect x="13" y="14" width="2" height="6" fill="#f6e05e" />
-        <ng-container *ngIf="step() >= 4">
-          <path d="M8 8 L 12 12 M 12 8 L 8 12" stroke="white" strokeWidth="1.5" />
-          <path d="M16 8 L 20 12 M 20 8 L 16 12" stroke="white" strokeWidth="1.5" />
-          <path d="M8 16 C 10 14, 14 14, 16 16" stroke="white" strokeWidth="1.5" />
-          <circle cx="7" cy="7" r="1.5" fill="#e53e3e" />
-          <circle cx="17" cy="9" r="1" fill="#e53e3e" />
-          <circle cx="14" cy="5" r="1.2" fill="#e53e3e" />
-          <path d="M6 10 L 4 12" stroke="#e53e3e" strokeWidth="2" />
-          <path d="M18 10 L 20 12" stroke="#e53e3e" strokeWidth="2" />
-          <path d="M12 4 L 12 2" stroke="#e53e3e" strokeWidth="2" />
-          <path d="M10 18 L 8 20" stroke="#e53e3e" strokeWidth="2" />
-        </ng-container>
-      </svg>
+      @if(selected === 'default'){
+        <img [src]="'chars/'+selected+'/bow.svg'" alt="bow">
+      }@else{
+        <img [src]="'chars/'+selected+'/bow.png'" alt="char">
+      }
+      
     </div>
 
     <div class="wumpus" [style.transform]="'translateY(-50%) scale(' + getWumpusScale() + ')'">
