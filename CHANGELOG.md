@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.15.0...v2.1.0) (2025-05-20)
+
+
+### Features
+
+* **shopping:** add shop system ([fe789c5](https://github.com/chdelucia/hunt-the-bishomalo/commit/fe789c593899ad66a7e54d5f98db624d9f6e4e40))
+
 ## [2.0.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.14.0...v2.0.0) (2025-05-20)
 ## [1.15.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.14.0...v1.15.0) (2025-05-20)
 
