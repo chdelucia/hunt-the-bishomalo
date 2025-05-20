@@ -32,6 +32,11 @@ export const appRoutes: Route[] = [
     title: 'Creditos por Chris Heredia | Bisho malo',
   },
   {
+    path: RouteTypes.RULES,
+    loadComponent: () => import('./pages').then((mod) => mod.InstructionsComponent),
+    title: 'Instrucciones | Bisho malo',
+  },
+  {
     path: RouteTypes.HOME,
     loadComponent: () => import('./pages').then((mod) => mod.HuntBishoComponent),
     title: 'Game Bisho malo',

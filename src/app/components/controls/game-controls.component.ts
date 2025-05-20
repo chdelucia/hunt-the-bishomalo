@@ -10,7 +10,8 @@ import {
 import { CommonModule } from '@angular/common';
 import { GameEngineService } from 'src/app/services/engine/game-engine.service';
 import { AchievementService } from 'src/app/services/achievement/achievement.service';
-import { AchieveTypes } from 'src/app/models';
+import { AchieveTypes, RouteTypes } from 'src/app/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game-controls',
@@ -25,6 +26,8 @@ export class GameControlsComponent {
 
   private readonly game = inject(GameEngineService);
   private readonly achieve = inject(AchievementService);
+  private readonly router = inject(Router);
+
   readonly arrows = input.required<number>();
 
   private readonly keyActionMap: Record<string, () => void> = {
@@ -47,6 +50,7 @@ export class GameControlsComponent {
       this.achieve.activeAchievement(AchieveTypes.GAMER);
     },
     KeyN: () => this.game.newGame(),
+    KeyI: () => this.router.navigate([RouteTypes.RULES]),
   };
 
   @HostListener('window:keydown', ['$event'])
