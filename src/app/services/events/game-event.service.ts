@@ -204,6 +204,7 @@ export class GameEventService {
     this.gameStore.updateHunter({
       ...hunter,
       hasGold: true,
+      gold: (hunter.gold || 0) + 20,
     });
     cell.content = undefined;
     return hunter;

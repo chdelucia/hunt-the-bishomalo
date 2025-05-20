@@ -1,0 +1,183 @@
+.error-panel {
+  margin-bottom: 2rem;
+  border-radius: 2px;
+  text-align: center;
+  color: #cdcbcb;
+  padding-top: 6rem;
+}
+
+.error-animation {
+  position: relative;
+  height: 180px;
+  margin-bottom: 2rem;
+}
+
+.bishomalo-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: flotar 3s ease-in-out infinite;
+}
+
+.numeros-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.numero {
+  font-size: 5rem;
+  text-shadow: 3px 3px 0 #cacaca;
+  animation: pulsar 2s ease-in-out infinite;
+}
+
+.numero:nth-child(2) {
+  animation-delay: 0.3s;
+}
+
+.numero:nth-child(3) {
+  animation-delay: 0.6s;
+}
+
+.jugador-container {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: temblar 0.5s ease-in-out infinite;
+}
+
+@keyframes flotar {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-15px);
+  }
+}
+
+@keyframes pulsar {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes temblar {
+  0%,
+  100% {
+    transform: translateX(-50%) rotate(0);
+  }
+  25% {
+    transform: translateX(-52%) rotate(-5deg);
+  }
+  75% {
+    transform: translateX(-48%) rotate(5deg);
+  }
+}
+
+.bishomalo-ojos {
+  animation: parpadear 2s ease-in-out infinite;
+}
+
+.bishomalo-boca {
+  animation: masticar 1s ease-in-out infinite;
+}
+
+@keyframes parpadear {
+  0%,
+  45%,
+  55%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes masticar {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.5);
+  }
+}
+
+.jugador-asustado {
+  animation: asustado 0.3s ease-in-out infinite;
+}
+
+@keyframes asustado {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.5);
+  }
+}
+
+.error-titulo {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.error-mensaje {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.error-submensaje {
+  margin-bottom: 2rem;
+}
+
+.error-opciones {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.boton-error {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 1.75rem 1.5rem;
+  border-radius: 2px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-decoration: none;
+}
+
+.boton-error:hover {
+  background-color: rgb(14, 107, 28);
+}
+
+@media (max-width: 768px) {
+  .error-opciones {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .error-stats {
+    flex-direction: column;
+    align-items: center;
+  }
+}
