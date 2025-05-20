@@ -19,11 +19,14 @@
         </div>
       </div>
 
-      <div class="mensaje-compra">{{ message() }}</div>
       <div class="next-button">
         <button class="boton-siguiente" (click)="nextLevel()">Siguiente nivel</button>
       </div>
     </div>
+
+    @if(gold() < 60) {
+    <p class="disclaimer">No tienes ni pa pipas sal de aqui antes que me arrepienta.</p>
+    }@else{
 
     <div class="productos-grid">
       @for (producto of productos; track producto.name) {
@@ -58,5 +61,10 @@
     <p class="disclaimer">
       <small>Los objetos no se puede acumular. No devolvemos el dinero.</small>
     </p>
+    }
   </div>
 </div>
+
+@if(message()){
+<div class="mensaje-compra">{{ message() }}</div>
+}
