@@ -36,7 +36,7 @@
   font-size: 2rem;
   margin-bottom: 1rem;
   letter-spacing: 0.05em;
-  color: var(--color-primary)
+  color: var(--color-primary);
 }
 
 .instrucciones-subtitulo {
@@ -185,7 +185,7 @@
 }
 
 .consejos-lista li::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 0.5rem;
@@ -295,9 +295,9 @@
   top: 4px;
 }
 
-.notas-lista{
+.notas-lista {
   color: var(--color-text-secondary);
-  li{
+  li {
     margin-top: 1rem;
   }
 }
