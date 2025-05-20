@@ -6,6 +6,7 @@ import { GameEngineService, GameSoundService } from 'src/app/services';
 
 @Component({
   selector: 'app-end-credits',
+  standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './end-credits.component.html',
   styleUrl: './end-credits.component.scss',
@@ -13,6 +14,7 @@ import { GameEngineService, GameSoundService } from 'src/app/services';
 export class EndCreditsComponent implements OnInit, OnDestroy {
   scrollPosition = signal(0);
   autoScroll = signal(true);
+  readonly MAX_SCROLL_POSITION = 2700;
 
   roles = signal<string[]>([
     'Programador Principal',
@@ -36,13 +38,7 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
     'Maestro del Tiempo',
     'Guardián del Oro',
     'Portador de la Suerte',
-    'Ojo que Todo lo Ve',
-    'Maestro del Teletransporte',
-    'Señor de la Congelación',
     'Experto en Miniaturización',
-    'Criador de Mascotas Misteriosas',
-    'Catador de Café',
-    'Repartidor de Pizza',
     'Contador de Píxeles',
     'Especialista en Errores 404',
     'Redactor de Créditos',
@@ -67,7 +63,15 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
       this.lastTime = time;
 
       if (this.autoScroll()) {
-        this.scrollPosition.update((p) => p + delta * 0.05);
+        const nextScroll = this.scrollPosition() + delta * 0.05;
+        if (nextScroll >= this.MAX_SCROLL_POSITION) {
+          this.scrollPosition.set(this.MAX_SCROLL_POSITION);
+          this.autoScroll.set(false);
+          this.gameSound.stop();
+          return;
+        } else {
+          this.scrollPosition.set(nextScroll);
+        }
       }
 
       this.animationFrameId = requestAnimationFrame(animate);
@@ -86,7 +90,7 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
 
   toggleAutoScroll(): void {
     this.autoScroll.set(!this.autoScroll());
-    this.gameSound.stop();
+    if (!this.autoScroll()) this.gameSound.stop();
   }
 
   resetScroll(): void {
