@@ -1,16 +1,16 @@
-import { Component, OnDestroy, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { RouteTypes } from 'src/app/models';
-import { GameEngineService } from 'src/app/services';
+import { GameSound, RouteTypes } from 'src/app/models';
+import { GameEngineService, GameSoundService } from 'src/app/services';
 
 @Component({
   selector: 'app-end-credits',
   imports: [CommonModule, RouterModule],
   templateUrl: './end-credits.component.html',
-  styleUrl: './end-credits.component.css',
+  styleUrl: './end-credits.component.scss',
 })
-export class EndCreditsComponent implements OnDestroy {
+export class EndCreditsComponent implements OnInit, OnDestroy {
   scrollPosition = signal(0);
   autoScroll = signal(true);
 
@@ -52,7 +52,11 @@ export class EndCreditsComponent implements OnDestroy {
   private lastTime = 0;
   private animationFrameId = 0;
 
-  constructor(private readonly router: Router, private readonly gameEngine: GameEngineService) {
+  constructor(
+    private readonly router: Router, 
+    private readonly gameEngine: GameEngineService,
+    private readonly gameSound: GameSoundService
+  ) {
     this.startAutoScroll();
   }
 
@@ -72,17 +76,23 @@ export class EndCreditsComponent implements OnDestroy {
     this.animationFrameId = requestAnimationFrame(animate);
   }
 
+  ngOnInit(): void {
+    this.gameSound.playSound(GameSound.GOKU, false);
+  }
+
   ngOnDestroy(): void {
     cancelAnimationFrame(this.animationFrameId);
   }
 
   toggleAutoScroll(): void {
     this.autoScroll.set(!this.autoScroll());
+    this.gameSound.stop();
   }
 
   resetScroll(): void {
     this.scrollPosition.set(0);
     this.autoScroll.set(true);
+    this.gameSound.playSound(GameSound.GOKU, false);
   }
 
   newGame(): void {

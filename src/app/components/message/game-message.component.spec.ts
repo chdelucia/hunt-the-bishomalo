@@ -105,8 +105,4 @@ describe('GameMessageComponent', () => {
     expect(button?.textContent).toContain('completado todos los niveles');
   });
 
-  it('should call new Game', () => {
-    component.newGame();
-    expect(gameEngineMock.newGame).toHaveBeenCalled();
-  });
 });

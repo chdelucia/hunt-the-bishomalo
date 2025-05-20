@@ -40,7 +40,7 @@ export class GameMessageComponent {
   }
 
   newGame(): void {
-    this.gameEngine.newGame();
+    this.router.navigate([RouteTypes.CREDITS]);
   }
 
   goToprizeScreen(): void {

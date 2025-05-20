@@ -1,7 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EndCreditsComponent } from './end-credits.component';
 import { RouterModule } from '@angular/router';
+import { GameEngineService, GameSoundService } from 'src/app/services';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
+const gameEngineMock = {
+  initGame: jest.fn(),
+  newGame: jest.fn(),
+  nextLevel: jest.fn(),
+};
+
+const gameSoundMock = {
+  playSound: jest.fn(),
+};
 describe('EndCreditsComponent', () => {
   let component: EndCreditsComponent;
   let fixture: ComponentFixture<EndCreditsComponent>;
@@ -9,6 +20,9 @@ describe('EndCreditsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [EndCreditsComponent, RouterModule.forRoot([])],
+      providers: [{provide: GameEngineService, useValue: gameEngineMock},
+        {provide: GameSoundService, useValue: gameSoundMock}],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
 
     fixture = TestBed.createComponent(EndCreditsComponent);

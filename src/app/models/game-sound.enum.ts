@@ -23,4 +23,5 @@ export enum GameSound {
   FINISH = 'finish',
   SHIELD = 'shield',
   REWIND = 'rewind',
+  GOKU = 'goku'
 }

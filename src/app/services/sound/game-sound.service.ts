@@ -26,6 +26,7 @@ const SOUND_PATHS: Record<GameSound, string> = {
   [GameSound.FINISH]: 'sounds/ending.mp3',
   [GameSound.REWIND]: 'sounds/rewind.mp3',
   [GameSound.SHIELD]: 'sounds/shield.mp3',
+  [GameSound.GOKU]: 'sounds/goku.mp3',
 };
 
 @Injectable({

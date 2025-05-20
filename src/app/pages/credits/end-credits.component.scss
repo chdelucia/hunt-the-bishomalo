@@ -39,6 +39,9 @@
   font-family: inherit;
   cursor: pointer;
   transition: background-color 0.2s;
+  &.red{
+    background-color: var(--color-red);
+  }
 }
 
 .boton-creditos:hover {
