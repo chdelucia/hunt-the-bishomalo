@@ -14,7 +14,7 @@ import { GameEngineService, GameSoundService } from 'src/app/services';
 export class EndCreditsComponent implements OnInit, OnDestroy {
   scrollPosition = signal(0);
   autoScroll = signal(true);
-  readonly MAX_SCROLL_POSITION = 2700;
+  readonly MAX_SCROLL_POSITION = 2800;
 
   roles = signal<string[]>([
     'Programador Principal',
