@@ -50,7 +50,7 @@ describe('EndCreditsComponent', () => {
 
   it('todos los roles deberían ser strings no vacíos', () => {
     const roles = component.roles();
-    roles.forEach(role => {
+    roles.forEach((role) => {
       expect(typeof role).toBe('string');
       expect(role.length).toBeGreaterThan(0);
     });

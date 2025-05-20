@@ -14,7 +14,7 @@ export class EndCreditsComponent implements OnDestroy {
   scrollPosition = signal(0);
   autoScroll = signal(true);
 
-    roles = signal<string[]>([
+  roles = signal<string[]>([
     'Programador Principal',
     'Diseñador de Juego',
     'Artista de Pixel Art',
@@ -46,16 +46,13 @@ export class EndCreditsComponent implements OnDestroy {
     'Contador de Píxeles',
     'Especialista en Errores 404',
     'Redactor de Créditos',
-    'Agradecimientos Especiales'
+    'Agradecimientos Especiales',
   ]);
 
   private lastTime = 0;
   private animationFrameId = 0;
 
-  constructor(
-    private readonly router: Router, 
-    private readonly gameEngine: GameEngineService
-  ) {
+  constructor(private readonly router: Router, private readonly gameEngine: GameEngineService) {
     this.startAutoScroll();
   }
 
@@ -66,7 +63,7 @@ export class EndCreditsComponent implements OnDestroy {
       this.lastTime = time;
 
       if (this.autoScroll()) {
-        this.scrollPosition.update(p => p + delta * 0.05);
+        this.scrollPosition.update((p) => p + delta * 0.05);
       }
 
       this.animationFrameId = requestAnimationFrame(animate);
@@ -90,6 +87,6 @@ export class EndCreditsComponent implements OnDestroy {
 
   newGame(): void {
     this.gameEngine.newGame();
-    this.router.navigateByUrl(RouteTypes.HOME); 
+    this.router.navigateByUrl(RouteTypes.HOME);
   }
 }

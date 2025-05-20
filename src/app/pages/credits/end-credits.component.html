@@ -1,79 +1,89 @@
+<div class="creditos-panel">
+  <div class="creditos-titulo-container">
+    <h1 class="creditos-titulo">Créditos</h1>
+    <p class="creditos-subtitulo">Las increíbles personas detrás de Hunt the Bishomalo</p>
+  </div>
 
+  <div class="creditos-controles">
+    <button class="boton-creditos" (click)="toggleAutoScroll()">
+      {{ autoScroll() ? 'Pausar' : 'Reanudar' }}
+    </button>
+    <button class="boton-creditos" (click)="resetScroll()">Reiniciar</button>
+    <button class="boton-creditos" (click)="newGame()">Saltar creditos</button>
+  </div>
 
-    <div class="creditos-panel">
-      <div class="creditos-titulo-container">
-        <h1 class="creditos-titulo">Créditos</h1>
-        <p class="creditos-subtitulo">Las increíbles personas detrás de Hunt the Bishomalo</p>
+  <div class="creditos-ventana">
+    <div class="creditos-contenido" [style.transform]="'translateY(-' + scrollPosition() + 'px)'">
+      <div class="creditos-seccion">
+        <h2 class="creditos-rol">Director Ejecutivo</h2>
+        <p class="creditos-nombre">Christian Heredia</p>
       </div>
 
-      <div class="creditos-controles">
-        <button class="boton-creditos" (click)="toggleAutoScroll()">
-          {{ autoScroll() ? 'Pausar' : 'Reanudar' }}
-        </button>
-        <button class="boton-creditos" (click)="resetScroll()">
-          Reiniciar
-        </button>
-        <button class="boton-creditos" (click)="newGame()">
-          Saltar creditos
-        </button>
+      <ng-container *ngFor="let rol of roles()">
+        <div class="creditos-seccion">
+          <h2 class="creditos-rol">{{ rol }}</h2>
+          <p class="creditos-nombre">Christian Heredia</p>
+        </div>
+      </ng-container>
+
+      <div class="creditos-seccion">
+        <h2 class="creditos-rol">Y por supuesto...</h2>
+        <p class="creditos-nombre creditos-especial">Christian Heredia</p>
       </div>
 
-      <div class="creditos-ventana">
-        <div class="creditos-contenido" [style.transform]="'translateY(-' + scrollPosition() + 'px)'">
-          <div class="creditos-seccion">
-            <h2 class="creditos-rol">Director Ejecutivo</h2>
-            <p class="creditos-nombre">Christian Heredia</p>
-          </div>
-
-          <ng-container *ngFor="let rol of roles()">
-            <div class="creditos-seccion">
-              <h2 class="creditos-rol">{{ rol }}</h2>
-              <p class="creditos-nombre">Christian Heredia</p>
-            </div>
-          </ng-container>
-
-          <div class="creditos-seccion">
-            <h2 class="creditos-rol">Y por supuesto...</h2>
-            <p class="creditos-nombre creditos-especial">Christian Heredia</p>
-          </div>
-
-          <div class="creditos-seccion">
-            <p class="creditos-final">
-              Ningún Bishomalo fue dañado durante el desarrollo de este juego.
-            </p>
-            <p class="creditos-final">
-              Excepto aquellos que se encontraron con Christian Heredia.
-            </p>
-          </div>
-
-          <div class="creditos-seccion">
-            <p class="creditos-copyright">© 2025 Christian Heredia</p>
-            <p class="creditos-copyright">(y nadie más)</p>
-          </div>
-        </div>
+      <div class="creditos-seccion">
+        <p class="creditos-final">
+          Ningún Bishomalo fue dañado durante el desarrollo de este juego.
+        </p>
+        <p class="creditos-final">Excepto aquellos que se encontraron con Christian Heredia.</p>
       </div>
 
-      <div class="creditos-footer">
-        <div class="creditos-personaje">
-          <svg width="64" height="64" viewBox="0 0 24 24" fill="none"
-               xmlns="http://www.w3.org/2000/svg" class="personaje-svg">
-            <rect x="8" y="2" width="8" height="8" rx="4" fill="#4ade80" />
-            <path d="M12 10v7M8 22l4-5 4 5M8 14h8"
-                  stroke="#4ade80" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round"/>
-            <path class="personaje-ojos" d="M10 6h1M13 6h1"
-                  stroke="#1f2937" stroke-width="1" stroke-linecap="round"/>
-            <path class="personaje-boca" d="M10 8l2 1 2-1"
-                  stroke="#1f2937" stroke-width="1" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="creditos-mensaje">
-          <p>
-            "Sí, lo hice todo yo solo. ¿Algún problema?"
-            <br />- Christian Heredia
-          </p>
-        </div>
+      <div class="creditos-seccion">
+        <p class="creditos-copyright">© 2025 Christian Heredia</p>
+        <p class="creditos-copyright">(y nadie más)</p>
       </div>
     </div>
+  </div>
 
-
+  <div class="creditos-footer">
+    <div class="creditos-personaje">
+      <svg
+        width="64"
+        height="64"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="personaje-svg"
+      >
+        <rect x="8" y="2" width="8" height="8" rx="4" fill="#4ade80" />
+        <path
+          d="M12 10v7M8 22l4-5 4 5M8 14h8"
+          stroke="#4ade80"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          class="personaje-ojos"
+          d="M10 6h1M13 6h1"
+          stroke="#1f2937"
+          stroke-width="1"
+          stroke-linecap="round"
+        />
+        <path
+          class="personaje-boca"
+          d="M10 8l2 1 2-1"
+          stroke="#1f2937"
+          stroke-width="1"
+          stroke-linecap="round"
+        />
+      </svg>
+    </div>
+    <div class="creditos-mensaje">
+      <p>
+        "Sí, lo hice todo yo solo. ¿Algún problema?"
+        <br />- Christian Heredia
+      </p>
+    </div>
+  </div>
+</div>
