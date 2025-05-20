@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.4](https://github.com/chdelucia/hunt-the-bishomalo/compare/v2.4.3...v2.4.4) (2025-05-20)
+
+
+### Bug Fixes
+
+* **shop:** add mobile fixes ([b37bce8](https://github.com/chdelucia/hunt-the-bishomalo/commit/b37bce86308719c334c38f09a214bf3b75d40be7))
+
 ### [2.4.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v2.4.2...v2.4.3) (2025-05-20)
 
 
