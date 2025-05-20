@@ -63,7 +63,7 @@ export class GameControlsComponent {
   }
 
   navigateToControls() {
-  this.router.navigate([RouteTypes.RULES])
+    this.router.navigate([RouteTypes.RULES]);
   }
 
   moveForward(): void {
