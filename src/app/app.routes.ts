@@ -17,21 +17,18 @@ export const appRoutes: Route[] = [
   {
     path: RouteTypes.CHARS,
     canActivate: [secretGuard],
-    loadComponent: () =>
-      import('./pages').then((mod) => mod.CharactersComponent),
+    loadComponent: () => import('./pages').then((mod) => mod.CharactersComponent),
     title: 'Selecciona tu recompensa | Bisho malo',
   },
   {
     path: RouteTypes.HOME,
-    loadComponent: () =>
-      import('./pages').then((mod) => mod.HuntBishoComponent),
+    loadComponent: () => import('./pages').then((mod) => mod.HuntBishoComponent),
     title: 'Game Bisho malo',
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: '**',
-    loadComponent: () =>
-      import('./pages').then((mod) => mod.NotFoundComponent),
+    loadComponent: () => import('./pages').then((mod) => mod.NotFoundComponent),
     title: '404 not found | Bisho malo',
   },
 ];
