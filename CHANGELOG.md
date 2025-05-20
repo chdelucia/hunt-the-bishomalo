@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.14.0...v2.0.0) (2025-05-20)
+
+
+### Features
+
+* **notofund:** add not found page ([2da7c45](https://github.com/chdelucia/hunt-the-bishomalo/commit/2da7c45c36dba3a8bc722d86bb111e81125cdb41))
+
 ## [1.14.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.13.1...v1.14.0) (2025-05-19)
 
 
