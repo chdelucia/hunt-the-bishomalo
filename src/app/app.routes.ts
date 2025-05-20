@@ -27,6 +27,11 @@ export const appRoutes: Route[] = [
     title: 'Tienda de objetos | Bisho malo',
   },
   {
+    path: RouteTypes.CREDITS,
+    loadComponent: () => import('./pages').then((mod) => mod.EndCreditsComponent),
+    title: 'Creditos por Chris Heredia | Bisho malo',
+  },
+  {
     path: RouteTypes.HOME,
     loadComponent: () => import('./pages').then((mod) => mod.HuntBishoComponent),
     title: 'Game Bisho malo',

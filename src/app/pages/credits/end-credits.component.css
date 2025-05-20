@@ -1,0 +1,182 @@
+.creditos-panel {
+  background-color: var(--color-panel);
+  border: 1px solid var(--color-border);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 2px;
+  position: relative;
+}
+
+.creditos-titulo-container {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.creditos-titulo {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+  letter-spacing: 0.05em;
+}
+
+.creditos-subtitulo {
+  color: var(--color-text-secondary);
+}
+
+.creditos-controles {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.boton-creditos {
+  background-color: var(--color-button);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 2px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.boton-creditos:hover {
+  background-color: var(--color-button-hover);
+}
+
+.creditos-ventana {
+  height: 580px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--color-border);
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.creditos-ventana::before,
+.creditos-ventana::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.creditos-ventana::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--color-panel), transparent);
+}
+
+.creditos-ventana::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--color-panel), transparent);
+}
+
+.creditos-contenido {
+  padding: 2rem;
+  text-align: center;
+  transition: transform 0.1s linear;
+}
+
+.creditos-seccion {
+  margin-bottom: 2.5rem;
+}
+
+.creditos-rol {
+  color: var(--color-text);
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.creditos-nombre {
+  color: var(--color-text-secondary);
+  font-size: 1.5rem;
+}
+
+.creditos-especial {
+  color: #fbbf24;
+  font-size: 2rem;
+  text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+  animation: brillar 2s ease-in-out infinite;
+}
+
+@keyframes brillar {
+  0%,
+  100% {
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(251, 191, 36, 0.8), 0 0 30px rgba(251, 191, 36, 0.6);
+  }
+}
+
+.creditos-final {
+  color: var(--color-text-secondary);
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.creditos-copyright {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+
+.creditos-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  gap: 1rem;
+  background-color: var(--color-border);
+  padding: 1rem;
+  border-radius: 2px;
+}
+
+.creditos-personaje {
+  animation: saltar 1.5s ease-in-out infinite;
+}
+
+@keyframes saltar {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.personaje-ojos {
+  animation: parpadear 3s ease-in-out infinite;
+}
+
+@keyframes parpadear {
+  0%,
+  45%,
+  55%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.creditos-mensaje {
+  color: var(--color-text-secondary);
+  font-style: italic;
+  max-width: 500px;
+}
+
+@media (max-width: 768px) {
+  .creditos-footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .creditos-mensaje {
+    max-width: 100%;
+  }
+}
