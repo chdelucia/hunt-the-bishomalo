@@ -1,6 +1,6 @@
 {
   "name": "@hunt-the-bishomalo/source",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "license": "MIT",
   "scripts": {
     "start": "nx serve",

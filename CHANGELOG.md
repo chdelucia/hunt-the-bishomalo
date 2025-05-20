@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.4.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v2.4.0...v2.4.1) (2025-05-20)
+
+
+### Bug Fixes
+
+* **credits:** adapt cretis ([c36300a](https://github.com/chdelucia/hunt-the-bishomalo/commit/c36300a7d6bf642d698f7312a5b818ce28a238a1))
+* **credits:** more space ([b18a7b4](https://github.com/chdelucia/hunt-the-bishomalo/commit/b18a7b49b0cff323f6085ee9ff7151789daf97e5))
+
 ## [2.4.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v2.3.0...v2.4.0) (2025-05-20)
 
 
