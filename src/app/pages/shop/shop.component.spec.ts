@@ -62,7 +62,7 @@ describe('ShopComponent', () => {
       inventory: [product],
     });
     expect(component.message()).toContain('¡Has comprado Linterna!');
-    tick(3000);
+    tick(2000);
     expect(component.message()).toBe('');
   }));
 

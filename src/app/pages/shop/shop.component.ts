@@ -71,7 +71,7 @@ export class ShopComponent {
     } else {
       this.message.set('¡No tienes suficientes monedas!');
     }
-    setTimeout(() => this.message.set(''), 3000);
+    setTimeout(() => this.message.set(''), 2000);
   }
 
   nextLevel(): void {
