@@ -50,7 +50,7 @@ export class GameControlsComponent {
       this.achieve.activeAchievement(AchieveTypes.GAMER);
     },
     KeyN: () => this.game.newGame(),
-    KeyI: () => this.router.navigate([RouteTypes.RULES]),
+    KeyI: () => this.navigateToControls(),
   };
 
   @HostListener('window:keydown', ['$event'])
@@ -60,6 +60,10 @@ export class GameControlsComponent {
       event.preventDefault();
       action();
     }
+  }
+
+  navigateToControls() {
+  this.router.navigate([RouteTypes.RULES])
   }
 
   moveForward(): void {
