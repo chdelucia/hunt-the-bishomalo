@@ -8,11 +8,10 @@
       [style.transform]="'translateY(-50%)' + (step() >= 4 ? ' rotate(15deg)' : '')"
     >
       @if(selected === 'default'){
-        <img [src]="'chars/'+selected+'/bow.svg'" alt="bow">
+      <img [src]="'chars/' + selected + '/bow.svg'" alt="bow" />
       }@else{
-        <img [src]="'chars/'+selected+'/bow.png'" alt="char">
+      <img [src]="'chars/' + selected + '/bow.png'" alt="char" />
       }
-      
     </div>
 
     <div class="wumpus" [style.transform]="'translateY(-50%) scale(' + getWumpusScale() + ')'">
