@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v2.1.0...v2.2.0) (2025-05-20)
+
+
+### Features
+
+* **animation:** dinamic chars on animations ([165762f](https://github.com/chdelucia/hunt-the-bishomalo/commit/165762f506289a78ffa55e2e764336c4fd687148))
+
 ## [2.1.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v1.15.0...v2.1.0) (2025-05-20)
 
 
