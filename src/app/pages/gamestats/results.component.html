@@ -70,8 +70,8 @@
             <div class="record-info">
               <h3 class="record-nombre">Nivel más rápido</h3>
               <p class="record-valor">
-                Nivel {{ nivelMasRapido()?.level }} -
-                {{ nivelMasRapido()?.timeInSeconds | number : '1.0-0' }}s
+                Nivel {{ nivelMasRapido().level }} -
+                {{ nivelMasRapido().timeInSeconds | number : '1.0-0' }}s
               </p>
             </div>
           </div>
@@ -80,7 +80,7 @@
             <div class="record-info">
               <h3 class="record-nombre">Nivel con menos pasos</h3>
               <p class="record-valor">
-                Nivel {{ nivelMenosPasos()?.level }} - {{ nivelMenosPasos()?.steps }} pasos
+                Nivel {{ nivelMenosPasos().level }} - {{ nivelMenosPasos().steps }} pasos
               </p>
             </div>
           </div>

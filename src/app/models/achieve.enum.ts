@@ -26,5 +26,5 @@ export enum AchieveTypes {
   PENTA = 'pentakill',
   LEGOLAS = 'legolas',
   LINK = 'link',
-  LARA = 'lara'
+  LARA = 'lara',
 }

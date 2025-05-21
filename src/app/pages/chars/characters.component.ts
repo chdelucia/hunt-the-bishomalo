@@ -17,7 +17,12 @@ export class CharactersComponent {
   private readonly achieve = inject(AchievementService);
 
   readonly chars = [Chars.DEFAULT, Chars.LARA, Chars.LEGOLAS, Chars.LINK];
-  readonly achievements: Record<Chars, AchieveTypes> = {link: AchieveTypes.LINK, legolas: AchieveTypes.LEGOLAS, lara: AchieveTypes.LARA, default: AchieveTypes.PICKGOLD}
+  readonly achievements: Record<Chars, AchieveTypes> = {
+    link: AchieveTypes.LINK,
+    legolas: AchieveTypes.LEGOLAS,
+    lara: AchieveTypes.LARA,
+    default: AchieveTypes.PICKGOLD,
+  };
 
   selectedChar = signal<Chars | null>(null);
 
@@ -31,8 +36,6 @@ export class CharactersComponent {
       this.gameEngine.newGame();
       this.achieve.activeAchievement(this.achievements[selected]);
       this.router.navigateByUrl(RouteTypes.HOME);
-
     }
   }
-
 }
