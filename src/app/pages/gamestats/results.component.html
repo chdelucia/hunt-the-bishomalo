@@ -10,6 +10,7 @@
   <h1 class="resultados-titulo">Resultados de juego</h1>
   <p class="resultados-subtitulo">Estadísticas detalladas de tu aventura</p>
 
+  @if(leaderboard.length){
   <div class="tabs-container">
     <button
       class="tab-button"
@@ -136,4 +137,8 @@
       </table>
     </div>
   </div>
+  }@else{
+    <p>Pero si aun no has juegado que estadisticas quiere pishrurrica mia.</p>
+  }
+
 </div>
