@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.8.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v2.7.1...v2.8.0) (2025-05-21)
+
+
+### Features
+
+* **boss:** add final boss ([0f5a37d](https://github.com/chdelucia/hunt-the-bishomalo/commit/0f5a37dd9dc25acc54a457d581cd872a05fda530))
+* **boss:** final boss ([80995d5](https://github.com/chdelucia/hunt-the-bishomalo/commit/80995d5a36e0efdcebd3fb5e7f89a0a8ee4d59f8))
+
 ### [2.7.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v2.7.0...v2.7.1) (2025-05-21)
 
 
