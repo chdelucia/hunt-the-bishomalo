@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.1.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v3.0.3...v3.1.0) (2025-05-21)
+
+
+### Features
+
+* **balance:** balanced game probs ([0a86bb1](https://github.com/chdelucia/hunt-the-bishomalo/commit/0a86bb11d50b4f31a6364813b9d11d0215bfdf81))
+
+
+### Bug Fixes
+
+* **board:** fix pit at the beginning ([2c235ff](https://github.com/chdelucia/hunt-the-bishomalo/commit/2c235fffd7c7cd23615b63c091d7c4bafe76a192))
+
 ### [3.0.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v3.0.2...v3.0.3) (2025-05-21)
 
 ### [3.0.2](https://github.com/chdelucia/hunt-the-bishomalo/compare/v3.0.1...v3.0.2) (2025-05-21)
