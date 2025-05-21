@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.7.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v2.7.0...v2.7.1) (2025-05-21)
+
+
+### Bug Fixes
+
+* **pettrier:** removing blank spaces ([8ad31a2](https://github.com/chdelucia/hunt-the-bishomalo/commit/8ad31a2d4bd724f79fad1c733e0e81779dc9b727))
+* **results:** fix error when stats are empty ([2dd1960](https://github.com/chdelucia/hunt-the-bishomalo/commit/2dd1960e2ef3d810680510e888872867980cde2f))
+
 ## [2.7.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v2.6.1...v2.7.0) (2025-05-21)
 
 
