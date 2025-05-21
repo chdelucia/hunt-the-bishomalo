@@ -1,4 +1,4 @@
-import { computed, effect, inject, Injectable, signal } from '@angular/core';
+import { effect, inject, Injectable } from '@angular/core';
 import { ScoreEntry } from 'src/app/models';
 import { LocalstorageService } from '../localstorage/localstorage.service';
 import { GameStoreService } from '../store/game-store.service';
@@ -11,13 +11,10 @@ export class LeaderboardService {
 
   private readonly gameStore = inject(GameStoreService);
   private readonly gameAchieve = inject(AchievementService);
-  private _hunter = this.gameStore.hunter;
-  private _settings = this.gameStore.settings;
+  private readonly _hunter = this.gameStore.hunter;
+  private readonly _settings = this.gameStore.settings;
 
   private countSteps = 0;
-  private gold = 0;
-  private dieByPit = 0;
-  private dieByWumpus = 0;
 
   constructor(private readonly localStorageService: LocalstorageService) {
     const stored = this.loadLeaderboardFromStorage();
