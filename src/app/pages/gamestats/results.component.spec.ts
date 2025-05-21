@@ -93,9 +93,4 @@ describe('ResultsComponent', () => {
     expect(stats.oroTotal).toBe(875);
     expect(stats.tiempoJuego).toBe('0h 3m 0s');
   });
-
-  it('should return correct level state', () => {
-    expect(component.obtenerEstadoNivel(true)).toBe('completado');
-    expect(component.obtenerEstadoNivel(false)).toBe('pendiente');
-  });
 });

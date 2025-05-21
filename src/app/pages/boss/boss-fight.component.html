@@ -2,11 +2,10 @@
   <h2 id="bossTitle">⚔️ Batalla final contra el jefe</h2>
 
   <div class="grid" role="grid" aria-label="Tablero del jefe final">
-    <div *ngFor="let row of grid; let rowIndex = index" class="row" role="row">
+    <div *ngFor="let row of grid; let rowIndex = index" class="row">
       <div
         *ngFor="let cell of row; let colIndex = index"
         class="cell"
-        role="gridcell"
         tabindex="0"
         [attr.aria-label]="getAriaLabel(cell, rowIndex, colIndex)"
         (click)="attackCell(cell)"

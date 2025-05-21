@@ -59,8 +59,4 @@ export class ResultsComponent {
   cambiarTab(tab: 'general' | 'niveles') {
     this.tabActiva.set(tab);
   }
-
-  obtenerEstadoNivel(completado: boolean): string {
-    return completado ? 'completado' : 'pendiente';
-  }
 }
