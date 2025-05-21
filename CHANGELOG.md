@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.2.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v3.1.0...v3.2.0) (2025-05-21)
+
+
+### Features
+
+* **balanced:** balance game ([48f47f2](https://github.com/chdelucia/hunt-the-bishomalo/commit/48f47f2bb6adfac2f25a71549081473979ccd91c))
+
 ## [3.1.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v3.0.3...v3.1.0) (2025-05-21)
 
 
