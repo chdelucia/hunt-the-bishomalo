@@ -41,38 +41,55 @@ export class GameStoreService {
     if (hunter) this._hunter.set(hunter);
   }
 
-  initBoard(): void {
-    const size = this._settings().size;
-    const board: Cell[][] = Array.from({ length: size }, (_, x) =>
-      Array.from({ length: size }, (_, y) => ({ x, y, visited: false })),
-    );
+    initBoard(): void {
+      const size = this._settings().size;
+      const board: Cell[][] = Array.from({ length: size }, (_, x) =>
+        Array.from({ length: size }, (_, y) => ({ x, y, visited: false }))
+      );
 
-    const place = () => this.placeRandom(board);
+      const baseExclusions = new Set(['0,0']);
 
-    place().content = CELL_CONTENTS.gold;
+      const place = (extraExclusions: Set<string> = new Set()) => {
+        const combinedExclusions = new Set([...baseExclusions, ...extraExclusions]);
+        return this.placeRandom(board, combinedExclusions);
+      };
 
-    for (let i = 0; i < (this._settings().wumpus || 1); i++) {
-      place().content = CELL_CONTENTS.wumpus;
+      place().content = CELL_CONTENTS.gold;
+
+      for (let i = 0; i < (this._settings().wumpus || 1); i++) {
+        place().content = CELL_CONTENTS.wumpus;
+      }
+
+      const pitExtraExclusions = new Set(['0,1', '1,0']);
+      for (let i = 0; i < this._settings().pits; i++) {
+        place(pitExtraExclusions).content = CELL_CONTENTS.pit;
+      }
+
+      for (let i = 0; i < ((this._settings().wumpus || 1) - 1); i++) {
+        place().content = CELL_CONTENTS.arrow;
+      }
+
+      this.applyRandomEventOnce(board);
+      this._board.set(board);
+      this.setHunterForNextLevel();
+      this._startTime = new Date();
     }
-    for (let i = 0; i < this._settings().pits; i++) {
-      place().content = CELL_CONTENTS.pit;
+
+    private placeRandom(board: Cell[][], excluded: Set<string>): Cell {
+      const size = this._settings().size;
+      let cell: Cell;
+      do {
+        const x = Math.floor(Math.random() * size);
+        const y = Math.floor(Math.random() * size);
+        cell = board[x][y];
+      } while (cell.content || excluded.has(`${cell.x},${cell.y}`));
+      return cell;
     }
 
-    for (let i = 0; i < (this._settings().wumpus - 1 || 0); i++) {
-      place().content = CELL_CONTENTS.arrow;
-    }
-
-    this.applyRandomEventOnce(board);
-
-    this._board.set(board);
-    this.setHunterForNextLevel();
-
-    this._startTime = new Date();
-  }
 
   applyRandomEventOnce(board: Cell[][]): void {
-    const baseChance = 0.11;
-    const maxChance = 0.25;
+    const baseChance = 0.12;
+    const maxChance = 0.30;
     const size = this.settings().size;
 
     const chance = Math.min(
@@ -83,7 +100,7 @@ export class GameStoreService {
     const shouldPlaceEvent = Math.random() < chance;
 
     if (shouldPlaceEvent && this._hunter().lives < 8) {
-      this.placeRandom(board).content = CELL_CONTENTS.heart;
+      this.placeRandom(board, new Set(['0,0'])).content = CELL_CONTENTS.heart;
     }
   }
 
@@ -94,17 +111,6 @@ export class GameStoreService {
   resetSettings(): void {
     this.prevName = this._settings()?.player || this.prevName;
     this._settings.set({} as GameSettings);
-  }
-
-  private placeRandom(board: Cell[][]): Cell {
-    let cell: Cell;
-    const size = this._settings().size;
-    do {
-      const x = Math.floor(Math.random() * size);
-      const y = Math.floor(Math.random() * size);
-      cell = board[x][y];
-    } while (cell.content || (cell.x === 0 && cell.y === 0));
-    return cell;
   }
 
   private setHunterForNextLevel(): void {

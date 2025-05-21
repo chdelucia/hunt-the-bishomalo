@@ -225,9 +225,9 @@ export class GameEngineService {
     const roll = Math.random() * 100;
 
     if (roll < 2) cell.content = CELL_CONTENTS.extrawumpus;
-    else if (roll < 18) cell.content = CELL_CONTENTS.extraheart;
-    else if (roll < 28) cell.content = CELL_CONTENTS.extragold;
-    else if (roll < 35) cell.content = CELL_CONTENTS.extraarrow;
+    else if (roll < 24) cell.content = CELL_CONTENTS.extraheart;
+    else if (roll < 34) cell.content = CELL_CONTENTS.extragold;
+    else if (roll < 40) cell.content = CELL_CONTENTS.extraarrow;
   }
 
   private handleMissedArrow(): void {
