@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.7.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v2.6.1...v2.7.0) (2025-05-21)
+
+
+### Features
+
+* **chars:** add chars achievements ([a8e793e](https://github.com/chdelucia/hunt-the-bishomalo/commit/a8e793ee830ee02861794009cce867d635dd468c))
+* **stats:** add game stats ([eace55c](https://github.com/chdelucia/hunt-the-bishomalo/commit/eace55c1d34d6a7195f65730ae560e0e94f4df37))
+
 ### [2.6.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v2.6.0...v2.6.1) (2025-05-21)
 
 
