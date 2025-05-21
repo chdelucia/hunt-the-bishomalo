@@ -25,6 +25,7 @@ Te desafío a superar este juego **al 100%**. ¿Tienes lo que se necesita para e
 ![Vista previa](https://hunt-the-bishomalo.vercel.app/screenshot.png)
 
 **Consigue premios**
+
 ![Vista previa](https://hunt-the-bishomalo.vercel.app/screenshot2.png)
 
 **Desbloque todos los logros**
@@ -36,6 +37,7 @@ Te desafío a superar este juego **al 100%**. ¿Tienes lo que se necesita para e
 **Mira tus records y estadisticas**
 ![Vista previa](https://hunt-the-bishomalo.vercel.app/screenshot5.png)
 
+[🔥 **Juega ahora** 🔥](https://hunt-the-bishomalo.vercel.app/)
 ---
 
 ## Run tasks
