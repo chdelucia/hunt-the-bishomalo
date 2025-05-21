@@ -1,12 +1,39 @@
 export const ACHIEVEMENTS_LIST = [
   {
+    id: 'lara',
+    title: 'Tomb Raider III',
+    description: 'Desbloquea a Lara',
+    unlocked: false,
+    rarity: 'legendary',
+    date: '12 May, 2025',
+    svgIcon: `lara.png`,
+  },
+  {
+    id: 'link',
+    title: 'Encontrarás a Zelda?',
+    description: 'Desbloquea a Link',
+    unlocked: false,
+    rarity: 'legendary',
+    date: '12 May, 2025',
+    svgIcon: `link.png`,
+  },
+  {
+    id: 'legolas',
+    title: 'Señor de los arqueros',
+    description: 'Desbloquea a Legolas',
+    unlocked: false,
+    rarity: 'legendary',
+    date: '12 May, 2025',
+    svgIcon: `legolas.png`,
+  },
+  {
     id: 'kill_wumpus',
     title: 'Has matado al bisho malo',
     description: 'Eliminaste a un Wumpus con una flecha bien dirigida',
     unlocked: false,
     rarity: 'uncommon',
     date: '12 May, 2025',
-    svgIcon: `kill_wumpus`,
+    svgIcon: `kill_wumpus.svg`,
   },
   {
     id: 'escape_rat',
@@ -15,7 +42,7 @@ export const ACHIEVEMENTS_LIST = [
     unlocked: false,
     rarity: 'common',
     date: '10 May, 2025',
-    svgIcon: `escape_rat`,
+    svgIcon: `escape_rat.svg`,
   },
   {
     id: 'collect_arrow',
@@ -23,7 +50,7 @@ export const ACHIEVEMENTS_LIST = [
     description: 'Encontraste una flecha adicional durante tu aventura',
     unlocked: false,
     rarity: 'uncommon',
-    svgIcon: `collect_arrow`,
+    svgIcon: `collect_arrow.svg`,
   },
   {
     id: 'hero_escape',
@@ -32,7 +59,7 @@ export const ACHIEVEMENTS_LIST = [
     unlocked: false,
     rarity: 'epic',
     date: '11 May, 2025',
-    svgIcon: `hero_escape`,
+    svgIcon: `hero_escape.svg`,
   },
   {
     id: 'survive_blackout',
@@ -40,7 +67,7 @@ export const ACHIEVEMENTS_LIST = [
     description: 'Experimentaste un apagón! Vaya ni que estuvieses en ESPAÑA',
     unlocked: false,
     rarity: 'rare',
-    svgIcon: `survive_blackout`,
+    svgIcon: `survive_blackout.svg`,
   },
   {
     id: 'survive_blackout_complete',
@@ -48,7 +75,7 @@ export const ACHIEVEMENTS_LIST = [
     description: 'Sobreviviste a un apagón y continuaste tu aventura',
     unlocked: false,
     rarity: 'legendary',
-    svgIcon: `survive_blackout_complete`,
+    svgIcon: `survive_blackout_complete.svg`,
   },
   {
     id: 'death_by_wumpus',
@@ -57,7 +84,7 @@ export const ACHIEVEMENTS_LIST = [
     unlocked: false,
     rarity: 'common',
     date: '9 May, 2025',
-    svgIcon: `death_by_wumpus`,
+    svgIcon: `death_by_wumpus.svg`,
   },
   {
     id: 'death_by_pit',
@@ -66,7 +93,7 @@ export const ACHIEVEMENTS_LIST = [
     unlocked: false,
     rarity: 'common',
     date: '8 May, 2025',
-    svgIcon: `death_by_pit`,
+    svgIcon: `death_by_pit.svg`,
   },
   {
     id: 'collect_gold',
@@ -75,7 +102,7 @@ export const ACHIEVEMENTS_LIST = [
     unlocked: false,
     rarity: 'uncommon',
     date: '11 May, 2025',
-    svgIcon: `collect_gold`,
+    svgIcon: `collect_gold.svg`,
   },
   {
     id: 'death_during_blackout',
@@ -84,7 +111,7 @@ export const ACHIEVEMENTS_LIST = [
     unlocked: false,
     rarity: 'rare',
     date: '13 May, 2025',
-    svgIcon: `death_during_blackout`,
+    svgIcon: `death_during_blackout.svg`,
   },
   {
     id: 'hard_head',
@@ -92,7 +119,7 @@ export const ACHIEVEMENTS_LIST = [
     description: 'Has chocado contra muros repetidamente',
     unlocked: false,
     rarity: 'common',
-    svgIcon: `hard_head`,
+    svgIcon: `hard_head.svg`,
   },
   {
     id: 'large_map_completion',
@@ -101,7 +128,7 @@ export const ACHIEVEMENTS_LIST = [
     unlocked: false,
     rarity: 'epic',
     date: '14 May, 2025',
-    svgIcon: `large_map_completion`,
+    svgIcon: `large_map_completion.svg`,
   },
   {
     id: 'missed_last_arrow',
@@ -110,7 +137,7 @@ export const ACHIEVEMENTS_LIST = [
     unlocked: false,
     rarity: 'common',
     date: '10 May, 2025',
-    svgIcon: `missed_last_arrow`,
+    svgIcon: `missed_last_arrow.svg`,
   },
   {
     id: 'wasted_arrows',
@@ -118,7 +145,7 @@ export const ACHIEVEMENTS_LIST = [
     description: 'Acabaste la partida con más de una bala y no mataste al bicho',
     unlocked: false,
     rarity: 'uncommon',
-    svgIcon: `wasted_arrows`,
+    svgIcon: `wasted_arrows.svg`,
   },
   {
     id: 'speedrunner',
@@ -126,7 +153,7 @@ export const ACHIEVEMENTS_LIST = [
     description: 'Completaste una partida en menos de 10 segundos',
     unlocked: false,
     rarity: 'legendary',
-    svgIcon: `speedrunner`,
+    svgIcon: `speedrunner.svg`,
   },
   {
     id: 'true_gamer',
@@ -134,7 +161,7 @@ export const ACHIEVEMENTS_LIST = [
     description: 'Eres un OG WASD son tus keys',
     unlocked: false,
     rarity: 'common',
-    svgIcon: `true_gamer`,
+    svgIcon: `true_gamer.svg`,
   },
   {
     id: 'sniper',
@@ -142,7 +169,7 @@ export const ACHIEVEMENTS_LIST = [
     description: 'Mataste al Wumpus con un disparo desde más de 5 casillas de distancia',
     unlocked: false,
     rarity: 'epic',
-    svgIcon: `sniper`,
+    svgIcon: `sniper.svg`,
   },
   {
     id: 'death_duel',
@@ -150,7 +177,7 @@ export const ACHIEVEMENTS_LIST = [
     description: 'Mataste al Wumpus estando en una casilla adyacente',
     unlocked: false,
     rarity: 'legendary',
-    svgIcon: `death_duel`,
+    svgIcon: `death_duel.svg`,
   },
   {
     id: 'novice_cartographer',
@@ -158,7 +185,7 @@ export const ACHIEVEMENTS_LIST = [
     description: 'Exploraste el 50% de una cueva',
     unlocked: false,
     rarity: 'common',
-    svgIcon: `novice_cartographer`,
+    svgIcon: `novice_cartographer.svg`,
   },
   {
     id: 'expert_cartographer',
@@ -166,7 +193,7 @@ export const ACHIEVEMENTS_LIST = [
     description: 'Exploraste el 100% de una cueva',
     unlocked: false,
     rarity: 'legendary',
-    svgIcon: `expert_cartographer`,
+    svgIcon: `expert_cartographer.svg`,
   },
   {
     id: 'blind_shot',
@@ -174,7 +201,7 @@ export const ACHIEVEMENTS_LIST = [
     description: 'Mataste al Wumpus durante un apagón',
     unlocked: false,
     rarity: 'epic',
-    svgIcon: `blind_shot`,
+    svgIcon: `blind_shot.svg`,
   },
   {
     id: 'last_breath',
@@ -182,7 +209,7 @@ export const ACHIEVEMENTS_LIST = [
     description: 'Mataste al Wumpus y moriste en el intento',
     unlocked: false,
     rarity: 'rare',
-    svgIcon: `last_breath`,
+    svgIcon: `last_breath.svg`,
   },
   {
     id: 'pentakill',
@@ -190,7 +217,7 @@ export const ACHIEVEMENTS_LIST = [
     description: 'Has matado a 5 enemigos seguidos',
     unlocked: false,
     rarity: 'legendary',
-    svgIcon: `penta`,
+    svgIcon: `penta.svg`,
   },
   {
     id: 'secret',
@@ -199,7 +226,7 @@ export const ACHIEVEMENTS_LIST = [
     unlocked: false,
     rarity: 'legendary',
     hidden: true,
-    svgIcon: `secret`,
+    svgIcon: `secret.svg`,
   },
   {
     id: 'completionist',
@@ -207,6 +234,6 @@ export const ACHIEVEMENTS_LIST = [
     description: 'Has ganado una partida teniendo todos los logros del juego. ¡Eres una leyenda!',
     unlocked: false,
     rarity: 'legendary',
-    svgIcon: `completionist`,
+    svgIcon: `completionist.svg`,
   },
 ];

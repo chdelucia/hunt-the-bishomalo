@@ -24,4 +24,7 @@ export enum AchieveTypes {
   FINAL = 'completionist',
   JEDI = 'secret',
   PENTA = 'pentakill',
+  LEGOLAS = 'legolas',
+  LINK = 'link',
+  LARA = 'lara'
 }
