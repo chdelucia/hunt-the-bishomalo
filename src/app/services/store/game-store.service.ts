@@ -92,7 +92,7 @@ export class GameStoreService {
     const size = this.settings().size;
 
     const chance = Math.min(
-      baseChance + ((size - 4) / (20 - 4)) * (maxChance - baseChance),
+      baseChance + ((size - 4) / (16 - 4)) * (maxChance - baseChance),
       maxChance,
     );
 
