@@ -24,8 +24,8 @@ export class GameMessageComponent {
   readonly _hasMessage = computed(() => !!this.message() && !!this.settings().size);
   readonly _shouldShowRetry = computed(() => !this.isAlive() && !!this.settings().size);
   readonly _shouldShowNextLevel = computed(() => this.hasWon() && !!this.settings().size);
-  readonly _showCongrats = computed(() => this.settings().size < 23);
-  readonly _hasCompletedAllLevels = computed(() => this.settings().size >= 23);
+  readonly _showCongrats = computed(() => this.settings().size < 18);
+  readonly _hasCompletedAllLevels = computed(() => this.settings().size >= 18);
 
   restartGame(): void {
     this.gameEngine.initGame();
@@ -43,8 +43,8 @@ export class GameMessageComponent {
     this.router.navigate([RouteTypes.CREDITS]);
   }
 
-  goToprizeScreen(): void {
-    this.router.navigate([RouteTypes.CHARS], {
+  goToBoss(): void {
+    this.router.navigate([RouteTypes.BOSS], {
       state: {
         fromSecretPath: true,
       },

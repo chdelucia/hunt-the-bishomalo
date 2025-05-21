@@ -5,3 +5,4 @@ export * from './shop/shop.component';
 export * from './credits/end-credits.component';
 export * from './instructions/instructions.component';
 export * from './gamestats/results.component';
+export * from './boss/boss-fight.component';

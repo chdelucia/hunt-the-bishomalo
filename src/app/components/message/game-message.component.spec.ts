@@ -97,7 +97,7 @@ describe('GameMessageComponent', () => {
 
   it('should show final message when level 20 is reached', () => {
     fixture.componentRef.setInput('hasWon', true);
-    fixture.componentRef.setInput('settings', { size: 23, pits: 1, wumpus: 1 });
+    fixture.componentRef.setInput('settings', { size: 18, pits: 1, wumpus: 1 });
 
     fixture.detectChanges();
 

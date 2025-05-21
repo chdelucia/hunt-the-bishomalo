@@ -1,0 +1,167 @@
+@keyframes flash-hit {
+  0% {
+    box-shadow: 0 0 0px #dc2626;
+  }
+  50% {
+    box-shadow: 0 0 20px 5px #dc2626;
+  }
+  100% {
+    box-shadow: 0 0 0px #dc2626;
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+  75% {
+    transform: translateX(-2px);
+  }
+}
+
+.boss-container {
+  text-align: center;
+  font-family: 'Press Start 2P', monospace;
+  padding: 1rem;
+
+  #bossTitle{
+    color: white;
+  }
+  .grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .row {
+      display: flex;
+    }
+
+    .cell {
+      width: 100px;
+      height: 100px;
+      background-color: #1f2937;
+      border: 1px solid #4b5563;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-size: 1rem;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.1s ease-in-out;
+      user-select: none;
+
+      &:hover{
+        background-color: var(--color-red);
+      }
+
+      &:focus-visible {
+        outline: 3px solid #facc15;
+        outline-offset: 2px;
+      }
+
+      &.hit {
+        background-color: #374151;
+      }
+
+      &.boss-hit {
+        background-color: #ef4444;
+        animation: flash-hit 0.5s ease-out;
+      }
+
+      &.miss {
+        background-color: #6b7280;
+        animation: shake 0.4s ease-in-out;
+      }
+
+      small {
+        font-size: 0.6rem;
+        color: #d1d5db;
+        margin-top: 4px;
+      }
+    }
+  }
+
+  .status-bar {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #f3f4f6;
+  }
+
+  button {
+    margin-top: 1rem;
+    background-color: #10b981;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+
+    &:focus-visible {
+      outline: 3px solid #facc15;
+      outline-offset: 2px;
+    }
+
+    &:hover {
+      background-color: #059669;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  &:focus-within {
+    outline: none;
+  }
+
+}
+
+.game-message {
+  text-align: center;
+  font-size: large;
+  margin-bottom: 1.5rem;
+  color: var(--color-primary);
+  line-height: 1.5rem;
+}
+
+.leyenda{
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+  margin: 0 auto 2rem;
+}
+
+  @media (width <= 768px) {
+  .boss-container {
+    .grid {
+      .cell {
+        width: 16vw;
+        height: 16vw;
+        font-size: 0.7rem;
+
+        small {
+          font-size: 0.45rem;
+        }
+      }
+    }
+
+    button {
+      font-size: 0.85rem;
+      padding: 0.5rem 1rem;
+    }
+
+    .status-bar {
+      font-size: 0.75rem;
+    }
+  }
+}

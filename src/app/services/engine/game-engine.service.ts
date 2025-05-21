@@ -257,7 +257,7 @@ export class GameEngineService {
   }
 
   private playVictorySound(): void {
-    if (this._settings().size === 23) {
+    if (this._settings().size === 18) {
       this.sound.playSound(GameSound.FINISH, false);
     } else {
       this.sound.playSound(GameSound.WHONOR, false);
