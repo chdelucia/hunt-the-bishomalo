@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { RouteTypes } from '../models';
 
-export const secretGuard: CanActivateFn = (route, state) => {
+export const secretGuard: CanActivateFn = () => {
   const router = inject(Router);
 
   const nav = router.getCurrentNavigation();
