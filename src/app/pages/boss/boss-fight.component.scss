@@ -11,7 +11,8 @@
 }
 
 @keyframes shake {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateX(0);
   }
   25% {
@@ -30,7 +31,7 @@
   font-family: 'Press Start 2P', monospace;
   padding: 1rem;
 
-  #bossTitle{
+  #bossTitle {
     color: white;
   }
   .grid {
@@ -58,7 +59,7 @@
       transition: transform 0.1s ease-in-out;
       user-select: none;
 
-      &:hover{
+      &:hover {
         background-color: var(--color-red);
       }
 
@@ -123,7 +124,6 @@
   &:focus-within {
     outline: none;
   }
-
 }
 
 .game-message {
@@ -134,14 +134,14 @@
   line-height: 1.5rem;
 }
 
-.leyenda{
+.leyenda {
   display: flex;
   justify-content: space-between;
   max-width: 500px;
   margin: 0 auto 2rem;
 }
 
-  @media (width <= 768px) {
+@media (width <= 768px) {
   .boss-container {
     .grid {
       .cell {

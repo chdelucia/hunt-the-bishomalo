@@ -17,7 +17,7 @@
         [class.miss]="cell.hit && !cell.hasBossPart"
       >
         <span *ngIf="cell.hit && cell.hasBossPart" aria-hidden="true">
-          <img src="chars/link/wumpus.png" alt="boss">
+          <img src="chars/link/wumpus.png" alt="boss" />
         </span>
         <span *ngIf="cell.hit && !cell.hasBossPart" aria-hidden="true">❌</span>
       </div>
@@ -26,14 +26,17 @@
 
   <div class="status-bar">
     <div class="leyenda">
-        <span aria-live="polite">Intentos: {{ playerLives }}</span>   <span aria-live="polite">Jefe : {{ bossRemaining }}</span></div>
+      <span aria-live="polite">Intentos: {{ playerLives }}</span>
+      <span aria-live="polite">Jefe : {{ bossRemaining }}</span>
+    </div>
 
     <p aria-live="polite" class="game-message">{{ message }}</p>
 
-    <button *ngIf="gameOver &&  bossRemaining" (click)="retryGame()" aria-label="Reiniciar juego">Continues {{this._hunter().lives}}</button>
+    <button *ngIf="gameOver && bossRemaining" (click)="retryGame()" aria-label="Reiniciar juego">
+      Continues {{ this._hunter().lives }}
+    </button>
     @if(!bossRemaining){
-      <button aria-label="siguiente" (click)="goToprizeScreen()">Ganaste! continuar</button>
+    <button aria-label="siguiente" (click)="goToprizeScreen()">Ganaste! continuar</button>
     }
-
   </div>
 </section>

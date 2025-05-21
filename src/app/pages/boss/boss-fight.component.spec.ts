@@ -57,7 +57,6 @@ describe('BossFightComponent', () => {
     expect(component.gameOver).toBe(false);
   });
 
-
   it('should reduce bossRemaining on boss hit', () => {
     const bossCell = component.grid[1][1];
     bossCell.hasBossPart = true;
@@ -77,7 +76,7 @@ describe('BossFightComponent', () => {
 
     expect(component.gameOver).toBe(true);
     expect(component.message).toContain('El jefe te derrotó');
-    expect(component.grid.flat().filter(c => c.hasBossPart && c.hit).length).toBeGreaterThan(0);
+    expect(component.grid.flat().filter((c) => c.hasBossPart && c.hit).length).toBeGreaterThan(0);
   });
 
   it('should retry game if hunter has lives', () => {

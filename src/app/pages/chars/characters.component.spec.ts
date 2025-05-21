@@ -15,7 +15,7 @@ const gameStoreMock = {
   updateHunter: jest.fn(),
   stop: jest.fn(),
   hunter: jest.fn().mockReturnValue(hunterSignal),
-  settings: jest.fn().mockReturnValue({})
+  settings: jest.fn().mockReturnValue({}),
 };
 
 describe('CharactersComponent', () => {
@@ -29,7 +29,7 @@ describe('CharactersComponent', () => {
         { provide: GameEngineService, useValue: gameEngineServiceMock },
         { provide: GameStoreService, useValue: gameStoreMock },
       ],
-      schemas: [NO_ERRORS_SCHEMA]
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CharactersComponent);

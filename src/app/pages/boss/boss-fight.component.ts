@@ -34,7 +34,7 @@ export class BossFightComponent implements OnInit {
   gameOver = false;
 
   ngOnInit(): void {
-    this.resetGame(); 
+    this.resetGame();
   }
 
   resetGame(): void {
@@ -46,13 +46,14 @@ export class BossFightComponent implements OnInit {
         y,
         hit: false,
         hasBossPart: false,
-        hint: ''
-      }))
+        hint: '',
+      })),
     );
 
     this.bossRemaining = this.bossParts;
     this.playerLives = 12;
-    this.message = 'Descubre las 5 localizaciones del boss en 12 intentos, tus vidas ahora son continues.';
+    this.message =
+      'Descubre las 5 localizaciones del boss en 12 intentos, tus vidas ahora son continues.';
     this.gameOver = false;
 
     let partsPlaced = 0;
@@ -111,10 +112,10 @@ export class BossFightComponent implements OnInit {
 
   getHint(x: number, y: number): string {
     const row = this.grid[x];
-    const col = this.grid.map(r => r[y]);
+    const col = this.grid.map((r) => r[y]);
 
-    const inRow = row.filter(c => c.hasBossPart && !c.hit).length;
-    const inCol = col.filter(c => c.hasBossPart && !c.hit).length;
+    const inRow = row.filter((c) => c.hasBossPart && !c.hit).length;
+    const inCol = col.filter((c) => c.hasBossPart && !c.hit).length;
 
     return `En la misma fila ${inRow} parte(s) y en la misma columna ${inCol} parte(s).`;
   }
@@ -129,9 +130,9 @@ export class BossFightComponent implements OnInit {
   goToprizeScreen(): void {
     this.gameSound.playSound(GameSound.FINISH, false);
     this.router.navigate([RouteTypes.CHARS], {
-        state: {
-          fromSecretPath: true,
-        },
+      state: {
+        fromSecretPath: true,
+      },
     });
   }
 }
