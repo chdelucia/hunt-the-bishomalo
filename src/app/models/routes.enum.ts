@@ -6,4 +6,6 @@ export enum RouteTypes {
   SHOP = 'tienda',
   CREDITS = 'creditos',
   RULES = 'instrucciones',
+  RESULTS = 'resultados',
+  BOSS = 'boss',
 }

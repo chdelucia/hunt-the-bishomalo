@@ -37,6 +37,11 @@ export const appRoutes: Route[] = [
     title: 'Instrucciones | Bisho malo',
   },
   {
+    path: RouteTypes.RESULTS,
+    loadComponent: () => import('./pages').then((mod) => mod.ResultsComponent),
+    title: 'Resultados de la partida | Bisho malo',
+  },
+  {
     path: RouteTypes.HOME,
     loadComponent: () => import('./pages').then((mod) => mod.HuntBishoComponent),
     title: 'Game Bisho malo',

@@ -7,7 +7,7 @@ import { AchievementService } from '../achievement/achievement.service';
 @Injectable({ providedIn: 'root' })
 export class LeaderboardService {
   private readonly storageKey = 'hunt_the_bishomalo_leaderboard';
-  readonly _leaderboard: ScoreEntry[] = [];
+  _leaderboard: ScoreEntry[] = [];
 
   private readonly gameStore = inject(GameStoreService);
   private readonly gameAchieve = inject(AchievementService);
@@ -37,6 +37,7 @@ export class LeaderboardService {
           deads: alive ? 0 : 1,
         });
         this.countSteps = 0;
+        this.gameAchieve.caclVictoryAchieve(seconds);
       }
     });
   }
@@ -53,6 +54,7 @@ export class LeaderboardService {
 
   clear(): void {
     this.localStorageService.clearValue(this.storageKey);
+    this._leaderboard = [];
   }
 
   private calculateElapsedSeconds(endTime: Date): number {

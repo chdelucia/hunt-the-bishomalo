@@ -62,6 +62,8 @@ export class GameEngineService {
     this.localStorageService.clearValue(this.storageSettingsKey);
     this.store.resetHunter();
     this.store.resetSettings();
+    this.leaderBoard.clear();
+    console.log('lelga aqui');
   }
 
   nextLevel(): void {

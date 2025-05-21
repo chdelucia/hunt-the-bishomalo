@@ -2,7 +2,6 @@ export * from './animations/attack/app-wumpus-attack-animation.component';
 export * from './cell/game-cell.component';
 export * from './config/game-config.component';
 export * from './controls/game-controls.component';
-export * from './ranking/score-board.component';
 export * from './title/title.component';
 export * from './blackout/blackout.component';
 export * from './achieve-toast/toast.component';

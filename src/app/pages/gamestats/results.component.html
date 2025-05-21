@@ -1,0 +1,139 @@
+@let estadisticas = estadisticasGenerales();
+<div class="resultados-panel">
+  <div class="header-container">
+    <a routerLink="/home" class="back-link">
+      <i class="arrow-left-icon"></i>
+      <span>Volver al juego</span>
+    </a>
+  </div>
+
+  <h1 class="resultados-titulo">Resultados de juego</h1>
+  <p class="resultados-subtitulo">Estadísticas detalladas de tu aventura</p>
+
+  <div class="tabs-container">
+    <button
+      class="tab-button"
+      [ngClass]="{ 'tab-activa': tabActiva() === 'general' }"
+      (click)="tabActiva.set('general')"
+    >
+      General
+    </button>
+    <button
+      class="tab-button"
+      [ngClass]="{ 'tab-activa': tabActiva() === 'niveles' }"
+      (click)="tabActiva.set('niveles')"
+    >
+      Niveles
+    </button>
+  </div>
+
+  <div *ngIf="tabActiva() === 'general'" class="tab-contenido">
+    <div class="resumen-container">
+      <div class="resumen-seccion">
+        <h2 class="resumen-titulo">Resumen de aventura</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-info">
+              <h3 class="stat-nombre">Pasos totales</h3>
+              <p class="stat-valor">{{ estadisticas.pasosTotales }}</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <h3 class="stat-nombre">Tiempo de juego</h3>
+              <p class="stat-valor">{{ estadisticas.tiempoJuego }}</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <h3 class="stat-nombre">Niveles completados</h3>
+              <p class="stat-valor">{{ estadisticas.nivelesCompletados }}</p>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-info">
+              <h3 class="stat-nombre">Logros desbloqueados</h3>
+              <p class="stat-valor">{{ unlockedAchievements }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="resumen-seccion">
+        <h2 class="resumen-titulo">Récords personales</h2>
+        <div class="records-lista">
+          <div class="record-item">
+            <div class="record-badge">🏆</div>
+            <div class="record-info">
+              <h3 class="record-nombre">Nivel más rápido</h3>
+              <p class="record-valor">
+                Nivel {{ nivelMasRapido()?.level }} -
+                {{ nivelMasRapido()?.timeInSeconds | number : '1.0-0' }}s
+              </p>
+            </div>
+          </div>
+          <div class="record-item">
+            <div class="record-badge">👣</div>
+            <div class="record-info">
+              <h3 class="record-nombre">Nivel con menos pasos</h3>
+              <p class="record-valor">
+                Nivel {{ nivelMenosPasos()?.level }} - {{ nivelMenosPasos()?.steps }} pasos
+              </p>
+            </div>
+          </div>
+          <div class="record-item">
+            <div class="record-badge">💀</div>
+            <div class="record-info">
+              <h3 class="record-nombre">Total de muertes</h3>
+              <p class="record-valor">{{ estadisticasGenerales().muertes }} veces</p>
+            </div>
+          </div>
+          <div class="record-item">
+            <div class="record-badge">🎯</div>
+            <div class="record-info">
+              <h3 class="record-nombre">Flechas disparadas</h3>
+              <p class="record-valor">--</p>
+            </div>
+          </div>
+          <div class="record-item">
+            <div class="record-badge">💰</div>
+            <div class="record-info">
+              <h3 class="record-nombre">Monedas recolectadas</h3>
+              <p class="record-valor">{{ estadisticas.oroTotal }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="tabActiva() === 'niveles'" class="tab-contenido">
+    <div class="niveles-container">
+      <table class="niveles-tabla">
+        <thead>
+          <tr>
+            <th>Jugador</th>
+            <th>Fecha</th>
+            <th>Tiempo</th>
+            <th>Pasos</th>
+            <th>Muertes</th>
+            <th>Nivel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let entry of leaderboard">
+            <td>{{ entry.playerName }}</td>
+            <td>{{ entry.date | date : 'short' }}</td>
+            <td>{{ entry.timeInSeconds }}s</td>
+            <td>{{ entry.steps }}</td>
+            <td>{{ entry.deads }}</td>
+            <td>{{ entry.level }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

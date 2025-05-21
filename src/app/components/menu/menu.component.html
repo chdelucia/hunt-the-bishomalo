@@ -9,16 +9,18 @@
 <div class="mobile-menu" *ngIf="opened">
   <ul>
     <li><button>&nbsp;</button></li>
-    <li><button (click)="nagivateTo('home')">Inicio</button></li>
-    <li><button (click)="nagivateTo('logros')">Logros</button></li>
+    <li><button (click)="nagivateTo(ROUTES.HOME)">Inicio</button></li>
+    <li><button (click)="nagivateTo(ROUTES.ACHIEVEMENTS)">Logros</button></li>
+    <li><button (click)="nagivateTo(ROUTES.RULES)">Instrucciones</button></li>
+    <li><button (click)="nagivateTo(ROUTES.RESULTS)">Records</button></li>
     <li><button (click)="newGame()" class="newgame">Nueva partida</button></li>
   </ul>
 </div>
 
 <div class="menu-desktop">
   <div class="left-icons">
-    <app-scoreboard />
-    <img class="achivements" routerLink="/logros" src="trophy.svg" alt="logros" />
+    <img src="leaderboard.svg" [routerLink]="ROUTES.RESULTS" alt="estadisticas" />
+    <img class="achivements" [routerLink]="ROUTES.ACHIEVEMENTS" src="trophy.svg" alt="logros" />
   </div>
   <div class="right-icon">
     <ng-content></ng-content>

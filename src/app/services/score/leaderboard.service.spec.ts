@@ -51,7 +51,7 @@ describe('LeaderboardService', () => {
 
     service.clear();
 
-    expect(service._leaderboard).toEqual([entry]);
+    expect(service._leaderboard).toEqual([]);
     expect(LocalstorageServiceMock.clearValue).toHaveBeenCalledWith(
       'hunt_the_bishomalo_leaderboard',
     );
