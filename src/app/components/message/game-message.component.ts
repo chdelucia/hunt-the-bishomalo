@@ -27,9 +27,6 @@ export class GameMessageComponent {
   readonly _showCongrats = computed(
     () => this.settings().size < this.settings().difficulty.maxLevels + 3,
   );
-  readonly _hasCompletedAllLevels = computed(
-    () => this.settings().size >= this.settings().difficulty.maxLevels + 3,
-  );
 
   restartGame(): void {
     this.gameEngine.initGame();
