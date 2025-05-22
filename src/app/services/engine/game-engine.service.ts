@@ -252,7 +252,7 @@ export class GameEngineService {
 
   private handleVictory(): void {
     let gold = 0;
-    if(this._settings().blackout) gold = 200;
+    if (this._settings().blackout) gold = 200;
 
     this.store.setMessage(`¡Victoria!`);
     this.store.updateHunter({ hasWon: true, gold: this._hunter().gold + gold });
