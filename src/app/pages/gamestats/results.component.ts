@@ -18,7 +18,7 @@ export class ResultsComponent {
   constructor(
     private readonly leaderboardService: LeaderboardService,
     private readonly achieve: AchievementService,
-    private readonly router: Router
+    private readonly router: Router,
   ) {
     this.unlockedAchievements = achieve.achievements.filter((item) => item.unlocked).length;
     this.leaderboard = leaderboardService._leaderboard;

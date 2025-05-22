@@ -137,7 +137,7 @@ export class GameStoreService {
       wumpusKilled: 0,
       lives: 8,
       gold: 0,
-      inventory: []
+      inventory: [],
     });
     this.localStorageService.setValue<Hunter>(this.storageHunterKey, this._hunter());
   }
