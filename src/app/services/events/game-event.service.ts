@@ -80,7 +80,14 @@ export class GameEventService {
       itemName: 'extra-goldem',
       canApply: (hunter) => this.hasItem(hunter, 'extra-goldem'),
       apply: (hunter, cell) => this.extraGold(hunter, cell),
-      message: 'Has recogido el oro.',
+      message: 'Has recogido el oro, puedes escapar.',
+    },
+    {
+      type: 'extragold',
+      itemName: 'extra-goldem',
+      canApply: (hunter) => this.hasItem(hunter, 'extra-goldem'),
+      apply: (hunter, cell) => this.extraGold(hunter, cell),
+      message: 'Has obtenido oro adicional.',
     },
     {
       type: 'pit',
@@ -194,7 +201,7 @@ export class GameEventService {
     this.gameStore.updateHunter({
       ...hunter,
       hasGold: true,
-      gold: (hunter.gold || 0) + 40,
+      gold: (hunter.gold || 0) + 60,
     });
     cell.content = undefined;
     return hunter;

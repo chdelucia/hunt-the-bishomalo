@@ -88,7 +88,7 @@ export class GameStoreService {
 
   applyRandomEventOnce(board: Cell[][]): void {
     const baseChance = 0.12;
-    const maxChance = 0.3;
+    const maxChance = 0.33;
     const size = this.settings().size;
 
     const chance = Math.min(

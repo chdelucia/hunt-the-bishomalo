@@ -188,7 +188,7 @@ describe('GameEngineService (with useValue)', () => {
     );
     service['checkCurrentCell'](0, 0);
     expect(mockStore.updateHunter).toHaveBeenCalledWith(expect.objectContaining({ hasGold: true }));
-    expect(mockStore.setMessage).toHaveBeenCalledWith('Has recogido el oro.');
+    expect(mockStore.setMessage).toHaveBeenCalledWith('Has recogido el oro, puedes escapar.');
   });
 
   describe('nextLevel', () => {

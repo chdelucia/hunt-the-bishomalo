@@ -225,9 +225,9 @@ export class GameEngineService {
     const roll = Math.random() * 100;
 
     if (roll < 2) cell.content = CELL_CONTENTS.extrawumpus;
-    else if (roll < 24) cell.content = CELL_CONTENTS.extraheart;
-    else if (roll < 34) cell.content = CELL_CONTENTS.extragold;
-    else if (roll < 40) cell.content = CELL_CONTENTS.extraarrow;
+    else if (roll < 30) cell.content = CELL_CONTENTS.extraheart;
+    else if (roll < 45) cell.content = CELL_CONTENTS.extragold;
+    else if (roll < 50) cell.content = CELL_CONTENTS.extraarrow;
   }
 
   private handleMissedArrow(): void {
@@ -251,8 +251,11 @@ export class GameEngineService {
   }
 
   private handleVictory(): void {
+    let gold = 0;
+    if(this._settings().blackout) gold = 200;
+
     this.store.setMessage(`¡Victoria!`);
-    this.store.updateHunter({ hasWon: true });
+    this.store.updateHunter({ hasWon: true, gold: this._hunter().gold + gold });
     this.playVictorySound();
   }
 

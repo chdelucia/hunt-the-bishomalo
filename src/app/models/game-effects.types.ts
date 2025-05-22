@@ -10,4 +10,5 @@ export type GameEventEffectType =
   | 'wumpus'
   | 'double-gold'
   | 'extraheart'
-  | 'lantern';
+  | 'lantern'
+  | 'extragold';
