@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.6.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v3.5.2...v3.6.0) (2025-05-22)
+
+
+### Features
+
+* **levels:** add difficulty ([4408967](https://github.com/chdelucia/hunt-the-bishomalo/commit/4408967d81aab392b001e9a3ec6db39ac9df4ffc))
+
+
+### Bug Fixes
+
+* **petrrier:** fix pettrier ([6cfe8c5](https://github.com/chdelucia/hunt-the-bishomalo/commit/6cfe8c52f659f9e90feb593fc0a4c619a2b97755))
+
 ### [3.5.2](https://github.com/chdelucia/hunt-the-bishomalo/compare/v3.5.1...v3.5.2) (2025-05-22)
 
 
