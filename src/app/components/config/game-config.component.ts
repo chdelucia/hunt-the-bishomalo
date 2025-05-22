@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  isDevMode,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, isDevMode, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { GameEngineService, GameSoundService, GameStoreService } from 'src/app/services';
