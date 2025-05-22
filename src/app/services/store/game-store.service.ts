@@ -1,5 +1,13 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { Cell, Direction, Hunter, GameSettings, CELL_CONTENTS, Chars, GameDificulty } from '../../models';
+import {
+  Cell,
+  Direction,
+  Hunter,
+  GameSettings,
+  CELL_CONTENTS,
+  Chars,
+  GameDificulty,
+} from '../../models';
 import { LocalstorageService } from '../localstorage/localstorage.service';
 
 @Injectable({ providedIn: 'root' })
@@ -42,7 +50,7 @@ export class GameStoreService {
   }
 
   initBoard(): void {
-    const {size, difficulty } = this._settings();
+    const { size, difficulty } = this._settings();
     const board: Cell[][] = Array.from({ length: size }, (_, x) =>
       Array.from({ length: size }, (_, y) => ({ x, y, visited: false })),
     );

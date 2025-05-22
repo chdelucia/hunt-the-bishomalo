@@ -51,7 +51,7 @@ export class GameEngineService {
     this.sound.stop();
     if (config) {
       this.store.setSettings(config);
-      this.store.updateHunter({lives: config.difficulty.maxLives});
+      this.store.updateHunter({ lives: config.difficulty.maxLives });
       this.updateLocalStorageWithSettings(config);
     }
     this.store.initBoard();
@@ -227,9 +227,9 @@ export class GameEngineService {
     const roll = Math.random() * 100;
 
     if (roll < 2) cell.content = CELL_CONTENTS.extrawumpus;
-    else if (roll < (22+luck)) cell.content = CELL_CONTENTS.extraheart;
-    else if (roll < (37+luck)) cell.content = CELL_CONTENTS.extragold;
-    else if (roll < (42+luck)) cell.content = CELL_CONTENTS.extraarrow;
+    else if (roll < 22 + luck) cell.content = CELL_CONTENTS.extraheart;
+    else if (roll < 37 + luck) cell.content = CELL_CONTENTS.extragold;
+    else if (roll < 42 + luck) cell.content = CELL_CONTENTS.extraarrow;
   }
 
   private handleMissedArrow(): void {
@@ -262,7 +262,7 @@ export class GameEngineService {
   }
 
   private playVictorySound(): void {
-    if (this._settings().size === (this._settings().difficulty.maxLevels + 3)) {
+    if (this._settings().size === this._settings().difficulty.maxLevels + 3) {
       this.sound.playSound(GameSound.FINISH, false);
     } else {
       this.sound.playSound(GameSound.WHONOR, false);

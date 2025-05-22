@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, inject, isDevMode, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  isDevMode,
+  OnInit,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { GameEngineService, GameSoundService, GameStoreService } from 'src/app/services';
@@ -36,14 +42,13 @@ export class GameConfigComponent implements OnInit {
   submitForm(): void {
     if (this.configForm.valid) {
       const difficulty = this.configForm.value.difficulty as DifficultyTypes;
-    
+
       this.gameEngine.initGame({
         ...this.configForm.value,
         size: this.configForm.value.size + 3,
         blackout: this.applyBlackoutChance(),
-        difficulty: DIFFICULTY_CONFIGS[difficulty]
+        difficulty: DIFFICULTY_CONFIGS[difficulty],
       });
-     
     }
   }
 
@@ -58,8 +63,10 @@ export class GameConfigComponent implements OnInit {
     const diff: DifficultyTypes = this.configForm.get('difficulty')?.value;
     const config = DIFFICULTY_CONFIGS[diff];
 
-    return ` ${config.maxLives} vidas, ${config.maxLevels} niveles, suerte: ${config.maxChance *100}%`;
-  };
+    return ` ${config.maxLives} vidas, ${config.maxLevels} niveles, suerte: ${
+      config.maxChance * 100
+    }%`;
+  }
 
   private applyBlackoutChance(): boolean {
     const blackoutChance = 0.13;

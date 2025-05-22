@@ -44,7 +44,7 @@ describe('GameConfigComponent', () => {
       pits: 2,
       arrows: 1,
       selectedChar: 'default',
-      difficulty: 'easy'
+      difficulty: 'easy',
     });
   });
 
@@ -60,7 +60,7 @@ describe('GameConfigComponent', () => {
       pits: 2,
       arrows: 3,
       selectedChar: 'default',
-      difficulty: 'easy'
+      difficulty: 'easy',
     });
 
     component.submitForm();
@@ -72,13 +72,13 @@ describe('GameConfigComponent', () => {
       blackout: expect.any(Boolean),
       selectedChar: 'default',
       difficulty: {
-         "baseChance": 0.12,
-         "gold": 60,
-         "luck": 8,
-         "maxChance": 0.35,
-         "maxLevels": 10,
-         "maxLives": 8,
-       },
+        baseChance: 0.12,
+        gold: 60,
+        luck: 8,
+        maxChance: 0.35,
+        maxLevels: 10,
+        maxLives: 8,
+      },
     });
   });
 
@@ -90,13 +90,13 @@ describe('GameConfigComponent', () => {
       arrows: 0,
       selectedChar: 'default',
       difficulty: {
-         "baseChance": 0.12,
-         "gold": 60,
-         "luck": 8,
-         "maxChance": 0.35,
-         "maxLevels": 10,
-         "maxLives": 8,
-       },
+        baseChance: 0.12,
+        gold: 60,
+        luck: 8,
+        maxChance: 0.35,
+        maxLevels: 10,
+        maxLives: 8,
+      },
     });
 
     component.submitForm();

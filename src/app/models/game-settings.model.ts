@@ -23,7 +23,7 @@ export interface GameDificulty {
 export enum DifficultyTypes {
   EASY = 'easy',
   NORMAL = 'normal',
-  HARD = 'hard'
+  HARD = 'hard',
 }
 
 export const DIFFICULTY_CONFIGS: Record<DifficultyTypes, GameDificulty> = {
@@ -37,7 +37,7 @@ export const DIFFICULTY_CONFIGS: Record<DifficultyTypes, GameDificulty> = {
   },
   normal: {
     maxLevels: 15,
-    maxChance: 0.30,
+    maxChance: 0.3,
     baseChance: 0.11,
     gold: 50,
     maxLives: 8,
@@ -45,7 +45,7 @@ export const DIFFICULTY_CONFIGS: Record<DifficultyTypes, GameDificulty> = {
   },
   hard: {
     maxLevels: 15,
-    baseChance: 0.10,
+    baseChance: 0.1,
     maxChance: 0.25,
     gold: 50,
     maxLives: 5,

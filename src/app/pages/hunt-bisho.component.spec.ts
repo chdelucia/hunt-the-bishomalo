@@ -14,14 +14,18 @@ function createMockCell(overrides = {}) {
 
 const mockGameStoreService = {
   hunter: jest.fn().mockReturnValue({ arrows: 3, hasGold: false }),
-  settings: jest.fn().mockReturnValue({ size: 4, arrows: 2, difficulty: {
-         "baseChance": 0.12,
-         "gold": 60,
-         "luck": 8,
-         "maxChance": 0.35,
-         "maxLevels": 10,
-         "maxLives": 8,
-       }, }),
+  settings: jest.fn().mockReturnValue({
+    size: 4,
+    arrows: 2,
+    difficulty: {
+      baseChance: 0.12,
+      gold: 60,
+      luck: 8,
+      maxChance: 0.35,
+      maxLevels: 10,
+      maxLives: 8,
+    },
+  }),
   message: jest.fn().mockReturnValue('¡El Wumpus te devoró!'),
   setMessage: jest.fn(),
   board: jest.fn().mockReturnValue([
