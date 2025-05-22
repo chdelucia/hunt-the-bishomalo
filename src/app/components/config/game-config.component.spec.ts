@@ -39,11 +39,12 @@ describe('GameConfigComponent', () => {
   it('should initialize form with default values', () => {
     const form = component.configForm;
     expect(form.value).toEqual({
-      player: 'Player',
+      player: 'Kukuxumushu',
       size: 1,
       pits: 2,
       arrows: 1,
       selectedChar: 'default',
+      difficulty: 'easy'
     });
   });
 
@@ -59,6 +60,7 @@ describe('GameConfigComponent', () => {
       pits: 2,
       arrows: 3,
       selectedChar: 'default',
+      difficulty: 'easy'
     });
 
     component.submitForm();
@@ -69,6 +71,14 @@ describe('GameConfigComponent', () => {
       arrows: 3,
       blackout: expect.any(Boolean),
       selectedChar: 'default',
+      difficulty: {
+         "baseChance": 0.12,
+         "gold": 60,
+         "luck": 8,
+         "maxChance": 0.35,
+         "maxLevels": 10,
+         "maxLives": 8,
+       },
     });
   });
 
@@ -79,6 +89,14 @@ describe('GameConfigComponent', () => {
       pits: 0,
       arrows: 0,
       selectedChar: 'default',
+      difficulty: {
+         "baseChance": 0.12,
+         "gold": 60,
+         "luck": 8,
+         "maxChance": 0.35,
+         "maxLevels": 10,
+         "maxLives": 8,
+       },
     });
 
     component.submitForm();

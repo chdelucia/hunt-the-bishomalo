@@ -31,7 +31,7 @@ hunterData.alive; @let hasWon = hunterData.hasWon; @let settings = game.settings
   @if (settings.size) {
   <section class="player-info">
     <app-game-level [settings]="settings"></app-game-level>
-    <app-game-lives [lives]="hunterData.lives"></app-game-lives>
+    <app-game-lives [lives]="hunterData.lives" [maxLives]="settings.difficulty.maxLives"></app-game-lives>
   </section>
   }
 

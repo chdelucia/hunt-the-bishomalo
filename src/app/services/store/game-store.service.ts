@@ -1,5 +1,5 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { Cell, Direction, Hunter, GameSettings, CELL_CONTENTS, Chars } from '../../models';
+import { Cell, Direction, Hunter, GameSettings, CELL_CONTENTS, Chars, GameDificulty } from '../../models';
 import { LocalstorageService } from '../localstorage/localstorage.service';
 
 @Injectable({ providedIn: 'root' })
@@ -30,7 +30,7 @@ export class GameStoreService {
 
   private readonly storageHunterKey = 'hunt_the_bishomalo_hunter';
 
-  prevName = 'Player';
+  prevName = 'Kukuxumushu';
 
   constructor(private readonly localStorageService: LocalstorageService) {
     this.syncHunterWithStorage();
@@ -42,7 +42,7 @@ export class GameStoreService {
   }
 
   initBoard(): void {
-    const size = this._settings().size;
+    const {size, difficulty } = this._settings();
     const board: Cell[][] = Array.from({ length: size }, (_, x) =>
       Array.from({ length: size }, (_, y) => ({ x, y, visited: false })),
     );
@@ -69,7 +69,7 @@ export class GameStoreService {
       place().content = CELL_CONTENTS.arrow;
     }
 
-    this.applyRandomEventOnce(board);
+    this.applyRandomEventOnce(board, difficulty);
     this._board.set(board);
     this.setHunterForNextLevel();
     this._startTime = new Date();
@@ -86,19 +86,19 @@ export class GameStoreService {
     return cell;
   }
 
-  applyRandomEventOnce(board: Cell[][]): void {
-    const baseChance = 0.12;
-    const maxChance = 0.33;
+  applyRandomEventOnce(board: Cell[][], difficulty: GameDificulty): void {
+    const baseChance = difficulty.baseChance;
+    const maxChance = difficulty.maxChance;
     const size = this.settings().size;
 
     const chance = Math.min(
-      baseChance + ((size - 4) / (16 - 4)) * (maxChance - baseChance),
+      baseChance + ((size - 4) / (difficulty.maxLevels - 4)) * (maxChance - baseChance),
       maxChance,
     );
 
     const shouldPlaceEvent = Math.random() < chance;
 
-    if (shouldPlaceEvent && this._hunter().lives < 8) {
+    if (shouldPlaceEvent && this._hunter().lives < difficulty.maxLives) {
       this.placeRandom(board, new Set(['0,0'])).content = CELL_CONTENTS.heart;
     }
   }

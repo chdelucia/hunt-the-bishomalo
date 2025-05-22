@@ -30,6 +30,20 @@
         outline: none;
       }
     }
+
+    select{
+      padding: 0.5rem;
+      margin-bottom: 0rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      transition: border-color 0.2s;
+
+      &:focus {
+        border-color: #007bff;
+        outline: none;
+      }
+    }
   }
 
   button {
@@ -62,3 +76,12 @@ img.active {
   border: 2px solid #4caf50;
   transform: scale(1.05);
 }
+
+.difficulty-description {
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+  font-size: 0.7rem;
+  color: #555;
+  font-style: italic;
+}
+

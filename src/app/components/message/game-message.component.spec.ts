@@ -8,6 +8,15 @@ const gameEngineMock = {
   initGame: jest.fn(),
   newGame: jest.fn(),
   nextLevel: jest.fn(),
+  settings: jest.fn().mockReturnValue({
+    difficulty: {
+    maxLevels: 10,
+    maxChance: 0.35,
+    baseChance: 0.12,
+    gold: 60,
+    maxLives: 8,
+    luck: 8,
+  }})
 };
 
 const routerMock = {
@@ -32,7 +41,14 @@ describe('GameMessageComponent', () => {
     fixture.componentRef.setInput('message', 'algo');
     fixture.componentRef.setInput('isAlive', true);
     fixture.componentRef.setInput('hasWon', false);
-    fixture.componentRef.setInput('settings', { size: 4, pits: 1, arrows: 1 });
+    fixture.componentRef.setInput('settings', { size: 4, pits: 1, arrows: 1, difficulty: {
+    maxLevels: 10,
+    maxChance: 0.35,
+    baseChance: 0.12,
+    gold: 60,
+    maxLives: 8,
+    luck: 8,
+  } });
     fixture.componentRef.setInput('lives', 8);
     fixture.detectChanges();
   });
@@ -55,7 +71,14 @@ describe('GameMessageComponent', () => {
 
   it('should display message when present', () => {
     fixture.componentRef.setInput('message', '¡Has ganado!');
-    fixture.componentRef.setInput('settings', { size: 5, pits: 1, wumpus: 1 });
+    fixture.componentRef.setInput('settings', { size: 5, pits: 1, wumpus: 1, difficulty: {
+    maxLevels: 10,
+    maxChance: 0.35,
+    baseChance: 0.12,
+    gold: 60,
+    maxLives: 8,
+    luck: 8,
+  } });
 
     fixture.detectChanges();
 
@@ -65,7 +88,14 @@ describe('GameMessageComponent', () => {
 
   it('should show default message when no message is provided', () => {
     fixture.componentRef.setInput('message', '');
-    fixture.componentRef.setInput('settings', { size: 5, pits: 1, wumpus: 1 });
+    fixture.componentRef.setInput('settings', { size: 5, pits: 1, wumpus: 1, difficulty: {
+    maxLevels: 10,
+    maxChance: 0.35,
+    baseChance: 0.12,
+    gold: 60,
+    maxLives: 8,
+    luck: 8,
+  } });
 
     fixture.detectChanges();
 
@@ -75,7 +105,14 @@ describe('GameMessageComponent', () => {
 
   it('should show retry button when player is dead', () => {
     fixture.componentRef.setInput('isAlive', false);
-    fixture.componentRef.setInput('settings', { size: 5, pits: 1, wumpus: 1 });
+    fixture.componentRef.setInput('settings', { size: 5, pits: 1, wumpus: 1, difficulty: {
+    maxLevels: 10,
+    maxChance: 0.35,
+    baseChance: 0.12,
+    gold: 60,
+    maxLives: 8,
+    luck: 8,
+  } });
 
     fixture.detectChanges();
 
@@ -85,7 +122,14 @@ describe('GameMessageComponent', () => {
 
   it('should call restartGame when retry button is clicked', () => {
     fixture.componentRef.setInput('isAlive', false);
-    fixture.componentRef.setInput('settings', { size: 5, pits: 1, wumpus: 1 });
+    fixture.componentRef.setInput('settings', { size: 5, pits: 1, wumpus: 1, difficulty: {
+    maxLevels: 10,
+    maxChance: 0.35,
+    baseChance: 0.12,
+    gold: 60,
+    maxLives: 8,
+    luck: 8,
+  } });
     fixture.detectChanges();
 
     const button = fixture.nativeElement.querySelector('button.newgame');
@@ -96,7 +140,14 @@ describe('GameMessageComponent', () => {
 
   it('should show next level button when player has won', () => {
     fixture.componentRef.setInput('hasWon', true);
-    fixture.componentRef.setInput('settings', { size: 6, pits: 1, wumpus: 1 }); // size < 20
+    fixture.componentRef.setInput('settings', { size: 6, pits: 1, wumpus: 1, difficulty: {
+    maxLevels: 10,
+    maxChance: 0.35,
+    baseChance: 0.12,
+    gold: 60,
+    maxLives: 8,
+    luck: 8,
+  } }); // size < 20
 
     fixture.detectChanges();
 
@@ -106,7 +157,14 @@ describe('GameMessageComponent', () => {
 
   it('should show final message when level 20 is reached', () => {
     fixture.componentRef.setInput('hasWon', true);
-    fixture.componentRef.setInput('settings', { size: 18, pits: 1, wumpus: 1 });
+    fixture.componentRef.setInput('settings', { size: 18, pits: 1, wumpus: 1, difficulty: {
+    maxLevels: 10,
+    maxChance: 0.35,
+    baseChance: 0.12,
+    gold: 60,
+    maxLives: 8,
+    luck: 8,
+  } });
 
     fixture.detectChanges();
 

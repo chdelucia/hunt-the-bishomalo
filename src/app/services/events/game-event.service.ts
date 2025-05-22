@@ -182,7 +182,7 @@ export class GameEventService {
     this.gameSound.playSound(GameSound.PICKUP, false);
     this.gameStore.updateHunter({
       ...hunter,
-      lives: Math.min(hunter.lives + 1, 8),
+      lives: Math.min(hunter.lives + 1, this.gameStore.settings().difficulty.maxLives),
     });
     cell.content = undefined;
     return hunter;
@@ -194,7 +194,7 @@ export class GameEventService {
     this.gameStore.updateHunter({
       ...hunter,
       hasGold: true,
-      gold: (hunter.gold || 0) + 60,
+      gold: (hunter.gold || 0) + this.gameStore.settings().difficulty.gold,
     });
     cell.content = undefined;
     return hunter;

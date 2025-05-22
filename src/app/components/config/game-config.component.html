@@ -8,6 +8,19 @@
     <input id="player" type="text" formControlName="player" />
   </div>
 
+  <div class="form-group">
+    <label for="difficulty">Dificultad:</label>
+    <select id="difficulty" formControlName="difficulty">
+      <option value="easy">Fasilito</option>
+      <option value="normal">Ni xixa ni limoná</option>
+      <option value="hard">Autonomo</option>
+    </select>
+  </div>
+
+  <div class="difficulty-description">
+    <p>{{ difficultyDescription }}</p>
+  </div>
+
   <div *ngIf="isDevMode" class="form-group">
     <label for="size">Nivel (max 20):</label>
     <input id="size" type="number" formControlName="size" min="1" max="20" />

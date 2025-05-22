@@ -13,6 +13,7 @@ describe('GameIvesComponent', () => {
     fixture = TestBed.createComponent(GameLivesComponent);
     component = fixture.componentInstance;
     fixture.componentRef.setInput('lives', 6);
+    fixture.componentRef.setInput('maxLives', 8);
     fixture.detectChanges();
   });
 

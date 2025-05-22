@@ -20,6 +20,14 @@ const mockStore = {
     player: 'TestPlayer',
     arrows: 1,
     pits: 0,
+    difficulty: { 
+       maxLevels: 10,
+      maxChance: 0.35,
+      baseChance: 0.12,
+      gold: 60,
+      maxLives: 8,
+      luck: 8
+    }
   }),
   board: jest.fn(),
   startTime: new Date(),
@@ -88,7 +96,14 @@ describe('GameEngineService (with useValue)', () => {
       pits: 2,
       wumpus: 1,
       selectedChar: Chars.LARA,
+      difficulty: { maxLevels: 10,
+      maxChance: 0.35,
+      baseChance: 0.12,
+      gold: 60,
+      maxLives: 8,
+      luck: 8,}
     };
+
     service.initGame(config);
 
     expect(mockSound.stop).toHaveBeenCalled();
@@ -203,6 +218,14 @@ describe('GameEngineService (with useValue)', () => {
         arrows: 1,
         blackout: expect.any(Boolean),
         player: 'TestPlayer',
+        difficulty: {
+          maxLevels: 10,
+          maxChance: 0.35,
+          baseChance: 0.12,
+          gold: 60,
+          maxLives: 8,
+          luck: 8,
+        }
       });
     });
     it('should increase board size and recalculate pits', () => {

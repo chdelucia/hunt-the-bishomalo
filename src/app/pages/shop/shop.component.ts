@@ -59,7 +59,7 @@ export class ShopComponent {
 
     if (gold >= price) {
       if (effect === 'heart') {
-        this.gameStore.updateHunter({ gold: gold - price, lives: Math.min(lives + 1, 8) });
+        this.gameStore.updateHunter({ gold: gold - price, lives: Math.min(lives + 1, this.gameStore.settings().difficulty.maxLives) });
       } else {
         this.gameStore.updateHunter({
           gold: gold - price,

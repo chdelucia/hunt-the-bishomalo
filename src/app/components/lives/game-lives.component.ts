@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, computed, input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class GameLivesComponent {
   lives = input.required<number>();
+  maxLives = input.required<number>();
 
-  livesArray = signal<number[]>(Array(8).fill(0));
+  livesArray = computed(() => Array(this.maxLives()).fill(0));
 }

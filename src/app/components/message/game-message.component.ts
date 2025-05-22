@@ -24,8 +24,8 @@ export class GameMessageComponent {
   readonly _hasMessage = computed(() => !!this.message() && !!this.settings().size);
   readonly _shouldShowRetry = computed(() => !this.isAlive() && !!this.settings().size);
   readonly _shouldShowNextLevel = computed(() => this.hasWon() && !!this.settings().size);
-  readonly _showCongrats = computed(() => this.settings().size < 18);
-  readonly _hasCompletedAllLevels = computed(() => this.settings().size >= 18);
+  readonly _showCongrats = computed(() => this.settings().size < (this.settings().difficulty.maxLevels + 3));
+  readonly _hasCompletedAllLevels = computed(() => this.settings().size >= (this.settings().difficulty.maxLevels + 3));
 
   restartGame(): void {
     this.gameEngine.initGame();

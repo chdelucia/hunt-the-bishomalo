@@ -12,6 +12,16 @@ describe('GameEventService', () => {
   const mockSetMessage = jest.fn();
   const mockUpdateHunter = jest.fn();
   const mockActiveAchievement = jest.fn();
+  const mockSettings = jest.fn().mockReturnValue({
+        difficulty: {
+      maxLevels: 10,
+      maxChance: 0.35,
+      baseChance: 0.12,
+      gold: 60,
+      maxLives: 8,
+      luck: 8,
+    },
+  })
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -28,6 +38,7 @@ describe('GameEventService', () => {
           useValue: {
             updateHunter: mockUpdateHunter,
             setMessage: mockSetMessage,
+            settings: mockSettings
           },
         },
         {

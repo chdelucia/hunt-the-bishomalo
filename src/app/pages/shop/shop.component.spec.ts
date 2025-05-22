@@ -14,6 +14,16 @@ const mockHunter = {
 const mockGameStoreService = {
   hunter: jest.fn(() => mockHunter),
   updateHunter: jest.fn(),
+  settings: jest.fn().mockReturnValue({
+    difficulty: {
+    maxLevels: 10,
+    maxChance: 0.35,
+    baseChance: 0.12,
+    gold: 60,
+    maxLives: 8,
+    luck: 8,
+  }
+  })
 };
 
 const mockGameEngineService = {
