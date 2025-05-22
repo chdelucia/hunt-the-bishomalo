@@ -12,14 +12,12 @@
     <li><button (click)="nagivateTo(ROUTES.HOME)">Inicio</button></li>
     <li><button (click)="nagivateTo(ROUTES.ACHIEVEMENTS)">Logros</button></li>
     <li><button (click)="nagivateTo(ROUTES.RULES)">Instrucciones</button></li>
-    <li><button (click)="nagivateTo(ROUTES.RESULTS)">Records</button></li>
     <li><button (click)="newGame()" class="newgame">Nueva partida</button></li>
   </ul>
 </div>
 
 <div class="menu-desktop">
   <div class="left-icons">
-    <img src="leaderboard.svg" [routerLink]="ROUTES.RESULTS" alt="estadisticas" />
     <img class="achivements" [routerLink]="ROUTES.ACHIEVEMENTS" src="trophy.svg" alt="logros" />
   </div>
   <div class="right-icon">
