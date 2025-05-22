@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ResultsComponent } from './results.component';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { AchievementService, LeaderboardService } from 'src/app/services';
-import { ScoreEntry } from 'src/app/models';
+import { RouteTypes, ScoreEntry } from 'src/app/models';
 
 const mockLeaderboard: ScoreEntry[] = [
   {
@@ -40,16 +40,21 @@ const mockLeaderboardService = {
   _leaderboard: mockLeaderboard,
 };
 
+const routerMOck = {
+  navigate: jest.fn()
+}
+
 describe('ResultsComponent', () => {
   let component: ResultsComponent;
   let fixture: ComponentFixture<ResultsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ResultsComponent, CommonModule, RouterModule.forRoot([])],
+      imports: [ResultsComponent, CommonModule],
       providers: [
         { provide: AchievementService, useValue: mockAchievementService },
         { provide: LeaderboardService, useValue: mockLeaderboardService },
+        { provide: Router, useValue: routerMOck },
       ],
     }).compileComponents();
 
@@ -81,6 +86,11 @@ describe('ResultsComponent', () => {
   it('should change tab correctly', () => {
     component.cambiarTab('niveles');
     expect(component.tabActiva()).toBe('niveles');
+  });
+
+  it('should go to credits on click btn', () => {
+    component.goToCredits();
+    expect(routerMOck.navigate).toHaveBeenCalledWith([RouteTypes.CREDITS]);
   });
 
   it('should compute general statistics correctly', () => {

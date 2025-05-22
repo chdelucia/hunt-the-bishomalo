@@ -2,11 +2,11 @@ import { Component, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AchievementService, LeaderboardService } from 'src/app/services';
 import { RouteTypes, ScoreEntry } from 'src/app/models';
-import { Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-results',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule],
   standalone: true,
   templateUrl: './results.component.html',
   styleUrl: './results.component.scss',
