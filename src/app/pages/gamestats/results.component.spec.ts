@@ -41,8 +41,8 @@ const mockLeaderboardService = {
 };
 
 const routerMOck = {
-  navigate: jest.fn()
-}
+  navigate: jest.fn(),
+};
 
 describe('ResultsComponent', () => {
   let component: ResultsComponent;
