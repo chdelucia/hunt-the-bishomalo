@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.3.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v3.2.0...v3.3.0) (2025-05-22)
+
+
+### Features
+
+* **balance:** balance gold and dmg ([11d9ee7](https://github.com/chdelucia/hunt-the-bishomalo/commit/11d9ee7ee8685dd477175b68ed82cb09284b3174))
+
+
+### Bug Fixes
+
+* **issues:** sonar issue ([8fb088f](https://github.com/chdelucia/hunt-the-bishomalo/commit/8fb088fe460a65948dab43b417004e46ea911a2b))
+
 ## [3.2.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v3.1.0...v3.2.0) (2025-05-21)
 
 
