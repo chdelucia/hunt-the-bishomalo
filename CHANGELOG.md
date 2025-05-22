@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.4.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v3.3.1...v3.4.0) (2025-05-22)
+
+
+### Features
+
+* **exit:** mark exit on map ([ffbcaea](https://github.com/chdelucia/hunt-the-bishomalo/commit/ffbcaeaa0e01ab0281211585fc3443ed36110034))
+
+
+### Bug Fixes
+
+* **stats:** dont show stats on menu ([239d7e3](https://github.com/chdelucia/hunt-the-bishomalo/commit/239d7e383fa44fd606e7ccf88da1bcba175d02ce))
+
 ### [3.3.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v3.3.0...v3.3.1) (2025-05-22)
 
 
