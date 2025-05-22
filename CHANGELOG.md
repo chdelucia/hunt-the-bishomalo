@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [3.3.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v3.3.0...v3.3.1) (2025-05-22)
+
+
+### Bug Fixes
+
+* **bugs:** fix bugs and screen orders ([1362fca](https://github.com/chdelucia/hunt-the-bishomalo/commit/1362fcab3030df8477320615ba98aced2fe34128))
+* **pettrier:** update ([2686e40](https://github.com/chdelucia/hunt-the-bishomalo/commit/2686e4098f80c580637dbe3dfe8bcc149d217f8b))
+* **secret:** fixed secret box does not showw ([09b197b](https://github.com/chdelucia/hunt-the-bishomalo/commit/09b197b88dca3aa989f62d44b79cb66e6a9b6667))
+
 ## [3.3.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v3.2.0...v3.3.0) (2025-05-22)
 
 
