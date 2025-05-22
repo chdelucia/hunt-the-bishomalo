@@ -37,6 +37,8 @@ const mockStore = {
   updateBoard: jest.fn(),
   setSettings: jest.fn(),
   initBoard: jest.fn(),
+  resetHunter: jest.fn(),
+  resetSettings: jest.fn(),
 };
 
 const mockSound = {
@@ -50,6 +52,7 @@ const mockSound = {
 
 const mockLeaderboard = {
   addEntry: jest.fn(),
+  clear: jest.fn()
 };
 
 describe('GameEngineService (with useValue)', () => {
@@ -207,6 +210,14 @@ describe('GameEngineService (with useValue)', () => {
     expect(mockStore.updateHunter).toHaveBeenCalledWith(expect.objectContaining({ hasGold: true }));
     expect(mockStore.setMessage).toHaveBeenCalledWith('Has recogido el oro, puedes escapar.');
   });
+
+   it('shold call newGame', () => {
+    service.newGame();
+    expect(mockSound.stop).toHaveBeenCalled();
+    expect(mockStore.resetHunter).toHaveBeenCalled();
+    expect(mockStore.resetSettings).toHaveBeenCalled();
+    expect(mockLeaderboard.clear).toHaveBeenCalled();
+   })
 
   describe('nextLevel', () => {
     it('should increment size and recalculate pits and wumpus', () => {

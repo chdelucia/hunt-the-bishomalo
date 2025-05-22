@@ -12,7 +12,7 @@ const mockLocalStorageService = {
 };
 
 const mockGameStoreService = {
-  hunter: jest.fn().mockReturnValue({ arrows: 1, wumpusKilled: 1}),
+  hunter: jest.fn().mockReturnValue({ arrows: 1, wumpusKilled: 1 }),
   settings: jest.fn(),
   board: jest.fn().mockReturnValue([[]]),
 };
@@ -97,45 +97,44 @@ describe('AchievementService', () => {
     });
   });
 
- 
   it('victory achievements SPEEDRUNNER', () => {
-    const spy= jest.spyOn(service, 'activeAchievement')
+    const spy = jest.spyOn(service, 'activeAchievement');
     mockGameStoreService.settings.mockReturnValue({
-      size: 11
-    })
+      size: 11,
+    });
 
     service.caclVictoryAchieve(2);
-    expect(spy).toHaveBeenCalledWith(AchieveTypes.SPEEDRUNNER)
-  })
+    expect(spy).toHaveBeenCalledWith(AchieveTypes.SPEEDRUNNER);
+  });
 
   it('victory achievements LARGEMAP', () => {
-    const spy= jest.spyOn(service, 'activeAchievement')
-    mockGameStoreService.settings.mockReturnValue({
-      size: 12
-    })
-
-    service.caclVictoryAchieve(2);
-    expect(spy).toHaveBeenCalledWith(AchieveTypes.WINLARGEMAP)
-  })
-
-  it('victory achievements HERO', () => {
-    const spy= jest.spyOn(service, 'activeAchievement')
-    mockGameStoreService.settings.mockReturnValue({
-      size: 12
-    })
-
-    service.caclVictoryAchieve(2);
-    expect(spy).toHaveBeenCalledWith(AchieveTypes.WINHERO)
-  })
-
-    it('victory achievements WINBLACKWOUT', () => {
-    const spy= jest.spyOn(service, 'activeAchievement')
+    const spy = jest.spyOn(service, 'activeAchievement');
     mockGameStoreService.settings.mockReturnValue({
       size: 12,
-      blackout: true
-    })
+    });
 
     service.caclVictoryAchieve(2);
-    expect(spy).toHaveBeenCalledWith(AchieveTypes.WINBLACKWOUT)
-  })
+    expect(spy).toHaveBeenCalledWith(AchieveTypes.WINLARGEMAP);
+  });
+
+  it('victory achievements HERO', () => {
+    const spy = jest.spyOn(service, 'activeAchievement');
+    mockGameStoreService.settings.mockReturnValue({
+      size: 12,
+    });
+
+    service.caclVictoryAchieve(2);
+    expect(spy).toHaveBeenCalledWith(AchieveTypes.WINHERO);
+  });
+
+  it('victory achievements WINBLACKWOUT', () => {
+    const spy = jest.spyOn(service, 'activeAchievement');
+    mockGameStoreService.settings.mockReturnValue({
+      size: 12,
+      blackout: true,
+    });
+
+    service.caclVictoryAchieve(2);
+    expect(spy).toHaveBeenCalledWith(AchieveTypes.WINBLACKWOUT);
+  });
 });
