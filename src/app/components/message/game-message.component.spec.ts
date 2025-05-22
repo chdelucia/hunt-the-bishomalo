@@ -11,8 +11,8 @@ const gameEngineMock = {
 };
 
 const routerMock = {
-  navigate: jest.fn()
-}
+  navigate: jest.fn(),
+};
 
 describe('GameMessageComponent', () => {
   let component: GameMessageComponent;
@@ -23,8 +23,7 @@ describe('GameMessageComponent', () => {
       imports: [GameMessageComponent],
       providers: [
         { provide: GameEngineService, useValue: gameEngineMock },
-        { provide: Router, useValue: routerMock }
-
+        { provide: Router, useValue: routerMock },
       ],
     }).compileComponents();
 
@@ -121,15 +120,15 @@ describe('GameMessageComponent', () => {
       state: {
         fromSecretPath: true,
       },
-    })
-  })
+    });
+  });
 
   it('should navigate to results on new game btn click', () => {
     component.newGame();
-    expect(routerMock.navigate).toHaveBeenCalledWith([RouteTypes.RESULTS])
+    expect(routerMock.navigate).toHaveBeenCalledWith([RouteTypes.RESULTS]);
   });
 
-    it('should navigate to boss on complete the game', () => {
+  it('should navigate to boss on complete the game', () => {
     component.goToBoss();
     expect(routerMock.navigate).toHaveBeenCalledWith([RouteTypes.BOSS], {
       state: {
@@ -137,5 +136,4 @@ describe('GameMessageComponent', () => {
       },
     });
   });
-
 });
