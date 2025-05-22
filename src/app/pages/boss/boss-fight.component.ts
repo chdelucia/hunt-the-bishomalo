@@ -128,6 +128,7 @@ export class BossFightComponent implements OnInit {
   }
 
   goToprizeScreen(): void {
+    this.gameSound.stop();
     this.gameSound.playSound(GameSound.FINISH, false);
     this.router.navigate([RouteTypes.CHARS], {
       state: {

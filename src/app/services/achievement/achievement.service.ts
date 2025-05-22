@@ -32,9 +32,9 @@ export class AchievementService {
           this.activeAchievement(AchieveTypes.LASTBREATH);
         }
       }
-      if (hunter.wumpusKilled > 4) {
+      //TODO fuga aqui
+      if (hunter.wumpusKilled === 5) {
         this.activeAchievement(AchieveTypes.PENTA);
-        this.gameSound.playSound(GameSound.PENTA, false);
       }
     });
   }

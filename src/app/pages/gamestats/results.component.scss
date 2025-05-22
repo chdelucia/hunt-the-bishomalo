@@ -54,9 +54,13 @@
 
 .resultados-titulo {
   font-size: 2rem;
-  margin-bottom: 0.5rem;
+  margin: 2rem 0;
   color: var(--color-text);
   letter-spacing: 0.05em;
+  word-break: break-all;
+  @media (width < 640px) {
+    font-size: 1.5rem;
+  }
 }
 
 .resultados-subtitulo {

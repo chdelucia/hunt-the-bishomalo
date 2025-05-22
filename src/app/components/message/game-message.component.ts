@@ -40,7 +40,7 @@ export class GameMessageComponent {
   }
 
   newGame(): void {
-    this.router.navigate([RouteTypes.CREDITS]);
+    this.router.navigate([RouteTypes.RESULTS]);
   }
 
   goToBoss(): void {

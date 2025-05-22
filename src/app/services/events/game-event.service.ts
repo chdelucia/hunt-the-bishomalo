@@ -83,13 +83,6 @@ export class GameEventService {
       message: 'Has recogido el oro, puedes escapar.',
     },
     {
-      type: 'extragold',
-      itemName: 'extra-goldem',
-      canApply: (hunter) => this.hasItem(hunter, 'extra-goldem'),
-      apply: (hunter, cell) => this.extraGold(hunter, cell),
-      message: 'Has obtenido oro adicional.',
-    },
-    {
       type: 'pit',
       itemName: 'die-pit',
       canApply: (hunter) => this.hasItem(hunter, 'extra-die'),

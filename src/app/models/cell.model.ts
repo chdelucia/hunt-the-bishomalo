@@ -63,7 +63,7 @@ export const CELL_CONTENTS: Record<CellContentType, CellContent> = {
     ariaLabel: 'wumpus',
   },
   extragold: {
-    type: 'extragold',
+    type: 'gold',
     image: 'boardicons/question.png',
     alt: 'secret',
     ariaLabel: 'secret',

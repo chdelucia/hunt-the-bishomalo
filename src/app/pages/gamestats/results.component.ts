@@ -1,8 +1,8 @@
 import { Component, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AchievementService, LeaderboardService } from 'src/app/services';
-import { ScoreEntry } from 'src/app/models';
-import { RouterModule } from '@angular/router';
+import { RouteTypes, ScoreEntry } from 'src/app/models';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-results',
@@ -18,6 +18,7 @@ export class ResultsComponent {
   constructor(
     private readonly leaderboardService: LeaderboardService,
     private readonly achieve: AchievementService,
+    private readonly router: Router
   ) {
     this.unlockedAchievements = achieve.achievements.filter((item) => item.unlocked).length;
     this.leaderboard = leaderboardService._leaderboard;
@@ -58,5 +59,9 @@ export class ResultsComponent {
 
   cambiarTab(tab: 'general' | 'niveles') {
     this.tabActiva.set(tab);
+  }
+
+  goToCredits(): void {
+    this.router.navigate([RouteTypes.CREDITS]);
   }
 }
