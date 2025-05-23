@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v4.2.2...v4.2.3) (2025-05-23)
+
+
+### Bug Fixes
+
+* **speech:** finish speech on close ([35fa1ee](https://github.com/chdelucia/hunt-the-bishomalo/commit/35fa1eecaa0c3bc0b910a5767440b2f2467b42a9))
+
 ### [4.2.2](https://github.com/chdelucia/hunt-the-bishomalo/compare/v4.2.1...v4.2.2) (2025-05-23)
 
 
