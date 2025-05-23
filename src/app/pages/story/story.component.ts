@@ -4,6 +4,7 @@ import {
   computed,
   effect,
   inject,
+  OnDestroy,
   OnInit,
   signal,
 } from '@angular/core';
@@ -20,7 +21,7 @@ import { RouteTypes } from 'src/app/models';
   styleUrl: './story.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StoryComponent implements OnInit {
+export class StoryComponent implements OnInit, OnDestroy {
   private router = inject(Router);
   private storyService = inject(GameStoryService);
 
@@ -37,6 +38,10 @@ export class StoryComponent implements OnInit {
       this.fullText = this.story.text;
       this.startReading(this.fullText);
     }
+  }
+
+  ngOnDestroy(): void {
+    speechSynthesis.cancel();
   }
 
   goToGame(): void {
