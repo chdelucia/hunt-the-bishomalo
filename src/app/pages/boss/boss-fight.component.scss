@@ -30,9 +30,14 @@
   text-align: center;
   font-family: 'Press Start 2P', monospace;
   padding: 1rem;
+  background-image: url('/scenarios/5.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
 
   #bossTitle {
     color: white;
+    text-shadow: 1px 1px 6px black;
   }
   .grid {
     display: flex;
@@ -94,14 +99,15 @@
     margin-top: 1.5rem;
     font-size: 0.9rem;
     color: #f3f4f6;
+    text-shadow: 1px 1px 6px black;
   }
 
   button {
     margin-top: 1rem;
-    background-color: #10b981;
+    background-color: var(--color-button);
     color: white;
     border: none;
-    padding: 0.75rem 1.5rem;
+    padding: 1.75rem 2.5rem;
     font-weight: bold;
     border-radius: 6px;
     cursor: pointer;
@@ -113,7 +119,7 @@
     }
 
     &:hover {
-      background-color: #059669;
+      background-color: var(--color-button-hover);
     }
 
     &:active {
@@ -129,9 +135,12 @@
 .game-message {
   text-align: center;
   font-size: large;
-  margin-bottom: 1.5rem;
+  margin: 1.5rem auto;
   color: var(--color-primary);
   line-height: 1.5rem;
+  max-width: 800px;
+  background-color: black;
+  padding: 0.5rem;
 }
 
 .leyenda {

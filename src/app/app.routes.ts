@@ -38,6 +38,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: RouteTypes.RESULTS,
+    canActivate: [secretGuard],
     loadComponent: () => import('./pages').then((mod) => mod.ResultsComponent),
     title: 'Resultados de la partida | Bisho malo',
   },
@@ -46,6 +47,12 @@ export const appRoutes: Route[] = [
     canActivate: [secretGuard],
     loadComponent: () => import('./pages').then((mod) => mod.BossFightComponent),
     title: 'Final boss | Bisho malo',
+  },
+  {
+    path: RouteTypes.STORY,
+    canActivate: [secretGuard],
+    loadComponent: () => import('./pages').then((mod) => mod.StoryComponent),
+    title: 'Story | Bisho malo',
   },
   {
     path: RouteTypes.HOME,

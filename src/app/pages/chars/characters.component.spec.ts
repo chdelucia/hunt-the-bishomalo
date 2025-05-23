@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CharactersComponent } from './characters.component';
 import { GameEngineService, GameStoreService } from 'src/app/services';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
-import { Chars } from 'src/app/models';
+import { Chars, RouteTypes } from 'src/app/models';
 
 const gameEngineServiceMock = {
   newGame: jest.fn(),
@@ -17,6 +17,10 @@ const gameStoreMock = {
   hunter: jest.fn().mockReturnValue(hunterSignal),
   settings: jest.fn().mockReturnValue({}),
 };
+
+const routerMock = {
+  nagivate: jest.fn(),
+}
 
 describe('CharactersComponent', () => {
   let component: CharactersComponent;
@@ -45,6 +49,5 @@ describe('CharactersComponent', () => {
     component.selectedChar.set(Chars.LINK);
     component.onClick();
     expect(gameStoreMock.updateHunter).toHaveBeenCalled();
-    expect(gameEngineServiceMock.newGame).toHaveBeenCalled();
   });
 });

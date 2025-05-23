@@ -40,7 +40,7 @@ export class GameSoundService {
     if (!this.audioMap[key]) {
       const path = SOUND_PATHS[key];
       const audio = new Audio(path);
-      audio.volume = 0.6;
+      audio.volume = 0.5;
       this.audioMap[key] = audio;
     }
     return this.audioMap[key];

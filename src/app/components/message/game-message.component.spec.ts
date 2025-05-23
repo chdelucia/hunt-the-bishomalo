@@ -16,6 +16,7 @@ const gameEngineMock = {
       gold: 60,
       maxLives: 8,
       luck: 8,
+      bossTries: 12
     },
   }),
 };
@@ -53,6 +54,7 @@ describe('GameMessageComponent', () => {
         gold: 60,
         maxLives: 8,
         luck: 8,
+        bossTries: 12
       },
     });
     fixture.componentRef.setInput('lives', 8);
@@ -88,6 +90,7 @@ describe('GameMessageComponent', () => {
         gold: 60,
         maxLives: 8,
         luck: 8,
+        bossTries: 12
       },
     });
 
@@ -110,6 +113,7 @@ describe('GameMessageComponent', () => {
         gold: 60,
         maxLives: 8,
         luck: 8,
+        bossTries: 12
       },
     });
 
@@ -132,6 +136,7 @@ describe('GameMessageComponent', () => {
         gold: 60,
         maxLives: 8,
         luck: 8,
+        bossTries: 12
       },
     });
 
@@ -154,6 +159,7 @@ describe('GameMessageComponent', () => {
         gold: 60,
         maxLives: 8,
         luck: 8,
+        bossTries: 12
       },
     });
     fixture.detectChanges();
@@ -177,6 +183,7 @@ describe('GameMessageComponent', () => {
         gold: 60,
         maxLives: 8,
         luck: 8,
+        bossTries: 12
       },
     }); // size < 20
 
@@ -199,6 +206,7 @@ describe('GameMessageComponent', () => {
         gold: 60,
         maxLives: 8,
         luck: 8,
+        bossTries: 12
       },
     });
 

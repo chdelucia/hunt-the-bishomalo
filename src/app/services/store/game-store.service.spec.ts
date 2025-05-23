@@ -20,6 +20,7 @@ describe('GameStoreService', () => {
       gold: 60,
       maxLives: 8,
       luck: 8,
+      bossTries: 12
     },
   };
 

@@ -1,7 +1,7 @@
 @let board = game.board(); @let boardSize = board.length; @let hunterData = hunter(); @let isAlive =
 hunterData.alive; @let hasWon = hunterData.hasWon; @let settings = game.settings();
 
-<main [appVisualEffect]="game.message()">
+<main [appVisualEffect]="game.message()" class="main-container">
   <app-title [blackout]="settings?.blackout || false" />
 
   @if(settings?.blackout && isAlive && !hasWon){

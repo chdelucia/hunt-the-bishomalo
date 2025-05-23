@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { AchieveTypes, Chars, RouteTypes } from 'src/app/models';
 import { AchievementService, GameEngineService, GameStoreService } from 'src/app/services';
@@ -24,6 +24,7 @@ export class CharactersComponent {
     default: AchieveTypes.PICKGOLD,
   };
 
+
   selectedChar = signal<Chars | null>(null);
 
   onClick(): void {
@@ -33,9 +34,8 @@ export class CharactersComponent {
       this.gameStore.updateHunter({
         chars: [...(this.gameStore.hunter().chars || []), selected],
       });
-      this.gameEngine.newGame();
       this.achieve.activeAchievement(this.achievements[selected]);
-      this.router.navigateByUrl(RouteTypes.HOME);
+      this.router.navigateByUrl(RouteTypes.CREDITS);
     }
   }
 }

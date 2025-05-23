@@ -79,6 +79,11 @@ export class ShopComponent {
 
   nextLevel(): void {
     this.gameEngine.nextLevel();
-    this.router.navigate([RouteTypes.HOME]);
+    this.router.navigate([RouteTypes.STORY], {
+      state: {
+        fromSecretPath: true,
+      }
+    });
   }
+
 }

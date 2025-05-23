@@ -312,3 +312,14 @@
     flex-direction: column;
   }
 }
+
+.button-wrapper{
+  text-align: right;
+}
+.next-btn {
+  padding: 2rem 4rem;
+  background: var(--color-button);
+  &:hover{
+    background: var(--color-button-hover);
+  }
+}

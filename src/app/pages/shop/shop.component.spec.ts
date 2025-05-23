@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testin
 import { ShopComponent } from './shop.component';
 import { Router } from '@angular/router';
 import { GameStoreService, GameEngineService } from 'src/app/services';
-import { Product } from 'src/app/models';
+import { Product, RouteTypes } from 'src/app/models';
 import { CommonModule } from '@angular/common';
 
 const mockHunter = {
@@ -22,6 +22,7 @@ const mockGameStoreService = {
       gold: 60,
       maxLives: 8,
       luck: 8,
+      bossTries: 12
     },
   }),
 };
@@ -95,6 +96,6 @@ describe('ShopComponent', () => {
   it('should call nextLevel and navigate to HOME', () => {
     component.nextLevel();
     expect(mockGameEngineService.nextLevel).toHaveBeenCalled();
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['home']);
+    expect(mockRouter.navigate).toHaveBeenCalledWith([RouteTypes.STORY], {"state": {"fromSecretPath": true}});
   });
 });

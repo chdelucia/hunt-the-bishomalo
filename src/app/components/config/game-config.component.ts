@@ -2,7 +2,8 @@ import { ChangeDetectionStrategy, Component, inject, isDevMode, OnInit } from '@
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { GameEngineService, GameSoundService, GameStoreService } from 'src/app/services';
-import { Chars, DIFFICULTY_CONFIGS, DifficultyTypes, GameSound } from 'src/app/models';
+import { Chars, DIFFICULTY_CONFIGS, DifficultyTypes, GameSound, RouteTypes } from 'src/app/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game-config',
@@ -17,6 +18,7 @@ export class GameConfigComponent implements OnInit {
   private readonly gameEngine = inject(GameEngineService);
   private readonly fb = inject(FormBuilder);
   private readonly gameSound = inject(GameSoundService);
+   private router = inject(Router);
 
   isDevMode = isDevMode();
 
@@ -43,7 +45,14 @@ export class GameConfigComponent implements OnInit {
         blackout: this.applyBlackoutChance(),
         difficulty: DIFFICULTY_CONFIGS[difficulty],
       });
+      this.goToStory();
     }
+  }
+
+  goToStory(): void {
+    this.router.navigate([RouteTypes.STORY], {
+      state: {fromSecretPath: true }
+    });
   }
 
   selectChar(char: Chars): void {

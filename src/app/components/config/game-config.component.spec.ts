@@ -78,6 +78,7 @@ describe('GameConfigComponent', () => {
         maxChance: 0.35,
         maxLevels: 10,
         maxLives: 8,
+        bossTries: 12
       },
     });
   });
@@ -96,6 +97,7 @@ describe('GameConfigComponent', () => {
         maxChance: 0.35,
         maxLevels: 10,
         maxLives: 8,
+        bossTries: 12
       },
     });
 

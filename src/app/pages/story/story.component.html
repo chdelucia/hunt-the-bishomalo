@@ -1,0 +1,24 @@
+<main class="story-page">
+  <section
+    class="story-container"
+    (click)="goToGame()"
+    (keydown.enter)="goToGame()"
+    (keydown.space)="goToGame()"
+    tabindex="0"
+  >
+    <h1 class="chapter">CAPÍTULO {{ story?.level }}</h1>
+    <h2 class="title">{{ story?.title }}</h2>
+    <p class="text">{{ displayedText() }}</p>
+
+    @if(showExtraInfo()){
+    <p *ngIf="story?.effect" class="effect">
+      ✨ Efecto: {{ formatEffect(story!.effect) }}
+    </p>
+
+    <p class="instruction">
+      Haz clic para comenzar el nivel
+    </p>
+    } 
+
+  </section>
+</main>

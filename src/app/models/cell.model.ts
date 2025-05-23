@@ -28,7 +28,7 @@ export type CharacterType = 'default' | 'link' | 'lara' | 'legolas';
 export const CELL_CONTENTS: Record<CellContentType, CellContent> = {
   wumpus: {
     type: 'wumpus',
-    image: 'chars/default/wumpus.svg',
+    image: 'chars/link/wumpu.png',
     alt: 'wumpus',
     ariaLabel: 'wumpus',
   },

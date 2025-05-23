@@ -1,8 +1,8 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AchievementService, LeaderboardService } from 'src/app/services';
+import { AchievementService, GameStoreService, LeaderboardService } from 'src/app/services';
 import { RouteTypes, ScoreEntry } from 'src/app/models';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-results',
@@ -19,6 +19,8 @@ export class ResultsComponent {
     private readonly leaderboardService: LeaderboardService,
     private readonly achieve: AchievementService,
     private readonly router: Router,
+    private readonly routeSnapshot: ActivatedRoute,
+    private readonly gameStore: GameStoreService
   ) {
     this.unlockedAchievements = achieve.achievements.filter((item) => item.unlocked).length;
     this.leaderboard = leaderboardService._leaderboard;
@@ -62,6 +64,17 @@ export class ResultsComponent {
   }
 
   goToCredits(): void {
-    this.router.navigate([RouteTypes.CREDITS]);
+    const boss = this.routeSnapshot.snapshot.queryParams['boss'];
+
+    if(this.gameStore.hunter().chars?.length === 4 || !boss){
+      this.router.navigateByUrl(RouteTypes.CREDITS);
+      return;
+    }
+    
+    this.router.navigate([RouteTypes.CHARS],{
+       state: {
+        fromSecretPath: true,
+      }
+    });
   }
 }

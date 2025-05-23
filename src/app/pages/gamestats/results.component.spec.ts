@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ResultsComponent } from './results.component';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AchievementService, LeaderboardService } from 'src/app/services';
 import { RouteTypes, ScoreEntry } from 'src/app/models';
 
@@ -44,6 +44,14 @@ const routerMOck = {
   navigate: jest.fn(),
 };
 
+const activateRouteMock = {
+  snapshot: {
+    queryParams: {
+      boss: true
+    }
+  }
+};
+
 describe('ResultsComponent', () => {
   let component: ResultsComponent;
   let fixture: ComponentFixture<ResultsComponent>;
@@ -55,6 +63,8 @@ describe('ResultsComponent', () => {
         { provide: AchievementService, useValue: mockAchievementService },
         { provide: LeaderboardService, useValue: mockLeaderboardService },
         { provide: Router, useValue: routerMOck },
+        { provide: ActivatedRoute, useValue: activateRouteMock },
+        
       ],
     }).compileComponents();
 
@@ -90,7 +100,7 @@ describe('ResultsComponent', () => {
 
   it('should go to credits on click btn', () => {
     component.goToCredits();
-    expect(routerMOck.navigate).toHaveBeenCalledWith([RouteTypes.CREDITS]);
+    expect(routerMOck.navigate).toHaveBeenCalledWith([RouteTypes.CHARS], {"state": {"fromSecretPath": true}});
   });
 
   it('should compute general statistics correctly', () => {

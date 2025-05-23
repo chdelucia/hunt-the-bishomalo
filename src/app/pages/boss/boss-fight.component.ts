@@ -24,12 +24,13 @@ export class BossFightComponent implements OnInit {
   readonly gameStore = inject(GameStoreService);
   private readonly router = inject(Router);
   readonly _hunter = this.gameStore.hunter;
+  private readonly _settings = this.gameStore.settings;
 
   gridSize = 5;
   grid: BossCell[][] = [];
   bossParts = 5;
   bossRemaining = this.bossParts;
-  playerLives = 12;
+  playerLives = this._settings().difficulty.bossTries;
   message = '';
   gameOver = false;
 
@@ -51,9 +52,9 @@ export class BossFightComponent implements OnInit {
     );
 
     this.bossRemaining = this.bossParts;
-    this.playerLives = 12;
+    this.playerLives = this._settings().difficulty.bossTries;
     this.message =
-      'Descubre las 5 localizaciones del boss en 12 intentos, tus vidas ahora son continues.';
+      'Cuando estabas apunto de escapar y ya veias la luz solar, te ataco un ser maligno. Descubre las 5 localizaciones del bisho malo, tus vidas ahora son continues.';
     this.gameOver = false;
 
     let partsPlaced = 0;
@@ -117,7 +118,7 @@ export class BossFightComponent implements OnInit {
     const inRow = row.filter((c) => c.hasBossPart && !c.hit).length;
     const inCol = col.filter((c) => c.hasBossPart && !c.hit).length;
 
-    return `En la misma fila ${inRow} parte(s) y en la misma columna ${inCol} parte(s).`;
+    return `En la misma fila ${inRow} bisho(s). En la columna ${inCol} bisho(s).`;
   }
 
   getAriaLabel(cell: BossCell, x: number, y: number): string {
@@ -130,10 +131,11 @@ export class BossFightComponent implements OnInit {
   goToprizeScreen(): void {
     this.gameSound.stop();
     this.gameSound.playSound(GameSound.FINISH, false);
-    this.router.navigate([RouteTypes.CHARS], {
+    this.router.navigate([RouteTypes.RESULTS], {
       state: {
         fromSecretPath: true,
       },
+      queryParams: {boss: true}
     });
   }
 }
