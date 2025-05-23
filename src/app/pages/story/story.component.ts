@@ -37,6 +37,8 @@ export class StoryComponent implements OnInit, OnDestroy {
     if (this.story) {
       this.fullText = this.story.text;
       this.startReading(this.fullText);
+    }else{
+      this.goToGame();
     }
   }
 

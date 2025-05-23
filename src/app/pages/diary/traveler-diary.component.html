@@ -1,0 +1,9 @@
+    <section class="diary">
+      <h2>Diario del Viajero</h2>
+      <div *ngIf="stories().length === 0">No hay historias disponibles.</div>
+      <article *ngFor="let story of stories()">
+        <h3>Capítulo {{ story.level }}: {{ story.title }}</h3>
+        <p>{{ story.text }}</p>
+        <small>Efecto: {{ formatEffect(story.effect) }}</small>
+      </article>
+    </section>

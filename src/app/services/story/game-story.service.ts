@@ -17,6 +17,14 @@ export class GameStoryService {
     return charStories.find((story) => story.level === level);
   }
 
+  getJournalEntries(): LevelStory[] {
+    const { size, selectedChar } = this._settings();
+    const level = size - 3;
+    const charStories = this.stories[selectedChar] || [];
+    return charStories.filter((story) => story.level <= level);
+  }
+
+ 
   checkLevelTrigger(level: LevelStory): void {
     switch (level.effect) {
       case 'extraArrow':

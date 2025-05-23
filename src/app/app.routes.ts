@@ -52,7 +52,12 @@ export const appRoutes: Route[] = [
     path: RouteTypes.STORY,
     canActivate: [secretGuard],
     loadComponent: () => import('./pages').then((mod) => mod.StoryComponent),
-    title: 'Story | Bisho malo',
+    title: 'Storytelling | Bisho malo',
+  },
+  {
+    path: RouteTypes.DIARY,
+    loadComponent: () => import('./pages').then((mod) => mod.TravelerDiaryComponent),
+    title: 'Diario del viajero | Bisho malo',
   },
   {
     path: RouteTypes.HOME,

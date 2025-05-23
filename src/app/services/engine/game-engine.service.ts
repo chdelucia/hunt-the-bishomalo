@@ -183,7 +183,7 @@ export class GameEngineService {
       const cell = board[x][y];
       lastCell = cell;
 
-      if (cell.content === CELL_CONTENTS.wumpus) {
+      if (cell.content?.type === 'wumpus') {
         return { hitWumpus: true, cell };
       }
 
@@ -334,7 +334,7 @@ export class GameEngineService {
   }
 
   private getPerceptionFromCell(cell: Cell): string | null {
-    if (cell.content === CELL_CONTENTS.wumpus) {
+    if (cell.content?.type === 'wumpus') {
       this.sound.playSound(GameSound.WUMPUS);
       return 'Sientes hedor.';
     }
