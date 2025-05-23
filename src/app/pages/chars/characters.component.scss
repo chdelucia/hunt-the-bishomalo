@@ -2,10 +2,13 @@
   text-align: center;
   align-content: center;
   height: 100vh;
-    &::before {
-    content: "";
+  &::before {
+    content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-image: url('/scenarios/2.gif');
     background-size: cover;
     background-position: center;
@@ -18,14 +21,14 @@
     margin: 4rem 0;
     text-shadow: 1px 1px 8px black;
     position: relative;
-    z-index:2;
+    z-index: 2;
     font-size: 2.5rem;
   }
 
   button {
     font-family: 'Press Start 2P', monospace;
     position: relative;
-    z-index:2;
+    z-index: 2;
   }
 }
 .character-container {
@@ -59,7 +62,7 @@
     width: 100%;
     border-radius: 10px;
     pointer-events: none;
-    filter: drop-shadow(0 0 8px rgba(0,0,0,0.8));
+    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.8));
   }
 
   &:hover:not(.character.owned) {

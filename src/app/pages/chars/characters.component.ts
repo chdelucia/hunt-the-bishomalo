@@ -24,7 +24,6 @@ export class CharactersComponent {
     default: AchieveTypes.PICKGOLD,
   };
 
-
   selectedChar = signal<Chars | null>(null);
 
   onClick(): void {

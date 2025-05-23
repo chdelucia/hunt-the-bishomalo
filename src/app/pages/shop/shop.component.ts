@@ -82,8 +82,7 @@ export class ShopComponent {
     this.router.navigate([RouteTypes.STORY], {
       state: {
         fromSecretPath: true,
-      }
+      },
     });
   }
-
 }

@@ -17,10 +17,9 @@ describe('BossFightComponent', () => {
     updateHunter: jest.fn(),
     settings: jest.fn().mockReturnValue({
       difficulty: {
-        bossTries: 12
-      
-      }
-    })
+        bossTries: 12,
+      },
+    }),
   };
 
   const gameSoundMock = {
@@ -108,7 +107,7 @@ describe('BossFightComponent', () => {
     expect(gameSoundMock.playSound).toHaveBeenCalledWith(GameSound.FINISH, false);
     expect(routerMock.navigate).toHaveBeenCalledWith([RouteTypes.RESULTS], {
       state: { fromSecretPath: true },
-      queryParams: { boss: true}
+      queryParams: { boss: true },
     });
   });
 });

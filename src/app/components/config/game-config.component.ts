@@ -18,7 +18,7 @@ export class GameConfigComponent implements OnInit {
   private readonly gameEngine = inject(GameEngineService);
   private readonly fb = inject(FormBuilder);
   private readonly gameSound = inject(GameSoundService);
-   private router = inject(Router);
+  private router = inject(Router);
 
   isDevMode = isDevMode();
 
@@ -51,7 +51,7 @@ export class GameConfigComponent implements OnInit {
 
   goToStory(): void {
     this.router.navigate([RouteTypes.STORY], {
-      state: {fromSecretPath: true }
+      state: { fromSecretPath: true },
     });
   }
 

@@ -47,9 +47,9 @@ const routerMOck = {
 const activateRouteMock = {
   snapshot: {
     queryParams: {
-      boss: true
-    }
-  }
+      boss: true,
+    },
+  },
 };
 
 describe('ResultsComponent', () => {
@@ -64,7 +64,6 @@ describe('ResultsComponent', () => {
         { provide: LeaderboardService, useValue: mockLeaderboardService },
         { provide: Router, useValue: routerMOck },
         { provide: ActivatedRoute, useValue: activateRouteMock },
-        
       ],
     }).compileComponents();
 
@@ -100,7 +99,9 @@ describe('ResultsComponent', () => {
 
   it('should go to credits on click btn', () => {
     component.goToCredits();
-    expect(routerMOck.navigate).toHaveBeenCalledWith([RouteTypes.CHARS], {"state": {"fromSecretPath": true}});
+    expect(routerMOck.navigate).toHaveBeenCalledWith([RouteTypes.CHARS], {
+      state: { fromSecretPath: true },
+    });
   });
 
   it('should compute general statistics correctly', () => {

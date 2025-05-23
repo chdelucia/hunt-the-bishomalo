@@ -20,7 +20,7 @@ export class ResultsComponent {
     private readonly achieve: AchievementService,
     private readonly router: Router,
     private readonly routeSnapshot: ActivatedRoute,
-    private readonly gameStore: GameStoreService
+    private readonly gameStore: GameStoreService,
   ) {
     this.unlockedAchievements = achieve.achievements.filter((item) => item.unlocked).length;
     this.leaderboard = leaderboardService._leaderboard;
@@ -66,15 +66,15 @@ export class ResultsComponent {
   goToCredits(): void {
     const boss = this.routeSnapshot.snapshot.queryParams['boss'];
 
-    if(this.gameStore.hunter().chars?.length === 4 || !boss){
+    if (this.gameStore.hunter().chars?.length === 4 || !boss) {
       this.router.navigateByUrl(RouteTypes.CREDITS);
       return;
     }
-    
-    this.router.navigate([RouteTypes.CHARS],{
-       state: {
+
+    this.router.navigate([RouteTypes.CHARS], {
+      state: {
         fromSecretPath: true,
-      }
+      },
     });
   }
 }

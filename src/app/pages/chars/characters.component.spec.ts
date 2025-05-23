@@ -20,7 +20,7 @@ const gameStoreMock = {
 
 const routerMock = {
   nagivate: jest.fn(),
-}
+};
 
 describe('CharactersComponent', () => {
   let component: CharactersComponent;

@@ -1,66 +1,76 @@
 .story-page {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: var(--color-text-secondary);
-      text-align: center;
-      padding: 1rem;
-      animation: fadeIn 1.5s ease forwards;
-      background-image: url('/scenarios/4.jpg');
-      background-size: cover;
-    }
-    .story-container {
-      max-width: 650px;
-      width: 95vw;
-      background: rgba(0,0,0,0.8);
-      padding: 2rem 3rem;
-      box-shadow: 0 0 30px var(--color-panel);
-      animation: slideUp 1.5s ease forwards;
-      cursor: pointer;
-    }
-    .chapter {
-      font-size: 2rem;
-      letter-spacing: 0.3em;
-      margin-bottom: 1.6em;
-      text-transform: uppercase;
-      font-weight: 900;
-      color: var(--color-text);
-      word-wrap: break-word;
-      word-break: break-all;
-    }
-    .title {
-      font-size: 1.5rem;
-      margin-bottom: 1em;
-      font-weight: 700;
-      color: var(--color-yellow);
-    }
-    .text {
-      font-size: 1rem;
-      line-height: 1.5;
-      margin-bottom: 3.5em;
-      font-style: italic;
-      max-width: 650px;
-      text-align: left;
-    }
-    .effect {
-      font-size: .9rem;
-      margin-bottom: 2em;
-      color: #ffdd55;
-      font-weight: 600;
-      animation: fadeIn 1.5s ease forwards;
-    }
-    .instruction {
-      font-size: .8rem;
-      opacity: 0.7;
-      font-style: normal;
-      animation: fadeIn 1.5s ease forwards;
-    }
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-    @keyframes slideUp {
-      from {transform: translateY(30px); opacity: 0;}
-      to {transform: translateY(0); opacity: 1;}
-    }
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-text-secondary);
+  text-align: center;
+  padding: 1rem;
+  animation: fadeIn 1.5s ease forwards;
+  background-image: url('/scenarios/4.jpg');
+  background-size: cover;
+}
+.story-container {
+  max-width: 650px;
+  width: 95vw;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 2rem 3rem;
+  box-shadow: 0 0 30px var(--color-panel);
+  animation: slideUp 1.5s ease forwards;
+  cursor: pointer;
+}
+.chapter {
+  font-size: 2rem;
+  letter-spacing: 0.3em;
+  margin-bottom: 1.6em;
+  text-transform: uppercase;
+  font-weight: 900;
+  color: var(--color-text);
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 1em;
+  font-weight: 700;
+  color: var(--color-yellow);
+}
+.text {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 3.5em;
+  font-style: italic;
+  max-width: 650px;
+  text-align: left;
+}
+.effect {
+  font-size: 0.9rem;
+  margin-bottom: 2em;
+  color: #ffdd55;
+  font-weight: 600;
+  animation: fadeIn 1.5s ease forwards;
+}
+.instruction {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  font-style: normal;
+  animation: fadeIn 1.5s ease forwards;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

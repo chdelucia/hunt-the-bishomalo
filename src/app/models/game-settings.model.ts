@@ -35,7 +35,7 @@ export const DIFFICULTY_CONFIGS: Record<DifficultyTypes, GameDificulty> = {
     gold: 60,
     maxLives: 8,
     luck: 8,
-    bossTries: 12
+    bossTries: 12,
   },
   normal: {
     maxLevels: 15,
@@ -44,7 +44,7 @@ export const DIFFICULTY_CONFIGS: Record<DifficultyTypes, GameDificulty> = {
     gold: 50,
     maxLives: 8,
     luck: 5,
-    bossTries: 11
+    bossTries: 11,
   },
   hard: {
     maxLevels: 15,
@@ -53,6 +53,6 @@ export const DIFFICULTY_CONFIGS: Record<DifficultyTypes, GameDificulty> = {
     gold: 50,
     maxLives: 5,
     luck: 0,
-    bossTries: 10
+    bossTries: 10,
   },
 };

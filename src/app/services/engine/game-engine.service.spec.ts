@@ -27,7 +27,7 @@ const mockStore = {
       gold: 60,
       maxLives: 8,
       luck: 8,
-      bossTries: 12
+      bossTries: 12,
     },
   }),
   board: jest.fn(),
@@ -107,7 +107,7 @@ describe('GameEngineService (with useValue)', () => {
         gold: 60,
         maxLives: 8,
         luck: 8,
-        bossTries: 12
+        bossTries: 12,
       },
     };
 
@@ -240,7 +240,7 @@ describe('GameEngineService (with useValue)', () => {
           gold: 60,
           maxLives: 8,
           luck: 8,
-          bossTries: 12
+          bossTries: 12,
         },
       });
     });

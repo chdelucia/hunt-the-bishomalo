@@ -60,50 +60,52 @@ export class StoryComponent implements OnInit {
     return effects[effect] || effect;
   }
 
-private startReading(text: string): void {
-  this.reading.set(true);
-  this.displayedText.set('');
+  private startReading(text: string): void {
+    this.reading.set(true);
+    this.displayedText.set('');
 
-  const chapterText = `Capítulo ${this.story?.level}`;
-  const titleText = this.story?.title || '';
-  const bodyText = text;
+    const chapterText = `Capítulo ${this.story?.level}`;
+    const titleText = this.story?.title || '';
+    const bodyText = text;
 
-  const utterChapter = new SpeechSynthesisUtterance(chapterText);
-  utterChapter.lang = 'es-ES';
-  utterChapter.pitch = 0.7;
-  utterChapter.rate = .7;
+    const utterChapter = new SpeechSynthesisUtterance(chapterText);
+    utterChapter.lang = 'es-ES';
+    utterChapter.pitch = 0.7;
+    utterChapter.rate = 0.7;
 
-  const utterTitle = new SpeechSynthesisUtterance(titleText);
-  utterTitle.lang = 'es-ES';
-  utterTitle.pitch = 0.7;
-  utterTitle.rate = .8;
+    const utterTitle = new SpeechSynthesisUtterance(titleText);
+    utterTitle.lang = 'es-ES';
+    utterTitle.pitch = 0.7;
+    utterTitle.rate = 0.8;
 
-  const utterBody = new SpeechSynthesisUtterance(bodyText);
-  utterBody.lang = 'es-ES';
-  utterBody.pitch = 0.1;
-  utterBody.rate = .6;
+    const utterBody = new SpeechSynthesisUtterance(bodyText);
+    utterBody.lang = 'es-ES';
+    utterBody.pitch = 0.1;
+    utterBody.rate = 0.6;
 
-  speechSynthesis.cancel();
-  utterChapter.onend = () => {
-    speechSynthesis.speak(utterTitle);
-  };
-  utterTitle.onend = () => {
-    speechSynthesis.speak(utterBody);
-  };
+    speechSynthesis.cancel();
+    utterChapter.onend = () => {
+      speechSynthesis.speak(utterTitle);
+    };
+    utterTitle.onend = () => {
+      speechSynthesis.speak(utterBody);
+    };
 
-  utterBody.onend = () => { this.showExtraInfo.set(true)}
+    utterBody.onend = () => {
+      this.showExtraInfo.set(true);
+    };
 
-  speechSynthesis.speak(utterChapter);
+    speechSynthesis.speak(utterChapter);
 
-  let i = 0;
-  const interval = setInterval(() => {
-    const current = this.displayedText();
-    this.displayedText.set(current + bodyText[i]);
-    i++;
-    if (i >= bodyText.length) {
-      clearInterval(interval);
-      this.reading.set(false);
-    }
-  }, 90);
-}
+    let i = 0;
+    const interval = setInterval(() => {
+      const current = this.displayedText();
+      this.displayedText.set(current + bodyText[i]);
+      i++;
+      if (i >= bodyText.length) {
+        clearInterval(interval);
+        this.reading.set(false);
+      }
+    }, 90);
+  }
 }

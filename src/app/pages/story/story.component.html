@@ -11,14 +11,9 @@
     <p class="text">{{ displayedText() }}</p>
 
     @if(showExtraInfo()){
-    <p *ngIf="story?.effect" class="effect">
-      ✨ Efecto: {{ formatEffect(story!.effect) }}
-    </p>
+    <p *ngIf="story?.effect" class="effect">✨ Efecto: {{ formatEffect(story!.effect) }}</p>
 
-    <p class="instruction">
-      Haz clic para comenzar el nivel
-    </p>
-    } 
-
+    <p class="instruction">Haz clic para comenzar el nivel</p>
+    }
   </section>
 </main>

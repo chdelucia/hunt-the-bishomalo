@@ -24,7 +24,7 @@ const mockGameStoreService = {
       maxChance: 0.35,
       maxLevels: 10,
       maxLives: 8,
-      bossTries: 12
+      bossTries: 12,
     },
   }),
   message: jest.fn().mockReturnValue('¡El Wumpus te devoró!'),

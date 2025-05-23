@@ -8,5 +8,5 @@ export enum RouteTypes {
   RULES = 'instrucciones',
   RESULTS = 'resultados',
   BOSS = 'boss',
-  STORY = 'story'
+  STORY = 'story',
 }

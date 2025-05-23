@@ -135,7 +135,7 @@ export class BossFightComponent implements OnInit {
       state: {
         fromSecretPath: true,
       },
-      queryParams: {boss: true}
+      queryParams: { boss: true },
     });
   }
 }

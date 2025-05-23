@@ -22,7 +22,7 @@ const mockGameStoreService = {
       gold: 60,
       maxLives: 8,
       luck: 8,
-      bossTries: 12
+      bossTries: 12,
     },
   }),
 };
@@ -96,6 +96,8 @@ describe('ShopComponent', () => {
   it('should call nextLevel and navigate to HOME', () => {
     component.nextLevel();
     expect(mockGameEngineService.nextLevel).toHaveBeenCalled();
-    expect(mockRouter.navigate).toHaveBeenCalledWith([RouteTypes.STORY], {"state": {"fromSecretPath": true}});
+    expect(mockRouter.navigate).toHaveBeenCalledWith([RouteTypes.STORY], {
+      state: { fromSecretPath: true },
+    });
   });
 });

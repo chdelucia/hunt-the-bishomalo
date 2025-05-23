@@ -1,5 +1,4 @@
-import { Chars } from "src/app/models";
-
+import { Chars } from 'src/app/models';
 
 export interface LevelStory {
   level: number;
@@ -9,402 +8,402 @@ export interface LevelStory {
 }
 
 export const STORIES: Record<Chars, LevelStory[]> = {
-    [Chars.DEFAULT]: [
-  {
-    "level": 1,
-    "title": "El Comienzo Oscuro",
-    "text": "Te adentras en las profundidades de la cueva, guiado solo por la tenue luz de tu antorcha. Las sombras parecen moverse a tu alrededor y un extraño presentimiento te acompaña. No sabes qué secretos aguardan en la oscuridad.",
-    "effect": "extraArrow"
-  },
-  {
-    "level": 2,
-    "title": "Ecos del Pasado",
-    "text": "Entre las penumbras encuentras un cuerpo con armadura y armas que reconoces vagamente. Una sensación de culpa comienza a crecer en tu interior mientras las sombras susurran nombres olvidados.",
-    "effect": "revealHint"
-  },
-  {
-    "level": 3,
-    "title": "Susurros de Traición",
-    "text": "Los recuerdos fragmentados comienzan a surgir: escenas de traición, batallas y la caída de antiguos aliados. La cueva parece querer revelarte una verdad oscura que no deseas enfrentar.",
-    "effect": "extraLife"
-  },
-  {
-    "level": 4,
-    "title": "Rastro de Venganza",
-    "text": "A medida que avanzas, notas que los caminos están marcados por la destrucción que has causado. La cueva reacciona a tu presencia, volviéndose más traicionera y difícil.",
-    "effect": "maxChanceDown"
-  },
-  {
-    "level": 5,
-    "title": "La Verdad Revelada",
-    "text": "Los cuerpos que has dejado atrás comienzan a tener rostros: Lara, Legolas y Link, tus antiguos rivales. La realidad de tu identidad como Bisho Malo se torna innegable y pesada.",
-    "effect": "fogOfWar"
-  },
-  {
-    "level": 6,
-    "title": "Ecos de los Caídos",
-    "text": "Las voces de los héroes caídos resuenan en la cueva, y sus espíritus parecen observar cada uno de tus movimientos. El ambiente se vuelve más oscuro, y las trampas más letales.",
-    "effect": "trapIncrease"
-  },
-  {
-    "level": 7,
-    "title": "Sombras Internas",
-    "text": "Dentro de ti se libra una batalla: la parte humana que aún queda contra la oscuridad que te consume. La cueva parece reflejar este conflicto en sus formaciones retorcidas y enemigos cada vez más feroces.",
-    "effect": "extraLife"
-  },
-  {
-    "level": 8,
-    "title": "Camino Solitario",
-    "text": "Has dejado atrás todo y a todos. La soledad se vuelve tu única compañía mientras te adentras en los niveles más profundos de la cueva, donde el aire se vuelve pesado y denso.",
-    "effect": "maxLivesDown"
-  },
-  {
-    "level": 9,
-    "title": "El Abismo Espera",
-    "text": "El jefe final aguarda al final de este viaje tortuoso, una entidad oscura reflejo de tu alma. La batalla que se aproxima decidirá no solo tu destino, sino el equilibrio de la cueva entera.",
-    "effect": "doubleGold"
-  },
-  {
-    "level": 10,
-    "title": "El Reconocimiento",
-    "text": "Con cada paso reconoces la magnitud de lo que has hecho. Los fantasmas del pasado te persiguen, pero la determinación de terminar esta travesía te mantiene firme.",
-    "effect": "extraLife"
-  },
-  {
-    "level": 11,
-    "title": "Sombras del Pasado",
-    "text": "Los ecos de Lara, Legolas y Link parecen volverse más fuertes, intentando hablarte a través de la oscuridad. Sus voces son una mezcla de advertencias y súplicas para que cambies de camino.",
-    "effect": "trapIncrease"
-  },
-  {
-    "level": 12,
-    "title": "Decisiones Finales",
-    "text": "Cada movimiento es crucial. Sientes que la cueva misma conspira para detenerte, y el enfrentamiento final se acerca inexorablemente.",
-    "effect": "extraArrow"
-  },
-  {
-    "level": 13,
-    "title": "El Rostro del Enemigo",
-    "text": "Finalmente, te ves a ti mismo reflejado en las aguas oscuras. El enemigo más temible es aquel que habita dentro, y la batalla contra tu propia sombra es inminente.",
-    "effect": "maxLivesDown"
-  },
-  {
-    "level": 14,
-    "title": "El Último Umbral",
-    "text": "La oscuridad se condensa en un solo punto: el santuario del jefe final. Aquí se decidirá todo, y debes estar preparado para enfrentarte a tu destino.",
-    "effect": "extraLife"
-  },
-  {
-    "level": 15,
-    "title": "La Confrontación",
-    "text": "El Bisho Malo se alza contra su reflejo, una batalla épica donde todo está en juego. La cueva tiembla ante la fuerza de este enfrentamiento, y solo uno podrá salir vencedor.",
-    "effect": "bossFight"
-  }
-],
-    [Chars.LARA]: [
-  {
-    "level": 1,
-    "title": "Exploradora en las Profundidades",
-    "text": "Tu aventura comienza en las cuevas prohibidas, buscando reliquias ancestrales y respuestas que puedan salvar tu mundo. El aire es frío, y un sentimiento de peligro se cierne sobre ti.",
-    "effect": "extraArrow"
-  },
-  {
-    "level": 2,
-    "title": "Señales en la Oscuridad",
-    "text": "Encuentras rastros de otros aventureros: huellas, armas y algo más oscuro, una presencia que perturba la paz de estas tierras olvidadas.",
-    "effect": "revealHint"
-  },
-  {
-    "level": 3,
-    "title": "Sombras del Pasado",
-    "text": "Las historias de héroes caídos te llegan a través del viento y el eco. Sabes que la cueva guarda secretos que podrían cambiarlo todo.",
-    "effect": "extraLife"
-  },
-  {
-    "level": 4,
-    "title": "El Susurro de la Traición",
-    "text": "Las paredes parecen contar historias de traiciones y batallas perdidas. Cada paso te acerca a una verdad que prefieres no saber.",
-    "effect": "maxChanceDown"
-  },
-  {
-    "level": 5,
-    "title": "El Secreto del Bisho Malo",
-    "text": "Descubres que un enemigo oscuro acecha en las sombras, responsable de la desaparición de valientes héroes. Su nombre es un susurro temido en todas partes.",
-    "effect": "fogOfWar"
-  },
-  {
-    "level": 6,
-    "title": "Caminos Peligrosos",
-    "text": "Las trampas y peligros aumentan, y debes estar más alerta que nunca. La cueva no perdona errores.",
-    "effect": "trapIncrease"
-  },
-  {
-    "level": 7,
-    "title": "Luz en la Oscuridad",
-    "text": "Una chispa de esperanza ilumina tu camino mientras te preparas para enfrentar al Bisho Malo y descubrir la verdad detrás de esta pesadilla.",
-    "effect": "extraLife"
-  },
-  {
-    "level": 8,
-    "title": "Redención Lejana",
-    "text": "Cada paso es un intento por redimir el pasado y salvar lo que queda. El peso de la misión te hace más fuerte y decidido.",
-    "effect": "maxLivesDown"
-  },
-  {
-    "level": 9,
-    "title": "El Encuentro Inminente",
-    "text": "Sabes que la confrontación con el Bisho Malo es inevitable. El destino de la cueva y sus secretos depende de tu valentía.",
-    "effect": "doubleGold"
-  },
-  {
-    "level": 10,
-    "title": "La Revelación",
-    "text": "Descubres la identidad del enemigo y la conexión que tiene contigo y los otros héroes caídos. Nada será igual a partir de ahora.",
-    "effect": "extraLife"
-  },
-  {
-    "level": 11,
-    "title": "Determinación de Acero",
-    "text": "Con renovado valor avanzas por la cueva, decidido a no dejar que el mal triunfe.",
-    "effect": "trapIncrease"
-  },
-  {
-    "level": 12,
-    "title": "El Momento Decisivo",
-    "text": "Cada flecha y movimiento cuenta. La batalla final se acerca y debes estar lista para ella.",
-    "effect": "extraArrow"
-  },
-  {
-    "level": 13,
-    "title": "El Último Enigma",
-    "text": "Una última prueba intelectual te espera: resolver el enigma que desbloquea la cámara del Bisho Malo.",
-    "effect": "maxChanceUp"
-  },
-  {
-    "level": 14,
-    "title": "Cara a Cara",
-    "text": "En un silencio absoluto, entras a la sala del enemigo. Sus ojos te miran, esperando el desenlace.",
-    "effect": "bossReveal"
+  [Chars.DEFAULT]: [
+    {
+      level: 1,
+      title: 'El Comienzo Oscuro',
+      text: 'Te adentras en las profundidades de la cueva, guiado solo por la tenue luz de tu antorcha. Las sombras parecen moverse a tu alrededor y un extraño presentimiento te acompaña. No sabes qué secretos aguardan en la oscuridad.',
+      effect: 'extraArrow',
     },
     {
-    "level": 15,
-    "title": "El Juicio Final",
-    "text": "Una batalla que definirá tu legado. Solo una fuerza podrá salir viva de la cueva.",
-    "effect": "bossFight"
-    }
-],
-    [Chars.LEGOLAS]: [
-  {
-    "level": 1,
-    "title": "El Guardián del Bosque",
-    "text": "Has sentido una perturbación en los vientos del bosque. Algo maligno se mueve bajo tierra. Tomas tu arco y sigues las pistas hacia una cueva olvidada por el tiempo.",
-    "effect": "extraArrow"
-  },
-  {
-    "level": 2,
-    "title": "La Traición Silenciosa",
-    "text": "Encuentras una flecha como las tuyas, pero rota y oxidada. Sientes que algo familiar y peligroso habita estas profundidades.",
-    "effect": "revealHint"
-  },
-  {
-    "level": 3,
-    "title": "Sombras que Conocen Tu Nombre",
-    "text": "Las criaturas que habitan la cueva parecen reconocerte. Como si hubieran peleado contigo... o contra ti antes. Un escalofrío te recorre.",
-    "effect": "maxLivesUp"
-  },
-  {
-    "level": 4,
-    "title": "Un Rumor del Pasado",
-    "text": "Una inscripción en la roca describe a un guerrero elfo que fue traicionado por un 'ser disfrazado de héroe'. ¿Se refiere a ti? ¿O a otro?",
-    "effect": "fogOfWar"
-  },
-  {
-    "level": 5,
-    "title": "El Encuentro",
-    "text": "Ves de reojo una figura que parece familiar, pero desaparece antes de que puedas alcanzarla. Deja tras de sí una daga ensangrentada.",
-    "effect": "trapIncrease"
-  },
-  {
-    "level": 6,
-    "title": "Verdad Oculta",
-    "text": "Trozos de tu memoria se reconstruyen al encontrar un viejo colgante: Lara te lo dio... antes de desaparecer en esta misma cueva.",
-    "effect": "revealHint"
-  },
-  {
-    "level": 7,
-    "title": "La Ira del Elfo",
-    "text": "El conocimiento de la traición reaviva tu furia. Te mueves con precisión letal, decidido a vengar a tus amigos.",
-    "effect": "extraArrow"
-  },
-  {
-    "level": 8,
-    "title": "Recuerdos y Cenizas",
-    "text": "Encuentras una tumba improvisada. Reconoces la empuñadura de la espada: es de Link. Tu corazón se endurece.",
-    "effect": "doubleGold"
-  },
-  {
-    "level": 9,
-    "title": "El Juramento",
-    "text": "Prometes eliminar al Bisho Malo, incluso si eso significa perderte en la oscuridad como lo hicieron tus camaradas.",
-    "effect": "extraLife"
-  },
-  {
-    "level": 10,
-    "title": "El Ojo del Cazador",
-    "text": "Tu concentración es perfecta. Todo enemigo cae antes de tocarte. Pero sabes que el verdadero rival aún espera.",
-    "effect": "maxChanceUp"
-  },
-  {
-    "level": 11,
-    "title": "Verdad Devastadora",
-    "text": "Un mural te muestra una escena imposible: tú, Lara, Link... y el cuarto... ¿es el mismo que ahora buscas?",
-    "effect": "bossReveal"
-  },
-  {
-    "level": 12,
-    "title": "El Juicio de los Elfos",
-    "text": "Te cuestionas si la venganza te ha hecho perder el honor. ¿Qué queda de Legolas si solo queda rabia?",
-    "effect": "fogOfWar"
-  },
-  {
-    "level": 13,
-    "title": "Flecha del Destino",
-    "text": "Encuentras una reliquia élfica: una flecha dorada. Solo puede ser usada contra un enemigo digno. El destino te la entrega.",
-    "effect": "bossDamageBoost"
-  },
-  {
-    "level": 14,
-    "title": "Últimos Pasos",
-    "text": "Cada paso resuena como un tambor de guerra. Sientes que los caídos te acompañan desde el más allá.",
-    "effect": "extraLife"
-  },
-  {
-    "level": 15,
-    "title": "Venganza en la Cueva",
-    "text": "Llegas al corazón de la cueva. El Bisho Malo te espera. Esta es la batalla por el honor de los caídos... y por tu alma.",
-    "effect": "bossFight"
-  }
-],
-    [Chars.LINK]: [
-  {
-    "level": 1,
-    "title": "El Héroe de Hyrule",
-    "text": "Una visión enviada por Zelda te guía hacia una cueva maldita. En ella yace un mal que debe ser destruido antes de que se propague.",
-    "effect": "extraArrow"
-  },
-  {
-    "level": 2,
-    "title": "Sombras del Pasado",
-    "text": "Tu espada vibra al acercarte a la entrada. Algo en esta cueva te recuerda a Ganon, pero no es él. Es algo más... personal.",
-    "effect": "revealHint"
-  },
-  {
-    "level": 3,
-    "title": "El Eco de los Héroes",
-    "text": "Notas señales de una exploradora y un elfo. ¿Lara? ¿Legolas? ¿Estuvieron aquí antes que tú?",
-    "effect": "extraLife"
-  },
-  {
-    "level": 4,
-    "title": "Un Enemigo Silencioso",
-    "text": "No hay monstruos visibles, pero sientes que eres observado. La oscuridad se mueve como si tuviera voluntad propia.",
-    "effect": "trapIncrease"
-  },
-  {
-    "level": 5,
-    "title": "Una Espada Rota",
-    "text": "Encuentras una espada quebrada con el escudo de Hyrule. No es tuya. ¿Un mensajero? ¿Un héroe anterior que fracasó?",
-    "effect": "fogOfWar"
-  },
-  {
-    "level": 6,
-    "title": "Corazón de Valor",
-    "text": "Encuentras una fuente sagrada que refuerza tu determinación. El camino es duro, pero el objetivo es justo.",
-    "effect": "extraHeart"
-  },
-  {
-    "level": 7,
-    "title": "El Espejo Roto",
-    "text": "Una sala llena de espejos rotos distorsiona tu figura... en uno de ellos ves una versión corrupta de ti mismo.",
-    "effect": "maxChanceDown"
-  },
-  {
-    "level": 8,
-    "title": "La Voz de Zelda",
-    "text": "Una voz suave te guía por un pasaje secreto. Te advierte: 'El enemigo fue un aliado... cuídate del que no recuerda.'",
-    "effect": "revealHint"
-  },
-  {
-    "level": 9,
-    "title": "El Último Descanso de Legolas",
-    "text": "Encuentras su carcaj vacío. Su nombre tallado en una piedra. Su historia termina aquí... ¿o no?",
-    "effect": "extraArrow"
-  },
-  {
-    "level": 10,
-    "title": "Confusión",
-    "text": "Todo parece irreal. ¿Estás siguiendo un camino que otros ya fallaron en completar? ¿Serás tú también un mártir?",
-    "effect": "trapIncrease"
-  },
-  {
-    "level": 11,
-    "title": "Pasos en la Arena",
-    "text": "Sigues huellas... hasta que descubres que son tuyas. Has estado aquí antes, pero no recuerdas cuándo.",
-    "effect": "fogOfWar"
-  },
-  {
-    "level": 12,
-    "title": "El Anillo de Fuego",
-    "text": "Una prueba: cruzar el anillo de fuego sin quemarte. Solo quien tiene el corazón puro lo logrará.",
-    "effect": "invulnerability"
-  },
-  {
-    "level": 13,
-    "title": "Sombra con Nombre",
-    "text": "La sombra te habla. Su voz es la tuya, pero distorsionada. No quiere pelear. Quiere recordar.",
-    "effect": "confusionMode"
-  },
-  {
-    "level": 14,
-    "title": "El Último Eco de Lara",
-    "text": "Encuentras su diario. Última entrada: 'El enemigo era uno de nosotros. Ya es demasiado tarde para mí.'",
-    "effect": "extraLife"
-  },
-  {
-    "level": 15,
-    "title": "Camino de Luz",
-    "text": "Sientes que el final está cerca. Las ruinas brillan con una luz tenue... como si la misma Trifuerza te guiara.",
-    "effect": "maxLivesUp"
-  },
-  {
-    "level": 16,
-    "title": "Decisión del Héroe",
-    "text": "Tendrás que decidir: redimir al Bisho Malo o destruirlo. Las acciones futuras dependerán de tu elección.",
-    "effect": "storyBranch"
-  },
-  {
-    "level": 17,
-    "title": "Prueba de Valor",
-    "text": "Un duelo espiritual contra la esencia del Bisho Malo. Tu valor será la única arma efectiva.",
-    "effect": "courageBuff"
-  },
-  {
-    "level": 18,
-    "title": "Preludio del Final",
-    "text": "Un descanso antes del final. Encuentras un altar con una espada nueva... la única capaz de sellar el mal.",
-    "effect": "unlockUltimateWeapon"
-  },
-  {
-    "level": 19,
-    "title": "El Abismo",
-    "text": "Saltas al corazón de la cueva, donde todo comenzó. Estás completamente solo. Pero no indefenso.",
-    "effect": "darkVision"
-  },
-  {
-    "level": 20,
-    "title": "La Última Batalla",
-    "text": "El Bisho Malo te espera. Pero ahora sabes la verdad: fuiste tú quien lo creó. Solo enfrentando tu error puedes restaurar el equilibrio.",
-    "effect": "bossFight"
-  }
-]
-}
+      level: 2,
+      title: 'Ecos del Pasado',
+      text: 'Entre las penumbras encuentras un cuerpo con armadura y armas que reconoces vagamente. Una sensación de culpa comienza a crecer en tu interior mientras las sombras susurran nombres olvidados.',
+      effect: 'revealHint',
+    },
+    {
+      level: 3,
+      title: 'Susurros de Traición',
+      text: 'Los recuerdos fragmentados comienzan a surgir: escenas de traición, batallas y la caída de antiguos aliados. La cueva parece querer revelarte una verdad oscura que no deseas enfrentar.',
+      effect: 'extraLife',
+    },
+    {
+      level: 4,
+      title: 'Rastro de Venganza',
+      text: 'A medida que avanzas, notas que los caminos están marcados por la destrucción que has causado. La cueva reacciona a tu presencia, volviéndose más traicionera y difícil.',
+      effect: 'maxChanceDown',
+    },
+    {
+      level: 5,
+      title: 'La Verdad Revelada',
+      text: 'Los cuerpos que has dejado atrás comienzan a tener rostros: Lara, Legolas y Link, tus antiguos rivales. La realidad de tu identidad como Bisho Malo se torna innegable y pesada.',
+      effect: 'fogOfWar',
+    },
+    {
+      level: 6,
+      title: 'Ecos de los Caídos',
+      text: 'Las voces de los héroes caídos resuenan en la cueva, y sus espíritus parecen observar cada uno de tus movimientos. El ambiente se vuelve más oscuro, y las trampas más letales.',
+      effect: 'trapIncrease',
+    },
+    {
+      level: 7,
+      title: 'Sombras Internas',
+      text: 'Dentro de ti se libra una batalla: la parte humana que aún queda contra la oscuridad que te consume. La cueva parece reflejar este conflicto en sus formaciones retorcidas y enemigos cada vez más feroces.',
+      effect: 'extraLife',
+    },
+    {
+      level: 8,
+      title: 'Camino Solitario',
+      text: 'Has dejado atrás todo y a todos. La soledad se vuelve tu única compañía mientras te adentras en los niveles más profundos de la cueva, donde el aire se vuelve pesado y denso.',
+      effect: 'maxLivesDown',
+    },
+    {
+      level: 9,
+      title: 'El Abismo Espera',
+      text: 'El jefe final aguarda al final de este viaje tortuoso, una entidad oscura reflejo de tu alma. La batalla que se aproxima decidirá no solo tu destino, sino el equilibrio de la cueva entera.',
+      effect: 'doubleGold',
+    },
+    {
+      level: 10,
+      title: 'El Reconocimiento',
+      text: 'Con cada paso reconoces la magnitud de lo que has hecho. Los fantasmas del pasado te persiguen, pero la determinación de terminar esta travesía te mantiene firme.',
+      effect: 'extraLife',
+    },
+    {
+      level: 11,
+      title: 'Sombras del Pasado',
+      text: 'Los ecos de Lara, Legolas y Link parecen volverse más fuertes, intentando hablarte a través de la oscuridad. Sus voces son una mezcla de advertencias y súplicas para que cambies de camino.',
+      effect: 'trapIncrease',
+    },
+    {
+      level: 12,
+      title: 'Decisiones Finales',
+      text: 'Cada movimiento es crucial. Sientes que la cueva misma conspira para detenerte, y el enfrentamiento final se acerca inexorablemente.',
+      effect: 'extraArrow',
+    },
+    {
+      level: 13,
+      title: 'El Rostro del Enemigo',
+      text: 'Finalmente, te ves a ti mismo reflejado en las aguas oscuras. El enemigo más temible es aquel que habita dentro, y la batalla contra tu propia sombra es inminente.',
+      effect: 'maxLivesDown',
+    },
+    {
+      level: 14,
+      title: 'El Último Umbral',
+      text: 'La oscuridad se condensa en un solo punto: el santuario del jefe final. Aquí se decidirá todo, y debes estar preparado para enfrentarte a tu destino.',
+      effect: 'extraLife',
+    },
+    {
+      level: 15,
+      title: 'La Confrontación',
+      text: 'El Bisho Malo se alza contra su reflejo, una batalla épica donde todo está en juego. La cueva tiembla ante la fuerza de este enfrentamiento, y solo uno podrá salir vencedor.',
+      effect: 'bossFight',
+    },
+  ],
+  [Chars.LARA]: [
+    {
+      level: 1,
+      title: 'Exploradora en las Profundidades',
+      text: 'Tu aventura comienza en las cuevas prohibidas, buscando reliquias ancestrales y respuestas que puedan salvar tu mundo. El aire es frío, y un sentimiento de peligro se cierne sobre ti.',
+      effect: 'extraArrow',
+    },
+    {
+      level: 2,
+      title: 'Señales en la Oscuridad',
+      text: 'Encuentras rastros de otros aventureros: huellas, armas y algo más oscuro, una presencia que perturba la paz de estas tierras olvidadas.',
+      effect: 'revealHint',
+    },
+    {
+      level: 3,
+      title: 'Sombras del Pasado',
+      text: 'Las historias de héroes caídos te llegan a través del viento y el eco. Sabes que la cueva guarda secretos que podrían cambiarlo todo.',
+      effect: 'extraLife',
+    },
+    {
+      level: 4,
+      title: 'El Susurro de la Traición',
+      text: 'Las paredes parecen contar historias de traiciones y batallas perdidas. Cada paso te acerca a una verdad que prefieres no saber.',
+      effect: 'maxChanceDown',
+    },
+    {
+      level: 5,
+      title: 'El Secreto del Bisho Malo',
+      text: 'Descubres que un enemigo oscuro acecha en las sombras, responsable de la desaparición de valientes héroes. Su nombre es un susurro temido en todas partes.',
+      effect: 'fogOfWar',
+    },
+    {
+      level: 6,
+      title: 'Caminos Peligrosos',
+      text: 'Las trampas y peligros aumentan, y debes estar más alerta que nunca. La cueva no perdona errores.',
+      effect: 'trapIncrease',
+    },
+    {
+      level: 7,
+      title: 'Luz en la Oscuridad',
+      text: 'Una chispa de esperanza ilumina tu camino mientras te preparas para enfrentar al Bisho Malo y descubrir la verdad detrás de esta pesadilla.',
+      effect: 'extraLife',
+    },
+    {
+      level: 8,
+      title: 'Redención Lejana',
+      text: 'Cada paso es un intento por redimir el pasado y salvar lo que queda. El peso de la misión te hace más fuerte y decidido.',
+      effect: 'maxLivesDown',
+    },
+    {
+      level: 9,
+      title: 'El Encuentro Inminente',
+      text: 'Sabes que la confrontación con el Bisho Malo es inevitable. El destino de la cueva y sus secretos depende de tu valentía.',
+      effect: 'doubleGold',
+    },
+    {
+      level: 10,
+      title: 'La Revelación',
+      text: 'Descubres la identidad del enemigo y la conexión que tiene contigo y los otros héroes caídos. Nada será igual a partir de ahora.',
+      effect: 'extraLife',
+    },
+    {
+      level: 11,
+      title: 'Determinación de Acero',
+      text: 'Con renovado valor avanzas por la cueva, decidido a no dejar que el mal triunfe.',
+      effect: 'trapIncrease',
+    },
+    {
+      level: 12,
+      title: 'El Momento Decisivo',
+      text: 'Cada flecha y movimiento cuenta. La batalla final se acerca y debes estar lista para ella.',
+      effect: 'extraArrow',
+    },
+    {
+      level: 13,
+      title: 'El Último Enigma',
+      text: 'Una última prueba intelectual te espera: resolver el enigma que desbloquea la cámara del Bisho Malo.',
+      effect: 'maxChanceUp',
+    },
+    {
+      level: 14,
+      title: 'Cara a Cara',
+      text: 'En un silencio absoluto, entras a la sala del enemigo. Sus ojos te miran, esperando el desenlace.',
+      effect: 'bossReveal',
+    },
+    {
+      level: 15,
+      title: 'El Juicio Final',
+      text: 'Una batalla que definirá tu legado. Solo una fuerza podrá salir viva de la cueva.',
+      effect: 'bossFight',
+    },
+  ],
+  [Chars.LEGOLAS]: [
+    {
+      level: 1,
+      title: 'El Guardián del Bosque',
+      text: 'Has sentido una perturbación en los vientos del bosque. Algo maligno se mueve bajo tierra. Tomas tu arco y sigues las pistas hacia una cueva olvidada por el tiempo.',
+      effect: 'extraArrow',
+    },
+    {
+      level: 2,
+      title: 'La Traición Silenciosa',
+      text: 'Encuentras una flecha como las tuyas, pero rota y oxidada. Sientes que algo familiar y peligroso habita estas profundidades.',
+      effect: 'revealHint',
+    },
+    {
+      level: 3,
+      title: 'Sombras que Conocen Tu Nombre',
+      text: 'Las criaturas que habitan la cueva parecen reconocerte. Como si hubieran peleado contigo... o contra ti antes. Un escalofrío te recorre.',
+      effect: 'maxLivesUp',
+    },
+    {
+      level: 4,
+      title: 'Un Rumor del Pasado',
+      text: "Una inscripción en la roca describe a un guerrero elfo que fue traicionado por un 'ser disfrazado de héroe'. ¿Se refiere a ti? ¿O a otro?",
+      effect: 'fogOfWar',
+    },
+    {
+      level: 5,
+      title: 'El Encuentro',
+      text: 'Ves de reojo una figura que parece familiar, pero desaparece antes de que puedas alcanzarla. Deja tras de sí una daga ensangrentada.',
+      effect: 'trapIncrease',
+    },
+    {
+      level: 6,
+      title: 'Verdad Oculta',
+      text: 'Trozos de tu memoria se reconstruyen al encontrar un viejo colgante: Lara te lo dio... antes de desaparecer en esta misma cueva.',
+      effect: 'revealHint',
+    },
+    {
+      level: 7,
+      title: 'La Ira del Elfo',
+      text: 'El conocimiento de la traición reaviva tu furia. Te mueves con precisión letal, decidido a vengar a tus amigos.',
+      effect: 'extraArrow',
+    },
+    {
+      level: 8,
+      title: 'Recuerdos y Cenizas',
+      text: 'Encuentras una tumba improvisada. Reconoces la empuñadura de la espada: es de Link. Tu corazón se endurece.',
+      effect: 'doubleGold',
+    },
+    {
+      level: 9,
+      title: 'El Juramento',
+      text: 'Prometes eliminar al Bisho Malo, incluso si eso significa perderte en la oscuridad como lo hicieron tus camaradas.',
+      effect: 'extraLife',
+    },
+    {
+      level: 10,
+      title: 'El Ojo del Cazador',
+      text: 'Tu concentración es perfecta. Todo enemigo cae antes de tocarte. Pero sabes que el verdadero rival aún espera.',
+      effect: 'maxChanceUp',
+    },
+    {
+      level: 11,
+      title: 'Verdad Devastadora',
+      text: 'Un mural te muestra una escena imposible: tú, Lara, Link... y el cuarto... ¿es el mismo que ahora buscas?',
+      effect: 'bossReveal',
+    },
+    {
+      level: 12,
+      title: 'El Juicio de los Elfos',
+      text: 'Te cuestionas si la venganza te ha hecho perder el honor. ¿Qué queda de Legolas si solo queda rabia?',
+      effect: 'fogOfWar',
+    },
+    {
+      level: 13,
+      title: 'Flecha del Destino',
+      text: 'Encuentras una reliquia élfica: una flecha dorada. Solo puede ser usada contra un enemigo digno. El destino te la entrega.',
+      effect: 'bossDamageBoost',
+    },
+    {
+      level: 14,
+      title: 'Últimos Pasos',
+      text: 'Cada paso resuena como un tambor de guerra. Sientes que los caídos te acompañan desde el más allá.',
+      effect: 'extraLife',
+    },
+    {
+      level: 15,
+      title: 'Venganza en la Cueva',
+      text: 'Llegas al corazón de la cueva. El Bisho Malo te espera. Esta es la batalla por el honor de los caídos... y por tu alma.',
+      effect: 'bossFight',
+    },
+  ],
+  [Chars.LINK]: [
+    {
+      level: 1,
+      title: 'El Héroe de Hyrule',
+      text: 'Una visión enviada por Zelda te guía hacia una cueva maldita. En ella yace un mal que debe ser destruido antes de que se propague.',
+      effect: 'extraArrow',
+    },
+    {
+      level: 2,
+      title: 'Sombras del Pasado',
+      text: 'Tu espada vibra al acercarte a la entrada. Algo en esta cueva te recuerda a Ganon, pero no es él. Es algo más... personal.',
+      effect: 'revealHint',
+    },
+    {
+      level: 3,
+      title: 'El Eco de los Héroes',
+      text: 'Notas señales de una exploradora y un elfo. ¿Lara? ¿Legolas? ¿Estuvieron aquí antes que tú?',
+      effect: 'extraLife',
+    },
+    {
+      level: 4,
+      title: 'Un Enemigo Silencioso',
+      text: 'No hay monstruos visibles, pero sientes que eres observado. La oscuridad se mueve como si tuviera voluntad propia.',
+      effect: 'trapIncrease',
+    },
+    {
+      level: 5,
+      title: 'Una Espada Rota',
+      text: 'Encuentras una espada quebrada con el escudo de Hyrule. No es tuya. ¿Un mensajero? ¿Un héroe anterior que fracasó?',
+      effect: 'fogOfWar',
+    },
+    {
+      level: 6,
+      title: 'Corazón de Valor',
+      text: 'Encuentras una fuente sagrada que refuerza tu determinación. El camino es duro, pero el objetivo es justo.',
+      effect: 'extraHeart',
+    },
+    {
+      level: 7,
+      title: 'El Espejo Roto',
+      text: 'Una sala llena de espejos rotos distorsiona tu figura... en uno de ellos ves una versión corrupta de ti mismo.',
+      effect: 'maxChanceDown',
+    },
+    {
+      level: 8,
+      title: 'La Voz de Zelda',
+      text: "Una voz suave te guía por un pasaje secreto. Te advierte: 'El enemigo fue un aliado... cuídate del que no recuerda.'",
+      effect: 'revealHint',
+    },
+    {
+      level: 9,
+      title: 'El Último Descanso de Legolas',
+      text: 'Encuentras su carcaj vacío. Su nombre tallado en una piedra. Su historia termina aquí... ¿o no?',
+      effect: 'extraArrow',
+    },
+    {
+      level: 10,
+      title: 'Confusión',
+      text: 'Todo parece irreal. ¿Estás siguiendo un camino que otros ya fallaron en completar? ¿Serás tú también un mártir?',
+      effect: 'trapIncrease',
+    },
+    {
+      level: 11,
+      title: 'Pasos en la Arena',
+      text: 'Sigues huellas... hasta que descubres que son tuyas. Has estado aquí antes, pero no recuerdas cuándo.',
+      effect: 'fogOfWar',
+    },
+    {
+      level: 12,
+      title: 'El Anillo de Fuego',
+      text: 'Una prueba: cruzar el anillo de fuego sin quemarte. Solo quien tiene el corazón puro lo logrará.',
+      effect: 'invulnerability',
+    },
+    {
+      level: 13,
+      title: 'Sombra con Nombre',
+      text: 'La sombra te habla. Su voz es la tuya, pero distorsionada. No quiere pelear. Quiere recordar.',
+      effect: 'confusionMode',
+    },
+    {
+      level: 14,
+      title: 'El Último Eco de Lara',
+      text: "Encuentras su diario. Última entrada: 'El enemigo era uno de nosotros. Ya es demasiado tarde para mí.'",
+      effect: 'extraLife',
+    },
+    {
+      level: 15,
+      title: 'Camino de Luz',
+      text: 'Sientes que el final está cerca. Las ruinas brillan con una luz tenue... como si la misma Trifuerza te guiara.',
+      effect: 'maxLivesUp',
+    },
+    {
+      level: 16,
+      title: 'Decisión del Héroe',
+      text: 'Tendrás que decidir: redimir al Bisho Malo o destruirlo. Las acciones futuras dependerán de tu elección.',
+      effect: 'storyBranch',
+    },
+    {
+      level: 17,
+      title: 'Prueba de Valor',
+      text: 'Un duelo espiritual contra la esencia del Bisho Malo. Tu valor será la única arma efectiva.',
+      effect: 'courageBuff',
+    },
+    {
+      level: 18,
+      title: 'Preludio del Final',
+      text: 'Un descanso antes del final. Encuentras un altar con una espada nueva... la única capaz de sellar el mal.',
+      effect: 'unlockUltimateWeapon',
+    },
+    {
+      level: 19,
+      title: 'El Abismo',
+      text: 'Saltas al corazón de la cueva, donde todo comenzó. Estás completamente solo. Pero no indefenso.',
+      effect: 'darkVision',
+    },
+    {
+      level: 20,
+      title: 'La Última Batalla',
+      text: 'El Bisho Malo te espera. Pero ahora sabes la verdad: fuiste tú quien lo creó. Solo enfrentando tu error puedes restaurar el equilibrio.',
+      effect: 'bossFight',
+    },
+  ],
+};
