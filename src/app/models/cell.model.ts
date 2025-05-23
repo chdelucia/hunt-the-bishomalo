@@ -114,6 +114,5 @@ export const CELL_CONTENTS: Record<CellContentType, CellContent> = {
     image: 'boardicons/b7.png',
     alt: 'dragonball',
     ariaLabel: 'dragonball',
-  }
-
+  },
 };

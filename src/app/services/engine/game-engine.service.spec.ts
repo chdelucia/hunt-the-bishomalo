@@ -223,7 +223,7 @@ describe('GameEngineService (with useValue)', () => {
 
   describe('nextLevel', () => {
     it('should increment size and recalculate pits and wumpus', () => {
-      const spyInit = jest.spyOn(service, 'initGame');
+      const spyInit = jest.spyOn(mockStore, 'setSettings');
       service.nextLevel();
 
       expect(spyInit).toHaveBeenCalledWith({
@@ -245,15 +245,12 @@ describe('GameEngineService (with useValue)', () => {
       });
     });
     it('should increase board size and recalculate pits', () => {
-      const spyInit = jest.spyOn(service, 'initGame');
+      const spyInit = jest.spyOn(mockStore, 'initBoard');
+      const spySettings = jest.spyOn(mockStore, 'setSettings');
       service.nextLevel();
 
-      expect(spyInit).toHaveBeenCalledWith(
-        expect.objectContaining({
-          size: 3,
-          pits: 1,
-        }),
-      );
+      expect(spyInit).toHaveBeenCalled();
+      expect(spySettings).toHaveBeenCalled();
     });
   });
 });

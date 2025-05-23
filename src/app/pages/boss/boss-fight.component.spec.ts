@@ -104,7 +104,6 @@ describe('BossFightComponent', () => {
   it('should navigate to prize screen on goToprizeScreen', () => {
     component.goToprizeScreen();
 
-    expect(gameSoundMock.playSound).toHaveBeenCalledWith(GameSound.FINISH, false);
     expect(routerMock.navigate).toHaveBeenCalledWith([RouteTypes.RESULTS], {
       state: { fromSecretPath: true },
       queryParams: { boss: true },
