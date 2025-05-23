@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.2.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v4.1.0...v4.2.0) (2025-05-23)
+
+
+### Features
+
+* **wumpus:** add wumpus for each player ([9736546](https://github.com/chdelucia/hunt-the-bishomalo/commit/973654694db9da7a4170d3992525264a39c8c638))
+
+
+### Bug Fixes
+
+* **images:** modify size ([01e1257](https://github.com/chdelucia/hunt-the-bishomalo/commit/01e12575f5f984cb17ccaca18a07f404bb5485c3))
+
 ## [4.1.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v4.0.1...v4.1.0) (2025-05-23)
 
 
