@@ -1,4 +1,4 @@
-import { Component, computed, OnInit, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AchievementService, GameStoreService, LeaderboardService } from 'src/app/services';
 import { RouteTypes, ScoreEntry } from 'src/app/models';

@@ -1,5 +1,6 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withHashLocation, withInMemoryScrolling } from '@angular/router';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { appRoutes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -10,5 +11,6 @@ export const appConfig: ApplicationConfig = {
       withInMemoryScrolling({ scrollPositionRestoration: 'enabled' }),
       withHashLocation(),
     ),
+    provideAnimations()
   ],
 };

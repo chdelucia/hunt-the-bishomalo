@@ -18,7 +18,7 @@ export class GameConfigComponent implements OnInit {
   private readonly gameEngine = inject(GameEngineService);
   private readonly fb = inject(FormBuilder);
   private readonly gameSound = inject(GameSoundService);
-  private router = inject(Router);
+  private readonly router = inject(Router);
 
   isDevMode = isDevMode();
 

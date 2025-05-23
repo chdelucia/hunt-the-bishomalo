@@ -1,8 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
-  effect,
   inject,
   OnDestroy,
   OnInit,
@@ -17,13 +15,14 @@ import { RouteTypes } from 'src/app/models';
   selector: 'app-story',
   standalone: true,
   imports: [CommonModule],
+  providers: [],
   templateUrl: './story.component.html',
   styleUrl: './story.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StoryComponent implements OnInit, OnDestroy {
-  private router = inject(Router);
-  private storyService = inject(GameStoryService);
+  private readonly router = inject(Router);
+  private readonly storyService = inject(GameStoryService);
 
   readonly story = this.storyService.getStory();
 
@@ -72,7 +71,7 @@ export class StoryComponent implements OnInit, OnDestroy {
     this.displayedText.set('');
 
     const chapterText = `Capítulo ${this.story?.level}`;
-    const titleText = this.story?.title || '';
+    const titleText = this.story?.title ?? '';
     const bodyText = text;
 
     const utterChapter = new SpeechSynthesisUtterance(chapterText);
