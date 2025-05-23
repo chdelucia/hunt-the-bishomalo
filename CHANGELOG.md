@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.6.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v4.5.0...v4.6.0) (2025-05-23)
+
+
+### Features
+
+* **bosses:** add bosses ([ac4cc9b](https://github.com/chdelucia/hunt-the-bishomalo/commit/ac4cc9b78635e4bc8f3e342a3cd782157fac1007))
+* **fix:** sonar issues ([97363dd](https://github.com/chdelucia/hunt-the-bishomalo/commit/97363dd9f38aeee92935d38d9e93ac6de12b959f))
+
 ## [4.5.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v4.4.0...v4.5.0) (2025-05-23)
 
 
