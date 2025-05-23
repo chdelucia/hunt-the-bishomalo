@@ -29,7 +29,7 @@
     }@else{
 
     <div class="productos-grid">
-      @for (producto of productos; track producto.name) {
+      @for (producto of productos(); track producto.name) {
       <div class="producto-card">
         <div class="producto-content">
           <div class="producto-icono-container">

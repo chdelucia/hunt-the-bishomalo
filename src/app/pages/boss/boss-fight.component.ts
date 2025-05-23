@@ -120,7 +120,9 @@ export class BossFightComponent implements OnInit {
     const inRow = row.filter((c) => c.hasBossPart && !c.hit).length;
     const inCol = col.filter((c) => c.hasBossPart && !c.hit).length;
 
-    return `En la misma fila ${inRow} bisho(s). En la columna ${inCol} bisho(s).`;
+    if(inRow >= inCol) return `En la misma fila hay ${inRow} bisho(s).`;
+
+    return `En la COLUMNA hay ${inCol} bisho(s).`;
   }
 
   getAriaLabel(cell: BossCell, x: number, y: number): string {
