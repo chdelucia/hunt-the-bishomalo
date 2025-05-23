@@ -1,5 +1,9 @@
 export type CellContentType =
   | 'wumpus'
+  | 'wumpuslara'
+  | 'wumpuslink'
+  | 'wumpuslegolas'
+  | 'wumpusdefault'
   | 'gold'
   | 'pit'
   | 'arrow'
@@ -29,6 +33,30 @@ export const CELL_CONTENTS: Record<CellContentType, CellContent> = {
   wumpus: {
     type: 'wumpus',
     image: 'chars/link/wumpu.png',
+    alt: 'wumpus',
+    ariaLabel: 'wumpus',
+  },
+  wumpusdefault: {
+    type: 'wumpus',
+    image: 'chars/default/wumpus.svg',
+    alt: 'wumpus',
+    ariaLabel: 'wumpus',
+  },
+  wumpuslara: {
+    type: 'wumpus',
+    image: 'chars/lara/wumpus.png',
+    alt: 'wumpus',
+    ariaLabel: 'wumpus',
+  },
+  wumpuslink: {
+    type: 'wumpus',
+    image: 'chars/link/wumpus.png',
+    alt: 'wumpus',
+    ariaLabel: 'wumpus',
+  },
+  wumpuslegolas: {
+    type: 'wumpus',
+    image: 'chars/legolas/wumpus.png',
     alt: 'wumpus',
     ariaLabel: 'wumpus',
   },

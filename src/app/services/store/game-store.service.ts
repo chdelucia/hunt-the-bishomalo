@@ -7,6 +7,7 @@ import {
   CELL_CONTENTS,
   Chars,
   GameDificulty,
+  CellContentType,
 } from '../../models';
 import { LocalstorageService } from '../localstorage/localstorage.service';
 
@@ -65,7 +66,8 @@ export class GameStoreService {
     place().content = CELL_CONTENTS.gold;
 
     for (let i = 0; i < (this._settings().wumpus || 1); i++) {
-      place().content = CELL_CONTENTS.wumpus;
+      const name = `wumpus${this._settings().selectedChar}` as CellContentType;
+      place().content = CELL_CONTENTS[name];
     }
 
     const pitExtraExclusions = new Set(['0,1', '1,0']);
