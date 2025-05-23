@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.2.2](https://github.com/chdelucia/hunt-the-bishomalo/compare/v4.2.1...v4.2.2) (2025-05-23)
+
+
+### Bug Fixes
+
+* **fonts:** add clamp to responsive desing ([b9c8c55](https://github.com/chdelucia/hunt-the-bishomalo/commit/b9c8c558750b6e0541f9463ffa9042f53440ef51))
+* **styles:** remove blank spaces ([5f955bd](https://github.com/chdelucia/hunt-the-bishomalo/commit/5f955bdfa8c2b04a1ebff2287cc96ba9d6a095f5))
+
 ### [4.2.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v4.2.0...v4.2.1) (2025-05-23)
 
 
