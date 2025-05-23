@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.5.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v4.4.0...v4.5.0) (2025-05-23)
+
+
+### Features
+
+* **shop:** special items in shop ([e2e3421](https://github.com/chdelucia/hunt-the-bishomalo/commit/e2e3421c1e630ce9c68c229208a6bcf168dd3ba2))
+
+
+### Bug Fixes
+
+* **sonar:** fix sonar issues ([7796863](https://github.com/chdelucia/hunt-the-bishomalo/commit/779686389d5b8bcfc69b8207572bd3220361e36b))
+
 ## [4.4.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v4.3.4...v4.4.0) (2025-05-23)
 
 
