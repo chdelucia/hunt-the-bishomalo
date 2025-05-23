@@ -16,7 +16,8 @@
         [class.miss]="cell.hit && !cell.hasBossPart"
       >
         <span *ngIf="cell.hit && cell.hasBossPart" aria-hidden="true">
-          <img src="chars/link/boss.png" alt="boss" />
+          @let char = _settings().selectedChar;
+          <img [ngSrc]="`chars/${char}/boss.png`" alt="boss" fill/>
         </span>
         <span *ngIf="cell.hit && !cell.hasBossPart" aria-hidden="true">❌</span>
       </div>

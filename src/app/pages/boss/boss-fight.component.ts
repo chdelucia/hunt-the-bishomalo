@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { GameSoundService, GameStoreService } from 'src/app/services';
 import { GameSound, RouteTypes } from 'src/app/models';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ interface BossCell {
 @Component({
   selector: 'app-boss-fight',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NgOptimizedImage],
   templateUrl: './boss-fight.component.html',
   styleUrl: './boss-fight.component.scss',
 })
@@ -24,7 +24,7 @@ export class BossFightComponent implements OnInit {
   readonly gameStore = inject(GameStoreService);
   private readonly router = inject(Router);
   readonly _hunter = this.gameStore.hunter;
-  private readonly _settings = this.gameStore.settings;
+  readonly _settings = this.gameStore.settings;
 
   gridSize = 5;
   grid: BossCell[][] = [];
@@ -33,8 +33,10 @@ export class BossFightComponent implements OnInit {
   playerLives = this._settings().difficulty.bossTries;
   message = '';
   gameOver = false;
+  image = '';
 
   ngOnInit(): void {
+  
     this.resetGame();
   }
 
