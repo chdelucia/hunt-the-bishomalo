@@ -120,7 +120,7 @@ export class BossFightComponent implements OnInit {
     const inRow = row.filter((c) => c.hasBossPart && !c.hit).length;
     const inCol = col.filter((c) => c.hasBossPart && !c.hit).length;
 
-    if(inRow >= inCol) return `En la misma fila hay ${inRow} bisho(s).`;
+    if (inRow >= inCol) return `En la misma fila hay ${inRow} bisho(s).`;
 
     return `En la COLUMNA hay ${inCol} bisho(s).`;
   }

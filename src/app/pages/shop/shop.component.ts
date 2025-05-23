@@ -46,7 +46,8 @@ export class ShopComponent {
     {
       effect: 'dragonball',
       name: 'Una bola 4',
-      description: 'No se muy bien para que sirve, la encontré en un arbusto. Te la dejo baratita...',
+      description:
+        'No se muy bien para que sirve, la encontré en un arbusto. Te la dejo baratita...',
       price: 125,
       icon: 'b4.png',
     },
@@ -57,7 +58,7 @@ export class ShopComponent {
       price: 85,
       icon: 'apple.png',
     },
-  ]
+  ];
 
   private readonly gameStore = inject(GameStoreService);
   private readonly settings = this.gameStore.settings;
@@ -70,11 +71,11 @@ export class ShopComponent {
   message = signal('');
   productos = computed(() => {
     const products = this.products;
-    if(Math.random() < this.settings().difficulty.maxChance){
-      return [...products, ...this.randomProduct]
+    if (Math.random() < this.settings().difficulty.maxChance) {
+      return [...products, ...this.randomProduct];
     }
     return products;
-  })
+  });
 
   buyProduct(product: Product): void {
     const gold = this.gold();
@@ -83,20 +84,19 @@ export class ShopComponent {
 
     const canBuy = gold >= price;
 
-    if(!canBuy){
+    if (!canBuy) {
       this.message.set('¡No tienes suficientes monedas!');
       return;
     }
 
     if (effect === 'heart') {
-      this.addLifeToPlayer({gold, price, lives});
+      this.addLifeToPlayer({ gold, price, lives });
     } else {
-      this.addItemToPlayer({gold, product, price})
+      this.addItemToPlayer({ gold, product, price });
     }
 
     this.message.set(`¡Has comprado ${product.name}!`);
     setTimeout(() => this.message.set(''), 2000);
-
   }
 
   nextLevel(): void {
@@ -108,16 +108,16 @@ export class ShopComponent {
     });
   }
 
-  private addLifeToPlayer(data: {gold:number, price: number, lives: number}): void {
-    const { gold, price, lives } = data
+  private addLifeToPlayer(data: { gold: number; price: number; lives: number }): void {
+    const { gold, price, lives } = data;
     this.gameStore.updateHunter({
       gold: gold - price,
       lives: Math.min(lives + 1, this.gameStore.settings().difficulty.maxLives),
     });
   }
 
-  private addItemToPlayer(data: {gold: number, product: Product, price: number}): void {
-    const {gold, product, price} = data;
+  private addItemToPlayer(data: { gold: number; product: Product; price: number }): void {
+    const { gold, product, price } = data;
     const inventory = this.inventory();
 
     this.gameStore.updateHunter({
