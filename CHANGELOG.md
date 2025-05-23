@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.4.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v4.3.4...v4.4.0) (2025-05-23)
+
+
+### Features
+
+* **dragonballs:** add dragon balls ([9a8a1b1](https://github.com/chdelucia/hunt-the-bishomalo/commit/9a8a1b1f50bc27cf9145ae3956da2880ab4178ae))
+* **dragonballs:** add dragonballs ([75788de](https://github.com/chdelucia/hunt-the-bishomalo/commit/75788de3de6c557265b678378d3e93cf9756e9aa))
+
 ### [4.3.4](https://github.com/chdelucia/hunt-the-bishomalo/compare/v4.3.3...v4.3.4) (2025-05-23)
 
 
