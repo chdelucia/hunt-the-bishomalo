@@ -86,6 +86,8 @@ export class BossFightComponent implements OnInit {
     if (this.bossRemaining === 0) {
       this.message = '🎉 ¡Venciste al jefe!';
       this.gameOver = true;
+      this.gameSound.stop();
+      this.gameSound.playSound(GameSound.FINISH, false);
     } else if (this.playerLives === 0) {
       this.message = '💀 El jefe te derrotó.';
       this.revealAllBossParts();
@@ -129,8 +131,6 @@ export class BossFightComponent implements OnInit {
   }
 
   goToprizeScreen(): void {
-    this.gameSound.stop();
-    this.gameSound.playSound(GameSound.FINISH, false);
     this.router.navigate([RouteTypes.RESULTS], {
       state: {
         fromSecretPath: true,

@@ -27,6 +27,15 @@ export const ACHIEVEMENTS_LIST = [
     svgIcon: `legolas.png`,
   },
   {
+    id: 'collect_dragonballs',
+    title: 'Mejor que una lampara',
+    description: 'Has recogido 7 bolas de cristal, que extrañas...',
+    unlocked: false,
+    rarity: 'legendary',
+    date: '12 May, 2025',
+    svgIcon: `dragonball.png`,
+  },
+  {
     id: 'kill_wumpus',
     title: 'Has matado al bisho malo',
     description: 'Eliminaste a un Wumpus con una flecha bien dirigida',
@@ -34,6 +43,15 @@ export const ACHIEVEMENTS_LIST = [
     rarity: 'uncommon',
     date: '12 May, 2025',
     svgIcon: `kill_wumpus.svg`,
+  },
+  {
+    id: 'collect_heart',
+    title: 'Como nuevo',
+    description: 'Encontrar vidas siempre es un alivio',
+    unlocked: false,
+    rarity: 'uncommon',
+    date: '12 May, 2025',
+    svgIcon: `heart.svg`,
   },
   {
     id: 'escape_rat',

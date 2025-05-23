@@ -132,6 +132,7 @@ export class GameStoreService {
       hasGold: false,
       hasWon: false,
       wumpusKilled: 0,
+      lives: Math.min(this._hunter().lives, this._settings().difficulty.maxLives),
     });
   }
 

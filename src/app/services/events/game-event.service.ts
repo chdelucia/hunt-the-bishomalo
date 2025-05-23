@@ -180,6 +180,7 @@ export class GameEventService {
 
   private extraHeart(hunter: Hunter, cell: Cell): Hunter {
     this.gameSound.playSound(GameSound.PICKUP, false);
+    this.gameAchieve.activeAchievement(AchieveTypes.PICKHEART);
     this.gameStore.updateHunter({
       ...hunter,
       lives: Math.min(hunter.lives + 1, this.gameStore.settings().difficulty.maxLives),

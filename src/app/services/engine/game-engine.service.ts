@@ -47,11 +47,11 @@ export class GameEngineService {
     this.localStorageService.setValue<GameSettings>(this.storageSettingsKey, config);
   }
 
+  //TODO create separate functions del init y del restart
   initGame(config?: GameSettings): void {
     this.sound.stop();
     if (config) {
       this.store.setSettings(config);
-      this.store.updateHunter({ lives: config.difficulty.maxLives });
       this.updateLocalStorageWithSettings(config);
     }
     this.store.initBoard();
@@ -76,8 +76,10 @@ export class GameEngineService {
       wumpus: this.calculateWumpus(size),
       blackout: this.applyBlackoutChance(),
     };
-
-    this.initGame(newSettings);
+    this.store.setSettings(newSettings);
+    this.updateLocalStorageWithSettings(newSettings);
+    this.store.initBoard();
+    this.checkCurrentCell(0, 0);
   }
 
   moveForward(): void {
@@ -227,9 +229,9 @@ export class GameEngineService {
     const roll = Math.random() * 100;
 
     if (roll < 2) cell.content = CELL_CONTENTS.extrawumpus;
-    else if (roll < 22 + luck) cell.content = CELL_CONTENTS.extraheart;
-    else if (roll < 37 + luck) cell.content = CELL_CONTENTS.extragold;
-    else if (roll < 42 + luck) cell.content = CELL_CONTENTS.extraarrow;
+    else if (roll < 20 + luck) cell.content = CELL_CONTENTS.extraheart;
+    else if (roll < 35 + luck) cell.content = CELL_CONTENTS.extragold;
+    else if (roll < 40 + luck) cell.content = CELL_CONTENTS.extraarrow;
   }
 
   private handleMissedArrow(): void {

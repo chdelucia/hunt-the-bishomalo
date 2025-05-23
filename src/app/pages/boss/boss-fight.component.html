@@ -34,7 +34,7 @@
     <button *ngIf="gameOver && bossRemaining" (click)="retryGame()" aria-label="Reiniciar juego">
       Continues {{ this._hunter().lives }}
     </button>
-    @if(!bossRemaining){
+    @if(gameOver && !bossRemaining){
     <button aria-label="siguiente" class="next-btn" (click)="goToprizeScreen()">
       Ganaste! continuar
     </button>
