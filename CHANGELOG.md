@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.3.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v4.2.3...v4.3.0) (2025-05-23)
+
+
+### Features
+
+* **traveler:** add traveler diari ([ddab88d](https://github.com/chdelucia/hunt-the-bishomalo/commit/ddab88dc99295c713077dc952ebb172f867a3fae))
+
+
+### Bug Fixes
+
+* **wumpus:** fix kill wumpus ([f7765e9](https://github.com/chdelucia/hunt-the-bishomalo/commit/f7765e9294994003a2ce89c69a2fd03583179e8d))
+
 ### [4.2.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v4.2.2...v4.2.3) (2025-05-23)
 
 
