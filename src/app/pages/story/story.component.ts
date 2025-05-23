@@ -81,7 +81,7 @@ export class StoryComponent implements OnInit {
     const utterBody = new SpeechSynthesisUtterance(bodyText);
     utterBody.lang = 'es-ES';
     utterBody.pitch = 0.1;
-    utterBody.rate = 0.6;
+    utterBody.rate = 0.65;
 
     speechSynthesis.cancel();
     utterChapter.onend = () => {
