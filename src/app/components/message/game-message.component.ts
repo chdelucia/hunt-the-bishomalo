@@ -15,12 +15,14 @@ export class GameMessageComponent {
   private readonly gameEngine = inject(GameEngineService);
   private readonly router = inject(Router);
 
+  randomNumber = Math.floor(Math.random() * 7) + 1;
   readonly message = input.required<string>();
   readonly isAlive = input.required<boolean>();
   readonly hasWon = input.required<boolean>();
   readonly settings = input.required<GameSettings>();
   readonly lives = input.required<number>();
 
+  readonly _bolaDrac = computed(() => this.message().includes('drac'));
   readonly _hasMessage = computed(() => !!this.message() && !!this.settings().size);
   readonly _shouldShowRetry = computed(() => !this.isAlive() && !!this.settings().size);
   readonly _shouldShowNextLevel = computed(() => this.hasWon() && !!this.settings().size);

@@ -11,4 +11,5 @@ export type GameEventEffectType =
   | 'double-gold'
   | 'extraheart'
   | 'lantern'
-  | 'extragold';
+  | 'extragold'
+  | 'dragonball';

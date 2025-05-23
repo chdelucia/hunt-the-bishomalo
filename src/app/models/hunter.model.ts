@@ -21,4 +21,5 @@ export interface Hunter {
   inventory?: GameItem[];
   gold: number;
   chars?: Chars[];
+  dragonballs?: number;
 }

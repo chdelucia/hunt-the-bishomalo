@@ -114,6 +114,24 @@ export class GameEventService {
       },
       message: '¡El Wumpus te devoró!',
     },
+    {
+      type: 'dragonball',
+      itemName: 'dragonball',
+      canApply: (hunter) => this.hasItem(hunter, 'dragonballs'),
+      apply: (hunter, cell) => {
+        const dragonballs = hunter.dragonballs ?? 0;
+        if(dragonballs < 7) {
+          this.gameStore.updateHunter({
+            dragonballs: dragonballs + 1 ,
+          });
+          cell.content = undefined;
+          this.gameSound.playSound(GameSound.SUCCESS, false);
+        }
+
+        return hunter;
+      },
+      message: '¡Conseguiste una bola de drac!',
+    },
   ];
 
   constructor(
