@@ -46,9 +46,16 @@
     }
   }
 
-  button {
+  button.start-game {
     width: 100%;
     font-family: 'Press Start 2P', monospace;
+    background-color: var(--color-button);
+    padding: 1rem 2rem;
+    cursor: pointer;
+    color: white;
+    &:hover{
+      background-color: var(--color-button-hover);
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { AchieveTypes, Chars, RouteTypes } from 'src/app/models';
 import { AchievementService, GameEngineService, GameStoreService } from 'src/app/services';
