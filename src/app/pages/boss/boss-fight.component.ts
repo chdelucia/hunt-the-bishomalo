@@ -36,7 +36,6 @@ export class BossFightComponent implements OnInit {
   image = '';
 
   ngOnInit(): void {
-  
     this.resetGame();
   }
 
