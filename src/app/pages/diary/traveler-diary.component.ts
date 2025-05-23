@@ -11,7 +11,6 @@ import { LevelStory } from 'src/app/services/story/stories.const';
   styleUrl: './traveler-diary.component.scss',
 })
 export class TravelerDiaryComponent implements OnInit {
-
   private storyService = inject(GameStoryService);
 
   readonly stories = signal<LevelStory[]>([]);

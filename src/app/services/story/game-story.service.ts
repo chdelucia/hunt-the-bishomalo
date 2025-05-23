@@ -24,7 +24,6 @@ export class GameStoryService {
     return charStories.filter((story) => story.level <= level);
   }
 
- 
   checkLevelTrigger(level: LevelStory): void {
     switch (level.effect) {
       case 'extraArrow':
