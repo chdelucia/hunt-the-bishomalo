@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v4.0.1...v4.1.0) (2025-05-23)
+
+
+### Features
+
+* **background:** add backgournd ([dd58011](https://github.com/chdelucia/hunt-the-bishomalo/commit/dd58011418ba80e6152e97f090e005baee34f092))
+* **storytelling:** add story ([745b7e7](https://github.com/chdelucia/hunt-the-bishomalo/commit/745b7e72c832778c3997253436935b561d77ce26))
+
 ### [4.0.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v3.6.1...v4.0.1) (2025-05-22)
 
 ## [4.0.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v3.6.1...v4.0.0) (2025-05-22)
