@@ -6,10 +6,9 @@
   </button>
   }@else{ @if (_hasMessage()) {
   <p>{{ message() }}</p>
-    @if(_bolaDrac()){
-      <img [src]="`boardicons/b${randomNumber}.png`" alt="bola de drac">
-    }
-  }@else {
+  @if(_bolaDrac()){
+  <img [src]="`boardicons/b${randomNumber}.png`" alt="bola de drac" />
+  } }@else {
   <p>Activa el sonido, recoge la moneda y vuelve al inicio.</p>
   } @if (_shouldShowRetry()) {
   <button class="newgame" (click)="restartGame()" aria-label="Reiniciar el juego">

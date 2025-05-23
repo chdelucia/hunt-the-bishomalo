@@ -97,9 +97,9 @@ export class GameStoreService {
     return cell;
   }
 
-  private applyDragonBall(board: Cell[][], difficulty: GameDificulty):void {
+  private applyDragonBall(board: Cell[][], difficulty: GameDificulty): void {
     const dragonballs = this._hunter().dragonballs ?? 0;
-    if(Math.random() < difficulty.baseChance && dragonballs < 7){
+    if (Math.random() < difficulty.baseChance && dragonballs < 7) {
       this.placeRandom(board, new Set(['0,0'])).content = CELL_CONTENTS.dragonball;
     }
   }
