@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v4.3.2...v4.3.3) (2025-05-23)
+
+
+### Bug Fixes
+
+* **sonar:** add test ([813b372](https://github.com/chdelucia/hunt-the-bishomalo/commit/813b3721b082b887abb760c8e5c38fe9e682847a))
+
 ### [4.3.2](https://github.com/chdelucia/hunt-the-bishomalo/compare/v4.3.1...v4.3.2) (2025-05-23)
 
 
