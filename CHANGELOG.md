@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.3.4](https://github.com/chdelucia/hunt-the-bishomalo/compare/v4.3.3...v4.3.4) (2025-05-23)
+
+
+### Bug Fixes
+
+* **hearts:** fix bug with lives on reloading and read localstorage ([3f6f7a4](https://github.com/chdelucia/hunt-the-bishomalo/commit/3f6f7a43317b8a52afe62ce72092585b08b01234))
+* **sonar:** fix issues ([4151b02](https://github.com/chdelucia/hunt-the-bishomalo/commit/4151b0278be2a646492b0e3fd6a82ac4543f187d))
+
 ### [4.3.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v4.3.2...v4.3.3) (2025-05-23)
 
 
