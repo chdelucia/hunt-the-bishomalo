@@ -26,7 +26,7 @@ export class GameStoryService {
         this.gameStore.updateHunter({ lives: this.gameStore.hunter().lives + 1 });
         break;
       case 'doubleGold':
-        this.gameStore.updateHunter({ gold: 400 });
+        this.gameStore.updateHunter({ gold: this.gameStore.hunter().gold + 200 });
         break;
       default:
         break;
