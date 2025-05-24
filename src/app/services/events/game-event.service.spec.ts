@@ -80,7 +80,6 @@ describe('GameEventService', () => {
     expect(result.hunter.alive).toBe(true);
     expect(result.message).toContain('¡Rebobinaste');
   });
-  
 
   it('should shield hunter if killed by wumpus and has shield', () => {
     const hunter: Hunter = {
@@ -132,7 +131,6 @@ describe('GameEventService', () => {
     expect(mockUpdateHunter).toHaveBeenCalledWith(expect.objectContaining({ lives: 2 }));
     expect(mockSetMessage).toHaveBeenCalledWith('Has conseguido una vida extra.');
   });
-
 
   it('should apply dragon ball pickup', () => {
     const hunter: Hunter = {
