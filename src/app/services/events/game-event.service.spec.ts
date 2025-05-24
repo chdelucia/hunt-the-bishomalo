@@ -80,6 +80,7 @@ describe('GameEventService', () => {
     expect(result.hunter.alive).toBe(true);
     expect(result.message).toContain('¡Rebobinaste');
   });
+  
 
   it('should shield hunter if killed by wumpus and has shield', () => {
     const hunter: Hunter = {
@@ -130,6 +131,26 @@ describe('GameEventService', () => {
     expect(mockPlaySound).toHaveBeenCalled();
     expect(mockUpdateHunter).toHaveBeenCalledWith(expect.objectContaining({ lives: 2 }));
     expect(mockSetMessage).toHaveBeenCalledWith('Has conseguido una vida extra.');
+  });
+
+
+  it('should apply dragon ball pickup', () => {
+    const hunter: Hunter = {
+      ...baseHunter,
+      alive: true,
+      lives: 1,
+      inventory: [{ name: 'dragonball', icon: '', effect: 'dragonball' }],
+    };
+
+    service.applyEffectByCellContent(hunter, {
+      x: 0,
+      y: 0,
+      content: { type: 'dragonball', image: '', alt: '', ariaLabel: '' },
+    });
+
+    expect(mockPlaySound).toHaveBeenCalled();
+    expect(mockUpdateHunter).toHaveBeenCalledWith(expect.objectContaining({ dragonballs: 1 }));
+    expect(mockSetMessage).toHaveBeenCalledWith('¡Conseguiste una bola de drac con 4 estrellas!');
   });
 
   it('should return original hunter if no item is applicable', () => {
