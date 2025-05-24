@@ -5,8 +5,6 @@ import { RouterModule } from '@angular/router';
 import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { Chars } from 'src/app/models';
 
-
-
 const hunterSignal = signal({ chars: ['default', 'lara'] });
 
 const gameStoreMock = {
@@ -16,7 +14,7 @@ const gameStoreMock = {
   settings: jest.fn().mockReturnValue({}),
   wumpusKilled: jest.fn(),
   hunterAlive: jest.fn(),
-  blackout: jest.fn()
+  blackout: jest.fn(),
 };
 
 describe('CharactersComponent', () => {
@@ -26,9 +24,7 @@ describe('CharactersComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CharactersComponent, RouterModule.forRoot([])],
-      providers: [
-        { provide: GameStoreService, useValue: gameStoreMock },
-      ],
+      providers: [{ provide: GameStoreService, useValue: gameStoreMock }],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
