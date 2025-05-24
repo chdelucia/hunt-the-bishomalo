@@ -41,7 +41,7 @@ export class GameMessageComponent {
   }
 
   newGame(): void {
-    this.router.navigate([RouteTypes.RESULTS],{
+    this.router.navigate([RouteTypes.RESULTS], {
       state: {
         fromSecretPath: true,
       },

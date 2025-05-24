@@ -227,7 +227,11 @@ describe('GameMessageComponent', () => {
 
   it('should navigate to results on new game btn click', () => {
     component.newGame();
-    expect(routerMock.navigate).toHaveBeenCalledWith([RouteTypes.RESULTS]);
+    expect(routerMock.navigate).toHaveBeenCalledWith([RouteTypes.RESULTS], {
+      state: {
+        fromSecretPath: true,
+      },
+    });
   });
 
   it('should navigate to boss on complete the game', () => {

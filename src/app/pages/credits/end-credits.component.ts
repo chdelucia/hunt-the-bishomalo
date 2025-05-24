@@ -38,7 +38,7 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
     'Contador de Píxeles',
     'Especialista en Errores 404',
     'Redactor de Créditos',
-    'Agradecimientos Especiales'
+    'Agradecimientos Especiales',
   ]);
 
   private lastTime = 0;
@@ -48,7 +48,7 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly gameEngine: GameEngineService,
     private readonly gameSound: GameSoundService,
-  ) { }
+  ) {}
 
   private startAutoScroll(): void {
     const animate = (time: number) => {

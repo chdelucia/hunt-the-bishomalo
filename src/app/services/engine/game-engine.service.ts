@@ -357,14 +357,14 @@ export class GameEngineService {
   }
 
   private calculatePits(size: number, luck: number): number {
-    const penalty = 0.01 - (luck/100);
+    const penalty = 0.01 - luck / 100;
     const totalCells = size * size;
     const basePercentage = 0.1 + penalty;
     return Math.max(1, Math.round(totalCells * basePercentage));
   }
 
   private calculateWumpus(size: number, luck: number): number {
-    const penalty = 0.01 - (luck/1000);
+    const penalty = 0.01 - luck / 1000;
     const totalCells = size * size;
     const basePercentage = 0.04 + penalty;
     return Math.max(1, Math.round(totalCells * basePercentage));
