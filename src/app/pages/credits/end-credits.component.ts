@@ -12,11 +12,11 @@ import { GameEngineService, GameSoundService } from 'src/app/services';
   styleUrl: './end-credits.component.scss',
 })
 export class EndCreditsComponent implements OnInit, OnDestroy {
-  scrollPosition = signal(0);
-  autoScroll = signal(true);
-  readonly MAX_SCROLL_POSITION = 2800;
+  readonly scrollPosition = signal(0);
+  readonly autoScroll = signal(true);
+  readonly MAX_SCROLL_POSITION = 2600;
 
-  roles = signal<string[]>([
+  readonly roles = signal<string[]>([
     'Programador Principal',
     'Diseñador de Juego',
     'Artista de Pixel Art',
@@ -33,16 +33,12 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
     'Entrenador de Murciélagos',
     'Fabricante de Flechas',
     'Explorador de Cuevas',
-    'Diseñador de Trampas',
-    'Alquimista de Pociones',
     'Maestro del Tiempo',
     'Guardián del Oro',
-    'Portador de la Suerte',
-    'Experto en Miniaturización',
     'Contador de Píxeles',
     'Especialista en Errores 404',
     'Redactor de Créditos',
-    'Agradecimientos Especiales',
+    'Agradecimientos Especiales'
   ]);
 
   private lastTime = 0;
@@ -52,9 +48,7 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly gameEngine: GameEngineService,
     private readonly gameSound: GameSoundService,
-  ) {
-    this.startAutoScroll();
-  }
+  ) { }
 
   private startAutoScroll(): void {
     const animate = (time: number) => {
@@ -81,22 +75,13 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.gameSound.stop();
     this.gameSound.playSound(GameSound.GOKU, false);
+    this.startAutoScroll();
   }
 
   ngOnDestroy(): void {
     cancelAnimationFrame(this.animationFrameId);
-  }
-
-  toggleAutoScroll(): void {
-    this.autoScroll.set(!this.autoScroll());
-    if (!this.autoScroll()) this.gameSound.stop();
-  }
-
-  resetScroll(): void {
-    this.scrollPosition.set(0);
-    this.autoScroll.set(true);
-    this.gameSound.playSound(GameSound.GOKU, false);
   }
 
   newGame(): void {

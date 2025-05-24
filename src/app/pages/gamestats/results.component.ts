@@ -32,13 +32,13 @@ export class ResultsComponent {
     const totalArrows = this.leaderboard.reduce((sum, e) => sum + e.wumpusKilled, 0);
     const totalItems = this.leaderboard.reduce((sum, e) => sum + (e.blackout ? 1 : 0), 0);
     const totalCoins = 875; // Placeholder
-    const completedLevels = this.leaderboard.length;
+    const completedLevels = this.leaderboard.reverse()[0].level;
     const totalSeconds = this.leaderboard.reduce((sum, e) => sum + e.timeInSeconds, 0);
 
     const hours = Math.floor(totalSeconds / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
-
+    
     return {
       pasosTotales: totalSteps,
       muertes: totalDeaths,

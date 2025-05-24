@@ -14,8 +14,6 @@ import { Router } from '@angular/router';
 export class GameMessageComponent {
   private readonly gameEngine = inject(GameEngineService);
   private readonly router = inject(Router);
-
-  randomNumber = Math.floor(Math.random() * 7) + 1;
   readonly message = input.required<string>();
   readonly isAlive = input.required<boolean>();
   readonly hasWon = input.required<boolean>();
@@ -43,7 +41,11 @@ export class GameMessageComponent {
   }
 
   newGame(): void {
-    this.router.navigate([RouteTypes.RESULTS]);
+    this.router.navigate([RouteTypes.RESULTS],{
+      state: {
+        fromSecretPath: true,
+      },
+    });
   }
 
   goToBoss(): void {

@@ -41,7 +41,7 @@ export const DIFFICULTY_CONFIGS: Record<DifficultyTypes, GameDificulty> = {
     maxLevels: 15,
     maxChance: 0.3,
     baseChance: 0.11,
-    gold: 50,
+    gold: 55,
     maxLives: 8,
     luck: 5,
     bossTries: 11,

@@ -120,9 +120,9 @@ export class GameEventService {
       canApply: (hunter) => this.hasItem(hunter, 'dragonballs'),
       apply: (hunter, cell) => {
         const dragonballs = hunter.dragonballs ?? 0;
-        if (dragonballs < 7) {
+        if (!dragonballs) {
           this.gameStore.updateHunter({
-            dragonballs: dragonballs + 1,
+            dragonballs: 1,
           });
           cell.content = undefined;
           this.gameSound.playSound(GameSound.SUCCESS, false);
@@ -130,7 +130,7 @@ export class GameEventService {
 
         return hunter;
       },
-      message: '¡Conseguiste una bola de drac!',
+      message: '¡Conseguiste una bola de drac con 4 estrellas!',
     },
   ];
 

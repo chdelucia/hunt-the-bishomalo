@@ -93,6 +93,8 @@ export class BossFightComponent implements OnInit {
       this.message = '💀 El jefe te derrotó.';
       this.revealAllBossParts();
       this.gameOver = true;
+      this.gameSound.stop();
+      this.gameSound.playSound(GameSound.PITDIE, false);
     }
   }
 

@@ -111,7 +111,7 @@ export const CELL_CONTENTS: Record<CellContentType, CellContent> = {
   },
   dragonball: {
     type: 'dragonball',
-    image: 'boardicons/b7.png',
+    image: 'boardicons/b4.png',
     alt: 'dragonball',
     ariaLabel: 'dragonball',
   },

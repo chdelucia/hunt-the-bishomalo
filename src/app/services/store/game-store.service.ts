@@ -79,8 +79,8 @@ export class GameStoreService {
       place().content = CELL_CONTENTS.arrow;
     }
 
-    this.applyRandomEventOnce(board, difficulty);
-    this.applyDragonBall(board, difficulty);
+    this.applyHeartEvent(board, difficulty);
+    this.applyDragonBallEvent(board, difficulty);
     this._board.set(board);
     this.setHunterForNextLevel();
     this._startTime = new Date();
@@ -97,13 +97,13 @@ export class GameStoreService {
     return cell;
   }
 
-  private applyDragonBall(board: Cell[][], difficulty: GameDificulty): void {
+  private applyDragonBallEvent(board: Cell[][], difficulty: GameDificulty): void {
     const dragonballs = this._hunter().dragonballs ?? 0;
-    if (Math.random() < difficulty.baseChance && dragonballs < 7) {
+    if (Math.random() < difficulty.baseChance && !dragonballs) {
       this.placeRandom(board, new Set(['0,0'])).content = CELL_CONTENTS.dragonball;
     }
   }
-  private applyRandomEventOnce(board: Cell[][], difficulty: GameDificulty): void {
+  private applyHeartEvent(board: Cell[][], difficulty: GameDificulty): void {
     const baseChance = difficulty.baseChance;
     const maxChance = difficulty.maxChance;
     const size = this.settings().size;

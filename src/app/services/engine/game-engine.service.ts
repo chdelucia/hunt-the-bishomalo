@@ -13,6 +13,7 @@ import {
   Cell,
   CELL_CONTENTS,
   Direction,
+  GameDificulty,
   GameSettings,
   GameSound,
   Hunter,
@@ -67,13 +68,14 @@ export class GameEngineService {
   }
 
   nextLevel(): void {
-    const size = this._settings().size + 1;
+    const { size, difficulty } = this._settings();
+    const newSize = size + 1;
 
     const newSettings = {
       ...this._settings(),
-      size,
-      pits: this.calculatePits(size),
-      wumpus: this.calculateWumpus(size),
+      size: newSize,
+      pits: this.calculatePits(size, difficulty.luck),
+      wumpus: this.calculateWumpus(size, difficulty.luck),
       blackout: this.applyBlackoutChance(),
     };
     this.store.setSettings(newSettings);
@@ -354,16 +356,18 @@ export class GameEngineService {
     return null;
   }
 
-  private calculatePits(size: number): number {
+  private calculatePits(size: number, luck: number): number {
+    const penalty = 0.01 - (luck/100);
     const totalCells = size * size;
-    const basePercentage = 0.1;
-    return Math.max(1, Math.floor(totalCells * basePercentage));
+    const basePercentage = 0.1 + penalty;
+    return Math.max(1, Math.round(totalCells * basePercentage));
   }
 
-  private calculateWumpus(size: number): number {
+  private calculateWumpus(size: number, luck: number): number {
+    const penalty = 0.01 - (luck/1000);
     const totalCells = size * size;
-    const basePercentage = 0.04;
-    return Math.max(1, Math.floor(totalCells * basePercentage));
+    const basePercentage = 0.04 + penalty;
+    return Math.max(1, Math.round(totalCells * basePercentage));
   }
 
   private applyBlackoutChance(): boolean {

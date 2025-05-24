@@ -82,10 +82,6 @@ export class GameControlsComponent {
     this.game.shootArrow();
   }
 
-  exit(): void {
-    this.game.exit();
-  }
-
   resetGame(): void {
     if (isDevMode()) this.game.initGame();
   }

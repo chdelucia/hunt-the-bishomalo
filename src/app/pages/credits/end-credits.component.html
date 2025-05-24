@@ -4,13 +4,6 @@
     <p class="creditos-subtitulo">Las increíbles personas detrás de Hunt the Bishomalo</p>
   </div>
 
-  <div class="creditos-controles">
-    <button class="boton-creditos" (click)="toggleAutoScroll()">
-      {{ autoScroll() ? 'Pausar' : 'Reanudar' }}
-    </button>
-    <button class="boton-creditos" (click)="resetScroll()">Reiniciar</button>
-  </div>
-
   <div class="creditos-ventana">
     <div class="creditos-contenido" [style.transform]="'translateY(-' + scrollPosition() + 'px)'">
       <div class="creditos-seccion">

@@ -109,8 +109,6 @@
       <table class="niveles-tabla">
         <thead>
           <tr>
-            <th>Jugador</th>
-            <th>Fecha</th>
             <th>Tiempo</th>
             <th>Pasos</th>
             <th>Muertes</th>
@@ -119,8 +117,6 @@
         </thead>
         <tbody>
           <tr *ngFor="let entry of leaderboard">
-            <td>{{ entry.playerName }}</td>
-            <td>{{ entry.date | date : 'short' }}</td>
             <td>{{ entry.timeInSeconds }}s</td>
             <td>{{ entry.steps }}</td>
             <td>{{ entry.deads }}</td>

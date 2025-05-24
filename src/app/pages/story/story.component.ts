@@ -87,7 +87,7 @@ export class StoryComponent implements OnInit, OnDestroy {
     const utterBody = new SpeechSynthesisUtterance(bodyText);
     utterBody.lang = 'es-ES';
     utterBody.pitch = 0.1;
-    utterBody.rate = 0.65;
+    utterBody.rate = 0.7;
 
     speechSynthesis.cancel();
     utterChapter.onend = () => {
