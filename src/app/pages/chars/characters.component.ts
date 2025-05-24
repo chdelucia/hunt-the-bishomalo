@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { AchieveTypes, Chars, RouteTypes } from 'src/app/models';
-import { AchievementService, GameEngineService, GameStoreService } from 'src/app/services';
+import { AchievementService, GameStoreService } from 'src/app/services';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 })
 export class CharactersComponent {
   readonly gameStore = inject(GameStoreService);
-  private readonly gameEngine = inject(GameEngineService);
   private readonly router = inject(Router);
   private readonly achieve = inject(AchievementService);
 

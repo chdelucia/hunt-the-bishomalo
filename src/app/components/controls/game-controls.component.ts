@@ -83,7 +83,7 @@ export class GameControlsComponent {
   }
 
   resetGame(): void {
-    if (isDevMode()) this.game.initGame();
+    if (isDevMode()) this.game.restartLevel();
   }
 
   toggle(): void {

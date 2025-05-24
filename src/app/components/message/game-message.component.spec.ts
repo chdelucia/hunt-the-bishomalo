@@ -8,6 +8,7 @@ const gameEngineMock = {
   initGame: jest.fn(),
   newGame: jest.fn(),
   nextLevel: jest.fn(),
+  restartLevel: jest.fn(),
   settings: jest.fn().mockReturnValue({
     difficulty: {
       maxLevels: 10,
@@ -67,13 +68,13 @@ describe('GameMessageComponent', () => {
 
   it('should call initGame to restar the game', () => {
     component.restartGame();
-    expect(gameEngineMock.initGame).toHaveBeenCalled();
+    expect(gameEngineMock.restartLevel).toHaveBeenCalled();
   });
 
   describe('restartGame', () => {
     it('should call initGame without arguments', () => {
       component.restartGame();
-      expect(gameEngineMock.initGame).toHaveBeenCalledWith();
+      expect(gameEngineMock.restartLevel).toHaveBeenCalledWith();
     });
   });
 
@@ -167,7 +168,7 @@ describe('GameMessageComponent', () => {
     const button = fixture.nativeElement.querySelector('button.newgame');
     button.click();
 
-    expect(gameEngineMock.initGame).toHaveBeenCalled();
+    expect(gameEngineMock.restartLevel).toHaveBeenCalled();
   });
 
   it('should show next level button when player has won', () => {

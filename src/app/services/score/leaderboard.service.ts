@@ -37,7 +37,8 @@ export class LeaderboardService {
           deads: alive ? 0 : 1,
         });
         this.countSteps = 0;
-        this.gameAchieve.caclVictoryAchieve(seconds);
+
+        if (hasWon) this.gameAchieve.caclVictoryAchieve(seconds);
       }
     });
   }

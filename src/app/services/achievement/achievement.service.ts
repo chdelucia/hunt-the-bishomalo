@@ -1,4 +1,4 @@
-import { effect, Injectable, signal } from '@angular/core';
+import { computed, effect, Injectable, signal } from '@angular/core';
 import { Achievement, AchieveTypes, Cell, GameSound } from 'src/app/models';
 import {
   AnalyticsService,
@@ -24,17 +24,19 @@ export class AchievementService {
   ) {
     this.syncAchievementsWithStorage();
     effect(() => {
-      const hunter = this.gameStore.hunter();
-      if (!hunter.alive) {
-        if (this.gameStore.settings().blackout) {
+      if (this.gameStore.wumpusKilled() === 5) {
+        this.activeAchievement(AchieveTypes.PENTA);
+        this.gameSound.playSound(GameSound.PENTA, false);
+      }
+    });
+
+    effect(() => {
+      if (!this.gameStore.hunterAlive()) {
+        if (this.gameStore.blackout()) {
           this.activeAchievement(AchieveTypes.DEATHBYBLACKOUT);
-        } else if (hunter.wumpusKilled) {
+        } else if (this.gameStore.wumpusKilled()) {
           this.activeAchievement(AchieveTypes.LASTBREATH);
         }
-      }
-      //TODO fuga aqui
-      if (hunter.wumpusKilled === 5) {
-        this.activeAchievement(AchieveTypes.PENTA);
       }
     });
   }

@@ -9,6 +9,7 @@ const mockGameService = {
   shootArrow: jest.fn(),
   exit: jest.fn(),
   initGame: jest.fn(),
+  restartLevel: jest.fn(),
 };
 
 describe('GameControlsComponent', () => {
@@ -85,7 +86,7 @@ describe('GameControlsComponent', () => {
   it('should call tur right() on R key', () => {
     const event = new KeyboardEvent('keydown', { code: 'KeyR' });
     window.dispatchEvent(event);
-    expect(mockGameService.initGame).toHaveBeenCalled();
+    expect(mockGameService.restartLevel).toHaveBeenCalled();
   });
 
   it('should prevent default behavior for recognized keys', () => {
@@ -107,5 +108,10 @@ describe('GameControlsComponent', () => {
     expect(mockGameService.shootArrow).not.toHaveBeenCalled();
     expect(mockGameService.exit).not.toHaveBeenCalled();
     expect(mockGameService.initGame).not.toHaveBeenCalled();
+  });
+
+  it('should reset same level', () => {
+    component.resetGame();
+    expect(mockGameService.restartLevel).toHaveBeenCalled();
   });
 });

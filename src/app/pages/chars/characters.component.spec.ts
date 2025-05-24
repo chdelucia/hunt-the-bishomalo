@@ -1,13 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CharactersComponent } from './characters.component';
-import { GameEngineService, GameStoreService } from 'src/app/services';
+import { GameStoreService } from 'src/app/services';
 import { RouterModule } from '@angular/router';
 import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { Chars } from 'src/app/models';
 
-const gameEngineServiceMock = {
-  newGame: jest.fn(),
-};
+
 
 const hunterSignal = signal({ chars: ['default', 'lara'] });
 
@@ -16,6 +14,9 @@ const gameStoreMock = {
   stop: jest.fn(),
   hunter: jest.fn().mockReturnValue(hunterSignal),
   settings: jest.fn().mockReturnValue({}),
+  wumpusKilled: jest.fn(),
+  hunterAlive: jest.fn(),
+  blackout: jest.fn()
 };
 
 describe('CharactersComponent', () => {
@@ -26,7 +27,6 @@ describe('CharactersComponent', () => {
     await TestBed.configureTestingModule({
       imports: [CharactersComponent, RouterModule.forRoot([])],
       providers: [
-        { provide: GameEngineService, useValue: gameEngineServiceMock },
         { provide: GameStoreService, useValue: gameStoreMock },
       ],
       schemas: [NO_ERRORS_SCHEMA],

@@ -14,6 +14,9 @@ function createMockCell(overrides = {}) {
 
 const mockGameStoreService = {
   hunter: jest.fn().mockReturnValue({ arrows: 3, hasGold: false }),
+  wumpusKilled: jest.fn(),
+  hunterAlive: jest.fn(),
+  blackout: jest.fn(),
   settings: jest.fn().mockReturnValue({
     size: 4,
     arrows: 2,

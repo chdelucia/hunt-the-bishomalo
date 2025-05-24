@@ -24,7 +24,7 @@ export class GameStoryService {
     return charStories.filter((story) => story.level <= level);
   }
 
-  //TODO aplicar beneficios
+  //TODO aplicar beneficios en los niveles ya veremos si quiero o es demasiado facil
   checkLevelTrigger(level: LevelStory): void {
     switch (level.effect) {
       case 'extraArrow':

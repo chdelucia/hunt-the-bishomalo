@@ -32,10 +32,15 @@ export class GameStoreService {
   private _startTime: Date | null = null;
   private readonly _settings = signal<GameSettings>({} as GameSettings);
 
-  readonly board = computed(() => this._board());
-  readonly hunter = computed(() => this._hunter());
-  readonly message = computed(() => this._message());
-  readonly settings = computed(() => this._settings());
+  readonly board = this._board.asReadonly();
+  readonly hunter = this._hunter.asReadonly();
+  readonly message = this._message.asReadonly();
+  readonly settings = this._settings.asReadonly();
+  readonly wumpusKilled = computed(() => this._hunter().wumpusKilled);
+  readonly hunterAlive = computed(() => this._hunter().alive);
+  readonly hasGold = computed(() => this._hunter().hasGold);
+  readonly hasWon = computed(() => this._hunter().hasWon);
+  readonly blackout = computed(() => this._settings().blackout);
 
   private readonly storageHunterKey = 'hunt_the_bishomalo_hunter';
 

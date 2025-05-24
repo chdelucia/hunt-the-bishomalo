@@ -47,13 +47,16 @@ export class GameEngineService {
     this.localStorageService.setValue<GameSettings>(this.storageSettingsKey, config);
   }
 
-  //TODO create separate functions del init y del restart
-  initGame(config?: GameSettings): void {
+  initGame(config: GameSettings): void {
     this.sound.stop();
-    if (config) {
-      this.store.setSettings(config);
-      this.updateLocalStorageWithSettings(config);
-    }
+    this.store.setSettings(config);
+    this.updateLocalStorageWithSettings(config);
+    this.store.initBoard();
+    this.checkCurrentCell(0, 0);
+  }
+
+  restartLevel(): void {
+    this.sound.stop();
     this.store.initBoard();
     this.checkCurrentCell(0, 0);
   }

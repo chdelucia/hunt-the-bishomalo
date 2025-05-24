@@ -29,7 +29,7 @@ export class GameMessageComponent {
   );
 
   restartGame(): void {
-    this.gameEngine.initGame();
+    this.gameEngine.restartLevel();
   }
 
   nextLevel(): void {
