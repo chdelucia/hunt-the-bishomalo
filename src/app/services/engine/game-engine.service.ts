@@ -13,7 +13,6 @@ import {
   Cell,
   CELL_CONTENTS,
   Direction,
-  GameDificulty,
   GameSettings,
   GameSound,
   Hunter,
