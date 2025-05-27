@@ -130,4 +130,42 @@ describe('GameStore (SignalStore)', () => {
     store.updateHunter({ x: 0, y: 0 });
     expect(store.currentCell()).toEqual(testCell);
   });
+
+  it('should initialize the board and hunter correctly on initBoard', () => {
+  store.setSettings(mockSettings);
+  store.updateHunter({ ...mockHunter });
+  store.initBoard();
+
+  const board = store.board();
+  const hunter = store.hunter();
+
+  expect(board.length).toBe(mockSettings.size);
+  expect(board[0].length).toBe(mockSettings.size);
+
+  const contents = board.flat().map((cell: Cell) => cell.content).filter(Boolean);
+  const hasGold = contents.includes('gold');
+  expect(hasGold).toBe(false);
+
+  expect(hunter.x).toBe(0);
+  expect(hunter.y).toBe(0);
+  expect(hunter.direction).toBe(Direction.RIGHT);
+});
+
+it('should correctly set hunter for next level', () => {
+  store.setSettings(mockSettings);
+  store.updateHunter({ ...mockHunter, lives: 6 });
+  store.setHunterForNextLevel();
+
+  const hunter = store.hunter();
+
+  expect(hunter.x).toBe(0);
+  expect(hunter.y).toBe(0);
+  expect(hunter.direction).toBe(Direction.RIGHT);
+  expect(hunter.arrows).toBe(mockSettings.arrows);
+  expect(hunter.hasGold).toBe(false);
+  expect(hunter.hasWon).toBe(false);
+  expect(hunter.alive).toBe(true);
+  expect(hunter.lives).toBeLessThanOrEqual(mockSettings.difficulty.maxLives);
+});
+
 });
