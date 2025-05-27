@@ -43,7 +43,6 @@ export class AchievementService {
       }
     }
   }
- 
 
   private updateLocalStorageWithNewId(id: string): void {
     const storedIds = this.getStoredAchievementIds();
