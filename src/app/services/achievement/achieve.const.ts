@@ -235,7 +235,7 @@ export const ACHIEVEMENTS_LIST = [
     description: 'Has matado a 5 enemigos seguidos',
     unlocked: false,
     rarity: 'legendary',
-    svgIcon: `penta.svg`,
+    svgIcon: `penta.png`,
   },
   {
     id: 'secret',
