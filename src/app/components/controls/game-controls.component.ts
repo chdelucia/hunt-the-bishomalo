@@ -3,7 +3,6 @@ import {
   Component,
   HostListener,
   inject,
-  input,
   isDevMode,
   signal,
 } from '@angular/core';

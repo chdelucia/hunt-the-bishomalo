@@ -45,7 +45,7 @@ export class GameConfigComponent implements OnInit {
         size: this.configForm.value.size + 3,
         blackout: this.applyBlackoutChance(),
         difficulty: DIFFICULTY_CONFIGS[difficulty],
-        startTime: new Date()
+        startTime: new Date(),
       });
       this.goToStory();
     }

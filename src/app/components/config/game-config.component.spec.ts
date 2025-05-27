@@ -80,7 +80,7 @@ describe('GameConfigComponent', () => {
         maxLives: 8,
         bossTries: 12,
       },
-      startTime: expect.any(Date)
+      startTime: expect.any(Date),
     });
   });
 

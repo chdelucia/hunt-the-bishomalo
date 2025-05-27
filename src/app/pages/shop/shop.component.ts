@@ -1,7 +1,7 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GameEngineService } from 'src/app/services';
-import { GameItem, Product, RouteTypes } from 'src/app/models';
+import { Product, RouteTypes } from 'src/app/models';
 import { Router } from '@angular/router';
 import { GameStore } from 'src/app/store';
 

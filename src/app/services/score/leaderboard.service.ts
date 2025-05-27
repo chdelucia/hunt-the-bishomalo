@@ -58,7 +58,6 @@ export class LeaderboardService {
     this._leaderboard = [];
   }
 
-  //TODO arreglar esta chapuza
   private calculateElapsedSeconds(endTime: Date): number {
     const startime = this.gameStore.startTime();
     return startime ? Math.round((endTime.getTime() - startime.getTime()) / 1000) : 0;
