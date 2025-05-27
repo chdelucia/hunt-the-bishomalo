@@ -70,10 +70,7 @@ describe('GameStore (SignalStore)', () => {
     } as unknown as jest.Mocked<LocalstorageService>;
 
     TestBed.configureTestingModule({
-      providers: [
-        GameStore,
-        { provide: LocalstorageService, useValue: localStorageServiceMock },
-      ],
+      providers: [GameStore, { provide: LocalstorageService, useValue: localStorageServiceMock }],
     });
 
     store = TestBed.inject(GameStore);
@@ -91,7 +88,7 @@ describe('GameStore (SignalStore)', () => {
     expect(store.hunter().hasWon).toBe(false);
     expect(localStorageServiceMock.setValue).toHaveBeenCalledWith(
       'hunt_the_bishomalo_hunter',
-      expect.objectContaining(update)
+      expect.objectContaining(update),
     );
   });
 
