@@ -1,8 +1,9 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GameEngineService, GameStoreService } from 'src/app/services';
+import { GameEngineService } from 'src/app/services';
 import { GameItem, Product, RouteTypes } from 'src/app/models';
 import { Router } from '@angular/router';
+import { GameStore } from 'src/app/store';
 
 @Component({
   selector: 'app-shop',
@@ -60,13 +61,13 @@ export class ShopComponent {
     },
   ];
 
-  private readonly gameStore = inject(GameStoreService);
+  private readonly gameStore = inject(GameStore);
   private readonly settings = this.gameStore.settings;
   private readonly gameEngine = inject(GameEngineService);
   private readonly router = inject(Router);
 
-  readonly gold = computed(() => this.gameStore.hunter().gold);
-  readonly inventory = computed<GameItem[] | undefined>(() => this.gameStore.hunter().inventory);
+  readonly gold = this.gameStore.gold;
+  readonly inventory = this.gameStore.inventory;
 
   message = signal('');
   productos = computed(() => {

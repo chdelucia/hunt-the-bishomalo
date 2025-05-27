@@ -24,7 +24,6 @@ describe('GameControlsComponent', () => {
 
     fixture = TestBed.createComponent(GameControlsComponent);
     component = fixture.componentInstance;
-    fixture.componentRef.setInput('arrows', 2);
     fixture.detectChanges();
   });
 

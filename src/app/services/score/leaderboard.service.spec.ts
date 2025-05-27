@@ -2,11 +2,38 @@ import { TestBed } from '@angular/core/testing';
 import { LeaderboardService } from './leaderboard.service';
 import { LocalstorageService } from '../localstorage/localstorage.service';
 import { ScoreEntry } from 'src/app/models';
+import { GameStore } from 'src/app/store';
+import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
 
 const LocalstorageServiceMock = {
   getValue: jest.fn(),
   setValue: jest.fn(),
   clearValue: jest.fn(),
+};
+
+const mockGameStoreService = {
+  hunter: jest.fn().mockReturnValue({ arrows: 3, hasGold: false }),
+  wumpusKilled: jest.fn(),
+  hunterAlive: jest.fn(),
+  blackout: jest.fn(),
+  getStartTime: () => jest.fn(),
+  char: jest.fn(),
+  settings: jest.fn().mockReturnValue({
+    size: 4,
+    arrows: 2,
+    difficulty: {
+      baseChance: 0.12,
+      gold: 60,
+      luck: 8,
+      maxChance: 0.35,
+      maxLevels: 10,
+      maxLives: 8,
+      bossTries: 12,
+    },
+  }),
+  message: jest.fn().mockReturnValue('¡El Wumpus te devoró!'),
+  setMessage: jest.fn(),
+  board: jest.fn()
 };
 
 describe('LeaderboardService', () => {
@@ -19,7 +46,9 @@ describe('LeaderboardService', () => {
       providers: [
         LeaderboardService,
         { provide: LocalstorageService, useValue: LocalstorageServiceMock },
+        { provide: GameStore, useValue: mockGameStoreService }
       ],
+      schemas: [NO_ERRORS_SCHEMA],
     });
 
     service = TestBed.inject(LeaderboardService);

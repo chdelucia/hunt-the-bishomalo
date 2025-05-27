@@ -1,13 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { LevelStory, STORIES } from './stories.const';
-import { GameStoreService } from '../store/game-store.service';
+import { GameStore } from 'src/app/store';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GameStoryService {
   private readonly stories = STORIES;
-  private readonly gameStore = inject(GameStoreService);
+  private readonly gameStore = inject(GameStore);
   private readonly _settings = this.gameStore.settings;
 
   getStory(): LevelStory | undefined {

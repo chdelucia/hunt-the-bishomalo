@@ -1,9 +1,10 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { ShopComponent } from './shop.component';
 import { Router } from '@angular/router';
-import { GameStoreService, GameEngineService } from 'src/app/services';
+import { GameEngineService } from 'src/app/services';
 import { Product, RouteTypes } from 'src/app/models';
 import { CommonModule } from '@angular/common';
+import { GameStore } from 'src/app/store';
 
 const mockHunter = {
   gold: 150,
@@ -14,6 +15,8 @@ const mockHunter = {
 const mockGameStoreService = {
   hunter: jest.fn(() => mockHunter),
   updateHunter: jest.fn(),
+  gold: jest.fn().mockReturnValue(160),
+  inventory: jest.fn(),
   settings: jest.fn().mockReturnValue({
     difficulty: {
       maxLevels: 10,
@@ -43,7 +46,7 @@ describe('ShopComponent', () => {
     await TestBed.configureTestingModule({
       imports: [CommonModule],
       providers: [
-        { provide: GameStoreService, useValue: mockGameStoreService },
+        { provide: GameStore, useValue: mockGameStoreService },
         { provide: GameEngineService, useValue: mockGameEngineService },
         { provide: Router, useValue: mockRouter },
       ],
@@ -53,6 +56,8 @@ describe('ShopComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
+
+  afterEach(() => jest.clearAllMocks());
 
   it('should create the shop component', () => {
     expect(component).toBeTruthy();
@@ -69,7 +74,7 @@ describe('ShopComponent', () => {
 
     component.buyProduct(product);
     expect(mockGameStoreService.updateHunter).toHaveBeenCalledWith({
-      gold: 50,
+      gold: 60,
       inventory: [product],
     });
     expect(component.message()).toContain('¡Has comprado Linterna!');
@@ -88,7 +93,7 @@ describe('ShopComponent', () => {
 
     component.buyProduct(product);
     expect(mockGameStoreService.updateHunter).toHaveBeenCalledWith({
-      gold: 90,
+      gold: 100,
       lives: 4,
     });
   });

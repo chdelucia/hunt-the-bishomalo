@@ -1,8 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { AchieveTypes, Chars, RouteTypes } from 'src/app/models';
-import { AchievementService, GameStoreService } from 'src/app/services';
+import { AchievementService } from 'src/app/services';
 import { Router } from '@angular/router';
+import { GameStore } from 'src/app/store';
 
 @Component({
   selector: 'app-characters',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrl: './characters.component.scss',
 })
 export class CharactersComponent {
-  readonly gameStore = inject(GameStoreService);
+  readonly gameStore = inject(GameStore);
   private readonly router = inject(Router);
   private readonly achieve = inject(AchievementService);
 

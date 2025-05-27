@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { GameStoryService } from './game-story.service';
-import { GameStoreService } from '../store/game-store.service';
 import { LevelStory } from './stories.const';
+import { GameStore } from 'src/app/store';
 
 const mockSettings = {
   size: 6,
@@ -27,7 +27,7 @@ describe('GameStoryService', () => {
   let service: GameStoryService;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [GameStoryService, { provide: GameStoreService, useValue: mockGameStoreService }],
+      providers: [GameStoryService, { provide: GameStore, useValue: mockGameStoreService }],
     });
 
     service = TestBed.inject(GameStoryService);

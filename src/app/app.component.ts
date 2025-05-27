@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ToastComponent } from './components';
 import { MenuComponent } from './components/menu/menu.component';
 import { GameControlsComponent } from './components/controls/game-controls.component';
-import { GameStoreService } from './services';
+import { GameStore } from './store';
 
 @Component({
   imports: [RouterModule, CommonModule, ToastComponent, MenuComponent, GameControlsComponent],
@@ -14,5 +14,5 @@ import { GameStoreService } from './services';
 })
 export class AppComponent {
   title = 'hunt-the-bishomalo';
-  readonly game = inject(GameStoreService);
+  readonly game = inject(GameStore);
 }

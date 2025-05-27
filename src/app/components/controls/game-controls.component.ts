@@ -28,8 +28,6 @@ export class GameControlsComponent {
   private readonly achieve = inject(AchievementService);
   private readonly router = inject(Router);
 
-  readonly arrows = input.required<number>();
-
   private readonly keyActionMap: Record<string, () => void> = {
     ArrowUp: () => this.moveForward(),
     Space: () => this.shootArrow(),

@@ -1,15 +1,15 @@
 import { effect, inject, Injectable } from '@angular/core';
 import { ScoreEntry } from 'src/app/models';
 import { LocalstorageService } from '../localstorage/localstorage.service';
-import { GameStoreService } from '../store/game-store.service';
 import { AchievementService } from '../achievement/achievement.service';
+import { GameStore } from 'src/app/store';
 
 @Injectable({ providedIn: 'root' })
 export class LeaderboardService {
   private readonly storageKey = 'hunt_the_bishomalo_leaderboard';
   _leaderboard: ScoreEntry[] = [];
 
-  private readonly gameStore = inject(GameStoreService);
+  private readonly gameStore = inject(GameStore);
   private readonly gameAchieve = inject(AchievementService);
   private readonly _hunter = this.gameStore.hunter;
   private readonly _settings = this.gameStore.settings;
@@ -58,8 +58,9 @@ export class LeaderboardService {
     this._leaderboard = [];
   }
 
+  //TODO arreglar esta chapuza
   private calculateElapsedSeconds(endTime: Date): number {
-    const startime = this.gameStore.startTime;
+    const startime = this.gameStore.getStartTime()();
     return startime ? Math.round((endTime.getTime() - startime.getTime()) / 1000) : 0;
   }
 }

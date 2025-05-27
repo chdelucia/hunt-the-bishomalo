@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HuntBishoComponent } from './hunt-bisho.component';
-import { GameStoreService } from '../services';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { GameStore } from '../store';
 
 function createMockCell(overrides = {}) {
   return {
@@ -17,6 +17,8 @@ const mockGameStoreService = {
   wumpusKilled: jest.fn(),
   hunterAlive: jest.fn(),
   blackout: jest.fn(),
+  getStartTime: jest.fn(),
+  char: jest.fn(),
   settings: jest.fn().mockReturnValue({
     size: 4,
     arrows: 2,
@@ -55,7 +57,7 @@ describe('HuntBishoComponent', () => {
 
     await TestBed.configureTestingModule({
       imports: [HuntBishoComponent, RouterModule.forRoot([])],
-      providers: [{ provide: GameStoreService, useValue: mockGameStoreService }],
+      providers: [{ provide: GameStore, useValue: mockGameStoreService }],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 

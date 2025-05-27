@@ -1,8 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { GameSoundService, GameStoreService } from 'src/app/services';
+import { GameSoundService } from 'src/app/services';
 import { GameSound, RouteTypes } from 'src/app/models';
 import { Router } from '@angular/router';
+import { GameStore } from 'src/app/store';
 
 interface BossCell {
   x: number;
@@ -21,7 +22,7 @@ interface BossCell {
 })
 export class BossFightComponent implements OnInit {
   private readonly gameSound = inject(GameSoundService);
-  readonly gameStore = inject(GameStoreService);
+  readonly gameStore = inject(GameStore);
   private readonly router = inject(Router);
   readonly _hunter = this.gameStore.hunter;
   readonly _settings = this.gameStore.settings;

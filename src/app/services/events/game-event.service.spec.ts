@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { GameEventService } from './game-event.service';
 import { GameSoundService } from '../sound/game-sound.service';
-import { GameStoreService } from '../store/game-store.service';
 import { AchievementService } from '../achievement/achievement.service';
 import { Cell, Hunter } from '../../models';
+import { GameStore } from 'src/app/store';
 
 describe('GameEventService', () => {
   let service: GameEventService;
@@ -35,7 +35,7 @@ describe('GameEventService', () => {
           },
         },
         {
-          provide: GameStoreService,
+          provide: GameStore,
           useValue: {
             updateHunter: mockUpdateHunter,
             setMessage: mockSetMessage,

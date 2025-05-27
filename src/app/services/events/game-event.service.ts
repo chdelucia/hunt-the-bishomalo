@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { AchieveTypes, Cell, GameEventEffectType, GameItem, GameSound, Hunter } from '../../models';
-import { GameStoreService } from '../store/game-store.service';
 import { GameSoundService } from '../sound/game-sound.service';
 import { AchievementService } from '../achievement/achievement.service';
+import { GameStore } from 'src/app/store';
 
 type CauseOfDeath = 'pit' | 'wumpus';
 
@@ -134,11 +134,10 @@ export class GameEventService {
     },
   ];
 
-  constructor(
-    private readonly gameStore: GameStoreService,
-    private readonly gameSound: GameSoundService,
-    private readonly gameAchieve: AchievementService,
-  ) {}
+  readonly gameStore = inject(GameStore);
+  readonly gameSound = inject(GameSoundService);
+  readonly gameAchieve = inject(AchievementService);
+
 
   applyEffectsOnDeath(
     hunter: Hunter,

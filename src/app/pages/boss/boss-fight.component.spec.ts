@@ -3,8 +3,9 @@ import { BossFightComponent } from './boss-fight.component';
 import { CommonModule } from '@angular/common';
 import { signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { GameStoreService, GameSoundService } from 'src/app/services';
-import { GameSound, RouteTypes } from 'src/app/models';
+import { GameSoundService } from 'src/app/services';
+import { RouteTypes } from 'src/app/models';
+import { GameStore } from 'src/app/store';
 
 describe('BossFightComponent', () => {
   let component: BossFightComponent;
@@ -35,7 +36,7 @@ describe('BossFightComponent', () => {
     await TestBed.configureTestingModule({
       imports: [BossFightComponent, CommonModule, RouterModule.forRoot([])],
       providers: [
-        { provide: GameStoreService, useValue: gameStoreMock },
+        { provide: GameStore, useValue: gameStoreMock },
         { provide: GameSoundService, useValue: gameSoundMock },
         { provide: Router, useValue: routerMock },
       ],

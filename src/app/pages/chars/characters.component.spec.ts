@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CharactersComponent } from './characters.component';
-import { GameStoreService } from 'src/app/services';
 import { RouterModule } from '@angular/router';
 import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { Chars } from 'src/app/models';
+import { GameStore } from 'src/app/store';
 
 const hunterSignal = signal({ chars: ['default', 'lara'] });
 
@@ -24,7 +24,7 @@ describe('CharactersComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CharactersComponent, RouterModule.forRoot([])],
-      providers: [{ provide: GameStoreService, useValue: gameStoreMock }],
+      providers: [{ provide: GameStore, useValue: gameStoreMock }],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 

@@ -1,6 +1,6 @@
 <app-menu>
-  @if (game.settings().size && game.hunter().lives > 0) {
-  <app-game-controls [arrows]="game.hunter().arrows" />
+  @if (game.size() && game.hunterAlive()) {
+  <app-game-controls />
   }
 </app-menu>
 

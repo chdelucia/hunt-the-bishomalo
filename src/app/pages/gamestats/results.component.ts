@@ -1,8 +1,9 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AchievementService, GameStoreService, LeaderboardService } from 'src/app/services';
+import { AchievementService, LeaderboardService } from 'src/app/services';
 import { RouteTypes, ScoreEntry } from 'src/app/models';
 import { ActivatedRoute, Router } from '@angular/router';
+import { GameStore } from 'src/app/store';
 
 @Component({
   selector: 'app-results',
@@ -15,12 +16,15 @@ export class ResultsComponent {
   tabActiva = signal<'general' | 'niveles'>('general');
   leaderboard: ScoreEntry[] = [];
   unlockedAchievements = 0;
+
+  gameStore = inject(GameStore);
+
+  //TODO limpiar esto
   constructor(
     private readonly leaderboardService: LeaderboardService,
     private readonly achieve: AchievementService,
     private readonly router: Router,
     private readonly routeSnapshot: ActivatedRoute,
-    private readonly gameStore: GameStoreService,
   ) {
     this.unlockedAchievements = achieve.achievements.filter((item) => item.unlocked).length;
     this.leaderboard = leaderboardService._leaderboard;

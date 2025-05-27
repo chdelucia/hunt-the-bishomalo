@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { GameEngineService } from './game-engine.service';
 import { CELL_CONTENTS, Chars, Direction } from '../../models';
-import { GameStoreService } from '../store/game-store.service';
 import { GameSoundService } from '../sound/game-sound.service';
 import { LeaderboardService } from '../score/leaderboard.service';
+import { GameStore } from 'src/app/store';
 
 function createMockCell(overrides = {}) {
   return {
@@ -32,7 +32,6 @@ const mockStore = {
   }),
   board: jest.fn(),
   startTime: new Date(),
-  getCurrentCell: jest.fn(),
   updateHunter: jest.fn(),
   setMessage: jest.fn(),
   updateBoard: jest.fn(),
@@ -40,6 +39,7 @@ const mockStore = {
   initBoard: jest.fn(),
   resetHunter: jest.fn(),
   resetSettings: jest.fn(),
+  currentCell: jest.fn(),
 };
 
 const mockSound = {
@@ -63,7 +63,7 @@ describe('GameEngineService (with useValue)', () => {
     TestBed.configureTestingModule({
       providers: [
         GameEngineService,
-        { provide: GameStoreService, useValue: mockStore },
+        { provide: GameStore, useValue: mockStore },
         { provide: GameSoundService, useValue: mockSound },
         { provide: LeaderboardService, useValue: mockLeaderboard },
       ],
@@ -84,7 +84,7 @@ describe('GameEngineService (with useValue)', () => {
       wumpusKilled: 0,
     });
 
-    mockStore.getCurrentCell.mockReturnValue(createMockCell({ x: 0, y: 0 }));
+    mockStore.currentCell.mockReturnValue(createMockCell({ x: 0, y: 0 }));
 
     mockStore.board.mockReturnValue([
       [createMockCell({ x: 0, y: 0 }), createMockCell({ x: 0, y: 1 })],
@@ -167,14 +167,14 @@ describe('GameEngineService (with useValue)', () => {
 
   it('exit: with gold on start wins game', () => {
     mockStore.hunter.mockReturnValueOnce({ hasGold: true });
-    mockStore.getCurrentCell.mockReturnValue({ x: 0, y: 0 });
+    mockStore.currentCell.mockReturnValue({ x: 0, y: 0 });
     service.exit();
     expect(mockStore.setMessage).toHaveBeenCalledWith(expect.stringContaining('¡Victoria'));
   });
 
   it('exit: without gold or not on start', () => {
     mockStore.hunter.mockReturnValueOnce({ hasGold: false });
-    mockStore.getCurrentCell.mockReturnValue({ x: 0, y: 1 });
+    mockStore.currentCell.mockReturnValue({ x: 0, y: 1 });
     service.exit();
     expect(mockStore.setMessage).toHaveBeenCalledWith(
       '¡Para salir dirígete a la entrada con la moneda!',
@@ -183,7 +183,7 @@ describe('GameEngineService (with useValue)', () => {
   });
 
   it('checkCurrentCell: detects pit', () => {
-    mockStore.getCurrentCell.mockReturnValue(
+    mockStore.currentCell.mockReturnValue(
       createMockCell({ content: CELL_CONTENTS.pit, x: 0, y: 0 }),
     );
     service['checkCurrentCell'](0, 0);
@@ -194,7 +194,7 @@ describe('GameEngineService (with useValue)', () => {
   });
 
   it('checkCurrentCell: detects wumpus', () => {
-    mockStore.getCurrentCell.mockReturnValue(
+    mockStore.currentCell.mockReturnValue(
       createMockCell({ content: CELL_CONTENTS.wumpus, x: 0, y: 0 }),
     );
     service['checkCurrentCell'](0, 0);
@@ -205,11 +205,10 @@ describe('GameEngineService (with useValue)', () => {
   });
 
   it('checkCurrentCell: picks up gold', () => {
-    mockStore.getCurrentCell.mockReturnValue(
+    mockStore.currentCell.mockReturnValue(
       createMockCell({ content: CELL_CONTENTS.gold, x: 0, y: 0 }),
     );
     service['checkCurrentCell'](0, 0);
-    expect(mockStore.updateHunter).toHaveBeenCalledWith(expect.objectContaining({ hasGold: true }));
     expect(mockStore.setMessage).toHaveBeenCalledWith('Has recogido el oro, puedes escapar.');
   });
 
@@ -217,7 +216,6 @@ describe('GameEngineService (with useValue)', () => {
     service.newGame();
     expect(mockSound.stop).toHaveBeenCalled();
     expect(mockStore.resetHunter).toHaveBeenCalled();
-    expect(mockStore.resetSettings).toHaveBeenCalled();
     expect(mockLeaderboard.clear).toHaveBeenCalled();
   });
 

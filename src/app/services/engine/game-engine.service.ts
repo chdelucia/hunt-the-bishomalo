@@ -1,7 +1,6 @@
-import { Injectable, Signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import {
-  GameStoreService,
   GameEventService,
   GameSoundService,
   LeaderboardService,
@@ -15,18 +14,21 @@ import {
   Direction,
   GameSettings,
   GameSound,
-  Hunter,
   RouteTypes,
 } from '../../models';
+
+import { GameStore } from '../../store/game-store';
 
 @Injectable({ providedIn: 'root' })
 export class GameEngineService {
   private readonly storageSettingsKey = 'hunt_the_bishomalo_settings';
-  private readonly _settings!: Signal<GameSettings>;
-  private readonly _hunter!: Signal<Hunter>;
+  store = inject(GameStore);
 
+  private readonly _settings = this.store.settings;
+  private readonly _hunter = this.store.hunter;
+
+  
   constructor(
-    private readonly store: GameStoreService,
     private readonly sound: GameSoundService,
     private readonly leaderBoard: LeaderboardService,
     private readonly achieve: AchievementService,
@@ -34,8 +36,6 @@ export class GameEngineService {
     private readonly localStorageService: LocalstorageService,
     private readonly gameEvents: GameEventService,
   ) {
-    this._settings = this.store.settings;
-    this._hunter = this.store.hunter;
   }
 
   syncSettingsWithStorage(): void {
@@ -65,7 +65,7 @@ export class GameEngineService {
     this.sound.stop();
     this.localStorageService.clearValue(this.storageSettingsKey);
     this.store.resetHunter();
-    this.store.resetSettings();
+    this.store.setSettings({} as GameSettings);
     this.leaderBoard.clear();
   }
 
@@ -254,7 +254,7 @@ export class GameEngineService {
 
   private canExitWithVictory(): boolean {
     const hunter = this._hunter();
-    const cell = this.store.getCurrentCell();
+    const cell = this.store.currentCell();
     return (!cell.x && !cell.y && hunter.hasGold) || false;
   }
 
@@ -276,7 +276,7 @@ export class GameEngineService {
   }
 
   private checkCurrentCell(x: number, y: number): void {
-    const cell = this.store.getCurrentCell();
+    const cell = this.store.currentCell();
     cell.visited = true;
 
     if (this.canExitWithVictory()) {
@@ -359,7 +359,7 @@ export class GameEngineService {
   }
 
   private calculatePits(size: number, luck: number): number {
-    const penalty = 0.01 - luck / 100;
+    const penalty = 0.01 - (luck / 1000);
     const totalCells = size * size;
     const basePercentage = 0.1 + penalty;
     return Math.max(1, Math.round(totalCells * basePercentage));

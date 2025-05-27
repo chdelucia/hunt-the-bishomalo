@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, inject, isDevMode, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { GameEngineService, GameSoundService, GameStoreService } from 'src/app/services';
+import { GameEngineService, GameSoundService } from 'src/app/services';
 import { Chars, DIFFICULTY_CONFIGS, DifficultyTypes, GameSound, RouteTypes } from 'src/app/models';
 import { Router } from '@angular/router';
+import { GameStore } from 'src/app/store';
 
 @Component({
   selector: 'app-game-config',
@@ -14,7 +15,7 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameConfigComponent implements OnInit {
-  readonly gameStore = inject(GameStoreService);
+  readonly gameStore = inject(GameStore);
   private readonly gameEngine = inject(GameEngineService);
   private readonly fb = inject(FormBuilder);
   private readonly gameSound = inject(GameSoundService);
@@ -23,7 +24,7 @@ export class GameConfigComponent implements OnInit {
   isDevMode = isDevMode();
 
   configForm: FormGroup = this.fb.group({
-    player: [this.gameStore.prevName, Validators.required],
+    player: ['Kukuxumushu', Validators.required],
     size: [1, [Validators.required, Validators.min(1), Validators.max(20)]],
     pits: [2, [Validators.required, Validators.min(1)]],
     arrows: [1, [Validators.required, Validators.min(1)]],

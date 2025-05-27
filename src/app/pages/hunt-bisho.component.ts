@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GameStoreService } from './../services';
 import {
   AppWumpusAttackAnimationComponent,
   BlackoutComponent,
@@ -14,6 +13,7 @@ import {
 } from './../components';
 import { VisualEffectDirective } from './../directives/visual-effect.directive';
 import { RouterModule } from '@angular/router';
+import { GameStore } from '../store';
 
 @Component({
   selector: 'app-hunt-bisho',
@@ -36,7 +36,7 @@ import { RouterModule } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HuntBishoComponent {
-  readonly game = inject(GameStoreService);
+  readonly game = inject(GameStore);
   readonly hunter = this.game.hunter;
 
   deathByWumpus = computed(() => {

@@ -1,12 +1,12 @@
-import { effect, Injectable, signal } from '@angular/core';
+import { effect, inject, Injectable, signal } from '@angular/core';
 import { Achievement, AchieveTypes, Cell, GameSound } from 'src/app/models';
 import {
   AnalyticsService,
   GameSoundService,
-  GameStoreService,
   LocalstorageService,
 } from 'src/app/services';
 import { ACHIEVEMENTS_LIST } from './achieve.const';
+import { GameStore } from 'src/app/store';
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +16,9 @@ export class AchievementService {
   private readonly storageKey = 'hunt_the_bishomalo_achievements';
   completed = signal<Achievement | undefined>(undefined);
 
+  private readonly gameStore = inject(GameStore);
+
   constructor(
-    private readonly gameStore: GameStoreService,
     private readonly gameSound: GameSoundService,
     private readonly analytics: AnalyticsService,
     private readonly localStoreService: LocalstorageService,
