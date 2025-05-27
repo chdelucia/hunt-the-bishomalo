@@ -9,6 +9,7 @@ export interface GameSettings {
   blackout?: boolean;
   selectedChar: Chars;
   difficulty: GameDificulty;
+  startTime?: Date
 }
 
 export interface GameDificulty {

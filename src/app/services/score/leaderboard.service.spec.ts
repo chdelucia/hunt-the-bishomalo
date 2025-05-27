@@ -16,7 +16,7 @@ const mockGameStoreService = {
   wumpusKilled: jest.fn(),
   hunterAlive: jest.fn(),
   blackout: jest.fn(),
-  getStartTime: () => jest.fn(),
+  startTime: () => jest.fn(),
   char: jest.fn(),
   settings: jest.fn().mockReturnValue({
     size: 4,

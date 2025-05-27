@@ -61,6 +61,7 @@ export const GameStore = signalStore(
     char: computed(() => settings().selectedChar),
     gold: computed(() => hunter().gold),
     inventory: computed(() => hunter().inventory),
+    startTime: computed(() => settings().startTime),
     currentCell: computed(() => {
       const { x, y } = hunter();
       return board()[x][y];
@@ -201,7 +202,6 @@ export const GameStore = signalStore(
       updateBoard,
       setMessage,
       syncHunterWithStorage,
-      getStartTime: () => startTime,
     };
   }),
   withHooks({

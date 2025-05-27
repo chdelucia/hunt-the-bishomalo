@@ -60,7 +60,7 @@ export class LeaderboardService {
 
   //TODO arreglar esta chapuza
   private calculateElapsedSeconds(endTime: Date): number {
-    const startime = this.gameStore.getStartTime()();
+    const startime = this.gameStore.startTime();
     return startime ? Math.round((endTime.getTime() - startime.getTime()) / 1000) : 0;
   }
 }

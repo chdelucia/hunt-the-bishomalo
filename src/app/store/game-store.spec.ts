@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { GameStore } from './game-store';
 import { GameSettings, Hunter, Cell, Direction } from '../models';
-import { signal, WritableSignal } from '@angular/core';
+import { WritableSignal } from '@angular/core';
 import { LocalstorageService } from '../services';
 
 type MockGameStoreType = {
@@ -14,6 +14,7 @@ type MockGameStoreType = {
   hasGold: WritableSignal<boolean>;
   hasWon: WritableSignal<boolean>;
   blackout: WritableSignal<boolean>;
+  startTime: WritableSignal<Date>;
 
   setSettings: jest.Mock<void, [GameSettings]>;
   resetSettings: jest.Mock<void, [string]>;
