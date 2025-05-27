@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.2.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v5.1.1...v5.2.0) (2025-05-27)
+
+
+### Features
+
+* **store:** add ngrx signal store ([cb22244](https://github.com/chdelucia/hunt-the-bishomalo/commit/cb222448f07ee3b79f5edd202e0fafdb8c7f7124))
+* **store:** add ngrx signal store ([c50ffcc](https://github.com/chdelucia/hunt-the-bishomalo/commit/c50ffcc7ba83322b3be38f16573f12abf0282ad3))
+
 ### [5.1.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v5.1.0...v5.1.1) (2025-05-27)
 
 
