@@ -3,7 +3,7 @@ import { LeaderboardService } from './leaderboard.service';
 import { LocalstorageService } from '../localstorage/localstorage.service';
 import { ScoreEntry } from 'src/app/models';
 import { GameStore } from 'src/app/store';
-import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 const LocalstorageServiceMock = {
   getValue: jest.fn(),
