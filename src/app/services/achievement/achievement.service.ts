@@ -13,8 +13,8 @@ import { ACHIEVEMENTS_LIST } from './achieve.const';
 })
 export class AchievementService {
   achievements = ACHIEVEMENTS_LIST;
-
   private readonly storageKey = 'hunt_the_bishomalo_achievements';
+  completed = signal<Achievement | undefined>(undefined);
 
   constructor(
     private readonly gameStore: GameStoreService,
@@ -23,25 +23,27 @@ export class AchievementService {
     private readonly localStoreService: LocalstorageService,
   ) {
     this.syncAchievementsWithStorage();
-    effect(() => {
-      if (this.gameStore.wumpusKilled() === 5) {
-        this.activeAchievement(AchieveTypes.PENTA);
-        this.gameSound.playSound(GameSound.PENTA, false);
-      }
-    });
-
-    effect(() => {
-      if (!this.gameStore.hunterAlive()) {
-        if (this.gameStore.blackout()) {
-          this.activeAchievement(AchieveTypes.DEATHBYBLACKOUT);
-        } else if (this.gameStore.wumpusKilled()) {
-          this.activeAchievement(AchieveTypes.LASTBREATH);
-        }
-      }
-    });
+    effect(() => this.checkPentaKillAchievement());
+    effect(() => this.checkDeathRelatedAchievements());
   }
 
-  completed = signal<Achievement | undefined>(undefined);
+  private checkPentaKillAchievement(): void {
+    if (this.gameStore.wumpusKilled() === 5) {
+      this.activeAchievement(AchieveTypes.PENTA);
+      this.gameSound.playSound(GameSound.PENTA, false);
+    }
+  }
+
+  private checkDeathRelatedAchievements(): void {
+    if (!this.gameStore.hunterAlive()) {
+      if (this.gameStore.blackout()) {
+        this.activeAchievement(AchieveTypes.DEATHBYBLACKOUT);
+      } else if (this.gameStore.wumpusKilled()) {
+        this.activeAchievement(AchieveTypes.LASTBREATH);
+      }
+    }
+  }
+ 
 
   private updateLocalStorageWithNewId(id: string): void {
     const storedIds = this.getStoredAchievementIds();
