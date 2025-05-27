@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [5.1.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v5.0.2...v5.1.0) (2025-05-27)
+
+
+### Features
+
+* **icons:** edit icons ([6521a59](https://github.com/chdelucia/hunt-the-bishomalo/commit/6521a594ab8d14f77c50b9b1f20a04874b680f0c))
+
 ### [5.0.2](https://github.com/chdelucia/hunt-the-bishomalo/compare/v5.0.1...v5.0.2) (2025-05-24)
 
 
