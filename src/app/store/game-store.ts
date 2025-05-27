@@ -57,7 +57,7 @@ export const GameStore = signalStore(
     blackout: computed(() => settings().blackout),
     size: computed(() => settings().size),
     difficulty: computed(() => settings().difficulty),
-    level: computed(() => settings().size - 4 ),
+    level: computed(() => settings().size - 4),
     char: computed(() => settings().selectedChar),
     gold: computed(() => hunter().gold),
     inventory: computed(() => hunter().inventory),
@@ -85,12 +85,12 @@ export const GameStore = signalStore(
       const { difficulty } = settings;
       const ex = new Set(['0,0']);
       const chance = (base: number, max: number) =>
-        Math.min(
-          base + ((settings.size - 4) / (difficulty.maxLevels - 4)) * (max - base),
-          max,
-        );
+        Math.min(base + ((settings.size - 4) / (difficulty.maxLevels - 4)) * (max - base), max);
 
-      if (Math.random() < chance(difficulty.baseChance, difficulty.maxChance) && hunter.lives < difficulty.maxLives) {
+      if (
+        Math.random() < chance(difficulty.baseChance, difficulty.maxChance) &&
+        hunter.lives < difficulty.maxLives
+      ) {
         placeRandom(board, ex, settings).content = CELL_CONTENTS.heart;
       }
 
@@ -110,7 +110,7 @@ export const GameStore = signalStore(
           patchState(store, { hunter });
         }
       } catch {
-        console.log('fallo')
+        console.log('fallo');
       }
     };
 
@@ -118,7 +118,7 @@ export const GameStore = signalStore(
       const settings = store.settings();
       const hunter = store.hunter();
       const board: Cell[][] = Array.from({ length: settings.size }, (_, x) =>
-        Array.from({ length: settings.size }, (_, y) => ({ x, y, visited: false }))
+        Array.from({ length: settings.size }, (_, y) => ({ x, y, visited: false })),
       );
 
       const ex = new Set(['0,0']);
@@ -208,5 +208,5 @@ export const GameStore = signalStore(
     onInit(store) {
       store.syncHunterWithStorage();
     },
-  })
+  }),
 );

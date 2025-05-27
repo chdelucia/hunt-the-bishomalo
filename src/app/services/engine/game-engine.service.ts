@@ -27,7 +27,6 @@ export class GameEngineService {
   private readonly _settings = this.store.settings;
   private readonly _hunter = this.store.hunter;
 
-  
   constructor(
     private readonly sound: GameSoundService,
     private readonly leaderBoard: LeaderboardService,
@@ -35,8 +34,7 @@ export class GameEngineService {
     private readonly router: Router,
     private readonly localStorageService: LocalstorageService,
     private readonly gameEvents: GameEventService,
-  ) {
-  }
+  ) {}
 
   syncSettingsWithStorage(): void {
     const settings = this.localStorageService.getValue<GameSettings>(this.storageSettingsKey);
@@ -359,7 +357,7 @@ export class GameEngineService {
   }
 
   private calculatePits(size: number, luck: number): number {
-    const penalty = 0.01 - (luck / 1000);
+    const penalty = 0.01 - luck / 1000;
     const totalCells = size * size;
     const basePercentage = 0.1 + penalty;
     return Math.max(1, Math.round(totalCells * basePercentage));

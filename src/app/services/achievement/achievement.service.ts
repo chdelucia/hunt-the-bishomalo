@@ -1,10 +1,6 @@
 import { effect, inject, Injectable, signal } from '@angular/core';
 import { Achievement, AchieveTypes, Cell, GameSound } from 'src/app/models';
-import {
-  AnalyticsService,
-  GameSoundService,
-  LocalstorageService,
-} from 'src/app/services';
+import { AnalyticsService, GameSoundService, LocalstorageService } from 'src/app/services';
 import { ACHIEVEMENTS_LIST } from './achieve.const';
 import { GameStore } from 'src/app/store';
 

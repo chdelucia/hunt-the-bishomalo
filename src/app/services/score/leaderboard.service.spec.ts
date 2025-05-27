@@ -33,7 +33,7 @@ const mockGameStoreService = {
   }),
   message: jest.fn().mockReturnValue('¡El Wumpus te devoró!'),
   setMessage: jest.fn(),
-  board: jest.fn()
+  board: jest.fn(),
 };
 
 describe('LeaderboardService', () => {
@@ -46,7 +46,7 @@ describe('LeaderboardService', () => {
       providers: [
         LeaderboardService,
         { provide: LocalstorageService, useValue: LocalstorageServiceMock },
-        { provide: GameStore, useValue: mockGameStoreService }
+        { provide: GameStore, useValue: mockGameStoreService },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     });

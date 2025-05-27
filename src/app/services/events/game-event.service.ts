@@ -138,7 +138,6 @@ export class GameEventService {
   readonly gameSound = inject(GameSoundService);
   readonly gameAchieve = inject(AchievementService);
 
-
   applyEffectsOnDeath(
     hunter: Hunter,
     cause: CauseOfDeath,
