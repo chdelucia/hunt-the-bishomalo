@@ -25,7 +25,8 @@ type MockGameStoreType = {
   resetHunter: jest.Mock<void, []>;
   syncHunterWithStorage: jest.Mock<void, []>;
   getStartTime: jest.Mock<Date | null, []>;
-  initBoard: jest.Mock<void, []>;
+  // initBoard is no longer part of GameStore's public API or internal methods tested here
+  // initBoard: jest.Mock<void, []>; 
 };
 
 describe('GameStore (SignalStore)', () => {
@@ -110,12 +111,31 @@ describe('GameStore (SignalStore)', () => {
     expect(store.message()).toBe(message);
   });
 
-  it('should reset hunter', () => {
+  it('should reset hunter to initial values', () => {
+    // Modify current hunter state to be different from initialHunter
+    store.updateHunter({ x: 5, y: 5, arrows: 10, lives: 1 });
+    
     store.resetHunter();
-    expect(store.hunter().x).toBe(0);
-    expect(store.hunter().y).toBe(0);
-    expect(store.hunter().arrows).toBe(1);
-    expect(store.hunter().lives).toBe(mockSettings.difficulty.maxLives);
+    const resetState = store.hunter();
+    // Compare against the actual initialHunter constant values from game-store.ts (or a mock of it)
+    // For this test, we'll use the known initial values.
+    expect(resetState.x).toBe(0);
+    expect(resetState.y).toBe(0);
+    expect(resetState.direction).toBe(Direction.RIGHT); // Assuming initialHunter.direction is RIGHT
+    expect(resetState.arrows).toBe(1);
+    expect(resetState.alive).toBe(true);
+    expect(resetState.hasGold).toBe(false);
+    expect(resetState.hasWon).toBe(false);
+    expect(resetState.wumpusKilled).toBe(0);
+    expect(resetState.lives).toBe(8); // From initialHunter constant
+    // Chars and gold are also part of initialHunter, ensure they are reset if needed by the test.
+    // expect(resetState.chars).toEqual([Chars.DEFAULT]); // If Chars.DEFAULT is accessible
+    expect(resetState.gold).toBe(0);
+
+    expect(localStorageServiceMock.setValue).toHaveBeenCalledWith(
+      'hunt_the_bishomalo_hunter',
+      expect.objectContaining({ x: 0, y: 0, arrows: 1, lives: 8 })
+    );
   });
 
   it('should sync hunter with storage if data exists', () => {
@@ -131,43 +151,10 @@ describe('GameStore (SignalStore)', () => {
     expect(store.currentCell()).toEqual(testCell);
   });
 
-  it('should initialize the board and hunter correctly on initBoard', () => {
-    store.setSettings(mockSettings);
-    store.updateHunter({ ...mockHunter });
-    store.initBoard();
+  // Removed test: 'should initialize the board and hunter correctly on initBoard'
+  // This logic is now in GameEngineService and tested in game-engine.service.spec.ts
 
-    const board = store.board();
-    const hunter = store.hunter();
-
-    expect(board.length).toBe(mockSettings.size);
-    expect(board[0].length).toBe(mockSettings.size);
-
-    const contents = board
-      .flat()
-      .map((cell: Cell) => cell.content)
-      .filter(Boolean);
-    const hasGold = contents.includes('gold');
-    expect(hasGold).toBe(false);
-
-    expect(hunter.x).toBe(0);
-    expect(hunter.y).toBe(0);
-    expect(hunter.direction).toBe(Direction.RIGHT);
-  });
-
-  it('should correctly set hunter for next level', () => {
-    store.setSettings(mockSettings);
-    store.updateHunter({ ...mockHunter, lives: 6 });
-    store.setHunterForNextLevel();
-
-    const hunter = store.hunter();
-
-    expect(hunter.x).toBe(0);
-    expect(hunter.y).toBe(0);
-    expect(hunter.direction).toBe(Direction.RIGHT);
-    expect(hunter.arrows).toBe(mockSettings.arrows);
-    expect(hunter.hasGold).toBe(false);
-    expect(hunter.hasWon).toBe(false);
-    expect(hunter.alive).toBe(true);
-    expect(hunter.lives).toBeLessThanOrEqual(mockSettings.difficulty.maxLives);
-  });
+  // Removed test: 'should correctly set hunter for next level'
+  // This logic is now in GameEngineService (private method, tested via initializeGameBoard)
+  // and its effect on the store is tested via GameEngineService's initializeGameBoard tests.
 });

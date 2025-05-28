@@ -6,7 +6,6 @@ import {
   GameSettings,
   CELL_CONTENTS,
   Chars,
-  CellContentType,
 } from '../models';
 import {
   signalStore,
@@ -71,35 +70,6 @@ export const GameStore = signalStore(
     const storageKey = 'hunt_the_bishomalo_hunter';
     const startTime = signal<Date | null>(null);
 
-    const placeRandom = (board: Cell[][], excluded: Set<string>, settings: GameSettings): Cell => {
-      let cell: Cell;
-      const size = settings.size;
-      do {
-        const x = Math.floor(Math.random() * size);
-        const y = Math.floor(Math.random() * size);
-        cell = board[x][y];
-      } while (cell.content || excluded.has(`${cell.x},${cell.y}`));
-      return cell;
-    };
-
-    const placeEvents = (board: Cell[][], hunter: Hunter, settings: GameSettings) => {
-      const { difficulty } = settings;
-      const ex = new Set(['0,0']);
-      const chance = (base: number, max: number) =>
-        Math.min(base + ((settings.size - 4) / (difficulty.maxLevels - 4)) * (max - base), max);
-
-      if (
-        Math.random() < chance(difficulty.baseChance, difficulty.maxChance) &&
-        hunter.lives < difficulty.maxLives
-      ) {
-        placeRandom(board, ex, settings).content = CELL_CONTENTS.heart;
-      }
-
-      if (Math.random() < difficulty.baseChance && !hunter.dragonballs) {
-        placeRandom(board, ex, settings).content = CELL_CONTENTS.dragonball;
-      }
-    };
-
     const setSettings = (settings: GameSettings) => {
       patchState(store, { settings });
     };
@@ -115,34 +85,6 @@ export const GameStore = signalStore(
       }
     };
 
-    const initBoard = () => {
-      const settings = store.settings();
-      const hunter = store.hunter();
-      const board: Cell[][] = Array.from({ length: settings.size }, (_, x) =>
-        Array.from({ length: settings.size }, (_, y) => ({ x, y, visited: false })),
-      );
-
-      const ex = new Set(['0,0']);
-      placeRandom(board, ex, settings).content = CELL_CONTENTS.gold;
-
-      for (let i = 0; i < (settings.wumpus || 1); i++) {
-        const type = `wumpus${settings.selectedChar}` as CellContentType;
-        placeRandom(board, ex, settings).content = CELL_CONTENTS[type];
-      }
-      for (let i = 0; i < settings.pits; i++) {
-        placeRandom(board, new Set(['0,0', '0,1', '1,0']), settings).content = CELL_CONTENTS.pit;
-      }
-
-      for (let i = 0; i < (settings.wumpus || 1) - 1; i++) {
-        placeRandom(board, ex, settings).content = CELL_CONTENTS.arrow;
-      }
-
-      placeEvents(board, hunter, settings);
-      patchState(store, { board });
-      setHunterForNextLevel();
-      startTime.set(new Date());
-    };
-
     const resetHunter = () => {
       const newHunter: Hunter = {
         ...initialHunter,
@@ -150,25 +92,6 @@ export const GameStore = signalStore(
       };
       patchState(store, { hunter: newHunter });
       localStorage.setValue(storageKey, newHunter);
-    };
-
-    const setHunterForNextLevel = () => {
-      const hunter = store.hunter();
-      const settings = store.settings();
-      patchState(store, {
-        hunter: {
-          ...hunter,
-          x: 0,
-          y: 0,
-          direction: Direction.RIGHT,
-          arrows: settings.arrows,
-          alive: true,
-          hasGold: false,
-          hasWon: false,
-          wumpusKilled: 0,
-          lives: Math.min(hunter.lives, settings.difficulty.maxLives),
-        },
-      });
     };
 
     const updateHunter = (partial: Partial<Hunter>) => {
@@ -196,9 +119,7 @@ export const GameStore = signalStore(
     return {
       setSettings,
       updateHunter,
-      initBoard,
       resetHunter,
-      setHunterForNextLevel,
       updateBoard,
       setMessage,
       syncHunterWithStorage,
