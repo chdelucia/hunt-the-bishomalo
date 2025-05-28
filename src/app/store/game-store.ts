@@ -1,10 +1,9 @@
-import { computed, inject, signal } from '@angular/core';
+import { computed, inject } from '@angular/core';
 import {
   Cell,
   Direction,
   Hunter,
   GameSettings,
-  CELL_CONTENTS,
   Chars,
 } from '../models';
 import {
@@ -68,7 +67,6 @@ export const GameStore = signalStore(
   })),
   withMethods((store, localStorage = inject(LocalstorageService)) => {
     const storageKey = 'hunt_the_bishomalo_hunter';
-    const startTime = signal<Date | null>(null);
 
     const setSettings = (settings: GameSettings) => {
       patchState(store, { settings });

@@ -58,7 +58,7 @@ export class GameEngineService {
   public initializeGameBoard(): void {
     const settings = this.store.settings();
     const hunter = this.store.hunter();
-    let board: Cell[][] = Array.from({ length: settings.size }, (_, x) =>
+    const board: Cell[][] = Array.from({ length: settings.size }, (_, x) =>
       Array.from({ length: settings.size }, (_, y) => ({ x, y, visited: false })),
     );
 
@@ -98,6 +98,35 @@ export class GameEngineService {
       lives: Math.min(hunter.lives, settings.difficulty.maxLives),
     });
   }
+
+  private placeRandom(board: Cell[][], excluded: Set<string>, settings: GameSettings): Cell {
+    const size = settings.size;
+    let cell: Cell;
+    do {
+      const x = Math.floor(Math.random() * size);
+      const y = Math.floor(Math.random() * size);
+      cell = board[x][y];
+    } while (cell.content || excluded.has(`${cell.x},${cell.y}`));
+    return cell;
+  }
+
+  private placeEvents(board: Cell[][], hunter: Hunter, settings: GameSettings):void {
+      const { difficulty } = settings;
+      const ex = new Set(['0,0']);
+      const chance = (base: number, max: number) =>
+        Math.min(base + ((settings.size - 4) / (difficulty.maxLevels - 4)) * (max - base), max);
+
+      if (
+        Math.random() < chance(difficulty.baseChance, difficulty.maxChance) &&
+        hunter.lives < difficulty.maxLives
+      ) {
+        this.placeRandom(board, ex, settings).content = CELL_CONTENTS.heart;
+      }
+
+      if (Math.random() < difficulty.baseChance && !hunter.dragonballs) {
+        this.placeRandom(board, ex, settings).content = CELL_CONTENTS.dragonball;
+      }
+    };
 
   restartLevel(): void {
     this.sound.stop();
