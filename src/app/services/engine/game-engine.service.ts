@@ -11,10 +11,12 @@ import {
   AchieveTypes,
   Cell,
   CELL_CONTENTS,
+  CellContentType,
   Direction,
   GameSettings,
   GameSound,
   RouteTypes,
+  Hunter,
 } from '../../models';
 
 import { GameStore } from '../../store/game-store';
@@ -49,13 +51,57 @@ export class GameEngineService {
     this.sound.stop();
     this.store.setSettings(config);
     this.updateLocalStorageWithSettings(config);
-    this.store.initBoard();
+    this.initializeGameBoard();
     this.checkCurrentCell(0, 0);
+  }
+
+  public initializeGameBoard(): void {
+    const settings = this.store.settings();
+    const hunter = this.store.hunter();
+    let board: Cell[][] = Array.from({ length: settings.size }, (_, x) =>
+      Array.from({ length: settings.size }, (_, y) => ({ x, y, visited: false })),
+    );
+
+    const ex = new Set(['0,0']);
+    this.placeRandom(board, ex, settings).content = CELL_CONTENTS.gold;
+
+    for (let i = 0; i < (settings.wumpus || 1); i++) {
+      const type = `wumpus${settings.selectedChar}` as CellContentType;
+      this.placeRandom(board, ex, settings).content = CELL_CONTENTS[type];
+    }
+    for (let i = 0; i < settings.pits; i++) {
+      this.placeRandom(board, new Set(['0,0', '0,1', '1,0']), settings).content = CELL_CONTENTS.pit;
+    }
+
+    for (let i = 0; i < (settings.wumpus || 1) - 1; i++) {
+      this.placeRandom(board, ex, settings).content = CELL_CONTENTS.arrow;
+    }
+
+    this.placeEvents(board, hunter, settings);
+    this.store.updateBoard(board);
+    this.setHunterForNextLevel();
+  }
+
+  private setHunterForNextLevel(): void {
+    const hunter = this.store.hunter();
+    const settings = this.store.settings();
+    this.store.updateHunter({
+      ...hunter,
+      x: 0,
+      y: 0,
+      direction: Direction.RIGHT,
+      arrows: settings.arrows,
+      alive: true,
+      hasGold: false,
+      hasWon: false,
+      wumpusKilled: 0,
+      lives: Math.min(hunter.lives, settings.difficulty.maxLives),
+    });
   }
 
   restartLevel(): void {
     this.sound.stop();
-    this.store.initBoard();
+    this.initializeGameBoard();
     this.checkCurrentCell(0, 0);
   }
 
@@ -80,7 +126,7 @@ export class GameEngineService {
     };
     this.store.setSettings(newSettings);
     this.updateLocalStorageWithSettings(newSettings);
-    this.store.initBoard();
+    this.initializeGameBoard();
     this.checkCurrentCell(0, 0);
   }
 
