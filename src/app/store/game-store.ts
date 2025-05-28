@@ -33,7 +33,7 @@ const initialHunter: Hunter = {
 
 const initialState: GameState = {
   board: [],
-  hunter: {} as Hunter,
+  hunter: initialHunter,
   message: '',
   settings: {} as GameSettings,
 };

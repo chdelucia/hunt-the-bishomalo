@@ -57,7 +57,7 @@ describe('GameStore (SignalStore)', () => {
   });
 
   it('should update the hunter and persist if hasWon is true', () => {
-    const update: Partial<Hunter> = { x: 2, y: 3, hasWon: false };
+    const update: Partial<Hunter> = { x: 2, y: 3, hasWon: false, alive: false };
     store.updateHunter(update);
     expect(store.hunter().x).toBe(2);
     expect(store.hunter().y).toBe(3);
