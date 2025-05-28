@@ -1,12 +1,10 @@
 terraform {
   cloud {
     organization = "cursosfrontend"
-
     workspaces {
       name = "hunt-the-bishomalo"
     }
   }
-
   required_providers {
     github = {
       source  = "integrations/github"
@@ -19,12 +17,16 @@ provider "github" {
   owner = var.github_owner
 }
 
-resource "github_repository_pages" "pages" {
-  repository = var.repo_name
-  source {
-    branch = "gh-pages"
-    path   = "/"
-  }
+variable "github_owner" {
+  type = string
+}
 
-  build_type = "workflow"
+variable "repo_name" {
+  type = string
+}
+
+resource "github_repository" "repo" {
+  name       = var.repo_name
+  visibility = "public"
+  # otros parámetros que necesites
 }
