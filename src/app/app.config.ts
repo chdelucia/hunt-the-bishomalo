@@ -12,14 +12,16 @@ export const appConfig: ApplicationConfig = {
       appRoutes,
       withInMemoryScrolling({ scrollPositionRestoration: 'enabled' }),
       withHashLocation(),
-    ), provideHttpClient(), provideTransloco({
-        config: { 
-          availableLangs: ['en', 'es'],
-          defaultLang: 'en',
-          reRenderOnLangChange: true,
-          prodMode: !isDevMode(),
-        },
-        loader: TranslocoHttpLoader
-      }),
+    ),
+    provideHttpClient(),
+    provideTransloco({
+      config: {
+        availableLangs: ['en', 'es'],
+        defaultLang: 'en',
+        reRenderOnLangChange: true,
+        prodMode: !isDevMode(),
+      },
+      loader: TranslocoHttpLoader,
+    }),
   ],
 };
