@@ -17,14 +17,6 @@ provider "github" {
   owner = var.github_owner
 }
 
-variable "github_owner" {
-  type = string
-}
-
-variable "repo_name" {
-  type = string
-}
-
 resource "github_repository" "repo" {
   name       = var.repo_name
   visibility = "public"
