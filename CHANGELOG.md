@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.5.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v6.4.0...v6.5.0) (2025-05-28)
+
+
+### Features
+
+* terraform ([0c4c6cd](https://github.com/chdelucia/hunt-the-bishomalo/commit/0c4c6cdd104d3e829432d9dd4f7409a46671697d))
+* **terraform:** 4 intento jaja ([3ff1d5e](https://github.com/chdelucia/hunt-the-bishomalo/commit/3ff1d5ebee3cd7db4ffe9fecc0488c5ec80f244b))
+
 ## [6.4.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v6.3.0...v6.4.0) (2025-05-28)
 
 
