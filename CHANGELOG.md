@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.7.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v6.6.0...v6.7.0) (2025-05-28)
+
+
+### Features
+
+* na de na ([3489cff](https://github.com/chdelucia/hunt-the-bishomalo/commit/3489cffcbdc62870a3ad10a9c8f3ae4727be7eb6))
+* terraform otra ([1064ce5](https://github.com/chdelucia/hunt-the-bishomalo/commit/1064ce515aaf722db3fd4e439b6b79c678612e01))
+
 ## [6.6.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v6.5.0...v6.6.0) (2025-05-28)
 
 
