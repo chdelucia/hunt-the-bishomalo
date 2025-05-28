@@ -18,6 +18,6 @@ provider "github" {
 }
 
 resource "github_repository" "repo" {
-  name       = "hunt-the-bishomalo"
+  name       = "var.repo_name"
   visibility = "public"
 }
