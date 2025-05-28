@@ -28,5 +28,4 @@ variable "repo_name" {
 resource "github_repository" "repo" {
   name       = var.repo_name
   visibility = "public"
-  # otros parámetros que necesites
 }
