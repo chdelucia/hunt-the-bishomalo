@@ -38,7 +38,7 @@ const mockStore = {
   setSettings: jest.fn(),
   resetHunter: jest.fn(),
   currentCell: jest.fn(),
-  setHunterForNextLevel: jest.fn(), 
+  setHunterForNextLevel: jest.fn(),
 };
 
 const mockSound = {
@@ -226,23 +226,25 @@ describe('GameEngineService (with useValue)', () => {
       const initGameBoardSpy = jest.spyOn(service, 'initializeGameBoard');
       service.nextLevel();
 
-      expect(setSettingsSpy).toHaveBeenCalledWith(expect.objectContaining({
-        size: 3,
-        pits: expect.any(Number),
-        wumpus: expect.any(Number),
-        arrows: 1,
-        blackout: expect.any(Boolean),
-        player: 'TestPlayer',
-        difficulty: expect.objectContaining({
-          maxLevels: 10,
-          maxChance: 0.35,
-          baseChance: 0.12,
-          gold: 60,
-          maxLives: 8,
-          luck: 8,
-          bossTries: 12,
+      expect(setSettingsSpy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          size: 3,
+          pits: expect.any(Number),
+          wumpus: expect.any(Number),
+          arrows: 1,
+          blackout: expect.any(Boolean),
+          player: 'TestPlayer',
+          difficulty: expect.objectContaining({
+            maxLevels: 10,
+            maxChance: 0.35,
+            baseChance: 0.12,
+            gold: 60,
+            maxLives: 8,
+            luck: 8,
+            bossTries: 12,
+          }),
         }),
-      }));
+      );
       expect(initGameBoardSpy).toHaveBeenCalled();
     });
   });
@@ -275,7 +277,17 @@ describe('GameEngineService (with useValue)', () => {
         },
       });
       mockStore.hunter.mockReturnValue({
-        x: 0, y: 0, direction: Direction.RIGHT, arrows: 0, alive: false, hasGold: false, hasWon: false, wumpusKilled: 0, lives: 3, chars: [Chars.LARA], gold: 0
+        x: 0,
+        y: 0,
+        direction: Direction.RIGHT,
+        arrows: 0,
+        alive: false,
+        hasGold: false,
+        hasWon: false,
+        wumpusKilled: 0,
+        lives: 3,
+        chars: [Chars.LARA],
+        gold: 0,
       });
     });
 
@@ -312,10 +324,14 @@ describe('GameEngineService (with useValue)', () => {
 
     it('should place GOLD on the board', () => {
       service.initializeGameBoard();
-      expect(placeRandomSpy).toHaveBeenCalledWith(expect.any(Array), expect.any(Set), mockStore.settings());
-      const goldCall = placeRandomSpy.mock.calls.find(call => {
+      expect(placeRandomSpy).toHaveBeenCalledWith(
+        expect.any(Array),
+        expect.any(Set),
+        mockStore.settings(),
+      );
+      const goldCall = placeRandomSpy.mock.calls.find((call) => {
         const cell = call[0][0][0];
-        return true; 
+        return true;
       });
       expect(goldCall).toBeDefined();
     });
@@ -328,7 +344,7 @@ describe('GameEngineService (with useValue)', () => {
 
       expect(placeRandomSpy).toHaveBeenCalled();
     });
-    
+
     it('should place PITS on the board', () => {
       const settings = mockStore.settings();
       settings.pits = 3;
@@ -344,7 +360,7 @@ describe('GameEngineService (with useValue)', () => {
       service.initializeGameBoard();
       expect(placeRandomSpy).toHaveBeenCalled();
     });
-    
+
     it('should place 0 ARROWS if wumpus is 1', () => {
       const settings = mockStore.settings();
       settings.wumpus = 1;
@@ -355,7 +371,11 @@ describe('GameEngineService (with useValue)', () => {
 
     it('should call placeEvents', () => {
       service.initializeGameBoard();
-      expect(placeEventsSpy).toHaveBeenCalledWith(expect.any(Array), mockStore.hunter(), mockStore.settings());
+      expect(placeEventsSpy).toHaveBeenCalledWith(
+        expect.any(Array),
+        mockStore.hunter(),
+        mockStore.settings(),
+      );
     });
   });
 });

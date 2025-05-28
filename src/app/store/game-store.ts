@@ -1,11 +1,5 @@
 import { computed, inject } from '@angular/core';
-import {
-  Cell,
-  Direction,
-  Hunter,
-  GameSettings,
-  Chars,
-} from '../models';
+import { Cell, Direction, Hunter, GameSettings, Chars } from '../models';
 import {
   signalStore,
   withState,

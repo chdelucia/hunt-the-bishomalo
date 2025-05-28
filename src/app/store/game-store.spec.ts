@@ -87,7 +87,7 @@ describe('GameStore (SignalStore)', () => {
 
   it('should reset hunter to initial values', () => {
     store.updateHunter({ x: 5, y: 5, arrows: 10, lives: 1 });
-    
+
     store.resetHunter();
     const resetState = store.hunter();
     expect(resetState.x).toBe(0);
@@ -103,7 +103,7 @@ describe('GameStore (SignalStore)', () => {
 
     expect(localStorageServiceMock.setValue).toHaveBeenCalledWith(
       'hunt_the_bishomalo_hunter',
-      expect.objectContaining({ x: 0, y: 0, arrows: 1, lives: 8 })
+      expect.objectContaining({ x: 0, y: 0, arrows: 1, lives: 8 }),
     );
   });
 
