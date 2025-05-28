@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.8.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v6.7.0...v6.8.0) (2025-05-28)
+
+
+### Features
+
+* **translations:** add transloco ([eb49a60](https://github.com/chdelucia/hunt-the-bishomalo/commit/eb49a60bd9892b31d121f725f0aa7e44139601a0))
+* **transloco:** add translations ([a69265a](https://github.com/chdelucia/hunt-the-bishomalo/commit/a69265a490f835bc21eff84dc76affffd8c69fb7))
+
 ## [6.7.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v6.6.0...v6.7.0) (2025-05-28)
 
 
