@@ -26,8 +26,6 @@ export class AchievementService implements OnDestroy {
   ) {
     this.syncAchievementsWithStorage();
 
-  
-
     effect(() => this.checkPentaKillAchievement());
     effect(() => this.checkDeathRelatedAchievements());
   }

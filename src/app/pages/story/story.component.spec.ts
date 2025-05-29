@@ -85,7 +85,6 @@ describe('StoryComponent', () => {
   });
 
   it('debería mostrar texto gradualmente y activar showExtraInfo al final del audio', () => {
-
     const speakMock = jest.fn((utterance) => {
       if (utterance.text.includes('Capítulo')) {
         setTimeout(() => utterance.onend?.(), 10);

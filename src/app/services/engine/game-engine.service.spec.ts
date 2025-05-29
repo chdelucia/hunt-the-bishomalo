@@ -111,7 +111,7 @@ describe('GameEngineService (with useValue)', () => {
         luck: 8,
         bossTries: 12,
       },
-      startTime: '12/98/09'
+      startTime: '12/98/09',
     };
     const initGameBoardSpy = jest.spyOn(service, 'initializeGameBoard');
 
@@ -173,7 +173,9 @@ describe('GameEngineService (with useValue)', () => {
     mockStore.hunter.mockReturnValueOnce({ hasGold: true });
     mockStore.currentCell.mockReturnValue({ x: 0, y: 0 });
     service.exit();
-    expect(mockStore.setMessage).toHaveBeenCalledWith(expect.stringContaining('gameMessages.victory'));
+    expect(mockStore.setMessage).toHaveBeenCalledWith(
+      expect.stringContaining('gameMessages.victory'),
+    );
   });
 
   it('exit: without gold or not on start', () => {

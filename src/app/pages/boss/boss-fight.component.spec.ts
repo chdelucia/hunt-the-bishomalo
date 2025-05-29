@@ -35,7 +35,12 @@ describe('BossFightComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BossFightComponent, CommonModule, RouterModule.forRoot([]), getTranslocoTestingModule()],
+      imports: [
+        BossFightComponent,
+        CommonModule,
+        RouterModule.forRoot([]),
+        getTranslocoTestingModule(),
+      ],
       providers: [
         { provide: GameStore, useValue: gameStoreMock },
         { provide: GameSoundService, useValue: gameSoundMock },

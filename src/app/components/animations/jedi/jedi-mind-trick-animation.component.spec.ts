@@ -9,7 +9,11 @@ describe('JediMindTrickAnimationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [JediMindTrickAnimationComponent, RouterModule.forRoot([]), getTranslocoTestingModule()],
+      imports: [
+        JediMindTrickAnimationComponent,
+        RouterModule.forRoot([]),
+        getTranslocoTestingModule(),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(JediMindTrickAnimationComponent);

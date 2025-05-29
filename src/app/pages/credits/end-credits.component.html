@@ -20,7 +20,9 @@
 
       <div class="creditos-seccion">
         <h2 class="creditos-rol">{{ 'credits.roleAndOfCourse' | transloco }}</h2>
-        <p class="creditos-nombre creditos-especial">{{ 'credits.nameChrisHeredia' | transloco }}</p>
+        <p class="creditos-nombre creditos-especial">
+          {{ 'credits.nameChrisHeredia' | transloco }}
+        </p>
       </div>
 
       <div class="creditos-seccion">
@@ -74,6 +76,8 @@
     <div class="creditos-mensaje">
       <p [innerHTML]="'credits.quoteSolo' | transloco"></p>
     </div>
-    <button class="boton-creditos red" (click)="newGame()">{{ 'credits.newGameButton' | transloco }}</button>
+    <button class="boton-creditos red" (click)="newGame()">
+      {{ 'credits.newGameButton' | transloco }}
+    </button>
   </div>
 </div>

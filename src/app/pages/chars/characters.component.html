@@ -21,10 +21,12 @@
         height="180"
         priority
       />
-      <div class="char-name">{{ ('charName.' + char) | transloco }}</div>
+      <div class="char-name">{{ 'charName.' + char | transloco }}</div>
     </div>
     }
   </div>
 
-  <button [disabled]="!selectedChar()" (click)="onClick()">{{ 'characters.confirmCharacterButton' | transloco }}</button>
+  <button [disabled]="!selectedChar()" (click)="onClick()">
+    {{ 'characters.confirmCharacterButton' | transloco }}
+  </button>
 </section>

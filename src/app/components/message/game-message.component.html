@@ -1,7 +1,11 @@
 <section class="game-message" aria-live="polite">
   @if(lives() <= 0){
   <p>{{ 'message.gameOver' | transloco }}</p>
-  <button class="newgame" (click)="newGame()" [attr.aria-label]="'message.newGameAriaLabel' | transloco">
+  <button
+    class="newgame"
+    (click)="newGame()"
+    [attr.aria-label]="'message.newGameAriaLabel' | transloco"
+  >
     {{ 'message.newGameButton' | transloco }}
   </button>
   }@else{ @if (_hasMessage()) {
@@ -11,15 +15,27 @@
   } }@else {
   <p>{{ 'message.defaultInstructions' | transloco }}</p>
   } @if (_shouldShowRetry()) {
-  <button class="newgame" (click)="restartGame()" [attr.aria-label]="'message.restartGameAriaLabel' | transloco">
+  <button
+    class="newgame"
+    (click)="restartGame()"
+    [attr.aria-label]="'message.restartGameAriaLabel' | transloco"
+  >
     {{ 'message.tryAgainButton' | transloco }}
   </button>
   } @else if (_shouldShowNextLevel()) { @if (_showCongrats()) {
-  <button class="newgame" (click)="nextLevel()" [attr.aria-label]="'message.nextLevelAriaLabel' | transloco">
+  <button
+    class="newgame"
+    (click)="nextLevel()"
+    [attr.aria-label]="'message.nextLevelAriaLabel' | transloco"
+  >
     {{ 'message.congratsNextLevelButton' | transloco }}
   </button>
   }@else {
-  <button class="newgame" [attr.aria-label]="'message.nextLevelAriaLabel' | transloco" (click)="goToBoss()">
+  <button
+    class="newgame"
+    [attr.aria-label]="'message.nextLevelAriaLabel' | transloco"
+    (click)="goToBoss()"
+  >
     {{ 'message.congratsBossButton' | transloco }}
   </button>
   } } }

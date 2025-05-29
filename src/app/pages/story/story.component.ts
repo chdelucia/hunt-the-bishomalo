@@ -66,7 +66,7 @@ export class StoryComponent implements OnInit, OnDestroy {
     const chapterText = `${this.translocoService.translate('storyPage.chapterPrefix')}${
       this.story?.level
     }`;
-    const titleText = this.story?.title ?? ''; 
+    const titleText = this.story?.title ?? '';
     const bodyText = text;
 
     const utterChapter = new SpeechSynthesisUtterance(chapterText);

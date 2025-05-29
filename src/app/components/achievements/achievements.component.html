@@ -85,14 +85,17 @@
               />
             </div>
             <div>
-              
-              <h3 class="achievement-title">{{ `achievements.${achievement.id}.title` | transloco}}</h3>
+              <h3 class="achievement-title">
+                {{ `achievements.${achievement.id}.title` | transloco}}
+              </h3>
               <div [ngClass]="'rarity-' + achievement.rarity" class="rarity-badge">
                 {{ getRarityName(achievement.rarity) }}
               </div>
             </div>
           </div>
-          <p class="achievement-description">{{ `achievements.${achievement.id}.description` | transloco}}</p>
+          <p class="achievement-description">
+            {{ `achievements.${achievement.id}.description` | transloco}}
+          </p>
           <div *ngIf="achievement.unlocked" class="status-unlocked">
             <svg
               xmlns="http://www.w3.org/2000/svg"

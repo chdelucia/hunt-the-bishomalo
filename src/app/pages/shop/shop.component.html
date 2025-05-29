@@ -13,14 +13,21 @@
         <div class="inventario-container">
           @for (entry of inventory(); track entry.name) {
           <div class="inventario-item">
-            <img [src]="'shop/' + entry.icon" alt="{{ 'shop.inventoryItemAlt' | transloco }}" width="40" height="40" />x1
+            <img
+              [src]="'shop/' + entry.icon"
+              alt="{{ 'shop.inventoryItemAlt' | transloco }}"
+              width="40"
+              height="40"
+            />x1
           </div>
           }
         </div>
       </div>
 
       <div class="next-button">
-        <button class="boton-siguiente" (click)="nextLevel()">{{ 'shop.nextLevelButton' | transloco }}</button>
+        <button class="boton-siguiente" (click)="nextLevel()">
+          {{ 'shop.nextLevelButton' | transloco }}
+        </button>
       </div>
     </div>
 
@@ -33,7 +40,12 @@
       <div class="producto-card">
         <div class="producto-content">
           <div class="producto-icono-container">
-            <img [src]="'shop/' + producto.icon" alt="{{ 'shop.productItemAlt' | transloco }}" width="90" height="90" />
+            <img
+              [src]="'shop/' + producto.icon"
+              alt="{{ 'shop.productItemAlt' | transloco }}"
+              width="90"
+              height="90"
+            />
           </div>
           <div class="producto-info">
             <p class="producto-name">{{ producto.name }}</p>
@@ -43,7 +55,9 @@
                 <img src="boardicons/gold.svg" alt="{{ 'shop.goldAlt' | transloco }}" />
                 <span class="price-texto">{{ producto.price }}</span>
               </div>
-              <button class="boton-comprar" (click)="buyProduct(producto)">{{ 'shop.buyButton' | transloco }}</button>
+              <button class="boton-comprar" (click)="buyProduct(producto)">
+                {{ 'shop.buyButton' | transloco }}
+              </button>
             </div>
           </div>
         </div>
