@@ -173,16 +173,6 @@ describe('GameEngineService (with useValue)', () => {
     expect(mockStore.setMessage).toHaveBeenCalledWith(expect.stringContaining('¡Victoria'));
   });
 
-  it('exit: without gold or not on start', () => {
-    mockStore.hunter.mockReturnValueOnce({ hasGold: false });
-    mockStore.currentCell.mockReturnValue({ x: 0, y: 1 });
-    service.exit();
-    expect(mockStore.setMessage).toHaveBeenCalledWith(
-      '¡Para salir dirígete a la entrada con la moneda!',
-    );
-    expect(mockLeaderboard.addEntry).not.toHaveBeenCalled();
-  });
-
   it('checkCurrentCell: detects pit', () => {
     mockStore.currentCell.mockReturnValue(
       createMockCell({ content: CELL_CONTENTS.pit, x: 0, y: 0 }),

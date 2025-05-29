@@ -26,4 +26,5 @@ export enum GameSound {
   GOKU = 'goku',
   BATTLE = 'BATTLE',
   SUCCESS = 'SUCCESS',
+  GAMEOVER = 'GAMEOVER',
 }
