@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.9.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v6.8.0...v6.9.0) (2025-05-29)
+
+
+### Features
+
+* **gameover:** add gameover sound ([149c364](https://github.com/chdelucia/hunt-the-bishomalo/commit/149c364449a94cd3702d6843b97b29f4c468a3bb))
+
 ## [6.8.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v6.7.0...v6.8.0) (2025-05-28)
 
 
