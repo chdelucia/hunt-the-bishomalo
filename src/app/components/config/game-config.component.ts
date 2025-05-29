@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject, isDevMode, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
+import { TranslocoModule, TranslocoService } from "@jsverse/transloco";
 import { GameEngineService, GameSoundService } from 'src/app/services';
-import { Chars, DIFFICULTY_CONFIGS, DifficultyTypes, GameSound, RouteTypes } from 'src/app/models';
+import { Chars, DIFFICULTY_CONFIGS, DifficultyTypes, GameDificulty, GameSound, RouteTypes } from 'src/app/models';
 import { Router } from '@angular/router';
 import { GameStore } from 'src/app/store';
 
@@ -24,6 +24,7 @@ export class GameConfigComponent implements OnInit {
   private readonly translocoService = inject(TranslocoService);
 
   isDevMode = isDevMode();
+  readonly configs = DIFFICULTY_CONFIGS as Record<string, GameDificulty>;
 
   configForm: FormGroup = this.fb.group({
     player: ['Kukuxumushu', Validators.required],
@@ -45,7 +46,7 @@ export class GameConfigComponent implements OnInit {
       this.gameEngine.initGame({
         ...this.configForm.value,
         size: this.configForm.value.size + 3,
-        blackout: this.applyBlackoutChance(),
+        blackout: false,
         difficulty: DIFFICULTY_CONFIGS[difficulty],
         startTime: new Date(),
       });
@@ -64,21 +65,5 @@ export class GameConfigComponent implements OnInit {
     this.configForm.get('selectedChar')?.setValue(char);
     this.gameSound.stop();
     this.gameSound.playSound(matchingSound, false);
-  }
-
-  get difficultyDescription(): string {
-    const diff: DifficultyTypes = this.configForm.get('difficulty')?.value;
-    const config = DIFFICULTY_CONFIGS[diff];
-
-    return this.translocoService.translate('config.difficultyDescription', {
-      maxLives: config.maxLives,
-      maxLevels: config.maxLevels,
-      chance: config.maxChance * 100,
-    });
-  }
-
-  private applyBlackoutChance(): boolean {
-    const blackoutChance = 0.13;
-    return Math.random() < blackoutChance;
   }
 }

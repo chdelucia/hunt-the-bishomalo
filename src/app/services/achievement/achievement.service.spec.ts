@@ -5,6 +5,7 @@ import { GameSoundService } from '../sound/game-sound.service';
 import { AnalyticsService } from '../analytics/analytics.service';
 import { AchieveTypes } from 'src/app/models';
 import { GameStore } from 'src/app/store';
+import { getTranslocoTestingModule } from 'src/app/utils';
 
 const mockLocalStorageService = {
   getValue: jest.fn(),
@@ -34,6 +35,7 @@ describe('AchievementService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [getTranslocoTestingModule()],
       providers: [
         { provide: LocalstorageService, useValue: mockLocalStorageService },
         { provide: GameStore, useValue: mockGameStoreService },

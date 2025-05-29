@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input, isDevMode } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { TranslocoModule } from '@ngneat/transloco';
+import { TranslocoModule } from "@jsverse/transloco";
 import { Cell, Chars, GameSettings, Hunter } from '../../models';
 
 @Component({

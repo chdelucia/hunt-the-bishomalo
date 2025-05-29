@@ -1,6 +1,6 @@
 import { Component, inject, input } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { TranslocoModule } from '@ngneat/transloco';
+import { TranslocoModule } from "@jsverse/transloco";
 import { GameEngineService } from 'src/app/services';
 import { AchievementService } from 'src/app/services/achievement/achievement.service';
 import { AchieveTypes } from 'src/app/models';

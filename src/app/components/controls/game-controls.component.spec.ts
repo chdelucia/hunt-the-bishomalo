@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameControlsComponent } from './game-controls.component';
 import { GameEngineService } from 'src/app/services';
+import { getTranslocoTestingModule } from 'src/app/utils';
 
 const mockGameService = {
   moveForward: jest.fn(),
@@ -18,7 +19,7 @@ describe('GameControlsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GameControlsComponent],
+      imports: [GameControlsComponent, getTranslocoTestingModule()],
       providers: [{ provide: GameEngineService, useValue: mockGameService }],
     }).compileComponents();
 

@@ -3,6 +3,7 @@ import { AchievementsComponent } from './achievements.component';
 import { AchievementService } from 'src/app/services/achievement/achievement.service';
 import { Achievement } from 'src/app/models';
 import { RouterModule } from '@angular/router';
+import { getTranslocoTestingModule } from 'src/app/utils';
 
 describe('AchievementsComponent', () => {
   let component: AchievementsComponent;
@@ -20,7 +21,7 @@ describe('AchievementsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AchievementsComponent, RouterModule.forRoot([])],
+      imports: [AchievementsComponent, RouterModule.forRoot([]), getTranslocoTestingModule()],
       providers: [{ provide: AchievementService, useValue: achievementServiceMock }],
     }).compileComponents();
 
@@ -63,7 +64,7 @@ describe('AchievementsComponent', () => {
   });
 
   it('should return correct rarity name', () => {
-    expect(component.getRarityName('epic')).toBe('Épico');
-    expect(component.getRarityName('legendary')).toBe('Legendario');
+    expect(component.getRarityName('epic')).toBe('rarity.epic');
+    expect(component.getRarityName('legendary')).toBe('rarity.legendary');
   });
 });

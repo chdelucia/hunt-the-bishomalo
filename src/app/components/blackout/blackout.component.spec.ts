@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BlackoutComponent } from './blackout.component';
+import { getTranslocoTestingModule } from 'src/app/utils';
 
 describe('BlackoutComponent', () => {
   let component: BlackoutComponent;
@@ -20,7 +21,7 @@ describe('BlackoutComponent', () => {
       } as unknown as HTMLAudioElement;
     });
     await TestBed.configureTestingModule({
-      imports: [BlackoutComponent],
+      imports: [BlackoutComponent, getTranslocoTestingModule()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BlackoutComponent);

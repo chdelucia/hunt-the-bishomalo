@@ -2,9 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MenuComponent } from './menu.component';
 import { GameEngineService } from 'src/app/services';
 import { Router, RouterModule } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { getTranslocoTestingModule } from 'src/app/utils';
 
-// Ruta dummy para forRoot
 
 @Component({ template: '' })
 class DummyComponent {}
@@ -25,7 +25,7 @@ describe('MenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MenuComponent, RouterModule.forRoot(routes)],
+      imports: [MenuComponent, RouterModule.forRoot(routes), getTranslocoTestingModule()],
       providers: [{ provide: GameEngineService, useValue: gameEngineServiceMock }],
     }).compileComponents();
 
