@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { Chars } from 'src/app/models';
 import { GameStore } from 'src/app/store';
+import { getTranslocoTestingModule } from 'src/app/utils';
 
 const hunterSignal = signal({ chars: ['default', 'lara'] });
 
@@ -23,7 +24,7 @@ describe('CharactersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CharactersComponent, RouterModule.forRoot([])],
+      imports: [CharactersComponent, RouterModule.forRoot([]), getTranslocoTestingModule()],
       providers: [{ provide: GameStore, useValue: gameStoreMock }],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();

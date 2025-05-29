@@ -5,6 +5,7 @@ import { GameEngineService } from 'src/app/services';
 import { Product, RouteTypes } from 'src/app/models';
 import { CommonModule } from '@angular/common';
 import { GameStore } from 'src/app/store';
+import { getTranslocoTestingModule } from 'src/app/utils';
 
 const mockHunter = {
   gold: 150,
@@ -44,7 +45,7 @@ describe('ShopComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CommonModule],
+      imports: [CommonModule, getTranslocoTestingModule()],
       providers: [
         { provide: GameStore, useValue: mockGameStoreService },
         { provide: GameEngineService, useValue: mockGameEngineService },
@@ -65,9 +66,9 @@ describe('ShopComponent', () => {
 
   it('should buy a product if gold is sufficient and effect is not heart', fakeAsync(() => {
     const product: Product = {
-      name: 'Linterna',
+      name: 'product.lantern.name',
       effect: 'lantern',
-      description: 'Descripción',
+      description: 'product.lantern.description',
       price: 100,
       icon: 'lantern.svg',
     };
@@ -77,7 +78,7 @@ describe('ShopComponent', () => {
       gold: 60,
       inventory: [product],
     });
-    expect(component.message()).toContain('¡Has comprado Linterna!');
+    expect(component.message()).toContain('shop.purchaseMessageSuccess');
     tick(2000);
     expect(component.message()).toBe('');
   }));

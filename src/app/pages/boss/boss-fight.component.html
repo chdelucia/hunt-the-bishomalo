@@ -1,7 +1,7 @@
 <section class="boss-container" aria-labelledby="bossTitle">
-  <h2 id="bossTitle">⚔️ Batalla final contra el jefe</h2>
+  <h2 id="bossTitle">{{ 'bossFight.title' | transloco }}</h2>
 
-  <div class="grid" role="grid" aria-label="Tablero del jefe final">
+  <div class="grid" role="grid" [attr.aria-label]="'bossFight.boardAriaLabel' | transloco">
     <div *ngFor="let row of grid; let rowIndex = index" class="row">
       <div
         *ngFor="let cell of row; let colIndex = index"
@@ -17,7 +17,11 @@
       >
         <span *ngIf="cell.hit && cell.hasBossPart" aria-hidden="true">
           @let char = _settings().selectedChar;
-          <img [ngSrc]="`chars/${char}/boss.png`" alt="boss" fill />
+          <img
+            [ngSrc]="`chars/${char}/boss.png`"
+            alt="{{ 'bossFight.bossImageAlt' | transloco }}"
+            fill
+          />
         </span>
         <span *ngIf="cell.hit && !cell.hasBossPart" aria-hidden="true">❌</span>
       </div>
@@ -26,18 +30,30 @@
 
   <div class="status-bar">
     <div class="leyenda">
-      <span aria-live="polite">Intentos: {{ playerLives }}</span>
-      <span aria-live="polite">Jefe : {{ bossRemaining }}</span>
+      <span aria-live="polite">{{
+        'bossFight.attemptsLeft' | transloco : { playerLives: playerLives }
+      }}</span>
+      <span aria-live="polite">{{
+        'bossFight.bossHealth' | transloco : { bossRemaining: bossRemaining }
+      }}</span>
     </div>
 
     <p aria-live="polite" class="game-message">{{ message }}</p>
 
-    <button *ngIf="gameOver && bossRemaining" (click)="retryGame()" aria-label="Reiniciar juego">
-      Continues {{ this._hunter().lives }}
+    <button
+      *ngIf="gameOver && bossRemaining"
+      (click)="retryGame()"
+      [attr.aria-label]="'bossFight.retryGameAriaLabel' | transloco"
+    >
+      {{ 'bossFight.continuesButton' | transloco : { livesLeft: this._hunter().lives } }}
     </button>
     @if(gameOver && !bossRemaining){
-    <button aria-label="siguiente" class="next-btn" (click)="goToprizeScreen()">
-      Ganaste! continuar
+    <button
+      [attr.aria-label]="'bossFight.nextButtonAriaLabel' | transloco"
+      class="next-btn"
+      (click)="goToprizeScreen()"
+    >
+      {{ 'bossFight.youWonButton' | transloco }}
     </button>
     }
   </div>

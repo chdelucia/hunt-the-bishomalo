@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { GameSoundService } from 'src/app/services';
 import { GameSound, RouteTypes } from 'src/app/models';
 import { Router } from '@angular/router';
@@ -16,7 +17,7 @@ interface BossCell {
 @Component({
   selector: 'app-boss-fight',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage],
+  imports: [CommonModule, NgOptimizedImage, TranslocoModule],
   templateUrl: './boss-fight.component.html',
   styleUrl: './boss-fight.component.scss',
 })
@@ -24,6 +25,7 @@ export class BossFightComponent implements OnInit {
   private readonly gameSound = inject(GameSoundService);
   readonly gameStore = inject(GameStore);
   private readonly router = inject(Router);
+  private readonly translocoService = inject(TranslocoService);
   readonly _hunter = this.gameStore.hunter;
   readonly _settings = this.gameStore.settings;
 
@@ -55,8 +57,7 @@ export class BossFightComponent implements OnInit {
 
     this.bossRemaining = this.bossParts;
     this.playerLives = this._settings().difficulty.bossTries;
-    this.message =
-      'Cuando estabas apunto de escapar y ya veias la luz solar, te ataco un ser maligno. Descubre las 5 localizaciones del bisho malo, tus vidas ahora son continues.';
+    this.message = this.translocoService.translate('bossFightMessages.initial');
     this.gameOver = false;
 
     let partsPlaced = 0;
@@ -77,21 +78,21 @@ export class BossFightComponent implements OnInit {
 
     if (cell.hasBossPart) {
       this.bossRemaining--;
-      this.message = '🔥 ¡Golpeaste al jefe!';
+      this.message = this.translocoService.translate('bossFightMessages.bossHit');
     } else {
       this.playerLives--;
       const hint = this.getHint(cell.x, cell.y);
       cell.hint = hint;
-      this.message = `❌ Fallaste. ${hint}`;
+      this.message = this.translocoService.translate('bossFightMessages.miss', { hint });
     }
 
     if (this.bossRemaining === 0) {
-      this.message = '🎉 ¡Venciste al jefe!';
+      this.message = this.translocoService.translate('bossFightMessages.bossDefeated');
       this.gameOver = true;
       this.gameSound.stop();
       this.gameSound.playSound(GameSound.FINISH, false);
     } else if (this.playerLives === 0) {
-      this.message = '💀 El jefe te derrotó.';
+      this.message = this.translocoService.translate('bossFightMessages.playerDefeated');
       this.revealAllBossParts();
       this.gameOver = true;
       this.gameSound.stop();
@@ -105,7 +106,7 @@ export class BossFightComponent implements OnInit {
       this.gameStore.updateHunter({ lives: Math.max(0, livesLeft - 1) });
       this.resetGame();
     } else {
-      this.message = '😵 No te quedan vidas para reintentar.';
+      this.message = this.translocoService.translate('bossFightMessages.noMoreRetries');
     }
   }
 
@@ -124,16 +125,31 @@ export class BossFightComponent implements OnInit {
     const inRow = row.filter((c) => c.hasBossPart && !c.hit).length;
     const inCol = col.filter((c) => c.hasBossPart && !c.hit).length;
 
-    if (inRow >= inCol) return `En la misma fila hay ${inRow} bisho(s).`;
+    if (inRow >= inCol) {
+      return this.translocoService.translate('bossFightMessages.hintInRow', { count: inRow });
+    }
 
-    return `En la COLUMNA hay ${inCol} bisho(s).`;
+    return this.translocoService.translate('bossFightMessages.hintInCol', { count: inCol });
   }
 
   getAriaLabel(cell: BossCell, x: number, y: number): string {
-    const position = `Celda ${x + 1},${y + 1}`;
-    if (!cell.hit) return `${position}, sin seleccionar`;
-    if (cell.hasBossPart) return `${position}, golpe al jefe`;
-    return `${position}, fallo. ${cell.hint}`;
+    const position = this.translocoService.translate('bossFightMessages.ariaCellPosition', {
+      row: x + 1,
+      col: y + 1,
+    });
+    if (!cell.hit) {
+      return `${position}, ${this.translocoService.translate(
+        'bossFightMessages.ariaCellStatusNotSelected',
+      )}`;
+    }
+    if (cell.hasBossPart) {
+      return `${position}, ${this.translocoService.translate(
+        'bossFightMessages.ariaCellStatusBossHit',
+      )}`;
+    }
+    return `${position}, ${this.translocoService.translate(
+      'bossFightMessages.ariaCellStatusMiss',
+    )} ${cell.hint}`;
   }
 
   goToprizeScreen(): void {

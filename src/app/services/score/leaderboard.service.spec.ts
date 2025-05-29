@@ -4,6 +4,7 @@ import { LocalstorageService } from '../localstorage/localstorage.service';
 import { ScoreEntry } from 'src/app/models';
 import { GameStore } from 'src/app/store';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { getTranslocoTestingModule } from 'src/app/utils';
 
 const LocalstorageServiceMock = {
   getValue: jest.fn(),
@@ -43,6 +44,7 @@ describe('LeaderboardService', () => {
     jest.clearAllMocks();
 
     TestBed.configureTestingModule({
+      imports: [getTranslocoTestingModule()],
       providers: [
         LeaderboardService,
         { provide: LocalstorageService, useValue: LocalstorageServiceMock },

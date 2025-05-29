@@ -3,6 +3,7 @@ import { HuntBishoComponent } from './hunt-bisho.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { GameStore } from '../store';
+import { getTranslocoTestingModule } from '../utils';
 
 function createMockCell(overrides = {}) {
   return {
@@ -56,7 +57,7 @@ describe('HuntBishoComponent', () => {
     });
 
     await TestBed.configureTestingModule({
-      imports: [HuntBishoComponent, RouterModule.forRoot([])],
+      imports: [HuntBishoComponent, RouterModule.forRoot([]), getTranslocoTestingModule()],
       providers: [{ provide: GameStore, useValue: mockGameStoreService }],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();

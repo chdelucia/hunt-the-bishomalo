@@ -1,7 +1,7 @@
 @let onwedChars = gameStore.hunter().chars;
 
 <section class="prizes">
-  <p class="title">Selecciona tu premio</p>
+  <p class="title">{{ 'characters.selectYourPrize' | transloco }}</p>
 
   <div class="character-container">
     @for(char of chars; track $index) {
@@ -21,10 +21,12 @@
         height="180"
         priority
       />
-      <div class="char-name">{{ char }}</div>
+      <div class="char-name">{{ 'charName.' + char | transloco }}</div>
     </div>
     }
   </div>
 
-  <button [disabled]="!selectedChar()" (click)="onClick()">Confirmar personaje</button>
+  <button [disabled]="!selectedChar()" (click)="onClick()">
+    {{ 'characters.confirmCharacterButton' | transloco }}
+  </button>
 </section>

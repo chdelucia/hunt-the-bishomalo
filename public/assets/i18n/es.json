@@ -14,7 +14,127 @@
     "filterUnlocked": "Desbloqueados",
     "filterLocked": "Bloqueados",
     "statusUnlocked": "Desbloqueado",
-    "statusLocked": "Bloqueado"
+    "statusLocked": "Bloqueado",
+    "lara": {
+      "title": "Tomb Raider III",
+      "description": "Desbloquea a Lara"
+    },
+    "link": {
+      "title": "¿Encontrarás a Zelda?",
+      "description": "Desbloquea a Link"
+    },
+    "legolas": {
+      "title": "Señor de los arqueros",
+      "description": "Desbloquea a Legolas"
+    },
+    "collect_dragonballs": {
+      "title": "Mejor que una lámpara",
+      "description": "Has recogido 7 bolas de cristal, qué extrañas..."
+    },
+    "kill_wumpus": {
+      "title": "Has matado al bisho malo",
+      "description": "Eliminaste a un Wumpus con una flecha bien dirigida"
+    },
+    "collect_heart": {
+      "title": "Como nuevo",
+      "description": "Encontrar vidas siempre es un alivio"
+    },
+    "escape_rat": {
+      "title": "Has escapado como una rata",
+      "description": "Escapaste de la cueva sin matar a ningún Wumpus"
+    },
+    "collect_arrow": {
+      "title": "Has recogido una flecha caída",
+      "description": "Encontraste una flecha adicional durante tu aventura"
+    },
+    "hero_escape": {
+      "title": "Héroe: escapaste matando al bisho malo",
+      "description": "Mataste al Wumpus y escapaste con el oro"
+    },
+    "survive_blackout": {
+      "title": "Has vivido un apagón",
+      "description": "Experimentaste un apagón! Vaya ni que estuvieses en ESPAÑA"
+    },
+    "survive_blackout_complete": {
+      "title": "Has sobrevivido a un apagón",
+      "description": "Sobreviviste a un apagón y continuaste tu aventura"
+    },
+    "death_by_wumpus": {
+      "title": "Muerte por bisho malo",
+      "description": "Fuiste devorado por un Wumpus"
+    },
+    "death_by_pit": {
+      "title": "Te ahogaste en un pozito",
+      "description": "Caíste en un pozo y no pudiste salir"
+    },
+    "collect_gold": {
+      "title": "Has recogido moneda",
+      "description": "Encontraste el oro en la cueva"
+    },
+    "death_during_blackout": {
+      "title": "Muerte durante el apagón",
+      "description": "Fuiste víctima de la oscuridad durante un apagón"
+    },
+    "hard_head": {
+      "title": "Cabeza dura",
+      "description": "Has chocado contra muros repetidamente"
+    },
+    "large_map_completion": {
+      "title": "Explorador de grandes cavernas",
+      "description": "Completaste un mapa de más de 12x12"
+    },
+    "missed_last_arrow": {
+      "title": "Fallaste tu última bala",
+      "description": "Disparaste tu última flecha y fallaste el tiro"
+    },
+    "wasted_arrows": {
+      "title": "Desastre",
+      "description": "Acabaste la partida con más de una bala y no mataste al bicho"
+    },
+    "speedrunner": {
+      "title": "Speedrunner",
+      "description": "Completaste una partida en menos de 10 segundos"
+    },
+    "true_gamer": {
+      "title": "True Gamer",
+      "description": "Eres un OG WASD son tus keys"
+    },
+    "sniper": {
+      "title": "Francotirador",
+      "description": "Mataste al Wumpus con un disparo desde más de 5 casillas de distancia"
+    },
+    "death_duel": {
+      "title": "Duelo a Muerte",
+      "description": "Mataste al Wumpus estando en una casilla adyacente"
+    },
+    "novice_cartographer": {
+      "title": "Cartógrafo Novato",
+      "description": "Exploraste el 50% de una cueva"
+    },
+    "expert_cartographer": {
+      "title": "Cartógrafo Experto",
+      "description": "Exploraste el 100% de una cueva"
+    },
+    "blind_shot": {
+      "title": "Disparo a Ciegas",
+      "description": "Mataste al Wumpus durante un apagón"
+    },
+    "last_breath": {
+      "title": "Último Aliento",
+      "description": "Mataste al Wumpus y moriste en el intento"
+    },
+    "pentakill": {
+      "title": "Pentakill",
+      "description": "Has matado a 5 enemigos seguidos"
+    },
+    "secret": {
+      "title": "Secreto oculto 8x8",
+      "description": "Encontraste al Jedi, que la fuerza te acompañe!"
+    },
+    "completionist": {
+      "title": "Coleccionista",
+      "description": "Has ganado una partida teniendo todos los logros del juego. ¡Eres una leyenda!"
+    }
   },
   "rarity": {
     "common": "Común",
@@ -60,5 +180,528 @@
     "shootArrowAriaLabel": "Disparar flecha",
     "shootArrowAlt": "Disparar",
     "moveForwardAriaLabel": "Avanzar"
+  },
+  "level": {
+    "display": "Nivel {{level}}"
+  },
+  "message": {
+    "gameOver": "GAME OVER! Te quedaste sin vidas. #haberestudiao",
+    "newGameAriaLabel": "Nueva partida",
+    "newGameButton": "Empezar una nueva partida",
+    "dragonBallAlt": "Bola de Dragón",
+    "defaultInstructions": "Activa el sonido, recoge la moneda y vuelve al inicio.",
+    "restartGameAriaLabel": "Reiniciar el juego",
+    "tryAgainButton": "Haz click para intentarlo de nuevo",
+    "nextLevelAriaLabel": "Siguiente nivel",
+    "congratsNextLevelButton": "Felicidades, haz click para empezar el siguiente nivel.",
+    "congratsBossButton": "¡FELICIDADES! Has completado todos los niveles, haz click para reclamar tu recompensa."
+  },
+  "title": {
+    "blackoutSubtitle": "EL APAGÓN"
+  },
+  "notFound": {
+    "title": "¡Oh no! Te has perdido en la cueva",
+    "message": "Parece que has caído en un pozo o el Bishomalo se ha comido esta página.",
+    "subMessage": "No te preocupes, aún puedes escapar y volver a un lugar seguro.",
+    "backToHomeButton": "Volver al inicio"
+  },
+  "bossFight": {
+    "title": "⚔️ Batalla Final Contra el Jefe",
+    "boardAriaLabel": "Tablero del jefe final",
+    "bossImageAlt": "Jefe",
+    "attemptsLeft": "Intentos: {{playerLives}}",
+    "bossHealth": "Jefe: {{bossRemaining}}",
+    "retryGameAriaLabel": "Reiniciar juego",
+    "continuesButton": "Continúa ({{livesLeft}})",
+    "nextButtonAriaLabel": "Siguiente",
+    "youWonButton": "¡Ganaste! Continuar"
+  },
+  "bossFightMessages": {
+    "initial": "Cuando estabas a punto de escapar y ya veías la luz solar, te atacó un ser maligno. Descubre las 5 localizaciones del bisho malo, tus vidas ahora son continues.",
+    "bossHit": "🔥 ¡Golpeaste al jefe!",
+    "miss": "❌ Fallaste. {{hint}}",
+    "bossDefeated": "🎉 ¡Venciste al jefe!",
+    "playerDefeated": "💀 El jefe te derrotó.",
+    "noMoreRetries": "😵 No te quedan vidas para reintentar.",
+    "hintInRow": "En la misma fila hay {{count}} bisho(s).",
+    "hintInCol": "En la COLUMNA hay {{count}} bisho(s).",
+    "ariaCellPosition": "Celda {{row}},{{col}}",
+    "ariaCellStatusNotSelected": "sin seleccionar",
+    "ariaCellStatusBossHit": "golpe al jefe",
+    "ariaCellStatusMiss": "fallo."
+  },
+  "characters": {
+    "selectYourPrize": "Selecciona tu premio",
+    "confirmCharacterButton": "Confirmar personaje"
+  },
+  "charName": {
+    "default": "Kukuxu",
+    "lara": "Lara Croft",
+    "legolas": "Legolas",
+    "link": "Link"
+  },
+  "credits": {
+    "title": "Créditos",
+    "subtitle": "Las increíbles personas detrás de Hunt the Bishomalo",
+    "roleExecutiveDirector": "Director Ejecutivo",
+    "nameChrisHeredia": "Christian Heredia",
+    "roleAndOfCourse": "Y por supuesto...",
+    "noBishomalosHarmed": "Ningún Bishomalo fue dañado durante el desarrollo de este juego.",
+    "exceptThoseMetChris": "Excepto aquellos que se encontraron con Christian Heredia.",
+    "copyright": "© 2025 Christian Heredia",
+    "andNoOneElse": "(y nadie más)",
+    "quoteSolo": "\"Sí, lo hice todo yo solo. ¿Algún problema?\"<br />- Christian Heredia",
+    "newGameButton": "Empezar nueva partida",
+    "role.leadProgrammer": "Programador Principal",
+    "role.gameDesigner": "Diseñador de Juego",
+    "role.pixelArtist": "Artista de Pixel Art",
+    "role.musicComposer": "Compositor Musical",
+    "role.levelDesigner": "Diseñador de Niveles",
+    "role.soundEngineer": "Ingeniero de Sonido",
+    "role.leadTester": "Tester Principal",
+    "role.marketingSpecialist": "Especialista en Marketing",
+    "role.communityManager": "Gestor de Comunidad",
+    "role.narrator": "Narrador",
+    "role.bishomaloVoice": "Voz del Bishomalo",
+    "role.bishomaloCareTaker": "Cuidador del Bishomalo",
+    "role.pitExpert": "Experto en Pozos",
+    "role.batTrainer": "Entrenador de Murciélagos",
+    "role.arrowManufacturer": "Fabricante de Flechas",
+    "role.caveExplorer": "Explorador de Cuevas",
+    "role.timeMaster": "Maestro del Tiempo",
+    "role.goldGuardian": "Guardián del Oro",
+    "role.pixelCounter": "Contador de Píxeles",
+    "role.error404Specialist": "Especialista en Errores 404",
+    "role.creditsWriter": "Redactor de Créditos",
+    "role.specialThanks": "Agradecimientos Especiales"
+  },
+  "diary": {
+    "title": "Diario del Viajero",
+    "noStoriesAvailable": "No hay historias disponibles.",
+    "chapterPrefix": "Capítulo ",
+    "effectPrefix": "Efecto: ",
+    "effect": {
+      "extraArrow": "Obtienes una flecha adicional",
+      "extraLife": "Recuperas una vida",
+      "doubleGold": "Duplicas las monedas obtenidas",
+      "revealHint": "Descubres una pista oculta",
+      "maxLivesUp": "Tu vida máxima aumenta",
+      "maxChanceDown": "Tu probabilidad máxima disminuye",
+      "maxLivesDown": "Tu vida máxima disminuye",
+      "fogOfWar": "Partes del mapa se ocultan",
+      "trapIncrease": "Aumentan las trampas en el nivel",
+      "bossReveal": "Se revela el jefe final",
+      "bossFight": "Enfrentas al jefe final",
+      "unlockUltimateWeapon": "Desbloqueas el arma definitiva"
+    }
+  },
+  "results": {
+    "title": "Resultados de Juego",
+    "subtitle": "Estadísticas detalladas de tu aventura",
+    "tabGeneral": "General",
+    "tabLevels": "Niveles",
+    "summaryTitle": "Resumen de Aventura",
+    "totalSteps": "Pasos Totales",
+    "playTime": "Tiempo de Juego",
+    "levelsCompleted": "Niveles Completados",
+    "achievementsUnlocked": "Logros Desbloqueados",
+    "personalRecordsTitle": "Récords Personales",
+    "fastestLevel": "Nivel Más Rápido",
+    "fastestLevelDetails": "Nivel {{level}} - {{time}}s",
+    "fewestStepsLevel": "Nivel con Menos Pasos",
+    "fewestStepsLevelDetails": "Nivel {{level}} - {{steps}} pasos",
+    "totalDeaths": "Total de Muertes",
+    "totalDeathsDetails": "{{count}} veces",
+    "arrowsShot": "Flechas Disparadas",
+    "coinsCollected": "Monedas Recolectadas",
+    "tableHeaderTime": "Tiempo",
+    "tableHeaderSteps": "Pasos",
+    "tableHeaderDeaths": "Muertes",
+    "tableHeaderLevel": "Nivel",
+    "noStatsMessage": "Pero si aún no has jugado, ¿qué estadísticas quieres, mi alma?",
+    "nextButton": "Siguiente",
+    "nextButtonAriaLabel": "Siguiente"
+  },
+  "instructions": {
+    "backToGame": "Volver al juego",
+    "mainTitle": "Instrucciones del Juego",
+    "subtitle": "Aprende a jugar Hunt the Bishomalo",
+    "objectiveTitle": "Objetivo del Juego",
+    "objectiveText": "Tu misión es explorar la cueva, encontrar la moneda y escapar volviendo a la casilla de inicio. No es obligatorio matar al Bishomalo, pero cuanto más explores, más secretos descubrirás.",
+    "dangersTitle": "Peligros",
+    "dangerBishomaloTitle": "Bishomalo",
+    "dangerBishomaloDescription": "El temible monstruo que acecha en la cueva. Si entras en su habitación sin una flecha, serás devorado. Puedes derrotarlo con una flecha bien dirigida.",
+    "dangerPitsTitle": "Pozos",
+    "dangerPitsDescription": "Agujeros profundos en el suelo. Si caes en uno, no podrás salir y perderás el juego. Sentirás una brisa cerca de ellos.",
+    "notesTitle": "Notas",
+    "noteUnfairGames": "El juego tiene cosas injustas; habrá muertes que no puedas evitar.",
+    "noteArrows": "Utiliza las flechas con precaución, ya que son limitadas.",
+    "noteExplore": "Explora cada rincón para encontrar pistas y objetos útiles.",
+    "noteHaveFun": "¡Diviértete y buena suerte!"
+  },
+  "shop": {
+    "title": "Tienda",
+    "subtitle": "Compra objetos para ayudarte en el siguiente nivel.",
+    "goldAlt": "Oro",
+    "coinsSuffix": " monedas",
+    "inventoryItemAlt": "Objeto del inventario",
+    "productItemAlt": "Objeto de la tienda",
+    "nextLevelButton": "Siguiente nivel",
+    "notEnoughGoldMessage": "No tienes suficiente oro. ¡Fuera de aquí antes de que me arrepienta!",
+    "buyButton": "Comprar",
+    "disclaimer1": "La tienda no se hace responsable del mal uso de los objetos. Es que ya tenía los corazones máximos... es que ya tenía una linterna...",
+    "disclaimerTag": "#HaberEstudiado",
+    "disclaimer2": "Los objetos no se pueden acumular. No devolvemos el dinero.",
+    "purchaseMessageNotEnoughCoins": "¡No tienes suficientes monedas!",
+    "purchaseMessageSuccess": "¡Has comprado {{productName}}!"
+  },
+  "product": {
+    "heart": {
+      "name": "Vida extra",
+      "description": "Te da una oportunidad más para sobrevivir."
+    },
+    "shield": {
+      "name": "Escudo",
+      "description": "Te protege de un ataque del bishomalo."
+    },
+    "lantern": {
+      "name": "Linterna",
+      "description": "Ya hubo un apagón quién sabe si habrá más."
+    },
+    "rewind": {
+      "name": "Reloj de arena",
+      "description": "Rebobina el tiempo y evita que caigas al fondo de un pozo."
+    },
+    "dragonball": {
+      "name": "Una bola 4",
+      "description": "No se muy bien para que sirve, la encontré en un arbusto. Te la dejo baratita..."
+    },
+    "apple": {
+      "name": "Una manzana",
+      "description": "Siempre va bien una para el hambre. De algun apuro te sacará."
+    }
+  },
+  "storyPage": {
+    "chapterPrefix": "CAPÍTULO ",
+    "effectPrefix": "✨ Efecto: ",
+    "clickToStartInstruction": "Haz clic para comenzar el nivel"
+  },
+  "gameMessages": {
+    "wallCollision": "¡Choque contra un muro!",
+    "noArrows": "¡No tienes flechas!",
+    "wumpusKilled": "¡Has matado al Wumpus! ¡Grito!",
+    "arrowMissed": "¡Flecha fallida!",
+    "exitInstruction": "¡Para salir dirígete a la entrada con la moneda!",
+    "victory": "¡Victoria!",
+    "perceptionNothingSuspicious": "Nada sospechoso.",
+    "perceptionStench": "Sientes hedor.",
+    "perceptionBreeze": "Sientes brisa.",
+    "perceptionShine": "Sientes un brillo."
+  },
+  "cellContent": {
+    "wumpus": {
+      "alt": "Wumpus",
+      "ariaLabel": "Wumpus"
+    },
+    "gold": {
+      "alt": "Moneda de oro",
+      "ariaLabel": "Oro"
+    },
+    "pit": {
+      "alt": "Pozo",
+      "ariaLabel": "Pozo"
+    },
+    "arrow": {
+      "alt": "Flecha",
+      "ariaLabel": "Flecha"
+    },
+    "heart": {
+      "alt": "Vida extra",
+      "ariaLabel": "Corazón"
+    },
+    "secret": {
+      "alt": "Secreto",
+      "ariaLabel": "Secreto"
+    },
+    "dragonball": {
+      "alt": "Bola de dragón",
+      "ariaLabel": "Bola de dragón"
+    }
+  },
+  "story": {
+    "default": {
+      "1": {
+        "title": "El Comienzo Oscuro",
+        "text": "Te adentras en las profundidades de la cueva, guiado solo por la tenue luz de tu antorcha. Las sombras parecen moverse a tu alrededor y un extraño presentimiento te acompaña. No sabes qué secretos aguardan en la oscuridad."
+      },
+      "2": {
+        "title": "Ecos del Pasado",
+        "text": "Entre las penumbras encuentras un cuerpo con armadura y armas que reconoces vagamente. Una sensación de culpa comienza a crecer en tu interior mientras las sombras susurran nombres olvidados."
+      },
+      "3": {
+        "title": "Susurros de Traición",
+        "text": "Los recuerdos fragmentados comienzan a surgir: escenas de traición, batallas y la caída de antiguos aliados. La cueva parece querer revelarte una verdad oscura que no deseas enfrentar."
+      },
+      "4": {
+        "title": "Rastro de Venganza",
+        "text": "A medida que avanzas, notas que los caminos están marcados por la destrucción que has causado. La cueva reacciona a tu presencia, volviéndose más traicionera y difícil."
+      },
+      "5": {
+        "title": "La Verdad Revelada",
+        "text": "Los cuerpos que has dejado atrás comienzan a tener rostros: Lara, Legolas y Link, tus antiguos rivales. La realidad de tu identidad como Bisho Malo se torna innegable y pesada."
+      },
+      "6": {
+        "title": "Ecos de los Caídos",
+        "text": "Las voces de los héroes caídos resuenan en la cueva, y sus espíritus parecen observar cada uno de tus movimientos. El ambiente se vuelve más oscuro, y las trampas más letales."
+      },
+      "7": {
+        "title": "Sombras Internas",
+        "text": "Dentro de ti se libra una batalla: la parte humana que aún queda contra la oscuridad que te consume. La cueva parece reflejar este conflicto en sus formaciones retorcidas y enemigos cada vez más feroces."
+      },
+      "8": {
+        "title": "Camino Solitario",
+        "text": "Has dejado atrás todo y a todos. La soledad se vuelve tu única compañía mientras te adentras en los niveles más profundos de la cueva, donde el aire se vuelve pesado y denso."
+      },
+      "9": {
+        "title": "El Abismo Espera",
+        "text": "El jefe final aguarda al final de este viaje tortuoso, una entidad oscura reflejo de tu alma. La batalla que se aproxima decidirá no solo tu destino, sino el equilibrio de la cueva entera."
+      },
+      "10": {
+        "title": "El Reconocimiento",
+        "text": "Con cada paso reconoces la magnitud de lo que has hecho. Los fantasmas del pasado te persiguen, pero la determinación de terminar esta travesía te mantiene firme."
+      },
+      "11": {
+        "title": "Sombras del Pasado",
+        "text": "Los ecos de Lara, Legolas y Link parecen volverse más fuertes, intentando hablarte a través de la oscuridad. Sus voces son una mezcla de advertencias y súplicas para que cambies de camino."
+      },
+      "12": {
+        "title": "Decisiones Finales",
+        "text": "Cada movimiento es crucial. Sientes que la cueva misma conspira para detenerte, y el enfrentamiento final se acerca inexorablemente."
+      },
+      "13": {
+        "title": "El Rostro del Enemigo",
+        "text": "Finalmente, te ves a ti mismo reflejado en las aguas oscuras. El enemigo más temible es aquel que habita dentro, y la batalla contra tu propia sombra es inminente."
+      },
+      "14": {
+        "title": "El Último Umbral",
+        "text": "La oscuridad se condensa en un solo punto: el santuario del jefe final. Aquí se decidirá todo, y debes estar preparado para enfrentarte a tu destino."
+      },
+      "15": {
+        "title": "La Confrontación",
+        "text": "El Bisho Malo se alza contra su reflejo, una batalla épica donde todo está en juego. La cueva tiembla ante la fuerza de este enfrentamiento, y solo uno podrá salir vencedor."
+      }
+    },
+    "lara": {
+      "1": {
+        "title": "Exploradora en las Profundidades",
+        "text": "Tu aventura comienza en las cuevas prohibidas, buscando reliquias ancestrales y respuestas que puedan salvar tu mundo. El aire es frío, y un sentimiento de peligro se cierne sobre ti."
+      },
+      "2": {
+        "title": "Señales en la Oscuridad",
+        "text": "Encuentras rastros de otros aventureros: huellas, armas y algo más oscuro, una presencia que perturba la paz de estas tierras olvidadas."
+      },
+      "3": {
+        "title": "Sombras del Pasado",
+        "text": "Las historias de héroes caídos te llegan a través del viento y el eco. Sabes que la cueva guarda secretos que podrían cambiarlo todo."
+      },
+      "4": {
+        "title": "El Susurro de la Traición",
+        "text": "Las paredes parecen contar historias de traiciones y batallas perdidas. Cada paso te acerca a una verdad que prefieres no saber."
+      },
+      "5": {
+        "title": "El Secreto del Bisho Malo",
+        "text": "Descubres que un enemigo oscuro acecha en las sombras, responsable de la desaparición de valientes héroes. Su nombre es un susurro temido en todas partes."
+      },
+      "6": {
+        "title": "Caminos Peligrosos",
+        "text": "Las trampas y peligros aumentan, y debes estar más alerta que nunca. La cueva no perdona errores."
+      },
+      "7": {
+        "title": "Luz en la Oscuridad",
+        "text": "Una chispa de esperanza ilumina tu camino mientras te preparas para enfrentar al Bisho Malo y descubrir la verdad detrás de esta pesadilla."
+      },
+      "8": {
+        "title": "Redención Lejana",
+        "text": "Cada paso es un intento por redimir el pasado y salvar lo que queda. El peso de la misión te hace más fuerte y decidido."
+      },
+      "9": {
+        "title": "El Encuentro Inminente",
+        "text": "Sabes que la confrontación con el Bisho Malo es inevitable. El destino de la cueva y sus secretos depende de tu valentía."
+      },
+      "10": {
+        "title": "La Revelación",
+        "text": "Descubres la identidad del enemigo y la conexión que tiene contigo y los otros héroes caídos. Nada será igual a partir de ahora."
+      },
+      "11": {
+        "title": "Determinación de Acero",
+        "text": "Con renovado valor avanzas por la cueva, decidido a no dejar que el mal triunfe."
+      },
+      "12": {
+        "title": "El Momento Decisivo",
+        "text": "Cada flecha y movimiento cuenta. La batalla final se acerca y debes estar lista para ella."
+      },
+      "13": {
+        "title": "El Último Enigma",
+        "text": "Una última prueba intelectual te espera: resolver el enigma que desbloquea la cámara del Bisho Malo."
+      },
+      "14": {
+        "title": "Cara a Cara",
+        "text": "En un silencio absoluto, entras a la sala del enemigo. Sus ojos te miran, esperando el desenlace."
+      },
+      "15": {
+        "title": "El Juicio Final",
+        "text": "Una batalla que definirá tu legado. Solo una fuerza podrá salir viva de la cueva."
+      }
+    },
+    "legolas": {
+      "1": {
+        "title": "El Guardián del Bosque",
+        "text": "Has sentido una perturbación en los vientos del bosque. Algo maligno se mueve bajo tierra. Tomas tu arco y sigues las pistas hacia una cueva olvidada por el tiempo."
+      },
+      "2": {
+        "title": "La Traición Silenciosa",
+        "text": "Encuentras una flecha como las tuyas, pero rota y oxidada. Sientes que algo familiar y peligroso habita estas profundidades."
+      },
+      "3": {
+        "title": "Sombras que Conocen Tu Nombre",
+        "text": "Las criaturas que habitan la cueva parecen reconocerte. Como si hubieran peleado contigo... o contra ti antes. Un escalofrío te recorre."
+      },
+      "4": {
+        "title": "Un Rumor del Pasado",
+        "text": "Una inscripción en la roca describe a un guerrero elfo que fue traicionado por un 'ser disfrazado de héroe'. ¿Se refiere a ti? ¿O a otro?"
+      },
+      "5": {
+        "title": "El Encuentro",
+        "text": "Ves de reojo una figura que parece familiar, pero desaparece antes de que puedas alcanzarla. Deja tras de sí una daga ensangrentada."
+      },
+      "6": {
+        "title": "Verdad Oculta",
+        "text": "Trozos de tu memoria se reconstruyen al encontrar un viejo colgante: Lara te lo dio... antes de desaparecer en esta misma cueva."
+      },
+      "7": {
+        "title": "La Ira del Elfo",
+        "text": "El conocimiento de la traición reaviva tu furia. Te mueves con precisión letal, decidido a vengar a tus amigos."
+      },
+      "8": {
+        "title": "Recuerdos y Cenizas",
+        "text": "Encuentras una tumba improvisada. Reconoces la empuñadura de la espada: es de Link. Tu corazón se endurece."
+      },
+      "9": {
+        "title": "El Juramento",
+        "text": "Prometes eliminar al Bisho Malo, incluso si eso significa perderte en la oscuridad como lo hicieron tus camaradas."
+      },
+      "10": {
+        "title": "El Ojo del Cazador",
+        "text": "Tu concentración es perfecta. Todo enemigo cae antes de tocarte. Pero sabes que el verdadero rival aún espera."
+      },
+      "11": {
+        "title": "Verdad Devastadora",
+        "text": "Un mural te muestra una escena imposible: tú, Lara, Link... y el cuarto... ¿es el mismo que ahora buscas?"
+      },
+      "12": {
+        "title": "El Juicio de los Elfos",
+        "text": "Te cuestionas si la venganza te ha hecho perder el honor. ¿Qué queda de Legolas si solo queda rabia?"
+      },
+      "13": {
+        "title": "Flecha del Destino",
+        "text": "Encuentras una reliquia élfica: una flecha dorada. Solo puede ser usada contra un enemigo digno. El destino te la entrega."
+      },
+      "14": {
+        "title": "Últimos Pasos",
+        "text": "Cada paso resuena como un tambor de guerra. Sientes que los caídos te acompañan desde el más allá."
+      },
+      "15": {
+        "title": "Venganza en la Cueva",
+        "text": "Llegas al corazón de la cueva. El Bisho Malo te espera. Esta es la batalla por el honor de los caídos... y por tu alma."
+      }
+    },
+    "link": {
+      "1": {
+        "title": "El Héroe de Hyrule",
+        "text": "Una visión enviada por Zelda te guía hacia una cueva maldita. En ella yace un mal que debe ser destruido antes de que se propague."
+      },
+      "2": {
+        "title": "Sombras del Pasado",
+        "text": "Tu espada vibra al acercarte a la entrada. Algo en esta cueva te recuerda a Ganon, pero no es él. Es algo más... personal."
+      },
+      "3": {
+        "title": "El Eco de los Héroes",
+        "text": "Notas señales de una exploradora y un elfo. ¿Lara? ¿Legolas? ¿Estuvieron aquí antes que tú?"
+      },
+      "4": {
+        "title": "Un Enemigo Silencioso",
+        "text": "No hay monstruos visibles, pero sientes que eres observado. La oscuridad se mueve como si tuviera voluntad propia."
+      },
+      "5": {
+        "title": "Una Espada Rota",
+        "text": "Encuentras una espada quebrada con el escudo de Hyrule. No es tuya. ¿Un mensajero? ¿Un héroe anterior que fracasó?"
+      },
+      "6": {
+        "title": "Corazón de Valor",
+        "text": "Encuentras una fuente sagrada que refuerza tu determinación. El camino es duro, pero el objetivo es justo."
+      },
+      "7": {
+        "title": "El Espejo Roto",
+        "text": "Una sala llena de espejos rotos distorsiona tu figura... en uno de ellos ves una versión corrupta de ti mismo."
+      },
+      "8": {
+        "title": "La Voz de Zelda",
+        "text": "Una voz suave te guía por un pasaje secreto. Te advierte: 'El enemigo fue un aliado... cuídate del que no recuerda.'"
+      },
+      "9": {
+        "title": "El Último Descanso de Legolas",
+        "text": "Encuentras su carcaj vacío. Su nombre tallado en una piedra. Su historia termina aquí... ¿o no?"
+      },
+      "10": {
+        "title": "Confusión",
+        "text": "Todo parece irreal. ¿Estás siguiendo un camino que otros ya fallaron en completar? ¿Serás tú también un mártir?"
+      },
+      "11": {
+        "title": "Pasos en la Arena",
+        "text": "Sigues huellas... hasta que descubres que son tuyas. Has estado aquí antes, pero no recuerdas cuándo."
+      },
+      "12": {
+        "title": "El Anillo de Fuego",
+        "text": "Una prueba: cruzar el anillo de fuego sin quemarte. Solo quien tiene el corazón puro lo logrará."
+      },
+      "13": {
+        "title": "Sombra con Nombre",
+        "text": "La sombra te habla. Su voz es la tuya, pero distorsionada. No quiere pelear. Quiere recordar."
+      },
+      "14": {
+        "title": "El Último Eco de Lara",
+        "text": "Encuentras su diario. Última entrada: 'El enemigo era uno de nosotros. Ya es demasiado tarde para mí.'"
+      },
+      "15": {
+        "title": "Camino de Luz",
+        "text": "Sientes que el final está cerca. Las ruinas brillan con una luz tenue... como si la misma Trifuerza te guiara."
+      },
+      "16": {
+        "title": "Decisión del Héroe",
+        "text": "Tendrás que decidir: redimir al Bisho Malo o destruirlo. Las acciones futuras dependerán de tu elección."
+      },
+      "17": {
+        "title": "Prueba de Valor",
+        "text": "Un duelo espiritual contra la esencia del Bisho Malo. Tu valor será la única arma efectiva."
+      },
+      "18": {
+        "title": "Preludio del Final",
+        "text": "Un descanso antes del final. Encuentras un altar con una espada nueva... la única capaz de sellar el mal."
+      },
+      "19": {
+        "title": "El Abismo",
+        "text": "Saltas al corazón de la cueva, donde todo comenzó. Estás completamente solo. Pero no indefenso."
+      },
+      "20": {
+        "title": "La Última Batalla",
+        "text": "El Bisho Malo te espera. Pero ahora sabes la verdad: fuiste tú quien lo creó. Solo enfrentando tu error puedes restaurar el equilibrio."
+      }
+    }
+  },
+  "cellContent": {
+    "wumpus": {
+      "alt": "Wumpus (es)",
+      "ariaLabel": "Etiqueta Wumpus (es)"
+    }
   }
 }

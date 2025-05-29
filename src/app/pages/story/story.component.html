@@ -6,14 +6,16 @@
     (keydown.space)="goToGame()"
     tabindex="0"
   >
-    <h1 class="chapter">CAPÍTULO {{ story?.level }}</h1>
+    <h1 class="chapter">{{ 'storyPage.chapterPrefix' | transloco }}{{ story?.level }}</h1>
     <h2 class="title">{{ story?.title }}</h2>
     <p class="text">{{ displayedText() }}</p>
 
     @if(showExtraInfo()){
-    <p *ngIf="story?.effect" class="effect">✨ Efecto: {{ formatEffect(story!.effect) }}</p>
+    <p *ngIf="story?.effect" class="effect">
+      {{ 'storyPage.effectPrefix' | transloco }}{{ formatEffect(story!.effect) }}
+    </p>
 
-    <p class="instruction">Haz clic para comenzar el nivel</p>
+    <p class="instruction">{{ 'storyPage.clickToStartInstruction' | transloco }}</p>
     }
   </section>
 </main>

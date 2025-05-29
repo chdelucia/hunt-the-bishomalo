@@ -2,10 +2,11 @@ import { TestBed } from '@angular/core/testing';
 import { GameStoryService } from './game-story.service';
 import { LevelStory } from './stories.const';
 import { GameStore } from 'src/app/store';
+import { getTranslocoTestingModule } from 'src/app/utils';
 
 const mockSettings = {
   size: 6,
-  selectedChar: 'DEFAULT',
+  selectedChar: 'default',
 };
 
 const mockHunter = {
@@ -27,6 +28,7 @@ describe('GameStoryService', () => {
   let service: GameStoryService;
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [getTranslocoTestingModule()],
       providers: [GameStoryService, { provide: GameStore, useValue: mockGameStoreService }],
     });
 
@@ -63,5 +65,19 @@ describe('GameStoryService', () => {
       service.checkLevelTrigger(level);
       expect(mockUpdateHunter).not.toHaveBeenCalled();
     });
+  });
+
+  it('should return translated story for current level and character', () => {
+    const result = service.getStory();
+    expect(result).toBeDefined();
+    expect(result?.title).toBe('story.default.3.title');
+    expect(result?.text).toBe('story.default.3.text');
+  });
+
+  it('should return all translated stories up to current level', () => {
+    const result = service.getJournalEntries();
+    expect(result.length).toBe(3);
+    expect(result[0].title).toBe('story.default.1.title');
+    expect(result[1].text).toBe('story.default.2.text');
   });
 });

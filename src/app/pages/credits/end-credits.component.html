@@ -1,38 +1,40 @@
 <div class="creditos-panel">
   <div class="creditos-titulo-container">
-    <h1 class="creditos-titulo">Créditos</h1>
-    <p class="creditos-subtitulo">Las increíbles personas detrás de Hunt the Bishomalo</p>
+    <h1 class="creditos-titulo">{{ 'credits.title' | transloco }}</h1>
+    <p class="creditos-subtitulo">{{ 'credits.subtitle' | transloco }}</p>
   </div>
 
   <div class="creditos-ventana">
     <div class="creditos-contenido" [style.transform]="'translateY(-' + scrollPosition() + 'px)'">
       <div class="creditos-seccion">
-        <h2 class="creditos-rol">Director Ejecutivo</h2>
-        <p class="creditos-nombre">Christian Heredia</p>
+        <h2 class="creditos-rol">{{ 'credits.roleExecutiveDirector' | transloco }}</h2>
+        <p class="creditos-nombre">{{ 'credits.nameChrisHeredia' | transloco }}</p>
       </div>
 
       <ng-container *ngFor="let rol of roles()">
         <div class="creditos-seccion">
           <h2 class="creditos-rol">{{ rol }}</h2>
-          <p class="creditos-nombre">Christian Heredia</p>
+          <p class="creditos-nombre">{{ 'credits.nameChrisHeredia' | transloco }}</p>
         </div>
       </ng-container>
 
       <div class="creditos-seccion">
-        <h2 class="creditos-rol">Y por supuesto...</h2>
-        <p class="creditos-nombre creditos-especial">Christian Heredia</p>
+        <h2 class="creditos-rol">{{ 'credits.roleAndOfCourse' | transloco }}</h2>
+        <p class="creditos-nombre creditos-especial">
+          {{ 'credits.nameChrisHeredia' | transloco }}
+        </p>
       </div>
 
       <div class="creditos-seccion">
         <p class="creditos-final">
-          Ningún Bishomalo fue dañado durante el desarrollo de este juego.
+          {{ 'credits.noBishomalosHarmed' | transloco }}
         </p>
-        <p class="creditos-final">Excepto aquellos que se encontraron con Christian Heredia.</p>
+        <p class="creditos-final">{{ 'credits.exceptThoseMetChris' | transloco }}</p>
       </div>
 
       <div class="creditos-seccion">
-        <p class="creditos-copyright">© 2025 Christian Heredia</p>
-        <p class="creditos-copyright">(y nadie más)</p>
+        <p class="creditos-copyright">{{ 'credits.copyright' | transloco }}</p>
+        <p class="creditos-copyright">{{ 'credits.andNoOneElse' | transloco }}</p>
       </div>
     </div>
   </div>
@@ -72,11 +74,10 @@
       </svg>
     </div>
     <div class="creditos-mensaje">
-      <p>
-        "Sí, lo hice todo yo solo. ¿Algún problema?"
-        <br />- Christian Heredia
-      </p>
+      <p [innerHTML]="'credits.quoteSolo' | transloco"></p>
     </div>
-    <button class="boton-creditos red" (click)="newGame()">Empezar nueva partida</button>
+    <button class="boton-creditos red" (click)="newGame()">
+      {{ 'credits.newGameButton' | transloco }}
+    </button>
   </div>
 </div>

@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AchievementService, LeaderboardService } from 'src/app/services';
 import { RouteTypes, ScoreEntry } from 'src/app/models';
+import { getTranslocoTestingModule } from 'src/app/utils';
 
 const mockLeaderboard: ScoreEntry[] = [
   {
@@ -58,7 +59,7 @@ describe('ResultsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ResultsComponent, CommonModule],
+      imports: [ResultsComponent, CommonModule, getTranslocoTestingModule()],
       providers: [
         { provide: AchievementService, useValue: mockAchievementService },
         { provide: LeaderboardService, useValue: mockLeaderboardService },

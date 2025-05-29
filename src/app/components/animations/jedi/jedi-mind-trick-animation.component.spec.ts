@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { JediMindTrickAnimationComponent } from './jedi-mind-trick-animation.component';
 import { RouterModule } from '@angular/router';
+import { getTranslocoTestingModule } from 'src/app/utils';
 
 describe('JediMindTrickAnimationComponent', () => {
   let component: JediMindTrickAnimationComponent;
@@ -8,7 +9,11 @@ describe('JediMindTrickAnimationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [JediMindTrickAnimationComponent, RouterModule.forRoot([])],
+      imports: [
+        JediMindTrickAnimationComponent,
+        RouterModule.forRoot([]),
+        getTranslocoTestingModule(),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(JediMindTrickAnimationComponent);

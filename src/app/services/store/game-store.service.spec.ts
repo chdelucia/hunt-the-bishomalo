@@ -22,6 +22,7 @@ describe('GameStoreService', () => {
       luck: 8,
       bossTries: 12,
     },
+    startTime: '',
   };
 
   beforeEach(() => {

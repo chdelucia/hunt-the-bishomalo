@@ -6,6 +6,7 @@ import { Router, RouterModule } from '@angular/router';
 import { GameSoundService } from 'src/app/services';
 import { RouteTypes } from 'src/app/models';
 import { GameStore } from 'src/app/store';
+import { getTranslocoTestingModule } from 'src/app/utils';
 
 describe('BossFightComponent', () => {
   let component: BossFightComponent;
@@ -34,7 +35,12 @@ describe('BossFightComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BossFightComponent, CommonModule, RouterModule.forRoot([])],
+      imports: [
+        BossFightComponent,
+        CommonModule,
+        RouterModule.forRoot([]),
+        getTranslocoTestingModule(),
+      ],
       providers: [
         { provide: GameStore, useValue: gameStoreMock },
         { provide: GameSoundService, useValue: gameSoundMock },
@@ -70,7 +76,7 @@ describe('BossFightComponent', () => {
     component.attackCell(bossCell);
 
     expect(component.bossRemaining).toBe(component.bossParts - 1);
-    expect(component.message).toContain('¡Golpeaste');
+    expect(component.message).toContain('bossFightMessages.bossHit');
   });
 
   it('should end game and reveal parts when lives reach 0', () => {
@@ -81,7 +87,7 @@ describe('BossFightComponent', () => {
     component.attackCell(cell);
 
     expect(component.gameOver).toBe(true);
-    expect(component.message).toContain('El jefe te derrotó');
+    expect(component.message).toContain('bossFightMessages.playerDefeated');
     expect(component.grid.flat().filter((c) => c.hasBossPart && c.hit).length).toBeGreaterThan(0);
   });
 
@@ -99,7 +105,7 @@ describe('BossFightComponent', () => {
     component.retryGame();
 
     expect(gameStoreMock.updateHunter).not.toHaveBeenCalled();
-    expect(component.message).toContain('No te quedan vidas');
+    expect(component.message).toContain('bossFightMessages.noMoreRetries');
   });
 
   it('should navigate to prize screen on goToprizeScreen', () => {
@@ -109,5 +115,48 @@ describe('BossFightComponent', () => {
       state: { fromSecretPath: true },
       queryParams: { boss: true },
     });
+  });
+
+  it('should return position and "not selected" status if cell not hit', () => {
+    const cell = {
+      x: 0,
+      y: 0,
+      hit: false,
+      hasBossPart: false,
+    };
+
+    const label = component.getAriaLabel(cell, 0, 1);
+    expect(label).toBe(
+      'bossFightMessages.ariaCellPosition, bossFightMessages.ariaCellStatusNotSelected',
+    );
+  });
+
+  it('should return position and "boss hit" status if cell is hit and has boss part', () => {
+    const cell = {
+      x: 1,
+      y: 1,
+      hit: true,
+      hasBossPart: true,
+    };
+
+    const label = component.getAriaLabel(cell, 1, 2);
+    expect(label).toBe(
+      'bossFightMessages.ariaCellPosition, bossFightMessages.ariaCellStatusBossHit',
+    );
+  });
+
+  it('should return position and "miss" status with hint if cell is hit but has no boss part', () => {
+    const cell = {
+      x: 2,
+      y: 2,
+      hit: true,
+      hasBossPart: false,
+      hint: 'nearby',
+    };
+
+    const label = component.getAriaLabel(cell, 2, 3);
+    expect(label).toBe(
+      'bossFightMessages.ariaCellPosition, bossFightMessages.ariaCellStatusMiss nearby',
+    );
   });
 });

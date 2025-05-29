@@ -1,26 +1,42 @@
 <section class="game-message" aria-live="polite">
   @if(lives() <= 0){
-  <p>GAME OVER! te quedaste sin vidas #haberestudiao</p>
-  <button class="newgame" (click)="newGame()" aria-label="Nueva partida">
-    Empezar una nueva partida
+  <p>{{ 'message.gameOver' | transloco }}</p>
+  <button
+    class="newgame"
+    (click)="newGame()"
+    [attr.aria-label]="'message.newGameAriaLabel' | transloco"
+  >
+    {{ 'message.newGameButton' | transloco }}
   </button>
   }@else{ @if (_hasMessage()) {
   <p>{{ message() }}</p>
   @if(_bolaDrac()){
-  <img [src]="`boardicons/b4.png`" alt="bola de drac" />
+  <img [src]="`boardicons/b4.png`" alt="{{ 'message.dragonBallAlt' | transloco }}" />
   } }@else {
-  <p>Activa el sonido, recoge la moneda y vuelve al inicio.</p>
+  <p>{{ 'message.defaultInstructions' | transloco }}</p>
   } @if (_shouldShowRetry()) {
-  <button class="newgame" (click)="restartGame()" aria-label="Reiniciar el juego">
-    Haz click para intertarlo de nuevo
+  <button
+    class="newgame"
+    (click)="restartGame()"
+    [attr.aria-label]="'message.restartGameAriaLabel' | transloco"
+  >
+    {{ 'message.tryAgainButton' | transloco }}
   </button>
   } @else if (_shouldShowNextLevel()) { @if (_showCongrats()) {
-  <button class="newgame" (click)="nextLevel()" aria-label="Nuevo nivel">
-    Felicidades click para empezar el siguiente nivel.
+  <button
+    class="newgame"
+    (click)="nextLevel()"
+    [attr.aria-label]="'message.nextLevelAriaLabel' | transloco"
+  >
+    {{ 'message.congratsNextLevelButton' | transloco }}
   </button>
   }@else {
-  <button class="newgame" aria-label="Nuevo nivel" (click)="goToBoss()">
-    FELICIDADES!! Has completado todos los niveles, has click para reclamar tu recompensa.
+  <button
+    class="newgame"
+    [attr.aria-label]="'message.nextLevelAriaLabel' | transloco"
+    (click)="goToBoss()"
+  >
+    {{ 'message.congratsBossButton' | transloco }}
   </button>
   } } }
 </section>
