@@ -1,20 +1,17 @@
-import { effect, inject, Injectable, signal, OnDestroy } from '@angular/core';
+import { effect, inject, Injectable, signal } from '@angular/core';
 import { Achievement, AchieveTypes, Cell, GameSound } from 'src/app/models';
 import { AnalyticsService, GameSoundService, LocalstorageService } from 'src/app/services';
 import { TranslocoService } from '@jsverse/transloco';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { ACHIEVEMENTS_LIST } from './achieve.const';
 import { GameStore } from 'src/app/store';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AchievementService implements OnDestroy {
-  achievements = ACHIEVEMENTS_LIST.map((ach) => ({ ...ach })); // Clone to make it writable
+export class AchievementService {
+  achievements = ACHIEVEMENTS_LIST.map((ach) => ({ ...ach }));
   private readonly storageKey = 'hunt_the_bishomalo_achievements';
   completed = signal<Achievement | undefined>(undefined);
-  private destroy$ = new Subject<void>();
 
   private readonly gameStore = inject(GameStore);
   private readonly translocoService = inject(TranslocoService);
@@ -28,20 +25,6 @@ export class AchievementService implements OnDestroy {
 
     effect(() => this.checkPentaKillAchievement());
     effect(() => this.checkDeathRelatedAchievements());
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
-  }
-
-  private _translateAllAchievements(): void {
-    this.achievements.forEach((achieve) => {
-      achieve.title = this.translocoService.translate(`achievements.${achieve.id}.title`);
-      achieve.description = this.translocoService.translate(
-        `achievements.${achieve.id}.description`,
-      );
-    });
   }
 
   private checkPentaKillAchievement(): void {

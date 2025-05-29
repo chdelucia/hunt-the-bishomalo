@@ -35,7 +35,7 @@ export class GameStoryService {
   getJournalEntries(): LevelStory[] {
     const { size, selectedChar } = this._settings();
     const level = size - 3;
-    const charId = selectedChar as Chars;
+    const charId = selectedChar;
     const charStories = this.stories[charId] || [];
 
     return charStories
