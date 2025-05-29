@@ -3,6 +3,7 @@ import { StoryComponent } from './story.component';
 import { Router } from '@angular/router';
 import { GameStoryService } from 'src/app/services/story/game-story.service';
 import { RouteTypes } from 'src/app/models';
+import { getTranslocoTestingModule } from 'src/app/utils';
 
 const mockRouter = {
   navigate: jest.fn(),
@@ -43,7 +44,7 @@ describe('StoryComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [StoryComponent],
+      imports: [StoryComponent, getTranslocoTestingModule()],
       providers: [
         { provide: Router, useValue: mockRouter },
         { provide: GameStoryService, useValue: mockGameStoryService },
@@ -79,12 +80,11 @@ describe('StoryComponent', () => {
   });
 
   it('debería formatear el efecto correctamente', () => {
-    expect(component.formatEffect('extraLife')).toBe('Recuperas una vida');
+    expect(component.formatEffect('extraLife')).toBe('extraLife');
     expect(component.formatEffect('unknownEffect')).toBe('unknownEffect');
   });
 
   it('debería mostrar texto gradualmente y activar showExtraInfo al final del audio', () => {
-    const utterEndCallbacks: Record<string, () => void> = {};
 
     const speakMock = jest.fn((utterance) => {
       if (utterance.text.includes('Capítulo')) {

@@ -37,6 +37,7 @@ describe('GameStore (SignalStore)', () => {
       luck: 5,
       bossTries: 3,
     },
+    startTime: '12/08/2025'
   };
 
   beforeEach(() => {

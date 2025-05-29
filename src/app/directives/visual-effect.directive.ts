@@ -15,15 +15,15 @@ export class VisualEffectDirective implements OnChanges {
     const container = this.renderer.createElement('div');
     this.renderer.addClass(container, 'effect-layer');
 
-    if (this.perception.includes('brisa')) {
+    if (this.perception.includes('brisa') || this.perception.includes('breeze')) {
       this.addClouds(container);
     }
 
-    if (this.perception.includes('hedor')) {
+    if (this.perception.includes('hedor') || this.perception.includes('stench')) {
       this.addStink(container);
     }
 
-    if (this.perception.includes('brillo')) {
+    if (this.perception.includes('brillo') || this.perception.includes('shine')) {
       this.addSparkles(container);
     }
 

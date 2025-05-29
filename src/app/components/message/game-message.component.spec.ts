@@ -3,6 +3,7 @@ import { GameMessageComponent } from './game-message.component';
 import { GameEngineService } from 'src/app/services';
 import { Router } from '@angular/router';
 import { RouteTypes } from 'src/app/models';
+import { getTranslocoTestingModule } from 'src/app/utils';
 
 const gameEngineMock = {
   initGame: jest.fn(),
@@ -32,7 +33,7 @@ describe('GameMessageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GameMessageComponent],
+      imports: [GameMessageComponent, getTranslocoTestingModule()],
       providers: [
         { provide: GameEngineService, useValue: gameEngineMock },
         { provide: Router, useValue: routerMock },
@@ -121,7 +122,7 @@ describe('GameMessageComponent', () => {
     fixture.detectChanges();
 
     const messageEl = fixture.nativeElement.querySelector('p');
-    expect(messageEl?.textContent).toContain('Activa el sonido');
+    expect(messageEl?.textContent).toContain('message.defaultInstructions');
   });
 
   it('should show retry button when player is dead', () => {
@@ -144,7 +145,7 @@ describe('GameMessageComponent', () => {
     fixture.detectChanges();
 
     const button = fixture.nativeElement.querySelector('button.newgame');
-    expect(button?.textContent).toContain('intertarlo de nuevo');
+    expect(button?.textContent).toContain('message.tryAgainButton');
   });
 
   it('should call restartGame when retry button is clicked', () => {
@@ -191,7 +192,7 @@ describe('GameMessageComponent', () => {
     fixture.detectChanges();
 
     const button = fixture.nativeElement.querySelector('button.newgame');
-    expect(button?.textContent).toContain('Felicidades click');
+    expect(button?.textContent).toContain('message.congratsNextLevelButton');
   });
 
   it('should show final message when level 20 is reached', () => {
@@ -214,7 +215,7 @@ describe('GameMessageComponent', () => {
     fixture.detectChanges();
 
     const button = fixture.nativeElement.querySelector('button.newgame');
-    expect(button?.textContent).toContain('completado todos los niveles');
+    expect(button?.textContent).toContain('message.congratsBossButton');
   });
 
   it('should navigate to next level', () => {

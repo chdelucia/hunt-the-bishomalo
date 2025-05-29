@@ -5,9 +5,11 @@ import { RouteTypes, ScoreEntry } from 'src/app/models';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GameStore } from 'src/app/store';
 
+import { TranslocoModule } from '@jsverse/transloco';
+
 @Component({
   selector: 'app-results',
-  imports: [CommonModule],
+  imports: [CommonModule, TranslocoModule],
   standalone: true,
   templateUrl: './results.component.html',
   styleUrl: './results.component.scss',

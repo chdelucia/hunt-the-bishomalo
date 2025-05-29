@@ -1,7 +1,7 @@
 @let estadisticas = estadisticasGenerales();
 <div class="resultados-panel">
-  <h1 class="resultados-titulo">Resultados de juego</h1>
-  <p class="resultados-subtitulo">Estadísticas detalladas de tu aventura</p>
+  <h1 class="resultados-titulo">{{ 'results.title' | transloco }}</h1>
+  <p class="resultados-subtitulo">{{ 'results.subtitle' | transloco }}</p>
 
   @if(leaderboard.length){
   <div class="tabs-container">
@@ -10,46 +10,46 @@
       [ngClass]="{ 'tab-activa': tabActiva() === 'general' }"
       (click)="tabActiva.set('general')"
     >
-      General
+      {{ 'results.tabGeneral' | transloco }}
     </button>
     <button
       class="tab-button"
       [ngClass]="{ 'tab-activa': tabActiva() === 'niveles' }"
       (click)="tabActiva.set('niveles')"
     >
-      Niveles
+      {{ 'results.tabLevels' | transloco }}
     </button>
   </div>
 
   <div *ngIf="tabActiva() === 'general'" class="tab-contenido">
     <div class="resumen-container">
       <div class="resumen-seccion">
-        <h2 class="resumen-titulo">Resumen de aventura</h2>
+        <h2 class="resumen-titulo">{{ 'results.summaryTitle' | transloco }}</h2>
         <div class="stats-grid">
           <div class="stat-card">
             <div class="stat-info">
-              <h3 class="stat-nombre">Pasos totales</h3>
+              <h3 class="stat-nombre">{{ 'results.totalSteps' | transloco }}</h3>
               <p class="stat-valor">{{ estadisticas.pasosTotales }}</p>
             </div>
           </div>
 
           <div class="stat-card">
             <div class="stat-info">
-              <h3 class="stat-nombre">Tiempo de juego</h3>
+              <h3 class="stat-nombre">{{ 'results.playTime' | transloco }}</h3>
               <p class="stat-valor">{{ estadisticas.tiempoJuego }}</p>
             </div>
           </div>
 
           <div class="stat-card">
             <div class="stat-info">
-              <h3 class="stat-nombre">Niveles completados</h3>
+              <h3 class="stat-nombre">{{ 'results.levelsCompleted' | transloco }}</h3>
               <p class="stat-valor">{{ estadisticas.nivelesCompletados }}</p>
             </div>
           </div>
 
           <div class="stat-card">
             <div class="stat-info">
-              <h3 class="stat-nombre">Logros desbloqueados</h3>
+              <h3 class="stat-nombre">{{ 'results.achievementsUnlocked' | transloco }}</h3>
               <p class="stat-valor">{{ unlockedAchievements }}</p>
             </div>
           </div>
@@ -57,45 +57,44 @@
       </div>
 
       <div class="resumen-seccion">
-        <h2 class="resumen-titulo">Récords personales</h2>
+        <h2 class="resumen-titulo">{{ 'results.personalRecordsTitle' | transloco }}</h2>
         <div class="records-lista">
           <div class="record-item">
             <div class="record-badge">🏆</div>
             <div class="record-info">
-              <h3 class="record-nombre">Nivel más rápido</h3>
+              <h3 class="record-nombre">{{ 'results.fastestLevel' | transloco }}</h3>
               <p class="record-valor">
-                Nivel {{ nivelMasRapido().level }} -
-                {{ nivelMasRapido().timeInSeconds | number : '1.0-0' }}s
+                {{ 'results.fastestLevelDetails' | transloco: { level: nivelMasRapido().level, time: (nivelMasRapido().timeInSeconds | number : '1.0-0') } }}
               </p>
             </div>
           </div>
           <div class="record-item">
             <div class="record-badge">👣</div>
             <div class="record-info">
-              <h3 class="record-nombre">Nivel con menos pasos</h3>
+              <h3 class="record-nombre">{{ 'results.fewestStepsLevel' | transloco }}</h3>
               <p class="record-valor">
-                Nivel {{ nivelMenosPasos().level }} - {{ nivelMenosPasos().steps }} pasos
+                {{ 'results.fewestStepsLevelDetails' | transloco: { level: nivelMenosPasos().level, steps: nivelMenosPasos().steps } }}
               </p>
             </div>
           </div>
           <div class="record-item">
             <div class="record-badge">💀</div>
             <div class="record-info">
-              <h3 class="record-nombre">Total de muertes</h3>
-              <p class="record-valor">{{ estadisticasGenerales().muertes }} veces</p>
+              <h3 class="record-nombre">{{ 'results.totalDeaths' | transloco }}</h3>
+              <p class="record-valor">{{ 'results.totalDeathsDetails' | transloco: { count: estadisticasGenerales().muertes } }}</p>
             </div>
           </div>
           <div class="record-item">
             <div class="record-badge">🎯</div>
             <div class="record-info">
-              <h3 class="record-nombre">Flechas disparadas</h3>
+              <h3 class="record-nombre">{{ 'results.arrowsShot' | transloco }}</h3>
               <p class="record-valor">--</p>
             </div>
           </div>
           <div class="record-item">
             <div class="record-badge">💰</div>
             <div class="record-info">
-              <h3 class="record-nombre">Monedas recolectadas</h3>
+              <h3 class="record-nombre">{{ 'results.coinsCollected' | transloco }}</h3>
               <p class="record-valor">{{ estadisticas.oroTotal }}</p>
             </div>
           </div>
@@ -109,10 +108,10 @@
       <table class="niveles-tabla">
         <thead>
           <tr>
-            <th>Tiempo</th>
-            <th>Pasos</th>
-            <th>Muertes</th>
-            <th>Nivel</th>
+            <th>{{ 'results.tableHeaderTime' | transloco }}</th>
+            <th>{{ 'results.tableHeaderSteps' | transloco }}</th>
+            <th>{{ 'results.tableHeaderDeaths' | transloco }}</th>
+            <th>{{ 'results.tableHeaderLevel' | transloco }}</th>
           </tr>
         </thead>
         <tbody>
@@ -127,10 +126,10 @@
     </div>
   </div>
   }@else{
-  <p>Pero si aun no has juegado que estadisticas quiere pishrurrica mia.</p>
+  <p>{{ 'results.noStatsMessage' | transloco }}</p>
   }
 
   <div class="button-wrapper">
-    <button class="next-btn" aria-label="siguiente" (click)="goToCredits()">Siguiente</button>
+    <button class="next-btn" [attr.aria-label]="'results.nextButtonAriaLabel' | transloco" (click)="goToCredits()">{{ 'results.nextButton' | transloco }}</button>
   </div>
 </div>

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameLevelComponent } from './game-level.component';
+import { getTranslocoTestingModule } from 'src/app/utils';
 
 describe('GameLevelComponent', () => {
   let component: GameLevelComponent;
@@ -7,7 +8,7 @@ describe('GameLevelComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GameLevelComponent],
+      imports: [GameLevelComponent, getTranslocoTestingModule()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GameLevelComponent);
@@ -25,6 +26,6 @@ describe('GameLevelComponent', () => {
     fixture.detectChanges();
 
     const levelEl = fixture.nativeElement.querySelector('.level');
-    expect(levelEl?.textContent).toContain('Nivel 3'); // 6 - 4 + 1 = 3
+    expect(levelEl?.textContent).toContain('level.display');
   });
 });

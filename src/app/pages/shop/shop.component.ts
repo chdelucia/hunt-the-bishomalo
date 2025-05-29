@@ -1,5 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { GameEngineService } from 'src/app/services';
 import { Product, RouteTypes } from 'src/app/models';
 import { Router } from '@angular/router';
@@ -7,55 +8,55 @@ import { GameStore } from 'src/app/store';
 
 @Component({
   selector: 'app-shop',
-  imports: [CommonModule],
+  imports: [CommonModule, TranslocoModule],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss',
 })
 export class ShopComponent {
-  readonly products: Product[] = [
+  // Base product definitions with translation keys
+  private readonly baseProducts: Product[] = [
     {
       effect: 'heart',
-      name: 'Vida extra',
-      description: 'Te da una oportunidad más para sobrevivir.',
+      name: 'product.heart.name', // Key
+      description: 'product.heart.description', // Key
       price: 60,
       icon: 'heart.svg',
     },
     {
       effect: 'shield',
-      name: 'Escudo',
-      description: 'Te protege de un ataque del bishomalo.',
+      name: 'product.shield.name', // Key
+      description: 'product.shield.description', // Key
       price: 150,
       icon: 'shield.svg',
     },
     {
       effect: 'lantern',
-      name: 'Linterna',
-      description: 'Ya hubo un apagón quien sabe si habrá más.',
+      name: 'product.lantern.name', // Key
+      description: 'product.lantern.description', // Key
       price: 100,
       icon: 'lantern.svg',
     },
     {
       effect: 'rewind',
-      name: 'Reloj de arena',
-      description: 'Rebobina el tiempo y evita que caigas al fondo de un pozo.',
+      name: 'product.rewind.name', // Key
+      description: 'product.rewind.description', // Key
       price: 200,
       icon: 'clock.svg',
     },
   ];
 
-  readonly randomProduct: Product[] = [
+  private readonly baseRandomProducts: Product[] = [
     {
       effect: 'dragonball',
-      name: 'Una bola 4',
-      description:
-        'No se muy bien para que sirve, la encontré en un arbusto. Te la dejo baratita...',
+      name: 'product.dragonball.name', // Key
+      description: 'product.dragonball.description', // Key
       price: 125,
       icon: 'b4.png',
     },
     {
       effect: 'apple',
-      name: 'Una manzana',
-      description: 'Siempre va bien una para el hambre. De algun apuro te sacará.',
+      name: 'product.apple.name', // Key
+      description: 'product.apple.description', // Key
       price: 85,
       icon: 'apple.png',
     },
@@ -65,38 +66,66 @@ export class ShopComponent {
   private readonly settings = this.gameStore.settings;
   private readonly gameEngine = inject(GameEngineService);
   private readonly router = inject(Router);
+  private readonly transloco = inject(TranslocoService);
 
   readonly gold = this.gameStore.gold;
   readonly inventory = this.gameStore.inventory;
 
   message = signal('');
+
+  // Computed signal to get translated products
   productos = computed(() => {
-    const products = this.products;
+    const translatedProducts = this.baseProducts.map((p) => ({
+      ...p,
+      name: this.transloco.translate(p.name),
+      description: this.transloco.translate(p.description),
+    }));
+
+    const translatedRandomProducts = this.baseRandomProducts.map((p) => ({
+      ...p,
+      name: this.transloco.translate(p.name),
+      description: this.transloco.translate(p.description),
+    }));
+
     if (Math.random() < this.settings().difficulty.maxChance) {
-      return [...products, ...this.randomProduct];
+      return [...translatedProducts, ...translatedRandomProducts];
     }
-    return products;
+    return translatedProducts;
   });
 
   buyProduct(product: Product): void {
     const gold = this.gold();
-    const { price, effect } = product;
+    const { price, effect, name: nameKey } = product; // nameKey is now the translation key
     const lives = this.gameStore.hunter().lives;
 
     const canBuy = gold >= price;
 
     if (!canBuy) {
-      this.message.set('¡No tienes suficientes monedas!');
+      this.message.set(this.transloco.translate('shop.purchaseMessageNotEnoughCoins'));
       return;
     }
 
     if (effect === 'heart') {
       this.addLifeToPlayer({ gold, price, lives });
     } else {
-      this.addItemToPlayer({ gold, product, price });
+      // We need to pass the original product definition if it contains keys
+      // Find the original product from baseProducts or baseRandomProducts
+      const originalProduct =
+        this.baseProducts.find((p) => p.effect === effect) ||
+        this.baseRandomProducts.find((p) => p.effect === effect);
+      if (originalProduct) {
+        this.addItemToPlayer({ gold, product: originalProduct, price });
+      } else {
+        // Fallback or error handling if product not found in base definitions
+        console.error('Original product definition not found for effect:', effect);
+        return;
+      }
     }
-
-    this.message.set(`¡Has comprado ${product.name}!`);
+    // The product.name passed to buyProduct is already translated by the `productos` computed signal.
+    // So, we use product.name directly here.
+    this.message.set(
+      this.transloco.translate('shop.purchaseMessageSuccess', { productName: product.name }),
+    );
     setTimeout(() => this.message.set(''), 2000);
   }
 

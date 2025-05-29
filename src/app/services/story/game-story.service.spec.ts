@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { GameStoryService } from './game-story.service';
 import { LevelStory } from './stories.const';
 import { GameStore } from 'src/app/store';
+import { getTranslocoTestingModule } from 'src/app/utils';
 
 const mockSettings = {
   size: 6,
@@ -27,6 +28,7 @@ describe('GameStoryService', () => {
   let service: GameStoryService;
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [getTranslocoTestingModule()],
       providers: [GameStoryService, { provide: GameStore, useValue: mockGameStoreService }],
     });
 

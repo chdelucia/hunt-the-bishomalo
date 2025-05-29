@@ -3,6 +3,7 @@ import { EndCreditsComponent } from './end-credits.component';
 import { RouterModule } from '@angular/router';
 import { GameEngineService, GameSoundService } from 'src/app/services';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { getTranslocoTestingModule } from 'src/app/utils';
 
 const gameEngineMock = {
   initGame: jest.fn(),
@@ -20,7 +21,7 @@ describe('EndCreditsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EndCreditsComponent, RouterModule.forRoot([])],
+      imports: [EndCreditsComponent, RouterModule.forRoot([]), getTranslocoTestingModule()],
       providers: [
         { provide: GameEngineService, useValue: gameEngineMock },
         { provide: GameSoundService, useValue: gameSoundMock },

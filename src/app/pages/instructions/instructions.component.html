@@ -2,12 +2,12 @@
   <div class="header-container">
     <a routerLink="/home" class="back-link">
       <i class="arrow-left-icon"></i>
-      <span>Volver al juego</span>
+      <span>{{ 'instructions.backToGame' | transloco }}</span>
     </a>
   </div>
 
-  <h1 class="instrucciones-titulo">Instrucciones del juego</h1>
-  <p class="instrucciones-subtitulo">Aprende a jugar Hunt the Bishomalo</p>
+  <h1 class="instrucciones-titulo">{{ 'instructions.mainTitle' | transloco }}</h1>
+  <p class="instrucciones-subtitulo">{{ 'instructions.subtitle' | transloco }}</p>
 
   <div class="seccion-instrucciones">
     <div class="seccion-header">
@@ -23,12 +23,11 @@
         <circle cx="12" cy="12" r="6" stroke="#4ade80" stroke-width="2" />
         <circle cx="12" cy="12" r="2" fill="#4ade80" />
       </svg>
-      <h2 class="seccion-titulo">Objetivo del juego</h2>
+      <h2 class="seccion-titulo">{{ 'instructions.objectiveTitle' | transloco }}</h2>
     </div>
     <div class="seccion-contenido">
       <p>
-        Tu misión es explorar la cueva, encontrar la modena escapar volviendo a la casilla de
-        inicio. No es obligatorio matar al bisho pero contra mas explores mas secretos descubrirás.
+        {{ 'instructions.objectiveText' | transloco }}
       </p>
     </div>
   </div>
@@ -53,7 +52,7 @@
           fill-opacity="0.3"
         />
       </svg>
-      <h2 class="seccion-titulo">Peligros</h2>
+      <h2 class="seccion-titulo">{{ 'instructions.dangersTitle' | transloco }}</h2>
     </div>
     <div class="seccion-contenido">
       <div class="peligros-lista">
@@ -78,10 +77,9 @@
             <circle cx="12" cy="12" r="3" fill="#ef4444" />
           </svg>
           <div class="peligro-info">
-            <h3 class="peligro-nombre">Bishomalo</h3>
+            <h3 class="peligro-nombre">{{ 'instructions.dangerBishomaloTitle' | transloco }}</h3>
             <p class="peligro-descripcion">
-              El temible monstruo que acecha en la cueva. Si entras en su habitación sin una flecha,
-              serás devorado. Puedes derrotarlo con una flecha bien dirigida.
+              {{ 'instructions.dangerBishomaloDescription' | transloco }}
             </p>
           </div>
         </div>
@@ -113,10 +111,9 @@
             />
           </svg>
           <div class="peligro-info">
-            <h3 class="peligro-nombre">Pozos</h3>
+            <h3 class="peligro-nombre">{{ 'instructions.dangerPitsTitle' | transloco }}</h3>
             <p class="peligro-descripcion">
-              Agujeros profundos en el suelo. Si caes en uno, no podrás salir y perderás el juego.
-              Sentirás una brisa cerca de ellos.
+              {{ 'instructions.dangerPitsDescription' | transloco }}
             </p>
           </div>
         </div>
@@ -150,14 +147,14 @@
           stroke-linejoin="round"
         />
       </svg>
-      <h2 class="seccion-titulo">Notas</h2>
+      <h2 class="seccion-titulo">{{ 'instructions.notesTitle' | transloco }}</h2>
     </div>
     <div class="seccion-contenido">
       <ul class="notas-lista">
-        <li>El juego tiene cosas injustas, habrá muertes que no puedas evitar.</li>
-        <li>Utiliza las flechas con precaución, ya que son limitadas.</li>
-        <li>Explora cada rincón para encontrar pistas y objetos útiles.</li>
-        <li>¡Diviértete y buena suerte!</li>
+        <li>{{ 'instructions.noteUnfairGames' | transloco }}</li>
+        <li>{{ 'instructions.noteArrows' | transloco }}</li>
+        <li>{{ 'instructions.noteExplore' | transloco }}</li>
+        <li>{{ 'instructions.noteHaveFun' | transloco }}</li>
       </ul>
     </div>
   </div>

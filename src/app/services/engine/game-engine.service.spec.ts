@@ -4,6 +4,7 @@ import { CELL_CONTENTS, Chars, Direction } from '../../models';
 import { GameSoundService } from '../sound/game-sound.service';
 import { LeaderboardService } from '../score/leaderboard.service';
 import { GameStore } from 'src/app/store';
+import { getTranslocoTestingModule } from 'src/app/utils';
 
 function createMockCell(overrides = {}) {
   return {
@@ -60,6 +61,7 @@ describe('GameEngineService (with useValue)', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [getTranslocoTestingModule()],
       providers: [
         GameEngineService,
         { provide: GameStore, useValue: mockStore },
@@ -109,6 +111,7 @@ describe('GameEngineService (with useValue)', () => {
         luck: 8,
         bossTries: 12,
       },
+      startTime: '12/98/09'
     };
     const initGameBoardSpy = jest.spyOn(service, 'initializeGameBoard');
 
@@ -141,7 +144,7 @@ describe('GameEngineService (with useValue)', () => {
   it('shootArrow: with no arrows does nothing', () => {
     mockStore.hunter.mockReturnValueOnce({ arrows: 0, alive: true });
     service.shootArrow();
-    expect(mockStore.setMessage).toHaveBeenCalledWith('¡No tienes flechas!');
+    expect(mockStore.setMessage).toHaveBeenCalledWith('gameMessages.noArrows');
   });
 
   it('shootArrow: kills Wumpus if found', () => {
@@ -155,7 +158,7 @@ describe('GameEngineService (with useValue)', () => {
     const board = [[{ content: CELL_CONTENTS.wumpus }, { content: undefined }]];
     mockStore.board.mockReturnValue(board);
     service.shootArrow();
-    expect(mockStore.setMessage).toHaveBeenCalledWith('¡Has matado al Wumpus! ¡Grito!');
+    expect(mockStore.setMessage).toHaveBeenCalledWith('gameMessages.wumpusKilled');
     expect(mockSound.stopWumpus).toHaveBeenCalled();
   });
 
@@ -163,23 +166,21 @@ describe('GameEngineService (with useValue)', () => {
     const board = [[{ content: undefined }, { content: undefined }]];
     mockStore.board.mockReturnValue(board);
     service.shootArrow();
-    expect(mockStore.setMessage).toHaveBeenCalledWith('¡Flecha fallida!');
+    expect(mockStore.setMessage).toHaveBeenCalledWith('gameMessages.arrowMissed');
   });
 
   it('exit: with gold on start wins game', () => {
     mockStore.hunter.mockReturnValueOnce({ hasGold: true });
     mockStore.currentCell.mockReturnValue({ x: 0, y: 0 });
     service.exit();
-    expect(mockStore.setMessage).toHaveBeenCalledWith(expect.stringContaining('¡Victoria'));
+    expect(mockStore.setMessage).toHaveBeenCalledWith(expect.stringContaining('gameMessages.victory'));
   });
 
   it('exit: without gold or not on start', () => {
     mockStore.hunter.mockReturnValueOnce({ hasGold: false });
     mockStore.currentCell.mockReturnValue({ x: 0, y: 1 });
     service.exit();
-    expect(mockStore.setMessage).toHaveBeenCalledWith(
-      '¡Para salir dirígete a la entrada con la moneda!',
-    );
+    expect(mockStore.setMessage).toHaveBeenCalledWith('gameMessages.exitInstruction');
     expect(mockLeaderboard.addEntry).not.toHaveBeenCalled();
   });
 
