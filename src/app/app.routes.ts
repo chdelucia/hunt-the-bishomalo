@@ -55,11 +55,6 @@ export const appRoutes: Route[] = [
     title: 'Storytelling | Bisho malo',
   },
   {
-    path: RouteTypes.DIARY,
-    loadComponent: () => import('./pages').then((mod) => mod.TravelerDiaryComponent),
-    title: 'Diario del viajero | Bisho malo',
-  },
-  {
     path: RouteTypes.HOME,
     loadComponent: () => import('./pages').then((mod) => mod.HuntBishoComponent),
     title: 'Game Bisho malo',
