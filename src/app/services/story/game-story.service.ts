@@ -16,7 +16,7 @@ export class GameStoryService {
   getStory(): LevelStory | undefined {
     const { size, selectedChar } = this._settings();
     const level = size - 3;
-    const charId = selectedChar as Chars; // Assuming Chars enum values are strings like 'default', 'lara'
+    const charId = selectedChar;
     const charStories = this.stories[charId] || [];
     const story = charStories.find((s) => s.level === level);
 
@@ -35,7 +35,7 @@ export class GameStoryService {
   getJournalEntries(): LevelStory[] {
     const { size, selectedChar } = this._settings();
     const level = size - 3;
-    const charId = selectedChar as Chars; // Assuming Chars enum values are strings
+    const charId = selectedChar as Chars;
     const charStories = this.stories[charId] || [];
 
     return charStories
