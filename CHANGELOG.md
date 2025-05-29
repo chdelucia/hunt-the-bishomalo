@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.11.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v6.10.0...v6.11.0) (2025-05-29)
+
+
+### Features
+
+* Internationalize application text content using Transloco ([3d2a2c2](https://github.com/chdelucia/hunt-the-bishomalo/commit/3d2a2c28bf6baa44b8a85592c80b7ee43b8bd445))
+* Internationalize various HTML templates and component elements ([d3a988e](https://github.com/chdelucia/hunt-the-bishomalo/commit/d3a988e81769074650c1b9b2c194d27d281ad417))
+* **transloco:** translate entire app ([722f87d](https://github.com/chdelucia/hunt-the-bishomalo/commit/722f87d6200d3e68237708899793f648225709e2))
+
+
+### Bug Fixes
+
+* **unit:** fix transloco unit testing ([1c1bc8d](https://github.com/chdelucia/hunt-the-bishomalo/commit/1c1bc8d6c3d1497d08b0412edbc737078b1f281c))
+
 ## [6.10.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v6.9.0...v6.10.0) (2025-05-29)
 
 
