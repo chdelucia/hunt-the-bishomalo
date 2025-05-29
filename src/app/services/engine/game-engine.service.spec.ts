@@ -215,6 +215,16 @@ describe('GameEngineService (with useValue)', () => {
     expect(mockLeaderboard.clear).toHaveBeenCalled();
   });
 
+  it('shold call restartLevel', () => {
+    const spyInitBoard = jest.spyOn(service, 'initializeGameBoard');
+    const spyCurrentCell = jest.spyOn(service as any, 'checkCurrentCell');
+
+    service.restartLevel();
+    expect(mockSound.stop).toHaveBeenCalled();
+    expect(spyInitBoard).toHaveBeenCalled();
+    expect(spyCurrentCell).toHaveBeenCalled();
+  });
+
   describe('nextLevel', () => {
     it('should increment size and recalculate pits and wumpus', () => {
       const setSettingsSpy = jest.spyOn(mockStore, 'setSettings');

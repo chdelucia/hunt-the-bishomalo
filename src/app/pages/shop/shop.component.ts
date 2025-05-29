@@ -13,33 +13,32 @@ import { GameStore } from 'src/app/store';
   styleUrl: './shop.component.scss',
 })
 export class ShopComponent {
-  // Base product definitions with translation keys
   private readonly baseProducts: Product[] = [
     {
       effect: 'heart',
-      name: 'product.heart.name', // Key
-      description: 'product.heart.description', // Key
+      name: 'product.heart.name', 
+      description: 'product.heart.description', 
       price: 60,
       icon: 'heart.svg',
     },
     {
       effect: 'shield',
-      name: 'product.shield.name', // Key
-      description: 'product.shield.description', // Key
+      name: 'product.shield.name', 
+      description: 'product.shield.description', 
       price: 150,
       icon: 'shield.svg',
     },
     {
       effect: 'lantern',
-      name: 'product.lantern.name', // Key
-      description: 'product.lantern.description', // Key
+      name: 'product.lantern.name', 
+      description: 'product.lantern.description', 
       price: 100,
       icon: 'lantern.svg',
     },
     {
       effect: 'rewind',
-      name: 'product.rewind.name', // Key
-      description: 'product.rewind.description', // Key
+      name: 'product.rewind.name', 
+      description: 'product.rewind.description', 
       price: 200,
       icon: 'clock.svg',
     },
@@ -48,15 +47,15 @@ export class ShopComponent {
   private readonly baseRandomProducts: Product[] = [
     {
       effect: 'dragonball',
-      name: 'product.dragonball.name', // Key
-      description: 'product.dragonball.description', // Key
+      name: 'product.dragonball.name', 
+      description: 'product.dragonball.description', 
       price: 125,
       icon: 'b4.png',
     },
     {
       effect: 'apple',
-      name: 'product.apple.name', // Key
-      description: 'product.apple.description', // Key
+      name: 'product.apple.name', 
+      description: 'product.apple.description', 
       price: 85,
       icon: 'apple.png',
     },
@@ -73,7 +72,6 @@ export class ShopComponent {
 
   message = signal('');
 
-  // Computed signal to get translated products
   productos = computed(() => {
     const translatedProducts = this.baseProducts.map((p) => ({
       ...p,
@@ -95,7 +93,7 @@ export class ShopComponent {
 
   buyProduct(product: Product): void {
     const gold = this.gold();
-    const { price, effect, name: nameKey } = product; // nameKey is now the translation key
+    const { price, effect } = product;
     const lives = this.gameStore.hunter().lives;
 
     const canBuy = gold >= price;
@@ -108,21 +106,17 @@ export class ShopComponent {
     if (effect === 'heart') {
       this.addLifeToPlayer({ gold, price, lives });
     } else {
-      // We need to pass the original product definition if it contains keys
-      // Find the original product from baseProducts or baseRandomProducts
       const originalProduct =
         this.baseProducts.find((p) => p.effect === effect) ||
         this.baseRandomProducts.find((p) => p.effect === effect);
       if (originalProduct) {
         this.addItemToPlayer({ gold, product: originalProduct, price });
       } else {
-        // Fallback or error handling if product not found in base definitions
         console.error('Original product definition not found for effect:', effect);
         return;
       }
     }
-    // The product.name passed to buyProduct is already translated by the `productos` computed signal.
-    // So, we use product.name directly here.
+
     this.message.set(
       this.transloco.translate('shop.purchaseMessageSuccess', { productName: product.name }),
     );

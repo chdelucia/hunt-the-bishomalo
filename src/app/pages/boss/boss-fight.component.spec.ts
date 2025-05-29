@@ -116,4 +116,48 @@ describe('BossFightComponent', () => {
       queryParams: { boss: true },
     });
   });
+
+  it('should return position and "not selected" status if cell not hit', () => {
+  const cell = {
+    x: 0,
+    y: 0,
+    hit: false,
+    hasBossPart: false,
+  };
+
+  const label = component.getAriaLabel(cell, 0, 1);
+  expect(label).toBe(
+    'bossFightMessages.ariaCellPosition, bossFightMessages.ariaCellStatusNotSelected'
+  );
+});
+
+it('should return position and "boss hit" status if cell is hit and has boss part', () => {
+  const cell = {
+    x: 1,
+    y: 1,
+    hit: true,
+    hasBossPart: true,
+  };
+
+  const label = component.getAriaLabel(cell, 1, 2);
+  expect(label).toBe(
+    'bossFightMessages.ariaCellPosition, bossFightMessages.ariaCellStatusBossHit'
+  );
+});
+
+it('should return position and "miss" status with hint if cell is hit but has no boss part', () => {
+  const cell = {
+    x: 2,
+    y: 2,
+    hit: true,
+    hasBossPart: false,
+    hint: 'nearby',
+  };
+
+  const label = component.getAriaLabel(cell, 2, 3);
+  expect(label).toBe(
+    'bossFightMessages.ariaCellPosition, bossFightMessages.ariaCellStatusMiss nearby'
+  );
+});
+
 });
