@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, isDevMode, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { GameEngineService, GameSoundService } from 'src/app/services';
 import { Chars, DIFFICULTY_CONFIGS, DifficultyTypes, GameSound, RouteTypes } from 'src/app/models';
 import { Router } from '@angular/router';
@@ -9,7 +10,7 @@ import { GameStore } from 'src/app/store';
 @Component({
   selector: 'app-game-config',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NgOptimizedImage],
+  imports: [CommonModule, ReactiveFormsModule, NgOptimizedImage, TranslocoModule],
   templateUrl: './game-config.component.html',
   styleUrls: ['./game-config.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -20,6 +21,7 @@ export class GameConfigComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly gameSound = inject(GameSoundService);
   private readonly router = inject(Router);
+  private readonly translocoService = inject(TranslocoService);
 
   isDevMode = isDevMode();
 
@@ -68,9 +70,11 @@ export class GameConfigComponent implements OnInit {
     const diff: DifficultyTypes = this.configForm.get('difficulty')?.value;
     const config = DIFFICULTY_CONFIGS[diff];
 
-    return ` ${config.maxLives} vidas, ${config.maxLevels} niveles, suerte: ${
-      config.maxChance * 100
-    }%`;
+    return this.translocoService.translate('config.difficultyDescription', {
+      maxLives: config.maxLives,
+      maxLevels: config.maxLevels,
+      chance: config.maxChance * 100,
+    });
   }
 
   private applyBlackoutChance(): boolean {

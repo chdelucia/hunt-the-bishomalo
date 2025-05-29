@@ -3,18 +3,16 @@
     <div class="header-container">
       <a routerLink="/home" class="back-link">
         <i class="arrow-left-icon"></i>
-        <span>Volver al juego</span>
+        <span>{{ 'achievements.backToGame' | transloco }}</span>
       </a>
     </div>
 
     <div class="progress-container">
       <div class="progress-header">
         <div class="progress-info">
-          <h2 class="progress-title">Progreso de logros</h2>
+          <h2 class="progress-title">{{ 'achievements.progressTitle' | transloco }}</h2>
           <p class="progress-stats">
-            Has desbloqueado {{ unlockedCount }} de {{ achievements.length }} logros ({{
-              percentage
-            }}%)
+            {{ 'achievements.progressStats' | transloco:{ unlockedCount: unlockedCount, totalAchievements: achievements.length, percentage: percentage } }}
           </p>
         </div>
         <div class="filter-buttons">
@@ -23,7 +21,7 @@
             [ngClass]="{ 'active-filter': filter === 'all', 'inactive-filter': filter !== 'all' }"
             class="filter-button"
           >
-            Todos
+            {{ 'achievements.filterAll' | transloco }}
           </button>
           <button
             (click)="setFilter('unlocked')"
@@ -33,7 +31,7 @@
             }"
             class="filter-button"
           >
-            Desbloqueados
+            {{ 'achievements.filterUnlocked' | transloco }}
           </button>
           <button
             (click)="setFilter('locked')"
@@ -43,7 +41,7 @@
             }"
             class="filter-button"
           >
-            Bloqueados
+            {{ 'achievements.filterLocked' | transloco }}
           </button>
         </div>
       </div>
@@ -99,7 +97,7 @@
                 clip-rule="evenodd"
               />
             </svg>
-            <span>Desbloqueado</span>
+            <span>{{ 'achievements.statusUnlocked' | transloco }}</span>
           </div>
           <div *ngIf="!achievement.unlocked" class="status-locked">
             <svg
@@ -114,7 +112,7 @@
                 clip-rule="evenodd"
               />
             </svg>
-            <span>Bloqueado</span>
+            <span>{{ 'achievements.statusLocked' | transloco }}</span>
           </div>
         </div>
         <div *ngIf="achievement.unlocked" class="achievement-indicator"></div>

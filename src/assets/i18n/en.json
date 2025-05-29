@@ -1,1 +1,64 @@
-{}
+{
+  "menu": {
+    "home": "Home",
+    "achievements": "Achievements",
+    "instructions": "Instructions",
+    "newGame": "New Game",
+    "achievementsAlt": "Achievements"
+  },
+  "achievements": {
+    "backToGame": "Back to Game",
+    "progressTitle": "Achievements Progress",
+    "progressStats": "You have unlocked {{unlockedCount}} of {{totalAchievements}} achievements ({{percentage}}%)",
+    "filterAll": "All",
+    "filterUnlocked": "Unlocked",
+    "filterLocked": "Locked",
+    "statusUnlocked": "Unlocked",
+    "statusLocked": "Locked"
+  },
+  "rarity": {
+    "common": "Common",
+    "uncommon": "Uncommon",
+    "rare": "Rare",
+    "epic": "Epic",
+    "legendary": "Legendary"
+  },
+  "blackout": {
+    "message": "BLACKOUT!"
+  },
+  "cell": {
+    "altHunterWithGold": "hunter with gold",
+    "altHunter": "hunter",
+    "altGold": "gold"
+  },
+  "config": {
+    "title": "Configuration",
+    "playerNameLabel": "Player Name:",
+    "difficultyLabel": "Difficulty:",
+    "difficultyEasy": "Easy",
+    "difficultyNormal": "Normal",
+    "difficultyHard": "Hard",
+    "levelLabel": "Level (max 20):",
+    "selectCharacterLabel": "Select Character:",
+    "playButton": "Play",
+    "difficultyDescription": "{{maxLives}} lives, {{maxLevels}} levels, luck: {{chance}}%"
+  },
+  "controls": {
+    "openControlsAriaLabel": "Open game controls",
+    "openControlsAlt": "open controls",
+    "gameControlsAriaLabel": "Game Controls",
+    "closeControlsAriaLabel": "Close controls",
+    "title": "Controls",
+    "moveForward": "Move Forward",
+    "turn": "Turn",
+    "shoot": "Shoot",
+    "newGame": "New Game"
+  },
+  "mobileControls": {
+    "turnRightAriaLabel": "Turn Right",
+    "turnRightAlt": "Turn Right",
+    "shootArrowAriaLabel": "Shoot Arrow",
+    "shootArrowAlt": "Shoot",
+    "moveForwardAriaLabel": "Move Forward"
+  }
+}
