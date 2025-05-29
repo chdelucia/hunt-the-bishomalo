@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [6.10.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v6.9.0...v6.10.0) (2025-05-29)
+
+
+### Features
+
+* Internationalize various HTML templates and component elements ([d94f169](https://github.com/chdelucia/hunt-the-bishomalo/commit/d94f169acbd074bf99a076dadcb5b4ce1f50b151))
+
+
+### Bug Fixes
+
+* **unit:** fix transloco unit testing ([03b6f81](https://github.com/chdelucia/hunt-the-bishomalo/commit/03b6f81fe196e124a88262f1f4702ed8a684a0e2))
+
+## [6.9.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v6.8.0...v6.9.0) (2025-05-29)
+
+
+### Features
+
+* **gameover:** add gameover sound ([149c364](https://github.com/chdelucia/hunt-the-bishomalo/commit/149c364449a94cd3702d6843b97b29f4c468a3bb))
+
 ## [6.8.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v6.7.0...v6.8.0) (2025-05-28)
 
 

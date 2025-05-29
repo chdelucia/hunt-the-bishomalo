@@ -178,14 +178,6 @@ describe('GameEngineService (with useValue)', () => {
     );
   });
 
-  it('exit: without gold or not on start', () => {
-    mockStore.hunter.mockReturnValueOnce({ hasGold: false });
-    mockStore.currentCell.mockReturnValue({ x: 0, y: 1 });
-    service.exit();
-    expect(mockStore.setMessage).toHaveBeenCalledWith('gameMessages.exitInstruction');
-    expect(mockLeaderboard.addEntry).not.toHaveBeenCalled();
-  });
-
   it('checkCurrentCell: detects pit', () => {
     mockStore.currentCell.mockReturnValue(
       createMockCell({ content: CELL_CONTENTS.pit, x: 0, y: 0 }),

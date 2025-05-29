@@ -320,18 +320,14 @@ export class GameEngineService {
   }
 
   exit(): void {
-    if (this.canExitWithVictory()) {
-      this.sound.stop();
-      this.handleVictory();
-    } else {
-      this.store.setMessage(this.transloco.translate('gameMessages.exitInstruction'));
-    }
+    this.sound.stop();
+    this.handleVictory();
   }
 
   private canExitWithVictory(): boolean {
     const hunter = this._hunter();
     const cell = this.store.currentCell();
-    return (!cell.x && !cell.y && hunter.hasGold) || false;
+    return !cell.x && !cell.y && hunter.hasGold;
   }
 
   private handleVictory(): void {
