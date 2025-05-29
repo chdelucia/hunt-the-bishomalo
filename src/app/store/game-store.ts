@@ -60,20 +60,30 @@ export const GameStore = signalStore(
     }),
   })),
   withMethods((store, localStorage = inject(LocalstorageService)) => {
-    const storageKey = 'hunt_the_bishomalo_hunter';
+    const HUNTER_STORAGE_KEY = 'hunt_the_bishomalo_hunter';
+    const SETTINGS_STORAGE_KEY = 'hunt_the_bishomalo_settings';
 
     const setSettings = (settings: GameSettings) => {
       patchState(store, { settings });
+      localStorage.setValue(SETTINGS_STORAGE_KEY, settings);
     };
 
-    const syncHunterWithStorage = () => {
+    const syncStateWithStorage = () => {
       try {
-        const hunter = localStorage.getValue<Hunter>(storageKey);
+        const hunter = localStorage.getValue<Hunter>(HUNTER_STORAGE_KEY);
         if (hunter && typeof hunter === 'object') {
           patchState(store, { hunter });
         }
-      } catch {
-        console.log('fallo');
+      } catch (e) {
+        console.error('Failed to load hunter from localStorage', e);
+      }
+      try {
+        const settings = localStorage.getValue<GameSettings>(SETTINGS_STORAGE_KEY);
+        if (settings && typeof settings === 'object') {
+          patchState(store, { settings });
+        }
+      } catch (e) {
+        console.error('Failed to load settings from localStorage', e);
       }
     };
 
@@ -83,7 +93,7 @@ export const GameStore = signalStore(
         chars: store.hunter().chars,
       };
       patchState(store, { hunter: newHunter });
-      localStorage.setValue(storageKey, newHunter);
+      localStorage.setValue(HUNTER_STORAGE_KEY, newHunter);
     };
 
     const updateHunter = (partial: Partial<Hunter>) => {
@@ -91,7 +101,7 @@ export const GameStore = signalStore(
       patchState(store, { hunter: updated });
 
       if (!updated.alive || updated.hasWon) {
-        localStorage.setValue(storageKey, {
+        localStorage.setValue(HUNTER_STORAGE_KEY, {
           ...updated,
           hasGold: false,
           hasWon: false,
@@ -114,12 +124,12 @@ export const GameStore = signalStore(
       resetHunter,
       updateBoard,
       setMessage,
-      syncHunterWithStorage,
+      syncStateWithStorage,
     };
   }),
   withHooks({
     onInit(store) {
-      store.syncHunterWithStorage();
+      store.syncStateWithStorage();
     },
   }),
 );

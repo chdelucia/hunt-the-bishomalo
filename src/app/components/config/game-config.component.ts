@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, isDevMode, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, isDevMode, OnInit, effect, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
@@ -29,6 +29,7 @@ export class GameConfigComponent implements OnInit {
   private readonly gameSound = inject(GameSoundService);
   private readonly router = inject(Router);
   private readonly translocoService = inject(TranslocoService);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   isDevMode = isDevMode();
   readonly configs = DIFFICULTY_CONFIGS as Record<string, GameDificulty>;
@@ -42,8 +43,46 @@ export class GameConfigComponent implements OnInit {
     difficulty: [DifficultyTypes.EASY, [Validators.required]],
   });
 
+  constructor() {
+    const gameSettingsSignal = this.gameStore.settings;
+
+    effect(() => {
+      const settings = gameSettingsSignal();
+      if (settings && settings.size) { 
+        this.configForm.patchValue({
+          player: settings.player || 'Kukuxumushu',
+          size: settings.size >= 4 ? settings.size - 3 : 1, 
+          pits: settings.pits,
+          arrows: settings.arrows,
+          selectedChar: settings.selectedChar || Chars.DEFAULT,
+          difficulty: this.getDifficultyTypeFromSettings(settings.difficulty),
+        }, { emitEvent: false });
+      }
+    });
+  }
+
   ngOnInit(): void {
-    this.gameEngine.syncSettingsWithStorage();
+  }
+
+  private getDifficultyTypeFromSettings(settingsDifficulty: unknown): DifficultyTypes {
+    let difficultyToPatch: DifficultyTypes = DifficultyTypes.EASY;
+    if (settingsDifficulty && 
+        typeof settingsDifficulty === 'object' && 
+        'label' in settingsDifficulty &&
+        typeof (settingsDifficulty as { label: unknown }).label === 'string') {
+        
+        const settingsDiffLabel = (settingsDifficulty as { label: string }).label;
+
+        const foundKey = Object.keys(DIFFICULTY_CONFIGS).find(key => {
+            const configEntry = DIFFICULTY_CONFIGS[key as DifficultyTypes]; 
+            return configEntry.label === settingsDiffLabel;
+        });
+
+        if (foundKey) {
+            difficultyToPatch = foundKey as DifficultyTypes;
+        }
+    }
+    return difficultyToPatch;
   }
 
   submitForm(): void {

@@ -92,15 +92,7 @@ describe('GameConfigComponent', () => {
       pits: 0,
       arrows: 0,
       selectedChar: 'default',
-      difficulty: {
-        baseChance: 0.12,
-        gold: 60,
-        luck: 8,
-        maxChance: 0.35,
-        maxLevels: 10,
-        maxLives: 8,
-        bossTries: 12,
-      },
+      difficulty: 'easy',
     });
 
     component.submitForm();
