@@ -17,8 +17,15 @@
     </select>
   </div>
 
+
+  @let options = configs[this.configForm.get('difficulty')?.value];
+
   <div class="difficulty-description">
-    <p>{{ difficultyDescription }}</p>
+    <p>{{ 'config.difficultyDescription' | transloco: {
+      maxLives: options.maxLives,
+      maxLevels: options.maxLevels,
+      chance: options.maxChance * 100
+      } }}</p>
   </div>
 
   <div *ngIf="isDevMode" class="form-group">

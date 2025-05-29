@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameCellComponent } from './game-cell.component';
 import { Cell, Chars, Hunter } from 'src/app/models';
+import { getTranslocoTestingModule } from 'src/app/utils';
 
 const mockCell: Cell = { x: 2, y: 3 };
 const mockHunter: Hunter = {
@@ -30,7 +31,7 @@ describe('GameCellComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GameCellComponent],
+      imports: [GameCellComponent, getTranslocoTestingModule()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GameCellComponent);

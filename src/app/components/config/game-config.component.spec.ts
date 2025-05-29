@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameConfigComponent } from './game-config.component';
 import { GameEngineService, GameSoundService } from 'src/app/services';
 import { Chars } from 'src/app/models';
+import { getTranslocoTestingModule } from 'src/app/utils';
 
 const gameEngineServiceMock = {
   initGame: jest.fn(),
@@ -19,7 +20,7 @@ describe('GameConfigComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GameConfigComponent],
+      imports: [GameConfigComponent, getTranslocoTestingModule()],
       providers: [
         { provide: GameEngineService, useValue: gameEngineServiceMock },
         { provide: GameSoundService, useValue: gameSoundMock },
