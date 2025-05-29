@@ -1,9 +1,16 @@
 import { ChangeDetectionStrategy, Component, inject, isDevMode, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { TranslocoModule, TranslocoService } from "@jsverse/transloco";
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { GameEngineService, GameSoundService } from 'src/app/services';
-import { Chars, DIFFICULTY_CONFIGS, DifficultyTypes, GameDificulty, GameSound, RouteTypes } from 'src/app/models';
+import {
+  Chars,
+  DIFFICULTY_CONFIGS,
+  DifficultyTypes,
+  GameDificulty,
+  GameSound,
+  RouteTypes,
+} from 'src/app/models';
 import { Router } from '@angular/router';
 import { GameStore } from 'src/app/store';
 

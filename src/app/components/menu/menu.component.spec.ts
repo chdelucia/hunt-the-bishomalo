@@ -5,7 +5,6 @@ import { Router, RouterModule } from '@angular/router';
 import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { getTranslocoTestingModule } from 'src/app/utils';
 
-
 @Component({ template: '' })
 class DummyComponent {}
 

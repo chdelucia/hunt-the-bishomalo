@@ -1,8 +1,22 @@
-<button class="controller-icon" (click)="toggle()" [attr.aria-label]="'controls.openControlsAriaLabel' | transloco">
+<button
+  class="controller-icon"
+  (click)="toggle()"
+  [attr.aria-label]="'controls.openControlsAriaLabel' | transloco"
+>
   <img src="controller.svg" alt="{{ 'controls.openControlsAlt' | transloco }}" />
 </button>
-<aside class="game-controls" [attr.aria-label]="'controls.gameControlsAriaLabel' | transloco" [class.show]="isVisible()">
-  <button class="close-btn" (click)="toggle()" [attr.aria-label]="'controls.closeControlsAriaLabel' | transloco">&times;</button>
+<aside
+  class="game-controls"
+  [attr.aria-label]="'controls.gameControlsAriaLabel' | transloco"
+  [class.show]="isVisible()"
+>
+  <button
+    class="close-btn"
+    (click)="toggle()"
+    [attr.aria-label]="'controls.closeControlsAriaLabel' | transloco"
+  >
+    &times;
+  </button>
   <h2 class="title">{{ 'controls.title' | transloco }}</h2>
   <ul class="control-list">
     <li><span class="key">⬆</span> {{ 'controls.moveForward' | transloco }}</li>

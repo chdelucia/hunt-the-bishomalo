@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslocoModule } from "@jsverse/transloco";
+import { TranslocoModule } from '@jsverse/transloco';
 import { AchieveTypes, GameSound } from 'src/app/models';
 import { GameSoundService } from 'src/app/services';
 import { AchievementService } from 'src/app/services/achievement/achievement.service';

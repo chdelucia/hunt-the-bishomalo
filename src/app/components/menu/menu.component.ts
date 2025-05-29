@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { TranslocoModule } from "@jsverse/transloco";
+import { TranslocoModule } from '@jsverse/transloco';
 import { GameEngineService } from 'src/app/services';
 import { RouteTypes } from 'src/app/models';
 
