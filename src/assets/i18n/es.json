@@ -1,1 +1,64 @@
-{}
+{
+  "menu": {
+    "home": "Inicio",
+    "achievements": "Logros",
+    "instructions": "Instrucciones",
+    "newGame": "Nueva partida",
+    "achievementsAlt": "Logros"
+  },
+  "achievements": {
+    "backToGame": "Volver al juego",
+    "progressTitle": "Progreso de logros",
+    "progressStats": "Has desbloqueado {{unlockedCount}} de {{totalAchievements}} logros ({{percentage}}%)",
+    "filterAll": "Todos",
+    "filterUnlocked": "Desbloqueados",
+    "filterLocked": "Bloqueados",
+    "statusUnlocked": "Desbloqueado",
+    "statusLocked": "Bloqueado"
+  },
+  "rarity": {
+    "common": "Común",
+    "uncommon": "Poco común",
+    "rare": "Raro",
+    "epic": "Épico",
+    "legendary": "Legendario"
+  },
+  "blackout": {
+    "message": "¡APAGÓN!"
+  },
+  "cell": {
+    "altHunterWithGold": "cazador con oro",
+    "altHunter": "cazador",
+    "altGold": "oro"
+  },
+  "config": {
+    "title": "Configuración",
+    "playerNameLabel": "Nombre del jugador:",
+    "difficultyLabel": "Dificultad:",
+    "difficultyEasy": "Fácil",
+    "difficultyNormal": "Normal",
+    "difficultyHard": "Difícil",
+    "levelLabel": "Nivel (max 20):",
+    "selectCharacterLabel": "Selecciona personaje:",
+    "playButton": "Jugar",
+    "difficultyDescription": "{{maxLives}} vidas, {{maxLevels}} niveles, suerte: {{chance}}%"
+  },
+  "controls": {
+    "openControlsAriaLabel": "Abrir controles del juego",
+    "openControlsAlt": "abrir controles",
+    "gameControlsAriaLabel": "Controles del Juego",
+    "closeControlsAriaLabel": "Cerrar controles",
+    "title": "Controles",
+    "moveForward": "Avanzar",
+    "turn": "Girar",
+    "shoot": "Disparar",
+    "newGame": "Nueva partida"
+  },
+  "mobileControls": {
+    "turnRightAriaLabel": "Girar a la derecha",
+    "turnRightAlt": "Girar a la derecha",
+    "shootArrowAriaLabel": "Disparar flecha",
+    "shootArrowAlt": "Disparar",
+    "moveForwardAriaLabel": "Avanzar"
+  }
+}

@@ -1,14 +1,14 @@
 @if(!isFinish()){
 <div class="mobile-controls">
-  <button class="control-btn" (click)="turnRight()" aria-label="Girar a la derecha">
-    <img ngSrc="rotate-r.svg" width="32" height="32" alt="girar iz" priority />
+  <button class="control-btn" (click)="turnRight()" [attr.aria-label]="'mobileControls.turnRightAriaLabel' | transloco">
+    <img ngSrc="rotate-r.svg" width="32" height="32" alt="{{ 'mobileControls.turnRightAlt' | transloco }}" priority />
   </button>
 
-  <button class="control-btn" (click)="shootArrow()" aria-label="Disparar flecha">
-    <img ngSrc="shoot.svg" width="32" height="32" alt="disparar" priority />
+  <button class="control-btn" (click)="shootArrow()" [attr.aria-label]="'mobileControls.shootArrowAriaLabel' | transloco">
+    <img ngSrc="shoot.svg" width="32" height="32" alt="{{ 'mobileControls.shootArrowAlt' | transloco }}" priority />
   </button>
 
-  <button class="control-btn" (click)="moveForward()" aria-label="Avanzar">
+  <button class="control-btn" (click)="moveForward()" [attr.aria-label]="'mobileControls.moveForwardAriaLabel' | transloco">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="32"

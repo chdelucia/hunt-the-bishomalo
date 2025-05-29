@@ -1,19 +1,19 @@
 @let chars = gameStore.hunter().chars;
 
 <form [formGroup]="configForm" (ngSubmit)="submitForm()" class="config-form">
-  <h2>Configuración</h2>
+  <h2>{{ 'config.title' | transloco }}</h2>
 
   <div class="form-group">
-    <label for="player">Nombre del jugador:</label>
+    <label for="player">{{ 'config.playerNameLabel' | transloco }}</label>
     <input id="player" type="text" formControlName="player" />
   </div>
 
   <div class="form-group">
-    <label for="difficulty">Dificultad:</label>
+    <label for="difficulty">{{ 'config.difficultyLabel' | transloco }}</label>
     <select id="difficulty" formControlName="difficulty">
-      <option value="easy">Fasilito</option>
-      <option value="normal">Ni xixa ni limoná</option>
-      <option value="hard">Autonomo</option>
+      <option value="easy">{{ 'config.difficultyEasy' | transloco }}</option>
+      <option value="normal">{{ 'config.difficultyNormal' | transloco }}</option>
+      <option value="hard">{{ 'config.difficultyHard' | transloco }}</option>
     </select>
   </div>
 
@@ -22,12 +22,12 @@
   </div>
 
   <div *ngIf="isDevMode" class="form-group">
-    <label for="size">Nivel (max 20):</label>
+    <label for="size">{{ 'config.levelLabel' | transloco }}</label>
     <input id="size" type="number" formControlName="size" min="1" max="20" />
   </div>
 
   <div class="form-group">
-    <label for="selectedChar">Seleciona personaje:</label>
+    <label for="selectedChar">{{ 'config.selectCharacterLabel' | transloco }}</label>
   </div>
   <div class="char-selector">
     @for(char of chars; track $index) {
@@ -47,5 +47,5 @@
     }
   </div>
 
-  <button type="submit" [disabled]="configForm.invalid" class="start-game">Jugar</button>
+  <button type="submit" [disabled]="configForm.invalid" class="start-game">{{ 'config.playButton' | transloco }}</button>
 </form>

@@ -1,13 +1,13 @@
-<button class="controller-icon" (click)="toggle()" aria-label="Mostrar tabla de clasificación">
-  <img src="controller.svg" alt="abrir controles" />
+<button class="controller-icon" (click)="toggle()" [attr.aria-label]="'controls.openControlsAriaLabel' | transloco">
+  <img src="controller.svg" alt="{{ 'controls.openControlsAlt' | transloco }}" />
 </button>
-<aside class="game-controls" aria-label="Game Controls" [class.show]="isVisible()">
-  <button class="close-btn" (click)="toggle()" aria-label="Cerrar controles">&times;</button>
-  <h2 class="title">Controles</h2>
+<aside class="game-controls" [attr.aria-label]="'controls.gameControlsAriaLabel' | transloco" [class.show]="isVisible()">
+  <button class="close-btn" (click)="toggle()" [attr.aria-label]="'controls.closeControlsAriaLabel' | transloco">&times;</button>
+  <h2 class="title">{{ 'controls.title' | transloco }}</h2>
   <ul class="control-list">
-    <li><span class="key">⬆</span> Avanzar</li>
-    <li><span class="key">⬅ ➡</span> Girar</li>
-    <li><span class="key">↩</span> Disparar</li>
-    <li><span class="key">N</span> Nueva partida</li>
+    <li><span class="key">⬆</span> {{ 'controls.moveForward' | transloco }}</li>
+    <li><span class="key">⬅ ➡</span> {{ 'controls.turn' | transloco }}</li>
+    <li><span class="key">↩</span> {{ 'controls.shoot' | transloco }}</li>
+    <li><span class="key">N</span> {{ 'controls.newGame' | transloco }}</li>
   </ul>
 </aside>

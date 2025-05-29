@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, computed, input, isDevMode } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { TranslocoModule } from '@ngneat/transloco';
 import { Cell, Chars, GameSettings, Hunter } from '../../models';
 
 @Component({
   selector: 'app-game-cell',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage],
+  imports: [CommonModule, NgOptimizedImage, TranslocoModule],
   templateUrl: './game-cell.component.html',
   styleUrl: './game-cell.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

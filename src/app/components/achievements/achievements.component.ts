@@ -1,18 +1,20 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { Achievement } from 'src/app/models';
 import { AchievementService } from 'src/app/services/achievement/achievement.service';
 
 @Component({
   selector: 'app-achievements',
   standalone: true,
-  imports: [CommonModule, RouterModule, NgOptimizedImage],
+  imports: [CommonModule, RouterModule, NgOptimizedImage, TranslocoModule],
   templateUrl: './achievements.component.html',
   styleUrl: './achievements.component.scss',
 })
 export class AchievementsComponent implements OnInit {
   private readonly achieveService = inject(AchievementService);
+  private readonly translocoService = inject(TranslocoService);
 
   filter: 'all' | 'unlocked' | 'locked' = 'all';
   achievements: Achievement[] = this.achieveService.achievements;
@@ -24,14 +26,6 @@ export class AchievementsComponent implements OnInit {
     rare: 'bg-blue-500',
     epic: 'bg-purple-500',
     legendary: 'bg-yellow-500',
-  };
-
-  rarityNames = {
-    common: 'Común',
-    uncommon: 'Poco común',
-    rare: 'Raro',
-    epic: 'Épico',
-    legendary: 'Legendario',
   };
 
   unlockedCount = 0;
@@ -66,6 +60,6 @@ export class AchievementsComponent implements OnInit {
   }
 
   getRarityName(rarity: string): string {
-    return this.rarityNames[rarity as keyof typeof this.rarityNames];
+    return this.translocoService.translate('rarity.' + rarity.toLowerCase());
   }
 }
