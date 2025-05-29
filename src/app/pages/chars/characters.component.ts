@@ -33,7 +33,7 @@ export class CharactersComponent {
 
     if (selected) {
       this.gameStore.updateHunter({
-        chars: [...(this.gameStore.hunter().chars || []), selected],
+        chars: [...(this.gameStore.chars() || []), selected],
       });
       this.achieve.activeAchievement(this.achievements[selected]);
       this.router.navigateByUrl(RouteTypes.CREDITS);

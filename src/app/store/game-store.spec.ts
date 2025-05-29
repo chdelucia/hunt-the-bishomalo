@@ -60,9 +60,14 @@ describe('GameStore (SignalStore)', () => {
   it('should update the hunter and persist if hasWon is true', () => {
     const update: Partial<Hunter> = { x: 2, y: 3, hasWon: false, alive: false };
     store.updateHunter(update);
-    expect(store.hunter().x).toBe(2);
-    expect(store.hunter().y).toBe(3);
-    expect(store.hunter().hasWon).toBe(false);
+    expect(store.x()).toBe(2);
+    expect(store.y()).toBe(3);
+    expect(store.hasWon()).toBe(false);
+    // The actual object saved to localStorage should be a Hunter-like object.
+    // GameStore's updateHunter now takes Partial<GameState>, but it should save
+    // a Hunter-compatible object if the logic inside updateHunter is correct.
+    // The check for expect.objectContaining(update) might still be valid
+    // if the saved object contains these fields.
     expect(localStorageServiceMock.setValue).toHaveBeenCalledWith(
       'hunt_the_bishomalo_hunter',
       expect.objectContaining(update),
@@ -90,17 +95,16 @@ describe('GameStore (SignalStore)', () => {
     store.updateHunter({ x: 5, y: 5, arrows: 10, lives: 1 });
 
     store.resetHunter();
-    const resetState = store.hunter();
-    expect(resetState.x).toBe(0);
-    expect(resetState.y).toBe(0);
-    expect(resetState.direction).toBe(Direction.RIGHT);
-    expect(resetState.arrows).toBe(1);
-    expect(resetState.alive).toBe(true);
-    expect(resetState.hasGold).toBe(false);
-    expect(resetState.hasWon).toBe(false);
-    expect(resetState.wumpusKilled).toBe(0);
-    expect(resetState.lives).toBe(8);
-    expect(resetState.gold).toBe(0);
+    expect(store.x()).toBe(0);
+    expect(store.y()).toBe(0);
+    expect(store.direction()).toBe(Direction.RIGHT);
+    expect(store.arrows()).toBe(1);
+    expect(store.alive()).toBe(true);
+    expect(store.hasGold()).toBe(false);
+    expect(store.hasWon()).toBe(false);
+    expect(store.wumpusKilled()).toBe(0);
+    expect(store.lives()).toBe(8);
+    expect(store.gold()).toBe(0);
 
     expect(localStorageServiceMock.setValue).toHaveBeenCalledWith(
       'hunt_the_bishomalo_hunter',
@@ -111,7 +115,19 @@ describe('GameStore (SignalStore)', () => {
   it('should sync hunter with storage if data exists', () => {
     localStorageServiceMock.getValue.mockReturnValue(mockHunter);
     store.syncHunterWithStorage();
-    expect(store.hunter()).toEqual(mockHunter);
+    expect(store.x()).toEqual(mockHunter.x);
+    expect(store.y()).toEqual(mockHunter.y);
+    expect(store.direction()).toEqual(mockHunter.direction);
+    expect(store.arrows()).toEqual(mockHunter.arrows);
+    expect(store.alive()).toEqual(mockHunter.alive);
+    expect(store.hasGold()).toEqual(mockHunter.hasGold);
+    expect(store.hasWon()).toEqual(mockHunter.hasWon);
+    expect(store.wumpusKilled()).toEqual(mockHunter.wumpusKilled);
+    expect(store.lives()).toEqual(mockHunter.lives);
+    expect(store.chars()).toEqual(mockHunter.chars);
+    expect(store.gold()).toEqual(mockHunter.gold);
+    // inventory is optional in GameState, mockHunter may not have it or it might be undefined
+    expect(store.inventory()).toEqual(mockHunter.inventory || []);
   });
 
   it('should return the current cell from the board', () => {

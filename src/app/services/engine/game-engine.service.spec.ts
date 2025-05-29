@@ -15,7 +15,6 @@ function createMockCell(overrides = {}) {
 }
 
 const mockStore = {
-  hunter: jest.fn(),
   settings: jest.fn().mockReturnValue({
     size: 2,
     player: 'TestPlayer',
@@ -40,6 +39,20 @@ const mockStore = {
   resetHunter: jest.fn(),
   currentCell: jest.fn(),
   setHunterForNextLevel: jest.fn(),
+  // Add individual hunter properties
+  x: jest.fn(),
+  y: jest.fn(),
+  direction: jest.fn(),
+  arrows: jest.fn(),
+  alive: jest.fn(),
+  hasGold: jest.fn(),
+  hasWon: jest.fn(),
+  wumpusKilled: jest.fn(),
+  lives: jest.fn(),
+  chars: jest.fn(),
+  gold: jest.fn(),
+  inventory: jest.fn(),
+  message: jest.fn(), // Added from GameStore definition
 };
 
 const mockSound = {
@@ -74,16 +87,20 @@ describe('GameEngineService (with useValue)', () => {
 
     jest.clearAllMocks();
 
-    mockStore.hunter.mockReturnValue({
-      x: 0,
-      y: 0,
-      direction: Direction.RIGHT,
-      alive: true,
-      arrows: 1,
-      hasGold: false,
-      lives: 7,
-      wumpusKilled: 0,
-    });
+    // Set default return values for individual hunter properties
+    mockStore.x.mockReturnValue(0);
+    mockStore.y.mockReturnValue(0);
+    mockStore.direction.mockReturnValue(Direction.RIGHT);
+    mockStore.alive.mockReturnValue(true);
+    mockStore.arrows.mockReturnValue(1);
+    mockStore.hasGold.mockReturnValue(false);
+    mockStore.lives.mockReturnValue(7);
+    mockStore.wumpusKilled.mockReturnValue(0);
+    mockStore.chars.mockReturnValue([Chars.DEFAULT]);
+    mockStore.gold.mockReturnValue(0);
+    mockStore.inventory.mockReturnValue([]);
+    mockStore.hasWon.mockReturnValue(false);
+
 
     mockStore.currentCell.mockReturnValue(createMockCell({ x: 0, y: 0 }));
 
@@ -130,31 +147,31 @@ describe('GameEngineService (with useValue)', () => {
   });
 
   it('turnLeft: rotates direction correctly', () => {
-    mockStore.hunter.mockReturnValueOnce({ direction: Direction.UP });
+    mockStore.direction.mockReturnValueOnce(Direction.UP);
     service.turnLeft();
     expect(mockStore.updateHunter).toHaveBeenCalledWith({ direction: Direction.LEFT });
   });
 
   it('turnRight: rotates direction correctly', () => {
-    mockStore.hunter.mockReturnValueOnce({ direction: Direction.UP, alive: true });
+    mockStore.direction.mockReturnValueOnce(Direction.UP);
+    mockStore.alive.mockReturnValueOnce(true); // Ensure alive is also mocked if logic depends on it
     service.turnRight();
     expect(mockStore.updateHunter).toHaveBeenCalledWith({ direction: Direction.RIGHT });
   });
 
   it('shootArrow: with no arrows does nothing', () => {
-    mockStore.hunter.mockReturnValueOnce({ arrows: 0, alive: true });
+    mockStore.arrows.mockReturnValueOnce(0);
+    mockStore.alive.mockReturnValueOnce(true);
     service.shootArrow();
     expect(mockStore.setMessage).toHaveBeenCalledWith('gameMessages.noArrows');
   });
 
   it('shootArrow: kills Wumpus if found', () => {
-    mockStore.hunter.mockReturnValueOnce({
-      x: 0,
-      y: 0,
-      direction: Direction.RIGHT,
-      arrows: 1,
-      alive: true,
-    });
+    mockStore.x.mockReturnValueOnce(0);
+    mockStore.y.mockReturnValueOnce(0);
+    mockStore.direction.mockReturnValueOnce(Direction.RIGHT);
+    mockStore.arrows.mockReturnValueOnce(1);
+    mockStore.alive.mockReturnValueOnce(true);
     const board = [[{ content: CELL_CONTENTS.wumpus }, { content: undefined }]];
     mockStore.board.mockReturnValue(board);
     service.shootArrow();
@@ -170,8 +187,11 @@ describe('GameEngineService (with useValue)', () => {
   });
 
   it('exit: with gold on start wins game', () => {
-    mockStore.hunter.mockReturnValueOnce({ hasGold: true });
+    mockStore.hasGold.mockReturnValueOnce(true);
     mockStore.currentCell.mockReturnValue({ x: 0, y: 0 });
+    // Mock other necessary hunter properties if exit logic depends on them
+    mockStore.x.mockReturnValue(0);
+    mockStore.y.mockReturnValue(0);
     service.exit();
     expect(mockStore.setMessage).toHaveBeenCalledWith(
       expect.stringContaining('gameMessages.victory'),
@@ -264,7 +284,7 @@ describe('GameEngineService (with useValue)', () => {
       }));
       placeEventsSpy = jest.spyOn(service as any, 'placeEvents');
 
-      mockStore.settings.mockReturnValue({
+      const currentSettings = {
         size: 3,
         player: 'TestPlayer',
         arrows: 2,
@@ -280,20 +300,22 @@ describe('GameEngineService (with useValue)', () => {
           luck: 8,
           bossTries: 12,
         },
-      });
-      mockStore.hunter.mockReturnValue({
-        x: 0,
-        y: 0,
-        direction: Direction.RIGHT,
-        arrows: 0,
-        alive: false,
-        hasGold: false,
-        hasWon: false,
-        wumpusKilled: 0,
-        lives: 3,
-        chars: [Chars.LARA],
-        gold: 0,
-      });
+      };
+      mockStore.settings.mockReturnValue(currentSettings);
+
+      // Mock individual hunter properties for this test context if different from beforeEach defaults
+      mockStore.x.mockReturnValue(0);
+      mockStore.y.mockReturnValue(0);
+      mockStore.direction.mockReturnValue(Direction.RIGHT);
+      mockStore.arrows.mockReturnValue(0);
+      mockStore.alive.mockReturnValue(false); // Example: testing reset from a dead state
+      mockStore.hasGold.mockReturnValue(false);
+      mockStore.hasWon.mockReturnValue(false);
+      mockStore.wumpusKilled.mockReturnValue(0);
+      mockStore.lives.mockReturnValue(3); // Example: specific lives for this test
+      mockStore.chars.mockReturnValue([Chars.LARA]);
+      mockStore.gold.mockReturnValue(0);
+      mockStore.inventory.mockReturnValue([]);
     });
 
     it('should initialize board with correct dimensions and update store', () => {
@@ -311,19 +333,19 @@ describe('GameEngineService (with useValue)', () => {
     });
 
     it('should set hunter state for new level via store.updateHunter', () => {
-      const initialHunterState = { ...mockStore.hunter() };
+      const initialLives = mockStore.lives(); // Get the mocked lives value
+      const settings = mockStore.settings();
       service.initializeGameBoard();
       expect(mockStore.updateHunter).toHaveBeenCalledWith({
-        ...initialHunterState,
         x: 0,
         y: 0,
         direction: Direction.RIGHT,
-        arrows: mockStore.settings().arrows,
+        arrows: settings.arrows,
         alive: true,
         hasGold: false,
         hasWon: false,
         wumpusKilled: 0,
-        lives: Math.min(initialHunterState.lives, mockStore.settings().difficulty.maxLives),
+        lives: Math.min(initialLives, settings.difficulty.maxLives),
       });
     });
 
@@ -378,7 +400,7 @@ describe('GameEngineService (with useValue)', () => {
       service.initializeGameBoard();
       expect(placeEventsSpy).toHaveBeenCalledWith(
         expect.any(Array),
-        mockStore.hunter(),
+        // mockStore.hunter(), // hunter is no longer passed
         mockStore.settings(),
       );
     });

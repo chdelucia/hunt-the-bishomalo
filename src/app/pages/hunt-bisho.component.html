@@ -1,5 +1,22 @@
-@let board = game.board(); @let boardSize = board.length; @let hunterData = hunter(); @let isAlive =
-hunterData.alive; @let hasWon = hunterData.hasWon; @let settings = game.settings();
+@let board = game.board();
+@let boardSize = board.length;
+@let settings = game.settings();
+@let hunterData = {
+  alive: game.alive(),
+  hasWon: game.hasWon(),
+  hasGold: game.hasGold(),
+  lives: game.lives(),
+  x: game.x(),
+  y: game.y(),
+  direction: game.direction(),
+  arrows: game.arrows(),
+  wumpusKilled: game.wumpusKilled(),
+  chars: game.chars(),
+  gold: game.gold(),
+  inventory: game.inventory()
+};
+@let isAlive = hunterData.alive;
+@let hasWon = hunterData.hasWon;
 
 <main [appVisualEffect]="game.message()" class="main-container">
   <app-title [blackout]="settings?.blackout || false" />

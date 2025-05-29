@@ -26,7 +26,6 @@ export class BossFightComponent implements OnInit {
   readonly gameStore = inject(GameStore);
   private readonly router = inject(Router);
   private readonly translocoService = inject(TranslocoService);
-  readonly _hunter = this.gameStore.hunter;
   readonly _settings = this.gameStore.settings;
 
   gridSize = 5;
@@ -101,8 +100,8 @@ export class BossFightComponent implements OnInit {
   }
 
   retryGame(): void {
-    if (this._hunter().lives > 0) {
-      const livesLeft = this._hunter().lives;
+    if (this.gameStore.lives() > 0) {
+      const livesLeft = this.gameStore.lives();
       this.gameStore.updateHunter({ lives: Math.max(0, livesLeft - 1) });
       this.resetGame();
     } else {

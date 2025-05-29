@@ -11,7 +11,6 @@ export class LeaderboardService {
 
   private readonly gameStore = inject(GameStore);
   private readonly gameAchieve = inject(AchievementService);
-  private readonly _hunter = this.gameStore.hunter;
   private readonly _settings = this.gameStore.settings;
 
   private countSteps = 0;
@@ -20,7 +19,11 @@ export class LeaderboardService {
     const stored = this.loadLeaderboardFromStorage();
     this._leaderboard = stored;
     effect(() => {
-      const { x, y, hasWon, alive, wumpusKilled } = this._hunter();
+      const x = this.gameStore.x();
+      const y = this.gameStore.y();
+      const hasWon = this.gameStore.hasWon();
+      const alive = this.gameStore.alive();
+      const wumpusKilled = this.gameStore.wumpusKilled();
       if (x || y) this.countSteps += 1;
       if (hasWon || !alive) {
         const { player, blackout, size } = this._settings();

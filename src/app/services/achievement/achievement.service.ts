@@ -35,7 +35,7 @@ export class AchievementService {
   }
 
   private checkDeathRelatedAchievements(): void {
-    if (!this.gameStore.hunterAlive()) {
+    if (!this.gameStore.alive()) {
       if (this.gameStore.blackout()) {
         this.activeAchievement(AchieveTypes.DEATHBYBLACKOUT);
       } else if (this.gameStore.wumpusKilled()) {
@@ -73,7 +73,8 @@ export class AchievementService {
   }
 
   caclVictoryAchieve(seconds: number): void {
-    const { arrows, wumpusKilled } = this.gameStore.hunter();
+    const arrows = this.gameStore.arrows();
+    const wumpusKilled = this.gameStore.wumpusKilled();
     const { blackout, size } = this.gameStore.settings();
 
     if (blackout) this.activeAchievement(AchieveTypes.WINBLACKWOUT);
@@ -101,7 +102,8 @@ export class AchievementService {
   }
 
   private calcDistance(cell: Cell): number {
-    const { x, y } = this.gameStore.hunter();
+    const x = this.gameStore.x();
+    const y = this.gameStore.y();
 
     if (x === cell.x) return Math.abs(y - cell.y);
     else if (y === cell.y) return Math.abs(x - cell.x);

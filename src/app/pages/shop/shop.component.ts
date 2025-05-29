@@ -94,7 +94,7 @@ export class ShopComponent {
   buyProduct(product: Product): void {
     const gold = this.gold();
     const { price, effect } = product;
-    const lives = this.gameStore.hunter().lives;
+    const lives = this.gameStore.lives();
 
     const canBuy = gold >= price;
 

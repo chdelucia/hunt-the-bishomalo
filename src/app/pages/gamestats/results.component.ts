@@ -72,7 +72,7 @@ export class ResultsComponent {
   goToCredits(): void {
     const boss = this.routeSnapshot.snapshot.queryParams['boss'];
 
-    if (this.gameStore.hunter().chars?.length === 4 || !boss) {
+    if (this.gameStore.chars()?.length === 4 || !boss) {
       this.router.navigateByUrl(RouteTypes.CREDITS);
       return;
     }

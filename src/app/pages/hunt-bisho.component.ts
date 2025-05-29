@@ -37,7 +37,6 @@ import { GameStore } from '../store';
 })
 export class HuntBishoComponent {
   readonly game = inject(GameStore);
-  readonly hunter = this.game.hunter;
 
   deathByWumpus = computed(() => {
     const gameInstance = this.game;
