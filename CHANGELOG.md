@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [6.11.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v6.11.0...v6.11.1) (2025-05-29)
+
+
+### Bug Fixes
+
+* **sonar:** fix sonar issues ([3a98d60](https://github.com/chdelucia/hunt-the-bishomalo/commit/3a98d60914cfee3a405a3bdde2c09a9d6181c244))
+
 ## [6.11.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v6.10.0...v6.11.0) (2025-05-29)
 
 
