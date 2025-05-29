@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { TranslocoModule, TranslocoService } from "@jsverse/transloco";
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { Achievement } from 'src/app/models';
 import { AchievementService } from 'src/app/services/achievement/achievement.service';
 

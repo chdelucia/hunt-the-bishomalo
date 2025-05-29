@@ -1,11 +1,6 @@
-import {
-  TranslocoTestingModule,
-  TranslocoTestingOptions,
-} from '@jsverse/transloco';
+import { TranslocoTestingModule, TranslocoTestingOptions } from '@jsverse/transloco';
 
-export function getTranslocoTestingModule(
-  options: TranslocoTestingOptions = {}
-) {
+export function getTranslocoTestingModule(options: TranslocoTestingOptions = {}) {
   return TranslocoTestingModule.forRoot({
     langs: {
       en: {},

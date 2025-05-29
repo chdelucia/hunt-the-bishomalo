@@ -7,7 +7,7 @@ import {
   signal,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslocoModule } from "@jsverse/transloco";
+import { TranslocoModule } from '@jsverse/transloco';
 import { GameEngineService } from 'src/app/services/engine/game-engine.service';
 import { AchievementService } from 'src/app/services/achievement/achievement.service';
 import { AchieveTypes, RouteTypes } from 'src/app/models';

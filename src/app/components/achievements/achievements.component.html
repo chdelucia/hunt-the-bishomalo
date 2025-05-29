@@ -12,7 +12,15 @@
         <div class="progress-info">
           <h2 class="progress-title">{{ 'achievements.progressTitle' | transloco }}</h2>
           <p class="progress-stats">
-            {{ 'achievements.progressStats' | transloco:{ unlockedCount: unlockedCount, totalAchievements: achievements.length, percentage: percentage } }}
+            {{
+              'achievements.progressStats'
+                | transloco
+                  : {
+                      unlockedCount: unlockedCount,
+                      totalAchievements: achievements.length,
+                      percentage: percentage
+                    }
+            }}
           </p>
         </div>
         <div class="filter-buttons">
