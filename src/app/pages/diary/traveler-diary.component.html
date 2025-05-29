@@ -1,9 +1,9 @@
 <section class="diary">
-  <h2>Diario del Viajero</h2>
-  <div *ngIf="stories().length === 0">No hay historias disponibles.</div>
+  <h2>{{ 'diary.title' | transloco }}</h2>
+  <div *ngIf="stories().length === 0">{{ 'diary.noStoriesAvailable' | transloco }}</div>
   <article *ngFor="let story of stories()">
-    <h3>Capítulo {{ story.level }}: {{ story.title }}</h3>
+    <h3>{{ 'diary.chapterPrefix' | transloco }}{{ story.level }}: {{ story.title }}</h3>
     <p>{{ story.text }}</p>
-    <small>Efecto: {{ formatEffect(story.effect) }}</small>
+    <small>{{ 'diary.effectPrefix' | transloco }}{{ formatEffect(story.effect) }}</small>
   </article>
 </section>

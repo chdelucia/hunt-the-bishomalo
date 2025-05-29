@@ -1,13 +1,14 @@
-import { Component, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { TranslocoModule, TranslocoService } from '@ngneat/transloco';
 import { GameSound, RouteTypes } from 'src/app/models';
 import { GameEngineService, GameSoundService } from 'src/app/services';
 
 @Component({
   selector: 'app-end-credits',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, TranslocoModule],
   templateUrl: './end-credits.component.html',
   styleUrl: './end-credits.component.scss',
 })
@@ -16,39 +17,40 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
   readonly autoScroll = signal(true);
   readonly MAX_SCROLL_POSITION = 2600;
 
-  readonly roles = signal<string[]>([
-    'Programador Principal',
-    'Diseñador de Juego',
-    'Artista de Pixel Art',
-    'Compositor Musical',
-    'Diseñador de Niveles',
-    'Ingeniero de Sonido',
-    'Tester Principal',
-    'Especialista en Marketing',
-    'Gestor de Comunidad',
-    'Narrador',
-    'Voz del Bishomalo',
-    'Cuidador del Bishomalo',
-    'Experto en Pozos',
-    'Entrenador de Murciélagos',
-    'Fabricante de Flechas',
-    'Explorador de Cuevas',
-    'Maestro del Tiempo',
-    'Guardián del Oro',
-    'Contador de Píxeles',
-    'Especialista en Errores 404',
-    'Redactor de Créditos',
-    'Agradecimientos Especiales',
-  ]);
+  // Store keys for roles, to be translated in ngOnInit
+  private readonly roleKeys: string[] = [
+    'leadProgrammer',
+    'gameDesigner',
+    'pixelArtist',
+    'musicComposer',
+    'levelDesigner',
+    'soundEngineer',
+    'leadTester',
+    'marketingSpecialist',
+    'communityManager',
+    'narrator',
+    'bishomaloVoice',
+    'bishomaloCareTaker',
+    'pitExpert',
+    'batTrainer',
+    'arrowManufacturer',
+    'caveExplorer',
+    'timeMaster',
+    'goldGuardian',
+    'pixelCounter',
+    'error404Specialist',
+    'creditsWriter',
+    'specialThanks',
+  ];
+  readonly roles = signal<string[]>([]);
 
   private lastTime = 0;
   private animationFrameId = 0;
 
-  constructor(
-    private readonly router: Router,
-    private readonly gameEngine: GameEngineService,
-    private readonly gameSound: GameSoundService,
-  ) {}
+  private readonly router = inject(Router);
+  private readonly gameEngine = inject(GameEngineService);
+  private readonly gameSound = inject(GameSoundService);
+  private readonly translocoService = inject(TranslocoService);
 
   private startAutoScroll(): void {
     const animate = (time: number) => {
@@ -75,6 +77,9 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.roles.set(
+      this.roleKeys.map((key) => this.translocoService.translate(`credits.role.${key}`)),
+    );
     this.gameSound.stop();
     this.gameSound.playSound(GameSound.GOKU, false);
     this.startAutoScroll();

@@ -1,1 +1,677 @@
-{}
+{
+  "menu": {
+    "home": "Home",
+    "achievements": "Achievements",
+    "instructions": "Instructions",
+    "newGame": "New Game",
+    "achievementsAlt": "Achievements"
+  },
+  "achievements": {
+    "backToGame": "Back to Game",
+    "progressTitle": "Achievements Progress",
+    "progressStats": "You have unlocked {{unlockedCount}} of {{totalAchievements}} achievements ({{percentage}}%)",
+    "filterAll": "All",
+    "filterUnlocked": "Unlocked",
+    "filterLocked": "Locked",
+    "statusUnlocked": "Unlocked",
+    "statusLocked": "Locked",
+    "lara": {
+      "title": "Tomb Raider III",
+      "description": "Unlock Lara"
+    },
+    "link": {
+      "title": "Will you find Zelda?",
+      "description": "Unlock Link"
+    },
+    "legolas": {
+      "title": "Lord of the Archers",
+      "description": "Unlock Legolas"
+    },
+    "collect_dragonballs": {
+      "title": "Better than a lamp",
+      "description": "You have collected 7 crystal balls, how strange..."
+    },
+    "kill_wumpus": {
+      "title": "You killed the bisho malo",
+      "description": "You eliminated a Wumpus with a well-aimed arrow"
+    },
+    "collect_heart": {
+      "title": "Good as new",
+      "description": "Finding lives is always a relief"
+    },
+    "escape_rat": {
+      "title": "You escaped like a rat",
+      "description": "You escaped the cave without killing any Wumpus"
+    },
+    "collect_arrow": {
+      "title": "You picked up a fallen arrow",
+      "description": "You found an additional arrow during your adventure"
+    },
+    "hero_escape": {
+      "title": "Hero: you escaped by killing the bisho malo",
+      "description": "You killed the Wumpus and escaped with the gold"
+    },
+    "survive_blackout": {
+      "title": "You experienced a blackout",
+      "description": "You experienced a blackout! Wow, it's not like you were in SPAIN"
+    },
+    "survive_blackout_complete": {
+      "title": "You survived a blackout",
+      "description": "You survived a blackout and continued your adventure"
+    },
+    "death_by_wumpus": {
+      "title": "Death by bisho malo",
+      "description": "You were devoured by a Wumpus"
+    },
+    "death_by_pit": {
+      "title": "You drowned in a little pit",
+      "description": "You fell into a pit and couldn't get out"
+    },
+    "collect_gold": {
+      "title": "You collected a coin",
+      "description": "You found the gold in the cave"
+    },
+    "death_during_blackout": {
+      "title": "Death during blackout",
+      "description": "You were a victim of darkness during a blackout"
+    },
+    "hard_head": {
+      "title": "Hard head",
+      "description": "You have repeatedly bumped into walls"
+    },
+    "large_map_completion": {
+      "title": "Explorer of large caverns",
+      "description": "You completed a map larger than 12x12"
+    },
+    "missed_last_arrow": {
+      "title": "You missed your last shot",
+      "description": "You shot your last arrow and missed the target"
+    },
+    "wasted_arrows": {
+      "title": "Disaster",
+      "description": "You finished the game with more than one arrow and didn't kill the beast"
+    },
+    "speedrunner": {
+      "title": "Speedrunner",
+      "description": "You completed a game in less than 10 seconds"
+    },
+    "true_gamer": {
+      "title": "True Gamer",
+      "description": "You are an OG, WASD are your keys"
+    },
+    "sniper": {
+      "title": "Sniper",
+      "description": "You killed the Wumpus with a shot from more than 5 cells away"
+    },
+    "death_duel": {
+      "title": "Death Duel",
+      "description": "You killed the Wumpus while being in an adjacent cell"
+    },
+    "novice_cartographer": {
+      "title": "Novice Cartographer",
+      "description": "You explored 50% of a cave"
+    },
+    "expert_cartographer": {
+      "title": "Expert Cartographer",
+      "description": "You explored 100% of a cave"
+    },
+    "blind_shot": {
+      "title": "Blind Shot",
+      "description": "You killed the Wumpus during a blackout"
+    },
+    "last_breath": {
+      "title": "Last Breath",
+      "description": "You killed the Wumpus and died in the attempt"
+    },
+    "pentakill": {
+      "title": "Pentakill",
+      "description": "You have killed 5 enemies in a row"
+    },
+    "secret": {
+      "title": "Hidden secret 8x8",
+      "description": "You found the Jedi, may the force be with you!"
+    },
+    "completionist": {
+      "title": "Completionist",
+      "description": "You have won a game having all the achievements in the game. You are a legend!"
+    }
+  },
+  "rarity": {
+    "common": "Common",
+    "uncommon": "Uncommon",
+    "rare": "Rare",
+    "epic": "Epic",
+    "legendary": "Legendary"
+  },
+  "blackout": {
+    "message": "BLACKOUT!"
+  },
+  "cell": {
+    "altHunterWithGold": "hunter with gold",
+    "altHunter": "hunter",
+    "altGold": "gold"
+  },
+  "config": {
+    "title": "Configuration",
+    "playerNameLabel": "Player Name:",
+    "difficultyLabel": "Difficulty:",
+    "difficultyEasy": "Easy",
+    "difficultyNormal": "Normal",
+    "difficultyHard": "Hard",
+    "levelLabel": "Level (max 20):",
+    "selectCharacterLabel": "Select Character:",
+    "playButton": "Play",
+    "difficultyDescription": "{{maxLives}} lives, {{maxLevels}} levels, luck: {{chance}}%"
+  },
+  "controls": {
+    "openControlsAriaLabel": "Open game controls",
+    "openControlsAlt": "open controls",
+    "gameControlsAriaLabel": "Game Controls",
+    "closeControlsAriaLabel": "Close controls",
+    "title": "Controls",
+    "moveForward": "Move Forward",
+    "turn": "Turn",
+    "shoot": "Shoot",
+    "newGame": "New Game"
+  },
+  "mobileControls": {
+    "turnRightAriaLabel": "Turn Right",
+    "turnRightAlt": "Turn Right",
+    "shootArrowAriaLabel": "Shoot Arrow",
+    "shootArrowAlt": "Shoot",
+    "moveForwardAriaLabel": "Move Forward"
+  },
+  "level": {
+    "display": "Level {{level}}"
+  },
+  "message": {
+    "gameOver": "GAME OVER! You ran out of lives. #shouldhavestudied",
+    "newGameAriaLabel": "New Game",
+    "newGameButton": "Start a new game",
+    "dragonBallAlt": "Dragon Ball",
+    "defaultInstructions": "Activate the sound, collect the coin, and return to the start.",
+    "restartGameAriaLabel": "Restart game",
+    "tryAgainButton": "Click to try again",
+    "nextLevelAriaLabel": "Next level",
+    "congratsNextLevelButton": "Congratulations, click to start the next level.",
+    "congratsBossButton": "CONGRATULATIONS!! You have completed all levels, click to claim your reward."
+  },
+  "title": {
+    "blackoutSubtitle": "THE BLACKOUT"
+  },
+  "notFound": {
+    "title": "Oh no! You got lost in the cave",
+    "message": "It seems you've fallen into a pit or the Bishomalo has eaten this page.",
+    "subMessage": "Don't worry, you can still escape and return to a safe place.",
+    "backToHomeButton": "Back to Home"
+  },
+  "bossFight": {
+    "title": "⚔️ Final Boss Battle",
+    "boardAriaLabel": "Final Boss Board",
+    "bossImageAlt": "Boss",
+    "attemptsLeft": "Attempts: {{playerLives}}",
+    "bossHealth": "Boss: {{bossRemaining}}",
+    "retryGameAriaLabel": "Restart game",
+    "continuesButton": "Continues ({{livesLeft}})",
+    "nextButtonAriaLabel": "Next",
+    "youWonButton": "You Won! Continue"
+  },
+  "bossFightMessages": {
+    "initial": "Just as you were about to escape and could already see the sunlight, an evil being attacked you. Discover the 5 locations of the bisho malo, your lives are now continues.",
+    "bossHit": "🔥 You hit the boss!",
+    "miss": "❌ You missed. {{hint}}",
+    "bossDefeated": "🎉 You defeated the boss!",
+    "playerDefeated": "💀 The boss defeated you.",
+    "noMoreRetries": "😵 You have no lives left to retry.",
+    "hintInRow": "In the same row there are {{count}} bisho(s).",
+    "hintInCol": "In the COLUMN there are {{count}} bisho(s).",
+    "ariaCellPosition": "Cell {{row}},{{col}}",
+    "ariaCellStatusNotSelected": "not selected",
+    "ariaCellStatusBossHit": "boss hit",
+    "ariaCellStatusMiss": "miss."
+  },
+  "characters": {
+    "selectYourPrize": "Select Your Prize",
+    "confirmCharacterButton": "Confirm Character"
+  },
+  "charName": {
+    "default": "Kukuxumusu",
+    "lara": "Lara Croft",
+    "legolas": "Legolas",
+    "link": "Link"
+  },
+  "credits": {
+    "title": "Credits",
+    "subtitle": "The incredible people behind Hunt the Bishomalo",
+    "roleExecutiveDirector": "Executive Director",
+    "nameChrisHeredia": "Christian Heredia",
+    "roleAndOfCourse": "And of course...",
+    "noBishomalosHarmed": "No Bishomalos were harmed during the development of this game.",
+    "exceptThoseMetChris": "Except those who met Christian Heredia.",
+    "copyright": "© 2025 Christian Heredia",
+    "andNoOneElse": "(and no one else)",
+    "quoteSolo": "\"Yes, I did it all by myself. Any problem?\"<br />- Christian Heredia",
+    "newGameButton": "Start New Game",
+    "role.leadProgrammer": "Lead Programmer",
+    "role.gameDesigner": "Game Designer",
+    "role.pixelArtist": "Pixel Artist",
+    "role.musicComposer": "Music Composer",
+    "role.levelDesigner": "Level Designer",
+    "role.soundEngineer": "Sound Engineer",
+    "role.leadTester": "Lead Tester",
+    "role.marketingSpecialist": "Marketing Specialist",
+    "role.communityManager": "Community Manager",
+    "role.narrator": "Narrator",
+    "role.bishomaloVoice": "Bishomalo Voice",
+    "role.bishomaloCareTaker": "Bishomalo Caretaker",
+    "role.pitExpert": "Pit Expert",
+    "role.batTrainer": "Bat Trainer",
+    "role.arrowManufacturer": "Arrow Manufacturer",
+    "role.caveExplorer": "Cave Explorer",
+    "role.timeMaster": "Time Master",
+    "role.goldGuardian": "Gold Guardian",
+    "role.pixelCounter": "Pixel Counter",
+    "role.error404Specialist": "404 Error Specialist",
+    "role.creditsWriter": "Credits Writer",
+    "role.specialThanks": "Special Thanks"
+  },
+  "diary": {
+    "title": "Traveler's Diary",
+    "noStoriesAvailable": "No stories available.",
+    "chapterPrefix": "Chapter ",
+    "effectPrefix": "Effect: ",
+    "effect": {
+      "extraArrow": "You get an additional arrow",
+      "extraLife": "You recover a life",
+      "doubleGold": "You double the coins obtained",
+      "revealHint": "You discover a hidden clue",
+      "maxLivesUp": "Your maximum life increases",
+      "maxChanceDown": "Your maximum chance decreases",
+      "maxLivesDown": "Your maximum life decreases",
+      "fogOfWar": "Parts of the map are hidden",
+      "trapIncrease": "Traps in the level increase",
+      "bossReveal": "The final boss is revealed",
+      "bossFight": "You face the final boss",
+      "unlockUltimateWeapon": "You unlock the ultimate weapon"
+    }
+  },
+  "results": {
+    "title": "Game Results",
+    "subtitle": "Detailed statistics of your adventure",
+    "tabGeneral": "General",
+    "tabLevels": "Levels",
+    "summaryTitle": "Adventure Summary",
+    "totalSteps": "Total Steps",
+    "playTime": "Play Time",
+    "levelsCompleted": "Levels Completed",
+    "achievementsUnlocked": "Achievements Unlocked",
+    "personalRecordsTitle": "Personal Records",
+    "fastestLevel": "Fastest Level",
+    "fastestLevelDetails": "Level {{level}} - {{time}}s",
+    "fewestStepsLevel": "Level with Fewest Steps",
+    "fewestStepsLevelDetails": "Level {{level}} - {{steps}} steps",
+    "totalDeaths": "Total Deaths",
+    "totalDeathsDetails": "{{count}} times",
+    "arrowsShot": "Arrows Shot",
+    "coinsCollected": "Coins Collected",
+    "tableHeaderTime": "Time",
+    "tableHeaderSteps": "Steps",
+    "tableHeaderDeaths": "Deaths",
+    "tableHeaderLevel": "Level",
+    "noStatsMessage": "But if you haven't played yet, what stats do you want, dear?",
+    "nextButton": "Next",
+    "nextButtonAriaLabel": "Next"
+  },
+  "instructions": {
+    "backToGame": "Back to Game",
+    "mainTitle": "Game Instructions",
+    "subtitle": "Learn to play Hunt the Bishomalo",
+    "objectiveTitle": "Game Objective",
+    "objectiveText": "Your mission is to explore the cave, find the coin, and escape by returning to the starting cell. It's not mandatory to kill the Bishomalo, but the more you explore, the more secrets you'll discover.",
+    "dangersTitle": "Dangers",
+    "dangerBishomaloTitle": "Bishomalo",
+    "dangerBishomaloDescription": "The fearsome monster lurking in the cave. If you enter its room without an arrow, you will be devoured. You can defeat it with a well-aimed arrow.",
+    "dangerPitsTitle": "Pits",
+    "dangerPitsDescription": "Deep holes in the ground. If you fall into one, you won't be able to get out and will lose the game. You'll feel a breeze near them.",
+    "notesTitle": "Notes",
+    "noteUnfairGames": "The game has unfair elements; there will be deaths you cannot avoid.",
+    "noteArrows": "Use arrows cautiously as they are limited.",
+    "noteExplore": "Explore every corner to find clues and useful items.",
+    "noteHaveFun": "Have fun and good luck!"
+  },
+  "shop": {
+    "title": "Shop",
+    "subtitle": "Buy items to help you in the next level.",
+    "goldAlt": "Gold",
+    "coinsSuffix": " coins",
+    "inventoryItemAlt": "Inventory item",
+    "productItemAlt": "Shop item",
+    "nextLevelButton": "Next Level",
+    "notEnoughGoldMessage": "You don't have enough gold. Get out of here before I regret it!",
+    "buyButton": "Buy",
+    "disclaimer1": "The shop is not responsible for the misuse of items. Like, I already had maximum hearts... like, I already had a lantern...",
+    "disclaimerTag": "#ShouldHaveStudied",
+    "disclaimer2": "Items cannot be accumulated. We do not refund money.",
+    "purchaseMessageNotEnoughCoins": "You don't have enough coins!",
+    "purchaseMessageSuccess": "You bought {{productName}}!"
+  },
+  "storyPage": {
+    "chapterPrefix": "CHAPTER ",
+    "effectPrefix": "✨ Effect: ",
+    "clickToStartInstruction": "Click to start the level"
+  },
+  "gameMessages": {
+    "wallCollision": "Wall collision!",
+    "noArrows": "You have no arrows!",
+    "wumpusKilled": "You killed the Wumpus! Scream!",
+    "arrowMissed": "Arrow missed!",
+    "exitInstruction": "To exit, go to the entrance with the coin!",
+    "victory": "Victory!",
+    "perceptionNothingSuspicious": "Nothing suspicious.",
+    "perceptionStench": "You smell a stench.",
+    "perceptionBreeze": "You feel a breeze.",
+    "perceptionShine": "You sense a shine."
+  },
+  "product": {
+    "heart": {
+      "name": "Extra Life",
+      "description": "Gives you one more chance to survive."
+    },
+    "shield": {
+      "name": "Shield",
+      "description": "Protects you from a bishomalo attack."
+    },
+    "lantern": {
+      "name": "Lantern",
+      "description": "There was already a blackout, who knows if there will be more."
+    },
+    "rewind": {
+      "name": "Hourglass",
+      "description": "Rewinds time and prevents you from falling to the bottom of a pit."
+    },
+    "dragonball": {
+      "name": "A 4-star ball",
+      "description": "I don't really know what it's for, I found it in a bush. I'll give it to you cheap..."
+    },
+    "apple": {
+      "name": "An apple",
+      "description": "One is always good for hunger. It will get you out of some trouble."
+    }
+  },
+  "story": {
+    "default": {
+      "1": {
+        "title": "The Dark Beginning",
+        "text": "You venture into the depths of the cave, guided only by the dim light of your torch. Shadows seem to move around you, and a strange premonition accompanies you. You don't know what secrets await in the darkness."
+      },
+      "2": {
+        "title": "Echoes of the Past",
+        "text": "Among the gloom, you find a body with armor and weapons you vaguely recognize. A sense of guilt begins to grow within you as shadows whisper forgotten names."
+      },
+      "3": {
+        "title": "Whispers of Betrayal",
+        "text": "Fragmented memories begin to surface: scenes of betrayal, battles, and the fall of former allies. The cave seems to want to reveal a dark truth you do not wish to face."
+      },
+      "4": {
+        "title": "Trail of Vengeance",
+        "text": "As you advance, you notice that the paths are marked by the destruction you have caused. The cave reacts to your presence, becoming more treacherous and difficult."
+      },
+      "5": {
+        "title": "The Truth Revealed",
+        "text": "The bodies you've left behind begin to have faces: Lara, Legolas, and Link, your former rivals. The reality of your identity as the Bisho Malo becomes undeniable and heavy."
+      },
+      "6": {
+        "title": "Echoes of the Fallen",
+        "text": "The voices of the fallen heroes resonate in the cave, and their spirits seem to watch your every move. The atmosphere grows darker, and the traps more lethal."
+      },
+      "7": {
+        "title": "Inner Shadows",
+        "text": "A battle rages within you: the human part that still remains against the darkness that consumes you. The cave seems to reflect this conflict in its twisted formations and increasingly fierce enemies."
+      },
+      "8": {
+        "title": "Solitary Path",
+        "text": "You have left everything and everyone behind. Solitude becomes your only companion as you delve into the deepest levels of the cave, where the air grows heavy and dense."
+      },
+      "9": {
+        "title": "The Abyss Awaits",
+        "text": "The final boss awaits at the end of this tortuous journey, a dark entity reflecting your soul. The upcoming battle will decide not only your fate but the balance of the entire cave."
+      },
+      "10": {
+        "title": "The Recognition",
+        "text": "With each step, you recognize the magnitude of what you have done. The ghosts of the past haunt you, but the determination to finish this journey keeps you steadfast."
+      },
+      "11": {
+        "title": "Shadows of the Past",
+        "text": "The echoes of Lara, Legolas, and Link seem to grow stronger, trying to speak to you through the darkness. Their voices are a mixture of warnings and pleas for you to change your path."
+      },
+      "12": {
+        "title": "Final Decisions",
+        "text": "Every move is crucial. You feel that the cave itself conspires to stop you, and the final confrontation approaches inexorably."
+      },
+      "13": {
+        "title": "The Enemy's Face",
+        "text": "Finally, you see yourself reflected in the dark waters. The most fearsome enemy is the one that dwells within, and the battle against your own shadow is imminent."
+      },
+      "14": {
+        "title": "The Last Threshold",
+        "text": "Darkness condenses into a single point: the sanctuary of the final boss. Everything will be decided here, and you must be prepared to face your destiny."
+      },
+      "15": {
+        "title": "The Confrontation",
+        "text": "The Bisho Malo rises against its reflection, an epic battle where everything is at stake. The cave trembles before the force of this confrontation, and only one can emerge victorious."
+      }
+    },
+    "lara": {
+      "1": {
+        "title": "Explorer in the Depths",
+        "text": "Your adventure begins in the forbidden caves, searching for ancient relics and answers that can save your world. The air is cold, and a sense of danger looms over you."
+      },
+      "2": {
+        "title": "Signs in the Darkness",
+        "text": "You find traces of other adventurers: footprints, weapons, and something darker, a presence that disturbs the peace of these forgotten lands."
+      },
+      "3": {
+        "title": "Shadows of the Past",
+        "text": "The stories of fallen heroes reach you through the wind and echo. You know the cave holds secrets that could change everything."
+      },
+      "4": {
+        "title": "The Whisper of Betrayal",
+        "text": "The walls seem to tell stories of betrayals and lost battles. Each step brings you closer to a truth you'd rather not know."
+      },
+      "5": {
+        "title": "The Secret of the Bisho Malo",
+        "text": "You discover that a dark enemy lurks in the shadows, responsible for the disappearance of brave heroes. Its name is a feared whisper everywhere."
+      },
+      "6": {
+        "title": "Dangerous Paths",
+        "text": "Traps and dangers increase, and you must be more alert than ever. The cave does not forgive mistakes."
+      },
+      "7": {
+        "title": "Light in the Darkness",
+        "text": "A spark of hope illuminates your path as you prepare to face the Bisho Malo and discover the truth behind this nightmare."
+      },
+      "8": {
+        "title": "Distant Redemption",
+        "text": "Each step is an attempt to redeem the past and save what remains. The weight of the mission makes you stronger and more determined."
+      },
+      "9": {
+        "title": "The Imminent Encounter",
+        "text": "You know that the confrontation with the Bisho Malo is inevitable. The fate of the cave and its secrets depends on your bravery."
+      },
+      "10": {
+        "title": "The Revelation",
+        "text": "You discover the identity of the enemy and the connection it has with you and the other fallen heroes. Nothing will be the same from now on."
+      },
+      "11": {
+        "title": "Steel Determination",
+        "text": "With renewed courage, you advance through the cave, determined not to let evil triumph."
+      },
+      "12": {
+        "title": "The Decisive Moment",
+        "text": "Every arrow and movement counts. The final battle approaches, and you must be ready for it."
+      },
+      "13": {
+        "title": "The Last Enigma",
+        "text": "One last intellectual test awaits you: solve the enigma that unlocks the Bisho Malo's chamber."
+      },
+      "14": {
+        "title": "Face to Face",
+        "text": "In absolute silence, you enter the enemy's room. Its eyes look at you, awaiting the outcome."
+      },
+      "15": {
+        "title": "The Final Judgment",
+        "text": "A battle that will define your legacy. Only one force can leave the cave alive."
+      }
+    },
+    "legolas": {
+      "1": {
+        "title": "The Guardian of the Forest",
+        "text": "You have felt a disturbance in the winds of the forest. Something evil moves underground. You take your bow and follow the clues to a cave forgotten by time."
+      },
+      "2": {
+        "title": "The Silent Betrayal",
+        "text": "You find an arrow like yours, but broken and rusted. You feel that something familiar and dangerous inhabits these depths."
+      },
+      "3": {
+        "title": "Shadows That Know Your Name",
+        "text": "The creatures that inhabit the cave seem to recognize you. As if they had fought with you... or against you before. A shiver runs down your spine."
+      },
+      "4": {
+        "title": "A Rumor from the Past",
+        "text": "An inscription on the rock describes an elven warrior who was betrayed by a 'being disguised as a hero'. Does it refer to you? Or someone else?"
+      },
+      "5": {
+        "title": "The Encounter",
+        "text": "You glimpse a figure that seems familiar, but it disappears before you can reach it. It leaves behind a bloodied dagger."
+      },
+      "6": {
+        "title": "Hidden Truth",
+        "text": "Pieces of your memory are reconstructed upon finding an old pendant: Lara gave it to you... before disappearing into this very cave."
+      },
+      "7": {
+        "title": "The Elf's Wrath",
+        "text": "The knowledge of betrayal rekindles your fury. You move with lethal precision, determined to avenge your friends."
+      },
+      "8": {
+        "title": "Memories and Ashes",
+        "text": "You find a makeshift grave. You recognize the hilt of the sword: it belongs to Link. Your heart hardens."
+      },
+      "9": {
+        "title": "The Oath",
+        "text": "You promise to eliminate the Bisho Malo, even if it means getting lost in the darkness as your comrades did."
+      },
+      "10": {
+        "title": "The Hunter's Eye",
+        "text": "Your concentration is perfect. Every enemy falls before they touch you. But you know the real rival still waits."
+      },
+      "11": {
+        "title": "Devastating Truth",
+        "text": "A mural shows you an impossible scene: you, Lara, Link... and the fourth... is it the same one you now seek?"
+      },
+      "12": {
+        "title": "The Judgment of the Elves",
+        "text": "You question whether vengeance has made you lose your honor. What remains of Legolas if only rage is left?"
+      },
+      "13": {
+        "title": "Arrow of Destiny",
+        "text": "You find an elven relic: a golden arrow. It can only be used against a worthy foe. Destiny delivers it to you."
+      },
+      "14": {
+        "title": "Last Steps",
+        "text": "Each step resonates like a war drum. You feel the fallen accompany you from beyond."
+      },
+      "15": {
+        "title": "Vengeance in the Cave",
+        "text": "You reach the heart of the cave. The Bisho Malo awaits you. This is the battle for the honor of the fallen... and for your soul."
+      }
+    },
+    "link": {
+      "1": {
+        "title": "The Hero of Hyrule",
+        "text": "A vision sent by Zelda guides you to a cursed cave. Within lies an evil that must be destroyed before it spreads."
+      },
+      "2": {
+        "title": "Shadows of the Past",
+        "text": "Your sword vibrates as you approach the entrance. Something in this cave reminds you of Ganon, but it's not him. It's something more... personal."
+      },
+      "3": {
+        "title": "The Echo of Heroes",
+        "text": "You notice signs of an explorer and an elf. Lara? Legolas? Were they here before you?"
+      },
+      "4": {
+        "title": "A Silent Enemy",
+        "text": "There are no visible monsters, but you feel you are being watched. The darkness moves as if it has a will of its own."
+      },
+      "5": {
+        "title": "A Broken Sword",
+        "text": "You find a broken sword with the Hylian shield. It's not yours. A messenger? A previous hero who failed?"
+      },
+      "6": {
+        "title": "Heart of Courage",
+        "text": "You find a sacred spring that strengthens your determination. The path is hard, but the goal is just."
+      },
+      "7": {
+        "title": "The Broken Mirror",
+        "text": "A room full of broken mirrors distorts your figure... in one of them, you see a corrupted version of yourself."
+      },
+      "8": {
+        "title": "Zelda's Voice",
+        "text": "A soft voice guides you through a secret passage. It warns you: 'The enemy was an ally... beware of the one who does not remember.'"
+      },
+      "9": {
+        "title": "Legolas's Last Rest",
+        "text": "You find his empty quiver. His name carved on a stone. His story ends here... or does it?"
+      },
+      "10": {
+        "title": "Confusion",
+        "text": "Everything seems unreal. Are you following a path that others have already failed to complete? Will you also be a martyr?"
+      },
+      "11": {
+        "title": "Steps in the Sand",
+        "text": "You follow footprints... until you discover they are yours. You have been here before, but you don't remember when."
+      },
+      "12": {
+        "title": "The Ring of Fire",
+        "text": "A test: cross the ring of fire without getting burned. Only one with a pure heart will succeed."
+      },
+      "13": {
+        "title": "Shadow with a Name",
+        "text": "The shadow speaks to you. Its voice is yours, but distorted. It doesn't want to fight. It wants to remember."
+      },
+      "14": {
+        "title": "Lara's Last Echo",
+        "text": "You find her diary. Last entry: 'The enemy was one of us. It's too late for me now.'"
+      },
+      "15": {
+        "title": "Path of Light",
+        "text": "You feel the end is near. The ruins glow with a faint light... as if the Triforce itself guides you."
+      },
+      "16": {
+        "title": "Hero's Decision",
+        "text": "You will have to decide: redeem the Bisho Malo or destroy it. Future actions will depend on your choice."
+      },
+      "17": {
+        "title": "Test of Valor",
+        "text": "A spiritual duel against the essence of the Bisho Malo. Your courage will be the only effective weapon."
+      },
+      "18": {
+        "title": "Prelude to the End",
+        "text": "A rest before the end. You find an altar with a new sword... the only one capable of sealing evil."
+      },
+      "19": {
+        "title": "The Abyss",
+        "text": "You jump into the heart of the cave, where it all began. You are completely alone. But not defenseless."
+      },
+      "20": {
+        "title": "The Last Battle",
+        "text": "The Bisho Malo awaits you. But now you know the truth: it was you who created it. Only by facing your mistake can you restore balance."
+      }
+    }
+  },
+  "cellContent": {
+    "wumpus": {
+      "alt": "Wumpus (en)",
+      "ariaLabel": "Wumpus Label (en)"
+    }
+  }
+}

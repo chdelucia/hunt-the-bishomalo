@@ -5,9 +5,11 @@ import { AchievementService } from 'src/app/services';
 import { Router } from '@angular/router';
 import { GameStore } from 'src/app/store';
 
+import { TranslocoModule } from '@ngneat/transloco';
+
 @Component({
   selector: 'app-characters',
-  imports: [CommonModule, NgOptimizedImage],
+  imports: [CommonModule, NgOptimizedImage, TranslocoModule],
   templateUrl: './characters.component.html',
   styleUrl: './characters.component.scss',
 })

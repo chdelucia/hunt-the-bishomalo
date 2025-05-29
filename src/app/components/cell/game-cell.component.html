@@ -10,7 +10,7 @@
     [class.lantern]="hasLantern()"
     [class.shield]="hasShield()"
     [ngSrc]="bowImage()"
-    [attr.alt]="hasGold ? 'hunter with gold' : 'hunter'"
+    [attr.alt]="hasGold ? ('cell.altHunterWithGold' | transloco) : ('cell.altHunter' | transloco)"
     [style.transform]="rotation() !== 180 ? 'rotate(' + rotation() + 'deg)' : 'scaleX(-1)'"
     priority
     fill
@@ -20,7 +20,7 @@
   <img
     class="gold"
     ngSrc="boardicons/gold.svg"
-    alt="gold"
+    alt="{{ 'cell.altGold' | transloco }}"
     [width]="20 - size / 2"
     [height]="20 - size / 2"
   />

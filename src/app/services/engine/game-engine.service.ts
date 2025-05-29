@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslocoService } from '@ngneat/transloco';
 import {
   GameEventService,
   GameSoundService,
@@ -36,6 +37,7 @@ export class GameEngineService {
     private readonly router: Router,
     private readonly localStorageService: LocalstorageService,
     private readonly gameEvents: GameEventService,
+    private readonly transloco: TranslocoService,
   ) {}
 
   syncSettingsWithStorage(): void {
@@ -186,10 +188,11 @@ export class GameEngineService {
     this.checkSecret(size, newX, newY);
 
     if (newX < 0 || newY < 0 || newX >= size || newY >= size) {
-      if (this.store.message() === '¡Choque contra un muro!') {
+      const wallCollisionMessage = this.transloco.translate('gameMessages.wallCollision');
+      if (this.store.message() === wallCollisionMessage) {
         this.achieve.activeAchievement(AchieveTypes.HARDHEAD);
       }
-      this.store.setMessage('¡Choque contra un muro!');
+      this.store.setMessage(wallCollisionMessage);
       this.sound.playSound(GameSound.HITWALL, false);
       return;
     }
@@ -237,7 +240,7 @@ export class GameEngineService {
     if (!alive) return false;
 
     if (!arrows) {
-      this.store.setMessage('¡No tienes flechas!');
+      this.store.setMessage(this.transloco.translate('gameMessages.noArrows'));
       return false;
     }
 
@@ -291,7 +294,7 @@ export class GameEngineService {
 
   private handleWumpusHit(cell: Cell): void {
     cell.content = undefined;
-    this.store.setMessage('¡Has matado al Wumpus! ¡Grito!');
+    this.store.setMessage(this.transloco.translate('gameMessages.wumpusKilled'));
     this.sound.stopWumpus();
     this.sound.playSound(GameSound.PAIN, false);
     const wumpues = this._hunter()?.wumpusKilled;
@@ -312,7 +315,7 @@ export class GameEngineService {
   }
 
   private handleMissedArrow(): void {
-    this.store.setMessage('¡Flecha fallida!');
+    this.store.setMessage(this.transloco.translate('gameMessages.arrowMissed'));
     if (!this._hunter().arrows) this.achieve.activeAchievement(AchieveTypes.MISSEDSHOT);
   }
 
@@ -321,7 +324,7 @@ export class GameEngineService {
       this.sound.stop();
       this.handleVictory();
     } else {
-      this.store.setMessage('¡Para salir dirígete a la entrada con la moneda!');
+      this.store.setMessage(this.transloco.translate('gameMessages.exitInstruction'));
     }
   }
 
@@ -335,7 +338,7 @@ export class GameEngineService {
     let gold = 0;
     if (this._settings().blackout) gold = 200;
 
-    this.store.setMessage(`¡Victoria!`);
+    this.store.setMessage(this.transloco.translate('gameMessages.victory'));
     this.store.updateHunter({ hasWon: true, gold: this._hunter().gold + gold });
     this.playVictorySound();
   }
@@ -391,7 +394,9 @@ export class GameEngineService {
       if (perception) perceptions.push(perception);
     }
 
-    return perceptions.length > 0 ? perceptions.join(' ') : 'Nada sospechoso.';
+    return perceptions.length > 0
+      ? perceptions.join(' ')
+      : this.transloco.translate('gameMessages.perceptionNothingSuspicious');
   }
 
   private getAdjacentCells(): Cell[] {
@@ -415,17 +420,17 @@ export class GameEngineService {
   private getPerceptionFromCell(cell: Cell): string | null {
     if (cell.content?.type === 'wumpus') {
       this.sound.playSound(GameSound.WUMPUS);
-      return 'Sientes hedor.';
+      return this.transloco.translate('gameMessages.perceptionStench');
     }
 
     if (cell.content === CELL_CONTENTS.pit) {
       this.sound.playSound(GameSound.WIND);
-      return 'Sientes brisa.';
+      return this.transloco.translate('gameMessages.perceptionBreeze');
     }
 
     if (cell.content === CELL_CONTENTS.gold) {
       this.sound.playSound(GameSound.GOLD);
-      return 'Sientes un brillo.';
+      return this.transloco.translate('gameMessages.perceptionShine');
     }
 
     return null;

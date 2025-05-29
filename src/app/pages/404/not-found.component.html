@@ -77,15 +77,15 @@
     </div>
   </div>
 
-  <h1 class="error-titulo">¡Oh no! Te has perdido en la cueva</h1>
+  <h1 class="error-titulo">{{ 'notFound.title' | transloco }}</h1>
   <p class="error-mensaje">
-    Parece que has caído en un pozo o el Bishomalo se ha comido esta página.
+    {{ 'notFound.message' | transloco }}
   </p>
-  <p class="error-submensaje">No te preocupes, aún puedes escapar y volver a un lugar seguro.</p>
+  <p class="error-submensaje">{{ 'notFound.subMessage' | transloco }}</p>
 
   <div class="error-opciones">
     <a routerLink="/" class="boton-error">
-      <span>Volver al inicio</span>
+      <span>{{ 'notFound.backToHomeButton' | transloco }}</span>
     </a>
   </div>
 </section>
