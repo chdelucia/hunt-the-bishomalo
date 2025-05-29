@@ -6,7 +6,7 @@ import { getTranslocoTestingModule } from 'src/app/utils';
 
 const mockSettings = {
   size: 6,
-  selectedChar: 'DEFAULT',
+  selectedChar: 'default',
 };
 
 const mockHunter = {
@@ -66,4 +66,23 @@ describe('GameStoryService', () => {
       expect(mockUpdateHunter).not.toHaveBeenCalled();
     });
   });
+
+  it('should return translated story for current level and character', () => {
+  const result = service.getStory();
+  expect(result).toBeDefined();
+  expect(result?.title).toBe('story.default.3.title');
+  expect(result?.text).toBe('story.default.3.text');
+});
+
+
+it('should return all translated stories up to current level', () => {
+  const result = service.getJournalEntries();
+  expect(result.length).toBe(3);
+  expect(result[0].title).toBe('story.default.1.title');
+  expect(result[1].text).toBe('story.default.2.text');
+});
+
+
+
+
 });
