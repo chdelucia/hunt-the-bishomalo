@@ -13,7 +13,7 @@ describe('GameEventService', () => {
   const mockUpdateHunter = jest.fn();
   const mockActiveAchievement = jest.fn();
   const mockHunter = jest.fn();
-  const mockInventory = jest.fn()
+  const mockInventory = jest.fn();
   const mockSettings = jest.fn().mockReturnValue({
     difficulty: {
       maxLevels: 10,
@@ -46,7 +46,7 @@ describe('GameEventService', () => {
             inventory: mockInventory,
             lives: () => 2,
             dragonballs: () => 0,
-            arrows: () => 1
+            arrows: () => 1,
           },
         },
         {
@@ -73,7 +73,7 @@ describe('GameEventService', () => {
     hasWon: false,
     wumpusKilled: 0,
     inventory: [],
-    chars:[],
+    chars: [],
     lives: 8,
     gold: 0,
   };
@@ -88,7 +88,9 @@ describe('GameEventService', () => {
 
     const result = service.applyEffectsOnDeath('pit', {} as Cell, { x: 1, y: 0 });
     expect(result).toBe(true);
-    expect(mockSetMessage).toHaveBeenCalledWith('¡Rebobinaste el tiempo y volviste a tu posición anterior!');
+    expect(mockSetMessage).toHaveBeenCalledWith(
+      '¡Rebobinaste el tiempo y volviste a tu posición anterior!',
+    );
   });
 
   it('should shield hunter if killed by wumpus and has shield', () => {
@@ -96,8 +98,8 @@ describe('GameEventService', () => {
       ...baseHunter,
       inventory: [{ name: 'escudo', icon: '', effect: 'shield' }],
     });
-    
-    mockInventory.mockReturnValue( [{ name: 'escudo', icon: '', effect: 'shield' }]);
+
+    mockInventory.mockReturnValue([{ name: 'escudo', icon: '', effect: 'shield' }]);
 
     const result = service.applyEffectsOnDeath('wumpus', {} as Cell, { x: 1, y: 0 });
     expect(result).toBe(true);
@@ -119,9 +121,7 @@ describe('GameEventService', () => {
 
     expect(mockPlaySound).toHaveBeenCalled();
     expect(mockActiveAchievement).toHaveBeenCalled();
-    expect(mockUpdateHunter).toHaveBeenCalledWith(
-      expect.objectContaining({ arrows: 2 }),
-    );
+    expect(mockUpdateHunter).toHaveBeenCalledWith(expect.objectContaining({ arrows: 2 }));
     expect(mockSetMessage).toHaveBeenCalledWith('Has recogido una flecha.');
   });
 
@@ -152,7 +152,7 @@ describe('GameEventService', () => {
       inventory: [{ name: 'dragonball', icon: '', effect: 'dragonball' }],
     });
 
-    mockInventory.mockReturnValue( [{ name: 'dragonball', icon: '', effect: 'dragonball' }]);
+    mockInventory.mockReturnValue([{ name: 'dragonball', icon: '', effect: 'dragonball' }]);
 
     service.applyEffectByCellContent({
       x: 0,

@@ -15,8 +15,8 @@ const mockHunter: Hunter = {
   lives: 4,
   wumpusKilled: 0,
   gold: 0,
-  inventory:[],
-  chars:[Chars.DEFAULT]
+  inventory: [],
+  chars: [Chars.DEFAULT],
 };
 const mockSettings = {
   player: 'Chris',

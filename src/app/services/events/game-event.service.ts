@@ -125,11 +125,7 @@ export class GameEventService {
   readonly gameSound = inject(GameSoundService);
   readonly gameAchieve = inject(AchievementService);
 
-  applyEffectsOnDeath(
-    cause: CauseOfDeath,
-    cell: Cell,
-    prev: { x: number; y: number },
-  ): boolean {
+  applyEffectsOnDeath(cause: CauseOfDeath, cell: Cell, prev: { x: number; y: number }): boolean {
     for (const effect of this.effects) {
       if (effect.canApply(cause)) {
         effect.apply(cell, prev);
@@ -138,7 +134,7 @@ export class GameEventService {
       }
     }
 
-    this.gameStore.updateHunter({alive: false})
+    this.gameStore.updateHunter({ alive: false });
     return false;
   }
 
@@ -174,7 +170,6 @@ export class GameEventService {
       lives: Math.min(this.gameStore.lives() + 1, this.gameStore.settings().difficulty.maxLives),
     });
     cell.content = undefined;
-
   }
 
   private extraGold(cell: Cell): void {

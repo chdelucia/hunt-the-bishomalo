@@ -42,7 +42,7 @@ const mockStore = {
   setHunterForNextLevel: jest.fn(),
   inventory: () => [],
   gold: jest.fn(),
-  lives: () => 7
+  lives: () => 7,
 };
 
 const mockSound = {

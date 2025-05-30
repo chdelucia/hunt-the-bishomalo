@@ -19,7 +19,7 @@ describe('GameStore (SignalStore)', () => {
     lives: 8,
     chars: [],
     gold: 0,
-    inventory: []
+    inventory: [],
   };
 
   const mockSettings: GameSettings = {
