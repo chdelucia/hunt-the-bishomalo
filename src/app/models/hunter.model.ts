@@ -18,8 +18,8 @@ export interface Hunter {
   hasWon: boolean;
   wumpusKilled: number;
   lives: number;
-  inventory?: GameItem[];
+  inventory: GameItem[];
   gold: number;
-  chars?: Chars[];
+  chars: Chars[];
   dragonballs?: number;
 }

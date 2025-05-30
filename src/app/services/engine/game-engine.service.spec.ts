@@ -40,6 +40,9 @@ const mockStore = {
   resetHunter: jest.fn(),
   currentCell: jest.fn(),
   setHunterForNextLevel: jest.fn(),
+  inventory: () => [],
+  gold: jest.fn(),
+  lives: () => 7
 };
 
 const mockSound = {
@@ -93,7 +96,6 @@ describe('GameEngineService (with useValue)', () => {
     ]);
   });
 
-  // Updated test for initGame to reflect that it now calls initializeGameBoard
   it('initGame: calls stop, setSettings, initializeGameBoard and checkCurrentCell', () => {
     const config = {
       size: 2,

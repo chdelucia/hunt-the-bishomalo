@@ -12,6 +12,8 @@ describe('GameEventService', () => {
   const mockSetMessage = jest.fn();
   const mockUpdateHunter = jest.fn();
   const mockActiveAchievement = jest.fn();
+  const mockHunter = jest.fn();
+  const mockInventory = jest.fn()
   const mockSettings = jest.fn().mockReturnValue({
     difficulty: {
       maxLevels: 10,
@@ -40,6 +42,11 @@ describe('GameEventService', () => {
             updateHunter: mockUpdateHunter,
             setMessage: mockSetMessage,
             settings: mockSettings,
+            hunter: mockHunter,
+            inventory: mockInventory,
+            lives: () => 2,
+            dragonballs: () => 0,
+            arrows: () => 1
           },
         },
         {
@@ -66,40 +73,45 @@ describe('GameEventService', () => {
     hasWon: false,
     wumpusKilled: 0,
     inventory: [],
+    chars:[],
     lives: 8,
     gold: 0,
   };
 
   it('should revive hunter with revive item', () => {
-    const hunter: Hunter = {
+    mockHunter.mockReturnValue({
       ...baseHunter,
       inventory: [{ name: 'vida-extra', icon: '', effect: 'rewind' }],
-    };
+    });
 
-    const result = service.applyEffectsOnDeath(hunter, 'pit', {} as Cell, { x: 1, y: 0 });
-    expect(result.hunter.alive).toBe(true);
-    expect(result.message).toContain('¡Rebobinaste');
+    mockInventory.mockReturnValue([{ name: 'vida-extra', icon: '', effect: 'rewind' }]);
+
+    const result = service.applyEffectsOnDeath('pit', {} as Cell, { x: 1, y: 0 });
+    expect(result).toBe(true);
+    expect(mockSetMessage).toHaveBeenCalledWith('¡Rebobinaste el tiempo y volviste a tu posición anterior!');
   });
 
   it('should shield hunter if killed by wumpus and has shield', () => {
-    const hunter: Hunter = {
+    mockHunter.mockReturnValue({
       ...baseHunter,
       inventory: [{ name: 'escudo', icon: '', effect: 'shield' }],
-    };
+    });
+    
+    mockInventory.mockReturnValue( [{ name: 'escudo', icon: '', effect: 'shield' }]);
 
-    const result = service.applyEffectsOnDeath(hunter, 'wumpus', {} as Cell, { x: 1, y: 0 });
-    expect(result.hunter.alive).toBe(true);
-    expect(result.message).toContain('¡Tu escudo bloqueó al Wumpus!');
+    const result = service.applyEffectsOnDeath('wumpus', {} as Cell, { x: 1, y: 0 });
+    expect(result).toBe(true);
+    expect(mockSetMessage).toHaveBeenCalledWith('¡Tu escudo bloqueó al Wumpus! pero se rompió.');
   });
 
   it('should apply extra arrow and update hunter', () => {
-    const hunter: Hunter = {
+    mockHunter.mockReturnValue({
       ...baseHunter,
       alive: true,
       inventory: [{ name: 'flecha-extra', icon: '', effect: 'arrow' }],
-    };
+    });
 
-    service.applyEffectByCellContent(hunter, {
+    service.applyEffectByCellContent({
       x: 0,
       y: 0,
       content: { type: 'arrow', image: '', alt: '', ariaLabel: '' },
@@ -108,39 +120,41 @@ describe('GameEventService', () => {
     expect(mockPlaySound).toHaveBeenCalled();
     expect(mockActiveAchievement).toHaveBeenCalled();
     expect(mockUpdateHunter).toHaveBeenCalledWith(
-      expect.objectContaining({ arrows: hunter.arrows + 1 }),
+      expect.objectContaining({ arrows: 2 }),
     );
     expect(mockSetMessage).toHaveBeenCalledWith('Has recogido una flecha.');
   });
 
   it('should apply extra heart and increase lives', () => {
-    const hunter: Hunter = {
+    mockHunter.mockReturnValue({
       ...baseHunter,
       alive: true,
       lives: 1,
       inventory: [{ name: 'extra-heart', icon: '', effect: 'heart' }],
-    };
+    });
 
-    service.applyEffectByCellContent(hunter, {
+    service.applyEffectByCellContent({
       x: 0,
       y: 0,
       content: { type: 'heart', image: '', alt: '', ariaLabel: '' },
     });
 
     expect(mockPlaySound).toHaveBeenCalled();
-    expect(mockUpdateHunter).toHaveBeenCalledWith(expect.objectContaining({ lives: 2 }));
+    expect(mockUpdateHunter).toHaveBeenCalledWith(expect.objectContaining({ lives: 3 }));
     expect(mockSetMessage).toHaveBeenCalledWith('Has conseguido una vida extra.');
   });
 
   it('should apply dragon ball pickup', () => {
-    const hunter: Hunter = {
+    mockHunter.mockReturnValue({
       ...baseHunter,
       alive: true,
       lives: 1,
       inventory: [{ name: 'dragonball', icon: '', effect: 'dragonball' }],
-    };
+    });
 
-    service.applyEffectByCellContent(hunter, {
+    mockInventory.mockReturnValue( [{ name: 'dragonball', icon: '', effect: 'dragonball' }]);
+
+    service.applyEffectByCellContent({
       x: 0,
       y: 0,
       content: { type: 'dragonball', image: '', alt: '', ariaLabel: '' },
@@ -152,14 +166,16 @@ describe('GameEventService', () => {
   });
 
   it('should return original hunter if no item is applicable', () => {
-    const hunter: Hunter = {
+    mockHunter.mockReturnValue({
       ...baseHunter,
       alive: false,
       inventory: [],
-    };
+    });
 
-    const result = service.applyEffectsOnDeath(hunter, 'wumpus', {} as Cell, { x: 1, y: 0 });
-    expect(result.hunter.alive).toBe(false);
-    expect(result.message).toBeUndefined();
+    mockInventory.mockReturnValue([]);
+
+    const result = service.applyEffectsOnDeath('wumpus', {} as Cell, { x: 1, y: 0 });
+    expect(result).toBe(false);
+    expect(mockSetMessage).not.toHaveBeenCalled();
   });
 });

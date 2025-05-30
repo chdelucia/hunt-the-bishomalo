@@ -359,26 +359,17 @@ export class GameEngineService {
     const contentType = cell.content?.type;
 
     if (contentType === 'pit' || contentType === 'wumpus') {
-      const survived = this.playerHasRevive(contentType, cell, { x, y });
+      const survived = this.gameEvents.applyEffectsOnDeath(contentType, cell, { x, y });
       if (survived) return;
     }
 
     if (cell.content) {
-      this.gameEvents.applyEffectByCellContent(this._hunter(), cell);
+      this.gameEvents.applyEffectByCellContent(cell);
       return;
     }
 
     this.sound.playSound(GameSound.WALK, false);
     this.store.setMessage(this.getPerceptionMessage());
-  }
-
-  private playerHasRevive(
-    cause: 'pit' | 'wumpus',
-    cell: Cell,
-    prev: { x: number; y: number },
-  ): boolean {
-    const { hunter } = this.gameEvents.applyEffectsOnDeath(this._hunter(), cause, cell, prev);
-    return hunter.alive;
   }
 
   private getPerceptionMessage(): string {

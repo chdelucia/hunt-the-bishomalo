@@ -28,6 +28,7 @@ const initialHunter: Hunter = {
   wumpusKilled: 0,
   lives: 8,
   chars: [Chars.DEFAULT],
+  inventory: [],
   gold: 0,
 };
 
@@ -43,6 +44,9 @@ export const GameStore = signalStore(
   withState(initialState),
   withComputed(({ hunter, settings, board }) => ({
     wumpusKilled: computed(() => hunter().wumpusKilled),
+    lives: computed(() => hunter().lives),
+    arrows: computed(() => hunter().arrows),
+    dragonballs: computed(() => hunter().dragonballs),
     hunterAlive: computed(() => hunter().alive),
     hasGold: computed(() => hunter().hasGold),
     hasWon: computed(() => hunter().hasWon),
