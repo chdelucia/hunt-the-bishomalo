@@ -2,7 +2,6 @@ import { inject, Injectable } from '@angular/core';
 import { LevelStory, STORIES } from './stories.const';
 import { GameStore } from 'src/app/store';
 import { TranslocoService } from '@jsverse/transloco';
-import { Chars } from 'src/app/models';
 
 @Injectable({
   providedIn: 'root',
