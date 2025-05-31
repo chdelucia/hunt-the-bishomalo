@@ -58,37 +58,35 @@ export class GameEngineService {
   }
 
   public initializeGameBoard(): void {
-    const settings = this.store.settings();
+    const settings = this._settings();
     const hunter = this.store.hunter();
     const board: Cell[][] = Array.from({ length: settings.size }, (_, x) =>
       Array.from({ length: settings.size }, (_, y) => ({ x, y, visited: false })),
     );
 
     const ex = new Set(['0,0']);
-    this.placeRandom(board, ex, settings).content = CELL_CONTENTS.gold;
+    this.placeRandom(board, ex).content = CELL_CONTENTS.gold;
 
     for (let i = 0; i < (settings.wumpus || 1); i++) {
       const type = `wumpus${settings.selectedChar}` as CellContentType;
-      this.placeRandom(board, ex, settings).content = CELL_CONTENTS[type];
+      this.placeRandom(board, ex).content = CELL_CONTENTS[type];
     }
     for (let i = 0; i < settings.pits; i++) {
-      this.placeRandom(board, new Set(['0,0', '0,1', '1,0']), settings).content = CELL_CONTENTS.pit;
+      this.placeRandom(board, new Set(['0,0', '0,1', '1,0'])).content = CELL_CONTENTS.pit;
     }
 
     for (let i = 0; i < (settings.wumpus || 1) - 1; i++) {
-      this.placeRandom(board, ex, settings).content = CELL_CONTENTS.arrow;
+      this.placeRandom(board, ex).content = CELL_CONTENTS.arrow;
     }
 
-    this.placeEvents(board, hunter, settings);
+    this.placeEvents(board, hunter);
     this.store.updateBoard(board);
     this.setHunterForNextLevel();
   }
 
   private setHunterForNextLevel(): void {
-    const hunter = this.store.hunter();
-    const settings = this.store.settings();
+    const settings = this._settings();
     this.store.updateHunter({
-      ...hunter,
       x: 0,
       y: 0,
       direction: Direction.RIGHT,
@@ -96,13 +94,13 @@ export class GameEngineService {
       alive: true,
       hasGold: false,
       hasWon: false,
-      wumpusKilled: 0,
-      lives: Math.min(hunter.lives, settings.difficulty.maxLives),
+      lives: Math.min(this.store.lives(), settings.difficulty.maxLives),
     });
+    this.store.resetWumpus();
   }
 
-  private placeRandom(board: Cell[][], excluded: Set<string>, settings: GameSettings): Cell {
-    const size = settings.size;
+  private placeRandom(board: Cell[][], excluded: Set<string>): Cell {
+    const size = this._settings().size;
     let cell: Cell;
     do {
       const x = Math.floor(Math.random() * size);
@@ -112,21 +110,21 @@ export class GameEngineService {
     return cell;
   }
 
-  private placeEvents(board: Cell[][], hunter: Hunter, settings: GameSettings): void {
-    const { difficulty } = settings;
+  private placeEvents(board: Cell[][], hunter: Hunter): void {
+    const { difficulty, size } = this._settings();
     const ex = new Set(['0,0']);
     const chance = (base: number, max: number) =>
-      Math.min(base + ((settings.size - 4) / (difficulty.maxLevels - 4)) * (max - base), max);
+      Math.min(base + ((size - 4) / (difficulty.maxLevels - 4)) * (max - base), max);
 
     if (
       Math.random() < chance(difficulty.baseChance, difficulty.maxChance) &&
       hunter.lives < difficulty.maxLives
     ) {
-      this.placeRandom(board, ex, settings).content = CELL_CONTENTS.heart;
+      this.placeRandom(board, ex).content = CELL_CONTENTS.heart;
     }
 
     if (Math.random() < difficulty.baseChance && !hunter.dragonballs) {
-      this.placeRandom(board, ex, settings).content = CELL_CONTENTS.dragonball;
+      this.placeRandom(board, ex).content = CELL_CONTENTS.dragonball;
     }
   }
 
@@ -297,8 +295,7 @@ export class GameEngineService {
     this.store.setMessage(this.transloco.translate('gameMessages.wumpusKilled'));
     this.sound.stopWumpus();
     this.sound.playSound(GameSound.PAIN, false);
-    const wumpues = this._hunter()?.wumpusKilled;
-    this.store.updateHunter({ wumpusKilled: wumpues + 1 });
+    this.store.countWumpusKilled();
     this.achieve.handleWumpusKillAchieve(cell);
     this.getDrop(cell);
   }

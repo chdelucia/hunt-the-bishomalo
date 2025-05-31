@@ -15,7 +15,6 @@ describe('GameStore (SignalStore)', () => {
     alive: true,
     hasGold: false,
     hasWon: false,
-    wumpusKilled: 0,
     lives: 8,
     chars: [],
     gold: 0,
@@ -99,7 +98,7 @@ describe('GameStore (SignalStore)', () => {
     expect(resetState.alive).toBe(true);
     expect(resetState.hasGold).toBe(false);
     expect(resetState.hasWon).toBe(false);
-    expect(resetState.wumpusKilled).toBe(0);
+    expect(store.wumpusKilled()).toBe(0);
     expect(resetState.lives).toBe(8);
     expect(resetState.gold).toBe(0);
 

@@ -1,7 +1,6 @@
 import { effect, inject, Injectable, signal } from '@angular/core';
 import { Achievement, AchieveTypes, Cell, GameSound } from 'src/app/models';
 import { AnalyticsService, GameSoundService, LocalstorageService } from 'src/app/services';
-import { TranslocoService } from '@jsverse/transloco';
 import { ACHIEVEMENTS_LIST } from './achieve.const';
 import { GameStore } from 'src/app/store';
 
@@ -14,7 +13,6 @@ export class AchievementService {
   completed = signal<Achievement | undefined>(undefined);
 
   private readonly gameStore = inject(GameStore);
-  private readonly translocoService = inject(TranslocoService);
 
   constructor(
     private readonly gameSound: GameSoundService,
@@ -73,7 +71,8 @@ export class AchievementService {
   }
 
   caclVictoryAchieve(seconds: number): void {
-    const { arrows, wumpusKilled } = this.gameStore.hunter();
+    const wumpusKilled = this.gameStore.wumpusKilled();
+    const { arrows } = this.gameStore.hunter();
     const { blackout, size } = this.gameStore.settings();
 
     if (blackout) this.activeAchievement(AchieveTypes.WINBLACKWOUT);

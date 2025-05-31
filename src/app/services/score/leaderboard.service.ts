@@ -20,7 +20,7 @@ export class LeaderboardService {
     const stored = this.loadLeaderboardFromStorage();
     this._leaderboard = stored;
     effect(() => {
-      const { x, y, hasWon, alive, wumpusKilled } = this._hunter();
+      const { x, y, hasWon, alive } = this._hunter();
       if (x || y) this.countSteps += 1;
       if (hasWon || !alive) {
         const { player, blackout, size } = this._settings();
@@ -32,7 +32,7 @@ export class LeaderboardService {
           date: endTime,
           level: size - 4 + 1,
           blackout: !!blackout,
-          wumpusKilled,
+          wumpusKilled: this.gameStore.wumpusKilled(),
           steps: this.countSteps,
           deads: alive ? 0 : 1,
         });

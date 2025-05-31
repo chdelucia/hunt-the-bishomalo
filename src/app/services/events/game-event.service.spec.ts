@@ -47,6 +47,7 @@ describe('GameEventService', () => {
             lives: () => 2,
             dragonballs: () => 0,
             arrows: () => 1,
+            wumpusKilled: () => 1,
           },
         },
         {
@@ -71,7 +72,6 @@ describe('GameEventService', () => {
     arrows: 1,
     hasGold: false,
     hasWon: false,
-    wumpusKilled: 0,
     inventory: [],
     chars: [],
     lives: 8,

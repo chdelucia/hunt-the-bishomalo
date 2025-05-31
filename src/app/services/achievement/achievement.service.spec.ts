@@ -125,10 +125,11 @@ describe('AchievementService', () => {
   it('victory achievements HERO', () => {
     const spy = jest.spyOn(service, 'activeAchievement');
     mockGameStoreService.settings.mockReturnValue({
-      size: 12,
+      size: 2,
     });
+    mockGameStoreService.wumpusKilled.mockReturnValue(1);
 
-    service.caclVictoryAchieve(2);
+    service.caclVictoryAchieve(200);
     expect(spy).toHaveBeenCalledWith(AchieveTypes.WINHERO);
   });
 

@@ -15,6 +15,7 @@ interface GameState {
   hunter: Hunter;
   message: string;
   settings: GameSettings;
+  wumpusKilled: number;
 }
 
 const initialHunter: Hunter = {
@@ -25,7 +26,6 @@ const initialHunter: Hunter = {
   alive: true,
   hasGold: false,
   hasWon: false,
-  wumpusKilled: 0,
   lives: 8,
   chars: [Chars.DEFAULT],
   inventory: [],
@@ -37,13 +37,13 @@ const initialState: GameState = {
   hunter: initialHunter,
   message: '',
   settings: {} as GameSettings,
+  wumpusKilled: 0,
 };
 
 export const GameStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
   withComputed(({ hunter, settings, board }) => ({
-    wumpusKilled: computed(() => hunter().wumpusKilled),
     lives: computed(() => hunter().lives),
     arrows: computed(() => hunter().arrows),
     dragonballs: computed(() => hunter().dragonballs),
@@ -86,7 +86,7 @@ export const GameStore = signalStore(
         ...initialHunter,
         chars: store.hunter().chars,
       };
-      patchState(store, { hunter: newHunter });
+      patchState(store, { hunter: newHunter, wumpusKilled: 0 });
       localStorage.setValue(storageKey, newHunter);
     };
 
@@ -99,10 +99,17 @@ export const GameStore = signalStore(
           ...updated,
           hasGold: false,
           hasWon: false,
-          wumpusKilled: 0,
         });
       }
     };
+
+    const countWumpusKilled = () => {
+      patchState(store, { wumpusKilled: store.wumpusKilled() + 1})
+    }
+
+    const resetWumpus = () => {
+      patchState(store, { wumpusKilled: 0})
+    }
 
     const updateBoard = (newBoard: Cell[][]) => {
       patchState(store, { board: newBoard });
@@ -113,6 +120,8 @@ export const GameStore = signalStore(
     };
 
     return {
+      resetWumpus,
+      countWumpusKilled,
       setSettings,
       updateHunter,
       resetHunter,

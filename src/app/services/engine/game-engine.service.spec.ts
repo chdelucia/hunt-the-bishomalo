@@ -39,7 +39,9 @@ const mockStore = {
   setSettings: jest.fn(),
   resetHunter: jest.fn(),
   currentCell: jest.fn(),
+  countWumpusKilled: jest.fn(),
   setHunterForNextLevel: jest.fn(),
+  resetWumpus: jest.fn(),
   inventory: () => [],
   gold: jest.fn(),
   lives: () => 7,
@@ -291,7 +293,6 @@ describe('GameEngineService (with useValue)', () => {
         alive: false,
         hasGold: false,
         hasWon: false,
-        wumpusKilled: 0,
         lives: 3,
         chars: [Chars.LARA],
         gold: 0,
@@ -313,10 +314,8 @@ describe('GameEngineService (with useValue)', () => {
     });
 
     it('should set hunter state for new level via store.updateHunter', () => {
-      const initialHunterState = { ...mockStore.hunter() };
       service.initializeGameBoard();
       expect(mockStore.updateHunter).toHaveBeenCalledWith({
-        ...initialHunterState,
         x: 0,
         y: 0,
         direction: Direction.RIGHT,
@@ -324,8 +323,7 @@ describe('GameEngineService (with useValue)', () => {
         alive: true,
         hasGold: false,
         hasWon: false,
-        wumpusKilled: 0,
-        lives: Math.min(initialHunterState.lives, mockStore.settings().difficulty.maxLives),
+        lives: 7,
       });
     });
 
@@ -333,8 +331,7 @@ describe('GameEngineService (with useValue)', () => {
       service.initializeGameBoard();
       expect(placeRandomSpy).toHaveBeenCalledWith(
         expect.any(Array),
-        expect.any(Set),
-        mockStore.settings(),
+        expect.any(Set)
       );
       const goldCall = placeRandomSpy.mock.calls.find((call) => {
         const cell = call[0][0][0];
@@ -380,8 +377,7 @@ describe('GameEngineService (with useValue)', () => {
       service.initializeGameBoard();
       expect(placeEventsSpy).toHaveBeenCalledWith(
         expect.any(Array),
-        mockStore.hunter(),
-        mockStore.settings(),
+        mockStore.hunter()
       );
     });
   });

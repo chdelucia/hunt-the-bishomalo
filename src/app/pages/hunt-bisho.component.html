@@ -1,5 +1,5 @@
-@let board = game.board(); @let boardSize = board.length; @let hunterData = hunter(); @let isAlive =
-hunterData.alive; @let hasWon = hunterData.hasWon; @let settings = game.settings();
+@let board = game.board(); @let boardSize = board.length; @let isAlive =
+game.hunterAlive(); @let hasWon = game.hasWon(); @let settings = game.settings();
 
 <main [appVisualEffect]="game.message()" class="main-container">
   <app-title [blackout]="settings?.blackout || false" />
@@ -13,11 +13,9 @@ hunterData.alive; @let hasWon = hunterData.hasWon; @let settings = game.settings
       @for (cell of row; track $index) {
 
       <app-game-cell
-        [class.escape]="!rowIndex && $first && hunterData.hasGold"
+        [class.escape]="!rowIndex && $first && game.hasGold()"
         class="size-{{ boardSize }}"
         [cell]="cell"
-        [hunter]="hunterData"
-        [settings]="settings"
       />
       }
     </div>
@@ -32,7 +30,7 @@ hunterData.alive; @let hasWon = hunterData.hasWon; @let settings = game.settings
   <section class="player-info">
     <app-game-level [settings]="settings"></app-game-level>
     <app-game-lives
-      [lives]="hunterData.lives"
+      [lives]="game.lives()"
       [maxLives]="settings.difficulty.maxLives"
     ></app-game-lives>
   </section>
@@ -40,10 +38,10 @@ hunterData.alive; @let hasWon = hunterData.hasWon; @let settings = game.settings
 
   <app-game-message
     [message]="game.message()"
-    [isAlive]="hunterData.alive"
+    [isAlive]="isAlive"
     [hasWon]="hasWon"
     [settings]="settings"
-    [lives]="hunterData.lives"
+    [lives]="game.lives()"
   />
 
   @if (settings.size) {

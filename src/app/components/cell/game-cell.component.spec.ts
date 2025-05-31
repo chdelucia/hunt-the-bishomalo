@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameCellComponent } from './game-cell.component';
 import { Cell, Chars, Hunter } from 'src/app/models';
 import { getTranslocoTestingModule } from 'src/app/utils';
+import { GameStore } from 'src/app/store';
 
 const mockCell: Cell = { x: 2, y: 3 };
 const mockHunter: Hunter = {
@@ -13,7 +14,6 @@ const mockHunter: Hunter = {
   alive: true,
   hasWon: false,
   lives: 4,
-  wumpusKilled: 0,
   gold: 0,
   inventory: [],
   chars: [Chars.DEFAULT],
@@ -27,6 +27,17 @@ const mockSettings = {
   selectedChar: Chars.DEFAULT,
 };
 
+const mockGameState = {
+  hunter: jest.fn().mockReturnValue(mockHunter),
+  settings: jest.fn().mockReturnValue(mockSettings),
+  board: () => [],
+  message: () => '',
+  wumpusKilled: () => 0,
+  hasGold: jest.fn(),
+  hunterAlive: jest.fn(),
+  arrows: () => 1
+}
+
 describe('GameCellComponent', () => {
   let component: GameCellComponent;
   let fixture: ComponentFixture<GameCellComponent>;
@@ -34,14 +45,13 @@ describe('GameCellComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [GameCellComponent, getTranslocoTestingModule()],
+      providers: [ {provide: GameStore, useValue: mockGameState}]
     }).compileComponents();
 
     fixture = TestBed.createComponent(GameCellComponent);
     component = fixture.componentInstance;
 
     fixture.componentRef.setInput('cell', mockCell);
-    fixture.componentRef.setInput('hunter', mockHunter);
-    fixture.componentRef.setInput('settings', mockSettings);
 
     fixture.detectChanges();
   });
@@ -64,25 +74,26 @@ describe('GameCellComponent', () => {
   });
 
   it('should return bowgold.svg if hunter has gold and arrows', () => {
-    fixture.componentRef.setInput('hunter', { ...mockHunter, hasGold: true });
+    
+    mockGameState.hunter.mockReturnValue({ ...mockHunter, hasGold: true });
     fixture.detectChanges();
     expect(component.bowImage()).toContain('bow.svg');
   });
 
   it('should return bowgoldempty.svg if hunter has gold but no arrows', () => {
-    fixture.componentRef.setInput('hunter', { ...mockHunter, hasGold: true, arrows: 0 });
+    mockGameState.arrows = () => 0;
     fixture.detectChanges();
     expect(component.bowImage()).toContain('bowempty.svg');
   });
 
   it('should return bowempty.svg if hunter has no gold and no arrows', () => {
-    fixture.componentRef.setInput('hunter', { ...mockHunter, hasGold: false, arrows: 0 });
+    mockGameState.hunter.mockReturnValue({ ...mockHunter, hasGold: false, arrows: 0 });
     fixture.detectChanges();
     expect(component.bowImage()).toContain('bowempty.svg');
   });
 
   function setHunterDirection(direction: number) {
-    fixture.componentRef.setInput('hunter', { direction });
+    mockGameState.hunter.mockReturnValue({direction});
     fixture.detectChanges();
   }
 

@@ -16,7 +16,6 @@ export interface Hunter {
   alive: boolean;
   hasGold: boolean;
   hasWon: boolean;
-  wumpusKilled: number;
   lives: number;
   inventory: GameItem[];
   gold: number;

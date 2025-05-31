@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   AppWumpusAttackAnimationComponent,
@@ -33,11 +33,9 @@ import { GameStore } from '../store';
   ],
   templateUrl: './hunt-bisho.component.html',
   styleUrl: './hunt-bisho.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HuntBishoComponent {
   readonly game = inject(GameStore);
-  readonly hunter = this.game.hunter;
 
   deathByWumpus = computed(() => {
     const gameInstance = this.game;
