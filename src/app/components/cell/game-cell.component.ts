@@ -47,7 +47,7 @@ export class GameCellComponent {
   });
 
   readonly bowImage = computed(() => {
-    const arrows  = this.gameStore.arrows();
+    const arrows = this.gameStore.arrows();
     const { selectedChar } = this.settings;
 
     const extension = selectedChar === Chars.DEFAULT ? 'svg' : 'png';

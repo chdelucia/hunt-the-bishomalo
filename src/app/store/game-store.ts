@@ -104,12 +104,12 @@ export const GameStore = signalStore(
     };
 
     const countWumpusKilled = () => {
-      patchState(store, { wumpusKilled: store.wumpusKilled() + 1})
-    }
+      patchState(store, { wumpusKilled: store.wumpusKilled() + 1 });
+    };
 
     const resetWumpus = () => {
-      patchState(store, { wumpusKilled: 0})
-    }
+      patchState(store, { wumpusKilled: 0 });
+    };
 
     const updateBoard = (newBoard: Cell[][]) => {
       patchState(store, { board: newBoard });

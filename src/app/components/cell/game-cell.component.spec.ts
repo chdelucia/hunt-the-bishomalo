@@ -35,8 +35,8 @@ const mockGameState = {
   wumpusKilled: () => 0,
   hasGold: jest.fn(),
   hunterAlive: jest.fn(),
-  arrows: () => 1
-}
+  arrows: () => 1,
+};
 
 describe('GameCellComponent', () => {
   let component: GameCellComponent;
@@ -45,7 +45,7 @@ describe('GameCellComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [GameCellComponent, getTranslocoTestingModule()],
-      providers: [ {provide: GameStore, useValue: mockGameState}]
+      providers: [{ provide: GameStore, useValue: mockGameState }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GameCellComponent);
@@ -74,7 +74,6 @@ describe('GameCellComponent', () => {
   });
 
   it('should return bowgold.svg if hunter has gold and arrows', () => {
-    
     mockGameState.hunter.mockReturnValue({ ...mockHunter, hasGold: true });
     fixture.detectChanges();
     expect(component.bowImage()).toContain('bow.svg');
@@ -93,7 +92,7 @@ describe('GameCellComponent', () => {
   });
 
   function setHunterDirection(direction: number) {
-    mockGameState.hunter.mockReturnValue({direction});
+    mockGameState.hunter.mockReturnValue({ direction });
     fixture.detectChanges();
   }
 

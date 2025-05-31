@@ -329,10 +329,7 @@ describe('GameEngineService (with useValue)', () => {
 
     it('should place GOLD on the board', () => {
       service.initializeGameBoard();
-      expect(placeRandomSpy).toHaveBeenCalledWith(
-        expect.any(Array),
-        expect.any(Set)
-      );
+      expect(placeRandomSpy).toHaveBeenCalledWith(expect.any(Array), expect.any(Set));
       const goldCall = placeRandomSpy.mock.calls.find((call) => {
         const cell = call[0][0][0];
         return true;
@@ -375,10 +372,7 @@ describe('GameEngineService (with useValue)', () => {
 
     it('should call placeEvents', () => {
       service.initializeGameBoard();
-      expect(placeEventsSpy).toHaveBeenCalledWith(
-        expect.any(Array),
-        mockStore.hunter()
-      );
+      expect(placeEventsSpy).toHaveBeenCalledWith(expect.any(Array), mockStore.hunter());
     });
   });
 });
