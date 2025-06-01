@@ -1,4 +1,4 @@
- @let content = cell().content; @let size = settings.size;
+@let content = cell().content; @let size = settings.size;
 
 <div class="cell" [class.visited]="cell().visited">
   @if (showElements() && content) {
@@ -8,7 +8,7 @@
     [class.lantern]="hasLantern()"
     [class.shield]="hasShield()"
     [ngSrc]="bowImage()"
-    [attr.alt]="('cell.altHunter' | transloco)"
+    [attr.alt]="'cell.altHunter' | transloco"
     [style.transform]="rotation() !== 180 ? 'rotate(' + rotation() + 'deg)' : 'scaleX(-1)'"
     priority
     fill

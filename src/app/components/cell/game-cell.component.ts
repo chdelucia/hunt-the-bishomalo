@@ -21,11 +21,19 @@ export class GameCellComponent {
   readonly hasLantern = computed(
     () => this.gameStore.inventory().find((x) => x.effect === 'lantern') && this.settings.blackout,
   );
-  readonly hasShield = computed(() => this.gameStore.inventory().find((x) => x.effect === 'shield'));
+  readonly hasShield = computed(() =>
+    this.gameStore.inventory().find((x) => x.effect === 'shield'),
+  );
 
   readonly showElements = computed(() => {
     const cell = this.cell();
-    return !this.gameStore.isAlive() || this.gameStore.hasWon() || isDevMode() || cell.visited || cell.content?.alt === 'secret';
+    return (
+      !this.gameStore.isAlive() ||
+      this.gameStore.hasWon() ||
+      isDevMode() ||
+      cell.visited ||
+      cell.content?.alt === 'secret'
+    );
   });
 
   readonly showGoldIcon = computed(() => this.gameStore.hasGold() && this.settings.size < 12);
