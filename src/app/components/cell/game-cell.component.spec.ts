@@ -141,6 +141,36 @@ describe('GameCellComponent', () => {
     expect(component.showElements()).toBeTruthy();
   });
 
+    it('should show elements when game secret', () => {
+    mockGameState.isAlive.mockReturnValue(true);
+    mockGameState.hasWon.mockReturnValue(false);
+
+    fixture.componentRef.setInput('cell', {
+      visited: false,
+      content: { image: 'algo.png', alt: 'secret' },
+      x: 1,
+      y: 2,
+    });
+    fixture.detectChanges();
+
+    expect(component.showElements()).toBeTruthy();
+  });
+
+  it('should show elements when die', () => {
+    mockGameState.isAlive.mockReturnValue(false);
+    mockGameState.hasWon.mockReturnValue(false);
+
+    fixture.componentRef.setInput('cell', {
+      visited: false,
+      content: { image: 'algo.png', visited: true },
+      x: 1,
+      y: 2,
+    });
+    fixture.detectChanges();
+
+    expect(component.showElements()).toBeTruthy();
+  });
+
   it('should show elements when game has been won', () => {
     mockGameState.isAlive.mockReturnValue(true);
     mockGameState.hasWon.mockReturnValue(true);
