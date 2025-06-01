@@ -95,8 +95,8 @@ describe('ShopComponent', () => {
     };
 
     component.buyProduct(product);
-    expect(mockGameStoreService.updateHunter).toHaveBeenCalledWith({gold: 100});
-    expect(mockGameStoreService.updateGame).toHaveBeenCalledWith({lives: 4})
+    expect(mockGameStoreService.updateHunter).toHaveBeenCalledWith({ gold: 100 });
+    expect(mockGameStoreService.updateGame).toHaveBeenCalledWith({ lives: 4 });
   });
 
   it('should call nextLevel and navigate to HOME', () => {

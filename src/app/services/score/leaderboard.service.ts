@@ -21,7 +21,7 @@ export class LeaderboardService {
     this._leaderboard = stored;
     //TODO este efect no tiene sentido se ejecuta 900 veces
     effect(() => {
-      const { x, y,  } = this._hunter();
+      const { x, y } = this._hunter();
       if (x || y) this.countSteps += 1;
       if (this.gameStore.hasWon() || !this.gameStore.isAlive()) {
         const { player, blackout, size } = this._settings();

@@ -34,7 +34,7 @@ const mockGameState = {
   isAlive: jest.fn(),
   hasWon: jest.fn(),
   arrows: () => 1,
-  lives: () => 4
+  lives: () => 4,
 };
 
 describe('GameCellComponent', () => {

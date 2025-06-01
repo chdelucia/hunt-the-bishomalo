@@ -24,7 +24,7 @@ const mockGameStoreService = {
   hunter: mockHunterFn,
   updateHunter: mockUpdateHunter,
   lives: jest.fn().mockReturnValue(1),
-  updateGame: jest.fn()
+  updateGame: jest.fn(),
 };
 describe('GameStoryService', () => {
   let service: GameStoryService;
@@ -47,7 +47,7 @@ describe('GameStoryService', () => {
     it('should handle extraArrow effect', () => {
       const level: LevelStory = { level: 1, title: '', text: '', effect: 'extraArrow' };
       service.checkLevelTrigger(level);
-      expect(mockUpdateHunter).toHaveBeenCalledWith({ arrows: 3 }); 
+      expect(mockUpdateHunter).toHaveBeenCalledWith({ arrows: 3 });
     });
 
     it('should handle extraLife effect', () => {

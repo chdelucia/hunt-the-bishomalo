@@ -51,7 +51,7 @@ describe('GameEventService', () => {
             wumpusKilled: () => 1,
             isAlive: () => true,
             hasWon: jest.fn(),
-            updateGame: mockUpdateGame
+            updateGame: mockUpdateGame,
           },
         },
         {

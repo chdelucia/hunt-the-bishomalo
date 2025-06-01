@@ -102,7 +102,7 @@ describe('BossFightComponent', () => {
   });
 
   it('should not retry game if hunter has no lives', () => {
-    gameStoreMock.lives = () =>  0;
+    gameStoreMock.lives = () => 0;
 
     component.retryGame();
 

@@ -33,12 +33,13 @@ export class AchievementService {
   }
 
   private checkDeathRelatedAchievements(): void {
-    if(this.gameStore.isAlive()) return;
+    if (this.gameStore.isAlive()) return;
 
-    const achievement = this.gameStore.blackout() ? AchieveTypes.DEATHBYBLACKOUT : AchieveTypes.LASTBREATH;
+    const achievement = this.gameStore.blackout()
+      ? AchieveTypes.DEATHBYBLACKOUT
+      : AchieveTypes.LASTBREATH;
 
     this.activeAchievement(achievement);
-
   }
 
   private updateLocalStorageWithNewId(id: string): void {

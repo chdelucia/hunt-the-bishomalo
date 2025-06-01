@@ -102,14 +102,13 @@ export class BossFightComponent implements OnInit {
 
   retryGame(): void {
     const livesLeft = this.gameStore.lives();
-    if(!livesLeft){
+    if (!livesLeft) {
       this.message = this.translocoService.translate('bossFightMessages.noMoreRetries');
       return;
     }
 
     this.gameStore.updateGame({ lives: Math.max(0, livesLeft - 1) });
     this.resetGame();
-    
   }
 
   revealAllBossParts(): void {

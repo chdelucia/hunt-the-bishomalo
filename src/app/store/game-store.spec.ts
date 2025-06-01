@@ -70,7 +70,7 @@ describe('GameStore (SignalStore)', () => {
 
   it('should update board correctly', () => {
     const newBoard: Cell[][] = [[{ x: 0, y: 0, visited: false } as Cell]];
-    store.updateGame({board: newBoard});
+    store.updateGame({ board: newBoard });
     expect(store.board()).toEqual(newBoard);
   });
 
@@ -82,7 +82,7 @@ describe('GameStore (SignalStore)', () => {
 
   it('should reset hunter to initial values', () => {
     store.updateHunter({ x: 5, y: 5, arrows: 10 });
-    store.updateGame({lives: 1})
+    store.updateGame({ lives: 1 });
     store.setSettings(mockSettings);
 
     store.resetHunter();

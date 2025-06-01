@@ -1,5 +1,5 @@
-@let board = game.board(); @let boardSize = board.length; @let isAlive = game.isAlive(); @let
-hasWon = game.hasWon(); @let settings = game.settings();
+@let board = game.board(); @let boardSize = board.length; @let isAlive = game.isAlive(); @let hasWon
+= game.hasWon(); @let settings = game.settings();
 
 <main [appVisualEffect]="game.message()" class="main-container">
   <app-title [blackout]="settings?.blackout || false" />

@@ -65,7 +65,7 @@ export class GameEngineService {
     this.placePits(board, settings);
     this.placeArrows(board, settings);
     this.placeEvents(board);
-    this.store.updateGame({board});
+    this.store.updateGame({ board });
     this.setHunterForNextLevel();
   }
 
@@ -105,10 +105,10 @@ export class GameEngineService {
       y: 0,
       direction: Direction.RIGHT,
       arrows: settings.arrows,
-      hasGold: false
+      hasGold: false,
     });
- 
-    this.store.updateGame({wumpusKilled:0, isAlive: true, hasWon: false})
+
+    this.store.updateGame({ wumpusKilled: 0, isAlive: true, hasWon: false });
   }
 
   private placeRandom(board: Cell[][], excluded = new Set(['0,0'])): Cell {
@@ -173,7 +173,7 @@ export class GameEngineService {
 
   moveForward(): void {
     this.sound.stop();
-    const {isAlive, hasWon  } = this.store;
+    const { isAlive, hasWon } = this.store;
     const { x, y, direction } = this._hunter();
     if (!isAlive() || hasWon()) return;
 
@@ -345,7 +345,10 @@ export class GameEngineService {
     if (this._settings().blackout) gold = 200;
 
     this.store.setMessage(this.transloco.translate('gameMessages.victory'));
-    this.store.updateGame({hasWon: true, hunter: {...this._hunter(), gold: this._hunter().gold + gold}})
+    this.store.updateGame({
+      hasWon: true,
+      hunter: { ...this._hunter(), gold: this._hunter().gold + gold },
+    });
     this.playVictorySound();
   }
 

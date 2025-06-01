@@ -36,8 +36,8 @@ const initialConfig: Partial<GameState> = {
   wumpusKilled: 0,
   isAlive: true,
   hasWon: false,
-  lives: 8
-}
+  lives: 8,
+};
 
 const initialState: GameState = {
   board: [],
@@ -47,7 +47,7 @@ const initialState: GameState = {
   wumpusKilled: 0,
   isAlive: true,
   hasWon: false,
-  lives: 8
+  lives: 8,
 };
 
 export const GameStore = signalStore(
@@ -78,7 +78,8 @@ export const GameStore = signalStore(
     };
 
     const syncHunterWithStorage = () => {
-      try { //TODO cambiar lo que se guarda en el store, no sirve pa na guarda X y Y y otras xuminas
+      try {
+        //TODO cambiar lo que se guarda en el store, no sirve pa na guarda X y Y y otras xuminas
         const hunter = localStorage.getValue<any>(storageKey);
         if (hunter && typeof hunter === 'object') {
           patchState(store, { hunter, lives: hunter.lives });
@@ -94,10 +95,10 @@ export const GameStore = signalStore(
         ...initialHunter,
         chars: store.hunter().chars,
       };
-      patchState(store, { 
-        hunter: newHunter, 
+      patchState(store, {
+        hunter: newHunter,
         ...initialConfig,
-        lives: store.settings().difficulty.maxLives
+        lives: store.settings().difficulty.maxLives,
       });
       localStorage.setValue(storageKey, newHunter);
     };
@@ -105,9 +106,9 @@ export const GameStore = signalStore(
     const updateHunter = (partial: Partial<Hunter>) => {
       const updated = { ...store.hunter(), ...partial };
       patchState(store, { hunter: updated });
-        if (partial.inventory) {
-          localStorage.setValue(storageKey, {
-            ...store.hunter(),
+      if (partial.inventory) {
+        localStorage.setValue(storageKey, {
+          ...store.hunter(),
         });
       }
     };
@@ -117,7 +118,7 @@ export const GameStore = signalStore(
       if (!partial.isAlive || partial.hasWon) {
         localStorage.setValue(storageKey, {
           ...store.hunter(),
-          lives: partial.lives || store.lives()
+          lives: partial.lives || store.lives(),
         });
       }
     };
@@ -125,7 +126,6 @@ export const GameStore = signalStore(
     const countWumpusKilled = () => {
       patchState(store, { wumpusKilled: store.wumpusKilled() + 1 });
     };
-
 
     const setMessage = (msg: string) => {
       patchState(store, { message: msg });

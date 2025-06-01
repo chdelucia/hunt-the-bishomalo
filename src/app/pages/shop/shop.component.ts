@@ -127,10 +127,10 @@ export class ShopComponent {
 
   private addLifeToPlayer(data: { gold: number; price: number; lives: number }): void {
     const { gold, price, lives } = data;
-    this.gameStore.updateHunter({gold: gold - price});
+    this.gameStore.updateHunter({ gold: gold - price });
     this.gameStore.updateGame({
-      lives: Math.min(lives + 1, this.gameStore.settings().difficulty.maxLives)}
-    )
+      lives: Math.min(lives + 1, this.gameStore.settings().difficulty.maxLives),
+    });
   }
 
   private addItemToPlayer(data: { gold: number; product: Product; price: number }): void {
