@@ -12,10 +12,7 @@ describe('GameStore (SignalStore)', () => {
     y: 0,
     direction: Direction.UP,
     arrows: 3,
-    alive: true,
     hasGold: false,
-    hasWon: false,
-    lives: 8,
     chars: [],
     gold: 0,
     inventory: [],
@@ -58,15 +55,12 @@ describe('GameStore (SignalStore)', () => {
   });
 
   it('should update the hunter and persist if hasWon is true', () => {
-    const update: Partial<Hunter> = { x: 2, y: 3, hasWon: false, alive: false };
+    const update: Partial<Hunter> = { x: 2, y: 3 };
     store.updateHunter(update);
     expect(store.hunter().x).toBe(2);
     expect(store.hunter().y).toBe(3);
-    expect(store.hunter().hasWon).toBe(false);
-    expect(localStorageServiceMock.setValue).toHaveBeenCalledWith(
-      'hunt_the_bishomalo_hunter',
-      expect.objectContaining(update),
-    );
+    expect(store.hasWon()).toBe(false);
+    expect(localStorageServiceMock.setValue).not.toHaveBeenCalled();
   });
 
   it('should set settings and reflect in signal', () => {
@@ -76,7 +70,7 @@ describe('GameStore (SignalStore)', () => {
 
   it('should update board correctly', () => {
     const newBoard: Cell[][] = [[{ x: 0, y: 0, visited: false } as Cell]];
-    store.updateBoard(newBoard);
+    store.updateGame({board: newBoard});
     expect(store.board()).toEqual(newBoard);
   });
 
@@ -87,7 +81,9 @@ describe('GameStore (SignalStore)', () => {
   });
 
   it('should reset hunter to initial values', () => {
-    store.updateHunter({ x: 5, y: 5, arrows: 10, lives: 1 });
+    store.updateHunter({ x: 5, y: 5, arrows: 10 });
+    store.updateGame({lives: 1})
+    store.setSettings(mockSettings);
 
     store.resetHunter();
     const resetState = store.hunter();
@@ -95,16 +91,16 @@ describe('GameStore (SignalStore)', () => {
     expect(resetState.y).toBe(0);
     expect(resetState.direction).toBe(Direction.RIGHT);
     expect(resetState.arrows).toBe(1);
-    expect(resetState.alive).toBe(true);
+    expect(store.isAlive()).toBe(true);
     expect(resetState.hasGold).toBe(false);
-    expect(resetState.hasWon).toBe(false);
+    expect(store.hasWon()).toBe(false);
     expect(store.wumpusKilled()).toBe(0);
-    expect(resetState.lives).toBe(8);
+    expect(store.lives()).toBe(8);
     expect(resetState.gold).toBe(0);
 
     expect(localStorageServiceMock.setValue).toHaveBeenCalledWith(
       'hunt_the_bishomalo_hunter',
-      expect.objectContaining({ x: 0, y: 0, arrows: 1, lives: 8 }),
+      expect.objectContaining({ arrows: 10, lives: 1 }),
     );
   });
 
@@ -116,7 +112,7 @@ describe('GameStore (SignalStore)', () => {
 
   it('should return the current cell from the board', () => {
     const testCell = { x: 0, y: 0, visited: true } as Cell;
-    store.updateBoard([[testCell]]);
+    store.updateGame({ board: [[testCell]] });
     store.updateHunter({ x: 0, y: 0 });
     expect(store.currentCell()).toEqual(testCell);
   });

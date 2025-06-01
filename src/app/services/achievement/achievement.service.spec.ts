@@ -17,7 +17,7 @@ const mockGameStoreService = {
   settings: jest.fn(),
   board: jest.fn().mockReturnValue([[]]),
   wumpusKilled: jest.fn(),
-  hunterAlive: jest.fn(),
+  isAlive: jest.fn(),
   blackout: jest.fn(),
 };
 

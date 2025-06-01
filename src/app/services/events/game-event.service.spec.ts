@@ -14,6 +14,7 @@ describe('GameEventService', () => {
   const mockActiveAchievement = jest.fn();
   const mockHunter = jest.fn();
   const mockInventory = jest.fn();
+  const mockUpdateGame = jest.fn();
   const mockSettings = jest.fn().mockReturnValue({
     difficulty: {
       maxLevels: 10,
@@ -48,6 +49,9 @@ describe('GameEventService', () => {
             dragonballs: () => 0,
             arrows: () => 1,
             wumpusKilled: () => 1,
+            isAlive: () => true,
+            hasWon: jest.fn(),
+            updateGame: mockUpdateGame
           },
         },
         {
@@ -68,13 +72,10 @@ describe('GameEventService', () => {
     x: 0,
     y: 0,
     direction: 0,
-    alive: false,
     arrows: 1,
     hasGold: false,
-    hasWon: false,
     inventory: [],
     chars: [],
-    lives: 8,
     gold: 0,
   };
 
@@ -129,7 +130,6 @@ describe('GameEventService', () => {
     mockHunter.mockReturnValue({
       ...baseHunter,
       alive: true,
-      lives: 1,
       inventory: [{ name: 'extra-heart', icon: '', effect: 'heart' }],
     });
 
@@ -140,7 +140,7 @@ describe('GameEventService', () => {
     });
 
     expect(mockPlaySound).toHaveBeenCalled();
-    expect(mockUpdateHunter).toHaveBeenCalledWith(expect.objectContaining({ lives: 3 }));
+    expect(mockUpdateGame).toHaveBeenCalledWith(expect.objectContaining({ lives: 3 }));
     expect(mockSetMessage).toHaveBeenCalledWith('Has conseguido una vida extra.');
   });
 

@@ -57,7 +57,7 @@ export class GameStoryService {
         this.gameStore.updateHunter({ arrows: this.gameStore.hunter().arrows + 1 });
         break;
       case 'extraLife':
-        this.gameStore.updateHunter({ lives: this.gameStore.hunter().lives + 1 });
+        this.gameStore.updateGame({ lives: this.gameStore.lives() + 1 });
         break;
       case 'doubleGold':
         this.gameStore.updateHunter({ gold: this.gameStore.hunter().gold + 200 });

@@ -24,7 +24,6 @@ export class GameEventService {
       apply: (cell, prev) => {
         this.gameSound.playSound(GameSound.REWIND, false);
         this.gameStore.updateHunter({
-          alive: true,
           x: prev?.x,
           y: prev?.y,
           inventory: this.removeItemByName('rewind'),
@@ -39,7 +38,6 @@ export class GameEventService {
       apply: (cell, prev) => {
         this.gameSound.playSound(GameSound.SHIELD, false);
         this.gameStore.updateHunter({
-          alive: true,
           x: prev?.x,
           y: prev?.y,
           inventory: this.removeItemByName('shield'),
@@ -82,8 +80,7 @@ export class GameEventService {
       apply: () => {
         this.gameSound.playSound(GameSound.PITDIE, false);
         this.gameAchieve.activeAchievement(AchieveTypes.DEATHBYPIT);
-        this.gameStore.updateHunter({
-          alive: false,
+        this.gameStore.updateGame({
           lives: this.gameStore.lives() - 1,
         });
       },
@@ -96,8 +93,7 @@ export class GameEventService {
       apply: () => {
         this.gameSound.playSound(GameSound.SCREAM, false);
         this.gameAchieve.activeAchievement(AchieveTypes.DEATHBYWUMPUES);
-        this.gameStore.updateHunter({
-          alive: false,
+        this.gameStore.updateGame({
           lives: this.gameStore.lives() - 1,
         });
       },
@@ -134,7 +130,7 @@ export class GameEventService {
       }
     }
 
-    this.gameStore.updateHunter({ alive: false });
+    this.gameStore.updateGame({ isAlive: false });
     return false;
   }
 
@@ -166,7 +162,7 @@ export class GameEventService {
   private extraHeart(cell: Cell): void {
     this.gameSound.playSound(GameSound.PICKUP, false);
     this.gameAchieve.activeAchievement(AchieveTypes.PICKHEART);
-    this.gameStore.updateHunter({
+    this.gameStore.updateGame({
       lives: Math.min(this.gameStore.lives() + 1, this.gameStore.settings().difficulty.maxLives),
     });
     cell.content = undefined;

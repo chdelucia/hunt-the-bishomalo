@@ -101,13 +101,15 @@ export class BossFightComponent implements OnInit {
   }
 
   retryGame(): void {
-    if (this._hunter().lives > 0) {
-      const livesLeft = this._hunter().lives;
-      this.gameStore.updateHunter({ lives: Math.max(0, livesLeft - 1) });
-      this.resetGame();
-    } else {
+    const livesLeft = this.gameStore.lives();
+    if(!livesLeft){
       this.message = this.translocoService.translate('bossFightMessages.noMoreRetries');
+      return;
     }
+
+    this.gameStore.updateGame({ lives: Math.max(0, livesLeft - 1) });
+    this.resetGame();
+    
   }
 
   revealAllBossParts(): void {

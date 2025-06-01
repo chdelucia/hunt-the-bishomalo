@@ -1,5 +1,5 @@
 @let hasHunter = isHunterCell(cell())(); @let hasGold = gameStore.hasGold(); @let isAlive =
-gameStore.hunterAlive(); @let content = cell().content; @let size = settings.size;
+gameStore.isAlive(); @let content = cell().content; @let size = settings.size;
 
 <div class="cell" [class.visited]="cell().visited" [class.hunter]="hasHunter">
   @if ((!isAlive || gameStore.hasWon() || showItems || cell().visited || content?.alt === 'secret')

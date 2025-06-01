@@ -20,7 +20,7 @@ const mockGameStoreService = {
   hasWon: jest.fn(),
   hasGold: jest.fn(),
   lives: jest.fn(),
-  hunterAlive: jest.fn(),
+  isAlive: jest.fn(),
   blackout: jest.fn(),
   startTime: jest.fn(),
   char: jest.fn(),

@@ -17,6 +17,8 @@ describe('BossFightComponent', () => {
   const gameStoreMock = {
     hunter: mockHunter,
     updateHunter: jest.fn(),
+    lives: () => 8,
+    updateGame: jest.fn(),
     settings: jest.fn().mockReturnValue({
       difficulty: {
         bossTries: 12,
@@ -94,13 +96,13 @@ describe('BossFightComponent', () => {
   it('should retry game if hunter has lives', () => {
     component.retryGame();
 
-    expect(gameStoreMock.updateHunter).toHaveBeenCalledWith({ lives: 2 });
+    expect(gameStoreMock.updateGame).toHaveBeenCalledWith({ lives: 7 });
     expect(component.gameOver).toBe(false);
     expect(component.playerLives).toBe(12);
   });
 
   it('should not retry game if hunter has no lives', () => {
-    mockHunter.set({ lives: 0 });
+    gameStoreMock.lives = () =>  0;
 
     component.retryGame();
 

@@ -15,7 +15,7 @@ const LocalstorageServiceMock = {
 const mockGameStoreService = {
   hunter: jest.fn().mockReturnValue({ arrows: 3, hasGold: false }),
   wumpusKilled: jest.fn(),
-  hunterAlive: jest.fn(),
+  isAlive: jest.fn(),
   blackout: jest.fn(),
   startTime: () => jest.fn(),
   char: jest.fn(),

@@ -13,10 +13,7 @@ export interface Hunter {
   y: number;
   direction: Direction;
   arrows: number;
-  alive: boolean;
   hasGold: boolean;
-  hasWon: boolean;
-  lives: number;
   inventory: GameItem[];
   gold: number;
   chars: Chars[];

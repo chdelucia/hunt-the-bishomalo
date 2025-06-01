@@ -17,7 +17,6 @@ import {
   GameSettings,
   GameSound,
   RouteTypes,
-  Hunter,
 } from '../../models';
 
 import { GameStore } from '../../store/game-store';
@@ -59,29 +58,44 @@ export class GameEngineService {
 
   public initializeGameBoard(): void {
     const settings = this._settings();
-    const hunter = this.store.hunter();
-    const board: Cell[][] = Array.from({ length: settings.size }, (_, x) =>
+    const board: Cell[][] = this.createBoard(settings);
+
+    this.placeGold(board);
+    this.placeWumpus(board, settings);
+    this.placePits(board, settings);
+    this.placeArrows(board, settings);
+    this.placeEvents(board);
+    this.store.updateGame({board});
+    this.setHunterForNextLevel();
+  }
+
+  private createBoard(settings: GameSettings): Cell[][] {
+    return Array.from({ length: settings.size }, (_, x) =>
       Array.from({ length: settings.size }, (_, y) => ({ x, y, visited: false })),
     );
+  }
 
-    const ex = new Set(['0,0']);
-    this.placeRandom(board, ex).content = CELL_CONTENTS.gold;
+  private placeGold(board: Cell[][]): void {
+    this.placeRandom(board).content = CELL_CONTENTS.gold;
+  }
 
+  private placeWumpus(board: Cell[][], settings: GameSettings): void {
     for (let i = 0; i < (settings.wumpus || 1); i++) {
       const type = `wumpus${settings.selectedChar}` as CellContentType;
-      this.placeRandom(board, ex).content = CELL_CONTENTS[type];
+      this.placeRandom(board).content = CELL_CONTENTS[type];
     }
+  }
+
+  private placePits(board: Cell[][], settings: GameSettings): void {
     for (let i = 0; i < settings.pits; i++) {
       this.placeRandom(board, new Set(['0,0', '0,1', '1,0'])).content = CELL_CONTENTS.pit;
     }
+  }
 
+  private placeArrows(board: Cell[][], settings: GameSettings): void {
     for (let i = 0; i < (settings.wumpus || 1) - 1; i++) {
-      this.placeRandom(board, ex).content = CELL_CONTENTS.arrow;
+      this.placeRandom(board).content = CELL_CONTENTS.arrow;
     }
-
-    this.placeEvents(board, hunter);
-    this.store.updateBoard(board);
-    this.setHunterForNextLevel();
   }
 
   private setHunterForNextLevel(): void {
@@ -91,15 +105,13 @@ export class GameEngineService {
       y: 0,
       direction: Direction.RIGHT,
       arrows: settings.arrows,
-      alive: true,
-      hasGold: false,
-      hasWon: false,
-      lives: Math.min(this.store.lives(), settings.difficulty.maxLives),
+      hasGold: false
     });
-    this.store.resetWumpus();
+ 
+    this.store.updateGame({wumpusKilled:0, isAlive: true, hasWon: false})
   }
 
-  private placeRandom(board: Cell[][], excluded: Set<string>): Cell {
+  private placeRandom(board: Cell[][], excluded = new Set(['0,0'])): Cell {
     const size = this._settings().size;
     let cell: Cell;
     do {
@@ -110,7 +122,7 @@ export class GameEngineService {
     return cell;
   }
 
-  private placeEvents(board: Cell[][], hunter: Hunter): void {
+  private placeEvents(board: Cell[][]): void {
     const { difficulty, size } = this._settings();
     const ex = new Set(['0,0']);
     const chance = (base: number, max: number) =>
@@ -118,12 +130,12 @@ export class GameEngineService {
 
     if (
       Math.random() < chance(difficulty.baseChance, difficulty.maxChance) &&
-      hunter.lives < difficulty.maxLives
+      this.store.lives() < difficulty.maxLives
     ) {
       this.placeRandom(board, ex).content = CELL_CONTENTS.heart;
     }
 
-    if (Math.random() < difficulty.baseChance && !hunter.dragonballs) {
+    if (Math.random() < difficulty.baseChance && !this.store.dragonballs()) {
       this.placeRandom(board, ex).content = CELL_CONTENTS.dragonball;
     }
   }
@@ -161,8 +173,9 @@ export class GameEngineService {
 
   moveForward(): void {
     this.sound.stop();
-    const { x, y, direction, alive, hasWon } = this._hunter();
-    if (!alive || hasWon) return;
+    const {isAlive, hasWon  } = this.store;
+    const { x, y, direction } = this._hunter();
+    if (!isAlive() || hasWon()) return;
 
     const size = this._settings().size;
     let newX = x,
@@ -234,8 +247,8 @@ export class GameEngineService {
   }
 
   private canShoot(): boolean {
-    const { alive, arrows } = this._hunter();
-    if (!alive) return false;
+    const { arrows } = this._hunter();
+    if (!this.store.isAlive()) return false;
 
     if (!arrows) {
       this.store.setMessage(this.transloco.translate('gameMessages.noArrows'));
@@ -332,7 +345,7 @@ export class GameEngineService {
     if (this._settings().blackout) gold = 200;
 
     this.store.setMessage(this.transloco.translate('gameMessages.victory'));
-    this.store.updateHunter({ hasWon: true, gold: this._hunter().gold + gold });
+    this.store.updateGame({hasWon: true, hunter: {...this._hunter(), gold: this._hunter().gold + gold}})
     this.playVictorySound();
   }
 

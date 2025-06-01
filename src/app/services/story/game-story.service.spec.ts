@@ -23,6 +23,8 @@ const mockGameStoreService = {
   settings: mockSettingsFn,
   hunter: mockHunterFn,
   updateHunter: mockUpdateHunter,
+  lives: jest.fn().mockReturnValue(1),
+  updateGame: jest.fn()
 };
 describe('GameStoryService', () => {
   let service: GameStoryService;
@@ -45,19 +47,19 @@ describe('GameStoryService', () => {
     it('should handle extraArrow effect', () => {
       const level: LevelStory = { level: 1, title: '', text: '', effect: 'extraArrow' };
       service.checkLevelTrigger(level);
-      expect(mockUpdateHunter).toHaveBeenCalledWith({ arrows: 3 }); // 2 + 1
+      expect(mockUpdateHunter).toHaveBeenCalledWith({ arrows: 3 }); 
     });
 
     it('should handle extraLife effect', () => {
       const level: LevelStory = { level: 1, title: '', text: '', effect: 'extraLife' };
       service.checkLevelTrigger(level);
-      expect(mockUpdateHunter).toHaveBeenCalledWith({ lives: 4 }); // 3 + 1
+      expect(mockGameStoreService.updateGame).toHaveBeenCalledWith({ lives: 2 });
     });
 
     it('should handle doubleGold effect', () => {
       const level: LevelStory = { level: 1, title: '', text: '', effect: 'doubleGold' };
       service.checkLevelTrigger(level);
-      expect(mockUpdateHunter).toHaveBeenCalledWith({ gold: 300 }); // 100 + 200
+      expect(mockUpdateHunter).toHaveBeenCalledWith({ gold: 300 });
     });
 
     it('should do nothing for unknown effect', () => {

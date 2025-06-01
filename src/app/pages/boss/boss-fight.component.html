@@ -45,7 +45,7 @@
       (click)="retryGame()"
       [attr.aria-label]="'bossFight.retryGameAriaLabel' | transloco"
     >
-      {{ 'bossFight.continuesButton' | transloco : { livesLeft: this._hunter().lives } }}
+      {{ 'bossFight.continuesButton' | transloco : { livesLeft: this.gameStore.lives() } }}
     </button>
     @if(gameOver && !bossRemaining){
     <button

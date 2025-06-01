@@ -16,6 +16,8 @@ const mockHunter = {
 const mockGameStoreService = {
   hunter: jest.fn(() => mockHunter),
   updateHunter: jest.fn(),
+  updateGame: jest.fn(),
+  lives: jest.fn().mockReturnValue(3),
   gold: jest.fn().mockReturnValue(160),
   inventory: jest.fn(),
   settings: jest.fn().mockReturnValue({
@@ -93,10 +95,8 @@ describe('ShopComponent', () => {
     };
 
     component.buyProduct(product);
-    expect(mockGameStoreService.updateHunter).toHaveBeenCalledWith({
-      gold: 100,
-      lives: 4,
-    });
+    expect(mockGameStoreService.updateHunter).toHaveBeenCalledWith({gold: 100});
+    expect(mockGameStoreService.updateGame).toHaveBeenCalledWith({lives: 4})
   });
 
   it('should call nextLevel and navigate to HOME', () => {

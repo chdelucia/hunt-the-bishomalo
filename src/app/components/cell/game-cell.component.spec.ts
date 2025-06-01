@@ -11,9 +11,6 @@ const mockHunter: Hunter = {
   direction: 1,
   arrows: 1,
   hasGold: false,
-  alive: true,
-  hasWon: false,
-  lives: 4,
   gold: 0,
   inventory: [],
   chars: [Chars.DEFAULT],
@@ -34,8 +31,10 @@ const mockGameState = {
   message: () => '',
   wumpusKilled: () => 0,
   hasGold: jest.fn(),
-  hunterAlive: jest.fn(),
+  isAlive: jest.fn(),
+  hasWon: jest.fn(),
   arrows: () => 1,
+  lives: () => 4
 };
 
 describe('GameCellComponent', () => {

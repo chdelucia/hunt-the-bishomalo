@@ -72,6 +72,7 @@ export class ShopComponent {
 
   message = signal('');
 
+  //TODO ya vere eso si traducirlo aqui o en el template
   productos = computed(() => {
     const translatedProducts = this.baseProducts.map((p) => ({
       ...p,
@@ -94,7 +95,7 @@ export class ShopComponent {
   buyProduct(product: Product): void {
     const gold = this.gold();
     const { price, effect } = product;
-    const lives = this.gameStore.hunter().lives;
+    const lives = this.gameStore.lives();
 
     const canBuy = gold >= price;
 
@@ -106,15 +107,7 @@ export class ShopComponent {
     if (effect === 'heart') {
       this.addLifeToPlayer({ gold, price, lives });
     } else {
-      const originalProduct =
-        this.baseProducts.find((p) => p.effect === effect) ||
-        this.baseRandomProducts.find((p) => p.effect === effect);
-      if (originalProduct) {
-        this.addItemToPlayer({ gold, product: originalProduct, price });
-      } else {
-        console.error('Original product definition not found for effect:', effect);
-        return;
-      }
+      this.addItemToPlayer({ gold, product: product, price });
     }
 
     this.message.set(
@@ -134,10 +127,10 @@ export class ShopComponent {
 
   private addLifeToPlayer(data: { gold: number; price: number; lives: number }): void {
     const { gold, price, lives } = data;
-    this.gameStore.updateHunter({
-      gold: gold - price,
-      lives: Math.min(lives + 1, this.gameStore.settings().difficulty.maxLives),
-    });
+    this.gameStore.updateHunter({gold: gold - price});
+    this.gameStore.updateGame({
+      lives: Math.min(lives + 1, this.gameStore.settings().difficulty.maxLives)}
+    )
   }
 
   private addItemToPlayer(data: { gold: number; product: Product; price: number }): void {

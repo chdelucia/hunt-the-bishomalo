@@ -14,7 +14,7 @@ const gameStoreMock = {
   hunter: jest.fn().mockReturnValue(hunterSignal),
   settings: jest.fn().mockReturnValue({}),
   wumpusKilled: jest.fn(),
-  hunterAlive: jest.fn(),
+  isAlive: jest.fn(),
   blackout: jest.fn(),
 };
 

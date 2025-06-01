@@ -19,10 +19,11 @@ export class LeaderboardService {
   constructor(private readonly localStorageService: LocalstorageService) {
     const stored = this.loadLeaderboardFromStorage();
     this._leaderboard = stored;
+    //TODO este efect no tiene sentido se ejecuta 900 veces
     effect(() => {
-      const { x, y, hasWon, alive } = this._hunter();
+      const { x, y,  } = this._hunter();
       if (x || y) this.countSteps += 1;
-      if (hasWon || !alive) {
+      if (this.gameStore.hasWon() || !this.gameStore.isAlive()) {
         const { player, blackout, size } = this._settings();
         const endTime = new Date();
         const seconds = this.calculateElapsedSeconds(endTime);
@@ -34,11 +35,11 @@ export class LeaderboardService {
           blackout: !!blackout,
           wumpusKilled: this.gameStore.wumpusKilled(),
           steps: this.countSteps,
-          deads: alive ? 0 : 1,
+          deads: this.gameStore.isAlive() ? 0 : 1,
         });
         this.countSteps = 0;
 
-        if (hasWon) this.gameAchieve.caclVictoryAchieve(seconds);
+        if (this.gameStore.hasWon()) this.gameAchieve.caclVictoryAchieve(seconds);
       }
     });
   }

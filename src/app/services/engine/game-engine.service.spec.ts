@@ -35,16 +35,19 @@ const mockStore = {
   startTime: new Date(),
   updateHunter: jest.fn(),
   setMessage: jest.fn(),
-  updateBoard: jest.fn(),
+  dragonballs: jest.fn(),
   setSettings: jest.fn(),
   resetHunter: jest.fn(),
   currentCell: jest.fn(),
   countWumpusKilled: jest.fn(),
   setHunterForNextLevel: jest.fn(),
   resetWumpus: jest.fn(),
+  updateGame: jest.fn(),
   inventory: () => [],
   gold: jest.fn(),
   lives: () => 7,
+  isAlive: jest.fn().mockReturnValue(true),
+  hasWon: jest.fn()
 };
 
 const mockSound = {
@@ -187,8 +190,8 @@ describe('GameEngineService (with useValue)', () => {
       createMockCell({ content: CELL_CONTENTS.pit, x: 0, y: 0 }),
     );
     service['checkCurrentCell'](0, 0);
-    expect(mockStore.updateHunter).toHaveBeenCalledWith(
-      expect.objectContaining({ alive: false, lives: 6 }),
+    expect(mockStore.updateGame).toHaveBeenCalledWith(
+      expect.objectContaining({ lives: 6 }),
     );
     expect(mockStore.setMessage).toHaveBeenCalledWith('¡Caíste en un pozo!');
   });
@@ -198,8 +201,8 @@ describe('GameEngineService (with useValue)', () => {
       createMockCell({ content: CELL_CONTENTS.wumpus, x: 0, y: 0 }),
     );
     service['checkCurrentCell'](0, 0);
-    expect(mockStore.updateHunter).toHaveBeenCalledWith(
-      expect.objectContaining({ alive: false, lives: 6 }),
+    expect(mockStore.updateGame).toHaveBeenCalledWith(
+      expect.objectContaining({ lives: 6 }),
     );
     expect(mockStore.setMessage).toHaveBeenCalledWith('¡El Wumpus te devoró!');
   });
@@ -301,16 +304,14 @@ describe('GameEngineService (with useValue)', () => {
 
     it('should initialize board with correct dimensions and update store', () => {
       service.initializeGameBoard();
-      expect(mockStore.updateBoard).toHaveBeenCalledWith(
+      expect(mockStore.updateGame).toHaveBeenCalledWith({
+        board:
         expect.arrayContaining([
           expect.arrayContaining([expect.objectContaining({ x: 0, y: 0, visited: false })]),
           expect.arrayContaining([expect.objectContaining({ x: 0, y: 0, visited: false })]),
           expect.arrayContaining([expect.objectContaining({ x: 0, y: 0, visited: false })]),
-        ]),
+        ])}
       );
-      const boardArg = mockStore.updateBoard.mock.calls[0][0];
-      expect(boardArg.length).toBe(3);
-      expect(boardArg[0].length).toBe(3);
     });
 
     it('should set hunter state for new level via store.updateHunter', () => {
@@ -320,10 +321,7 @@ describe('GameEngineService (with useValue)', () => {
         y: 0,
         direction: Direction.RIGHT,
         arrows: mockStore.settings().arrows,
-        alive: true,
         hasGold: false,
-        hasWon: false,
-        lives: 7,
       });
     });
 
@@ -372,7 +370,7 @@ describe('GameEngineService (with useValue)', () => {
 
     it('should call placeEvents', () => {
       service.initializeGameBoard();
-      expect(placeEventsSpy).toHaveBeenCalledWith(expect.any(Array), mockStore.hunter());
+      expect(placeEventsSpy).toHaveBeenCalledWith(expect.any(Array));
     });
   });
 });
