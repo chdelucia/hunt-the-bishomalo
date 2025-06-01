@@ -1,22 +1,20 @@
-@let hasHunter = isHunterCell(cell())(); @let hasGold = gameStore.hasGold(); @let isAlive =
-gameStore.isAlive(); @let content = cell().content; @let size = settings.size;
+ @let content = cell().content; @let size = settings.size;
 
-<div class="cell" [class.visited]="cell().visited" [class.hunter]="hasHunter">
-  @if ((!isAlive || gameStore.hasWon() || showItems || cell().visited || content?.alt === 'secret')
-  && content) {
+<div class="cell" [class.visited]="cell().visited">
+  @if (showElements() && content) {
   <img [ngSrc]="content.image" [alt]="content.alt" fill />
-  } @else if(hasHunter && isAlive){
+  } @else if(showHunter()){
   <img
     [class.lantern]="hasLantern()"
     [class.shield]="hasShield()"
     [ngSrc]="bowImage()"
-    [attr.alt]="hasGold ? ('cell.altHunterWithGold' | transloco) : ('cell.altHunter' | transloco)"
+    [attr.alt]="('cell.altHunter' | transloco)"
     [style.transform]="rotation() !== 180 ? 'rotate(' + rotation() + 'deg)' : 'scaleX(-1)'"
     priority
     fill
   />
 
-  @if(hasGold && size < 12){
+  @if(showGoldIcon()){
   <img
     class="gold"
     ngSrc="boardicons/gold.svg"
@@ -24,7 +22,5 @@ gameStore.isAlive(); @let content = cell().content; @let size = settings.size;
     [width]="20 - size / 2"
     [height]="20 - size / 2"
   />
-  } } @else if (content && content.image === 'question.png') {
-  <img [ngSrc]="content.image" [alt]="content.alt" fill />
-  }
+  } }
 </div>

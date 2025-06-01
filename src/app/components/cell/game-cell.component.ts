@@ -18,17 +18,24 @@ export class GameCellComponent {
 
   settings = this.gameStore.settings();
 
-  hasLantern = computed(
+  readonly hasLantern = computed(
     () => this.gameStore.inventory().find((x) => x.effect === 'lantern') && this.settings.blackout,
   );
-  hasShield = computed(() => this.gameStore.inventory().find((x) => x.effect === 'shield'));
+  readonly hasShield = computed(() => this.gameStore.inventory().find((x) => x.effect === 'shield'));
 
-  readonly showItems = isDevMode();
+  readonly showElements = computed(() => {
+    const cell = this.cell();
+    return !this.gameStore.isAlive() || this.gameStore.hasWon() || isDevMode() || cell.visited || cell.content?.alt === 'secret';
+  });
 
-  readonly isHunterCell = (cell: Cell) =>
+  readonly showGoldIcon = computed(() => this.gameStore.hasGold() && this.settings.size < 12);
+
+  readonly showHunter = computed(() => this.isHunterCell()() && this.gameStore.isAlive());
+
+  readonly isHunterCell = () =>
     computed(() => {
-      const { x, y } = this.gameStore.hunter();
-      return x === cell.x && y === cell.y;
+      const currentCell = this.gameStore.currentCell();
+      return currentCell === this.cell();
     });
 
   readonly rotation = computed(() => {
