@@ -141,7 +141,7 @@ describe('GameCellComponent', () => {
     expect(component.showElements()).toBeTruthy();
   });
 
-    it('should show elements when game secret', () => {
+  it('should show elements when game secret', () => {
     mockGameState.isAlive.mockReturnValue(true);
     mockGameState.hasWon.mockReturnValue(false);
 
