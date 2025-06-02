@@ -364,7 +364,9 @@ export class GameEngineService {
     }
 
     this.sound.playSound(GameSound.WALK, false);
-    this.getPerceptionMessage().pipe(take(1)).subscribe(msg => this.store.setMessage(msg))
+    this.getPerceptionMessage()
+      .pipe(take(1))
+      .subscribe((msg) => this.store.setMessage(msg));
   }
 
   private getPerceptionMessage(): Observable<string> {
