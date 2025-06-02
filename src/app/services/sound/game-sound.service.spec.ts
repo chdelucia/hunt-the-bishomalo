@@ -49,7 +49,7 @@ describe('GameSoundService', () => {
     expect(spyPlay).not.toHaveBeenCalledWith(GameSound.GAMEOVER);
   });
 
-   it('should play game over', () => {
+  it('should play game over', () => {
     const spyPlay = jest.spyOn(service, 'playSound');
     const spyStop = jest.spyOn(service, 'stop');
     mockGameState.lives.mockReturnValue(0);
