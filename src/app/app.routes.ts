@@ -37,6 +37,11 @@ export const appRoutes: Route[] = [
     title: 'Instrucciones | Bisho malo',
   },
   {
+    path: RouteTypes.SETTINGS,
+    loadComponent: () => import('./pages').then((mod) => mod.ConfigComponent),
+    title: 'Configuracion | Bisho malo',
+  },
+  {
     path: RouteTypes.RESULTS,
     canActivate: [secretGuard],
     loadComponent: () => import('./pages').then((mod) => mod.ResultsComponent),

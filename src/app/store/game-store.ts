@@ -98,7 +98,6 @@ export const GameStore = signalStore(
       patchState(store, {
         hunter: newHunter,
         ...initialConfig,
-        lives: store.settings().difficulty.maxLives,
       });
       localStorage.setValue(storageKey, newHunter);
     };

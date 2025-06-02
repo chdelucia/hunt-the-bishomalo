@@ -10,4 +10,5 @@ export enum RouteTypes {
   BOSS = 'boss',
   STORY = 'story',
   DIARY = 'diario',
+  SETTINGS = 'settings',
 }

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, isDevMode, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { TranslocoModule } from '@jsverse/transloco';
 import { GameEngineService, GameSoundService } from 'src/app/services';
 import {
   Chars,
@@ -28,7 +28,6 @@ export class GameConfigComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
   private readonly gameSound = inject(GameSoundService);
   private readonly router = inject(Router);
-  private readonly translocoService = inject(TranslocoService);
 
   isDevMode = isDevMode();
   readonly configs = DIFFICULTY_CONFIGS as Record<string, GameDificulty>;

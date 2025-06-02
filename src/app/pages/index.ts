@@ -7,3 +7,4 @@ export * from './instructions/instructions.component';
 export * from './gamestats/results.component';
 export * from './boss/boss-fight.component';
 export * from './story/story.component';
+export * from './config/config.component';

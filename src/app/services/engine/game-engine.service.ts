@@ -51,6 +51,7 @@ export class GameEngineService {
   initGame(config: GameSettings): void {
     this.sound.stop();
     this.store.setSettings(config);
+    this.store.updateGame({ lives: config.difficulty.maxLives });
     this.updateLocalStorageWithSettings(config);
     this.initializeGameBoard();
     this.checkCurrentCell(0, 0);
