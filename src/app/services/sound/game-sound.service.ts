@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { effect, inject, Injectable } from '@angular/core';
 import { GameSound } from 'src/app/models';
+import { GameStore } from 'src/app/store';
 
 const SOUND_PATHS: Record<GameSound, string> = {
   [GameSound.WUMPUS]: 'sounds/monster.mp3',
@@ -37,7 +38,17 @@ const SOUND_PATHS: Record<GameSound, string> = {
 })
 export class GameSoundService {
   private audioMap: Record<GameSound, HTMLAudioElement> = {} as Record<GameSound, HTMLAudioElement>;
+  private readonly gameStore = inject(GameStore);
+  constructor(){
+    effect(()=> this.gameOver())
+  }
 
+  private gameOver(): void{
+    if(!this.gameStore.lives()){
+      this.stopAll();
+      this.playSound(GameSound.GAMEOVER, false);
+    }
+  }
   private getOrCreateAudio(key: GameSound): HTMLAudioElement {
     if (!this.audioMap[key]) {
       const path = SOUND_PATHS[key];

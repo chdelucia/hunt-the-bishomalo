@@ -148,8 +148,8 @@ describe('GameCellComponent', () => {
     fixture.componentRef.setInput('cell', {
       visited: false,
       content: { image: 'algo.png', alt: 'secret' },
-      x: 1,
-      y: 2,
+      x: 0,
+      y: 0,
     });
     fixture.detectChanges();
 

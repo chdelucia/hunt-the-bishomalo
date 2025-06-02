@@ -4,6 +4,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { GameStore } from '../store';
 import { getTranslocoTestingModule } from '../utils';
+import { GameSoundService } from '../services';
 
 function createMockCell(overrides = {}) {
   return {
@@ -11,6 +12,10 @@ function createMockCell(overrides = {}) {
     y: 0,
     ...overrides,
   };
+}
+
+const mockGameSound = {
+  play: jest.fn()
 }
 
 const mockGameStoreService = {
@@ -63,7 +68,10 @@ describe('HuntBishoComponent', () => {
 
     await TestBed.configureTestingModule({
       imports: [HuntBishoComponent, RouterModule.forRoot([]), getTranslocoTestingModule()],
-      providers: [{ provide: GameStore, useValue: mockGameStoreService }],
+      providers: [
+        { provide: GameStore, useValue: mockGameStoreService },
+        { provide: GameSoundService, useValue: mockGameSound}
+      ],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 

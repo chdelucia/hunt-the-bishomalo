@@ -2,6 +2,11 @@ import { TestBed } from '@angular/core/testing';
 import { GameSoundService } from './game-sound.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { GameSound } from 'src/app/models';
+import { GameStore } from 'src/app/store';
+
+const mockGameState = {
+  lives: jest.fn()
+}
 
 describe('GameSoundService', () => {
   let service: GameSoundService;
@@ -23,6 +28,7 @@ describe('GameSoundService', () => {
     });
 
     TestBed.configureTestingModule({
+      providers: [ { provide: GameStore, useValue: mockGameState}],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

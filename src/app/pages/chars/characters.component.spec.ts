@@ -5,8 +5,13 @@ import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { Chars } from 'src/app/models';
 import { GameStore } from 'src/app/store';
 import { getTranslocoTestingModule } from 'src/app/utils';
+import { GameSoundService } from 'src/app/services';
 
 const hunterSignal = signal({ chars: ['default', 'lara'] });
+
+const mockGameSound = {
+  play: jest.fn()
+}
 
 const gameStoreMock = {
   updateHunter: jest.fn(),
@@ -16,6 +21,7 @@ const gameStoreMock = {
   wumpusKilled: jest.fn(),
   isAlive: jest.fn(),
   blackout: jest.fn(),
+  lives: jest.fn()
 };
 
 describe('CharactersComponent', () => {
@@ -25,7 +31,10 @@ describe('CharactersComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CharactersComponent, RouterModule.forRoot([]), getTranslocoTestingModule()],
-      providers: [{ provide: GameStore, useValue: gameStoreMock }],
+      providers: [
+        { provide: GameStore, useValue: gameStoreMock },
+        { provide: GameSoundService, useValue: mockGameSound}
+      ],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
