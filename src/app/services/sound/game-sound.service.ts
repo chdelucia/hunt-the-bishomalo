@@ -45,7 +45,7 @@ export class GameSoundService {
 
   private gameOver(): void {
     if (!this.gameStore.lives()) {
-      this.stopAll();
+      this.stop();
       this.playSound(GameSound.GAMEOVER, false);
     }
   }

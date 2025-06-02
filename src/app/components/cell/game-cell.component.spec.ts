@@ -156,10 +156,9 @@ describe('GameCellComponent', () => {
     expect(component.showElements()).toBeTruthy();
   });
 
-    it('should show elements when game secretv2', () => {
+  it('should show elements when game secretv2', () => {
     mockGameState.isAlive.mockReturnValue(true);
     mockGameState.hasWon.mockReturnValue(false);
-    
 
     fixture.componentRef.setInput('cell', {
       content: { image: 'algo.png', alt: 'secretss' },

@@ -43,10 +43,21 @@ describe('GameSoundService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should play game over', () => {
+  it('should not play game over', () => {
     const spyPlay = jest.spyOn(service, 'playSound');
     mockGameState.lives.mockReturnValue(1);
     expect(spyPlay).not.toHaveBeenCalledWith(GameSound.GAMEOVER);
+  });
+
+   it('should play game over', () => {
+    const spyPlay = jest.spyOn(service, 'playSound');
+    const spyStop = jest.spyOn(service, 'stop');
+    mockGameState.lives.mockReturnValue(0);
+
+    service['gameOver']();
+
+    expect(spyPlay).toHaveBeenCalledWith(GameSound.GAMEOVER, false);
+    expect(spyStop).toHaveBeenCalled();
   });
 
   it('should play wumpus sound', () => {
