@@ -60,8 +60,8 @@ export class GameControlsComponent {
     }
   }
 
-  newGame():void {
-    this.game.newGame()
+  newGame(): void {
+    this.game.newGame();
     this.router.navigate([RouteTypes.SETTINGS]);
   }
 

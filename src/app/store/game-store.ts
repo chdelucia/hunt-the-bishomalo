@@ -74,14 +74,13 @@ export const GameStore = signalStore(
     }),
   })),
   withMethods((store, localStorage = inject(LocalstorageService)) => {
-
     const syncHunterWithStorage = () => {
-        //TODO cambiar lo que se guarda en el store, no sirve pa na guarda X y Y y otras xuminas
-          const hunter = localStorage.getValue<any>(storageKey);
-          const settings = localStorage.getValue<GameSettings>(storageSettingsKey);
-          if (hunter && settings) {
-            patchState(store, { hunter, lives: hunter.lives, settings: settings });
-          }
+      //TODO cambiar lo que se guarda en el store, no sirve pa na guarda X y Y y otras xuminas
+      const hunter = localStorage.getValue<any>(storageKey);
+      const settings = localStorage.getValue<GameSettings>(storageSettingsKey);
+      if (hunter && settings) {
+        patchState(store, { hunter, lives: hunter.lives, settings: settings });
+      }
     };
 
     //TODO este es para reiniciar el game refactorizar
@@ -117,7 +116,7 @@ export const GameStore = signalStore(
         });
       }
 
-      if(partial.settings){
+      if (partial.settings) {
         localStorage.setValue(storageSettingsKey, partial.settings);
       }
     };

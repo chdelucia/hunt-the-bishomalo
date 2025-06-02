@@ -11,7 +11,7 @@ const mockGameService = {
   exit: jest.fn(),
   initGame: jest.fn(),
   restartLevel: jest.fn(),
-  newGame: jest.fn()
+  newGame: jest.fn(),
 };
 
 describe('GameControlsComponent', () => {

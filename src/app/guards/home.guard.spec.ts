@@ -7,11 +7,11 @@ import { RouteTypes } from '../models';
 
 const mockGameStore = {
   settings: jest.fn(),
-}
+};
 
 const mockGameEngine = {
   initGame: jest.fn(),
-}
+};
 
 describe('homeGuard (Jest)', () => {
   let mockRouter: jest.Mocked<Router>;

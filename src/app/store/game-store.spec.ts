@@ -64,7 +64,7 @@ describe('GameStore (SignalStore)', () => {
   });
 
   it('should set settings and reflect in signal', () => {
-    store.updateGame({settings: mockSettings});
+    store.updateGame({ settings: mockSettings });
     expect(store.settings()).toEqual(mockSettings);
   });
 

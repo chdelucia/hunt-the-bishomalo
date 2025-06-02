@@ -45,13 +45,16 @@ export class GameConfigComponent {
     if (this.configForm.valid) {
       const difficulty = this.configForm.value.difficulty as DifficultyTypes;
 
-      this.gameStore.updateGame({ settings: {
-        ...this.configForm.value,
-        size: this.configForm.value.size + 3,
-        blackout: false,
-        difficulty: DIFFICULTY_CONFIGS[difficulty],
-        startTime: new Date().toISOString(),
-      }, lives: DIFFICULTY_CONFIGS[difficulty].maxLives });
+      this.gameStore.updateGame({
+        settings: {
+          ...this.configForm.value,
+          size: this.configForm.value.size + 3,
+          blackout: false,
+          difficulty: DIFFICULTY_CONFIGS[difficulty],
+          startTime: new Date().toISOString(),
+        },
+        lives: DIFFICULTY_CONFIGS[difficulty].maxLives,
+      });
 
       this.gameEngine.initGame();
       this.goToStory();

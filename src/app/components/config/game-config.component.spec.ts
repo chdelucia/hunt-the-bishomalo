@@ -18,9 +18,9 @@ const gameSoundMock = {
 
 const gameStoreMock = {
   updateGame: jest.fn(),
-  hunter: jest.fn().mockReturnValue({chars: []}),
+  hunter: jest.fn().mockReturnValue({ chars: [] }),
   chars: jest.fn(),
-}
+};
 
 describe('GameConfigComponent', () => {
   let component: GameConfigComponent;
@@ -32,9 +32,9 @@ describe('GameConfigComponent', () => {
       providers: [
         { provide: GameEngineService, useValue: gameEngineServiceMock },
         { provide: GameSoundService, useValue: gameSoundMock },
-        { provide: GameStore, useValue: gameStoreMock}
+        { provide: GameStore, useValue: gameStoreMock },
       ],
-      schemas: [NO_ERRORS_SCHEMA]
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     jest.clearAllMocks();
@@ -75,24 +75,27 @@ describe('GameConfigComponent', () => {
     });
 
     component.submitForm();
-    expect(gameStoreMock.updateGame).toHaveBeenCalledWith({ settings: {
-      player: 'Ana',
-      size: 12,
-      pits: 2,
-      arrows: 3,
-      blackout: expect.any(Boolean),
-      selectedChar: 'default',
-      difficulty: {
-        baseChance: 0.12,
-        gold: 60,
-        luck: 8,
-        maxChance: 0.35,
-        maxLevels: 10,
-        maxLives: 8,
-        bossTries: 12,
+    expect(gameStoreMock.updateGame).toHaveBeenCalledWith({
+      settings: {
+        player: 'Ana',
+        size: 12,
+        pits: 2,
+        arrows: 3,
+        blackout: expect.any(Boolean),
+        selectedChar: 'default',
+        difficulty: {
+          baseChance: 0.12,
+          gold: 60,
+          luck: 8,
+          maxChance: 0.35,
+          maxLevels: 10,
+          maxLives: 8,
+          bossTries: 12,
+        },
+        startTime: expect.any(String),
       },
-      startTime: expect.any(String),
-    }, lives: 8})
+      lives: 8,
+    });
     expect(gameEngineServiceMock.initGame).toHaveBeenCalledWith();
   });
 

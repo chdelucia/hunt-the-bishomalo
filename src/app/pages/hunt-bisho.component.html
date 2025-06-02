@@ -22,7 +22,6 @@
     }
 
     <app-wumpus-attack-animation *ngIf="deathByWumpus()" (closeAnimation)="handleclose()" />
-    
   </section>
 
   <section class="player-info">
@@ -42,5 +41,4 @@
   />
 
   <app-mobile-controls [isFinish]="hasWon || !isAlive" />
-
 </main>

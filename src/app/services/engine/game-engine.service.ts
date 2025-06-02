@@ -39,7 +39,6 @@ export class GameEngineService {
     private readonly transloco: TranslocoService,
   ) {}
 
-
   initGame(): void {
     this.sound.stop();
     this.initializeGameBoard();
@@ -139,7 +138,7 @@ export class GameEngineService {
     this.sound.stop();
     this.localStorageService.clearValue(this.storageSettingsKey);
     this.store.resetHunter();
-    this.store.updateGame({settings: {} as GameSettings});
+    this.store.updateGame({ settings: {} as GameSettings });
     this.leaderBoard.clear();
   }
 
@@ -154,7 +153,7 @@ export class GameEngineService {
       wumpus: this.calculateWumpus(size, difficulty.luck),
       blackout: this.applyBlackoutChance(),
     };
-    this.store.updateGame({settings: newSettings});
+    this.store.updateGame({ settings: newSettings });
     this.initializeGameBoard();
     this.checkCurrentCell(0, 0);
   }
