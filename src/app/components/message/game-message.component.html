@@ -12,9 +12,9 @@
   <p>{{ message() }}</p>
   @if(_bolaDrac()){
   <img [src]="`boardicons/b4.png`" alt="{{ 'message.dragonBallAlt' | transloco }}" />
-  } }@else {
-  <p>{{ 'message.defaultInstructions' | transloco }}</p>
-  } @if (_shouldShowRetry()) {
+  } }
+  
+  @if (_shouldShowRetry()) {
   <button
     class="newgame"
     (click)="restartGame()"

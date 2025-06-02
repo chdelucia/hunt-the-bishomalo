@@ -50,6 +50,9 @@ const initialState: GameState = {
   lives: 8,
 };
 
+const storageKey = 'hunt_the_bishomalo_hunter';
+const storageSettingsKey = 'hunt_the_bishomalo_settings';
+
 export const GameStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
@@ -71,22 +74,14 @@ export const GameStore = signalStore(
     }),
   })),
   withMethods((store, localStorage = inject(LocalstorageService)) => {
-    const storageKey = 'hunt_the_bishomalo_hunter';
-
-    const setSettings = (settings: GameSettings) => {
-      patchState(store, { settings });
-    };
 
     const syncHunterWithStorage = () => {
-      try {
         //TODO cambiar lo que se guarda en el store, no sirve pa na guarda X y Y y otras xuminas
-        const hunter = localStorage.getValue<any>(storageKey);
-        if (hunter && typeof hunter === 'object') {
-          patchState(store, { hunter, lives: hunter.lives });
-        }
-      } catch {
-        console.log('fallo');
-      }
+          const hunter = localStorage.getValue<any>(storageKey);
+          const settings = localStorage.getValue<GameSettings>(storageSettingsKey);
+          if (hunter && settings) {
+            patchState(store, { hunter, lives: hunter.lives, settings: settings });
+          }
     };
 
     //TODO este es para reiniciar el game refactorizar
@@ -114,11 +109,16 @@ export const GameStore = signalStore(
 
     const updateGame = (partial: Partial<GameState>) => {
       patchState(store, partial);
+
       if (!partial.isAlive || partial.hasWon) {
         localStorage.setValue(storageKey, {
           ...store.hunter(),
           lives: partial.lives || store.lives(),
         });
+      }
+
+      if(partial.settings){
+        localStorage.setValue(storageSettingsKey, partial.settings);
       }
     };
 
@@ -133,7 +133,6 @@ export const GameStore = signalStore(
     return {
       updateGame,
       countWumpusKilled,
-      setSettings,
       updateHunter,
       resetHunter,
       setMessage,

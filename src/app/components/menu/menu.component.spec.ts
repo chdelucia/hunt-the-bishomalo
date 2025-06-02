@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MenuComponent } from './menu.component';
 import { GameEngineService } from 'src/app/services';
 import { Router, RouterModule } from '@angular/router';
-import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component } from '@angular/core';
 import { getTranslocoTestingModule } from 'src/app/utils';
 
 @Component({ template: '' })
@@ -32,7 +32,6 @@ describe('MenuComponent', () => {
     component = fixture.componentInstance;
     router = TestBed.inject(Router);
 
-    // Spy en navigateByUrl para que no haga navegación real
     jest.spyOn(router, 'navigateByUrl').mockImplementation(() => Promise.resolve(true));
 
     fixture.detectChanges();
@@ -61,6 +60,6 @@ describe('MenuComponent', () => {
   it('should start new game and navigate home', () => {
     component.newGame();
     expect(gameEngineServiceMock.newGame).toHaveBeenCalled();
-    expect(router.navigateByUrl).toHaveBeenCalledWith('/home');
+    expect(router.navigateByUrl).toHaveBeenCalledWith('/settings');
   });
 });

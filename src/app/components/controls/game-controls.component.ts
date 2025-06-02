@@ -47,7 +47,7 @@ export class GameControlsComponent {
       this.turnRight();
       this.achieve.activeAchievement(AchieveTypes.GAMER);
     },
-    KeyN: () => this.game.newGame(),
+    KeyN: () => this.newGame(),
     KeyI: () => this.navigateToControls(),
   };
 
@@ -58,6 +58,11 @@ export class GameControlsComponent {
       event.preventDefault();
       action();
     }
+  }
+
+  newGame():void {
+    this.game.newGame()
+    this.router.navigate([RouteTypes.SETTINGS]);
   }
 
   navigateToControls() {

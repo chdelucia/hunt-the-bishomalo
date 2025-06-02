@@ -22,7 +22,7 @@ import { GameStore } from 'src/app/store';
   styleUrls: ['./game-config.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class GameConfigComponent implements OnInit {
+export class GameConfigComponent {
   readonly gameStore = inject(GameStore);
   private readonly gameEngine = inject(GameEngineService);
   private readonly fb = inject(FormBuilder);
@@ -41,21 +41,19 @@ export class GameConfigComponent implements OnInit {
     difficulty: [DifficultyTypes.EASY, [Validators.required]],
   });
 
-  ngOnInit(): void {
-    this.gameEngine.syncSettingsWithStorage();
-  }
-
   submitForm(): void {
     if (this.configForm.valid) {
       const difficulty = this.configForm.value.difficulty as DifficultyTypes;
 
-      this.gameEngine.initGame({
+      this.gameStore.updateGame({ settings: {
         ...this.configForm.value,
         size: this.configForm.value.size + 3,
         blackout: false,
         difficulty: DIFFICULTY_CONFIGS[difficulty],
         startTime: new Date().toISOString(),
-      });
+      }, lives: DIFFICULTY_CONFIGS[difficulty].maxLives });
+
+      this.gameEngine.initGame();
       this.goToStory();
     }
   }

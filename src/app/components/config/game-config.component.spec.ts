@@ -3,6 +3,8 @@ import { GameConfigComponent } from './game-config.component';
 import { GameEngineService, GameSoundService } from 'src/app/services';
 import { Chars } from 'src/app/models';
 import { getTranslocoTestingModule } from 'src/app/utils';
+import { GameStore } from 'src/app/store';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 const gameEngineServiceMock = {
   initGame: jest.fn(),
@@ -14,6 +16,12 @@ const gameSoundMock = {
   stop: jest.fn(),
 };
 
+const gameStoreMock = {
+  updateGame: jest.fn(),
+  hunter: jest.fn().mockReturnValue({chars: []}),
+  chars: jest.fn(),
+}
+
 describe('GameConfigComponent', () => {
   let component: GameConfigComponent;
   let fixture: ComponentFixture<GameConfigComponent>;
@@ -24,7 +32,9 @@ describe('GameConfigComponent', () => {
       providers: [
         { provide: GameEngineService, useValue: gameEngineServiceMock },
         { provide: GameSoundService, useValue: gameSoundMock },
+        { provide: GameStore, useValue: gameStoreMock}
       ],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
 
     jest.clearAllMocks();
@@ -65,7 +75,7 @@ describe('GameConfigComponent', () => {
     });
 
     component.submitForm();
-    expect(gameEngineServiceMock.initGame).toHaveBeenCalledWith({
+    expect(gameStoreMock.updateGame).toHaveBeenCalledWith({ settings: {
       player: 'Ana',
       size: 12,
       pits: 2,
@@ -82,7 +92,8 @@ describe('GameConfigComponent', () => {
         bossTries: 12,
       },
       startTime: expect.any(String),
-    });
+    }, lives: 8})
+    expect(gameEngineServiceMock.initGame).toHaveBeenCalledWith();
   });
 
   it('should NOT call initGame when form is invalid', () => {

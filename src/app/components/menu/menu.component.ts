@@ -30,6 +30,6 @@ export class MenuComponent {
 
   newGame(): void {
     this.gameEngine.newGame();
-    this.nagivateTo('home');
+    this.nagivateTo(RouteTypes.SETTINGS);
   }
 }

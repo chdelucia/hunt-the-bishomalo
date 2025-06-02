@@ -64,7 +64,7 @@ describe('GameStore (SignalStore)', () => {
   });
 
   it('should set settings and reflect in signal', () => {
-    store.setSettings(mockSettings);
+    store.updateGame({settings: mockSettings});
     expect(store.settings()).toEqual(mockSettings);
   });
 
@@ -82,8 +82,7 @@ describe('GameStore (SignalStore)', () => {
 
   it('should reset hunter to initial values', () => {
     store.updateHunter({ x: 5, y: 5, arrows: 10 });
-    store.updateGame({ lives: 1 });
-    store.setSettings(mockSettings);
+    store.updateGame({ settings: mockSettings, lives: 1 });
 
     store.resetHunter();
     const resetState = store.hunter();

@@ -39,20 +39,9 @@ export class GameEngineService {
     private readonly transloco: TranslocoService,
   ) {}
 
-  syncSettingsWithStorage(): void {
-    const settings = this.localStorageService.getValue<GameSettings>(this.storageSettingsKey);
-    if (settings) this.initGame(settings);
-  }
 
-  private updateLocalStorageWithSettings(config: GameSettings): void {
-    this.localStorageService.setValue<GameSettings>(this.storageSettingsKey, config);
-  }
-
-  initGame(config: GameSettings): void {
+  initGame(): void {
     this.sound.stop();
-    this.store.setSettings(config);
-    this.store.updateGame({ lives: config.difficulty.maxLives });
-    this.updateLocalStorageWithSettings(config);
     this.initializeGameBoard();
     this.checkCurrentCell(0, 0);
   }
@@ -100,12 +89,11 @@ export class GameEngineService {
   }
 
   private setHunterForNextLevel(): void {
-    const settings = this._settings();
     this.store.updateHunter({
       x: 0,
       y: 0,
       direction: Direction.RIGHT,
-      arrows: settings.arrows,
+      arrows: 1,
       hasGold: false,
     });
 
@@ -151,7 +139,7 @@ export class GameEngineService {
     this.sound.stop();
     this.localStorageService.clearValue(this.storageSettingsKey);
     this.store.resetHunter();
-    this.store.setSettings({} as GameSettings);
+    this.store.updateGame({settings: {} as GameSettings});
     this.leaderBoard.clear();
   }
 
@@ -166,8 +154,7 @@ export class GameEngineService {
       wumpus: this.calculateWumpus(size, difficulty.luck),
       blackout: this.applyBlackoutChance(),
     };
-    this.store.setSettings(newSettings);
-    this.updateLocalStorageWithSettings(newSettings);
+    this.store.updateGame({settings: newSettings});
     this.initializeGameBoard();
     this.checkCurrentCell(0, 0);
   }

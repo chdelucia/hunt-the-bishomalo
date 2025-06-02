@@ -11,6 +11,7 @@ const mockGameService = {
   exit: jest.fn(),
   initGame: jest.fn(),
   restartLevel: jest.fn(),
+  newGame: jest.fn()
 };
 
 describe('GameControlsComponent', () => {
@@ -87,6 +88,12 @@ describe('GameControlsComponent', () => {
     const event = new KeyboardEvent('keydown', { code: 'KeyR' });
     window.dispatchEvent(event);
     expect(mockGameService.restartLevel).toHaveBeenCalled();
+  });
+
+  it('should call new game on N key', () => {
+    const event = new KeyboardEvent('keydown', { code: 'KeyN' });
+    window.dispatchEvent(event);
+    expect(mockGameService.newGame).toHaveBeenCalled();
   });
 
   it('should prevent default behavior for recognized keys', () => {

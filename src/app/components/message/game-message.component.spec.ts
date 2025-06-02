@@ -102,29 +102,6 @@ describe('GameMessageComponent', () => {
     expect(messageEl?.textContent).toContain('¡Has ganado!');
   });
 
-  it('should show default message when no message is provided', () => {
-    fixture.componentRef.setInput('message', '');
-    fixture.componentRef.setInput('settings', {
-      size: 5,
-      pits: 1,
-      wumpus: 1,
-      difficulty: {
-        maxLevels: 10,
-        maxChance: 0.35,
-        baseChance: 0.12,
-        gold: 60,
-        maxLives: 8,
-        luck: 8,
-        bossTries: 12,
-      },
-    });
-
-    fixture.detectChanges();
-
-    const messageEl = fixture.nativeElement.querySelector('p');
-    expect(messageEl?.textContent).toContain('message.defaultInstructions');
-  });
-
   it('should show retry button when player is dead', () => {
     fixture.componentRef.setInput('isAlive', false);
     fixture.componentRef.setInput('settings', {

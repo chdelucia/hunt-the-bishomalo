@@ -20,3 +20,10 @@ main {
   align-items: center;
   background-color: #f3f4f6;
 }
+
+.message {
+  text-align: center;
+  font-size: large;
+  margin-bottom: 1.5rem;
+  color: var(--color-primary);
+}

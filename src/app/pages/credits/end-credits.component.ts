@@ -91,6 +91,6 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
 
   newGame(): void {
     this.gameEngine.newGame();
-    this.router.navigateByUrl(RouteTypes.HOME);
+    this.router.navigateByUrl(RouteTypes.SETTINGS);
   }
 }

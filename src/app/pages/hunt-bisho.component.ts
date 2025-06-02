@@ -20,7 +20,6 @@ import { GameStore } from '../store';
   imports: [
     RouterModule,
     CommonModule,
-    GameConfigComponent,
     GameCellComponent,
     VisualEffectDirective,
     AppWumpusAttackAnimationComponent,

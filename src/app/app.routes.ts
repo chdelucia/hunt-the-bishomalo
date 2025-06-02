@@ -1,6 +1,7 @@
 import { Route } from '@angular/router';
 import { secretGuard } from './guards/secret.guard';
 import { RouteTypes } from './models';
+import { homeGuard } from './guards/home.guard';
 
 export const appRoutes: Route[] = [
   {
@@ -61,6 +62,7 @@ export const appRoutes: Route[] = [
   },
   {
     path: RouteTypes.HOME,
+    canActivate: [homeGuard],
     loadComponent: () => import('./pages').then((mod) => mod.HuntBishoComponent),
     title: 'Game Bisho malo',
   },

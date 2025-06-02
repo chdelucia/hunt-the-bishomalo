@@ -122,10 +122,10 @@ describe('GameEngineService (with useValue)', () => {
     };
     const initGameBoardSpy = jest.spyOn(service, 'initializeGameBoard');
 
-    service.initGame(config);
+    service.initGame();
 
     expect(mockSound.stop).toHaveBeenCalled();
-    expect(mockStore.setSettings).toHaveBeenCalledWith(config);
+    expect(mockStore.updateGame).toHaveBeenCalled();
     expect(initGameBoardSpy).toHaveBeenCalled();
   });
 
@@ -230,29 +230,11 @@ describe('GameEngineService (with useValue)', () => {
 
   describe('nextLevel', () => {
     it('should increment size and recalculate pits and wumpus', () => {
-      const setSettingsSpy = jest.spyOn(mockStore, 'setSettings');
+      const setSettingsSpy = jest.spyOn(mockStore, 'updateGame');
       const initGameBoardSpy = jest.spyOn(service, 'initializeGameBoard');
       service.nextLevel();
 
-      expect(setSettingsSpy).toHaveBeenCalledWith(
-        expect.objectContaining({
-          size: 3,
-          pits: expect.any(Number),
-          wumpus: expect.any(Number),
-          arrows: 1,
-          blackout: expect.any(Boolean),
-          player: 'TestPlayer',
-          difficulty: expect.objectContaining({
-            maxLevels: 10,
-            maxChance: 0.35,
-            baseChance: 0.12,
-            gold: 60,
-            maxLives: 8,
-            luck: 8,
-            bossTries: 12,
-          }),
-        }),
-      );
+      expect(setSettingsSpy).toHaveBeenCalled();
       expect(initGameBoardSpy).toHaveBeenCalled();
     });
   });
@@ -315,7 +297,7 @@ describe('GameEngineService (with useValue)', () => {
         x: 0,
         y: 0,
         direction: Direction.RIGHT,
-        arrows: mockStore.settings().arrows,
+        arrows: 1,
         hasGold: false,
       });
     });

@@ -2,13 +2,13 @@
 = game.hasWon(); @let settings = game.settings();
 
 <main [appVisualEffect]="game.message()" class="main-container">
-  <app-title [blackout]="settings?.blackout || false" />
+  <app-title [blackout]="settings.blackout || false" />
 
   @if(settings?.blackout && isAlive && !hasWon){
   <app-blackout />
   }
   <section class="board">
-    @if (settings.size) { @for (row of board; track $index; let rowIndex = $index) {
+    @for (row of board; track $index; let rowIndex = $index) {
     <div class="row">
       @for (cell of row; track $index) {
 
@@ -20,13 +20,11 @@
       }
     </div>
     }
+
     <app-wumpus-attack-animation *ngIf="deathByWumpus()" (closeAnimation)="handleclose()" />
-    } @else {
-    <app-game-config />
-    }
+    
   </section>
 
-  @if (settings.size) {
   <section class="player-info">
     <app-game-level [settings]="settings"></app-game-level>
     <app-game-lives
@@ -34,7 +32,6 @@
       [maxLives]="settings.difficulty.maxLives"
     ></app-game-lives>
   </section>
-  }
 
   <app-game-message
     [message]="game.message()"
@@ -44,7 +41,6 @@
     [lives]="game.lives()"
   />
 
-  @if (settings.size) {
   <app-mobile-controls [isFinish]="hasWon || !isAlive" />
-  }
+
 </main>
