@@ -10,8 +10,8 @@ import { GameSoundService } from 'src/app/services';
 const hunterSignal = signal({ chars: ['default', 'lara'] });
 
 const mockGameSound = {
-  play: jest.fn()
-}
+  play: jest.fn(),
+};
 
 const gameStoreMock = {
   updateHunter: jest.fn(),
@@ -21,7 +21,7 @@ const gameStoreMock = {
   wumpusKilled: jest.fn(),
   isAlive: jest.fn(),
   blackout: jest.fn(),
-  lives: jest.fn()
+  lives: jest.fn(),
 };
 
 describe('CharactersComponent', () => {
@@ -33,7 +33,7 @@ describe('CharactersComponent', () => {
       imports: [CharactersComponent, RouterModule.forRoot([]), getTranslocoTestingModule()],
       providers: [
         { provide: GameStore, useValue: gameStoreMock },
-        { provide: GameSoundService, useValue: mockGameSound}
+        { provide: GameSoundService, useValue: mockGameSound },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();

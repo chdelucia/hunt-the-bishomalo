@@ -15,8 +15,8 @@ function createMockCell(overrides = {}) {
 }
 
 const mockGameSound = {
-  play: jest.fn()
-}
+  play: jest.fn(),
+};
 
 const mockGameStoreService = {
   hunter: jest.fn().mockReturnValue({ arrows: 3, hasGold: false }),
@@ -70,7 +70,7 @@ describe('HuntBishoComponent', () => {
       imports: [HuntBishoComponent, RouterModule.forRoot([]), getTranslocoTestingModule()],
       providers: [
         { provide: GameStore, useValue: mockGameStoreService },
-        { provide: GameSoundService, useValue: mockGameSound}
+        { provide: GameSoundService, useValue: mockGameSound },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();

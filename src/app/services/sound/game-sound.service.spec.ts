@@ -5,8 +5,8 @@ import { GameSound } from 'src/app/models';
 import { GameStore } from 'src/app/store';
 
 const mockGameState = {
-  lives: jest.fn()
-}
+  lives: jest.fn(),
+};
 
 describe('GameSoundService', () => {
   let service: GameSoundService;
@@ -28,7 +28,7 @@ describe('GameSoundService', () => {
     });
 
     TestBed.configureTestingModule({
-      providers: [ { provide: GameStore, useValue: mockGameState}],
+      providers: [{ provide: GameStore, useValue: mockGameState }],
       schemas: [NO_ERRORS_SCHEMA],
     });
 

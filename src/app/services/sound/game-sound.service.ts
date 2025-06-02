@@ -39,12 +39,12 @@ const SOUND_PATHS: Record<GameSound, string> = {
 export class GameSoundService {
   private audioMap: Record<GameSound, HTMLAudioElement> = {} as Record<GameSound, HTMLAudioElement>;
   private readonly gameStore = inject(GameStore);
-  constructor(){
-    effect(()=> this.gameOver())
+  constructor() {
+    effect(() => this.gameOver());
   }
 
-  private gameOver(): void{
-    if(!this.gameStore.lives()){
+  private gameOver(): void {
+    if (!this.gameStore.lives()) {
       this.stopAll();
       this.playSound(GameSound.GAMEOVER, false);
     }
