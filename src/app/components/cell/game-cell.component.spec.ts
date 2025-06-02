@@ -156,6 +156,18 @@ describe('GameCellComponent', () => {
     expect(component.showElements()).toBeTruthy();
   });
 
+    it('should show elements when game secretv2', () => {
+    mockGameState.isAlive.mockReturnValue(true);
+    mockGameState.hasWon.mockReturnValue(false);
+    
+
+    fixture.componentRef.setInput('cell', {
+      content: { image: 'algo.png', alt: 'secretss' },
+    });
+
+    expect(component.showElements()).toBeFalsy();
+  });
+
   it('should show elements when die', () => {
     mockGameState.isAlive.mockReturnValue(false);
     mockGameState.hasWon.mockReturnValue(false);
@@ -224,7 +236,7 @@ describe('GameCellComponent', () => {
       y: 2,
     });
 
-    expect(component.showElements()).toBeTruthy();
+    expect(component.showElements()).toBeFalsy();
   });
 
   it('should show gold icon when has gold and size is less than 12', () => {

@@ -30,7 +30,6 @@ export class GameCellComponent {
     return (
       !this.gameStore.isAlive() ||
       this.gameStore.hasWon() ||
-      isDevMode() ||
       cell.visited ||
       cell.content?.alt === 'secret'
     );
