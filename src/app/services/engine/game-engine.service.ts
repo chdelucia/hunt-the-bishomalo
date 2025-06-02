@@ -128,12 +128,6 @@ export class GameEngineService {
     }
   }
 
-  restartLevel(): void {
-    this.sound.stop();
-    this.initializeGameBoard();
-    this.checkCurrentCell(0, 0);
-  }
-
   newGame(): void {
     this.sound.stop();
     this.localStorageService.clearValue(this.storageSettingsKey);

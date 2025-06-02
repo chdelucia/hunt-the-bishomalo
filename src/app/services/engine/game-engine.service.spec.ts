@@ -222,7 +222,7 @@ describe('GameEngineService (with useValue)', () => {
     const spyInitBoard = jest.spyOn(service, 'initializeGameBoard');
     const spyCurrentCell = jest.spyOn(service as any, 'checkCurrentCell');
 
-    service.restartLevel();
+    service.initGame();
     expect(mockSound.stop).toHaveBeenCalled();
     expect(spyInitBoard).toHaveBeenCalled();
     expect(spyCurrentCell).toHaveBeenCalled();

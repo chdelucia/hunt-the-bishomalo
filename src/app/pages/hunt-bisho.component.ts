@@ -4,7 +4,6 @@ import {
   AppWumpusAttackAnimationComponent,
   BlackoutComponent,
   GameCellComponent,
-  GameConfigComponent,
   GameMessageComponent,
   MobileControlsComponent,
   TitleComponent,

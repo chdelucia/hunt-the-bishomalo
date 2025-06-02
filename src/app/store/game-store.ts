@@ -112,7 +112,7 @@ export const GameStore = signalStore(
       if (!partial.isAlive || partial.hasWon) {
         localStorage.setValue(storageKey, {
           ...store.hunter(),
-          lives: partial.lives || store.lives(),
+          lives: partial.lives ?? store.lives(),
         });
       }
 
