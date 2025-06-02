@@ -5,7 +5,7 @@ import { GameSound } from 'src/app/models';
 import { GameStore } from 'src/app/store';
 
 const mockGameState = {
-  lives: jest.fn(),
+  lives: jest.fn().mockReturnValue(2),
 };
 
 describe('GameSoundService', () => {
@@ -41,6 +41,12 @@ describe('GameSoundService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  it('should play game over', () => {
+    const spyPlay = jest.spyOn(service, 'playSound');
+    mockGameState.lives.mockReturnValue(1);
+    expect(spyPlay).not.toHaveBeenCalledWith(GameSound.GAMEOVER);
   });
 
   it('should play wumpus sound', () => {
