@@ -20,6 +20,7 @@ import {
 } from '../../models';
 
 import { GameStore } from '../../store/game-store';
+import { Observable, of, take } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class GameEngineService {
@@ -363,10 +364,10 @@ export class GameEngineService {
     }
 
     this.sound.playSound(GameSound.WALK, false);
-    this.store.setMessage(this.getPerceptionMessage());
+    this.getPerceptionMessage().pipe(take(1)).subscribe(msg => this.store.setMessage(msg))
   }
 
-  private getPerceptionMessage(): string {
+  private getPerceptionMessage(): Observable<string> {
     const adjacentCells = this.getAdjacentCells();
     const perceptions: string[] = [];
 
@@ -375,9 +376,11 @@ export class GameEngineService {
       if (perception) perceptions.push(perception);
     }
 
-    return perceptions.length > 0
-      ? perceptions.join(' ')
-      : this.transloco.translate('gameMessages.perceptionNothingSuspicious');
+    if (perceptions.length > 0) {
+      return of(perceptions.join(' '));
+    } else {
+      return this.transloco.selectTranslate('gameMessages.perceptionNothingSuspicious');
+    }
   }
 
   private getAdjacentCells(): Cell[] {
