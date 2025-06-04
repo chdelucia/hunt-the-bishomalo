@@ -21,7 +21,6 @@ export class ResultsComponent {
 
   gameStore = inject(GameStore);
 
-  //TODO limpiar esto
   constructor(
     private readonly leaderboardService: LeaderboardService,
     private readonly achieve: AchievementService,
@@ -37,7 +36,6 @@ export class ResultsComponent {
     const totalDeaths = this.leaderboard.reduce((sum, e) => sum + e.deads, 0);
     const totalArrows = this.leaderboard.reduce((sum, e) => sum + e.wumpusKilled, 0);
     const totalItems = this.leaderboard.reduce((sum, e) => sum + (e.blackout ? 1 : 0), 0);
-    const totalCoins = 875; // Placeholder
     const completedLevels = this.leaderboard[this.leaderboard.length - 1].level;
     const totalSeconds = this.leaderboard.reduce((sum, e) => sum + e.timeInSeconds, 0);
 
@@ -50,10 +48,8 @@ export class ResultsComponent {
       muertes: totalDeaths,
       flechasDisparadas: totalArrows,
       objetosUsados: totalItems,
-      monedasRecolectadas: totalCoins,
       nivelesCompletados: completedLevels,
       tiempoJuego: `${hours}h ${minutes}m ${seconds}s`,
-      oroTotal: totalCoins,
     };
   });
 
@@ -72,7 +68,7 @@ export class ResultsComponent {
   goToCredits(): void {
     const boss = this.routeSnapshot.snapshot.queryParams['boss'];
 
-    if (this.gameStore.hunter().chars?.length === 4 || !boss) {
+    if (this.gameStore.unlockedChars.length === 4 || !boss) {
       this.router.navigateByUrl(RouteTypes.CREDITS);
       return;
     }

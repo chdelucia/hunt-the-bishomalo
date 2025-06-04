@@ -4,7 +4,8 @@
     "achievements": "Logros",
     "instructions": "Instrucciones",
     "newGame": "Nueva partida",
-    "achievementsAlt": "Logros"
+    "achievementsAlt": "Logros",
+    "credits": "Creditos"
   },
   "achievements": {
     "backToGame": "Volver al juego",

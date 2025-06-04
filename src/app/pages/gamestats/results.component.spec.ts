@@ -112,7 +112,6 @@ describe('ResultsComponent', () => {
     expect(stats.flechasDisparadas).toBe(4);
     expect(stats.objetosUsados).toBe(1);
     expect(stats.nivelesCompletados).toBe(2);
-    expect(stats.oroTotal).toBe(875);
     expect(stats.tiempoJuego).toBe('0h 3m 0s');
   });
 });

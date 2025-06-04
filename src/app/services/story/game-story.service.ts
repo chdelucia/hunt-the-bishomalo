@@ -50,7 +50,6 @@ export class GameStoryService {
       });
   }
 
-  //TODO aplicar beneficios en los niveles ya veremos si quiero o es demasiado facil
   checkLevelTrigger(level: LevelStory): void {
     switch (level.effect) {
       case 'extraArrow':

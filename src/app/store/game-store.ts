@@ -1,5 +1,5 @@
 import { computed, inject } from '@angular/core';
-import { Cell, Direction, Hunter, GameSettings, Chars } from '../models';
+import { Direction, Hunter, GameSettings, Chars, GameState, GameItem } from '../models';
 import {
   signalStore,
   withState,
@@ -10,15 +10,11 @@ import {
 } from '@ngrx/signals';
 import { LocalstorageService } from '../services';
 
-interface GameState {
-  board: Cell[][];
-  hunter: Hunter;
-  message: string;
-  settings: GameSettings;
-  wumpusKilled: number;
-  isAlive: boolean;
-  hasWon: boolean;
+interface GameLocalStorageInfo {
   lives: number;
+  unlockedChars: Chars[];
+  inventory: GameItem[];
+  gold: number;
 }
 
 const initialHunter: Hunter = {
@@ -27,7 +23,6 @@ const initialHunter: Hunter = {
   direction: Direction.RIGHT,
   arrows: 1,
   hasGold: false,
-  chars: [Chars.DEFAULT],
   inventory: [],
   gold: 0,
 };
@@ -48,6 +43,7 @@ const initialState: GameState = {
   isAlive: true,
   hasWon: false,
   lives: 8,
+  unlockedChars: [Chars.DEFAULT],
 };
 
 const storageKey = 'hunt_the_bishomalo_hunter';
@@ -66,7 +62,7 @@ export const GameStore = signalStore(
     size: computed(() => settings().size),
     difficulty: computed(() => settings().difficulty),
     level: computed(() => settings().size - 4),
-    char: computed(() => settings().selectedChar),
+    selectedChar: computed(() => settings().selectedChar),
     startTime: computed(() => settings().startTime),
     currentCell: computed(() => {
       const { x, y } = hunter();
@@ -74,50 +70,56 @@ export const GameStore = signalStore(
     }),
   })),
   withMethods((store, localStorage = inject(LocalstorageService)) => {
+
+    const persistGameState = () => {
+      const currentHunter = store.hunter();
+      localStorage.setValue<GameLocalStorageInfo>(storageKey, {
+        inventory: currentHunter.inventory,
+        gold: currentHunter.gold,
+        lives: store.lives(),
+        unlockedChars: store.unlockedChars(),
+      });
+    };
+
     const syncHunterWithStorage = () => {
-      //TODO cambiar lo que se guarda en el store, no sirve pa na guarda X y Y y otras xuminas
-      const hunter = localStorage.getValue<any>(storageKey);
+      const gameData = localStorage.getValue<GameLocalStorageInfo>(storageKey);
       const settings = localStorage.getValue<GameSettings>(storageSettingsKey);
-      if (hunter && settings) {
-        patchState(store, { hunter, lives: hunter.lives, settings: settings });
+      if (gameData) {
+        patchState(store, { 
+          lives: gameData.lives, 
+          unlockedChars: gameData.unlockedChars,
+          settings: settings ?? {} as GameSettings, 
+          hunter: {...store.hunter(), gold: gameData.gold, inventory: gameData.inventory} 
+        });
       }
     };
 
-    //TODO este es para reiniciar el game refactorizar
-    const resetHunter = () => {
-      const newHunter: Hunter = {
-        ...initialHunter,
-        chars: store.hunter().chars,
-      };
+    const resetStore = () => {
       patchState(store, {
-        hunter: newHunter,
         ...initialConfig,
+        hunter: initialHunter,
+        unlockedChars: store.unlockedChars()
       });
-      localStorage.setValue(storageKey, newHunter);
+
+      localStorage.clearValue(storageSettingsKey);
     };
 
     const updateHunter = (partial: Partial<Hunter>) => {
       const updated = { ...store.hunter(), ...partial };
       patchState(store, { hunter: updated });
-      if (partial.inventory) {
-        localStorage.setValue(storageKey, {
-          ...store.hunter(),
-        });
+
+      if (partial.inventory || partial.gold) {
+        persistGameState();
       }
     };
 
     const updateGame = (partial: Partial<GameState>) => {
       patchState(store, partial);
 
-      if (!partial.isAlive || partial.hasWon) {
-        localStorage.setValue(storageKey, {
-          ...store.hunter(),
-          lives: partial.lives ?? store.lives(),
-        });
-      }
+      persistGameState();
 
       if (partial.settings) {
-        localStorage.setValue(storageSettingsKey, partial.settings);
+        localStorage.setValue<GameSettings>(storageSettingsKey, partial.settings);
       }
     };
 
@@ -133,7 +135,7 @@ export const GameStore = signalStore(
       updateGame,
       countWumpusKilled,
       updateHunter,
-      resetHunter,
+      resetStore,
       setMessage,
       syncHunterWithStorage,
     };

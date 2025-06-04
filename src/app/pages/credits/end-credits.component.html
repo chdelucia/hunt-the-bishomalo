@@ -11,9 +11,9 @@
         <p class="creditos-nombre">{{ 'credits.nameChrisHeredia' | transloco }}</p>
       </div>
 
-      <ng-container *ngFor="let rol of roles()">
+      <ng-container *ngFor="let rol of roleKeys">
         <div class="creditos-seccion">
-          <h2 class="creditos-rol">{{ rol }}</h2>
+          <h2 class="creditos-rol">{{ rol | transloco }}</h2>
           <p class="creditos-nombre">{{ 'credits.nameChrisHeredia' | transloco }}</p>
         </div>
       </ng-container>

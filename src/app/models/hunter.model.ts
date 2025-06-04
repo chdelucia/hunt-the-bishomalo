@@ -16,6 +16,5 @@ export interface Hunter {
   hasGold: boolean;
   inventory: GameItem[];
   gold: number;
-  chars: Chars[];
   dragonballs?: number;
 }

@@ -1,4 +1,4 @@
-@let chars = gameStore.hunter().chars;
+@let chars = gameStore.unlockedChars();
 
 <form [formGroup]="configForm" (ngSubmit)="submitForm()" class="config-form">
   <h2>{{ 'config.title' | transloco }}</h2>

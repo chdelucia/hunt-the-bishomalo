@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { TranslocoModule } from '@jsverse/transloco';
 import { GameSound, RouteTypes } from 'src/app/models';
 import { GameEngineService, GameSoundService } from 'src/app/services';
 
@@ -15,34 +15,21 @@ import { GameEngineService, GameSoundService } from 'src/app/services';
 export class EndCreditsComponent implements OnInit, OnDestroy {
   readonly scrollPosition = signal(0);
   readonly autoScroll = signal(true);
-  readonly MAX_SCROLL_POSITION = 2600;
+  readonly MAX_SCROLL_POSITION = 1350;
 
-  // Store keys for roles, to be translated in ngOnInit
-  private readonly roleKeys: string[] = [
-    'leadProgrammer',
-    'gameDesigner',
-    'pixelArtist',
-    'musicComposer',
-    'levelDesigner',
-    'soundEngineer',
-    'leadTester',
-    'marketingSpecialist',
-    'communityManager',
-    'narrator',
-    'bishomaloVoice',
-    'bishomaloCareTaker',
-    'pitExpert',
-    'batTrainer',
-    'arrowManufacturer',
-    'caveExplorer',
-    'timeMaster',
-    'goldGuardian',
-    'pixelCounter',
-    'error404Specialist',
-    'creditsWriter',
-    'specialThanks',
+  readonly roleKeys: string[] = [
+    'credits.role.leadProgrammer',
+    'credits.role.gameDesigner',
+    'credits.role.pixelArtist',
+    'credits.role.levelDesigner',
+    'credits.role.soundEngineer',
+    'credits.role.leadTester',
+    'credits.role.bishomaloCareTaker',
+    'credits.role.pixelCounter',
+    'credits.role.error404Specialist',
+    'credits.role.creditsWriter',
+    'credits.role.specialThanks',
   ];
-  readonly roles = signal<string[]>([]);
 
   private lastTime = 0;
   private animationFrameId = 0;
@@ -50,7 +37,6 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
   private readonly router = inject(Router);
   private readonly gameEngine = inject(GameEngineService);
   private readonly gameSound = inject(GameSoundService);
-  private readonly translocoService = inject(TranslocoService);
 
   private startAutoScroll(): void {
     const animate = (time: number) => {
@@ -77,9 +63,6 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.roles.set(
-      this.roleKeys.map((key) => this.translocoService.translate(`credits.role.${key}`)),
-    );
     this.gameSound.stop();
     this.gameSound.playSound(GameSound.GOKU, false);
     this.startAutoScroll();

@@ -29,7 +29,7 @@ const mockGameStoreService = {
   blackout: jest.fn(),
   startTime: jest.fn(),
   currentCell: jest.fn(),
-  char: jest.fn(),
+  selectedChar: jest.fn(),
   settings: jest.fn().mockReturnValue({
     size: 4,
     arrows: 2,

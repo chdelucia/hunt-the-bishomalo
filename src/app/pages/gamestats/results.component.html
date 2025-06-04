@@ -1,7 +1,7 @@
 @let estadisticas = estadisticasGenerales();
 <div class="resultados-panel">
   <h1 class="resultados-titulo">{{ 'results.title' | transloco }}</h1>
-  <p class="resultados-subtitulo">{{ 'results.subtitle' | transloco }}</p>
+  
 
   @if(leaderboard.length){
   <div class="tabs-container">
@@ -97,20 +97,6 @@
                     | transloco : { count: estadisticasGenerales().muertes }
                 }}
               </p>
-            </div>
-          </div>
-          <div class="record-item">
-            <div class="record-badge">🎯</div>
-            <div class="record-info">
-              <h3 class="record-nombre">{{ 'results.arrowsShot' | transloco }}</h3>
-              <p class="record-valor">--</p>
-            </div>
-          </div>
-          <div class="record-item">
-            <div class="record-badge">💰</div>
-            <div class="record-info">
-              <h3 class="record-nombre">{{ 'results.coinsCollected' | transloco }}</h3>
-              <p class="record-valor">{{ estadisticas.oroTotal }}</p>
             </div>
           </div>
         </div>

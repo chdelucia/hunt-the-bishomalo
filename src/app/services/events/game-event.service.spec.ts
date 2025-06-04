@@ -75,7 +75,6 @@ describe('GameEventService', () => {
     arrows: 1,
     hasGold: false,
     inventory: [],
-    chars: [],
     gold: 0,
   };
 

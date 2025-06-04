@@ -72,24 +72,11 @@ export class ShopComponent {
 
   message = signal('');
 
-  //TODO ya vere eso si traducirlo aqui o en el template
   productos = computed(() => {
-    const translatedProducts = this.baseProducts.map((p) => ({
-      ...p,
-      name: this.transloco.translate(p.name),
-      description: this.transloco.translate(p.description),
-    }));
-
-    const translatedRandomProducts = this.baseRandomProducts.map((p) => ({
-      ...p,
-      name: this.transloco.translate(p.name),
-      description: this.transloco.translate(p.description),
-    }));
-
     if (Math.random() < this.settings().difficulty.maxChance) {
-      return [...translatedProducts, ...translatedRandomProducts];
+      return [...this.baseProducts, ...this.baseRandomProducts];
     }
-    return translatedProducts;
+    return this.baseProducts;
   });
 
   buyProduct(product: Product): void {
@@ -98,6 +85,8 @@ export class ShopComponent {
     const lives = this.gameStore.lives();
 
     const canBuy = gold >= price;
+
+    setTimeout(() => this.message.set(''), 2000);
 
     if (!canBuy) {
       this.message.set(this.transloco.translate('shop.purchaseMessageNotEnoughCoins'));
@@ -113,7 +102,6 @@ export class ShopComponent {
     this.message.set(
       this.transloco.translate('shop.purchaseMessageSuccess', { productName: product.name }),
     );
-    setTimeout(() => this.message.set(''), 2000);
   }
 
   nextLevel(): void {
@@ -139,7 +127,7 @@ export class ShopComponent {
 
     this.gameStore.updateHunter({
       gold: gold - price,
-      inventory: [...(inventory || []), product],
+      inventory: [...(inventory), product],
     });
   }
 }

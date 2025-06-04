@@ -47,11 +47,11 @@ describe('EndCreditsComponent', () => {
   });
 
   it('debería tener una lista de roles mayor a 0', () => {
-    expect(component.roles().length).toBeGreaterThan(0);
+    expect(component.roleKeys.length).toBeGreaterThan(0);
   });
 
   it('todos los roles deberían ser strings no vacíos', () => {
-    const roles = component.roles();
+    const roles = component.roleKeys;
     roles.forEach((role) => {
       expect(typeof role).toBe('string');
       expect(role.length).toBeGreaterThan(0);

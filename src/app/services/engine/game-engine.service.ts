@@ -131,9 +131,7 @@ export class GameEngineService {
 
   newGame(): void {
     this.sound.stop();
-    this.localStorageService.clearValue(this.storageSettingsKey);
-    this.store.resetHunter();
-    this.store.updateGame({ settings: {} as GameSettings });
+    this.store.resetStore();
     this.leaderBoard.clear();
   }
 

@@ -6,7 +6,7 @@ import { GameEngineService } from '../services';
 import { RouteTypes } from '../models';
 
 const mockGameStore = {
-  settings: jest.fn(),
+  settings: jest.fn().mockReturnValue({}),
 };
 
 const mockGameEngine = {
@@ -37,7 +37,7 @@ describe('homeGuard (Jest)', () => {
   const mockState: any = { url: '/home' };
 
   it('should allow activation and initialize game when settings exist', () => {
-    mockGameStore.settings.mockReturnValue({ difficulty: 'easy' });
+    mockGameStore.settings.mockReturnValue({ difficulty: 'easy', size: 2 });
 
     const result = executeGuard(mockRoute, mockState);
 
@@ -48,7 +48,7 @@ describe('homeGuard (Jest)', () => {
   });
 
   it('should deny activation and redirect to /settings if settings are missing', () => {
-    mockGameStore.settings.mockReturnValue(null);
+    mockGameStore.settings.mockReturnValue({});
 
     const result = executeGuard(mockRoute, mockState);
 

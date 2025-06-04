@@ -19,7 +19,7 @@ const mockGameStoreService = {
   updateGame: jest.fn(),
   lives: jest.fn().mockReturnValue(3),
   gold: jest.fn().mockReturnValue(160),
-  inventory: jest.fn(),
+  inventory: jest.fn().mockReturnValue([]),
   settings: jest.fn().mockReturnValue({
     difficulty: {
       maxLevels: 10,

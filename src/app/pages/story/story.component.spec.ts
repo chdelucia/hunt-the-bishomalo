@@ -18,6 +18,7 @@ const mockStory = {
 
 const mockGameStoryService = {
   getStory: jest.fn(() => mockStory),
+  checkLevelTrigger: jest.fn(),
 };
 
 (global as any).SpeechSynthesisUtterance = class {
@@ -76,6 +77,7 @@ describe('StoryComponent', () => {
 
   it('debería navegar al HOME cuando se llama goToGame', () => {
     component.goToGame();
+    expect(mockGameStoryService.checkLevelTrigger).toHaveBeenCalled();
     expect(mockRouter.navigate).toHaveBeenCalledWith([RouteTypes.HOME]);
   });
 

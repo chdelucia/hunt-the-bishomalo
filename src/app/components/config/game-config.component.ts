@@ -35,8 +35,6 @@ export class GameConfigComponent {
   configForm: FormGroup = this.fb.group({
     player: ['Kukuxumushu', Validators.required],
     size: [1, [Validators.required, Validators.min(1), Validators.max(20)]],
-    pits: [2, [Validators.required, Validators.min(1)]],
-    arrows: [1, [Validators.required, Validators.min(1)]],
     selectedChar: [Chars.DEFAULT, [Validators.required]],
     difficulty: [DifficultyTypes.EASY, [Validators.required]],
   });

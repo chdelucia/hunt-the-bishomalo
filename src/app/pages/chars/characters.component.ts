@@ -32,8 +32,8 @@ export class CharactersComponent {
     const selected = this.selectedChar();
 
     if (selected) {
-      this.gameStore.updateHunter({
-        chars: [...(this.gameStore.hunter().chars || []), selected],
+      this.gameStore.updateGame({
+        unlockedChars: [...(this.gameStore.unlockedChars()), selected],
       });
       this.achieve.activeAchievement(this.achievements[selected]);
       this.router.navigateByUrl(RouteTypes.CREDITS);

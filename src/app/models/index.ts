@@ -10,3 +10,4 @@ export * from './achieve.enum';
 export * from './game-effects.types';
 export * from './game-item.model';
 export * from './routes.enum';
+export * from './game-state.model';

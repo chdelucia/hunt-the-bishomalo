@@ -48,8 +48,8 @@
             />
           </div>
           <div class="producto-info">
-            <p class="producto-name">{{ producto.name }}</p>
-            <p class="producto-descripcion">{{ producto.description }}</p>
+            <p class="producto-name">{{ producto.name | transloco }}</p>
+            <p class="producto-descripcion">{{ producto.description | transloco }}</p>
             <div class="producto-footer">
               <div class="producto-price">
                 <img src="boardicons/gold.svg" alt="{{ 'shop.goldAlt' | transloco }}" />

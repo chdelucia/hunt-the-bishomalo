@@ -14,7 +14,6 @@ const mockGameSound = {
 };
 
 const gameStoreMock = {
-  updateHunter: jest.fn(),
   stop: jest.fn(),
   hunter: jest.fn().mockReturnValue(hunterSignal),
   settings: jest.fn().mockReturnValue({}),
@@ -22,6 +21,8 @@ const gameStoreMock = {
   isAlive: jest.fn(),
   blackout: jest.fn(),
   lives: jest.fn(),
+  updateGame: jest.fn(),
+  unlockedChars: () => []
 };
 
 describe('CharactersComponent', () => {
@@ -50,6 +51,6 @@ describe('CharactersComponent', () => {
   it('should call updateHunter on confirm selection', () => {
     component.selectedChar.set(Chars.LINK);
     component.onClick();
-    expect(gameStoreMock.updateHunter).toHaveBeenCalled();
+    expect(gameStoreMock.updateGame).toHaveBeenCalled();
   });
 });

@@ -49,6 +49,7 @@ export class StoryComponent implements OnInit, OnDestroy {
 
   goToGame(): void {
     speechSynthesis.cancel();
+    if(this.story) this.storyService.checkLevelTrigger(this.story)
     this.router.navigate([RouteTypes.HOME]);
   }
 
@@ -81,8 +82,8 @@ export class StoryComponent implements OnInit, OnDestroy {
 
     const utterBody = new SpeechSynthesisUtterance(bodyText);
     utterBody.lang = activeLang;
-    utterBody.pitch = 0.1;
-    utterBody.rate = 0.7;
+    utterBody.pitch = 0.15;
+    utterBody.rate = 0.80;
 
     speechSynthesis.cancel();
     utterChapter.onend = () => {

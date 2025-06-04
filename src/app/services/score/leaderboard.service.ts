@@ -19,10 +19,8 @@ export class LeaderboardService {
   constructor(private readonly localStorageService: LocalstorageService) {
     const stored = this.loadLeaderboardFromStorage();
     this._leaderboard = stored;
-    //TODO este efect no tiene sentido se ejecuta 900 veces
+
     effect(() => {
-      const { x, y } = this._hunter();
-      if (x || y) this.countSteps += 1;
       if (this.gameStore.hasWon() || !this.gameStore.isAlive()) {
         const { player, blackout, size } = this._settings();
         const endTime = new Date();
@@ -41,6 +39,10 @@ export class LeaderboardService {
 
         if (this.gameStore.hasWon()) this.gameAchieve.caclVictoryAchieve(seconds);
       }
+    })
+    effect(() => {
+      const { x, y } = this._hunter();
+      if (x || y) this.countSteps += 1;
     });
   }
 

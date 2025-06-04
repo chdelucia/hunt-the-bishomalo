@@ -37,7 +37,7 @@ const mockStore = {
   setMessage: jest.fn(),
   dragonballs: jest.fn(),
   setSettings: jest.fn(),
-  resetHunter: jest.fn(),
+  resetStore: jest.fn(),
   currentCell: jest.fn(),
   countWumpusKilled: jest.fn(),
   setHunterForNextLevel: jest.fn(),
@@ -214,7 +214,7 @@ describe('GameEngineService (with useValue)', () => {
   it('shold call newGame', () => {
     service.newGame();
     expect(mockSound.stop).toHaveBeenCalled();
-    expect(mockStore.resetHunter).toHaveBeenCalled();
+    expect(mockStore.resetStore).toHaveBeenCalled();
     expect(mockLeaderboard.clear).toHaveBeenCalled();
   });
 

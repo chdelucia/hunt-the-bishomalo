@@ -14,7 +14,6 @@ const mockHunter: Hunter = {
   hasGold: false,
   gold: 0,
   inventory: [],
-  chars: [Chars.DEFAULT],
 };
 const mockSettings = {
   player: 'Chris',

@@ -9,7 +9,7 @@ export const homeGuard: CanActivateFn = () => {
   const gameStore = inject(GameStore);
   const gameEngine = inject(GameEngineService);
 
-  const hasSettings = gameStore.settings();
+  const hasSettings = gameStore.settings().size;
 
   if (hasSettings) {
     gameEngine.initGame();

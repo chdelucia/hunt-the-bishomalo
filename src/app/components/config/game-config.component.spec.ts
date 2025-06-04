@@ -19,7 +19,7 @@ const gameSoundMock = {
 const gameStoreMock = {
   updateGame: jest.fn(),
   hunter: jest.fn().mockReturnValue({ chars: [] }),
-  chars: jest.fn(),
+  unlockedChars: jest.fn()
 };
 
 describe('GameConfigComponent', () => {
@@ -52,8 +52,6 @@ describe('GameConfigComponent', () => {
     expect(form.value).toEqual({
       player: 'Kukuxumushu',
       size: 1,
-      pits: 2,
-      arrows: 1,
       selectedChar: 'default',
       difficulty: 'easy',
     });
@@ -68,8 +66,6 @@ describe('GameConfigComponent', () => {
     component.configForm.setValue({
       player: 'Ana',
       size: 9,
-      pits: 2,
-      arrows: 3,
       selectedChar: 'default',
       difficulty: 'easy',
     });
@@ -79,8 +75,6 @@ describe('GameConfigComponent', () => {
       settings: {
         player: 'Ana',
         size: 12,
-        pits: 2,
-        arrows: 3,
         blackout: expect.any(Boolean),
         selectedChar: 'default',
         difficulty: {
@@ -103,8 +97,6 @@ describe('GameConfigComponent', () => {
     component.configForm.setValue({
       player: '',
       size: 3,
-      pits: 0,
-      arrows: 0,
       selectedChar: 'default',
       difficulty: {
         baseChance: 0.12,

@@ -4,7 +4,8 @@
     "achievements": "Achievements",
     "instructions": "Instructions",
     "newGame": "New Game",
-    "achievementsAlt": "Achievements"
+    "achievementsAlt": "Achievements",
+    "credits": "Credits"
   },
   "achievements": {
     "backToGame": "Back to Game",

@@ -5,7 +5,7 @@
   display: none;
   border-bottom: 0;
   height: 45px;
-  z-index: 999;
+  z-index: 9999;
   background: none;
 
   .bar {
@@ -131,7 +131,7 @@
   .mobile-menu {
     display: block;
     position: fixed;
-    z-index: 6;
+    z-index: 99;
     width: 100%;
   }
 }

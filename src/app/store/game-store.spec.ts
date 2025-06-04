@@ -3,17 +3,20 @@ import { GameStore } from './game-store';
 import { GameSettings, Hunter, Cell, Direction } from '../models';
 import { LocalstorageService } from '../services';
 
+  const localStorageServiceMock = {
+      getValue: jest.fn(),
+      setValue: jest.fn(),
+      clearValue: jest.fn()
+    };
 describe('GameStore (SignalStore)', () => {
   let store: any;
-  let localStorageServiceMock: jest.Mocked<LocalstorageService>;
 
   const mockHunter: Hunter = {
     x: 0,
     y: 0,
-    direction: Direction.UP,
-    arrows: 3,
+    direction: Direction.RIGHT,
+    arrows: 1,
     hasGold: false,
-    chars: [],
     gold: 0,
     inventory: [],
   };
@@ -38,11 +41,6 @@ describe('GameStore (SignalStore)', () => {
   };
 
   beforeEach(() => {
-    localStorageServiceMock = {
-      getValue: jest.fn(),
-      setValue: jest.fn(),
-    } as unknown as jest.Mocked<LocalstorageService>;
-
     TestBed.configureTestingModule({
       providers: [GameStore, { provide: LocalstorageService, useValue: localStorageServiceMock }],
     });
@@ -84,7 +82,7 @@ describe('GameStore (SignalStore)', () => {
     store.updateHunter({ x: 5, y: 5, arrows: 10 });
     store.updateGame({ settings: mockSettings, lives: 1 });
 
-    store.resetHunter();
+    store.resetStore();
     const resetState = store.hunter();
     expect(resetState.x).toBe(0);
     expect(resetState.y).toBe(0);
@@ -99,7 +97,7 @@ describe('GameStore (SignalStore)', () => {
 
     expect(localStorageServiceMock.setValue).toHaveBeenCalledWith(
       'hunt_the_bishomalo_hunter',
-      expect.objectContaining({ arrows: 10, lives: 1 }),
+      expect.objectContaining({ lives: 1 }),
     );
   });
 
