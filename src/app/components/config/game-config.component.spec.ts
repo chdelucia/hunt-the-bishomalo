@@ -19,7 +19,7 @@ const gameSoundMock = {
 const gameStoreMock = {
   updateGame: jest.fn(),
   hunter: jest.fn().mockReturnValue({ chars: [] }),
-  unlockedChars: jest.fn()
+  unlockedChars: jest.fn(),
 };
 
 describe('GameConfigComponent', () => {

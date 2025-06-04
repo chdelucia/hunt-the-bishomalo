@@ -1,6 +1,6 @@
-import { Cell } from "./cell.model";
-import { GameSettings } from "./game-settings.model";
-import { Chars, Hunter } from "./hunter.model";
+import { Cell } from './cell.model';
+import { GameSettings } from './game-settings.model';
+import { Chars, Hunter } from './hunter.model';
 
 export interface GameState {
   board: Cell[][];

@@ -33,7 +33,7 @@ export class CharactersComponent {
 
     if (selected) {
       this.gameStore.updateGame({
-        unlockedChars: [...(this.gameStore.unlockedChars()), selected],
+        unlockedChars: [...this.gameStore.unlockedChars(), selected],
       });
       this.achieve.activeAchievement(this.achievements[selected]);
       this.router.navigateByUrl(RouteTypes.CREDITS);

@@ -39,7 +39,7 @@ export class LeaderboardService {
 
         if (this.gameStore.hasWon()) this.gameAchieve.caclVictoryAchieve(seconds);
       }
-    })
+    });
     effect(() => {
       const { x, y } = this._hunter();
       if (x || y) this.countSteps += 1;

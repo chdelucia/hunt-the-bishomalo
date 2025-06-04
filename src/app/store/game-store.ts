@@ -70,7 +70,6 @@ export const GameStore = signalStore(
     }),
   })),
   withMethods((store, localStorage = inject(LocalstorageService)) => {
-
     const persistGameState = () => {
       const currentHunter = store.hunter();
       localStorage.setValue<GameLocalStorageInfo>(storageKey, {
@@ -85,11 +84,11 @@ export const GameStore = signalStore(
       const gameData = localStorage.getValue<GameLocalStorageInfo>(storageKey);
       const settings = localStorage.getValue<GameSettings>(storageSettingsKey);
       if (gameData) {
-        patchState(store, { 
-          lives: gameData.lives, 
+        patchState(store, {
+          lives: gameData.lives,
           unlockedChars: gameData.unlockedChars,
-          settings: settings ?? {} as GameSettings, 
-          hunter: {...store.hunter(), gold: gameData.gold, inventory: gameData.inventory} 
+          settings: settings ?? ({} as GameSettings),
+          hunter: { ...store.hunter(), gold: gameData.gold, inventory: gameData.inventory },
         });
       }
     };
@@ -98,7 +97,7 @@ export const GameStore = signalStore(
       patchState(store, {
         ...initialConfig,
         hunter: initialHunter,
-        unlockedChars: store.unlockedChars()
+        unlockedChars: store.unlockedChars(),
       });
 
       localStorage.clearValue(storageSettingsKey);

@@ -127,7 +127,7 @@ export class ShopComponent {
 
     this.gameStore.updateHunter({
       gold: gold - price,
-      inventory: [...(inventory), product],
+      inventory: [...inventory, product],
     });
   }
 }

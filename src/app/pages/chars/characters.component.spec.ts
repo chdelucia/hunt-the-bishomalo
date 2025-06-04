@@ -22,7 +22,7 @@ const gameStoreMock = {
   blackout: jest.fn(),
   lives: jest.fn(),
   updateGame: jest.fn(),
-  unlockedChars: () => []
+  unlockedChars: () => [],
 };
 
 describe('CharactersComponent', () => {

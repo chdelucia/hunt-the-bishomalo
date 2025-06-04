@@ -3,11 +3,11 @@ import { GameStore } from './game-store';
 import { GameSettings, Hunter, Cell, Direction } from '../models';
 import { LocalstorageService } from '../services';
 
-  const localStorageServiceMock = {
-      getValue: jest.fn(),
-      setValue: jest.fn(),
-      clearValue: jest.fn()
-    };
+const localStorageServiceMock = {
+  getValue: jest.fn(),
+  setValue: jest.fn(),
+  clearValue: jest.fn(),
+};
 describe('GameStore (SignalStore)', () => {
   let store: any;
 
