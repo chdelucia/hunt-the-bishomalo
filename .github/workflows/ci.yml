@@ -39,12 +39,11 @@ jobs:
       # ✅ Lint y test con coverage
       - name: Lint and Test with Coverage
         run: |
-          npx nx run-many -t lint
-          npx nx test hunt-the-bishomalo --coverage --coverageReporters=lcov
+          npx nx affected -t lint test --base=origin/main --head=HEAD -- --coverage --coverageReporters=lcov
 
       # ✅ Build Angular App
       - name: Build App
-        run: npx nx build hunt-the-bishomalo --configuration=production --base-href="https://chdelucia.github.io/hunt-the-bishomalo/"
+        run: npx nx build hunt-the-bishomalo --configuration=production"
 
       # ✅ SonarCloud Scan
       - name: SonarCloud Scan
