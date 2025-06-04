@@ -39,7 +39,7 @@ jobs:
       # ✅ Lint y test con coverage
       - name: Lint and Test with Coverage
         run: |
-          npx nx lint test hunt-the-bishomalo --coverage --coverageReporters=lcov
+          npx nx lint,test hunt-the-bishomalo --coverage --coverageReporters=lcov
 
       # ✅ Build Angular App
       - name: Build App
