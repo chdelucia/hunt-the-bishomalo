@@ -39,7 +39,7 @@ jobs:
       # ✅ Lint y test con coverage
       - name: Lint and Test with Coverage
         run: |
-          npx nx affected -t lint test --base=origin/main --head=HEAD -- --coverage --coverageReporters=lcov
+          npx nx affected -t lint test --base=origin/main --head=HEAD --coverage --coverageReporters=lcov
 
       # ✅ Build Angular App
       - name: Build App
