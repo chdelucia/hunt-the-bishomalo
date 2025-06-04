@@ -1,12 +1,13 @@
 {
   "name": "@hunt-the-bishomalo/source",
-  "version": "6.11.13",
+  "version": "7.0.0",
   "license": "MIT",
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
     "release": "standard-version",
+    "mayor": "standard-version --release-as major",
     "prepare": "husky install",
     "changelog": "standard-version --skip.tag=true --skip.commit=true",
     "i18n:extract": "transloco-keys-manager extract",
