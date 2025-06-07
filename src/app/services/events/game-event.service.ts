@@ -126,6 +126,7 @@ export class GameEventService {
       if (effect.canApply(cause)) {
         effect.apply(cell, prev);
         this.gameStore.setMessage(effect.message);
+        cell.visited = false;
         return true;
       }
     }
