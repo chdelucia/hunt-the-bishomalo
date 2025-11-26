@@ -110,8 +110,9 @@ describe('GameEventService', () => {
     mockHunter.mockReturnValue({
       ...baseHunter,
       alive: true,
-      inventory: [{ name: 'flecha-extra', icon: '', effect: 'arrow' }],
+      inventory: [{ name: 'flecha-extra', icon: '', effect: 'flecha-extra' }],
     });
+    mockInventory.mockReturnValue([{ name: 'flecha-extra', icon: '', effect: 'flecha-extra' }]);
 
     service.applyEffectByCellContent({
       x: 0,
@@ -129,8 +130,9 @@ describe('GameEventService', () => {
     mockHunter.mockReturnValue({
       ...baseHunter,
       alive: true,
-      inventory: [{ name: 'extra-heart', icon: '', effect: 'heart' }],
+      inventory: [{ name: 'extra-heart', icon: '', effect: 'extra-heart' }],
     });
+    mockInventory.mockReturnValue([{ name: 'extra-heart', icon: '', effect: 'extra-heart' }]);
 
     service.applyEffectByCellContent({
       x: 0,
@@ -148,10 +150,10 @@ describe('GameEventService', () => {
       ...baseHunter,
       alive: true,
       lives: 1,
-      inventory: [{ name: 'dragonball', icon: '', effect: 'dragonball' }],
+      inventory: [{ name: 'dragonball', icon: '', effect: 'dragonballs' }],
     });
 
-    mockInventory.mockReturnValue([{ name: 'dragonball', icon: '', effect: 'dragonball' }]);
+    mockInventory.mockReturnValue([{ name: 'dragonball', icon: '', effect: 'dragonballs' }]);
 
     service.applyEffectByCellContent({
       x: 0,

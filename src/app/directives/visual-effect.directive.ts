@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnChanges, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, Renderer2, inject } from '@angular/core';
 
 @Directive({
   selector: '[appVisualEffect]',
@@ -7,7 +7,8 @@ import { Directive, ElementRef, Input, OnChanges, Renderer2 } from '@angular/cor
 export class VisualEffectDirective implements OnChanges {
   @Input('appVisualEffect') perception = '';
 
-  constructor(private readonly el: ElementRef, private readonly renderer: Renderer2) {}
+  private readonly el = inject(ElementRef);
+  private readonly renderer = inject(Renderer2);
 
   ngOnChanges(): void {
     this.clearEffects();

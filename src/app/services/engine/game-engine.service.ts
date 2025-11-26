@@ -30,15 +30,13 @@ export class GameEngineService {
   private readonly _settings = this.store.settings;
   private readonly _hunter = this.store.hunter;
 
-  constructor(
-    private readonly sound: GameSoundService,
-    private readonly leaderBoard: LeaderboardService,
-    private readonly achieve: AchievementService,
-    private readonly router: Router,
-    private readonly localStorageService: LocalstorageService,
-    private readonly gameEvents: GameEventService,
-    private readonly transloco: TranslocoService,
-  ) {}
+  private readonly sound = inject(GameSoundService);
+  private readonly leaderBoard = inject(LeaderboardService);
+  private readonly achieve = inject(AchievementService);
+  private readonly router = inject(Router);
+  private readonly localStorageService = inject(LocalstorageService);
+  private readonly gameEvents = inject(GameEventService);
+  private readonly transloco = inject(TranslocoService);
 
   initGame(): void {
     this.sound.stop();

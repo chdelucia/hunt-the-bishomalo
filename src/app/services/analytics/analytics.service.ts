@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Injectable, isDevMode } from '@angular/core';
+import { Injectable, isDevMode, inject } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
@@ -14,7 +14,9 @@ declare global {
   providedIn: 'root',
 })
 export class AnalyticsService {
-  constructor(private readonly router: Router) {
+  private readonly router = inject(Router);
+
+  constructor() {
     this.trackPageViews();
   }
 
