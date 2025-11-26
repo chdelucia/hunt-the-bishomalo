@@ -11,12 +11,13 @@ export class LeaderboardService {
 
   private readonly gameStore = inject(GameStore);
   private readonly gameAchieve = inject(AchievementService);
+  private readonly localStorageService = inject(LocalstorageService);
   private readonly _hunter = this.gameStore.hunter;
   private readonly _settings = this.gameStore.settings;
 
   private countSteps = 0;
 
-  constructor(private readonly localStorageService: LocalstorageService) {
+  constructor() {
     const stored = this.loadLeaderboardFromStorage();
     this._leaderboard = stored;
 

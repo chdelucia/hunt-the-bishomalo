@@ -3,6 +3,7 @@ import { AchieveTypes, Cell, GameEventEffectType, GameItem, GameSound } from '..
 import { GameSoundService } from '../sound/game-sound.service';
 import { AchievementService } from '../achievement/achievement.service';
 import { GameStore } from 'src/app/store';
+import { createGameEventEffects } from './effects';
 
 type CauseOfDeath = 'pit' | 'wumpus';
 
@@ -16,106 +17,18 @@ export interface GameEventEffect {
 
 @Injectable({ providedIn: 'root' })
 export class GameEventService {
-  private readonly effects: GameEventEffect[] = [
-    {
-      type: 'rewind',
-      itemName: 'rebobinar',
-      canApply: (cause) => cause === 'pit' && this.hasItem('rewind'),
-      apply: (cell, prev) => {
-        this.gameSound.playSound(GameSound.REWIND, false);
-        this.gameStore.updateHunter({
-          x: prev?.x,
-          y: prev?.y,
-          inventory: this.removeItemByName('rewind'),
-        });
-      },
-      message: '¡Rebobinaste el tiempo y volviste a tu posición anterior!',
-    },
-    {
-      type: 'shield',
-      itemName: 'escudo',
-      canApply: (cause) => cause === 'wumpus' && this.hasItem('shield'),
-      apply: (cell, prev) => {
-        this.gameSound.playSound(GameSound.SHIELD, false);
-        this.gameStore.updateHunter({
-          x: prev?.x,
-          y: prev?.y,
-          inventory: this.removeItemByName('shield'),
-        });
-      },
-      message: '¡Tu escudo bloqueó al Wumpus! pero se rompió.',
-    },
-    {
-      type: 'arrow',
-      itemName: 'flecha-extra',
-      canApply: () => this.hasItem('flecha-extra'),
-      apply: (cell) => {
-        this.gameSound.playSound(GameSound.PICKUP, false);
-        this.gameAchieve.activeAchievement(AchieveTypes.PICKARROW);
-        this.gameStore.updateHunter({
-          arrows: this.gameStore.arrows() + 1,
-        });
-        cell.content = undefined;
-      },
-      message: 'Has recogido una flecha.',
-    },
-    {
-      type: 'heart',
-      itemName: 'extra-heart',
-      canApply: () => this.hasItem('extra-heart'),
-      apply: (cell) => this.extraHeart(cell),
-      message: 'Has conseguido una vida extra.',
-    },
-    {
-      type: 'gold',
-      itemName: 'extra-goldem',
-      canApply: () => this.hasItem('extra-goldem'),
-      apply: (cell) => this.extraGold(cell),
-      message: 'Has recogido el oro, puedes escapar.',
-    },
-    {
-      type: 'pit',
-      itemName: 'die-pit',
-      canApply: () => this.hasItem('extra-die'),
-      apply: () => {
-        this.gameSound.playSound(GameSound.PITDIE, false);
-        this.gameAchieve.activeAchievement(AchieveTypes.DEATHBYPIT);
-        this.gameStore.updateGame({
-          lives: this.gameStore.lives() - 1,
-        });
-      },
-      message: '¡Caíste en un pozo!',
-    },
-    {
-      type: 'wumpus',
-      itemName: 'die-wumpus',
-      canApply: () => this.hasItem('extra-wumpus'),
-      apply: () => {
-        this.gameSound.playSound(GameSound.SCREAM, false);
-        this.gameAchieve.activeAchievement(AchieveTypes.DEATHBYWUMPUES);
-        this.gameStore.updateGame({
-          lives: this.gameStore.lives() - 1,
-        });
-      },
-      message: '¡El Wumpus te devoró!',
-    },
-    {
-      type: 'dragonball',
-      itemName: 'dragonball',
-      canApply: () => this.hasItem('dragonballs'),
-      apply: (cell) => {
-        const dragonballs = this.gameStore.dragonballs() ?? 0;
-        if (!dragonballs) {
-          this.gameStore.updateHunter({
-            dragonballs: 1,
-          });
-          cell.content = undefined;
-          this.gameSound.playSound(GameSound.SUCCESS, false);
-        }
-      },
-      message: '¡Conseguiste una bola de drac con 4 estrellas!',
-    },
-  ];
+  private readonly effects: GameEventEffect[] = createGameEventEffects({
+    hasItem: this.hasItem.bind(this),
+    handleRewind: this.handleRewind.bind(this),
+    handleShield: this.handleShield.bind(this),
+    handlePickupArrow: this.handlePickupArrow.bind(this),
+    handlePitDeath: this.handlePitDeath.bind(this),
+    handleWumpusDeath: this.handleWumpusDeath.bind(this),
+    handleDragonball: this.handleDragonball.bind(this),
+    extraHeart: this.extraHeart.bind(this),
+    extraGold: this.extraGold.bind(this),
+    removeFirstItemByEffect: this.removeFirstItemByEffect.bind(this),
+  });
 
   readonly gameStore = inject(GameStore);
   readonly gameSound = inject(GameSoundService);
@@ -142,22 +55,71 @@ export class GameEventService {
       this.gameStore.setMessage(effect.message);
     }
   }
-
-  private hasItem(name: string): boolean {
-    return this.gameStore.inventory().some((item) => item.effect === name) ?? false;
+  private inventory(): GameItem[] {
+    return this.gameStore.inventory() ?? [];
   }
 
-  private removeItemByName(name: string): GameItem[] {
-    let found = false;
-    const result = [];
-    for (const item of this.gameStore.inventory() || []) {
-      if (!found && item.effect === name) {
-        found = true;
-        continue;
-      }
-      result.push(item);
+  private hasItem(name: string): boolean {
+    return this.inventory().some((item) => item.effect === name);
+  }
+
+  private removeFirstItemByEffect(name: string): GameItem[] {
+    const inv = [...this.inventory()];
+    const idx = inv.findIndex((i) => i.effect === name);
+    if (idx >= 0) inv.splice(idx, 1);
+    return inv;
+  }
+
+  private handleRewind(prev?: { x: number; y: number }): void {
+    this.gameSound.playSound(GameSound.REWIND, false);
+    this.gameStore.updateHunter({
+      x: prev?.x,
+      y: prev?.y,
+      inventory: this.removeFirstItemByEffect('rewind'),
+    });
+  }
+
+  private handleShield(prev?: { x: number; y: number }): void {
+    this.gameSound.playSound(GameSound.SHIELD, false);
+    this.gameStore.updateHunter({
+      x: prev?.x,
+      y: prev?.y,
+      inventory: this.removeFirstItemByEffect('shield'),
+    });
+  }
+
+  private handlePickupArrow(cell: Cell): void {
+    this.gameSound.playSound(GameSound.PICKUP, false);
+    this.gameAchieve.activeAchievement(AchieveTypes.PICKARROW);
+    this.gameStore.updateHunter({
+      arrows: (this.gameStore.arrows() || 0) + 1,
+    });
+    cell.content = undefined;
+  }
+
+  private handlePitDeath(): void {
+    this.gameSound.playSound(GameSound.PITDIE, false);
+    this.gameAchieve.activeAchievement(AchieveTypes.DEATHBYPIT);
+    this.gameStore.updateGame({
+      lives: this.gameStore.lives() - 1,
+    });
+  }
+
+  private handleWumpusDeath(): void {
+    this.gameSound.playSound(GameSound.SCREAM, false);
+    this.gameAchieve.activeAchievement(AchieveTypes.DEATHBYWUMPUES);
+    this.gameStore.updateGame({
+      lives: this.gameStore.lives() - 1,
+    });
+  }
+
+  private handleDragonball(cell: Cell): void {
+    const dragonballs = this.gameStore.dragonballs() ?? 0;
+    if (!dragonballs) {
+      this.gameStore.updateHunter({ dragonballs: 1 });
+      cell.content = undefined;
+      this.gameSound.playSound(GameSound.SUCCESS, false);
     }
-    return result;
   }
 
   private extraHeart(cell: Cell): void {

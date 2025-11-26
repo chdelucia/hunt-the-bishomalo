@@ -13,12 +13,11 @@ export class AchievementService {
   completed = signal<Achievement | undefined>(undefined);
 
   private readonly gameStore = inject(GameStore);
+  private readonly gameSound = inject(GameSoundService);
+  private readonly analytics = inject(AnalyticsService);
+  private readonly localStoreService = inject(LocalstorageService);
 
-  constructor(
-    private readonly gameSound: GameSoundService,
-    private readonly analytics: AnalyticsService,
-    private readonly localStoreService: LocalstorageService,
-  ) {
+  constructor() {
     this.syncAchievementsWithStorage();
 
     effect(() => this.checkPentaKillAchievement());

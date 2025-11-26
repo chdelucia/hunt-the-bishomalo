@@ -20,15 +20,14 @@ export class ResultsComponent {
   unlockedAchievements = 0;
 
   gameStore = inject(GameStore);
+  leaderboardService = inject(LeaderboardService);
+  achieve = inject(AchievementService);
+  router = inject(Router);
+  routeSnapshot = inject(ActivatedRoute);
 
-  constructor(
-    private readonly leaderboardService: LeaderboardService,
-    private readonly achieve: AchievementService,
-    private readonly router: Router,
-    private readonly routeSnapshot: ActivatedRoute,
-  ) {
-    this.unlockedAchievements = achieve.achievements.filter((item) => item.unlocked).length;
-    this.leaderboard = leaderboardService._leaderboard;
+  constructor() {
+    this.unlockedAchievements = this.achieve.achievements.filter((item) => item.unlocked).length;
+    this.leaderboard = this.leaderboardService._leaderboard;
   }
 
   estadisticasGenerales = computed(() => {

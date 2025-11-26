@@ -7,6 +7,7 @@ import {
   ViewChild,
   NgZone,
   ChangeDetectorRef,
+  inject,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AchieveTypes } from 'src/app/models';
@@ -29,11 +30,9 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
   private readonly timers: any[] = [];
   private echoTimeout: any = null;
 
-  constructor(
-    private readonly ngZone: NgZone,
-    private readonly cdr: ChangeDetectorRef,
-    private readonly achieveService: AchievementService,
-  ) {}
+  private readonly ngZone = inject(NgZone);
+  private readonly cdr = inject(ChangeDetectorRef);
+  private readonly achieveService = inject(AchievementService);
 
   ngOnInit(): void {
     const schedule = [
