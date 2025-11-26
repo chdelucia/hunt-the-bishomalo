@@ -65,7 +65,7 @@ jobs:
 
           npx standard-version --commit-all --no-verify
 
-          git push origin master --follow-tags
+          git push origin HEAD:master --follow-tags
           echo "new_tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
 
 
