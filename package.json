@@ -28,7 +28,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "20.3.9",
-    "@angular-devkit/core": "20.3.9",
+    "@angular-devkit/core": "21.0.0",
     "@angular-devkit/schematics": "20.3.9",
     "@angular/cli": "^21.0.0",
     "@angular/compiler-cli": "20.3.13",
