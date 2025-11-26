@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.5](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.0.4...v7.0.5) (2025-11-26)
+
+### [7.0.4](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.0.3...v7.0.4) (2025-06-07)
+
+
+### Bug Fixes
+
+* **rewinds:** dont mark cell as visited if apply item effect ([0d0eed5](https://github.com/chdelucia/hunt-the-bishomalo/commit/0d0eed5cbb737fbe9e0476af4391ad4d38d3c491))
+
 ### [7.0.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.0.2...v7.0.3) (2025-06-04)
 
 ### [7.0.2](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.0.1...v7.0.2) (2025-06-04)
