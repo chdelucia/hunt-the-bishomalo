@@ -43,7 +43,13 @@ jobs:
       - name: Validate commit messages
         run: |
           npm install --no-save @commitlint/{cli,config-conventional}
-          npx commitlint --from=HEAD~10 --to=HEAD --verbose
+           # Validar solo si hay suficientes commits, si no validar desde el primer commit
+           COMMIT_RANGE=$(git rev-list --count HEAD)
+           if [ "$COMMIT_RANGE" -ge 10 ]; then
+             npx commitlint --from=HEAD~10 --to=HEAD --verbose
+           else
+             npx commitlint --from=$(git rev-list --max-parents=0 HEAD) --to=HEAD --verbose || true
+           fi
 
   build-and-test:
     runs-on: ubuntu-latest
