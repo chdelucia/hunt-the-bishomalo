@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.0.6](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.0.5...v7.0.6) (2025-11-26)
+
+
+### Bug Fixes
+
+* ci process ([0c027c3](https://github.com/chdelucia/hunt-the-bishomalo/commit/0c027c3065efa1b62b09471044d6bf996fe69caa))
+* depndatbot ([954b597](https://github.com/chdelucia/hunt-the-bishomalo/commit/954b597ffca4cfbe301edb5366f6c17309650a83))
+* sonar conflicts ([503938d](https://github.com/chdelucia/hunt-the-bishomalo/commit/503938d9dd22ca9888b3d66a3a2f88f9c4bbb4fa))
+
 ### [7.0.5](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.0.4...v7.0.5) (2025-11-26)
 
 ### [7.0.4](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.0.3...v7.0.4) (2025-06-07)
