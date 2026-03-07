@@ -4,9 +4,10 @@ import { homeGuard } from './home.guard';
 import { GameStore } from '../store';
 import { GameEngineService } from '../services';
 import { RouteTypes } from '../models';
+import { signal } from '@angular/core';
 
 const mockGameStore = {
-  settings: jest.fn().mockReturnValue({}),
+  settings: signal({}),
 };
 
 const mockGameEngine = {
@@ -37,23 +38,21 @@ describe('homeGuard (Jest)', () => {
   const mockState: any = { url: '/home' };
 
   it('should allow activation and initialize game when settings exist', () => {
-    mockGameStore.settings.mockReturnValue({ difficulty: 'easy', size: 2 });
+    mockGameStore.settings.set({ difficulty: 'easy', size: 2 } as any);
 
     const result = executeGuard(mockRoute, mockState);
 
     expect(result).toBe(true);
-    expect(mockGameStore.settings).toHaveBeenCalled();
     expect(mockGameEngine.initGame).toHaveBeenCalled();
     expect(mockRouter.navigateByUrl).not.toHaveBeenCalled();
   });
 
   it('should deny activation and redirect to /settings if settings are missing', () => {
-    mockGameStore.settings.mockReturnValue({});
+    mockGameStore.settings.set({} as any);
 
     const result = executeGuard(mockRoute, mockState);
 
     expect(result).toBe(false);
-    expect(mockGameStore.settings).toHaveBeenCalled();
     expect(mockGameEngine.initGame).toHaveBeenCalled();
     expect(mockRouter.navigateByUrl).toHaveBeenCalledWith(RouteTypes.SETTINGS);
   });

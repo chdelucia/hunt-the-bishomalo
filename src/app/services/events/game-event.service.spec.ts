@@ -15,6 +15,7 @@ describe('GameEventService', () => {
   const mockHunter = jest.fn();
   const mockInventory = jest.fn();
   const mockUpdateGame = jest.fn();
+  const mockBoard = jest.fn().mockReturnValue([]);
   const mockSettings = jest.fn().mockReturnValue({
     difficulty: {
       maxLevels: 10,
@@ -52,6 +53,8 @@ describe('GameEventService', () => {
             isAlive: () => true,
             hasWon: jest.fn(),
             updateGame: mockUpdateGame,
+            board: mockBoard,
+            gold: () => 0,
           },
         },
         {
@@ -113,6 +116,7 @@ describe('GameEventService', () => {
       inventory: [{ name: 'flecha-extra', icon: '', effect: 'flecha-extra' }],
     });
     mockInventory.mockReturnValue([{ name: 'flecha-extra', icon: '', effect: 'flecha-extra' }]);
+    mockBoard.mockReturnValue([[{ x: 0, y: 0 }]]);
 
     service.applyEffectByCellContent({
       x: 0,
@@ -133,6 +137,7 @@ describe('GameEventService', () => {
       inventory: [{ name: 'extra-heart', icon: '', effect: 'extra-heart' }],
     });
     mockInventory.mockReturnValue([{ name: 'extra-heart', icon: '', effect: 'extra-heart' }]);
+    mockBoard.mockReturnValue([[{ x: 0, y: 0 }]]);
 
     service.applyEffectByCellContent({
       x: 0,
@@ -154,6 +159,7 @@ describe('GameEventService', () => {
     });
 
     mockInventory.mockReturnValue([{ name: 'dragonball', icon: '', effect: 'dragonballs' }]);
+    mockBoard.mockReturnValue([[{ x: 0, y: 0 }]]);
 
     service.applyEffectByCellContent({
       x: 0,

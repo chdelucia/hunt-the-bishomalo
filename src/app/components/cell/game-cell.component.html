@@ -1,4 +1,4 @@
-@let content = cell().content; @let size = settings.size;
+@let content = cell().content; @let currentSettings = settings();
 
 <div class="cell" [class.visited]="cell().visited">
   @if (showElements() && content) {
@@ -19,8 +19,8 @@
     class="gold"
     ngSrc="boardicons/gold.svg"
     alt="{{ 'cell.altGold' | transloco }}"
-    [width]="20 - size / 2"
-    [height]="20 - size / 2"
+    [width]="20 - currentSettings.size / 2"
+    [height]="20 - currentSettings.size / 2"
   />
   } }
 </div>

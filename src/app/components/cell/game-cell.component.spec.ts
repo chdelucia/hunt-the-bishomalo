@@ -3,7 +3,7 @@ import { GameCellComponent } from './game-cell.component';
 import { Cell, Chars, Hunter } from 'src/app/models';
 import { getTranslocoTestingModule } from 'src/app/utils';
 import { GameStore } from 'src/app/store';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
 
 const mockCell: Cell = { x: 2, y: 3 };
 const mockHunter: Hunter = {
@@ -25,18 +25,18 @@ const mockSettings = {
 };
 
 const mockGameState = {
-  hunter: jest.fn().mockReturnValue(mockHunter),
-  settings: jest.fn().mockReturnValue(mockSettings),
-  board: () => [],
-  message: () => '',
-  wumpusKilled: () => 0,
-  hasGold: jest.fn(),
-  inventory: jest.fn().mockReturnValue([]),
-  isAlive: jest.fn(),
-  hasWon: jest.fn(),
-  currentCell: () => mockCell,
-  arrows: () => 1,
-  lives: () => 4,
+  hunter: signal(mockHunter),
+  settings: signal(mockSettings),
+  board: signal([]),
+  message: signal(''),
+  wumpusKilled: signal(0),
+  hasGold: signal(false),
+  inventory: signal([]),
+  isAlive: signal(true),
+  hasWon: signal(false),
+  currentCell: signal(mockCell),
+  arrows: signal(1),
+  lives: signal(4),
 };
 
 describe('GameCellComponent', () => {
@@ -58,14 +58,21 @@ describe('GameCellComponent', () => {
     fixture.detectChanges();
   });
 
-  afterEach(() => jest.clearAllMocks());
+  afterEach(() => {
+    mockGameState.hunter.set(mockHunter);
+    mockGameState.settings.set(mockSettings);
+    mockGameState.isAlive.set(true);
+    mockGameState.hasWon.set(false);
+    mockGameState.hasGold.set(false);
+    mockGameState.arrows.set(1);
+  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
   it('should detect hunter on this cell (isHunterCell)', () => {
-    const result = component.isHunterCell()();
+    const result = component.isHunterCell();
     expect(result).toBe(true);
   });
 
@@ -77,26 +84,27 @@ describe('GameCellComponent', () => {
     expect(component.bowImage()).toContain('bow.svg');
   });
 
-  it('should return bowgold.svg if hunter has gold and arrows', () => {
-    mockGameState.hunter.mockReturnValue({ ...mockHunter, hasGold: true });
+  it('should return bow.svg if hunter has gold and arrows', () => {
+    mockGameState.hunter.set({ ...mockHunter, hasGold: true });
     fixture.detectChanges();
     expect(component.bowImage()).toContain('bow.svg');
   });
 
-  it('should return bowgoldempty.svg if hunter has gold but no arrows', () => {
-    mockGameState.arrows = () => 0;
+  it('should return bowempty.svg if hunter has gold but no arrows', () => {
+    mockGameState.arrows.set(0);
     fixture.detectChanges();
     expect(component.bowImage()).toContain('bowempty.svg');
   });
 
   it('should return bowempty.svg if hunter has no gold and no arrows', () => {
-    mockGameState.hunter.mockReturnValue({ ...mockHunter, hasGold: false, arrows: 0 });
+    mockGameState.hunter.set({ ...mockHunter, hasGold: false, arrows: 0 });
+    mockGameState.arrows.set(0);
     fixture.detectChanges();
     expect(component.bowImage()).toContain('bowempty.svg');
   });
 
   function setHunterDirection(direction: number) {
-    mockGameState.hunter.mockReturnValue({ direction });
+    mockGameState.hunter.set({ ...mockGameState.hunter(), direction });
     fixture.detectChanges();
   }
 
@@ -126,8 +134,8 @@ describe('GameCellComponent', () => {
   });
 
   it('should show elements when game is not alive', () => {
-    mockGameState.isAlive.mockReturnValue(false);
-    mockGameState.hasWon.mockReturnValue(false);
+    mockGameState.isAlive.set(false);
+    mockGameState.hasWon.set(false);
 
     fixture.componentRef.setInput('cell', {
       visited: false,
@@ -141,8 +149,8 @@ describe('GameCellComponent', () => {
   });
 
   it('should show elements when game secret', () => {
-    mockGameState.isAlive.mockReturnValue(true);
-    mockGameState.hasWon.mockReturnValue(false);
+    mockGameState.isAlive.set(true);
+    mockGameState.hasWon.set(false);
 
     fixture.componentRef.setInput('cell', {
       visited: false,
@@ -155,20 +163,24 @@ describe('GameCellComponent', () => {
     expect(component.showElements()).toBeTruthy();
   });
 
-  it('should show elements when game secretv2', () => {
-    mockGameState.isAlive.mockReturnValue(true);
-    mockGameState.hasWon.mockReturnValue(false);
+  it('should not show elements when game is not secret', () => {
+    mockGameState.isAlive.set(true);
+    mockGameState.hasWon.set(false);
 
     fixture.componentRef.setInput('cell', {
+      visited: false,
       content: { image: 'algo.png', alt: 'secretss' },
+      x: 0,
+      y: 0,
     });
+    fixture.detectChanges();
 
     expect(component.showElements()).toBeFalsy();
   });
 
   it('should show elements when die', () => {
-    mockGameState.isAlive.mockReturnValue(false);
-    mockGameState.hasWon.mockReturnValue(false);
+    mockGameState.isAlive.set(false);
+    mockGameState.hasWon.set(false);
 
     fixture.componentRef.setInput('cell', {
       visited: false,
@@ -182,8 +194,8 @@ describe('GameCellComponent', () => {
   });
 
   it('should show elements when game has been won', () => {
-    mockGameState.isAlive.mockReturnValue(true);
-    mockGameState.hasWon.mockReturnValue(true);
+    mockGameState.isAlive.set(true);
+    mockGameState.hasWon.set(true);
 
     fixture.componentRef.setInput('cell', {
       visited: false,
@@ -191,13 +203,14 @@ describe('GameCellComponent', () => {
       x: 1,
       y: 2,
     });
+    fixture.detectChanges();
 
     expect(component.showElements()).toBeTruthy();
   });
 
   it('should show elements when cell has been visited', () => {
-    mockGameState.isAlive.mockReturnValue(true);
-    mockGameState.hasWon.mockReturnValue(false);
+    mockGameState.isAlive.set(true);
+    mockGameState.hasWon.set(false);
 
     fixture.componentRef.setInput('cell', {
       visited: true,
@@ -205,27 +218,29 @@ describe('GameCellComponent', () => {
       x: 1,
       y: 2,
     });
+    fixture.detectChanges();
 
     expect(component.showElements()).toBeTruthy();
   });
 
   it('should show elements when content alt is secret', () => {
-    mockGameState.isAlive.mockReturnValue(true);
-    mockGameState.hasWon.mockReturnValue(false);
+    mockGameState.isAlive.set(true);
+    mockGameState.hasWon.set(false);
 
     fixture.componentRef.setInput('cell', {
       visited: false,
-      content: { alt: 'secret' },
+      content: { image: 'algo.png', alt: 'secret' },
       x: 1,
       y: 2,
     });
+    fixture.detectChanges();
 
     expect(component.showElements()).toBeTruthy();
   });
 
-  it('should not show elements when game is alive, not won, not dev, not visited, and alt is not secret', () => {
-    mockGameState.isAlive.mockReturnValue(true);
-    mockGameState.hasWon.mockReturnValue(false);
+  it('should not show elements when game is alive, not won, not visited, and alt is not secret', () => {
+    mockGameState.isAlive.set(true);
+    mockGameState.hasWon.set(false);
 
     fixture.componentRef.setInput('cell', {
       visited: false,
@@ -233,62 +248,63 @@ describe('GameCellComponent', () => {
       x: 1,
       y: 2,
     });
+    fixture.detectChanges();
 
     expect(component.showElements()).toBeFalsy();
   });
 
   it('should show gold icon when has gold and size is less than 12', () => {
-    mockGameState.hasGold.mockReturnValue(true);
-    mockSettings.size = 10;
-    mockGameState.settings.mockReturnValue({ size: 10 });
+    mockGameState.hasGold.set(true);
+    mockGameState.settings.set({ ...mockSettings, size: 10 });
     fixture.detectChanges();
 
-    expect(component.showGoldIcon()).toBeUndefined();
-  });
-
-  it('should not show gold icon when size is 12 or more', () => {
-    mockGameState.hasGold.mockReturnValue(true);
-    mockSettings.size = 13;
-    mockGameState.settings.mockReturnValue({ size: 13 });
-    fixture.detectChanges();
     expect(component.showGoldIcon()).toBeTruthy();
   });
 
+  it('should not show gold icon when size is 12 or more', () => {
+    mockGameState.hasGold.set(true);
+    mockGameState.settings.set({ ...mockSettings, size: 13 });
+    fixture.detectChanges();
+    expect(component.showGoldIcon()).toBeFalsy();
+  });
+
   it('should not show gold icon when player has no gold', () => {
-    mockGameState.hasGold.mockReturnValue(false);
-    mockSettings.size = 10;
-    mockGameState.settings.mockReturnValue({ size: 10 });
+    mockGameState.hasGold.set(false);
+    mockGameState.settings.set({ ...mockSettings, size: 10 });
+    fixture.detectChanges();
 
     expect(component.showGoldIcon()).toBeFalsy();
   });
 
   it('should show hunter when cell has hunter and player is alive', () => {
-    mockGameState.isAlive.mockReturnValue(true);
+    mockGameState.isAlive.set(true);
     fixture.componentRef.setInput('cell', mockCell);
     fixture.detectChanges();
     expect(component.showHunter()).toBeTruthy();
   });
 
   it('should not show hunter when player is dead', () => {
-    mockGameState.isAlive.mockReturnValue(false);
+    mockGameState.isAlive.set(false);
     fixture.componentRef.setInput('cell', {
       visited: false,
       content: { alt: 'somethingElse', image: 'algo.png' },
       x: 2,
       y: 3,
     });
+    fixture.detectChanges();
 
     expect(component.showHunter()).toBeFalsy();
   });
 
   it('should not show hunter when cell is not hunter', () => {
-    mockGameState.isAlive.mockReturnValue(true);
+    mockGameState.isAlive.set(true);
     fixture.componentRef.setInput('cell', {
       visited: false,
       content: { alt: 'somethingElse', image: 'algo.png' },
       x: 1,
       y: 1,
     });
+    fixture.detectChanges();
 
     expect(component.showHunter()).toBeFalsy();
   });

@@ -1,7 +1,7 @@
-import { Component, computed, inject, input, isDevMode } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Cell, Chars } from '../../models';
+import { Cell, Chars, Direction } from '../../models';
 import { GameStore } from 'src/app/store';
 
 @Component({
@@ -16,14 +16,13 @@ export class GameCellComponent {
 
   readonly gameStore = inject(GameStore);
 
-  settings = this.gameStore.settings();
+  readonly settings = this.gameStore.settings;
 
   readonly hasLantern = computed(
-    () => this.gameStore.inventory().find((x) => x.effect === 'lantern') && this.settings.blackout,
+    () => this.gameStore.inventory().some((x) => x.effect === 'lantern') && this.settings().blackout,
   );
-  readonly hasShield = computed(() =>
-    this.gameStore.inventory().find((x) => x.effect === 'shield'),
-  );
+
+  readonly hasShield = computed(() => this.gameStore.inventory().some((x) => x.effect === 'shield'));
 
   readonly showElements = computed(() => {
     const cell = this.cell();
@@ -35,25 +34,25 @@ export class GameCellComponent {
     );
   });
 
-  readonly showGoldIcon = computed(() => this.gameStore.hasGold() && this.settings.size < 12);
+  readonly showGoldIcon = computed(() => this.gameStore.hasGold() && this.settings().size < 12);
 
-  readonly showHunter = computed(() => this.isHunterCell()() && this.gameStore.isAlive());
+  readonly isHunterCell = computed(() => {
+    const currentCell = this.gameStore.currentCell();
+    return currentCell.x === this.cell().x && currentCell.y === this.cell().y;
+  });
 
-  readonly isHunterCell = () =>
-    computed(() => {
-      const currentCell = this.gameStore.currentCell();
-      return currentCell === this.cell();
-    });
+  readonly showHunter = computed(() => this.isHunterCell() && this.gameStore.isAlive());
 
   readonly rotation = computed(() => {
-    switch (this.gameStore.hunter().direction) {
-      case 0:
+    const direction = this.gameStore.hunter().direction;
+    switch (direction) {
+      case Direction.UP:
         return 270;
-      case 1:
+      case Direction.RIGHT:
         return 0;
-      case 2:
+      case Direction.DOWN:
         return 90;
-      case 3:
+      case Direction.LEFT:
         return 180;
       default:
         return 0;
@@ -62,10 +61,10 @@ export class GameCellComponent {
 
   readonly bowImage = computed(() => {
     const arrows = this.gameStore.arrows();
-    const { selectedChar } = this.settings;
+    const selectedChar = this.settings().selectedChar;
 
     const extension = selectedChar === Chars.DEFAULT ? 'svg' : 'png';
-    if (arrows) return `chars/${selectedChar}/bow.${extension}`;
-    return `chars/${selectedChar}/bowempty.${extension}`;
+    const bowType = arrows ? 'bow' : 'bowempty';
+    return `chars/${selectedChar}/${bowType}.${extension}`;
   });
 }

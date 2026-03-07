@@ -21,10 +21,10 @@ import {
 
 import { GameStore } from '../../store/game-store';
 import { Observable, of, take } from 'rxjs';
+import { patchState } from '@ngrx/signals';
 
 @Injectable({ providedIn: 'root' })
 export class GameEngineService {
-  private readonly storageSettingsKey = 'hunt_the_bishomalo_settings';
   store = inject(GameStore);
 
   private readonly _settings = this.store.settings;
@@ -34,7 +34,6 @@ export class GameEngineService {
   private readonly leaderBoard = inject(LeaderboardService);
   private readonly achieve = inject(AchievementService);
   private readonly router = inject(Router);
-  private readonly localStorageService = inject(LocalstorageService);
   private readonly gameEvents = inject(GameEventService);
   private readonly transloco = inject(TranslocoService);
 
@@ -137,7 +136,7 @@ export class GameEngineService {
     const { size, difficulty } = this._settings();
     const newSize = size + 1;
 
-    const newSettings = {
+    const newSettings: GameSettings = {
       ...this._settings(),
       size: newSize,
       pits: this.calculatePits(size, difficulty.luck),
@@ -282,7 +281,16 @@ export class GameEngineService {
   }
 
   private handleWumpusHit(cell: Cell): void {
-    cell.content = undefined;
+    const updatedBoard = this.store.board().map((row) =>
+      row.map((c) => {
+        if (c.x === cell.x && c.y === cell.y) {
+          return { ...c, content: undefined };
+        }
+        return c;
+      }),
+    );
+    this.store.updateGame({ board: updatedBoard });
+
     this.store.setMessage(this.transloco.translate('gameMessages.wumpusKilled'));
     this.sound.stopWumpus();
     this.sound.playSound(GameSound.PAIN, false);
@@ -295,11 +303,24 @@ export class GameEngineService {
     const { luck } = this._settings().difficulty;
 
     const roll = Math.random() * 100;
+    let newContent = undefined;
 
-    if (roll < 2) cell.content = CELL_CONTENTS.extrawumpus;
-    else if (roll < 20 + luck) cell.content = CELL_CONTENTS.extraheart;
-    else if (roll < 35 + luck) cell.content = CELL_CONTENTS.extragold;
-    else if (roll < 40 + luck) cell.content = CELL_CONTENTS.extraarrow;
+    if (roll < 2) newContent = CELL_CONTENTS.extrawumpus;
+    else if (roll < 20 + luck) newContent = CELL_CONTENTS.extraheart;
+    else if (roll < 35 + luck) newContent = CELL_CONTENTS.extragold;
+    else if (roll < 40 + luck) newContent = CELL_CONTENTS.extraarrow;
+
+    if (newContent) {
+      const updatedBoard = this.store.board().map((row) =>
+        row.map((c) => {
+          if (c.x === cell.x && c.y === cell.y) {
+            return { ...c, content: newContent };
+          }
+          return c;
+        }),
+      );
+      this.store.updateGame({ board: updatedBoard });
+    }
   }
 
   private handleMissedArrow(): void {
@@ -319,14 +340,12 @@ export class GameEngineService {
   }
 
   private handleVictory(): void {
-    let gold = 0;
-    if (this._settings().blackout) gold = 200;
+    let goldBonus = 0;
+    if (this._settings().blackout) goldBonus = 200;
 
     this.store.setMessage(this.transloco.translate('gameMessages.victory'));
-    this.store.updateGame({
-      hasWon: true,
-      hunter: { ...this._hunter(), gold: this._hunter().gold + gold },
-    });
+    this.store.updateHunter({ gold: this._hunter().gold + goldBonus });
+    this.store.updateGame({ hasWon: true });
     this.playVictorySound();
   }
 
@@ -340,7 +359,17 @@ export class GameEngineService {
 
   private checkCurrentCell(x: number, y: number): void {
     const cell = this.store.currentCell();
-    cell.visited = true;
+
+    // Update visited status via store to ensure reactivity
+    const updatedBoard = this.store.board().map((row) =>
+      row.map((c) => {
+        if (c.x === cell.x && c.y === cell.y) {
+          return { ...c, visited: true };
+        }
+        return c;
+      }),
+    );
+    this.store.updateGame({ board: updatedBoard });
 
     if (this.canExitWithVictory()) {
       this.exit();

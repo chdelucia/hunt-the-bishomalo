@@ -39,7 +39,6 @@ export class GameEventService {
       if (effect.canApply(cause)) {
         effect.apply(cell, prev);
         this.gameStore.setMessage(effect.message);
-        cell.visited = false;
         return true;
       }
     }
@@ -94,7 +93,16 @@ export class GameEventService {
     this.gameStore.updateHunter({
       arrows: (this.gameStore.arrows() || 0) + 1,
     });
-    cell.content = undefined;
+
+    const updatedBoard = this.gameStore.board().map((row) =>
+      row.map((c) => {
+        if (c.x === cell.x && c.y === cell.y) {
+          return { ...c, content: undefined };
+        }
+        return c;
+      }),
+    );
+    this.gameStore.updateGame({ board: updatedBoard });
   }
 
   private handlePitDeath(): void {
@@ -117,7 +125,16 @@ export class GameEventService {
     const dragonballs = this.gameStore.dragonballs() ?? 0;
     if (!dragonballs) {
       this.gameStore.updateHunter({ dragonballs: 1 });
-      cell.content = undefined;
+
+      const updatedBoard = this.gameStore.board().map((row) =>
+        row.map((c) => {
+          if (c.x === cell.x && c.y === cell.y) {
+            return { ...c, content: undefined };
+          }
+          return c;
+        }),
+      );
+      this.gameStore.updateGame({ board: updatedBoard });
       this.gameSound.playSound(GameSound.SUCCESS, false);
     }
   }
@@ -128,7 +145,16 @@ export class GameEventService {
     this.gameStore.updateGame({
       lives: Math.min(this.gameStore.lives() + 1, this.gameStore.settings().difficulty.maxLives),
     });
-    cell.content = undefined;
+
+    const updatedBoard = this.gameStore.board().map((row) =>
+      row.map((c) => {
+        if (c.x === cell.x && c.y === cell.y) {
+          return { ...c, content: undefined };
+        }
+        return c;
+      }),
+    );
+    this.gameStore.updateGame({ board: updatedBoard });
   }
 
   private extraGold(cell: Cell): void {
@@ -138,6 +164,15 @@ export class GameEventService {
       hasGold: true,
       gold: (this.gameStore.gold() || 0) + this.gameStore.settings().difficulty.gold,
     });
-    cell.content = undefined;
+
+    const updatedBoard = this.gameStore.board().map((row) =>
+      row.map((c) => {
+        if (c.x === cell.x && c.y === cell.y) {
+          return { ...c, content: undefined };
+        }
+        return c;
+      }),
+    );
+    this.gameStore.updateGame({ board: updatedBoard });
   }
 }

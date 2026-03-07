@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HuntBishoComponent } from './hunt-bisho.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { NO_ERRORS_SCHEMA, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { GameStore } from '../store';
 import { getTranslocoTestingModule } from '../utils';
@@ -19,18 +19,20 @@ const mockGameSound = {
 };
 
 const mockGameStoreService = {
-  hunter: jest.fn().mockReturnValue({ arrows: 3, hasGold: false }),
-  wumpusKilled: jest.fn(),
-  gold: jest.fn(),
-  hasWon: jest.fn(),
-  hasGold: jest.fn(),
-  lives: jest.fn(),
-  isAlive: jest.fn(),
-  blackout: jest.fn(),
-  startTime: jest.fn(),
-  currentCell: jest.fn(),
-  selectedChar: jest.fn(),
-  settings: jest.fn().mockReturnValue({
+  hunter: signal({ arrows: 3, hasGold: false }),
+  wumpusKilled: signal(0),
+  gold: signal(0),
+  hasWon: signal(false),
+  hasGold: signal(false),
+  lives: signal(3),
+  isAlive: signal(true),
+  blackout: signal(false),
+  startTime: signal(''),
+  currentCell: signal(createMockCell({ x: 0, y: 0 })),
+  selectedChar: signal('default'),
+  inventory: signal([]),
+  arrows: signal(3),
+  settings: signal({
     size: 4,
     arrows: 2,
     difficulty: {
@@ -43,9 +45,9 @@ const mockGameStoreService = {
       bossTries: 12,
     },
   }),
-  message: jest.fn().mockReturnValue('¡El Wumpus te devoró!'),
+  message: signal('¡El Wumpus te devoró!'),
   setMessage: jest.fn(),
-  board: jest.fn().mockReturnValue([
+  board: signal([
     [createMockCell({ x: 0, y: 0 }), createMockCell({ x: 0, y: 1 })],
     [createMockCell({ x: 1, y: 0 }), createMockCell({ x: 1, y: 1 })],
   ]),
