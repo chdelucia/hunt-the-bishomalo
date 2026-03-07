@@ -2,15 +2,15 @@
   <h2 id="bossTitle">{{ 'bossFight.title' | transloco }}</h2>
 
   <div class="grid" role="grid" [attr.aria-label]="'bossFight.boardAriaLabel' | transloco">
-    <div *ngFor="let row of grid; let rowIndex = index" class="row">
+    <div *ngFor="let row of bossStore.grid(); let rowIndex = index" class="row">
       <div
         *ngFor="let cell of row; let colIndex = index"
         class="cell"
         tabindex="0"
         [attr.aria-label]="getAriaLabel(cell, rowIndex, colIndex)"
-        (click)="attackCell(cell)"
-        (keydown.enter)="attackCell(cell)"
-        (keydown.space)="attackCell(cell)"
+        (click)="bossStore.attackCell(cell)"
+        (keydown.enter)="bossStore.attackCell(cell)"
+        (keydown.space)="bossStore.attackCell(cell)"
         [class.hit]="cell.hit"
         [class.boss-hit]="cell.hit && cell.hasBossPart"
         [class.miss]="cell.hit && !cell.hasBossPart"
@@ -31,23 +31,23 @@
   <div class="status-bar">
     <div class="leyenda">
       <span aria-live="polite">{{
-        'bossFight.attemptsLeft' | transloco : { playerLives: playerLives }
+        'bossFight.attemptsLeft' | transloco : { playerLives: bossStore.playerLives() }
       }}</span>
       <span aria-live="polite">{{
-        'bossFight.bossHealth' | transloco : { bossRemaining: bossRemaining }
+        'bossFight.bossHealth' | transloco : { bossRemaining: bossStore.bossRemaining() }
       }}</span>
     </div>
 
-    <p aria-live="polite" class="game-message">{{ message }}</p>
+    <p aria-live="polite" class="game-message">{{ bossStore.message() }}</p>
 
     <button
-      *ngIf="gameOver && bossRemaining"
+      *ngIf="bossStore.gameOver() && bossStore.bossRemaining()"
       (click)="retryGame()"
       [attr.aria-label]="'bossFight.retryGameAriaLabel' | transloco"
     >
       {{ 'bossFight.continuesButton' | transloco : { livesLeft: this.gameStore.lives() } }}
     </button>
-    @if(gameOver && !bossRemaining){
+    @if(bossStore.gameOver() && !bossStore.bossRemaining()){
     <button
       [attr.aria-label]="'bossFight.nextButtonAriaLabel' | transloco"
       class="next-btn"
