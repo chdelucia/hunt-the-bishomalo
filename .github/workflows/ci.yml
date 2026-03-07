@@ -148,7 +148,7 @@ jobs:
 
       # E2E Nx avanzado (monorepo)
       - name: Run Nx E2E (non-blocking)
-        run: npx nx e2e hunt-the-bishomalo-e2e
+        run: npx nx e2e e2e
         continue-on-error: true
 
   build:
