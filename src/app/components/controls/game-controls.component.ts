@@ -6,7 +6,7 @@ import {
   isDevMode,
   signal,
 } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { GameEngineService } from 'src/app/services/engine/game-engine.service';
 import { AchievementService } from 'src/app/services/achievement/achievement.service';
@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-game-controls',
   standalone: true,
-  imports: [TranslocoModule],
+  imports: [CommonModule, TranslocoModule],
   templateUrl: './game-controls.component.html',
   styleUrl: './game-controls.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

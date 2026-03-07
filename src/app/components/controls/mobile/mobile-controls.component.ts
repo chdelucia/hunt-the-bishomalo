@@ -1,5 +1,5 @@
 import { Component, inject, input } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { GameEngineService } from 'src/app/services';
 import { AchievementService } from 'src/app/services/achievement/achievement.service';
@@ -8,7 +8,7 @@ import { AchieveTypes } from 'src/app/models';
 @Component({
   selector: 'app-mobile-controls',
   standalone: true,
-  imports: [NgOptimizedImage, TranslocoModule],
+  imports: [CommonModule, NgOptimizedImage, TranslocoModule],
   templateUrl: './mobile-controls.component.html',
   styleUrl: './mobile-controls.component.scss',
 })

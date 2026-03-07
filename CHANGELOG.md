@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.2.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.1.3...v7.2.0) (2026-03-07)
+
+
+### Features
+
+* add comprehensive E2E tests and expose GameStore for testing ([5e45259](https://github.com/chdelucia/hunt-the-bishomalo/commit/5e452594e155b06eabf44652703573781a4fbe64))
+* add comprehensive E2E tests and expose GameStore for testing ([13f0efc](https://github.com/chdelucia/hunt-the-bishomalo/commit/13f0efc1b493fd5347602c106dcf064d91156564))
+* **e2e:** implement comprehensive cypress test suite ([a23f469](https://github.com/chdelucia/hunt-the-bishomalo/commit/a23f469e0cb37be8f75942318a65152c0d3439a5))
+* remove useless test ([0658b45](https://github.com/chdelucia/hunt-the-bishomalo/commit/0658b4562fedd2c26c7eaeaa201dc625b87ae715))
+* remove useless test ([5723f65](https://github.com/chdelucia/hunt-the-bishomalo/commit/5723f65389027677824e5c4f40f12748bd4579e7))
+
 ### [7.1.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.1.2...v7.1.3) (2026-03-07)
 
 ### [7.1.2](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.1.1...v7.1.2) (2026-03-07)

@@ -33,12 +33,10 @@
     </p>
   </div>
 
-  @if (isDevMode) {
-  <div class="form-group">
+  <div *ngIf="isDevMode" class="form-group">
     <label for="size">{{ 'config.levelLabel' | transloco }}</label>
     <input id="size" type="number" formControlName="size" min="1" max="20" />
   </div>
-  }
 
   <div class="form-group">
     <label for="selectedChar">{{ 'config.selectCharacterLabel' | transloco }}</label>

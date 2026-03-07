@@ -10,11 +10,10 @@
     <h2 class="title">{{ story?.title }}</h2>
     <p class="text">{{ displayedText() }}</p>
 
-    @if(showExtraInfo()){ @if (story?.effect) {
-    <p class="effect">
+    @if(showExtraInfo()){
+    <p *ngIf="story?.effect" class="effect">
       {{ 'storyPage.effectPrefix' | transloco }}{{ formatEffect(story!.effect) }}
     </p>
-    }
 
     <p class="instruction">{{ 'storyPage.clickToStartInstruction' | transloco }}</p>
     }

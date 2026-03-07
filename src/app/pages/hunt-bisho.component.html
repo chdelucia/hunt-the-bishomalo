@@ -19,9 +19,9 @@
       />
       }
     </div>
-    } @if (deathByWumpus()) {
-    <app-wumpus-attack-animation (closeAnimation)="handleclose()" />
     }
+
+    <app-wumpus-attack-animation *ngIf="deathByWumpus()" (closeAnimation)="handleclose()" />
   </section>
 
   <section class="player-info">
