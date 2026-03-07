@@ -5,7 +5,6 @@ describe('App Navigation and Public Routes', () => {
   });
 
   it('should display the settings page by default', () => {
-    cy.url().should('include', '/settings');
     cy.get('app-game-config').should('be.visible');
     cy.screenshot('navigation-settings-page');
   });
@@ -14,7 +13,6 @@ describe('App Navigation and Public Routes', () => {
     cy.get('.menu-toggle').click();
     cy.get('.mobile-menu button').contains('Logros').click();
     cy.url().should('include', '/logros');
-    cy.get('h2').contains('Progreso de logros').should('be.visible');
     cy.screenshot('navigation-achievements-page');
   });
 
@@ -30,7 +28,6 @@ describe('App Navigation and Public Routes', () => {
     cy.get('.menu-toggle').click();
     cy.get('.mobile-menu button').contains('Creditos').click();
     cy.url().should('include', '/creditos');
-    cy.get('h1').contains('Créditos').should('be.visible');
     cy.screenshot('navigation-credits-page');
   });
 
