@@ -315,7 +315,7 @@ export class GameEngineService {
   private canExitWithVictory(): boolean {
     const hunter = this._hunter();
     const cell = this.store.currentCell();
-    return !cell.x && !cell.y && hunter.hasGold;
+    return !!cell && !cell.x && !cell.y && hunter.hasGold;
   }
 
   private handleVictory(): void {
@@ -340,6 +340,7 @@ export class GameEngineService {
 
   private checkCurrentCell(x: number, y: number): void {
     const cell = this.store.currentCell();
+    if (!cell) return;
     cell.visited = true;
 
     if (this.canExitWithVictory()) {

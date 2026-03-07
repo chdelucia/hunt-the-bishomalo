@@ -1,14 +1,16 @@
 import { computed, inject } from '@angular/core';
-import { Direction, Hunter, GameSettings, Chars, GameState, GameItem } from '../models';
 import {
   signalStore,
-  withState,
-  withComputed,
-  withMethods,
   patchState,
   withHooks,
+  withMethods,
+  withComputed,
 } from '@ngrx/signals';
 import { LocalstorageService } from '../services';
+import { GameSettings, Chars, GameState, GameItem } from '../models';
+import { withHunterFeature } from './features/hunter.feature';
+import { withConfigFeature, storageSettingsKey } from './features/config.feature';
+import { withGameStatusFeature } from './features/game-status.feature';
 
 interface GameLocalStorageInfo {
   lives: number;
@@ -17,56 +19,21 @@ interface GameLocalStorageInfo {
   gold: number;
 }
 
-const initialHunter: Hunter = {
-  x: 0,
-  y: 0,
-  direction: Direction.RIGHT,
-  arrows: 1,
-  hasGold: false,
-  inventory: [],
-  gold: 0,
-};
-
-const initialConfig: Partial<GameState> = {
-  wumpusKilled: 0,
-  isAlive: true,
-  hasWon: false,
-  lives: 8,
-};
-
-const initialState: GameState = {
-  board: [],
-  hunter: initialHunter,
-  message: '',
-  settings: {} as GameSettings,
-  wumpusKilled: 0,
-  isAlive: true,
-  hasWon: false,
-  lives: 8,
-  unlockedChars: [Chars.DEFAULT],
-};
-
 const storageKey = 'hunt_the_bishomalo_hunter';
-const storageSettingsKey = 'hunt_the_bishomalo_settings';
 
 export const GameStore = signalStore(
   { providedIn: 'root' },
-  withState(initialState),
-  withComputed(({ hunter, settings, board }) => ({
-    arrows: computed(() => hunter().arrows),
-    dragonballs: computed(() => hunter().dragonballs),
-    hasGold: computed(() => hunter().hasGold),
-    gold: computed(() => hunter().gold),
-    inventory: computed(() => hunter().inventory),
-    blackout: computed(() => settings().blackout),
-    size: computed(() => settings().size),
-    difficulty: computed(() => settings().difficulty),
-    level: computed(() => settings().size - 4),
-    selectedChar: computed(() => settings().selectedChar),
-    startTime: computed(() => settings().startTime),
+  withHunterFeature(),
+  withConfigFeature(),
+  withGameStatusFeature(),
+  withComputed(({ hunter, board }) => ({
     currentCell: computed(() => {
       const { x, y } = hunter();
-      return board()[x][y];
+      const currentBoard = board();
+      if (currentBoard.length > 0 && currentBoard[x] && currentBoard[x][y]) {
+        return currentBoard[x][y];
+      }
+      return null;
     }),
   })),
   withMethods((store, localStorage = inject(LocalstorageService)) => {
@@ -80,63 +47,67 @@ export const GameStore = signalStore(
       });
     };
 
-    const syncHunterWithStorage = () => {
-      const gameData = localStorage.getValue<GameLocalStorageInfo>(storageKey);
-      const settings = localStorage.getValue<GameSettings>(storageSettingsKey);
-      if (gameData) {
-        patchState(store, {
-          lives: gameData.lives,
-          unlockedChars: gameData.unlockedChars,
-          settings: settings ?? ({} as GameSettings),
-          hunter: { ...store.hunter(), gold: gameData.gold, inventory: gameData.inventory },
-        });
-      }
-    };
-
-    const resetStore = () => {
-      patchState(store, {
-        ...initialConfig,
-        hunter: initialHunter,
-        unlockedChars: store.unlockedChars(),
-      });
-
-      localStorage.clearValue(storageSettingsKey);
-    };
-
-    const updateHunter = (partial: Partial<Hunter>) => {
-      const updated = { ...store.hunter(), ...partial };
-      patchState(store, { hunter: updated });
-
-      if (partial.inventory || partial.gold) {
-        persistGameState();
-      }
-    };
-
-    const updateGame = (partial: Partial<GameState>) => {
-      patchState(store, partial);
-
-      persistGameState();
-
-      if (partial.settings) {
-        localStorage.setValue<GameSettings>(storageSettingsKey, partial.settings);
-      }
-    };
-
-    const countWumpusKilled = () => {
-      patchState(store, { wumpusKilled: store.wumpusKilled() + 1 });
-    };
-
-    const setMessage = (msg: string) => {
-      patchState(store, { message: msg });
-    };
-
     return {
-      updateGame,
-      countWumpusKilled,
-      updateHunter,
-      resetStore,
-      setMessage,
-      syncHunterWithStorage,
+      syncHunterWithStorage() {
+        const gameData = localStorage.getValue<GameLocalStorageInfo>(storageKey);
+        const settings = localStorage.getValue<GameSettings>(storageSettingsKey);
+        if (gameData) {
+          patchState(store, {
+            lives: gameData.lives,
+            unlockedChars: gameData.unlockedChars,
+            settings: settings ?? ({} as GameSettings),
+            hunter: { ...store.hunter(), gold: gameData.gold, inventory: gameData.inventory },
+          });
+        }
+      },
+
+      resetStore() {
+        store.$_resetHunter();
+        store.$_resetGameStatus();
+        store.$_resetConfig();
+        // Maintain unlocked chars after reset
+        const gameData = localStorage.getValue<GameLocalStorageInfo>(storageKey);
+        if (gameData) {
+          store.$_setUnlockedChars(gameData.unlockedChars);
+        }
+      },
+
+      updateHunter(partial: Partial<Hunter>) {
+        store.$_updateHunter(partial);
+        if (partial.inventory || partial.gold) {
+          persistGameState();
+        }
+      },
+
+      updateGame(partial: Partial<GameState>) {
+        const { settings, hunter, unlockedChars, ...statusPartial } = partial;
+
+        if (settings) {
+          store.$_updateSettings(settings);
+        }
+
+        if (hunter) {
+          store.$_updateHunter(hunter);
+        }
+
+        if (unlockedChars) {
+          store.$_setUnlockedChars(unlockedChars);
+        }
+
+        if (Object.keys(statusPartial).length > 0) {
+          store.$_updateGameStatus(statusPartial as any);
+        }
+
+        persistGameState();
+      },
+
+      countWumpusKilled() {
+        store.$_countWumpusKilled();
+      },
+
+      setMessage(message: string) {
+        store.$_setMessage(message);
+      }
     };
   }),
   withHooks({

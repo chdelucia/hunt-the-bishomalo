@@ -64,41 +64,50 @@ describe('BossFightComponent', () => {
   });
 
   it('should initialize the game grid on ngOnInit', () => {
-    expect(component.grid.length).toBe(component.gridSize);
-    expect(component.grid[0].length).toBe(component.gridSize);
-    expect(component.bossRemaining).toBe(component.bossParts);
-    expect(component.playerLives).toBe(12);
-    expect(component.gameOver).toBe(false);
+    expect(component.bossStore.grid().length).toBe(component.bossStore.gridSize());
+    expect(component.bossStore.grid()[0].length).toBe(component.bossStore.gridSize());
+    expect(component.bossStore.bossRemaining()).toBe(component.bossStore.bossParts());
+    expect(component.bossStore.playerLives()).toBe(12);
+    expect(component.bossStore.gameOver()).toBe(false);
   });
 
   it('should reduce bossRemaining on boss hit', () => {
-    const bossCell = component.grid[1][1];
-    bossCell.hasBossPart = true;
+    const bossCell = component.bossStore.grid()[1][1];
+    // In actual tests, we should use a method to set up the state,
+    // but here we are just fixing the property access for now
+    (bossCell as any).hasBossPart = true;
 
-    component.attackCell(bossCell);
+    component.bossStore.attackCell(bossCell);
 
-    expect(component.bossRemaining).toBe(component.bossParts - 1);
-    expect(component.message).toContain('bossFightMessages.bossHit');
+    expect(component.bossStore.bossRemaining()).toBe(component.bossStore.bossParts() - 1);
+    expect(component.bossStore.message()).toContain('bossFightMessages.bossHit');
   });
 
   it('should end game and reveal parts when lives reach 0', () => {
-    component.playerLives = 1;
-    const cell = component.grid[2][2];
-    cell.hasBossPart = false;
+    // Re-initialize with 1 player life to simulate near-death
+    const settings = {
+      difficulty: {
+        bossTries: 1,
+      },
+    } as any;
+    component.bossStore.resetGame(settings);
 
-    component.attackCell(cell);
+    const cell = component.bossStore.grid().flat().find(c => !c.hasBossPart);
+    if (cell) {
+      component.bossStore.attackCell(cell);
+    }
 
-    expect(component.gameOver).toBe(true);
-    expect(component.message).toContain('bossFightMessages.playerDefeated');
-    expect(component.grid.flat().filter((c) => c.hasBossPart && c.hit).length).toBeGreaterThan(0);
+    expect(component.bossStore.gameOver()).toBe(true);
+    expect(component.bossStore.message()).toContain('bossFightMessages.playerDefeated');
+    expect(component.bossStore.grid().flat().filter((c) => c.hasBossPart && c.hit).length).toBeGreaterThan(0);
   });
 
   it('should retry game if hunter has lives', () => {
     component.retryGame();
 
     expect(gameStoreMock.updateGame).toHaveBeenCalledWith({ lives: 7 });
-    expect(component.gameOver).toBe(false);
-    expect(component.playerLives).toBe(12);
+    expect(component.bossStore.gameOver()).toBe(false);
+    expect(component.bossStore.playerLives()).toBe(12);
   });
 
   it('should not retry game if hunter has no lives', () => {
@@ -107,7 +116,7 @@ describe('BossFightComponent', () => {
     component.retryGame();
 
     expect(gameStoreMock.updateHunter).not.toHaveBeenCalled();
-    expect(component.message).toContain('bossFightMessages.noMoreRetries');
+    expect(component.bossStore.message()).toContain('bossFightMessages.noMoreRetries');
   });
 
   it('should navigate to prize screen on goToprizeScreen', () => {
