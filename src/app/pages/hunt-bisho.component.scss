@@ -1,26 +1,17 @@
 @use 'sass:math';
 
 main {
-  min-height: 100vh;
+  @apply min-h-screen bg-cover bg-center;
   background-image: url('/scenarios/9.png');
-  background-size: cover;
 }
 
 .row {
-  display: flex;
+  @apply flex;
 }
 
 .board {
-  display: flex;
-  flex-direction: column;
-  aspect-ratio: 1 / 1;
-  border: 3px solid #333;
-  width: fit-content;
+  @apply flex flex-col aspect-square border-[3px] border-[#333] w-fit mx-auto justify-center items-center bg-[#f3f4f6];
   min-width: calc(min(95vw, 550px));
-  margin: 0 auto;
-  justify-content: center;
-  align-items: center;
-  background-color: #f3f4f6;
 }
 
 @for $i from 4 through 20 {
@@ -30,15 +21,11 @@ main {
 }
 
 app-title {
-  z-index: 10;
-  position: relative;
+  @apply z-10 relative;
 }
 
 .player-info {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 0.2rem;
+  @apply flex justify-center gap-4 mt-[0.2rem];
 }
 
 .escape {

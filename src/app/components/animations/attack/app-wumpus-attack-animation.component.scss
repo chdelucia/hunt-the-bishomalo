@@ -1,54 +1,29 @@
 .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.9);
-  z-index: 999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  @apply fixed inset-0 w-screen h-screen bg-black/90 z-[999] flex flex-col items-center justify-center;
 }
 
 .animation {
-  position: relative;
-  width: 400px;
-  height: 300px;
+  @apply relative w-[400px] h-[300px];
 }
 
 .player,
 .wumpus {
-  position: absolute;
-  top: 50%;
-  transition: all 0.5s ease-in-out;
+  @apply absolute top-1/2 transition-all duration-500 ease-in-out;
 }
 
 .wumpus {
-  right: 0;
-  z-index: 2;
+  @apply right-0 z-[2];
 }
 
 .player {
-  z-index: 1;
+  @apply z-[1];
 }
 
 .blood {
-  position: absolute;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background-color: #e53e3e;
-  opacity: 0.8;
-  transition: all 0.5s ease-in-out;
+  @apply absolute w-[15px] h-[15px] rounded-full bg-[#e53e3e] opacity-80 transition-all duration-500 ease-in-out;
 }
 
 .message {
-  color: white;
-  font-size: 36px;
-  font-weight: bold;
-  margin-top: 40px;
-  text-align: center;
+  @apply text-white text-[36px] font-bold mt-10 text-center;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }

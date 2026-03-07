@@ -1,94 +1,58 @@
 .config-form {
-  padding: 1rem;
+  @apply p-4;
   h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #333;
+    @apply text-center mb-8 text-[#333];
   }
 
   .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1rem;
+    @apply flex flex-col mb-4;
 
     label {
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      font-size: 0.9rem;
+      @apply font-semibold mb-2 text-[0.9rem];
     }
 
     input {
-      padding: 0.5rem;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      transition: border-color 0.2s;
+      @apply p-2 mb-4 text-base border border-[#ccc] rounded transition-colors duration-200;
 
       &:focus {
-        border-color: #007bff;
-        outline: none;
+        @apply border-accent-blue outline-none;
       }
     }
 
     select {
-      padding: 0.5rem;
-      margin-bottom: 0rem;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      transition: border-color 0.2s;
+      @apply p-2 mb-0 text-base border border-[#ccc] rounded transition-colors duration-200;
 
       &:focus {
-        border-color: #007bff;
-        outline: none;
+        @apply border-accent-blue outline-none;
       }
     }
   }
 
   button.start-game {
-    width: 100%;
-    font-family: 'Press Start 2P', monospace;
-    background-color: var(--color-button);
-    padding: 1rem 2rem;
-    cursor: pointer;
-    color: white;
+    @apply w-full font-game bg-button p-4 cursor-pointer text-white;
     &:hover {
-      background-color: var(--color-button-hover);
+      @apply bg-button-hover;
     }
   }
 }
 
 .char-selector {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  margin-bottom: 2rem;
+  @apply flex flex-wrap gap-2.5 justify-center mb-8;
 }
 
 img {
-  cursor: pointer;
-  transition: filter 0.3s ease, transform 0.2s ease;
-  border-radius: 6px;
+  @apply cursor-pointer transition-[filter,transform] duration-[0.3s,0.2s] ease-[ease,ease] rounded-md;
 }
 
 img.grayscale {
+  @apply opacity-60;
   filter: grayscale(100%);
-  opacity: 0.6;
 }
 
 img.active {
-  filter: none;
-  border: 2px solid #4caf50;
-  transform: scale(1.05);
+  @apply grayscale-0 border-2 border-[#4caf50] scale-105;
 }
 
 .difficulty-description {
-  margin-top: 0.5rem;
-  margin-bottom: 2rem;
-  font-size: 0.7rem;
-  color: #555;
-  font-style: italic;
-  line-height: 1.5rem;
+  @apply mt-2 mb-8 text-[0.7rem] text-[#555] italic leading-6;
 }

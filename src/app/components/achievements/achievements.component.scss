@@ -1,289 +1,200 @@
 .achievements-container {
-  min-height: 100vh;
-  background-color: #1a202c;
-  color: #ffffff;
-  padding: 1.5rem;
+  @apply min-h-screen bg-dark text-white p-6;
 }
 
 .achievements-content {
-  max-width: 72rem;
-  margin-left: auto;
-  margin-right: auto;
+  @apply max-w-[72rem] mx-auto;
 }
 
 .header-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 2rem;
-  z-index: 6;
-  position: relative;
+  @apply flex items-center mb-8 z-[6] relative;
   @media (max-width: 1024px) {
-    display: none;
+    @apply hidden;
   }
 }
 
 .back-link {
-  display: flex;
-  align-items: center;
-  color: #00ff5e;
-  margin-right: 1rem;
-  text-decoration: none;
-  transition: color 0.3s;
-  font-size: 1.5rem;
+  @apply flex items-center text-primary mr-4 no-underline transition-colors duration-300 text-[1.5rem];
 }
 
 .back-link:hover {
-  color: #ffffff;
+  @apply text-white;
 }
 
 .arrow-left-icon {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  position: relative;
-  margin-right: 0.5rem;
+  @apply inline-block w-5 h-5 relative mr-2;
 }
 
 .arrow-left-icon:before {
-  content: '';
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  border-left: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
-  transform: rotate(45deg);
-  left: 4px;
-  top: 4px;
+  @apply content-[''] absolute w-3 h-3 border-l-2 border-b-2 border-current rotate-45 left-1 top-1;
 }
 
 .page-title {
-  font-size: 2.25rem;
-  font-weight: 700;
+  @apply text-[2.25rem] font-bold;
 }
 
 .progress-container {
-  background-color: #2d3748;
-  border-radius: 0.5rem;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+  @apply bg-[#2d3748] rounded-lg p-6 mb-8;
 }
 
 .progress-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 1rem;
+  @apply flex flex-col justify-between items-start gap-4;
 }
 
 @media (min-width: 768px) {
   .progress-header {
-    flex-direction: row;
-    align-items: center;
+    @apply flex-row items-center;
   }
 }
 
 .progress-info {
-  margin-bottom: 0.5rem;
+  @apply mb-2;
 }
 
 .progress-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
+  @apply text-[1.5rem] font-bold mb-2;
 }
 
 .progress-stats {
-  color: #a0aec0;
+  @apply text-[#a0aec0];
 }
 
 .filter-buttons {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+  @apply flex gap-2 flex-wrap;
 }
 
 .filter-button {
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  transition: background-color 0.3s;
-  border: none;
-  cursor: pointer;
-  color: #ffffff;
+  @apply py-2 px-4 rounded-md transition-colors duration-300 border-none cursor-pointer text-white;
 }
 
 .active-filter {
-  background-color: #3182ce;
+  @apply bg-[#3182ce];
 }
 
 .inactive-filter {
-  background-color: #4a5568;
+  @apply bg-[#4a5568];
 }
 
 .inactive-filter:hover {
-  background-color: #2d3748;
+  @apply bg-[#2d3748];
 }
 
 .progress-bar-container {
-  width: 100%;
-  background-color: #4a5568;
-  height: 1rem;
-  border-radius: 9999px;
-  margin-top: 1rem;
-  overflow: hidden;
+  @apply w-full bg-[#4a5568] h-4 rounded-full mt-4 overflow-hidden;
 }
 
 .progress-bar {
-  background-color: #3182ce;
-  height: 100%;
-  border-radius: 9999px;
-  transition: all 0.5s;
+  @apply bg-[#3182ce] h-full rounded-full transition-all duration-500;
 }
 
 .achievements-grid {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 1.5rem;
+  @apply grid grid-cols-1 gap-6;
 }
 
 @media (min-width: 768px) {
   .achievements-grid {
-    grid-template-columns: repeat(2, 1fr);
+    @apply grid-cols-2;
   }
 }
 
 @media (min-width: 1024px) {
   .achievements-grid {
-    grid-template-columns: repeat(3, 1fr);
+    @apply grid-cols-3;
   }
 }
 
 .achievement-card {
-  background-color: #2d3748;
-  border-radius: 0.5rem;
-  overflow: hidden;
-  transition: transform 0.3s;
+  @apply bg-[#2d3748] rounded-lg overflow-hidden transition-transform duration-300;
 }
 
 .achievement-card:hover {
-  transform: scale(1.05);
+  @apply scale-105;
 }
 
 .achievement-unlocked {
-  border-left: 4px solid #3182ce;
+  @apply border-l-4 border-l-[#3182ce];
 }
 
 .achievement-locked {
-  border-left: 4px solid #4a5568;
-  opacity: 0.7;
+  @apply border-l-4 border-l-[#4a5568] opacity-70;
 }
 
 .achievement-content {
-  padding: 1.5rem;
+  @apply p-6;
 }
 
 .achievement-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1rem;
+  @apply flex items-center mb-4;
 }
 
 .achievement-icon-container {
-  width: 4rem;
-  height: 4rem;
-  border-radius: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 1rem;
-  position: relative;
+  @apply w-16 h-16 rounded-lg flex items-center justify-center mr-4 relative;
 }
 
 .icon-bg-unlocked {
-  background-color: #4a5568;
+  @apply bg-[#4a5568];
 }
 
 .icon-bg-locked {
-  background-color: #1a202c;
+  @apply bg-dark;
 }
 
 .achievement-icon {
-  object-fit: contain;
+  @apply object-contain;
 }
 
 .achievement-title {
-  font-size: 1rem;
-  line-height: 1.3;
-  font-weight: 700;
-  overflow-wrap: break-word;
-  white-space: normal;
+  @apply text-base leading-[1.3] font-bold break-all whitespace-normal;
 
   @media (max-width: 400px) {
-    font-size: 0.8rem;
+    @apply text-[0.8rem];
   }
 }
 
 .rarity-badge {
-  font-size: 0.875rem;
-  padding: 0 0.5rem;
-  padding-top: 0.125rem;
-  padding-bottom: 0.125rem;
-  border-radius: 9999px;
-  display: inline-block;
-  margin-top: 0.25rem;
+  @apply text-[0.875rem] px-2 py-0.5 rounded-full inline-block mt-1;
 }
 
 .rarity-common {
-  background-color: #718096;
+  @apply bg-[#718096];
 }
 
 .rarity-uncommon {
-  background-color: #48bb78;
+  @apply bg-[#48bb78];
 }
 
 .rarity-rare {
-  background-color: #4299e1;
+  @apply bg-[#4299e1];
 }
 
 .rarity-epic {
-  background-color: #9f7aea;
+  @apply bg-[#9f7aea];
 }
 
 .rarity-legendary {
-  background-color: #ecc94b;
+  @apply bg-[#ecc94b];
 }
 
 .achievement-description {
-  color: #a0aec0;
-  margin-bottom: 1rem;
-  line-height: 1.3;
-  font-size: 0.9rem;
+  @apply text-[#a0aec0] mb-4 leading-[1.3] text-[0.9rem];
 
   @media (max-width: 400px) {
-    font-size: 0.7rem;
+    @apply text-[0.7rem];
   }
 }
 
 .status-unlocked {
-  display: flex;
-  align-items: center;
-  color: #48bb78;
+  @apply flex items-center text-[#48bb78];
 }
 
 .status-locked {
-  display: flex;
-  align-items: center;
-  color: #718096;
+  @apply flex items-center text-[#718096];
 }
 
 .status-icon {
-  height: 1.25rem;
-  width: 1.25rem;
-  margin-right: 0.5rem;
+  @apply h-5 w-5 mr-2;
 }
 
 .achievement-indicator {
-  height: 0.25rem;
-  width: 100%;
-  background-image: linear-gradient(to right, #3182ce, #9f7aea);
+  @apply h-1 w-full bg-gradient-to-r from-[#3182ce] to-[#9f7aea];
 }

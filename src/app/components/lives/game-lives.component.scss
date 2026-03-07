@@ -1,8 +1,7 @@
 .heart path {
-  fill: none;
-  transition: fill 0.3s ease;
+  @apply fill-none transition-colors duration-300 ease-in-out;
 }
 
 .heart.active path {
-  fill: #e63946;
+  @apply fill-[#e63946];
 }

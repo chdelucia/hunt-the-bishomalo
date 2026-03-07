@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --color-primary: #00ff5e;
   --color-background: #111827;
@@ -18,35 +22,23 @@
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  @apply box-border;
 }
 
 body,
 html {
-  margin: 0;
-  padding: 0;
-  background-color: #1a202c;
-  font-family: 'Press Start 2P', monospace;
+  @apply m-0 p-0 bg-dark font-game;
   image-rendering: pixelated;
 }
 
 button {
-  font-family: 'Press Start 2P', monospace;
-  width: fit-content;
-  padding: 0.75rem;
-  font-size: 1rem;
-  font-weight: bold;
-  background-color: #007bff;
-  color: white;
-  border: none;
+  @apply font-game w-fit p-3 text-base font-bold bg-accent-blue text-white border-none;
 
   &:hover {
-    cursor: pointer;
-    background-color: #1a70cc;
+    @apply cursor-pointer bg-accent-blue-hover;
   }
   &:disabled {
-    background-color: #a0aec0;
-    cursor: not-allowed;
+    @apply bg-muted-gray cursor-not-allowed;
   }
 }
 

@@ -1,113 +1,76 @@
 .creditos-panel {
-  background-color: var(--color-panel);
-  border: 1px solid var(--color-border);
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  border-radius: 2px;
-  position: relative;
+  @apply bg-panel border border-border p-6 mb-8 rounded-[2px] relative;
 }
 
 .creditos-titulo-container {
-  text-align: center;
-  margin-bottom: 1.5rem;
+  @apply text-center mb-6;
 }
 
 .creditos-titulo {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  color: var(--color-text);
-  letter-spacing: 0.05em;
+  @apply text-[2rem] mb-2 text-text tracking-wider;
 }
 
 .creditos-subtitulo {
-  color: var(--color-text-secondary);
+  @apply text-text-secondary;
 }
 
 .creditos-controles {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  flex-wrap: wrap;
+  @apply flex justify-center gap-4 mb-6 flex-wrap;
 }
 
 .boton-creditos {
-  background-color: var(--color-button);
-  color: white;
-  border: none;
-  padding: 1rem 1rem;
-  border-radius: 2px;
+  @apply bg-button text-white border-none p-4 rounded-[2px] cursor-pointer transition-colors duration-200;
   font-family: inherit;
-  cursor: pointer;
-  transition: background-color 0.2s;
   &.red {
-    background-color: var(--color-red);
+    @apply bg-red;
   }
 }
 
 .boton-creditos:hover {
-  background-color: var(--color-button-hover);
+  @apply bg-button-hover;
 }
 
 .creditos-ventana {
-  height: 580px;
-  overflow: hidden;
-  position: relative;
-  border: 1px solid var(--color-border);
-  background-color: rgba(0, 0, 0, 0.2);
+  @apply h-[580px] overflow-hidden relative border border-border bg-black/20;
 }
 
 .creditos-ventana::before,
 .creditos-ventana::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 50px;
-  z-index: 1;
-  pointer-events: none;
+  @apply content-[''] absolute inset-x-0 h-[50px] z-[1] pointer-events-none;
 }
 
 .creditos-ventana::before {
-  top: 0;
-  background: linear-gradient(to bottom, var(--color-panel), transparent);
+  @apply top-0 bg-gradient-to-b from-panel to-transparent;
 }
 
 .creditos-ventana::after {
-  bottom: 0;
-  background: linear-gradient(to top, var(--color-panel), transparent);
+  @apply bottom-0 bg-gradient-to-t from-panel to-transparent;
 }
 
 .creditos-contenido {
-  padding: 2rem;
-  text-align: center;
-  transition: transform 0.1s linear;
+  @apply p-8 text-center transition-transform duration-[0.1s] ease-linear;
 }
 
 .creditos-seccion {
-  margin-bottom: 2.5rem;
+  @apply mb-10;
 }
 
 .creditos-rol {
-  color: var(--color-text);
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
+  @apply text-text text-[1.25rem] mb-2;
   @media (width < 700px) {
-    font-size: 0.9rem;
+    @apply text-[0.9rem];
   }
 }
 
 .creditos-nombre {
-  color: var(--color-text-secondary);
-  font-size: 1.5rem;
+  @apply text-text-secondary text-[1.5rem];
   @media (width < 700px) {
-    font-size: 1rem;
+    @apply text-[1rem];
   }
 }
 
 .creditos-especial {
-  color: #fbbf24;
-  font-size: 2rem;
+  @apply text-[#fbbf24] text-[2rem];
   text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
   animation: brillar 2s ease-in-out infinite;
 }
@@ -123,25 +86,15 @@
 }
 
 .creditos-final {
-  color: var(--color-text-secondary);
-  font-style: italic;
-  margin-bottom: 0.5rem;
+  @apply text-text-secondary italic mb-2;
 }
 
 .creditos-copyright {
-  color: var(--color-text-secondary);
-  font-size: 0.875rem;
+  @apply text-text-secondary text-[0.875rem];
 }
 
 .creditos-footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2rem;
-  gap: 1rem;
-  background-color: var(--color-border);
-  padding: 1rem;
-  border-radius: 2px;
+  @apply flex items-center justify-center mt-8 gap-4 bg-border p-4 rounded-[2px];
 }
 
 .creditos-personaje {
@@ -151,10 +104,10 @@
 @keyframes saltar {
   0%,
   100% {
-    transform: translateY(0);
+    @apply translate-y-0;
   }
   50% {
-    transform: translateY(-10px);
+    @apply -translate-y-[10px];
   }
 }
 
@@ -167,26 +120,23 @@
   45%,
   55%,
   100% {
-    opacity: 1;
+    @apply opacity-100;
   }
   50% {
-    opacity: 0;
+    @apply opacity-0;
   }
 }
 
 .creditos-mensaje {
-  color: var(--color-text-secondary);
-  font-style: italic;
-  max-width: 500px;
+  @apply text-text-secondary italic max-w-[500px];
 }
 
 @media (max-width: 768px) {
   .creditos-footer {
-    flex-direction: column;
-    text-align: center;
+    @apply flex-col text-center;
   }
 
   .creditos-mensaje {
-    max-width: 100%;
+    @apply max-w-none;
   }
 }

@@ -1,325 +1,218 @@
 .resultados-panel {
-  background-color: var(--color-panel);
-  border: 1px solid var(--color-border);
-  padding: 1.5rem;
-  border-radius: 2px;
-  max-width: 1200px;
-  margin: 0 auto 2rem;
+  @apply bg-panel border border-border p-6 rounded-[2px] max-w-[1200px] mx-auto mb-8;
 }
 
 .header-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 3rem;
-  z-index: 99;
-  position: relative;
+  @apply flex items-center mb-12 z-[99] relative;
   @media (max-width: 1024px) {
-    display: none;
+    @apply hidden;
   }
 }
 .back-link {
-  display: flex;
-  align-items: center;
-  color: #00ff5e;
-  margin-right: 1rem;
-  text-decoration: none;
-  transition: color 0.3s;
-  font-size: 1.5rem;
+  @apply flex items-center text-primary mr-4 no-underline transition-colors duration-300 text-[1.5rem];
 }
 
 .arrow-left-icon {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  position: relative;
-  margin-right: 0.5rem;
+  @apply inline-block w-5 h-5 relative mr-2;
 }
 
 .arrow-left-icon:before {
-  content: '';
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  border-left: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
-  transform: rotate(45deg);
-  left: 4px;
-  top: 4px;
+  @apply content-[''] absolute w-3 h-3 border-l-2 border-b-2 border-current rotate-45 left-1 top-1;
 }
 
 .back-link:hover {
-  color: #ffffff;
-  cursor: pointer;
+  @apply text-white cursor-pointer;
 }
 
 .resultados-titulo {
-  font-size: 2rem;
-  margin: 2rem 0;
-  color: var(--color-text);
-  letter-spacing: 0.05em;
-  word-break: break-all;
+  @apply text-[2rem] my-8 text-text tracking-wider break-all;
   @media (width < 640px) {
-    font-size: 1.5rem;
+    @apply text-[1.5rem];
   }
 }
 
 .resultados-subtitulo {
-  color: var(--color-text-secondary);
-  margin-bottom: 2rem;
+  @apply text-text-secondary mb-8;
 }
 
 .tabs-container {
-  display: flex;
-  border-bottom: 1px solid var(--color-border);
-  margin-bottom: 1.5rem;
-  overflow-x: auto;
+  @apply flex border-b border-b-border mb-6 overflow-x-auto;
   scrollbar-width: none;
-}
-
-.tabs-container::-webkit-scrollbar {
-  display: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .tab-button {
-  background: none;
-  border: none;
-  color: var(--color-text-secondary);
-  padding: 0.75rem 1.5rem;
+  @apply bg-none border-none text-text-secondary py-3 px-6 text-base cursor-pointer transition-[color,border-color] duration-200 border-b-2 border-b-transparent;
   font-family: inherit;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: color 0.2s, border-color 0.2s;
-  border-bottom: 2px solid transparent;
 }
 
 .tab-button:hover {
-  color: var(--color-text);
+  @apply text-text;
 }
 
 .tab-activa {
-  color: var(--color-text);
-  border-bottom: 2px solid var(--color-text);
+  @apply text-text border-b-text;
 }
 
 .tab-contenido {
-  padding: 1rem 0;
+  @apply py-4;
 }
 
 /* Estilos para la pestaña General */
 .resumen-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  @apply flex flex-col gap-8;
 }
 
 .resumen-seccion {
-  background-color: var(--color-border);
-  padding: 1.5rem;
-  border-radius: 2px;
+  @apply bg-border p-6 rounded-[2px];
 }
 
 .resumen-titulo {
-  color: var(--color-text);
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
-  padding-bottom: 0.5rem;
+  @apply text-text text-[1.5rem] mb-6 border-b border-dashed border-white/10 pb-2;
 }
 
 .stats-grid {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 1rem;
+  @apply grid grid-cols-1 gap-4;
 }
 
 @media (min-width: 640px) {
   .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
+    @apply grid-cols-2;
   }
 }
 
 @media (min-width: 1024px) {
   .stats-grid {
-    grid-template-columns: repeat(4, 1fr);
+    @apply grid-cols-4;
   }
 }
 
 .stat-card {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background-color: rgba(0, 0, 0, 0.2);
-  padding: 1rem;
-  border-radius: 2px;
+  @apply flex items-center gap-4 bg-black/20 p-4 rounded-[2px];
 }
 
 .stat-icono {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  background-color: rgba(74, 222, 128, 0.1);
-  border-radius: 2px;
+  @apply flex items-center justify-center w-12 h-12 bg-green-400/10 rounded-[2px];
 }
 
 .stat-info {
-  flex: 1;
+  @apply flex-1;
 }
 
 .stat-nombre {
-  color: var(--color-text-secondary);
-  font-size: 0.875rem;
-  margin-bottom: 0.25rem;
+  @apply text-text-secondary text-[0.875rem] mb-1;
 }
 
 .stat-valor {
-  color: white;
-  font-size: 1.25rem;
+  @apply text-white text-[1.25rem];
 }
 
 .records-lista {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 1rem;
+  @apply grid grid-cols-1 gap-4;
 }
 
 @media (min-width: 640px) {
   .records-lista {
-    grid-template-columns: repeat(2, 1fr);
+    @apply grid-cols-2;
   }
 }
 
 @media (min-width: 1024px) {
   .records-lista {
-    grid-template-columns: repeat(3, 1fr);
+    @apply grid-cols-3;
   }
 }
 
 .record-item {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  background-color: rgba(0, 0, 0, 0.2);
-  padding: 1rem;
-  border-radius: 2px;
+  @apply flex items-center gap-4 bg-black/20 p-4 rounded-[2px];
 }
 
 .record-badge {
-  font-size: 1.5rem;
+  @apply text-[1.5rem];
 }
 
 .record-info {
-  flex: 1;
+  @apply flex-1;
 }
 
 .record-nombre {
-  color: var(--color-text-secondary);
-  font-size: 0.875rem;
-  margin-bottom: 0.25rem;
+  @apply text-text-secondary text-[0.875rem] mb-1;
 }
 
 .record-valor {
-  color: white;
-  font-size: 1rem;
+  @apply text-white text-base;
 }
 
 /* Estilos para la pestaña Niveles */
 .niveles-container {
-  overflow-x: auto;
-  margin-bottom: 2rem;
+  @apply overflow-x-auto mb-8;
 }
 
 .niveles-tabla {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
+  @apply w-full border-collapse text-left;
 }
 
 .niveles-tabla th {
-  color: var(--color-text);
-  padding: 0.75rem;
-  border-bottom: 1px solid var(--color-border);
-  font-size: 0.875rem;
+  @apply text-text p-3 border-b border-b-border text-[0.875rem];
 }
 
 .niveles-tabla td {
-  color: var(--color-text-secondary);
-  padding: 0.75rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  font-size: 0.875rem;
+  @apply text-text-secondary p-3 border-b border-b-white/5 text-[0.875rem];
 }
 
 .estado-nivel {
-  display: inline-block;
-  padding: 0.25rem 0.5rem;
-  border-radius: 2px;
-  font-size: 0.75rem;
+  @apply inline-block py-1 px-2 rounded-[2px] text-[0.75rem];
 }
 
 .completado {
-  background-color: rgba(74, 222, 128, 0.2);
-  color: var(--color-text);
+  @apply bg-green-400/20 text-text;
 }
 
 .pendiente {
-  background-color: rgba(239, 68, 68, 0.2);
-  color: #ef4444;
+  @apply bg-red/20 text-red;
 }
 
 /* Footer */
 .resultados-footer {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 2rem;
+  @apply flex justify-center gap-4 mt-8;
 }
 
 .boton-compartir,
 .boton-jugar-nuevo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: 2px;
+  @apply flex items-center gap-2 py-3 px-6 rounded-[2px] text-base cursor-pointer transition-colors duration-200 border-none;
   font-family: inherit;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  border: none;
 }
 
 .boton-compartir {
-  background-color: var(--color-panel);
-  color: white;
+  @apply bg-panel text-white;
 }
 
 .boton-compartir:hover {
-  background-color: var(--color-border);
+  @apply bg-border;
 }
 
 .boton-jugar-nuevo {
-  background-color: var(--color-button);
-  color: white;
+  @apply bg-button text-white;
 }
 
 .boton-jugar-nuevo:hover {
-  background-color: var(--color-button-hover);
+  @apply bg-button-hover;
 }
 
 @media (max-width: 640px) {
   .resultados-footer {
-    flex-direction: column;
+    @apply flex-col;
   }
 }
 
 .button-wrapper {
-  text-align: right;
+  @apply text-right;
 }
 .next-btn {
-  padding: 2rem 4rem;
-  background: var(--color-button);
+  @apply py-8 px-16 bg-button;
   &:hover {
-    background: var(--color-button-hover);
+    @apply bg-button-hover;
   }
 }

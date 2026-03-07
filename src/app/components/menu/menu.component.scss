@@ -1,89 +1,54 @@
 .menu-toggle {
-  width: 45px;
-  position: fixed;
-  cursor: pointer;
-  display: none;
-  border-bottom: 0;
-  height: 45px;
-  z-index: 9999;
-  background: none;
+  @apply w-[45px] h-[45px] fixed cursor-pointer hidden border-b-0 z-[9999] bg-none;
 
   .bar {
-    position: absolute;
-    width: 100%;
-    height: 4px;
-    background-color: #00ff5e;
-    transition: 0.3s ease;
+    @apply absolute w-full h-1 bg-primary transition-all duration-300 ease-in-out;
   }
 
   .bar1 {
-    top: 15px;
-    left: 15px;
-    width: 30px;
+    @apply top-[15px] left-[15px] w-[30px];
   }
   .bar2 {
-    top: 25px;
-    left: 15px;
-    width: 30px;
+    @apply top-[25px] left-[15px] w-[30px];
   }
   .bar3 {
-    top: 35px;
-    left: 15px;
-    width: 30px;
+    @apply top-[35px] left-[15px] w-[30px];
   }
 
   .bar1.open {
-    transform: rotate(45deg);
-    top: 22px;
+    @apply rotate-45 top-[22px];
   }
 
   .bar2.open {
-    opacity: 0;
+    @apply opacity-0;
   }
 
   .bar3.open {
-    transform: rotate(-45deg);
-    top: 22px;
+    @apply -rotate-45 top-[22px];
   }
 }
 
 .mobile-menu {
-  display: none;
+  @apply hidden;
 
   ul {
-    margin-top: 0px;
-    padding: 0;
-    list-style: none;
-    background: #1d1d1d;
-    border: 2px solid #00ffcc;
-    font-family: 'Press Start 2P', monospace;
-    color: #00ffcc;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 255, 204, 0.2);
+    @apply mt-0 p-0 list-none bg-[#1d1d1d] border-2 border-[#00ffcc] font-game text-[#00ffcc] overflow-hidden shadow-[0_4px_12px_rgba(0,255,204,0.2)];
 
     li {
-      border-bottom: 1px solid #00ffcc;
-      text-align: center;
-      transition: background 0.3s;
+      @apply border-b border-b-[#00ffcc] text-center transition-colors duration-300;
 
       &:hover {
-        background: #00ffcc;
-        color: #1d1d1d;
-        cursor: pointer;
+        @apply bg-[#00ffcc] text-[#1d1d1d] cursor-pointer;
       }
 
       &:last-child {
-        border-bottom: none;
+        @apply border-b-0;
       }
 
       button {
-        background: none;
-        margin: 0;
-        padding: 16px;
-        font-family: 'Press Start 2P', monospace;
-        width: 100%;
+        @apply bg-none m-0 p-4 font-game w-full;
         &.newgame {
-          color: red;
+          @apply text-[#ef4444];
         }
       }
     }
@@ -91,29 +56,18 @@
 }
 
 .menu-desktop {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  position: absolute;
-  width: calc(100vw - 3rem);
+  @apply flex justify-between items-center p-4 absolute w-[calc(100vw-3rem)];
 
   .left-icons,
   .right-icon {
-    display: flex;
-    align-items: center;
-    z-index: 90;
+    @apply flex items-center z-[90];
   }
 
   .left-icons img,
   .right-icon img {
-    width: 90px;
-    height: 90px;
-    margin: 0 8px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
+    @apply w-[90px] h-[90px] mx-2 cursor-pointer transition-transform duration-200 ease-in-out;
     &:hover {
-      transform: scale(1.1);
+      @apply scale-110;
     }
   }
 }
@@ -121,17 +75,14 @@
 /* Responsive behavior */
 @media (max-width: 1024px) {
   .menu-toggle {
-    display: block;
+    @apply block;
   }
 
   .menu-desktop {
-    display: none;
+    @apply hidden;
   }
 
   .mobile-menu {
-    display: block;
-    position: fixed;
-    z-index: 99;
-    width: 100%;
+    @apply block fixed z-[99] w-full;
   }
 }

@@ -1,29 +1,16 @@
 main {
-  min-height: 100vh;
+  @apply min-h-screen bg-cover;
   background-image: url('/scenarios/9.png');
-  background-size: cover;
 }
 
 .row {
-  display: flex;
+  @apply flex;
 }
 
 .board {
-  display: flex;
-  flex-direction: column;
-  aspect-ratio: 1 / 1;
-  border: 3px solid #333;
-  width: fit-content;
-  min-width: calc(min(95vw, 550px));
-  margin: 0 auto;
-  justify-content: center;
-  align-items: center;
-  background-color: #f3f4f6;
+  @apply flex flex-col aspect-square border-[3px] border-[#333] w-fit min-w-[calc(min(95vw,550px))] mx-auto justify-center items-center bg-[#f3f4f6];
 }
 
 .message {
-  text-align: center;
-  font-size: large;
-  margin-bottom: 1.5rem;
-  color: var(--color-primary);
+  @apply text-center text-lg mb-6 text-primary;
 }

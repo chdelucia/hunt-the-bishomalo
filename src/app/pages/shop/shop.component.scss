@@ -1,151 +1,98 @@
 .tienda-container {
-  padding: 1rem;
-  color: #48bb78;
+  @apply p-4 text-[#48bb78];
 }
 
 .tienda-info-panel {
-  background-color: var(--color-panel);
-  border: 1px solid var(--color-border);
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  border-radius: 2px;
+  @apply bg-panel border border-border p-6 mb-8 rounded-[2px];
 }
 
 .tienda-subtitulo {
-  color: var(--color-text-secondary);
+  @apply text-text-secondary;
 }
 
 .tienda-content {
-  max-width: 72rem;
-  width: 100%;
-  margin: 0 auto;
-  padding: 0 1rem;
+  @apply max-w-[72rem] w-full mx-auto px-4;
 }
 
 .producto-name {
-  color: var(--color-text);
-  font-size: large;
+  @apply text-text text-lg;
 }
 .producto-descripcion {
-  color: var(--color-text-secondary);
-  font-size: 0.8rem;
-  line-height: 1.2;
-  padding-right: 2rem;
+  @apply text-text-secondary text-[0.8rem] leading-[1.2] pr-8;
 }
 
 .monedas-inventario {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  @apply flex flex-wrap items-center justify-between gap-4;
 }
 
 .inventario-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  @apply flex flex-wrap gap-2;
 }
 
 .productos-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  width: 100%;
+  @apply grid grid-cols-1 gap-4 w-full;
 }
 
 @media (min-width: 640px) {
   .productos-grid {
-    grid-template-columns: repeat(2, 1fr);
+    @apply grid-cols-2;
   }
 }
 
 @media (min-width: 1024px) {
   .productos-grid {
-    grid-template-columns: repeat(3, 1fr);
+    @apply grid-cols-3;
   }
 }
 .precio-texto,
 .monedas-texto {
-  color: var(--color-yellow);
+  @apply text-yellow;
 }
 .producto-card {
-  background-color: var(--color-panel);
-  border: 1px solid var(--color-border);
-  padding: 1rem;
-  border-radius: 2px;
-  width: 100%;
-  overflow: hidden;
+  @apply bg-panel border border-border p-4 rounded-[2px] w-full overflow-hidden;
 }
 
 .producto-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  @apply flex flex-col gap-4;
 }
 
 @media (min-width: 500px) {
   .producto-content {
-    flex-direction: row;
-    align-items: flex-start;
+    @apply flex-row items-start;
   }
 }
 
 .producto-icono-container img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+  @apply max-w-full h-auto block;
 }
 
 .producto-info p,
 .producto-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @apply flex items-center justify-between;
   span {
-    word-break: break-word;
+    @apply break-words;
   }
 }
 
 .boton-comprar {
-  max-width: 100%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  @apply max-w-full whitespace-nowrap overflow-hidden text-ellipsis;
 }
 
 .next-button {
-  margin-top: 2rem;
-  text-align: right;
+  @apply mt-8 text-right;
 }
 
 .disclaimer {
-  color: var(--color-text-secondary);
-  margin-top: 3rem;
-  overflow-wrap: break-word;
-  white-space: normal;
+  @apply text-text-secondary mt-12 break-all whitespace-normal;
 }
 
 .mensaje-compra {
-  position: fixed;
-  width: 90%;
-  max-width: 600px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 9999;
-
-  background-color: white;
-  padding: 4rem 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  text-align: center;
-  opacity: 0;
+  @apply fixed w-[90%] max-w-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[9999] bg-white py-16 px-8 rounded-[10px] shadow-2xl text-center opacity-0;
   animation: fadeIn 0.3s ease forwards;
 }
 
 @keyframes fadeIn {
   to {
-    opacity: 1;
+    @apply opacity-100;
   }
 }

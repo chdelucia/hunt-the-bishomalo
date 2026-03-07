@@ -1,20 +1,11 @@
 .game-message {
-  text-align: center;
-  font-size: large;
-  margin-bottom: 1.5rem;
-  color: var(--color-primary);
+  @apply text-center text-lg mb-6 text-primary;
 }
 
 .newgame {
-  background: none;
+  @apply bg-none text-primary text-[1.4rem] text-center mt-5 cursor-pointer font-game;
   animation: blink 3s step-start infinite;
-  color: var(--color-primary);
-  font-size: 1.4rem;
-  text-align: center;
-  margin-top: 20px;
   text-shadow: 0 0 1px #00ffea;
-  cursor: pointer;
-  font-family: 'Press Start 2P', monospace;
 }
 
 @keyframes blink {
@@ -25,6 +16,6 @@
 
 @media (max-width: 1024px) {
   .game-message {
-    font-size: medium;
+    @apply text-base;
   }
 }

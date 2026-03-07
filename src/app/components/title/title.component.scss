@@ -1,21 +1,19 @@
 .title {
-  margin: 0 auto;
+  @apply mx-auto;
   max-width: min(80vw, 800px);
 }
 
 .neon-letter {
+  @apply fill-none stroke-[#39ff14] stroke-2;
   font-family: 'Arial Black', sans-serif;
   font-size: 60px;
-  fill: none;
-  stroke: #39ff14;
-  stroke-width: 2px;
   stroke-dasharray: 200;
   stroke-dashoffset: 200;
   filter: drop-shadow(0 0 3px #39ff14) drop-shadow(0 0 6px #39ff14);
   animation: draw 2s ease-out forwards, glow 2s ease-in-out infinite alternate;
 }
 .subtitle {
-  font-size: 30px;
+  @apply text-[30px];
 }
 
 @keyframes draw {

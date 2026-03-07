@@ -13,164 +13,117 @@
 @keyframes shake {
   0%,
   100% {
-    transform: translateX(0);
+    @apply translate-x-0;
   }
   25% {
-    transform: translateX(-4px);
+    @apply -translate-x-1;
   }
   50% {
-    transform: translateX(4px);
+    @apply translate-x-1;
   }
   75% {
-    transform: translateX(-2px);
+    @apply -translate-x-[2px];
   }
 }
 
 .boss-container {
-  text-align: center;
-  font-family: 'Press Start 2P', monospace;
-  padding: 1rem;
+  @apply text-center font-game p-4 bg-cover bg-center h-screen;
   background-image: url('/scenarios/5.jpg');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
 
   #bossTitle {
-    color: white;
+    @apply text-white;
     text-shadow: 1px 1px 6px black;
   }
   .grid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    @apply flex flex-col items-center;
 
     .row {
-      display: flex;
+      @apply flex;
     }
 
     .cell {
-      width: 100px;
-      height: 100px;
-      background-color: #1f2937;
-      border: 1px solid #4b5563;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      font-size: 1rem;
-      cursor: pointer;
-      position: relative;
-      transition: transform 0.1s ease-in-out;
-      user-select: none;
+      @apply w-[100px] h-[100px] bg-[#1f2937] border border-[#4b5563] text-white flex justify-center items-center flex-col text-base cursor-pointer relative transition-transform duration-100 ease-in-out select-none;
 
       &:hover {
-        background-color: var(--color-red);
+        @apply bg-red;
       }
 
       &:focus-visible {
-        outline: 3px solid #facc15;
-        outline-offset: 2px;
+        @apply outline-[3px] outline-yellow outline-offset-2;
       }
 
       &.hit {
-        background-color: #374151;
+        @apply bg-[#374151];
       }
 
       &.boss-hit {
-        background-color: #ef4444;
+        @apply bg-red;
         animation: flash-hit 0.5s ease-out;
       }
 
       &.miss {
-        background-color: #6b7280;
+        @apply bg-[#6b7280];
         animation: shake 0.4s ease-in-out;
       }
 
       small {
-        font-size: 0.6rem;
-        color: #d1d5db;
-        margin-top: 4px;
+        @apply text-[0.6rem] text-[#d1d5db] mt-1;
       }
     }
   }
 
   .status-bar {
-    margin-top: 1.5rem;
-    font-size: 0.9rem;
-    color: #f3f4f6;
+    @apply mt-6 text-[0.9rem] text-[#f3f4f6];
     text-shadow: 1px 1px 6px black;
   }
 
   button {
-    margin-top: 1rem;
-    background-color: var(--color-button);
-    color: white;
-    border: none;
-    padding: 1.75rem 2.5rem;
-    font-weight: bold;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1rem;
+    @apply mt-4 bg-button text-white border-none py-7 px-10 font-bold rounded-md cursor-pointer text-base;
 
     &:focus-visible {
-      outline: 3px solid #facc15;
-      outline-offset: 2px;
+      @apply outline-[3px] outline-yellow outline-offset-2;
     }
 
     &:hover {
-      background-color: var(--color-button-hover);
+      @apply bg-button-hover;
     }
 
     &:active {
-      transform: scale(0.98);
+      @apply scale-[0.98];
     }
   }
 
   &:focus-within {
-    outline: none;
+    @apply outline-none;
   }
 }
 
 .game-message {
-  text-align: center;
-  font-size: large;
-  margin: 1.5rem auto;
-  color: var(--color-primary);
-  line-height: 1.5rem;
-  max-width: 800px;
-  background-color: black;
-  padding: 0.5rem;
+  @apply text-center text-lg my-6 mx-auto text-primary leading-6 max-w-[800px] bg-black p-2;
 }
 
 .leyenda {
-  display: flex;
-  justify-content: space-between;
-  max-width: 500px;
-  margin: 0 auto 2rem;
+  @apply flex justify-between max-w-[500px] mx-auto mb-8;
 }
 
 @media (width <= 768px) {
   .boss-container {
     .grid {
       .cell {
-        width: 16vw;
-        height: 16vw;
-        font-size: 0.7rem;
+        @apply w-[16vw] h-[16vw] text-[0.7rem];
 
         small {
-          font-size: 0.45rem;
+          @apply text-[0.45rem];
         }
       }
     }
 
     button {
-      font-size: 0.85rem;
-      padding: 1.5rem 1rem;
+      @apply text-[0.85rem] py-6 px-4;
     }
 
     .status-bar {
-      font-size: 0.75rem;
+      @apply text-[0.75rem];
     }
   }
 }

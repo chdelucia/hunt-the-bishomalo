@@ -1,99 +1,59 @@
 .prizes {
-  text-align: center;
-  align-content: center;
-  height: 100vh;
+  @apply text-center grid place-content-center h-screen relative;
   &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    @apply content-[''] absolute inset-0 bg-cover bg-center blur-[5px] z-0;
     background-image: url('/scenarios/2.gif');
-    background-size: cover;
-    background-position: center;
-    filter: blur(5px);
-    z-index: 0;
   }
   p {
-    color: #00ff5e;
-    margin: 4rem 0;
+    @apply text-primary my-16 relative z-[2] font-game;
     text-shadow: 1px 1px 8px black;
-    position: relative;
-    z-index: 2;
     font-size: clamp(1rem, 2vw, 2.5rem);
   }
 
   button {
-    font-family: 'Press Start 2P', monospace;
-    position: relative;
-    z-index: 2;
-    margin-bottom: 2rem;
-    padding: 1.5rem;
-    background-color: var(--color-button);
+    @apply font-game relative z-[2] mb-8 p-6 bg-button;
     &:hover {
-      background-color: var(--color-button-hover);
+      @apply bg-button-hover;
     }
   }
 }
 .character-container {
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-  align-items: center;
-  margin: 4rem 0;
-  flex-wrap: wrap;
-  padding-bottom: 2rem;
+  @apply flex gap-[30px] justify-center items-center my-16 flex-wrap pb-8;
 }
 
 @media (max-width: 400px) {
   .character {
-    flex: 0 0 45%;
-    margin-bottom: 20px;
+    @apply flex-[0_0_45%] mb-5;
   }
 }
 
 .character {
-  cursor: pointer;
-  filter: grayscale(100%);
-  transition: filter 0.5s ease, box-shadow 0.5s ease;
-  border-radius: 10px;
-  padding: 5px;
-  text-align: center;
-  width: 120px;
-  user-select: none;
+  @apply cursor-pointer grayscale transition-[filter,box-shadow] duration-500 rounded-[10px] p-[5px] text-center w-[120px] select-none;
   text-shadow: 1px 1px 8px black;
   img {
-    width: 100%;
-    border-radius: 10px;
-    pointer-events: none;
+    @apply w-full rounded-[10px] pointer-events-none;
     filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.8));
   }
 
-  &:hover:not(.character.owned) {
-    filter: grayscale(0%);
-    box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.7);
+  &:hover:not(.owned) {
+    @apply grayscale-0 shadow-[0_0_15px_5px_rgba(255,215,0,0.7)];
   }
 
   &.selected {
-    filter: grayscale(0%);
-    box-shadow: 0 0 20px 6px rgba(255, 215, 0, 0.9);
+    @apply grayscale-0 shadow-[0_0_20px_6px_rgba(255,215,0,0.9)];
     .char-name {
-      color: #ffffff;
+      @apply text-white;
     }
   }
 
   &.owned {
-    filter: grayscale(0%);
+    @apply grayscale-0;
     .char-name {
-      color: #ffffff;
+      @apply text-white;
     }
   }
 
   .char-name {
-    margin-top: 0.5rem;
-    font-weight: bold;
-    text-transform: capitalize;
-    color: #333;
+    @apply mt-2 font-bold capitalize text-[#333];
   }
 }
