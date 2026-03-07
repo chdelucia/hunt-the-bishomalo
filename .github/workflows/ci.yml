@@ -1,4 +1,4 @@
-name: CI, Coverage & Deploy (master)
+name: CI, Coverage, E2E & Deploy (master)
 
 on:
   push:
@@ -41,21 +41,20 @@ jobs:
       - name: Validate commit messages
         run: |
           npm install --no-save @commitlint/{cli,config-conventional}
-           # Validar solo si hay suficientes commits, si no validar desde el primer commit
-           COMMIT_RANGE=$(git rev-list --count HEAD)
-           if [ "$COMMIT_RANGE" -ge 10 ]; then
-             npx commitlint --from=HEAD~10 --to=HEAD --verbose
-           else
-             npx commitlint --from=$(git rev-list --max-parents=0 HEAD) --to=HEAD --verbose || true
-           fi
+          COMMIT_COUNT=$(git rev-list --count HEAD)
+          if [ "$COMMIT_COUNT" -ge 10 ]; then
+            npx commitlint --from=HEAD~10 --to=HEAD --verbose
+          else
+            npx commitlint --from=$(git rev-list --max-parents=0 HEAD) --to=HEAD --verbose || true
+          fi
 
-  build-and-test:
+  install:
     runs-on: ubuntu-latest
     needs: setup
+    outputs:
+      cache-key: ${{ steps.npm-cache.outputs.cache-hit }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -66,27 +65,115 @@ jobs:
       - name: Install dependencies
         run: npm ci --legacy-peer-deps
 
-      - name: Install Cypress
-        run: npx cypress install
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        id: npm-cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-      - name: Lint
+  lint:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Restore node_modules cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
+
+      - name: Lint (Nx monorepo)
         run: npx nx run-many -t lint
 
-      - name: Test with coverage
-        run: npx nx test hunt-the-bishomalo --coverage --coverageReporters=lcov
+  test:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - uses: actions/checkout@v4
 
-      - name: Build production
-        run: npx nx build hunt-the-bishomalo --configuration=production
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Restore node_modules cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
+
+      - name: Unit Tests (coverage)
+        run: npx nx run-many -t test --coverage --coverageReporters=lcov
 
       - name: Upload coverage to SonarCloud
         uses: SonarSource/sonarqube-scan-action@v6
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
+  e2e:
+    runs-on: ubuntu-latest
+    needs: install
+    continue-on-error: true  # 👈 no bloquea CI
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Restore node_modules cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
+
+      # 🧠 caché de Cypress (evita reinstalaciones)
+      - name: Cache Cypress binary
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            cypress-cache-${{ runner.os }}-
+
+      - name: Install Cypress (si no está en cache)
+        run: npx cypress install
+
+      # E2E Nx avanzado (monorepo)
+      - name: Run Nx E2E (non-blocking)
+        run: npx nx e2e hunt-the-bishomalo-e2e
+        continue-on-error: true
+
+  build:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Restore node_modules cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
+
+      - name: Build production (Nx)
+        run: npx nx run-many -t build --configuration=production
+
   release:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
-    needs: [validate, build-and-test]
+    needs: [validate, lint, test, build]
     steps:
       - uses: actions/checkout@v4
         with:
