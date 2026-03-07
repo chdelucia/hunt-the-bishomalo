@@ -1,5 +1,9 @@
-import { computed } from '@angular/core';
-import { signalStoreFeature, withState, withComputed, withMethods, patchState } from '@ngrx/signals';
+import {
+  signalStoreFeature,
+  withState,
+  withMethods,
+  patchState,
+} from '@ngrx/signals';
 import { Cell } from '../../models';
 
 export const initialStatus = {
@@ -33,7 +37,7 @@ export function withGameStatusFeature() {
       },
       $_resetGameStatus() {
         patchState(store, initialStatus);
-      }
-    }))
+      },
+    })),
   );
 }

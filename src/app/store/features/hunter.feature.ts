@@ -1,5 +1,11 @@
 import { computed } from '@angular/core';
-import { signalStoreFeature, withState, withComputed, withMethods, patchState } from '@ngrx/signals';
+import {
+  signalStoreFeature,
+  withState,
+  withComputed,
+  withMethods,
+  patchState,
+} from '@ngrx/signals';
 import { Hunter, Direction } from '../../models';
 
 export const initialHunter: Hunter = {
@@ -28,7 +34,7 @@ export function withHunterFeature() {
       },
       $_resetHunter() {
         patchState(store, { hunter: initialHunter });
-      }
-    }))
+      },
+    })),
   );
 }

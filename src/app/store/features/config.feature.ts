@@ -1,5 +1,11 @@
 import { computed, inject } from '@angular/core';
-import { signalStoreFeature, withState, withComputed, withMethods, patchState } from '@ngrx/signals';
+import {
+  signalStoreFeature,
+  withState,
+  withComputed,
+  withMethods,
+  patchState,
+} from '@ngrx/signals';
 import { GameSettings, Chars } from '../../models';
 import { LocalstorageService } from '../../services';
 
@@ -30,7 +36,7 @@ export function withConfigFeature() {
       $_resetConfig() {
         localStorage.clearValue(storageSettingsKey);
         patchState(store, { settings: {} as GameSettings });
-      }
-    }))
+      },
+    })),
   );
 }

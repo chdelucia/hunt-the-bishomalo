@@ -1,13 +1,7 @@
 import { computed, inject } from '@angular/core';
-import {
-  signalStore,
-  patchState,
-  withHooks,
-  withMethods,
-  withComputed,
-} from '@ngrx/signals';
+import { signalStore, patchState, withHooks, withMethods, withComputed } from '@ngrx/signals';
 import { LocalstorageService } from '../services';
-import { GameSettings, Chars, GameState, GameItem } from '../models';
+import { GameSettings, Chars, GameState, GameItem, Hunter } from '../models';
 import { withHunterFeature } from './features/hunter.feature';
 import { withConfigFeature, storageSettingsKey } from './features/config.feature';
 import { withGameStatusFeature } from './features/game-status.feature';
@@ -95,7 +89,7 @@ export const GameStore = signalStore(
         }
 
         if (Object.keys(statusPartial).length > 0) {
-          store.$_updateGameStatus(statusPartial as any);
+          store.$_updateGameStatus(statusPartial);
         }
 
         persistGameState();
@@ -107,7 +101,7 @@ export const GameStore = signalStore(
 
       setMessage(message: string) {
         store.$_setMessage(message);
-      }
+      },
     };
   }),
   withHooks({

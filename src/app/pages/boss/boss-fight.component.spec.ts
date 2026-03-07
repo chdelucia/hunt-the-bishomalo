@@ -92,14 +92,22 @@ describe('BossFightComponent', () => {
     } as any;
     component.bossStore.resetGame(settings);
 
-    const cell = component.bossStore.grid().flat().find(c => !c.hasBossPart);
+    const cell = component.bossStore
+      .grid()
+      .flat()
+      .find((c) => !c.hasBossPart);
     if (cell) {
       component.bossStore.attackCell(cell);
     }
 
     expect(component.bossStore.gameOver()).toBe(true);
     expect(component.bossStore.message()).toContain('bossFightMessages.playerDefeated');
-    expect(component.bossStore.grid().flat().filter((c) => c.hasBossPart && c.hit).length).toBeGreaterThan(0);
+    expect(
+      component.bossStore
+        .grid()
+        .flat()
+        .filter((c) => c.hasBossPart && c.hit).length,
+    ).toBeGreaterThan(0);
   });
 
   it('should retry game if hunter has lives', () => {
