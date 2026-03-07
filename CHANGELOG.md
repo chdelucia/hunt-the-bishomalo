@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.1.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.0.10...v7.1.0) (2026-03-07)
+
+
+### Features
+
+* new angular fflow ([efe8544](https://github.com/chdelucia/hunt-the-bishomalo/commit/efe85445b7adaa4fd6bcb3a13c37868d426c7b75))
+* update angular templates ([2880419](https://github.com/chdelucia/hunt-the-bishomalo/commit/28804191a5ae2b615a2bcf36b3c8e211e8e05582))
+
 ### [7.0.10](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.0.9...v7.0.10) (2025-12-01)
 
 ### [7.0.9](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.0.8...v7.0.9) (2025-11-26)
