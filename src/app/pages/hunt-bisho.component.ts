@@ -1,5 +1,5 @@
 import { Component, computed, inject } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
 import {
   AppWumpusAttackAnimationComponent,
   BlackoutComponent,
@@ -18,6 +18,7 @@ import { GameStore } from '../store';
   selector: 'app-hunt-bisho',
   imports: [
     RouterModule,
+    CommonModule,
     GameCellComponent,
     VisualEffectDirective,
     AppWumpusAttackAnimationComponent,

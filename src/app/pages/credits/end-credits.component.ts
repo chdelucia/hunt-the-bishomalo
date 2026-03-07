@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, signal, inject } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { GameSound, RouteTypes } from 'src/app/models';
@@ -8,7 +8,7 @@ import { GameEngineService, GameSoundService } from 'src/app/services';
 @Component({
   selector: 'app-end-credits',
   standalone: true,
-  imports: [RouterModule, TranslocoModule],
+  imports: [CommonModule, RouterModule, TranslocoModule],
   templateUrl: './end-credits.component.html',
   styleUrl: './end-credits.component.scss',
 })
