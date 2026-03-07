@@ -1,0 +1,36 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2022",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@hunt-the-bishomalo/game-api": ["libs/game/api/src/index.ts"],
+      "@hunt-the-bishomalo/game-data-access": ["libs/game/data-access/src/index.ts"],
+      "@hunt-the-bishomalo/game-feature": ["libs/game/feature/src/index.ts"],
+      "@hunt-the-bishomalo/game-shell": ["libs/game/shell/src/index.ts"],
+      "@hunt-the-bishomalo/settings-api": ["libs/settings/api/src/index.ts"],
+      "@hunt-the-bishomalo/settings-data-access": ["libs/settings/data-access/src/index.ts"],
+      "@hunt-the-bishomalo/settings-feature": ["libs/settings/feature/src/index.ts"],
+      "@hunt-the-bishomalo/settings-shell": ["libs/settings/shell/src/index.ts"],
+      "@hunt-the-bishomalo/shared-ui": ["libs/shared/ui/src/index.ts"],
+      "@hunt-the-bishomalo/shared-util": ["libs/shared/util/src/index.ts"],
+      "@hunt-the-bishomalo/shared-feature": ["libs/shared/feature/src/index.ts"],
+      "@hunt-the-bishomalo/shared-models": ["libs/shared/models/src/index.ts"],
+      "@hunt-the-bishomalo/shared-guards": ["libs/shared/guards/src/index.ts"],
+      "@hunt-the-bishomalo/shared-services": ["libs/shared/services/src/index.ts"],
+      "@hunt-the-bishomalo/shared-directives": ["libs/shared/directives/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}
