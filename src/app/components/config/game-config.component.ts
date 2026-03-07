@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, isDevMode } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { NgOptimizedImage } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { GameEngineService, GameSoundService } from 'src/app/services';
 import {
@@ -17,7 +17,7 @@ import { GameStore } from 'src/app/store';
 @Component({
   selector: 'app-game-config',
   standalone: true,
-  imports: [ReactiveFormsModule, NgOptimizedImage, TranslocoModule],
+  imports: [CommonModule, ReactiveFormsModule, NgOptimizedImage, TranslocoModule],
   templateUrl: './game-config.component.html',
   styleUrls: ['./game-config.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

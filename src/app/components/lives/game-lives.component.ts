@@ -1,8 +1,9 @@
 import { Component, computed, input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-game-lives',
-  imports: [],
+  imports: [CommonModule],
   standalone: true,
   templateUrl: './game-lives.component.html',
   styleUrl: './game-lives.component.scss',
