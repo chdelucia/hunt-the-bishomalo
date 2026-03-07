@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -16,7 +17,7 @@ import { GameStore } from 'src/app/store';
   standalone: true,
   templateUrl: './app-wumpus-attack-animation.component.html',
   styleUrls: ['./app-wumpus-attack-animation.component.scss'],
-  imports: [],
+  imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppWumpusAttackAnimationComponent implements OnInit, OnDestroy {

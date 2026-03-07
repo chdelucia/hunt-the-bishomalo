@@ -1,5 +1,5 @@
 import { Component, computed, inject, signal } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { GameEngineService } from 'src/app/services';
 import { Product, RouteTypes } from 'src/app/models';
@@ -8,7 +8,7 @@ import { GameStore } from 'src/app/store';
 
 @Component({
   selector: 'app-shop',
-  imports: [TranslocoModule],
+  imports: [CommonModule, TranslocoModule],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss',
 })

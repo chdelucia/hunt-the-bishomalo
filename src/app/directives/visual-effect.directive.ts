@@ -1,11 +1,11 @@
-import { Directive, ElementRef, OnChanges, Renderer2, inject, input } from '@angular/core';
+import { Directive, ElementRef, Input, OnChanges, Renderer2, inject } from '@angular/core';
 
 @Directive({
   selector: '[appVisualEffect]',
   standalone: true,
 })
 export class VisualEffectDirective implements OnChanges {
-  readonly perception = input('', { alias: 'appVisualEffect' });
+  @Input('appVisualEffect') perception = '';
 
   private readonly el = inject(ElementRef);
   private readonly renderer = inject(Renderer2);
@@ -16,16 +16,15 @@ export class VisualEffectDirective implements OnChanges {
     const container = this.renderer.createElement('div');
     this.renderer.addClass(container, 'effect-layer');
 
-    const perception = this.perception();
-    if (perception.includes('brisa') || perception.includes('breeze')) {
+    if (this.perception.includes('brisa') || this.perception.includes('breeze')) {
       this.addClouds(container);
     }
 
-    if (perception.includes('hedor') || perception.includes('stench')) {
+    if (this.perception.includes('hedor') || this.perception.includes('stench')) {
       this.addStink(container);
     }
 
-    if (perception.includes('brillo') || perception.includes('shine')) {
+    if (this.perception.includes('brillo') || this.perception.includes('shine')) {
       this.addSparkles(container);
     }
 

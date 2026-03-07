@@ -20,8 +20,7 @@
     </button>
   </div>
 
-  @if (tabActiva() === 'general') {
-  <div class="tab-contenido">
+  <div *ngIf="tabActiva() === 'general'" class="tab-contenido">
     <div class="resumen-container">
       <div class="resumen-seccion">
         <h2 class="resumen-titulo">{{ 'results.summaryTitle' | transloco }}</h2>
@@ -32,18 +31,21 @@
               <p class="stat-valor">{{ estadisticas.pasosTotales }}</p>
             </div>
           </div>
+
           <div class="stat-card">
             <div class="stat-info">
               <h3 class="stat-nombre">{{ 'results.playTime' | transloco }}</h3>
               <p class="stat-valor">{{ estadisticas.tiempoJuego }}</p>
             </div>
           </div>
+
           <div class="stat-card">
             <div class="stat-info">
               <h3 class="stat-nombre">{{ 'results.levelsCompleted' | transloco }}</h3>
               <p class="stat-valor">{{ estadisticas.nivelesCompletados }}</p>
             </div>
           </div>
+
           <div class="stat-card">
             <div class="stat-info">
               <h3 class="stat-nombre">{{ 'results.achievementsUnlocked' | transloco }}</h3>
@@ -52,6 +54,7 @@
           </div>
         </div>
       </div>
+
       <div class="resumen-seccion">
         <h2 class="resumen-titulo">{{ 'results.personalRecordsTitle' | transloco }}</h2>
         <div class="records-lista">
@@ -99,8 +102,8 @@
       </div>
     </div>
   </div>
-  } @if (tabActiva() === 'niveles') {
-  <div class="tab-contenido">
+
+  <div *ngIf="tabActiva() === 'niveles'" class="tab-contenido">
     <div class="niveles-container">
       <table class="niveles-tabla">
         <thead>
@@ -112,19 +115,17 @@
           </tr>
         </thead>
         <tbody>
-          @for (entry of leaderboard; track entry) {
-          <tr>
+          <tr *ngFor="let entry of leaderboard">
             <td>{{ entry.timeInSeconds }}s</td>
             <td>{{ entry.steps }}</td>
             <td>{{ entry.deads }}</td>
             <td>{{ entry.level }}</td>
           </tr>
-          }
         </tbody>
       </table>
     </div>
   </div>
-  } }@else{
+  }@else{
   <p>{{ 'results.noStatsMessage' | transloco }}</p>
   }
 

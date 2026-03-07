@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { AchieveTypes, Chars, RouteTypes } from 'src/app/models';
 import { AchievementService } from 'src/app/services';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'app-characters',
-  imports: [NgOptimizedImage, TranslocoModule],
+  imports: [CommonModule, NgOptimizedImage, TranslocoModule],
   templateUrl: './characters.component.html',
   styleUrl: './characters.component.scss',
 })
