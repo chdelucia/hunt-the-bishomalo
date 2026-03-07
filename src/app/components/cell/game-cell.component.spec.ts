@@ -65,7 +65,7 @@ describe('GameCellComponent', () => {
   });
 
   it('should detect hunter on this cell (isHunterCell)', () => {
-    const result = component.isHunterCell()();
+    const result = component.isHunterCell();
     expect(result).toBe(true);
   });
 
