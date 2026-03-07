@@ -1,5 +1,5 @@
 import { Component, computed, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import {
   AppWumpusAttackAnimationComponent,
   BlackoutComponent,
@@ -18,7 +18,6 @@ import { GameStore } from '../store';
   selector: 'app-hunt-bisho',
   imports: [
     RouterModule,
-    CommonModule,
     GameCellComponent,
     VisualEffectDirective,
     AppWumpusAttackAnimationComponent,
@@ -27,8 +26,8 @@ import { GameStore } from '../store';
     GameMessageComponent,
     MobileControlsComponent,
     GameLivesComponent,
-    GameLevelComponent,
-  ],
+    GameLevelComponent
+],
   templateUrl: './hunt-bisho.component.html',
   styleUrl: './hunt-bisho.component.scss',
 })

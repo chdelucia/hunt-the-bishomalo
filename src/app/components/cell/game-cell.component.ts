@@ -1,5 +1,5 @@
 import { Component, computed, inject, input, isDevMode } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { Cell, Chars } from '../../models';
 import { GameStore } from 'src/app/store';
@@ -7,7 +7,7 @@ import { GameStore } from 'src/app/store';
 @Component({
   selector: 'app-game-cell',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, TranslocoModule],
+  imports: [NgOptimizedImage, TranslocoModule],
   templateUrl: './game-cell.component.html',
   styleUrl: './game-cell.component.scss',
 })

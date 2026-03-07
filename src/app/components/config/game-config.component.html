@@ -22,27 +22,29 @@
   <div class="difficulty-description">
     <p>
       {{
-        'config.difficultyDescription'
-          | transloco
-            : {
-                maxLives: options.maxLives,
-                maxLevels: options.maxLevels,
-                chance: options.maxChance * 100
-              }
-      }}
-    </p>
-  </div>
+      'config.difficultyDescription'
+      | transloco
+      : {
+      maxLives: options.maxLives,
+      maxLevels: options.maxLevels,
+      chance: options.maxChance * 100
+    }
+    }}
+  </p>
+</div>
 
-  <div *ngIf="isDevMode" class="form-group">
+@if (isDevMode) {
+  <div class="form-group">
     <label for="size">{{ 'config.levelLabel' | transloco }}</label>
     <input id="size" type="number" formControlName="size" min="1" max="20" />
   </div>
+}
 
-  <div class="form-group">
-    <label for="selectedChar">{{ 'config.selectCharacterLabel' | transloco }}</label>
-  </div>
-  <div class="char-selector">
-    @for(char of chars; track $index) {
+<div class="form-group">
+  <label for="selectedChar">{{ 'config.selectCharacterLabel' | transloco }}</label>
+</div>
+<div class="char-selector">
+  @for(char of chars; track $index) {
     <img
       [ngSrc]="$index === 0 ? `chars/${char}/bow.svg` : `chars/${char}/bow.png`"
       [alt]="char"
@@ -55,7 +57,7 @@
       (keydown)="selectChar(char)"
       tabindex="0"
       role="button"
-    />
+      />
     }
   </div>
 

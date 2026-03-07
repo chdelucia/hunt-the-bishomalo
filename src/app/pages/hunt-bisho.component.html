@@ -5,40 +5,42 @@
   <app-title [blackout]="settings.blackout || false" />
 
   @if(settings?.blackout && isAlive && !hasWon){
-  <app-blackout />
+    <app-blackout />
   }
   <section class="board">
     @for (row of board; track $index; let rowIndex = $index) {
-    <div class="row">
-      @for (cell of row; track $index) {
+      <div class="row">
+        @for (cell of row; track $index) {
 
-      <app-game-cell
-        [class.escape]="!rowIndex && $first && game.hasGold()"
-        class="size-{{ boardSize }}"
-        [cell]="cell"
-      />
+          <app-game-cell
+            [class.escape]="!rowIndex && $first && game.hasGold()"
+            class="size-{{ boardSize }}"
+            [cell]="cell"
+            />
+          }
+        </div>
       }
-    </div>
-    }
 
-    <app-wumpus-attack-animation *ngIf="deathByWumpus()" (closeAnimation)="handleclose()" />
-  </section>
+      @if (deathByWumpus()) {
+        <app-wumpus-attack-animation (closeAnimation)="handleclose()" />
+      }
+    </section>
 
-  <section class="player-info">
-    <app-game-level [settings]="settings"></app-game-level>
-    <app-game-lives
+    <section class="player-info">
+      <app-game-level [settings]="settings"></app-game-level>
+      <app-game-lives
+        [lives]="game.lives()"
+        [maxLives]="settings.difficulty.maxLives"
+      ></app-game-lives>
+    </section>
+
+    <app-game-message
+      [message]="game.message()"
+      [isAlive]="isAlive"
+      [hasWon]="hasWon"
+      [settings]="settings"
       [lives]="game.lives()"
-      [maxLives]="settings.difficulty.maxLives"
-    ></app-game-lives>
-  </section>
+      />
 
-  <app-game-message
-    [message]="game.message()"
-    [isAlive]="isAlive"
-    [hasWon]="hasWon"
-    [settings]="settings"
-    [lives]="game.lives()"
-  />
-
-  <app-mobile-controls [isFinish]="hasWon || !isAlive" />
-</main>
+      <app-mobile-controls [isFinish]="hasWon || !isAlive" />
+    </main>
