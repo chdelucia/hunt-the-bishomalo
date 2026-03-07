@@ -1,5 +1,5 @@
-import { Component, computed, inject, input, isDevMode } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { Cell, Chars } from '../../models';
 import { GameStore } from 'src/app/store';
@@ -7,9 +7,10 @@ import { GameStore } from 'src/app/store';
 @Component({
   selector: 'app-game-cell',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, TranslocoModule],
+  imports: [NgOptimizedImage, TranslocoModule],
   templateUrl: './game-cell.component.html',
   styleUrl: './game-cell.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameCellComponent {
   cell = input.required<Cell>();
@@ -37,13 +38,12 @@ export class GameCellComponent {
 
   readonly showGoldIcon = computed(() => this.gameStore.hasGold() && this.settings.size < 12);
 
-  readonly showHunter = computed(() => this.isHunterCell()() && this.gameStore.isAlive());
+  readonly isHunterCell = computed(() => {
+    const currentCell = this.gameStore.currentCell();
+    return currentCell === this.cell();
+  });
 
-  readonly isHunterCell = () =>
-    computed(() => {
-      const currentCell = this.gameStore.currentCell();
-      return currentCell === this.cell();
-    });
+  readonly showHunter = computed(() => this.isHunterCell() && this.gameStore.isAlive());
 
   readonly rotation = computed(() => {
     switch (this.gameStore.hunter().direction) {

@@ -21,7 +21,9 @@
     </div>
     }
 
-    <app-wumpus-attack-animation *ngIf="deathByWumpus()" (closeAnimation)="handleclose()" />
+    @if(deathByWumpus()){
+    <app-wumpus-attack-animation (closeAnimation)="handleclose()" />
+    }
   </section>
 
   <section class="player-info">
