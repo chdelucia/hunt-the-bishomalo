@@ -12,10 +12,10 @@
       </div>
 
       @for (rol of roleKeys; track rol) {
-        <div class="creditos-seccion">
-          <h2 class="creditos-rol">{{ rol | transloco }}</h2>
-          <p class="creditos-nombre">{{ 'credits.nameChrisHeredia' | transloco }}</p>
-        </div>
+      <div class="creditos-seccion">
+        <h2 class="creditos-rol">{{ rol | transloco }}</h2>
+        <p class="creditos-nombre">{{ 'credits.nameChrisHeredia' | transloco }}</p>
+      </div>
       }
 
       <div class="creditos-seccion">
@@ -48,7 +48,7 @@
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         class="personaje-svg"
-        >
+      >
         <rect x="8" y="2" width="8" height="8" rx="4" fill="#4ade80" />
         <path
           d="M12 10v7M8 22l4-5 4 5M8 14h8"
@@ -56,28 +56,28 @@
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          />
-          <path
-            class="personaje-ojos"
-            d="M10 6h1M13 6h1"
-            stroke="#1f2937"
-            stroke-width="1"
-            stroke-linecap="round"
-            />
-            <path
-              class="personaje-boca"
-              d="M10 8l2 1 2-1"
-              stroke="#1f2937"
-              stroke-width="1"
-              stroke-linecap="round"
-              />
-            </svg>
-          </div>
-          <div class="creditos-mensaje">
-            <p [innerHTML]="'credits.quoteSolo' | transloco"></p>
-          </div>
-          <button class="boton-creditos red" (click)="newGame()">
-            {{ 'credits.newGameButton' | transloco }}
-          </button>
-        </div>
-      </div>
+        />
+        <path
+          class="personaje-ojos"
+          d="M10 6h1M13 6h1"
+          stroke="#1f2937"
+          stroke-width="1"
+          stroke-linecap="round"
+        />
+        <path
+          class="personaje-boca"
+          d="M10 8l2 1 2-1"
+          stroke="#1f2937"
+          stroke-width="1"
+          stroke-linecap="round"
+        />
+      </svg>
+    </div>
+    <div class="creditos-mensaje">
+      <p [innerHTML]="'credits.quoteSolo' | transloco"></p>
+    </div>
+    <button class="boton-creditos red" (click)="newGame()">
+      {{ 'credits.newGameButton' | transloco }}
+    </button>
+  </div>
+</div>

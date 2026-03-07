@@ -26,8 +26,8 @@ import { GameStore } from '../store';
     GameMessageComponent,
     MobileControlsComponent,
     GameLivesComponent,
-    GameLevelComponent
-],
+    GameLevelComponent,
+  ],
   templateUrl: './hunt-bisho.component.html',
   styleUrl: './hunt-bisho.component.scss',
 })

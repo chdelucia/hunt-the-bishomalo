@@ -3,66 +3,61 @@
 
   <div class="grid" role="grid" [attr.aria-label]="'bossFight.boardAriaLabel' | transloco">
     @for (row of grid; track row; let rowIndex = $index) {
-      <div class="row">
-        @for (cell of row; track cell; let colIndex = $index) {
-          <div
-            class="cell"
-            tabindex="0"
-            [attr.aria-label]="getAriaLabel(cell, rowIndex, colIndex)"
-            (click)="attackCell(cell)"
-            (keydown.enter)="attackCell(cell)"
-            (keydown.space)="attackCell(cell)"
-            [class.hit]="cell.hit"
-            [class.boss-hit]="cell.hit && cell.hasBossPart"
-            [class.miss]="cell.hit && !cell.hasBossPart"
-            >
-            @if (cell.hit && cell.hasBossPart) {
-              <span aria-hidden="true">
-                @let char = _settings().selectedChar;
-                <img
-                  [ngSrc]="`chars/${char}/boss.png`"
-                  alt="{{ 'bossFight.bossImageAlt' | transloco }}"
-                  fill
-                  />
-                </span>
-              }
-              @if (cell.hit && !cell.hasBossPart) {
-                <span aria-hidden="true">❌</span>
-              }
-            </div>
-          }
-        </div>
-      }
-    </div>
-
-    <div class="status-bar">
-      <div class="leyenda">
-        <span aria-live="polite">{{
-          'bossFight.attemptsLeft' | transloco : { playerLives: playerLives }
-        }}</span>
-        <span aria-live="polite">{{
-          'bossFight.bossHealth' | transloco : { bossRemaining: bossRemaining }
-        }}</span>
+    <div class="row">
+      @for (cell of row; track cell; let colIndex = $index) {
+      <div
+        class="cell"
+        tabindex="0"
+        [attr.aria-label]="getAriaLabel(cell, rowIndex, colIndex)"
+        (click)="attackCell(cell)"
+        (keydown.enter)="attackCell(cell)"
+        (keydown.space)="attackCell(cell)"
+        [class.hit]="cell.hit"
+        [class.boss-hit]="cell.hit && cell.hasBossPart"
+        [class.miss]="cell.hit && !cell.hasBossPart"
+      >
+        @if (cell.hit && cell.hasBossPart) {
+        <span aria-hidden="true">
+          @let char = _settings().selectedChar;
+          <img
+            [ngSrc]="`chars/${char}/boss.png`"
+            alt="{{ 'bossFight.bossImageAlt' | transloco }}"
+            fill
+          />
+        </span>
+        } @if (cell.hit && !cell.hasBossPart) {
+        <span aria-hidden="true">❌</span>
+        }
       </div>
-
-      <p aria-live="polite" class="game-message">{{ message }}</p>
-
-      @if (gameOver && bossRemaining) {
-        <button
-          (click)="retryGame()"
-          [attr.aria-label]="'bossFight.retryGameAriaLabel' | transloco"
-          >
-          {{ 'bossFight.continuesButton' | transloco : { livesLeft: this.gameStore.lives() } }}
-        </button>
-      }
-      @if(gameOver && !bossRemaining){
-        <button
-          [attr.aria-label]="'bossFight.nextButtonAriaLabel' | transloco"
-          class="next-btn"
-          (click)="goToprizeScreen()"
-          >
-          {{ 'bossFight.youWonButton' | transloco }}
-        </button>
       }
     </div>
-  </section>
+    }
+  </div>
+
+  <div class="status-bar">
+    <div class="leyenda">
+      <span aria-live="polite">{{
+        'bossFight.attemptsLeft' | transloco : { playerLives: playerLives }
+      }}</span>
+      <span aria-live="polite">{{
+        'bossFight.bossHealth' | transloco : { bossRemaining: bossRemaining }
+      }}</span>
+    </div>
+
+    <p aria-live="polite" class="game-message">{{ message }}</p>
+
+    @if (gameOver && bossRemaining) {
+    <button (click)="retryGame()" [attr.aria-label]="'bossFight.retryGameAriaLabel' | transloco">
+      {{ 'bossFight.continuesButton' | transloco : { livesLeft: this.gameStore.lives() } }}
+    </button>
+    } @if(gameOver && !bossRemaining){
+    <button
+      [attr.aria-label]="'bossFight.nextButtonAriaLabel' | transloco"
+      class="next-btn"
+      (click)="goToprizeScreen()"
+    >
+      {{ 'bossFight.youWonButton' | transloco }}
+    </button>
+    }
+  </div>
+</section>

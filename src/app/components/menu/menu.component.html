@@ -7,28 +7,28 @@
 </button>
 
 @if (opened) {
-  <div class="mobile-menu">
-    <ul>
-      <li><button>&nbsp;</button></li>
-      <li>
-        <button (click)="nagivateTo(ROUTES.HOME)">{{ 'menu.home' | transloco }}</button>
-      </li>
-      <li>
-        <button (click)="nagivateTo(ROUTES.ACHIEVEMENTS)">
-          {{ 'menu.achievements' | transloco }}
-        </button>
-      </li>
-      <li>
-        <button (click)="nagivateTo(ROUTES.RULES)">{{ 'menu.instructions' | transloco }}</button>
-      </li>
-      <li>
-        <button (click)="nagivateTo(ROUTES.CREDITS)">{{ 'menu.credits' | transloco }}</button>
-      </li>
-      <li>
-        <button (click)="newGame()" class="newgame">{{ 'menu.newGame' | transloco }}</button>
-      </li>
-    </ul>
-  </div>
+<div class="mobile-menu">
+  <ul>
+    <li><button>&nbsp;</button></li>
+    <li>
+      <button (click)="nagivateTo(ROUTES.HOME)">{{ 'menu.home' | transloco }}</button>
+    </li>
+    <li>
+      <button (click)="nagivateTo(ROUTES.ACHIEVEMENTS)">
+        {{ 'menu.achievements' | transloco }}
+      </button>
+    </li>
+    <li>
+      <button (click)="nagivateTo(ROUTES.RULES)">{{ 'menu.instructions' | transloco }}</button>
+    </li>
+    <li>
+      <button (click)="nagivateTo(ROUTES.CREDITS)">{{ 'menu.credits' | transloco }}</button>
+    </li>
+    <li>
+      <button (click)="newGame()" class="newgame">{{ 'menu.newGame' | transloco }}</button>
+    </li>
+  </ul>
+</div>
 }
 
 <div class="menu-desktop">
@@ -38,9 +38,9 @@
       [routerLink]="ROUTES.ACHIEVEMENTS"
       src="trophy.svg"
       alt="{{ 'menu.achievementsAlt' | transloco }}"
-      />
-    </div>
-    <div class="right-icon">
-      <ng-content></ng-content>
-    </div>
+    />
   </div>
+  <div class="right-icon">
+    <ng-content></ng-content>
+  </div>
+</div>

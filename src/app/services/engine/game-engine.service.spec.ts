@@ -102,24 +102,6 @@ describe('GameEngineService (with useValue)', () => {
   });
 
   it('initGame: calls stop, setSettings, initializeGameBoard and checkCurrentCell', () => {
-    const config = {
-      size: 2,
-      player: 'Player',
-      arrows: 3,
-      pits: 2,
-      wumpus: 1,
-      selectedChar: Chars.LARA,
-      difficulty: {
-        maxLevels: 10,
-        maxChance: 0.35,
-        baseChance: 0.12,
-        gold: 60,
-        maxLives: 8,
-        luck: 8,
-        bossTries: 12,
-      },
-      startTime: '12/98/09',
-    };
     const initGameBoardSpy = jest.spyOn(service, 'initializeGameBoard');
 
     service.initGame();
