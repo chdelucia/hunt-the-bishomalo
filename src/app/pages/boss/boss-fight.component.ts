@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { GameSoundService } from 'src/app/services';
 import { GameSound, RouteTypes } from 'src/app/models';
@@ -17,7 +17,7 @@ interface BossCell {
 @Component({
   selector: 'app-boss-fight',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, TranslocoModule],
+  imports: [NgOptimizedImage, TranslocoModule],
   templateUrl: './boss-fight.component.html',
   styleUrl: './boss-fight.component.scss',
 })

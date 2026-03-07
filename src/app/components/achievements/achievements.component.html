@@ -60,8 +60,8 @@
     </div>
 
     <div class="achievements-grid">
+      @for (achievement of filteredAchievements; track achievement) {
       <div
-        *ngFor="let achievement of filteredAchievements"
         [ngClass]="{
           'achievement-unlocked': achievement.unlocked,
           'achievement-locked': !achievement.unlocked
@@ -96,7 +96,8 @@
           <p class="achievement-description">
             {{ `achievements.${achievement.id}.description` | transloco}}
           </p>
-          <div *ngIf="achievement.unlocked" class="status-unlocked">
+          @if (achievement.unlocked) {
+          <div class="status-unlocked">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="status-icon"
@@ -111,7 +112,8 @@
             </svg>
             <span>{{ 'achievements.statusUnlocked' | transloco }}</span>
           </div>
-          <div *ngIf="!achievement.unlocked" class="status-locked">
+          } @if (!achievement.unlocked) {
+          <div class="status-locked">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="status-icon"
@@ -126,9 +128,13 @@
             </svg>
             <span>{{ 'achievements.statusLocked' | transloco }}</span>
           </div>
+          }
         </div>
-        <div *ngIf="achievement.unlocked" class="achievement-indicator"></div>
+        @if (achievement.unlocked) {
+        <div class="achievement-indicator"></div>
+        }
       </div>
+      }
     </div>
   </div>
 </div>

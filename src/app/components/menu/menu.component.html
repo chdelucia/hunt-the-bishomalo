@@ -6,7 +6,8 @@
   <div [ngClass]="{ bar: true, bar3: true, open: opened }"></div>
 </button>
 
-<div class="mobile-menu" *ngIf="opened">
+@if (opened) {
+<div class="mobile-menu">
   <ul>
     <li><button>&nbsp;</button></li>
     <li>
@@ -28,6 +29,7 @@
     </li>
   </ul>
 </div>
+}
 
 <div class="menu-desktop">
   <div class="left-icons">

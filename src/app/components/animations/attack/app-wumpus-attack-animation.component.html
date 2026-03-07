@@ -23,11 +23,11 @@
     </div>
 
     <!-- Sangre -->
-    <ng-container *ngIf="step() >= 4">
-      <div class="blood" style="left: 40%; top: 30%"></div>
-      <div class="blood" style="left: 60%; top: 40%"></div>
-      <div class="blood" style="left: 30%; top: 60%"></div>
-    </ng-container>
+    @if (step() >= 4) {
+    <div class="blood" style="left: 40%; top: 30%"></div>
+    <div class="blood" style="left: 60%; top: 40%"></div>
+    <div class="blood" style="left: 30%; top: 60%"></div>
+    }
   </div>
 
   <div class="message">¡EL WUMPUS TE HA DEVORADO!</div>

@@ -1,5 +1,6 @@
 <div class="toast-container">
-  <div class="toast" *ngFor="let toast of toasts()">
+  @for (toast of toasts(); track toast) {
+  <div class="toast">
     <img
       class="icon"
       [ngSrc]="'achievements/' + toast.achievement.svgIcon"
@@ -11,4 +12,5 @@
       <strong>{{ toast.achievement.title }}</strong>
     </div>
   </div>
+  }
 </div>

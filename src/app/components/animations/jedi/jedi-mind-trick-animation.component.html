@@ -1,8 +1,8 @@
 <div class="jedi-container" routerLink="/home">
   <div class="force-text">
-    <div *ngIf="step >= 3" class="whisper-text" [ngClass]="'opacity-' + (step - 2)">
-      Contrata a Chris
-    </div>
+    @if (step >= 3) {
+    <div class="whisper-text" [ngClass]="'opacity-' + (step - 2)">Contrata a Chris</div>
+    }
   </div>
 
   <div class="animation-container" [ngClass]="'step-' + step">
@@ -45,8 +45,8 @@
         <path d="M95 65 Q100 70 105 65" stroke="#000" stroke-width="1.5" stroke-linecap="round" />
 
         <!-- Right hand -->
+        @if (step === 1) {
         <rect
-          *ngIf="step === 1"
           x="115"
           y="90"
           width="10"
@@ -55,8 +55,8 @@
           rx="5"
           transform="rotate(0, 120, 100)"
         />
+        } @if (step === 2) {
         <rect
-          *ngIf="step === 2"
           x="115"
           y="90"
           width="10"
@@ -65,8 +65,8 @@
           rx="5"
           transform="rotate(20, 120, 100)"
         />
+        } @if (step === 3) {
         <rect
-          *ngIf="step === 3"
           x="115"
           y="90"
           width="10"
@@ -75,8 +75,8 @@
           rx="5"
           transform="rotate(40, 120, 100)"
         />
+        } @if (step === 4) {
         <rect
-          *ngIf="step === 4"
           x="115"
           y="90"
           width="10"
@@ -85,8 +85,8 @@
           rx="5"
           transform="rotate(20, 120, 100)"
         />
+        } @if (step === 5) {
         <rect
-          *ngIf="step === 5"
           x="115"
           y="90"
           width="10"
@@ -95,8 +95,8 @@
           rx="5"
           transform="rotate(0, 120, 100)"
         />
+        } @if (step === 6) {
         <rect
-          *ngIf="step === 6"
           x="115"
           y="90"
           width="10"
@@ -105,6 +105,7 @@
           rx="5"
           transform="rotate(-20, 120, 100)"
         />
+        }
 
         <!-- Left hand -->
         <rect x="75" y="90" width="10" height="20" fill="#FFE4B5" rx="5" />
@@ -123,9 +124,9 @@
       </svg>
     </div>
 
-    <ng-container *ngFor="let wave of forceWaves; let i = index">
-      <div class="force-wave"></div>
-    </ng-container>
+    @for (wave of forceWaves; track wave; let i = $index) {
+    <div class="force-wave"></div>
+    }
   </div>
 
   <div #audioContainer></div>
