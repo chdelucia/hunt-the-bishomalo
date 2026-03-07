@@ -13,6 +13,7 @@ export const initialStatus = {
   isAlive: true,
   hasWon: false,
   lives: 8,
+  isEatenByWumpus: false,
 };
 
 export function withGameStatusFeature() {
@@ -26,6 +27,7 @@ export function withGameStatusFeature() {
         isAlive?: boolean;
         hasWon?: boolean;
         lives?: number;
+        isEatenByWumpus?: boolean;
       }) {
         patchState(store, (state) => ({ ...state, ...partial }));
       },

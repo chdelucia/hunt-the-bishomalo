@@ -110,6 +110,7 @@ export class GameEventService {
     this.gameAchieve.activeAchievement(AchieveTypes.DEATHBYWUMPUES);
     this.gameStore.updateGame({
       lives: this.gameStore.lives() - 1,
+      isEatenByWumpus: true,
     });
   }
 

@@ -12,4 +12,5 @@ export interface GameState {
   hasWon: boolean;
   lives: number;
   unlockedChars: Chars[];
+  isEatenByWumpus: boolean;
 }

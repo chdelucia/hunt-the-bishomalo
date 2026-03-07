@@ -35,8 +35,7 @@ export class HuntBishoComponent {
   readonly game = inject(GameStore);
 
   deathByWumpus = computed(() => {
-    const gameInstance = this.game;
-    return gameInstance?.message() === '¡El Wumpus te devoró!';
+    return this.game.isEatenByWumpus();
   });
 
   handleclose(): void {

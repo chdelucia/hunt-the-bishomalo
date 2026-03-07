@@ -30,6 +30,7 @@ const mockGameStoreService = {
   startTime: jest.fn(),
   currentCell: jest.fn(),
   selectedChar: jest.fn(),
+  isEatenByWumpus: jest.fn().mockReturnValue(true),
   settings: jest.fn().mockReturnValue({
     size: 4,
     arrows: 2,
@@ -84,7 +85,7 @@ describe('HuntBishoComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should compute deathByWumpus as true when message is from wumpus', () => {
+  it('should compute deathByWumpus as true when isEatenByWumpus is true', () => {
     expect(component.deathByWumpus()).toBe(true);
   });
 
