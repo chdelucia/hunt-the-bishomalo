@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, isDevMode } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { ToastComponent } from './components';
@@ -15,4 +15,10 @@ import { GameStore } from './store';
 export class AppComponent {
   title = 'hunt-the-bishomalo';
   readonly game = inject(GameStore);
+
+  constructor() {
+    if (isDevMode()) {
+      (window as any).gameStore = this.game;
+    }
+  }
 }
