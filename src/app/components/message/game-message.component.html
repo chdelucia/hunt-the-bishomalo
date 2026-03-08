@@ -1,40 +1,46 @@
 <section class="game-message" aria-live="polite">
-  @if(lives() <= 0){
-  <p>{{ 'message.gameOver' | transloco }}</p>
-  <button
-    class="newgame"
-    (click)="newGame()"
-    [attr.aria-label]="'message.newGameAriaLabel' | transloco"
-  >
-    {{ 'message.newGameButton' | transloco }}
-  </button>
-  }@else{ @if (_hasMessage()) {
-  <p>{{ message() }}</p>
-  @if(_bolaDrac()){
-  <img [src]="`boardicons/b4.png`" alt="{{ 'message.dragonBallAlt' | transloco }}" />
-  } } @if (_shouldShowRetry()) {
-  <button
-    class="newgame"
-    (click)="restartGame()"
-    [attr.aria-label]="'message.restartGameAriaLabel' | transloco"
-  >
-    {{ 'message.tryAgainButton' | transloco }}
-  </button>
-  } @else if (_shouldShowNextLevel()) { @if (_showCongrats()) {
-  <button
-    class="newgame"
-    (click)="nextLevel()"
-    [attr.aria-label]="'message.nextLevelAriaLabel' | transloco"
-  >
-    {{ 'message.congratsNextLevelButton' | transloco }}
-  </button>
-  }@else {
-  <button
-    class="newgame"
-    [attr.aria-label]="'message.nextLevelAriaLabel' | transloco"
-    (click)="goToBoss()"
-  >
-    {{ 'message.congratsBossButton' | transloco }}
-  </button>
-  } } }
+  @if (lives() <= 0) {
+    <p>{{ 'message.gameOver' | transloco }}</p>
+    <button
+      class="newgame"
+      (click)="newGame()"
+      [attr.aria-label]="'message.newGameAriaLabel' | transloco"
+    >
+      {{ 'message.newGameButton' | transloco }}
+    </button>
+  } @else {
+    @if (_hasMessage()) {
+      <p>{{ message() }}</p>
+      @if (_bolaDrac()) {
+        <img [src]="`boardicons/b4.png`" alt="{{ 'message.dragonBallAlt' | transloco }}" />
+      }
+    }
+    @if (_shouldShowRetry()) {
+      <button
+        class="newgame"
+        (click)="restartGame()"
+        [attr.aria-label]="'message.restartGameAriaLabel' | transloco"
+      >
+        {{ 'message.tryAgainButton' | transloco }}
+      </button>
+    } @else if (_shouldShowNextLevel()) {
+      @if (_showCongrats()) {
+        <button
+          class="newgame"
+          (click)="nextLevel()"
+          [attr.aria-label]="'message.nextLevelAriaLabel' | transloco"
+        >
+          {{ 'message.congratsNextLevelButton' | transloco }}
+        </button>
+      } @else {
+        <button
+          class="newgame"
+          [attr.aria-label]="'message.nextLevelAriaLabel' | transloco"
+          (click)="goToBoss()"
+        >
+          {{ 'message.congratsBossButton' | transloco }}
+        </button>
+      }
+    }
+  }
 </section>

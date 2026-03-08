@@ -18,7 +18,7 @@
                   : {
                       unlockedCount: unlockedCount,
                       totalAchievements: achievements.length,
-                      percentage: percentage
+                      percentage: percentage,
                     }
             }}
           </p>
@@ -35,7 +35,7 @@
             (click)="setFilter('unlocked')"
             [ngClass]="{
               'active-filter': filter === 'unlocked',
-              'inactive-filter': filter !== 'unlocked'
+              'inactive-filter': filter !== 'unlocked',
             }"
             class="filter-button"
           >
@@ -45,7 +45,7 @@
             (click)="setFilter('locked')"
             [ngClass]="{
               'active-filter': filter === 'locked',
-              'inactive-filter': filter !== 'locked'
+              'inactive-filter': filter !== 'locked',
             }"
             class="filter-button"
           >
@@ -64,7 +64,7 @@
         *ngFor="let achievement of filteredAchievements"
         [ngClass]="{
           'achievement-unlocked': achievement.unlocked,
-          'achievement-locked': !achievement.unlocked
+          'achievement-locked': !achievement.unlocked,
         }"
         class="achievement-card"
       >
@@ -73,7 +73,7 @@
             <div
               [ngClass]="{
                 'icon-bg-unlocked': achievement.unlocked,
-                'icon-bg-locked': !achievement.unlocked
+                'icon-bg-locked': !achievement.unlocked,
               }"
               class="achievement-icon-container"
             >
@@ -86,7 +86,7 @@
             </div>
             <div>
               <h3 class="achievement-title">
-                {{ `achievements.${achievement.id}.title` | transloco}}
+                {{ `achievements.${achievement.id}.title` | transloco }}
               </h3>
               <div [ngClass]="'rarity-' + achievement.rarity" class="rarity-badge">
                 {{ getRarityName(achievement.rarity) }}
@@ -94,7 +94,7 @@
             </div>
           </div>
           <p class="achievement-description">
-            {{ `achievements.${achievement.id}.description` | transloco}}
+            {{ `achievements.${achievement.id}.description` | transloco }}
           </p>
           <div *ngIf="achievement.unlocked" class="status-unlocked">
             <svg
