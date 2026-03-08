@@ -1,0 +1,35 @@
+<div class="flex flex-wrap gap-2">
+  <button
+    (click)="setFilter('all')"
+    class="px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 border border-gray-500 shadow-sm"
+    [ngClass]="
+      currentFilter() === 'all'
+        ? 'bg-blue-600 text-white border-blue-400 scale-105 shadow-md'
+        : 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white'
+    "
+  >
+    {{ 'achievements.filterAll' | transloco }}
+  </button>
+  <button
+    (click)="setFilter('unlocked')"
+    class="px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 border border-gray-500 shadow-sm"
+    [ngClass]="
+      currentFilter() === 'unlocked'
+        ? 'bg-green-600 text-white border-green-400 scale-105 shadow-md'
+        : 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white'
+    "
+  >
+    {{ 'achievements.filterUnlocked' | transloco }}
+  </button>
+  <button
+    (click)="setFilter('locked')"
+    class="px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 border border-gray-500 shadow-sm"
+    [ngClass]="
+      currentFilter() === 'locked'
+        ? 'bg-yellow-600 text-white border-yellow-400 scale-105 shadow-md'
+        : 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white'
+    "
+  >
+    {{ 'achievements.filterLocked' | transloco }}
+  </button>
+</div>
