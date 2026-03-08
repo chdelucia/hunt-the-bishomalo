@@ -11,3 +11,6 @@ export * from './game-effects.types';
 export * from './game-item.model';
 export * from './routes.enum';
 export * from './game-state.model';
+export * from './interfaces/achievement-service.interface';
+export * from './interfaces/leaderboard-service.interface';
+export * from './interfaces/game-store.interface';
