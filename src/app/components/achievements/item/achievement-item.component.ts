@@ -24,7 +24,9 @@ export class AchievementItemComponent {
     legendary: 'bg-yellow-500',
   };
 
-  readonly rarityColor = computed(() => this.rarityColors[this.achievement().rarity.toLowerCase()] || 'bg-gray-500');
+  readonly rarityColor = computed(
+    () => this.rarityColors[this.achievement().rarity.toLowerCase()] || 'bg-gray-500',
+  );
 
   getRarityName(rarity: string): string {
     return this.transloco.translate('rarity.' + rarity.toLowerCase());
