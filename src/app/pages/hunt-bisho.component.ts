@@ -1,5 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import {
   AppWumpusAttackAnimationComponent,
   BlackoutComponent,
@@ -18,7 +17,6 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
   selector: 'app-hunt-bisho',
   imports: [
     RouterModule,
-    CommonModule,
     GameCellComponent,
     VisualEffectDirective,
     AppWumpusAttackAnimationComponent,
@@ -31,6 +29,7 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
   ],
   templateUrl: './hunt-bisho.component.html',
   styleUrl: './hunt-bisho.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HuntBishoComponent {
   readonly game = inject(GameStore);
