@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { CanActivateFn, Router, RouterModule } from '@angular/router';
 import { homeGuard } from './home.guard';
-import { GameStore } from '../store';
-import { GameEngineService } from '../services';
-import { RouteTypes } from '../models';
+import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GameEngineService } from '@hunt-the-bishomalo/core/services';
+import { RouteTypes } from '@hunt-the-bishomalo/data';
 
 const mockGameStore = {
   settings: jest.fn().mockReturnValue({}),

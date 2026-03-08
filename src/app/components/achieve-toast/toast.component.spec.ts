@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ToastComponent } from './toast.component';
-import { AchievementService } from 'src/app/services/achievement/achievement.service';
+import { AchievementService } from '@hunt-the-bishomalo/achievements';
 import { CommonModule } from '@angular/common';
-import { Achievement } from 'src/app/models';
+import { Achievement } from '@hunt-the-bishomalo/data';
 
 const achievementServiceMock = {
   completed: jest.fn(),

@@ -2,9 +2,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HuntBishoComponent } from './hunt-bisho.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { GameStore } from '../store';
-import { getTranslocoTestingModule } from '../utils';
-import { GameSoundService } from '../services';
+import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import {
+  GameSoundService,
+  ACHIEVEMENT_SERVICE,
+  LEADERBOARD_SERVICE,
+} from '@hunt-the-bishomalo/core/services';
 
 function createMockCell(overrides = {}) {
   return {
@@ -71,6 +75,15 @@ describe('HuntBishoComponent', () => {
       providers: [
         { provide: GameStore, useValue: mockGameStoreService },
         { provide: GameSoundService, useValue: mockGameSound },
+        {
+          provide: ACHIEVEMENT_SERVICE,
+          useValue: {
+            activeAchievement: jest.fn(),
+            caclVictoryAchieve: jest.fn(),
+            handleWumpusKillAchieve: jest.fn(),
+          },
+        },
+        { provide: LEADERBOARD_SERVICE, useValue: { clear: jest.fn() } },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();

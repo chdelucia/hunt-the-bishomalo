@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AchievementsComponent } from './achievements.component';
-import { AchievementService } from 'src/app/services/achievement/achievement.service';
-import { Achievement } from 'src/app/models';
+import { AchievementService } from '@hunt-the-bishomalo/achievements';
+import { Achievement } from '@hunt-the-bishomalo/data';
 import { RouterModule } from '@angular/router';
-import { getTranslocoTestingModule } from 'src/app/utils';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
 
 describe('AchievementsComponent', () => {
   let component: AchievementsComponent;

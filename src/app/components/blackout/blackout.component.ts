@@ -1,9 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
-import { AchieveTypes, GameSound } from 'src/app/models';
-import { GameSoundService } from 'src/app/services';
-import { AchievementService } from 'src/app/services/achievement/achievement.service';
+import { AchieveTypes, GameSound } from '@hunt-the-bishomalo/data';
+import { GameSoundService } from '@hunt-the-bishomalo/core/services';
+import { AchievementService } from '@hunt-the-bishomalo/achievements';
 
 @Component({
   selector: 'app-blackout',

@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameMessageComponent } from './game-message.component';
-import { GameEngineService } from 'src/app/services';
+import { GameEngineService } from '@hunt-the-bishomalo/core/services';
 import { Router } from '@angular/router';
-import { RouteTypes } from 'src/app/models';
-import { getTranslocoTestingModule } from 'src/app/utils';
+import { RouteTypes } from '@hunt-the-bishomalo/data';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
 
 const gameEngineMock = {
   initGame: jest.fn(),

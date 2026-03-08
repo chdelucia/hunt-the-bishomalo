@@ -1,0 +1,159 @@
+---
+alwaysApply: true
+---
+# Nx Domain Architecture Rules
+
+This repository uses a strict domain architecture with layered libraries.
+
+Each domain MUST follow this structure:
+
+libs/<domain>/
+  api
+  data-access
+  feature
+  shell
+
+Not all domains require shell.
+
+---
+
+## Layer Responsibilities
+
+### api
+Contains only contracts:
+
+- interfaces
+- domain models
+- DTOs
+- InjectionTokens
+
+Must NOT contain:
+
+- implementations
+- Angular services
+- Http calls
+- business logic
+
+---
+
+### data-access
+
+Contains infrastructure implementations.
+
+Examples:
+
+- services
+- repositories
+- HTTP adapters
+- persistence adapters
+
+Rules:
+
+- MUST implement interfaces from api
+- MAY depend on Angular infrastructure
+- MUST NOT depend on feature
+
+---
+
+### feature
+
+Contains application logic.
+
+Examples:
+
+- smart components
+- orchestration
+- use cases
+
+Rules:
+
+- MUST only import from api
+- MUST NOT import from data-access
+
+Services are injected via InjectionToken.
+
+---
+
+### shell
+
+Responsible for composition.
+
+Examples:
+
+- routing
+- layout
+- page containers
+
+Rules:
+
+- MAY depend on feature
+- MUST NOT contain business logic
+
+---
+
+## Dependency Direction
+
+Allowed dependency flow:
+
+api
+↑
+data-access
+↑
+feature
+↑
+shell
+
+Forbidden:
+
+feature → data-access
+api → anything
+data-access → feature
+
+---
+
+## Cross Domain Dependencies
+
+Domains communicate ONLY through api.
+
+Correct:
+
+import from:
+@org/user/api
+
+Inject token:
+
+@Inject(USER_SERVICE) userService: UserService
+
+Forbidden:
+
+@org/user/data-access
+@org/user/feature
+
+---
+
+## Services
+
+Interfaces MUST live in api.
+
+Example:
+
+export interface UserService {
+  getUser(id: string): Observable<User>;
+}
+
+Token:
+
+export const USER_SERVICE =
+  new InjectionToken<UserService>('USER_SERVICE');
+
+Implementation must live in data-access.
+
+---
+
+## Public API
+
+Every library must export its public API through index.ts.
+
+Example:
+
+libs/user/api/index.ts

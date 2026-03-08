@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameCellComponent } from './game-cell.component';
-import { Cell, Chars, Hunter } from 'src/app/models';
-import { getTranslocoTestingModule } from 'src/app/utils';
-import { GameStore } from 'src/app/store';
+import { Cell, Chars, Hunter } from '@hunt-the-bishomalo/data';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 const mockCell: Cell = { x: 2, y: 3 };

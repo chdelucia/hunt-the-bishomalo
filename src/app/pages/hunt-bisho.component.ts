@@ -12,7 +12,7 @@ import {
 } from './../components';
 import { VisualEffectDirective } from './../directives/visual-effect.directive';
 import { RouterModule } from '@angular/router';
-import { GameStore } from '../store';
+import { GameStore } from '@hunt-the-bishomalo/core/store';
 
 @Component({
   selector: 'app-hunt-bisho',

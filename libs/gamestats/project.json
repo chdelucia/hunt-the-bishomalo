@@ -1,0 +1,21 @@
+{
+  "name": "gamestats",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/gamestats/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["scope:gamestats", "type:feature"],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/gamestats/jest.config.ts",
+        "tsConfig": "libs/gamestats/tsconfig.spec.json"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

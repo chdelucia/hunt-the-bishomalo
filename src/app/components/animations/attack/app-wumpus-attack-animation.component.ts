@@ -10,7 +10,7 @@ import {
   inject,
 } from '@angular/core';
 import { Subject, takeUntil, timer } from 'rxjs';
-import { GameStore } from 'src/app/store';
+import { GameStore } from '@hunt-the-bishomalo/core/store';
 
 @Component({
   selector: 'app-wumpus-attack-animation',

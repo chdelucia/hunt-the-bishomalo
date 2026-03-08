@@ -1,7 +1,7 @@
 import { Component, computed, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
-import { GameSettings } from 'src/app/models';
+import { GameSettings } from '@hunt-the-bishomalo/data';
 
 @Component({
   selector: 'app-game-level',

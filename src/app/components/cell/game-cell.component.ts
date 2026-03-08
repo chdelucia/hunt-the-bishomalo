@@ -1,8 +1,8 @@
 import { Component, computed, inject, input, isDevMode } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Cell, Chars } from '../../models';
-import { GameStore } from 'src/app/store';
+import { Cell, Chars } from '@hunt-the-bishomalo/data';
+import { GameStore } from '@hunt-the-bishomalo/core/store';
 
 @Component({
   selector: 'app-game-cell',

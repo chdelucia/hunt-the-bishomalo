@@ -2,8 +2,8 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { Achievement } from 'src/app/models';
-import { AchievementService } from 'src/app/services/achievement/achievement.service';
+import { Achievement } from '@hunt-the-bishomalo/data';
+import { AchievementService } from '@hunt-the-bishomalo/achievements';
 
 @Component({
   selector: 'app-achievements',

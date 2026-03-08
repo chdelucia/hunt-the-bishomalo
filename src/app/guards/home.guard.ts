@@ -1,8 +1,8 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { RouteTypes } from '../models';
-import { GameStore } from '../store';
-import { GameEngineService } from '../services';
+import { RouteTypes } from '@hunt-the-bishomalo/data';
+import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GameEngineService } from '@hunt-the-bishomalo/core/services';
 
 export const homeGuard: CanActivateFn = () => {
   const router = inject(Router);

@@ -1,0 +1,37 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2022",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@hunt-the-bishomalo/data": ["libs/shared/data/src/index.ts"],
+      "@hunt-the-bishomalo/game": ["libs/game/src/index.ts"],
+      "@hunt-the-bishomalo/achievements": ["libs/achievements/src/index.ts"],
+      "@hunt-the-bishomalo/shared-ui": ["libs/shared/ui/src/index.ts"],
+      "@hunt-the-bishomalo/story": ["libs/story/src/index.ts"],
+      "@hunt-the-bishomalo/shop": ["libs/shop/src/index.ts"],
+      "@hunt-the-bishomalo/boss": ["libs/boss/src/index.ts"],
+      "@hunt-the-bishomalo/credits": ["libs/credits/src/index.ts"],
+      "@hunt-the-bishomalo/gamestats": ["libs/gamestats/src/index.ts"],
+      "@hunt-the-bishomalo/core/store": ["libs/core/src/lib/store/index.ts"],
+      "@hunt-the-bishomalo/core/services": ["libs/core/src/lib/services/index.ts"],
+      "@hunt-the-bishomalo/core/utils": ["libs/core/src/lib/utils/index.ts"],
+      "@hunt-the-bishomalo/instructions": ["libs/instructions/src/index.ts"],
+      "@hunt-the-bishomalo/core": ["libs/core/src/index.ts"],
+      "@hunt-the-bishomalo/config": ["libs/config/src/index.ts"],
+      "@hunt-the-bishomalo/chars": ["libs/chars/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

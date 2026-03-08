@@ -1,0 +1,16 @@
+export type GameEventEffectType =
+  | 'revive'
+  | 'rewind'
+  | 'shield'
+  | 'arrow'
+  | 'heart'
+  | 'detector'
+  | 'gold'
+  | 'pit'
+  | 'wumpus'
+  | 'double-gold'
+  | 'extraheart'
+  | 'lantern'
+  | 'extragold'
+  | 'dragonball'
+  | 'apple';

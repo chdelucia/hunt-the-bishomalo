@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameControlsComponent } from './game-controls.component';
-import { GameEngineService } from 'src/app/services';
-import { getTranslocoTestingModule } from 'src/app/utils';
+import { GameEngineService } from '@hunt-the-bishomalo/core/services';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
 
 const mockGameService = {
   moveForward: jest.fn(),

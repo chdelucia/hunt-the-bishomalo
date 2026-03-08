@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { JediMindTrickAnimationComponent } from './jedi-mind-trick-animation.component';
 import { RouterModule } from '@angular/router';
-import { getTranslocoTestingModule } from 'src/app/utils';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
 
 describe('JediMindTrickAnimationComponent', () => {
   let component: JediMindTrickAnimationComponent;

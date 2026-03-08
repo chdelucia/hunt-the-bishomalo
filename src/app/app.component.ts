@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ToastComponent } from './components';
 import { MenuComponent } from './components/menu/menu.component';
 import { GameControlsComponent } from './components/controls/game-controls.component';
-import { GameStore } from './store';
+import { GameStore } from '@hunt-the-bishomalo/core/store';
 
 @Component({
   imports: [RouterModule, CommonModule, ToastComponent, MenuComponent, GameControlsComponent],

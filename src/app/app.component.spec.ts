@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { getTranslocoTestingModule } from './utils';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { ACHIEVEMENT_SERVICE, LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/core/services';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -9,6 +10,17 @@ describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent, RouterModule.forRoot([]), getTranslocoTestingModule()],
+      providers: [
+        {
+          provide: ACHIEVEMENT_SERVICE,
+          useValue: {
+            activeAchievement: jest.fn(),
+            caclVictoryAchieve: jest.fn(),
+            handleWumpusKillAchieve: jest.fn(),
+          },
+        },
+        { provide: LEADERBOARD_SERVICE, useValue: { clear: jest.fn() } },
+      ],
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
     component = fixture.componentInstance;

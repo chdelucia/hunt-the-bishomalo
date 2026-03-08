@@ -10,8 +10,8 @@ import {
   inject,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AchieveTypes } from 'src/app/models';
-import { AchievementService } from 'src/app/services/achievement/achievement.service';
+import { AchieveTypes } from '@hunt-the-bishomalo/data';
+import { AchievementService } from '@hunt-the-bishomalo/achievements';
 
 @Component({
   selector: 'app-jedi-mind-trick-animation',

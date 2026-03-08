@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameLevelComponent } from './game-level.component';
-import { getTranslocoTestingModule } from 'src/app/utils';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
 
 describe('GameLevelComponent', () => {
   let component: GameLevelComponent;

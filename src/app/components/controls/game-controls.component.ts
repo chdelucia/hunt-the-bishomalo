@@ -8,9 +8,9 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
-import { GameEngineService } from 'src/app/services/engine/game-engine.service';
-import { AchievementService } from 'src/app/services/achievement/achievement.service';
-import { AchieveTypes, RouteTypes } from 'src/app/models';
+import { GameEngineService } from '@hunt-the-bishomalo/core/services';
+import { AchievementService } from '@hunt-the-bishomalo/achievements';
+import { AchieveTypes, RouteTypes } from '@hunt-the-bishomalo/data';
 import { Router } from '@angular/router';
 
 @Component({
