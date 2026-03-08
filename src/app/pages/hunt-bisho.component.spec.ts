@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HuntBishoComponent } from './hunt-bisho.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
@@ -9,6 +8,7 @@ import {
   ACHIEVEMENT_SERVICE,
   LEADERBOARD_SERVICE,
 } from '@hunt-the-bishomalo/core/services';
+import { TitleComponent } from './../components';
 
 function createMockCell(overrides = {}) {
   return {
@@ -71,7 +71,12 @@ describe('HuntBishoComponent', () => {
     });
 
     await TestBed.configureTestingModule({
-      imports: [HuntBishoComponent, RouterModule.forRoot([]), getTranslocoTestingModule()],
+      imports: [
+        HuntBishoComponent,
+        RouterModule.forRoot([]),
+        getTranslocoTestingModule(),
+        TitleComponent,
+      ],
       providers: [
         { provide: GameStore, useValue: mockGameStoreService },
         { provide: GameSoundService, useValue: mockGameSound },
@@ -85,7 +90,6 @@ describe('HuntBishoComponent', () => {
         },
         { provide: LEADERBOARD_SERVICE, useValue: { clear: jest.fn() } },
       ],
-      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
     fixture = TestBed.createComponent(HuntBishoComponent);

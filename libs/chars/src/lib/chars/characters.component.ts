@@ -7,7 +7,7 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
-  selector: 'app-characters',
+  selector: 'lib-characters',
   standalone: true,
   imports: [CommonModule, NgOptimizedImage, TranslocoModule],
   templateUrl: './characters.component.html',

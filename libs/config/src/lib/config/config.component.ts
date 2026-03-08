@@ -5,7 +5,7 @@ import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
-  selector: 'app-config',
+  selector: 'lib-config',
   standalone: true,
   imports: [CommonModule, GameConfigComponent, TitleComponent, TranslocoModule],
   templateUrl: './config.component.html',

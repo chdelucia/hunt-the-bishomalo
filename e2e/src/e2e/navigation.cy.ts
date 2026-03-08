@@ -5,7 +5,7 @@ describe('App Navigation and Public Routes', () => {
   });
 
   it('should display the settings page by default', () => {
-    cy.get('app-game-config').should('be.visible');
+    cy.get('lib-game-config').should('be.visible');
     cy.screenshot('navigation-settings-page');
   });
 

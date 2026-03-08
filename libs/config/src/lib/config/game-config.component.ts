@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 
 @Component({
-  selector: 'app-game-config',
+  selector: 'lib-game-config',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, NgOptimizedImage, TranslocoModule],
   templateUrl: './game-config.component.html',

@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
-  selector: 'app-instructions',
+  selector: 'lib-instructions',
   standalone: true,
   imports: [CommonModule, RouterModule, TranslocoModule],
   templateUrl: './instructions.component.html',

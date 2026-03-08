@@ -4,9 +4,10 @@ import { CommonModule } from '@angular/common';
 import { signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { GameSoundService } from '@hunt-the-bishomalo/core/services';
-import { RouteTypes } from '@hunt-the-bishomalo/data';
+import { GameSettings, RouteTypes } from '@hunt-the-bishomalo/data';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { BossCell } from './boss-store';
 
 describe('BossFightComponent', () => {
   let component: BossFightComponent;
@@ -73,7 +74,7 @@ describe('BossFightComponent', () => {
 
   it('should reduce bossRemaining on boss hit', () => {
     const bossCell = component.bossStore.grid()[1][1];
-    (bossCell as any).hasBossPart = true;
+    (bossCell as BossCell).hasBossPart = true;
 
     component.bossStore.attackCell(bossCell);
 
@@ -86,7 +87,7 @@ describe('BossFightComponent', () => {
       difficulty: {
         bossTries: 1,
       },
-    } as any;
+    } as GameSettings;
     component.bossStore.resetGame(settings);
 
     const cell = component.bossStore

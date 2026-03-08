@@ -7,7 +7,7 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { BossStore, BossCell } from './boss-store';
 
 @Component({
-  selector: 'app-boss-fight',
+  selector: 'lib-boss-fight',
   standalone: true,
   imports: [CommonModule, NgOptimizedImage, TranslocoModule],
   templateUrl: './boss-fight.component.html',

@@ -4,14 +4,14 @@ describe('Special Content and Secret Routes', () => {
     cy.clearLocalStorage();
   });
 
-  const getStore = () => cy.window().its('gameStore');
 
   it('should navigate to the secret Jedi route at size 8', () => {
-    cy.get('input#player').clear().type('Jedi Seeker');
+    cy.get('input#player').clear();
+    cy.get('input#player').type('Jedi Seeker');
     cy.get('button.start-game').click();
     cy.get('.story-container').click();
 
-    getStore().then((store: any) => {
+    cy.window().its('gameStore').then((store: any) => {
         store.updateGame({
             settings: { ...store.settings(), size: 8 }
         });
@@ -20,43 +20,43 @@ describe('Special Content and Secret Routes', () => {
         );
         store.updateGame({ board });
         store.updateHunter({ x: 7, y: 7, direction: 1 }); // Facing RIGHT
+
+        cy.get('.board', { timeout: 15000 }).should('be.visible');
+        cy.get('[aria-label="Avanzar"]', { timeout: 15000 }).should('be.visible').click();
+
+        cy.url().should('include', '/secret');
+        cy.get('.jedi-container', { timeout: 25000 }).should('exist');
+        cy.screenshot('special-jedi-route');
     });
-
-    cy.get('.board', { timeout: 15000 }).should('be.visible');
-    cy.get('[aria-label="Avanzar"]', { timeout: 15000 }).should('be.visible').click();
-
-    cy.url().should('include', '/secret');
-    cy.get('.jedi-container', { timeout: 25000 }).should('exist');
-    cy.screenshot('special-jedi-route');
   });
 
   it('should reach and defeat the Boss', () => {
-    cy.get('input#player').clear().type('Boss Slayer');
+    cy.get('input#player').clear();
+    cy.get('input#player').type('Boss Slayer');
     cy.get('button.start-game').click();
     cy.get('.story-container').click();
 
     // Trigger Boss Fight via store manipulation
-    getStore().then((store: any) => {
+    cy.window().its('gameStore').then((store: any) => {
         store.updateGame({
             settings: { ...store.settings(), size: 13 },
             hasWon: true
         });
+    }).then(() => {
+      cy.get('button.newgame', { timeout: 25000 }).should('be.visible').click();
+
+      cy.url().should('include', '/boss');
+      cy.get('h2#bossTitle').should('be.visible');
+
+      // Interact with boss grid
+      cy.get('.grid .cell').should('have.length', 25);
+
+      // Click some cells to simulate battle
+      for(let i=0; i<10; i++) {
+          cy.get('.grid .cell').eq(i).click();
+      }
+
+      cy.screenshot('special-boss-fight-midway');
     });
-
-    // Reclaim reward button (class .newgame)
-    cy.get('button.newgame', { timeout: 25000 }).should('be.visible').click();
-
-    cy.url().should('include', '/boss');
-    cy.get('h2#bossTitle').should('be.visible');
-
-    // Interact with boss grid
-    cy.get('.grid .cell').should('have.length', 25);
-
-    // Click some cells to simulate battle
-    for(let i=0; i<10; i++) {
-        cy.get('.grid .cell').eq(i).click();
-    }
-
-    cy.screenshot('special-boss-fight-midway');
   });
 });

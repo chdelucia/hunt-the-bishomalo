@@ -4,7 +4,6 @@ describe('Hunt the Bishomalo Full App Flow', () => {
     cy.clearLocalStorage();
   });
 
-  const getStore = () => cy.window().its('gameStore');
 
   it('should navigate through public routes via menu', () => {
     cy.get('.menu-toggle').click();
@@ -28,7 +27,8 @@ describe('Hunt the Bishomalo Full App Flow', () => {
   });
 
   it('should complete game configuration and start the game', () => {
-    cy.get('input#player').clear().type('Cypress Player');
+    cy.get('input#player').clear();
+    cy.get('input#player').type('Cypress Player');
     cy.get('select#difficulty').select('easy');
     cy.get('.char-selector img').first().click();
 
@@ -43,12 +43,13 @@ describe('Hunt the Bishomalo Full App Flow', () => {
 
   it('should complete a full game loop: win level -> shop -> lose -> results', () => {
     // 1. Setup and start game
-    cy.get('input#player').clear().type('Full Loop Player');
+    cy.get('input#player').clear();
+    cy.get('input#player').type('Full Loop Player');
     cy.get('button.start-game').click();
     cy.get('.story-container').click();
 
     // 2. Win Level
-    getStore().then((store: any) => {
+    cy.window().its('gameStore').then((store: any) => {
         const board = JSON.parse(JSON.stringify(store.board()));
         board[0][1].content = {
             type: 'gold',
@@ -57,15 +58,15 @@ describe('Hunt the Bishomalo Full App Flow', () => {
             ariaLabel: 'gold',
         };
         store.updateGame({ board });
+
+        cy.get('[aria-label="Avanzar"]', { timeout: 10000 }).should('be.visible').click();
+        cy.get('[aria-label="Girar a la derecha"]').click();
+        cy.get('[aria-label="Girar a la derecha"]').click();
+        cy.get('[aria-label="Avanzar"]').click();
+
+        cy.get('.game-message', { timeout: 15000 }).should('contain', 'ictoria');
+        cy.get('button.newgame').click();
     });
-
-    cy.get('[aria-label="Avanzar"]', { timeout: 10000 }).should('be.visible').click();
-    cy.get('[aria-label="Girar a la derecha"]').click();
-    cy.get('[aria-label="Girar a la derecha"]').click();
-    cy.get('[aria-label="Avanzar"]').click();
-
-    cy.get('.game-message', { timeout: 15000 }).should('contain', 'ictoria');
-    cy.get('button.newgame').click();
 
     // 3. Shop
     cy.url().should('include', '/tienda');
@@ -76,7 +77,7 @@ describe('Hunt the Bishomalo Full App Flow', () => {
     cy.get('.story-container', { timeout: 10000 }).click();
 
     // 4. Lose and Game Over
-    getStore().then((store: any) => {
+    cy.window().its('gameStore').then((store: any) => {
         store.updateGame({ lives: 1 });
         const board = JSON.parse(JSON.stringify(store.board()));
         board[0][1].content = {
@@ -86,11 +87,11 @@ describe('Hunt the Bishomalo Full App Flow', () => {
             ariaLabel: 'wumpus',
         };
         store.updateGame({ board });
-    });
 
-    cy.get('[aria-label="Avanzar"]', { timeout: 10000 }).should('be.visible').click();
-    cy.get('.game-message', { timeout: 20000 }).should('contain', 'GAME OVER');
-    cy.get('button.newgame').click();
+        cy.get('[aria-label="Avanzar"]', { timeout: 10000 }).should('be.visible').click();
+        cy.get('.game-message', { timeout: 20000 }).should('contain', 'GAME OVER');
+        cy.get('button.newgame').click();
+    });
 
     // 5. Results
     cy.url().should('include', '/resultados');
@@ -98,11 +99,12 @@ describe('Hunt the Bishomalo Full App Flow', () => {
   });
 
   it('should navigate to secret Jedi route', () => {
-    cy.get('input#player').clear().type('Jedi seeker');
+    cy.get('input#player').clear();
+    cy.get('input#player').type('Jedi seeker');
     cy.get('button.start-game').click();
     cy.get('.story-container').click();
 
-    getStore().then((store: any) => {
+    cy.window().its('gameStore').then((store: any) => {
         store.updateGame({
             settings: { ...store.settings(), size: 8 }
         });
@@ -112,12 +114,12 @@ describe('Hunt the Bishomalo Full App Flow', () => {
         );
         store.updateGame({ board });
         store.updateHunter({ x: 7, y: 7, direction: 1 });
+
+        cy.get('.board', { timeout: 10000 }).should('be.visible');
+        cy.get('[aria-label="Avanzar"]', { timeout: 10000 }).should('be.visible').click();
+
+        cy.url().should('include', '/secret');
+        cy.get('.jedi-container', { timeout: 15000 }).should('exist');
     });
-
-    cy.get('.board', { timeout: 10000 }).should('be.visible');
-    cy.get('[aria-label="Avanzar"]', { timeout: 10000 }).should('be.visible').click();
-
-    cy.url().should('include', '/secret');
-    cy.get('.jedi-container', { timeout: 15000 }).should('exist');
   });
 });

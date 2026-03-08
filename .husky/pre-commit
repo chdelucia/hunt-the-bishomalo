@@ -3,4 +3,4 @@
 
 npx prettier --write "src/**/*.{ts,tsx,js,json,css,scss,html,md}" 
 npx jest --runInBand --color
-nx run lint
+npx nx run-many -t lint

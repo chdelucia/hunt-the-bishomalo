@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 
 @Component({
-  selector: 'app-shop',
+  selector: 'lib-shop',
   standalone: true,
   imports: [CommonModule, TranslocoModule],
   templateUrl: './shop.component.html',

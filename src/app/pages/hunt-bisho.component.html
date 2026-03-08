@@ -2,7 +2,7 @@
 @let hasWon = game.hasWon(); @let settings = game.settings();
 
 <main [appVisualEffect]="game.message()" class="main-container">
-  <app-title [blackout]="settings.blackout || false" />
+  <lib-title [blackout]="settings.blackout || false" />
 
   @if (settings?.blackout && isAlive && !hasWon) {
     <app-blackout />

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
-  selector: 'app-title',
+  selector: 'lib-title',
   standalone: true,
   imports: [CommonModule, TranslocoModule],
   templateUrl: './title.component.html',

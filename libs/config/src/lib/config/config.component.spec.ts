@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ConfigComponent } from './config.component';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
 import { ACHIEVEMENT_SERVICE, LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/core/services';
+import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
 
 const mockAchievement = { activeAchievement: jest.fn(), caclVictoryAchieve: jest.fn(), handleWumpusKillAchieve: jest.fn() };
 const mockLeaderboard = { clear: jest.fn() };
@@ -12,7 +13,7 @@ describe('ConfigComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ConfigComponent, getTranslocoTestingModule()],
+      imports: [ConfigComponent, TitleComponent, getTranslocoTestingModule()],
       providers: [
         { provide: ACHIEVEMENT_SERVICE, useValue: mockAchievement },
         { provide: LEADERBOARD_SERVICE, useValue: mockLeaderboard },
