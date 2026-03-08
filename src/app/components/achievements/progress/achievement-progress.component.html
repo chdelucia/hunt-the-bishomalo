@@ -1,0 +1,14 @@
+<div class="mb-4">
+  <div class="flex justify-between items-center mb-1">
+    <span class="text-gray-300 text-sm font-medium">
+      {{ 'achievements.progress' | transloco }}: {{ unlockedCount() }}/{{ totalCount() }}
+    </span>
+    <span class="text-blue-400 text-sm font-bold">{{ percentage() }}%</span>
+  </div>
+  <div class="w-full bg-gray-700 rounded-full h-2.5 overflow-hidden shadow-inner">
+    <div
+      class="bg-blue-600 h-2.5 rounded-full transition-all duration-1000 ease-out shadow-lg"
+      [style.width.%]="percentage()"
+    ></div>
+  </div>
+</div>
