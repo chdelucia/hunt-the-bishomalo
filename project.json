@@ -91,6 +91,55 @@
         "staticFilePath": "dist/hunt-the-bishomalo/browser",
         "spa": true
       }
+    },
+    "storybook": {
+      "executor": "@storybook/angular:start-storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "./.storybook",
+        "browserTarget": "hunt-the-bishomalo:build",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "build-storybook": {
+      "executor": "@storybook/angular:build-storybook",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/hunt-the-bishomalo",
+        "configDir": "./.storybook",
+        "browserTarget": "hunt-the-bishomalo:build",
+        "compodoc": false
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    "test-storybook": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "test-storybook -c ./.storybook --url=http://localhost:4400"
+      }
+    },
+    "static-storybook": {
+      "executor": "@nx/web:file-server",
+      "dependsOn": ["build-storybook"],
+      "options": {
+        "buildTarget": "hunt-the-bishomalo:build-storybook",
+        "staticFilePath": "dist/storybook/hunt-the-bishomalo",
+        "spa": true
+      },
+      "configurations": {
+        "ci": {
+          "buildTarget": "hunt-the-bishomalo:build-storybook:ci"
+        }
+      }
     }
   }
 }
