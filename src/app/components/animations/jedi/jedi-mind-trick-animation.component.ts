@@ -5,7 +5,6 @@ import {
   OnDestroy,
   ElementRef,
   ViewChild,
-  NgZone,
   ChangeDetectorRef,
   inject,
 } from '@angular/core';
@@ -30,7 +29,6 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
   private readonly timers: any[] = [];
   private echoTimeout: any = null;
 
-  private readonly ngZone = inject(NgZone);
   private readonly cdr = inject(ChangeDetectorRef);
   private readonly achieveService = inject(AchievementService);
 
@@ -65,10 +63,8 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
     schedule.forEach((item) => {
       this.timers.push(
         setTimeout(() => {
-          this.ngZone.run(() => {
-            item.action();
-            this.cdr.detectChanges();
-          });
+          item.action();
+          this.cdr.detectChanges();
         }, item.delay),
       );
     });
@@ -85,45 +81,43 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
   }
 
   playForceSound(): void {
-    this.ngZone.runOutsideAngular(() => {
-      this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-      if (!this.audioContext) return;
+    this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+    if (!this.audioContext) return;
 
-      const oscillator = this.audioContext.createOscillator();
-      oscillator.type = 'sine';
-      oscillator.frequency.value = 200;
+    const oscillator = this.audioContext.createOscillator();
+    oscillator.type = 'sine';
+    oscillator.frequency.value = 200;
 
-      const modulator = this.audioContext.createOscillator();
-      modulator.type = 'sine';
-      modulator.frequency.value = 2.5;
+    const modulator = this.audioContext.createOscillator();
+    modulator.type = 'sine';
+    modulator.frequency.value = 2.5;
 
-      const modulationGain = this.audioContext.createGain();
-      modulationGain.gain.value = 50;
+    const modulationGain = this.audioContext.createGain();
+    modulationGain.gain.value = 50;
 
-      const gainNode = this.audioContext.createGain();
-      gainNode.gain.value = 0;
+    const gainNode = this.audioContext.createGain();
+    gainNode.gain.value = 0;
 
-      modulator.connect(modulationGain);
-      modulationGain.connect(oscillator.frequency);
+    modulator.connect(modulationGain);
+    modulationGain.connect(oscillator.frequency);
 
-      oscillator.connect(gainNode);
-      gainNode.connect(this.audioContext.destination);
+    oscillator.connect(gainNode);
+    gainNode.connect(this.audioContext.destination);
 
-      const now = this.audioContext.currentTime;
-      gainNode.gain.setValueAtTime(0, now);
-      gainNode.gain.linearRampToValueAtTime(0.3, now + 0.1);
-      gainNode.gain.linearRampToValueAtTime(0.1, now + 1.5);
-      gainNode.gain.linearRampToValueAtTime(0, now + 2.5);
+    const now = this.audioContext.currentTime;
+    gainNode.gain.setValueAtTime(0, now);
+    gainNode.gain.linearRampToValueAtTime(0.3, now + 0.1);
+    gainNode.gain.linearRampToValueAtTime(0.1, now + 1.5);
+    gainNode.gain.linearRampToValueAtTime(0, now + 2.5);
 
-      oscillator.start(now);
-      modulator.start(now);
-      oscillator.stop(now + 2.5);
-      modulator.stop(now + 2.5);
+    oscillator.start(now);
+    modulator.start(now);
+    oscillator.stop(now + 2.5);
+    modulator.stop(now + 2.5);
 
-      this.speakWhisper('Contrata a Chris', 0.4, 1000);
-      this.speakWhisper('Contrata a Chris', 0.2, 1300);
-      this.speakWhisper('Contrata a Chris', 0.1, 1600);
-    });
+    this.speakWhisper('Contrata a Chris', 0.4, 1000);
+    this.speakWhisper('Contrata a Chris', 0.2, 1300);
+    this.speakWhisper('Contrata a Chris', 0.1, 1600);
   }
 
   speakWhisper(text: string, volume: number, delay: number): void {
@@ -142,10 +136,8 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
     this.cdr.detectChanges();
 
     setTimeout(() => {
-      this.ngZone.run(() => {
-        this.forceWaves = this.forceWaves.filter((w) => w !== id);
-        this.cdr.detectChanges();
-      });
+      this.forceWaves = this.forceWaves.filter((w) => w !== id);
+      this.cdr.detectChanges();
     }, 2000);
   }
 }

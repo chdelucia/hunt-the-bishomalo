@@ -1,5 +1,6 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppWumpusAttackAnimationComponent } from './app-wumpus-attack-animation.component';
+import { GameStore } from '@hunt-the-bishomalo/core/store';
 
 describe('AppWumpusAttackAnimationComponent', () => {
   let component: AppWumpusAttackAnimationComponent;
@@ -8,6 +9,14 @@ describe('AppWumpusAttackAnimationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppWumpusAttackAnimationComponent],
+      providers: [
+        {
+          provide: GameStore,
+          useValue: {
+            selectedChar: () => 'default',
+          },
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppWumpusAttackAnimationComponent);
@@ -24,13 +33,21 @@ describe('AppWumpusAttackAnimationComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should update step over time and emit closeAnimation', fakeAsync(() => {
+  it('should update step over time and emit closeAnimation', async () => {
+    const closeSpy = jest.spyOn(component.closeAnimation, 'emit');
     fixture.detectChanges();
 
     expect(component.step()).toBe(1);
-    tick(3500);
-    expect(component.step()).toBe(1);
-  }));
+
+    await new Promise((resolve) => setTimeout(resolve, 600));
+    fixture.changeDetectorRef.detectChanges();
+    expect(component.step()).toBe(2);
+
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+    fixture.changeDetectorRef.detectChanges();
+    expect(component.step()).toBe(5);
+    expect(closeSpy).toHaveBeenCalled();
+  }, 10000);
 
   it('should return correct player position', () => {
     component.step.set(1);

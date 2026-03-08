@@ -32,14 +32,14 @@ describe('VisualEffectDirective', () => {
 
   it('should not render anything if perception is empty', () => {
     fixture.componentInstance.effect = '';
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
     const layer = debugEl.nativeElement.querySelector('.effect-layer');
     expect(layer).toBeNull();
   });
 
   it('should render clouds when perception includes "brisa"', () => {
     fixture.componentInstance.effect = 'brisa';
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     const layer = debugEl.nativeElement.querySelector('.effect-layer');
     const clouds = layer.querySelectorAll('.cloud');
@@ -48,7 +48,7 @@ describe('VisualEffectDirective', () => {
 
   it('should render stink when perception includes "hedor"', () => {
     fixture.componentInstance.effect = 'hedor';
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     const layer = debugEl.nativeElement.querySelector('.effect-layer');
     const stinks = layer.querySelectorAll('.stink');
@@ -57,7 +57,7 @@ describe('VisualEffectDirective', () => {
 
   it('should render sparkles when perception includes "brillo"', () => {
     fixture.componentInstance.effect = 'brillo';
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     const layer = debugEl.nativeElement.querySelector('.effect-layer');
     const sparkles = layer.querySelectorAll('.sparkle');
@@ -66,7 +66,7 @@ describe('VisualEffectDirective', () => {
 
   it('should render multiple effects if perception includes multiple cues', () => {
     fixture.componentInstance.effect = 'brisa hedor brillo';
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     const layer = debugEl.nativeElement.querySelector('.effect-layer');
     expect(layer.querySelectorAll('.cloud').length).toBeGreaterThan(0);
@@ -76,13 +76,13 @@ describe('VisualEffectDirective', () => {
 
   it('should clear previous effects on perception change', () => {
     fixture.componentInstance.effect = 'brisa';
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     let layer = debugEl.nativeElement.querySelector('.effect-layer');
     expect(layer).not.toBeNull();
 
     fixture.componentInstance.effect = 'brillo';
-    fixture.detectChanges();
+    fixture.changeDetectorRef.detectChanges();
 
     layer = debugEl.nativeElement.querySelector('.effect-layer');
     expect(layer.querySelectorAll('.cloud').length).toBe(0);

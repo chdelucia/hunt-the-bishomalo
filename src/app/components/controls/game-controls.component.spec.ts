@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { GameControlsComponent } from './game-controls.component';
 import { GameEngineService } from '@hunt-the-bishomalo/core/services';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
@@ -20,7 +21,13 @@ describe('GameControlsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [GameControlsComponent, getTranslocoTestingModule()],
-      providers: [{ provide: GameEngineService, useValue: mockGameService }],
+      providers: [
+        { provide: GameEngineService, useValue: mockGameService },
+        provideRouter([
+          { path: 'settings', component: class {} },
+          { path: 'rules', component: class {} },
+        ]),
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GameControlsComponent);
