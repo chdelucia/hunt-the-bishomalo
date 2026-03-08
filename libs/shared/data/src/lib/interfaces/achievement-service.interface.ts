@@ -1,4 +1,6 @@
-import { AchieveTypes, Cell } from '@hunt-the-bishomalo/data';
+import { AchieveTypes } from "../achieve.enum";
+import { Cell } from "../cell.model";
+
 
 export interface IAchievementService {
   activeAchievement: (id: AchieveTypes) => void;
