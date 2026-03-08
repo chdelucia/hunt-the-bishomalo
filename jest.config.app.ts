@@ -13,6 +13,14 @@ export default {
     ],
   },
   transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
+  moduleNameMapper: {
+    '^@angular/core/testing$': 'node_modules/@angular/core/fesm2022/testing.mjs',
+    '^@angular/common/testing$': 'node_modules/@angular/common/fesm2022/testing.mjs',
+    '^@angular/compiler/testing$': 'node_modules/@angular/compiler/fesm2022/testing.mjs',
+    '^@angular/platform-browser/testing$': 'node_modules/@angular/platform-browser/fesm2022/testing.mjs',
+    '^@angular/platform-browser-dynamic/testing$': 'node_modules/@angular/platform-browser-dynamic/fesm2022/testing.mjs',
+    '^@angular/router/testing$': 'node_modules/@angular/router/fesm2022/testing.mjs',
+  },
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',
