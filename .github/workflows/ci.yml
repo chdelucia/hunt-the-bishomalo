@@ -34,14 +34,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
-
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
 
       - name: Validate commit messages
         run: |
@@ -56,15 +56,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
           cache-dependency-path: ${{ env.CACHE_DEPENDENCY_PATH }}
-
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -84,15 +84,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
           cache-dependency-path: ${{ env.CACHE_DEPENDENCY_PATH }}
-
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
 
       - name: Restore pnpm store cache
         uses: actions/cache@v4
@@ -111,15 +111,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
           cache-dependency-path: ${{ env.CACHE_DEPENDENCY_PATH }}
-
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
 
       - name: Restore pnpm store cache
         uses: actions/cache@v4
@@ -142,15 +142,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
           cache-dependency-path: ${{ env.CACHE_DEPENDENCY_PATH }}
-
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
 
       - name: Restore pnpm store cache
         uses: actions/cache@v4
@@ -163,7 +163,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.cache/Cypress
-          key: cypress-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          key: cypress-cache-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
           restore-keys: |
             cypress-cache-${{ runner.os }}-
 
@@ -181,15 +181,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
           cache-dependency-path: ${{ env.CACHE_DEPENDENCY_PATH }}
-
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
 
       - name: Restore pnpm store cache
         uses: actions/cache@v4
@@ -209,15 +209,15 @@ jobs:
         with:
           fetch-depth: 0
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'pnpm'
           cache-dependency-path: ${{ env.CACHE_DEPENDENCY_PATH }}
-
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
