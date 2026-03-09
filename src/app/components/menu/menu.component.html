@@ -6,28 +6,30 @@
   <div [ngClass]="{ bar: true, bar3: true, open: opened }"></div>
 </button>
 
-<div class="mobile-menu" *ngIf="opened">
-  <ul>
-    <li><button>&nbsp;</button></li>
-    <li>
-      <button (click)="nagivateTo(ROUTES.HOME)">{{ 'menu.home' | transloco }}</button>
-    </li>
-    <li>
-      <button (click)="nagivateTo(ROUTES.ACHIEVEMENTS)">
-        {{ 'menu.achievements' | transloco }}
-      </button>
-    </li>
-    <li>
-      <button (click)="nagivateTo(ROUTES.RULES)">{{ 'menu.instructions' | transloco }}</button>
-    </li>
-    <li>
-      <button (click)="nagivateTo(ROUTES.CREDITS)">{{ 'menu.credits' | transloco }}</button>
-    </li>
-    <li>
-      <button (click)="newGame()" class="newgame">{{ 'menu.newGame' | transloco }}</button>
-    </li>
-  </ul>
-</div>
+@if (opened) {
+  <div class="mobile-menu">
+    <ul>
+      <li><button>&nbsp;</button></li>
+      <li>
+        <button (click)="nagivateTo(ROUTES.HOME)">{{ 'menu.home' | transloco }}</button>
+      </li>
+      <li>
+        <button (click)="nagivateTo(ROUTES.ACHIEVEMENTS)">
+          {{ 'menu.achievements' | transloco }}
+        </button>
+      </li>
+      <li>
+        <button (click)="nagivateTo(ROUTES.RULES)">{{ 'menu.instructions' | transloco }}</button>
+      </li>
+      <li>
+        <button (click)="nagivateTo(ROUTES.CREDITS)">{{ 'menu.credits' | transloco }}</button>
+      </li>
+      <li>
+        <button (click)="newGame()" class="newgame">{{ 'menu.newGame' | transloco }}</button>
+      </li>
+    </ul>
+  </div>
+}
 
 <div class="menu-desktop">
   <div class="left-icons">

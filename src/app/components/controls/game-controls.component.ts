@@ -6,7 +6,7 @@ import {
   isDevMode,
   signal,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { TranslocoModule } from '@jsverse/transloco';
 import { GameEngineService } from '@hunt-the-bishomalo/core/services';
 import { AchievementService } from '@hunt-the-bishomalo/achievements';
@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-game-controls',
   standalone: true,
-  imports: [CommonModule, TranslocoModule],
+  imports: [TranslocoModule],
   templateUrl: './game-controls.component.html',
   styleUrl: './game-controls.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

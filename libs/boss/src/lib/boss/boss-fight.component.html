@@ -2,59 +2,67 @@
   <h2 id="bossTitle">{{ 'bossFight.title' | transloco }}</h2>
 
   <div class="grid" role="grid" [attr.aria-label]="'bossFight.boardAriaLabel' | transloco">
-    <div *ngFor="let row of bossStore.grid(); let rowIndex = index" class="row">
-      <div
-        *ngFor="let cell of row; let colIndex = index"
-        class="cell"
-        tabindex="0"
-        [attr.aria-label]="getAriaLabel(cell, rowIndex, colIndex)"
-        (click)="bossStore.attackCell(cell)"
-        (keydown.enter)="bossStore.attackCell(cell)"
-        (keydown.space)="bossStore.attackCell(cell)"
-        [class.hit]="cell.hit"
-        [class.boss-hit]="cell.hit && cell.hasBossPart"
-        [class.miss]="cell.hit && !cell.hasBossPart"
-      >
-        <span *ngIf="cell.hit && cell.hasBossPart" aria-hidden="true">
-          @let char = _settings().selectedChar;
-          <img
-            [ngSrc]="`chars/${char}/boss.png`"
-            alt="{{ 'bossFight.bossImageAlt' | transloco }}"
-            fill
-          />
-        </span>
-        <span *ngIf="cell.hit && !cell.hasBossPart" aria-hidden="true">❌</span>
+    @for (row of bossStore.grid(); track row; let rowIndex = $index) {
+      <div class="row">
+        @for (cell of row; track cell; let colIndex = $index) {
+          <div
+            class="cell"
+            tabindex="0"
+            [attr.aria-label]="getAriaLabel(cell, rowIndex, colIndex)"
+            (click)="bossStore.attackCell(cell)"
+            (keydown.enter)="bossStore.attackCell(cell)"
+            (keydown.space)="bossStore.attackCell(cell)"
+            [class.hit]="cell.hit"
+            [class.boss-hit]="cell.hit && cell.hasBossPart"
+            [class.miss]="cell.hit && !cell.hasBossPart"
+            >
+            @if (cell.hit && cell.hasBossPart) {
+              <span aria-hidden="true">
+                @let char = _settings().selectedChar;
+                <img
+                  [ngSrc]="`chars/${char}/boss.png`"
+                  alt="{{ 'bossFight.bossImageAlt' | transloco }}"
+                  fill
+                  />
+                </span>
+              }
+              @if (cell.hit && !cell.hasBossPart) {
+                <span aria-hidden="true">❌</span>
+              }
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="status-bar">
+      <div class="leyenda">
+        <span aria-live="polite">{{
+          'bossFight.attemptsLeft' | transloco : { playerLives: bossStore.playerLives() }
+        }}</span>
+        <span aria-live="polite">{{
+          'bossFight.bossHealth' | transloco : { bossRemaining: bossStore.bossRemaining() }
+        }}</span>
       </div>
+
+      <p aria-live="polite" class="game-message">{{ bossStore.message() }}</p>
+
+      @if (bossStore.gameOver() && bossStore.bossRemaining()) {
+        <button
+          (click)="retryGame()"
+          [attr.aria-label]="'bossFight.retryGameAriaLabel' | transloco"
+          >
+          {{ 'bossFight.continuesButton' | transloco : { livesLeft: this.gameStore.lives() } }}
+        </button>
+      }
+      @if(bossStore.gameOver() && !bossStore.bossRemaining()){
+        <button
+          [attr.aria-label]="'bossFight.nextButtonAriaLabel' | transloco"
+          class="next-btn"
+          (click)="goToprizeScreen()"
+          >
+          {{ 'bossFight.youWonButton' | transloco }}
+        </button>
+      }
     </div>
-  </div>
-
-  <div class="status-bar">
-    <div class="leyenda">
-      <span aria-live="polite">{{
-        'bossFight.attemptsLeft' | transloco : { playerLives: bossStore.playerLives() }
-      }}</span>
-      <span aria-live="polite">{{
-        'bossFight.bossHealth' | transloco : { bossRemaining: bossStore.bossRemaining() }
-      }}</span>
-    </div>
-
-    <p aria-live="polite" class="game-message">{{ bossStore.message() }}</p>
-
-    <button
-      *ngIf="bossStore.gameOver() && bossStore.bossRemaining()"
-      (click)="retryGame()"
-      [attr.aria-label]="'bossFight.retryGameAriaLabel' | transloco"
-    >
-      {{ 'bossFight.continuesButton' | transloco : { livesLeft: this.gameStore.lives() } }}
-    </button>
-    @if(bossStore.gameOver() && !bossStore.bossRemaining()){
-    <button
-      [attr.aria-label]="'bossFight.nextButtonAriaLabel' | transloco"
-      class="next-btn"
-      (click)="goToprizeScreen()"
-    >
-      {{ 'bossFight.youWonButton' | transloco }}
-    </button>
-    }
-  </div>
-</section>
+  </section>

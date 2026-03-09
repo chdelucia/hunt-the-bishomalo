@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, isDevMode } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { GameEngineService, GameSoundService } from '@hunt-the-bishomalo/core/services';
 import {
@@ -17,7 +17,7 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
 @Component({
   selector: 'lib-game-config',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, NgOptimizedImage, TranslocoModule],
+  imports: [ReactiveFormsModule, NgOptimizedImage, TranslocoModule],
   templateUrl: './game-config.component.html',
   styleUrls: ['./game-config.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

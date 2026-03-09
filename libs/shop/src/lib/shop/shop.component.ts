@@ -1,5 +1,5 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { GameEngineService } from '@hunt-the-bishomalo/core/services';
 import { Product, RouteTypes } from '@hunt-the-bishomalo/data';
@@ -9,7 +9,7 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
 @Component({
   selector: 'lib-shop',
   standalone: true,
-  imports: [CommonModule, TranslocoModule],
+  imports: [TranslocoModule],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss',
 })

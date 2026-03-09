@@ -6,7 +6,7 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Router } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { GameStoryService } from './game-story.service';
@@ -15,7 +15,7 @@ import { RouteTypes } from '@hunt-the-bishomalo/data';
 @Component({
   selector: 'lib-story',
   standalone: true,
-  imports: [CommonModule, TranslocoModule],
+  imports: [TranslocoModule],
   templateUrl: './story.component.html',
   styleUrl: './story.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

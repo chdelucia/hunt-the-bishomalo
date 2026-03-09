@@ -82,7 +82,9 @@ describe('VisualEffectDirective', () => {
     expect(layer).not.toBeNull();
 
     fixture.componentInstance.effect = 'brillo';
-    fixture.detectChanges();
+    // Use changeDetectorRef to avoid ExpressionChangedAfterItHasBeenCheckedError in tests
+    // when manually triggering detectChanges after a state change.
+    fixture.changeDetectorRef.detectChanges();
 
     layer = debugEl.nativeElement.querySelector('.effect-layer');
     expect(layer.querySelectorAll('.cloud').length).toBe(0);
