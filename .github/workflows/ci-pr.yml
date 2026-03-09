@@ -49,7 +49,7 @@ jobs:
 
       - name: Install commitlint and validate commit messages
         run: |
-          pnpm dlx --package @commitlint/cli --package @commitlint/config-conventional commitlint --from=$BASE --to=HEAD --verbose
+          npx @commitlint/cli commitlint --from=$BASE --to=HEAD --verbose
   install-deps:
     runs-on: ubuntu-latest
     needs: validate
