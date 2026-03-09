@@ -10,7 +10,7 @@ permissions:
 
 env:
   NODE_VERSION: '20'
-  CACHE_DEPENDENCY_PATH: package-lock.json
+  CACHE_DEPENDENCY_PATH: bun.lock
 
 jobs:
   validate:
@@ -20,13 +20,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+      - uses: oven-sh/setup-bun@v2
 
       - name: Install commitlint and validate commit messages
         run: |
-          npm install --no-save @commitlint/{cli,config-conventional}
+          bun add @commitlint/{cli,config-conventional}
           # Determine commit range for PR: use the PR base if available, otherwise fallback to first commit
           if [ -n "${{ github.event.pull_request.base.ref }}" ]; then
             BASE_REF=origin/${{ github.event.pull_request.base.ref }}
@@ -38,7 +36,7 @@ jobs:
           else
             FROM_REF=$(git rev-list --max-parents=0 HEAD)
           fi
-          npx commitlint --from=$FROM_REF --to=HEAD --verbose
+          bun x commitlint --from=$FROM_REF --to=HEAD --verbose
 
   build-and-test:
     runs-on: ubuntu-latest
@@ -48,23 +46,19 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: npm
-          cache-dependency-path: ${{ env.CACHE_DEPENDENCY_PATH }}
+      - uses: oven-sh/setup-bun@v2
 
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+        run: bun install --frozen-lockfile
 
       - name: Install Cypress
-        run: npx cypress install
+        run: bun x cypress install
 
       - name: Lint
-        run: npx nx run-many -t lint
+        run: bun x nx run-many -t lint
 
       - name: Test with coverage
-        run: npx nx test hunt-the-bishomalo --coverage --coverageReporters=lcov
+        run: bun x nx test hunt-the-bishomalo --coverage --coverageReporters=lcov
 
       - name: Build production
-        run: npx nx build hunt-the-bishomalo --configuration=production
+        run: bun x nx build hunt-the-bishomalo --configuration=production

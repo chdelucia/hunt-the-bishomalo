@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npx prettier --write "src/**/*.{ts,tsx,js,json,css,scss,html,md}" 
-npx jest --runInBand --color
-npx nx run-many -t lint
+bun x prettier --write "src/**/*.{ts,tsx,js,json,css,scss,html,md}"
+bun x jest --runInBand --color
+bun x nx run-many -t lint

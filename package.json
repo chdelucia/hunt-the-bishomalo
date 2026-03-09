@@ -2,6 +2,7 @@
   "name": "@hunt-the-bishomalo/source",
   "version": "7.3.3",
   "license": "MIT",
+  "packageManager": "bun@1.2.14",
   "scripts": {
     "start": "nx serve",
     "build": "nx build",

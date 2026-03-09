@@ -6,10 +6,10 @@ export default defineConfig({
     ...nxE2EPreset(__filename, {
       cypressDir: 'src',
       webServerCommands: {
-        default: 'npx nx run hunt-the-bishomalo:serve',
-        production: 'npx nx run hunt-the-bishomalo:serve-static',
+        default: 'bun x nx run hunt-the-bishomalo:serve',
+        production: 'bun x nx run hunt-the-bishomalo:serve-static',
       },
-      ciWebServerCommand: 'npx nx run hunt-the-bishomalo:serve-static',
+      ciWebServerCommand: 'bun x nx run hunt-the-bishomalo:serve-static',
       ciBaseUrl: 'http://localhost:4200',
     }),
     baseUrl: 'http://localhost:4200',

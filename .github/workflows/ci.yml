@@ -11,7 +11,7 @@ permissions:
 
 env:
   NODE_VERSION: '20'
-  CACHE_DEPENDENCY_PATH: package-lock.json
+  CACHE_DEPENDENCY_PATH: bun.lock
 
 jobs:
   setup:
@@ -23,7 +23,7 @@ jobs:
 
       - name: Generate cache key
         id: cache-key
-        run: echo "key=${{ runner.os }}-node-${{ env.NODE_VERSION }}-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}" >> $GITHUB_OUTPUT
+        run: echo "key=${{ runner.os }}-bun-${{ env.NODE_VERSION }}-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}" >> $GITHUB_OUTPUT
 
   validate:
     runs-on: ubuntu-latest
@@ -34,18 +34,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+      - uses: oven-sh/setup-bun@v2
 
       - name: Validate commit messages
         run: |
-          npm install --no-save @commitlint/{cli,config-conventional}
+          bun add @commitlint/{cli,config-conventional}
           COMMIT_COUNT=$(git rev-list --count HEAD)
           if [ "$COMMIT_COUNT" -ge 10 ]; then
-            npx commitlint --from=HEAD~10 --to=HEAD --verbose
+            bun x commitlint --from=HEAD~10 --to=HEAD --verbose
           else
-            npx commitlint --from=$(git rev-list --max-parents=0 HEAD) --to=HEAD --verbose || true
+            bun x commitlint --from=$(git rev-list --max-parents=0 HEAD) --to=HEAD --verbose || true
           fi
 
   install:
@@ -56,23 +54,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: npm
-          cache-dependency-path: ${{ env.CACHE_DEPENDENCY_PATH }}
+      - uses: oven-sh/setup-bun@v2
 
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+        run: bun install --frozen-lockfile
 
       - name: Cache node_modules
         uses: actions/cache@v4
         id: npm-cache
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
+          key: ${{ runner.os }}-bun-${{ env.NODE_VERSION }}-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-bun-
 
   lint:
     runs-on: ubuntu-latest
@@ -80,18 +74,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+      - uses: oven-sh/setup-bun@v2
 
       - name: Restore node_modules cache
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
+          key: ${{ runner.os }}-bun-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
 
       - name: Lint (Nx monorepo)
-        run: npx nx run-many -t lint
+        run: bun x nx run-many -t lint
 
   test:
     runs-on: ubuntu-latest
@@ -99,18 +91,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+      - uses: oven-sh/setup-bun@v2
 
       - name: Restore node_modules cache
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
+          key: ${{ runner.os }}-bun-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
 
       - name: Unit Tests (coverage)
-        run: npx nx run-many -t test --coverage --coverageReporters=lcov
+        run: bun x nx run-many -t test --coverage --coverageReporters=lcov
 
       - name: Upload coverage to SonarCloud
         uses: SonarSource/sonarqube-scan-action@v6
@@ -124,31 +114,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+      - uses: oven-sh/setup-bun@v2
 
       - name: Restore node_modules cache
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
+          key: ${{ runner.os }}-bun-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
 
       # 🧠 caché de Cypress (evita reinstalaciones)
       - name: Cache Cypress binary
         uses: actions/cache@v4
         with:
           path: ~/.cache/Cypress
-          key: cypress-cache-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+          key: cypress-cache-${{ runner.os }}-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
           restore-keys: |
             cypress-cache-${{ runner.os }}-
 
       - name: Install Cypress (si no está en cache)
-        run: npx cypress install
+        run: bun x cypress install
 
       # E2E Nx avanzado (monorepo)
       - name: Run Nx E2E (non-blocking)
-        run: npx nx e2e e2e
+        run: bun x nx e2e e2e
         continue-on-error: true
 
   build:
@@ -157,18 +145,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+      - uses: oven-sh/setup-bun@v2
 
       - name: Restore node_modules cache
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
+          key: ${{ runner.os }}-bun-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
 
       - name: Build production (Nx)
-        run: npx nx run-many -t build --configuration=production
+        run: bun x nx run-many -t build --configuration=production
 
   release:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
@@ -179,14 +165,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: npm
-          cache-dependency-path: ${{ env.CACHE_DEPENDENCY_PATH }}
+      - uses: oven-sh/setup-bun@v2
 
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+        run: bun install --frozen-lockfile
 
       - name: Configure Git
         run: |
@@ -199,8 +181,8 @@ jobs:
       - name: Generate changelog and tag
         id: versioning
         run: |
-          npm install --no-save standard-version
-          npx standard-version --commit-all --no-verify
+          bun add standard-version
+          bun x standard-version --commit-all --no-verify
           echo "new_tag=$(git describe --tags --abbrev=0)" >> $GITHUB_OUTPUT
 
       - name: Push changes and tags
