@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.4.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.3.3...v7.4.0) (2026-03-09)
+
+
+### Features
+
+* add bun ([0988766](https://github.com/chdelucia/hunt-the-bishomalo/commit/0988766460f526b7432e789ed1f919aefec210b4))
+* migrate project to zoneless change detection ([792d9f5](https://github.com/chdelucia/hunt-the-bishomalo/commit/792d9f51564a11e0291f55bbe5b47d8403a03a8a))
+
+
+### Bug Fixes
+
+* cdci error ([20e80e4](https://github.com/chdelucia/hunt-the-bishomalo/commit/20e80e4d5f3a8946c363889f47d82ddbaf240de6))
+* ci ([25a7218](https://github.com/chdelucia/hunt-the-bishomalo/commit/25a72184e063051905cdf77a83ddfbf0016997ad))
+* ci base ([0e966c9](https://github.com/chdelucia/hunt-the-bishomalo/commit/0e966c9c0b1eb79945461ed295b85f480d2c28e7))
+* ci cd ([2006e31](https://github.com/chdelucia/hunt-the-bishomalo/commit/2006e319bcd32e1ec179959060253d8322d9d80d))
+* ci cd ([351a045](https://github.com/chdelucia/hunt-the-bishomalo/commit/351a04523ee59b514f9ab76bce072ead4a2f28b6))
+* ci definitivo ([fea4f48](https://github.com/chdelucia/hunt-the-bishomalo/commit/fea4f485553d4f6b2268aee6fbdfee4b9471c33e))
+* ci definitivo ([5600987](https://github.com/chdelucia/hunt-the-bishomalo/commit/5600987362d27e63607e24eaa79e969054173753))
+* ci improve ([36512f8](https://github.com/chdelucia/hunt-the-bishomalo/commit/36512f8f52f528075d3ca5895ca66dd09c579190))
+* ci solve depracated ([45f9ef1](https://github.com/chdelucia/hunt-the-bishomalo/commit/45f9ef16741c8884863bb9570ed78677a28630e9))
+* cicd remove e2e ([8d2710a](https://github.com/chdelucia/hunt-the-bishomalo/commit/8d2710ae33b352eea34d3aed9da688a01cd31448))
+* esto funciona ([cb917de](https://github.com/chdelucia/hunt-the-bishomalo/commit/cb917de220dfde5432cf4fecddeab8a0f530f7f3))
+* esto funciona aver ([ea34a79](https://github.com/chdelucia/hunt-the-bishomalo/commit/ea34a79d8494056bfcae536e4d95d369cd6b3b20))
+* lint ([ec5af0d](https://github.com/chdelucia/hunt-the-bishomalo/commit/ec5af0dfea68533e2be159fccbe145534d67a623))
+* parelizacion ([2a59578](https://github.com/chdelucia/hunt-the-bishomalo/commit/2a59578f770fdd253bc32a255f91eace8eafb827))
+* zoneless ([742bb24](https://github.com/chdelucia/hunt-the-bishomalo/commit/742bb2482f156d65993eb6b2cc8457aea3a5d796))
+
 ### [7.3.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.3.2...v7.3.3) (2026-03-08)
 
 
