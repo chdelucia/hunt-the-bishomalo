@@ -3,3 +3,7 @@ export * from './lib/components/filter/achievement-filter.component';
 export * from './lib/components/item/achievement-item.component';
 export * from './lib/components/progress/achievement-progress.component';
 export * from './lib/services/achievement.service';
+export * from './lib/models/achievement.model';
+export * from './lib/enums/achieve.enum';
+export * from './lib/interfaces/achievement-service.interface';
+export * from './lib/tokens/achievements.token';

@@ -1,6 +1,6 @@
-import { AchieveTypes } from '../achieve.enum';
-import { Cell } from '../cell.model';
-import { Achievement } from '../achive.model';
+import { AchieveTypes } from '../enums/achieve.enum';
+import { Cell } from '@hunt-the-bishomalo/data';
+import { Achievement } from '../models/achievement.model';
 import { Signal } from '@angular/core';
 
 export interface IAchievementService {
