@@ -83,7 +83,7 @@ jobs:
           key: ${{ runner.os }}-bun-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
 
       - name: Lint (Nx monorepo)
-        run: bun x nx run-many -t lint
+        run: bun x nx run-many -t lint --parallel
 
   test:
     runs-on: ubuntu-latest
@@ -100,7 +100,7 @@ jobs:
           key: ${{ runner.os }}-bun-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
 
       - name: Unit Tests (coverage)
-        run: bun x nx run-many -t test --coverage --coverageReporters=lcov
+        run: bun x nx run-many -t test --coverage --coverageReporters=lcov --parallel
 
       - name: Upload coverage to SonarCloud
         uses: SonarSource/sonarqube-scan-action@v6
