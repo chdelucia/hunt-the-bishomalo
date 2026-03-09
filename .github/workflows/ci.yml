@@ -65,7 +65,7 @@ jobs:
           cache-dependency-path: ${{ env.CACHE_DEPENDENCY_PATH }}
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Cache pnpm store
         uses: actions/cache@v4
@@ -218,7 +218,7 @@ jobs:
           cache-dependency-path: ${{ env.CACHE_DEPENDENCY_PATH }}
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Configure Git
         run: |

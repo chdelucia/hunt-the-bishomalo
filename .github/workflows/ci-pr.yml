@@ -68,7 +68,7 @@ jobs:
           cache-dependency-path: ${{ env.CACHE_DEPENDENCY_PATH }}
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Install Cypress
         run: pnpm exec cypress install
@@ -92,7 +92,7 @@ jobs:
           cache-dependency-path: ${{ env.CACHE_DEPENDENCY_PATH }}
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Determine effective NX base
         run: |
@@ -125,7 +125,7 @@ jobs:
           cache-dependency-path: ${{ env.CACHE_DEPENDENCY_PATH }}
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Determine effective NX base
         run: |
@@ -158,7 +158,7 @@ jobs:
           cache-dependency-path: ${{ env.CACHE_DEPENDENCY_PATH }}
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Determine effective NX base
         run: |
