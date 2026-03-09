@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AchievementsComponent } from './achievements';
-import { AchievementService } from '../achievement.service';
 import { Achievement } from '@hunt-the-bishomalo/data';
 import { RouterModule } from '@angular/router';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
+import { signal } from '@angular/core';
 
 describe('AchievementsComponent', () => {
   let component: AchievementsComponent;
@@ -39,13 +40,14 @@ describe('AchievementsComponent', () => {
 
   const achievementServiceMock = {
     achievements: mockAchievements,
+    completed: signal(undefined),
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AchievementsComponent, RouterModule.forRoot([]), getTranslocoTestingModule()],
       providers: [
-        { provide: AchievementService, useValue: achievementServiceMock },
+        { provide: ACHIEVEMENT_SERVICE, useValue: achievementServiceMock },
         provideNoopAnimations(),
       ],
     }).compileComponents();
