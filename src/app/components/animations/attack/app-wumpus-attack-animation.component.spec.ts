@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppWumpusAttackAnimationComponent } from './app-wumpus-attack-animation.component';
 
 describe('AppWumpusAttackAnimationComponent', () => {
@@ -24,13 +24,19 @@ describe('AppWumpusAttackAnimationComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should update step over time and emit closeAnimation', fakeAsync(() => {
+  it('should update step over time and emit closeAnimation', (done) => {
+    jest.useFakeTimers();
+    // Re-create component with fake timers active so ngOnInit uses them
+    fixture = TestBed.createComponent(AppWumpusAttackAnimationComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
 
     expect(component.step()).toBe(1);
-    tick(3500);
-    expect(component.step()).toBe(1);
-  }));
+    jest.advanceTimersByTime(3500);
+    expect(component.step()).toBe(5);
+    jest.useRealTimers();
+    done();
+  });
 
   it('should return correct player position', () => {
     component.step.set(1);
