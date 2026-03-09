@@ -1,36 +1,39 @@
-import { Directive, ElementRef, Input, OnChanges, Renderer2, inject } from '@angular/core';
+import { Directive, ElementRef, Renderer2, inject, input, effect } from '@angular/core';
 
 @Directive({
   selector: '[appVisualEffect]',
   standalone: true,
 })
-export class VisualEffectDirective implements OnChanges {
-  @Input('appVisualEffect') perception = '';
+export class VisualEffectDirective {
+  readonly perception = input('', { alias: 'appVisualEffect' });
 
   private readonly el = inject(ElementRef);
   private readonly renderer = inject(Renderer2);
 
-  ngOnChanges(): void {
-    this.clearEffects();
+  constructor() {
+    effect(() => {
+      const perception = this.perception();
+      this.clearEffects();
 
-    const container = this.renderer.createElement('div');
-    this.renderer.addClass(container, 'effect-layer');
+      const container = this.renderer.createElement('div');
+      this.renderer.addClass(container, 'effect-layer');
 
-    if (this.perception.includes('brisa') || this.perception.includes('breeze')) {
-      this.addClouds(container);
-    }
+      if (perception.includes('brisa') || perception.includes('breeze')) {
+        this.addClouds(container);
+      }
 
-    if (this.perception.includes('hedor') || this.perception.includes('stench')) {
-      this.addStink(container);
-    }
+      if (perception.includes('hedor') || perception.includes('stench')) {
+        this.addStink(container);
+      }
 
-    if (this.perception.includes('brillo') || this.perception.includes('shine')) {
-      this.addSparkles(container);
-    }
+      if (perception.includes('brillo') || perception.includes('shine')) {
+        this.addSparkles(container);
+      }
 
-    if (container.childNodes.length > 0) {
-      this.renderer.appendChild(this.el.nativeElement, container);
-    }
+      if (container.childNodes.length > 0) {
+        this.renderer.appendChild(this.el.nativeElement, container);
+      }
+    });
   }
 
   private addClouds(container: HTMLElement) {

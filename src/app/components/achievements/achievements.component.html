@@ -16,9 +16,9 @@
               'achievements.progressStats'
                 | transloco
                   : {
-                      unlockedCount: unlockedCount,
-                      totalAchievements: achievements.length,
-                      percentage: percentage,
+                      unlockedCount: unlockedCount(),
+                      totalAchievements: achievements().length,
+                      percentage: percentage(),
                     }
             }}
           </p>
@@ -26,7 +26,7 @@
         <div class="filter-buttons">
           <button
             (click)="setFilter('all')"
-            [ngClass]="{ 'active-filter': filter === 'all', 'inactive-filter': filter !== 'all' }"
+            [ngClass]="{ 'active-filter': filter() === 'all', 'inactive-filter': filter() !== 'all' }"
             class="filter-button"
           >
             {{ 'achievements.filterAll' | transloco }}
@@ -34,8 +34,8 @@
           <button
             (click)="setFilter('unlocked')"
             [ngClass]="{
-              'active-filter': filter === 'unlocked',
-              'inactive-filter': filter !== 'unlocked',
+              'active-filter': filter() === 'unlocked',
+              'inactive-filter': filter() !== 'unlocked',
             }"
             class="filter-button"
           >
@@ -44,8 +44,8 @@
           <button
             (click)="setFilter('locked')"
             [ngClass]="{
-              'active-filter': filter === 'locked',
-              'inactive-filter': filter !== 'locked',
+              'active-filter': filter() === 'locked',
+              'inactive-filter': filter() !== 'locked',
             }"
             class="filter-button"
           >
@@ -55,12 +55,12 @@
       </div>
 
       <div class="progress-bar-container">
-        <div class="progress-bar" [style.width.%]="percentage"></div>
+        <div class="progress-bar" [style.width.%]="percentage()"></div>
       </div>
     </div>
 
     <div class="achievements-grid">
-      @for (achievement of filteredAchievements; track achievement) {
+      @for (achievement of filteredAchievements(); track achievement) {
         <div
           [ngClass]="{
             'achievement-unlocked': achievement.unlocked,

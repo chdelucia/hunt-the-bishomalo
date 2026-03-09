@@ -3,7 +3,6 @@ import {
   Component,
   inject,
   OnDestroy,
-  OnInit,
   signal,
 } from '@angular/core';
 
@@ -20,7 +19,7 @@ import { RouteTypes } from '@hunt-the-bishomalo/data';
   styleUrl: './story.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StoryComponent implements OnInit, OnDestroy {
+export class StoryComponent implements OnDestroy {
   private readonly router = inject(Router);
   private readonly storyService = inject(GameStoryService);
   private readonly translocoService = inject(TranslocoService);
@@ -33,7 +32,7 @@ export class StoryComponent implements OnInit, OnDestroy {
 
   private fullText = '';
 
-  ngOnInit(): void {
+  constructor() {
     if (this.story) {
       this.fullText = this.story.text;
       this.startReading(this.fullText);

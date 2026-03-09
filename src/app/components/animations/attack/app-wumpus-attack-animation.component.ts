@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
   output,
   signal,
   computed,
@@ -19,14 +18,18 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppWumpusAttackAnimationComponent implements OnInit, OnDestroy {
-  step = signal(1);
-  closeAnimation = output<void>();
+export class AppWumpusAttackAnimationComponent implements OnDestroy {
+  readonly step = signal(1);
+  readonly closeAnimation = output<void>();
 
   private readonly destroy$ = new Subject<void>();
   readonly gameStore = inject(GameStore);
 
-  ngOnInit(): void {
+  constructor() {
+    this.initAnimation();
+  }
+
+  private initAnimation(): void {
     const steps = [500, 1000, 1500, 2000, 3500];
 
     steps.forEach((delay, index) => {

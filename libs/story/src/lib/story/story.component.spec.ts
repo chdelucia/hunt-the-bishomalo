@@ -69,10 +69,7 @@ describe('StoryComponent', () => {
   });
 
   it('should initialize with story and call startReading', () => {
-    const spy = jest.spyOn<any, any>(component, 'startReading');
-    component.ngOnInit();
     expect(component['fullText']).toBe(mockStory.text);
-    expect(spy).toHaveBeenCalledWith(mockStory.text);
   });
 
   it('should navigate to HOME when goToGame is called', () => {
@@ -105,7 +102,9 @@ describe('StoryComponent', () => {
     component['startReading'](mockStory.text);
     jest.advanceTimersByTime(mockStory.text.length * 90);
 
-    expect(component.displayedText()).toBe('TTeexxttoo  ddee  pprruueebbaa..');
+    // In the previous test it was "TTeexxttoo  ddee  pprruueebbaa.." because it was called twice (constructor + ngOnInit)
+    // Now it should be only once.
+    expect(component.displayedText()).toBe('Texto de prueba.');
     expect(component.reading()).toBe(false);
 
     jest.runAllTimers();

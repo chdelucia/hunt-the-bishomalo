@@ -32,30 +32,30 @@ describe('AchievementsComponent', () => {
 
   it('should create the component and initialize achievements', () => {
     expect(component).toBeTruthy();
-    expect(component.achievements).toEqual(mockAchievements);
+    expect(component.achievements()).toEqual(mockAchievements);
   });
 
   it('should filter all achievements when filter is "all"', () => {
     component.setFilter('all');
-    expect(component.filteredAchievements.length).toBe(mockAchievements.length);
+    expect(component.filteredAchievements().length).toBe(mockAchievements.length);
   });
 
   it('should filter only unlocked achievements', () => {
     component.setFilter('unlocked');
-    expect(component.filteredAchievements.every((a) => a.unlocked)).toBe(true);
+    expect(component.filteredAchievements().every((a) => a.unlocked)).toBe(true);
   });
 
   it('should filter only locked achievements', () => {
     component.setFilter('locked');
-    expect(component.filteredAchievements.every((a) => !a.unlocked)).toBe(true);
+    expect(component.filteredAchievements().every((a) => !a.unlocked)).toBe(true);
   });
 
   it('should correctly compute unlockedCount', () => {
-    expect(component.unlockedCount).toBe(2);
+    expect(component.unlockedCount()).toBe(2);
   });
 
   it('should correctly compute percentage', () => {
-    expect(component.percentage).toBe(Math.round((2 / 3) * 100));
+    expect(component.percentage()).toBe(Math.round((2 / 3) * 100));
   });
 
   it('should return correct rarity color', () => {

@@ -64,7 +64,7 @@ describe('BossFightComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize the game grid on ngOnInit', () => {
+  it('should initialize the game grid', () => {
     expect(component.bossStore.grid().length).toBe(component.bossStore.gridSize());
     expect(component.bossStore.grid()[0].length).toBe(component.bossStore.gridSize());
     expect(component.bossStore.bossRemaining()).toBe(component.bossStore.bossParts());

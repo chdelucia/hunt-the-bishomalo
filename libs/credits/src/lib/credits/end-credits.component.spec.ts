@@ -44,7 +44,7 @@ describe('EndCreditsComponent', () => {
   });
 
   it('should call gameSound.stop and playSound on init', () => {
-    component.ngOnInit();
+    // Logic moved to constructor, so it should have been called already by fixture.detectChanges()
     expect(mockGameSoundService.stop).toHaveBeenCalled();
     expect(mockGameSoundService.playSound).toHaveBeenCalled();
   });
