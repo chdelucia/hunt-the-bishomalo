@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
-  selector: 'app-achievement-progress',
+  selector: 'lib-achievement-progress',
   standalone: true,
   imports: [CommonModule, TranslocoModule],
   templateUrl: './achievement-progress.component.html',

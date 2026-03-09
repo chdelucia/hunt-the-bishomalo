@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
-  selector: 'app-achievement-filter',
+  selector: 'lib-achievement-filter',
   standalone: true,
   imports: [CommonModule, TranslocoModule],
   templateUrl: './achievement-filter.component.html',
