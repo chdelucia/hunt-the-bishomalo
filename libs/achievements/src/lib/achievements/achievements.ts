@@ -2,8 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Achievement } from '@hunt-the-bishomalo/data';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
+import { Achievement, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/data';
 import { AchievementFilterComponent } from '../components/filter/achievement-filter.component';
 import { AchievementItemComponent } from '../components/item/achievement-item.component';
 import { AchievementProgressComponent } from '../components/progress/achievement-progress.component';
@@ -41,7 +40,7 @@ export class AchievementsComponent implements OnInit {
   private readonly achieveService = inject(ACHIEVEMENT_SERVICE);
 
   filter: 'all' | 'unlocked' | 'locked' = 'all';
-  achievements: Achievement[] = (this.achieveService as any).achievements;
+  achievements: Achievement[] = this.achieveService.achievements;
   filteredAchievements: Achievement[] = [];
 
   unlockedCount = 0;

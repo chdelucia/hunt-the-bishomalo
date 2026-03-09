@@ -1,8 +1,16 @@
 import { effect, inject, Injectable, signal } from '@angular/core';
-import { Achievement, AchieveTypes, Cell, GameSound, IAchievementService } from '@hunt-the-bishomalo/data';
-import { AnalyticsService } from '../analytics/analytics.service';
-import { GameSoundService } from '../sound/game-sound.service';
-import { LocalstorageService } from '../localstorage/localstorage.service';
+import {
+  Achievement,
+  AchieveTypes,
+  Cell,
+  GameSound,
+  IAchievementService,
+} from '@hunt-the-bishomalo/data';
+import {
+  AnalyticsService,
+  GameSoundService,
+  LocalstorageService,
+} from '@hunt-the-bishomalo/core/services';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { ACHIEVEMENTS_LIST } from './achieve.const';
 

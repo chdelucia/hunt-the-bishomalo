@@ -1,11 +1,10 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LeaderboardService } from '../leaderboard.service';
-import { RouteTypes, ScoreEntry } from '@hunt-the-bishomalo/data';
+import { RouteTypes, ScoreEntry, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/data';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { TranslocoModule } from '@jsverse/transloco';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
 
 @Component({
   selector: 'lib-results',
@@ -26,9 +25,7 @@ export class ResultsComponent {
   routeSnapshot = inject(ActivatedRoute);
 
   constructor() {
-    this.unlockedAchievements = (this.achieve as any).achievements.filter(
-      (item: any) => item.unlocked,
-    ).length;
+    this.unlockedAchievements = this.achieve.achievements.filter((item) => item.unlocked).length;
     this.leaderboard = this.leaderboardService._leaderboard;
   }
 

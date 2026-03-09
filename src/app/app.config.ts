@@ -6,7 +6,7 @@ import { TranslocoHttpLoader } from './utils/transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
 import { GAME_STORE } from '@hunt-the-bishomalo/story';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
-import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/core/services';
+import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/data';
 import { LeaderboardService } from '@hunt-the-bishomalo/gamestats';
 
 export const appConfig: ApplicationConfig = {

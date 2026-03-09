@@ -14,3 +14,4 @@ export * from './game-state.model';
 export * from './interfaces/achievement-service.interface';
 export * from './interfaces/leaderboard-service.interface';
 export * from './interfaces/game-store.interface';
+export * from './tokens';

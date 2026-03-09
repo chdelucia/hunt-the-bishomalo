@@ -1,7 +1,6 @@
 import { Component, effect, inject, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { Achievement } from '@hunt-the-bishomalo/data';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
+import { Achievement, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/data';
 
 interface ToastData {
   id: number;
@@ -23,7 +22,7 @@ export class ToastComponent {
 
   constructor() {
     effect(() => {
-      const achievement = (this.service as any).completed();
+      const achievement = this.service.completed();
       if (achievement) {
         this.addToast(achievement);
       }
