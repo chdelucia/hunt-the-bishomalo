@@ -6,7 +6,7 @@
       [style.left]="getPlayerLeft()"
       [style.opacity]="step() < 5 ? 1 : 0.3"
       [style.transform]="'translateY(-50%)' + (step() >= 4 ? ' rotate(15deg)' : '')"
-      >
+    >
       @if (selected === 'default') {
         <img [src]="'chars/' + selected + '/bow.svg'" alt="bow" />
       } @else {
