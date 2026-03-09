@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CharactersComponent } from './characters.component';
-import { RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Chars } from '@hunt-the-bishomalo/data';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
@@ -16,16 +16,21 @@ const achievementServiceMock = {
   activeAchievement: jest.fn(),
 };
 
+const routerMock = {
+  navigateByUrl: jest.fn(),
+};
+
 describe('CharactersComponent', () => {
   let component: CharactersComponent;
   let fixture: ComponentFixture<CharactersComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CharactersComponent, RouterModule.forRoot([]), getTranslocoTestingModule()],
+      imports: [CharactersComponent, getTranslocoTestingModule()],
       providers: [
         { provide: GameStore, useValue: gameStoreMock },
         { provide: AchievementService, useValue: achievementServiceMock },
+        { provide: Router, useValue: routerMock },
       ],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
@@ -43,5 +48,11 @@ describe('CharactersComponent', () => {
     component.selectedChar.set(Chars.LINK);
     component.onClick();
     expect(gameStoreMock.updateGame).toHaveBeenCalled();
+  });
+
+  it('should navigate to credits on confirm selection', () => {
+    component.selectedChar.set(Chars.LINK);
+    component.onClick();
+    expect(routerMock.navigateByUrl).toHaveBeenCalledWith('creditos');
   });
 });
