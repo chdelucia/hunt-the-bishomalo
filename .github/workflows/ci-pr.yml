@@ -39,7 +39,8 @@ jobs:
           else
             BASE=$(git rev-list --max-parents=0 HEAD)
           fi
-          echo "::set-output name=base::$BASE"
+          # export via environment file instead of deprecated set-output
+          echo "base=$BASE" >> $GITHUB_OUTPUT
 
       - name: Install commitlint and validate commit messages
         run: |
