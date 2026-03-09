@@ -25,16 +25,46 @@ jobs:
         id: cache-key
         run: echo "key=${{ runner.os }}-bun-${{ env.NODE_VERSION }}-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}" >> $GITHUB_OUTPUT
 
-  validate:
+  install:
     runs-on: ubuntu-latest
     needs: setup
+    outputs:
+      cache-hit: ${{ steps.npm-cache.outputs.cache-hit }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Restore node_modules cache
+        id: npm-cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-bun-${{ env.NODE_VERSION }}-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
+          restore-keys: |
+            ${{ runner.os }}-bun-${{ env.NODE_VERSION }}-
+
+      - name: Install dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: bun install --frozen-lockfile
+
+      - name: Verify Nx CLI
+        run: bun x nx --version
+
+  validate:
+    runs-on: ubuntu-latest
+    needs: install
     continue-on-error: true
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - uses: oven-sh/setup-bun@v2
+
+      - name: Restore node_modules cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-bun-${{ env.NODE_VERSION }}-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
 
       - name: Validate commit messages
         run: |
@@ -44,29 +74,6 @@ jobs:
             bun x commitlint --from=HEAD~10 --to=HEAD --verbose
           else
             bun x commitlint --from=$(git rev-list --max-parents=0 HEAD) --to=HEAD --verbose || true
-          fi
-
-  install:
-    runs-on: ubuntu-latest
-    needs: setup
-    outputs:
-      cache-key: ${{ steps.npm-cache.outputs.cache-hit }}
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: oven-sh/setup-bun@v2
-
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      - name: Cache node_modules
-        uses: actions/cache@v4
-        id: npm-cache
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-bun-${{ env.NODE_VERSION }}-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
-          restore-keys: |
-            ${{ runner.os }}-bun-
 
   lint:
     runs-on: ubuntu-latest
@@ -80,7 +87,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: ${{ runner.os }}-bun-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
+          key: ${{ runner.os }}-bun-${{ env.NODE_VERSION }}-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
 
       - name: Lint (Nx monorepo)
         run: bun x nx run-many -t lint --parallel
@@ -97,7 +104,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: ${{ runner.os }}-bun-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
+          key: ${{ runner.os }}-bun-${{ env.NODE_VERSION }}-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
 
       - name: Unit Tests (coverage)
         run: bun x nx run-many -t test --coverage --coverageReporters=lcov --parallel
@@ -110,7 +117,7 @@ jobs:
   e2e:
     runs-on: ubuntu-latest
     needs: install
-    continue-on-error: true  # 👈 no bloquea CI
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
 
@@ -120,9 +127,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: ${{ runner.os }}-bun-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
+          key: ${{ runner.os }}-bun-${{ env.NODE_VERSION }}-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
 
-      # 🧠 caché de Cypress (evita reinstalaciones)
       - name: Cache Cypress binary
         uses: actions/cache@v4
         with:
@@ -131,10 +137,9 @@ jobs:
           restore-keys: |
             cypress-cache-${{ runner.os }}-
 
-      - name: Install Cypress (si no está en cache)
+      - name: Install Cypress if needed
         run: bun x cypress install
 
-      # E2E Nx avanzado (monorepo)
       - name: Run Nx E2E (non-blocking)
         run: bun x nx e2e e2e
         continue-on-error: true
@@ -151,7 +156,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: ${{ runner.os }}-bun-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
+          key: ${{ runner.os }}-bun-${{ env.NODE_VERSION }}-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
 
       - name: Build production (Nx)
         run: bun x nx run-many -t build --configuration=production
