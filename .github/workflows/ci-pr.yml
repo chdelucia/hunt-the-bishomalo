@@ -10,7 +10,7 @@ permissions:
 
 env:
   NODE_VERSION: '20'
-  CACHE_DEPENDENCY_PATH: package-lock.json
+  CACHE_DEPENDENCY_PATH: pnpm-lock.yaml
 
 jobs:
   validate:
@@ -25,6 +25,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache: 'pnpm'
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
 
       - name: Compute NX base ref
         id: compute-base
@@ -44,9 +49,7 @@ jobs:
 
       - name: Install commitlint and validate commit messages
         run: |
-          npm install --no-save @commitlint/{cli,config-conventional}
-          npx commitlint --from=$BASE --to=HEAD --verbose
-
+          pnpm dlx --package @commitlint/cli --package @commitlint/config-conventional commitlint --from=$BASE --to=HEAD --verbose
   install-deps:
     runs-on: ubuntu-latest
     needs: validate
@@ -58,14 +61,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: npm
+          cache: 'pnpm'
           cache-dependency-path: ${{ env.CACHE_DEPENDENCY_PATH }}
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+        run: pnpm install --frozen-lockfile
 
       - name: Install Cypress
-        run: npx cypress install
+        run: pnpm exec cypress install
 
   lint:
     runs-on: ubuntu-latest
@@ -78,11 +85,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: npm
+          cache: 'pnpm'
           cache-dependency-path: ${{ env.CACHE_DEPENDENCY_PATH }}
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+        run: pnpm install --frozen-lockfile
 
       - name: Determine effective NX base
         run: |
@@ -94,7 +105,7 @@ jobs:
           echo "BASE=$BASE" >> $GITHUB_ENV
 
       - name: Lint affected projects
-        run: npx nx affected --target=lint --base=$BASE --head=HEAD
+        run: pnpm exec nx affected --target=lint --base=$BASE --head=HEAD
 
   test:
     runs-on: ubuntu-latest
@@ -107,11 +118,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: npm
+          cache: 'pnpm'
           cache-dependency-path: ${{ env.CACHE_DEPENDENCY_PATH }}
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+        run: pnpm install --frozen-lockfile
 
       - name: Determine effective NX base
         run: |
@@ -123,7 +138,7 @@ jobs:
           echo "BASE=$BASE" >> $GITHUB_ENV
 
       - name: Run affected tests
-        run: npx nx affected --target=test --coverage --coverageReporters=lcov --base=$BASE --head=HEAD
+        run: pnpm exec nx affected --target=test --coverage --coverageReporters=lcov --base=$BASE --head=HEAD
 
   build:
     runs-on: ubuntu-latest
@@ -136,11 +151,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: npm
+          cache: 'pnpm'
           cache-dependency-path: ${{ env.CACHE_DEPENDENCY_PATH }}
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+        run: pnpm install --frozen-lockfile
 
       - name: Determine effective NX base
         run: |
@@ -152,4 +171,4 @@ jobs:
           echo "BASE=$BASE" >> $GITHUB_ENV
 
       - name: Build affected projects
-        run: npx nx affected --target=build --configuration=production --base=$BASE --head=HEAD
+        run: pnpm exec nx affected --target=build --configuration=production --base=$BASE --head=HEAD

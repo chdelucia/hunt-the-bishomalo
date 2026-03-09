@@ -9,8 +9,9 @@ COPY package*.json nx.json project.json tsconfig*.json ./
 # Copiar el resto del proyecto
 COPY . .
 
-# Instalar dependencias de forma limpia
-RUN npm ci
+# Instalar pnpm y dependencias de forma limpia
+RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN pnpm install --frozen-lockfile
 
 # Evitar que Nx use el modo daemon
 ENV NX_DAEMON=false
@@ -19,7 +20,7 @@ ENV NX_DAEMON=false
 RUN npx nx reset || true
 
 # Compilar la app
-RUN npx nx build hunt-the-bishomalo
+RUN pnpm exec nx build hunt-the-bishomalo
 
 # Etapa 2: Servir la app con NGINX
 FROM nginx:alpine AS runtime

@@ -40,6 +40,29 @@ Te desafío a superar este juego **al 100%**. ¿Tienes lo que se necesita para e
 [🔥 **Juega ahora** 🔥](https://hunt-the-bishomalo.vercel.app/)
 ---
 
+## Using pnpm (recommended)
+
+This repo now uses **pnpm** both locally and in CI. To switch your machine:
+
+```bash
+# enable corepack (bundled with Node >=16):
+corepack enable
+# install pnpm globally via corepack
+corepack prepare pnpm@latest --activate
+```
+
+Once pnpm is available above, run the usual commands (replacing `npm`/`npx`):
+
+```bash
+pnpm install          # install dependencies
+pnpm exec nx serve    # start dev server
+pnpm exec nx test      # run unit tests
+pnpm exec nx build     # build production
+```
+
+You can also simply prefix existing scripts with `pnpm run`.
+
+
 ## Run tasks
 
 To run the dev server for your app, use:
