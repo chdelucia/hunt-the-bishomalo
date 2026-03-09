@@ -2,5 +2,5 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 pnpm exec prettier --write "src/**/*.{ts,tsx,js,json,css,scss,html,md}" 
-pnpm exec jest --runInBand --color
-pnpm exec nx run-many -t lint
+pnpm exec jest --color
+pnpm exec nx run-many -t lint --parallel=4

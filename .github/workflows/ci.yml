@@ -99,7 +99,7 @@ jobs:
           key: ${{ runner.os }}-pnpm-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
 
       - name: Lint (Nx monorepo)
-        run: pnpm exec nx run-many -t lint
+        run: pnpm exec nx run-many -t lint --parallel=4
 
   test:
     runs-on: ubuntu-latest
@@ -126,7 +126,7 @@ jobs:
           key: ${{ runner.os }}-pnpm-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
 
       - name: Unit Tests (coverage)
-        run: pnpm exec nx run-many -t test --coverage --coverageReporters=lcov
+        run: pnpm exec nx run-many -t test --coverage --coverageReporters=lcov --parallel=4
 
       - name: Upload coverage to SonarCloud
         uses: SonarSource/sonarqube-scan-action@v6
@@ -196,7 +196,7 @@ jobs:
           key: ${{ runner.os }}-pnpm-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
 
       - name: Build production (Nx)
-        run: pnpm exec nx run-many -t build --configuration=production
+        run: pnpm exec nx run-many -t build --configuration=production --parallel=4
 
   release:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'

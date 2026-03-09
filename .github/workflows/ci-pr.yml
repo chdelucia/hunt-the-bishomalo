@@ -104,7 +104,7 @@ jobs:
           echo "BASE=$BASE" >> $GITHUB_ENV
 
       - name: Lint affected projects
-        run: pnpm exec nx affected --target=lint --base=$BASE --head=HEAD
+        run: pnpm exec nx affected --target=lint --base=$BASE --head=HEAD --parallel=4
 
   test:
     runs-on: ubuntu-latest
@@ -137,7 +137,7 @@ jobs:
           echo "BASE=$BASE" >> $GITHUB_ENV
 
       - name: Run affected tests
-        run: pnpm exec nx affected --target=test --coverage --coverageReporters=lcov --base=$BASE --head=HEAD
+        run: pnpm exec nx affected --target=test --coverage --coverageReporters=lcov --base=$BASE --head=HEAD --parallel=4
 
   build:
     runs-on: ubuntu-latest
@@ -170,4 +170,4 @@ jobs:
           echo "BASE=$BASE" >> $GITHUB_ENV
 
       - name: Build affected projects
-        run: pnpm exec nx affected --target=build --configuration=production --base=$BASE --head=HEAD
+        run: pnpm exec nx affected --target=build --configuration=production --base=$BASE --head=HEAD --parallel=4
