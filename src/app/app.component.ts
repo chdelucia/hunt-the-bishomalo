@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, isDevMode } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 
 import { ToastComponent } from './components';
 import { MenuComponent } from './components/menu/menu.component';
@@ -7,7 +7,7 @@ import { GameControlsComponent } from './components/controls/game-controls.compo
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 
 @Component({
-  imports: [RouterModule, ToastComponent, MenuComponent, GameControlsComponent],
+  imports: [RouterOutlet, ToastComponent, MenuComponent, GameControlsComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
