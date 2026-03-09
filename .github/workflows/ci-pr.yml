@@ -15,6 +15,8 @@ env:
 jobs:
   validate:
     runs-on: ubuntu-latest
+    outputs:
+      base: ${{ steps.compute-base.outputs.base }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,23 +26,27 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - name: Compute NX base ref
+        id: compute-base
+        run: |
+          if [ -n "${{ github.event.pull_request.base.ref }}" ]; then
+            BASE=origin/${{ github.event.pull_request.base.ref }}
+            if git rev-parse --verify "$BASE" >/dev/null 2>&1; then
+              echo "BASE=$BASE" >> $GITHUB_ENV
+            else
+              BASE=$(git rev-list --max-parents=0 HEAD)
+            fi
+          else
+            BASE=$(git rev-list --max-parents=0 HEAD)
+          fi
+          echo "::set-output name=base::$BASE"
+
       - name: Install commitlint and validate commit messages
         run: |
           npm install --no-save @commitlint/{cli,config-conventional}
-          # Determine commit range for PR: use the PR base if available, otherwise fallback to first commit
-          if [ -n "${{ github.event.pull_request.base.ref }}" ]; then
-            BASE_REF=origin/${{ github.event.pull_request.base.ref }}
-            if git rev-parse --verify "$BASE_REF" >/dev/null 2>&1; then
-              FROM_REF=$(git rev-parse "$BASE_REF")
-            else
-              FROM_REF=$(git rev-list --max-parents=0 HEAD)
-            fi
-          else
-            FROM_REF=$(git rev-list --max-parents=0 HEAD)
-          fi
-          npx commitlint --from=$FROM_REF --to=HEAD --verbose
+          npx commitlint --from=$BASE --to=HEAD --verbose
 
-  build-and-test:
+  install-deps:
     runs-on: ubuntu-latest
     needs: validate
     steps:
@@ -60,25 +66,41 @@ jobs:
       - name: Install Cypress
         run: npx cypress install
 
-      - name: Determine NX base
-        run: |
-          # use PR base if available, otherwise fall back to last commit
-          if [ -n "${{ github.event.pull_request.base.ref }}" ]; then
-            BASE=origin/${{ github.event.pull_request.base.ref }}
-            if git rev-parse --verify "$BASE" >/dev/null 2>&1; then
-              echo "BASE=$BASE" >> $GITHUB_ENV
-            else
-              echo "BASE=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_ENV
-            fi
-          else
-            echo "BASE=$(git rev-list --max-parents=0 HEAD)" >> $GITHUB_ENV
-          fi
+  lint:
+    runs-on: ubuntu-latest
+    needs: install-deps
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Lint affected projects
+        run: npx nx affected --target=lint --base=${{ needs.validate.outputs.base }} --head=HEAD
 
-      - name: Lint
-        run: npx nx affected --target=lint --base=$BASE --head=HEAD
+  test:
+    runs-on: ubuntu-latest
+    needs: install-deps
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Run affected tests
+        run: npx nx affected --target=test --coverage --coverageReporters=lcov --base=${{ needs.validate.outputs.base }} --head=HEAD
 
-      - name: Test with coverage
-        run: npx nx affected --target=test --coverage --coverageReporters=lcov --base=$BASE --head=HEAD
-
-      - name: Build production
-        run: npx nx affected --target=build --configuration=production --base=$BASE --head=HEAD
+  build:
+    runs-on: ubuntu-latest
+    needs: install-deps
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Build affected projects
+        run: npx nx affected --target=build --configuration=production --base=${{ needs.validate.outputs.base }} --head=HEAD
