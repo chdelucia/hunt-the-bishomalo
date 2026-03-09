@@ -6,7 +6,7 @@
       [style.left]="getPlayerLeft()"
       [style.opacity]="step() < 5 ? 1 : 0.3"
       [style.transform]="'translateY(-50%)' + (step() >= 4 ? ' rotate(15deg)' : '')"
-    >
+      >
       @if (selected === 'default') {
         <img [src]="'chars/' + selected + '/bow.svg'" alt="bow" />
       } @else {
@@ -23,11 +23,11 @@
     </div>
 
     <!-- Sangre -->
-    <ng-container *ngIf="step() >= 4">
+    @if (step() >= 4) {
       <div class="blood" style="left: 40%; top: 30%"></div>
       <div class="blood" style="left: 60%; top: 40%"></div>
       <div class="blood" style="left: 30%; top: 60%"></div>
-    </ng-container>
+    }
   </div>
 
   <div class="message">¡EL WUMPUS TE HA DEVORADO!</div>

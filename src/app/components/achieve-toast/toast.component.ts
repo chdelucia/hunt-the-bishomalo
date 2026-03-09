@@ -1,5 +1,5 @@
 import { Component, effect, inject, signal } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { AchievementService } from '@hunt-the-bishomalo/achievements';
 import { Achievement } from '@hunt-the-bishomalo/data';
 
@@ -12,7 +12,7 @@ interface ToastData {
 @Component({
   selector: 'app-toast',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage],
+  imports: [NgOptimizedImage],
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss',
 })

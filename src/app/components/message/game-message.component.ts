@@ -1,5 +1,5 @@
 import { Component, computed, inject, input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { TranslocoModule } from '@jsverse/transloco';
 import { GameSettings, RouteTypes } from '@hunt-the-bishomalo/data';
 import { GameEngineService } from '@hunt-the-bishomalo/core/services';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-game-message',
   standalone: true,
-  imports: [CommonModule, TranslocoModule],
+  imports: [TranslocoModule],
   templateUrl: './game-message.component.html',
   styleUrl: './game-message.component.scss',
 })

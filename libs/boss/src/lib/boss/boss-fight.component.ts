@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { RouteTypes } from '@hunt-the-bishomalo/data';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { BossStore, BossCell } from './boss-store';
 @Component({
   selector: 'lib-boss-fight',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, TranslocoModule],
+  imports: [NgOptimizedImage, TranslocoModule],
   templateUrl: './boss-fight.component.html',
   styleUrl: './boss-fight.component.scss',
   providers: [BossStore],

@@ -1,5 +1,5 @@
 import { Component, inject, input } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { GameEngineService } from '@hunt-the-bishomalo/core/services';
 import { AchievementService } from '@hunt-the-bishomalo/achievements';
@@ -8,7 +8,7 @@ import { AchieveTypes } from '@hunt-the-bishomalo/data';
 @Component({
   selector: 'app-mobile-controls',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, TranslocoModule],
+  imports: [NgOptimizedImage, TranslocoModule],
   templateUrl: './mobile-controls.component.html',
   styleUrl: './mobile-controls.component.scss',
 })

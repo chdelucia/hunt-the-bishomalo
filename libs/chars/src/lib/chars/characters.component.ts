@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { AchieveTypes, Chars, RouteTypes } from '@hunt-the-bishomalo/data';
 import { AchievementService } from '@hunt-the-bishomalo/achievements';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 @Component({
   selector: 'lib-characters',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, TranslocoModule],
+  imports: [NgOptimizedImage, TranslocoModule],
   templateUrl: './characters.component.html',
   styleUrl: './characters.component.scss',
 })

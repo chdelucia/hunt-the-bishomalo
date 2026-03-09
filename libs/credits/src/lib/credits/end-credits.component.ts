@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, signal, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Router, RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { GameSound, RouteTypes } from '@hunt-the-bishomalo/data';
@@ -8,7 +8,7 @@ import { GameEngineService, GameSoundService } from '@hunt-the-bishomalo/core/se
 @Component({
   selector: 'lib-end-credits',
   standalone: true,
-  imports: [CommonModule, RouterModule, TranslocoModule],
+  imports: [RouterModule, TranslocoModule],
   templateUrl: './end-credits.component.html',
   styleUrl: './end-credits.component.scss',
 })
