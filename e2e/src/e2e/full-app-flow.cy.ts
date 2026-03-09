@@ -49,24 +49,8 @@ describe('Hunt the Bishomalo Full App Flow', () => {
     cy.get('.story-container').click();
 
     // 2. Win Level
-    cy.window().its('gameStore').then((store: any) => {
-        const board = JSON.parse(JSON.stringify(store.board()));
-        board[0][1].content = {
-            type: 'gold',
-            image: 'boardicons/gold.svg',
-            alt: 'gold coin',
-            ariaLabel: 'gold',
-        };
-        store.updateGame({ board });
-
-        cy.get('[aria-label="Avanzar"]', { timeout: 10000 }).should('be.visible').click();
-        cy.get('[aria-label="Girar a la derecha"]').click();
-        cy.get('[aria-label="Girar a la derecha"]').click();
-        cy.get('[aria-label="Avanzar"]').click();
-
-        cy.get('.game-message', { timeout: 15000 }).should('contain', 'ictoria');
-        cy.get('button.newgame').click();
-    });
+    cy.winLevel();
+    cy.get('button.newgame').click();
 
     // 3. Shop
     cy.url().should('include', '/tienda');
@@ -77,21 +61,8 @@ describe('Hunt the Bishomalo Full App Flow', () => {
     cy.get('.story-container', { timeout: 10000 }).click();
 
     // 4. Lose and Game Over
-    cy.window().its('gameStore').then((store: any) => {
-        store.updateGame({ lives: 1 });
-        const board = JSON.parse(JSON.stringify(store.board()));
-        board[0][1].content = {
-            type: 'wumpus',
-            image: 'chars/default/wumpus.svg',
-            alt: 'wumpus',
-            ariaLabel: 'wumpus',
-        };
-        store.updateGame({ board });
-
-        cy.get('[aria-label="Avanzar"]', { timeout: 10000 }).should('be.visible').click();
-        cy.get('.game-message', { timeout: 20000 }).should('contain', 'GAME OVER');
-        cy.get('button.newgame').click();
-    });
+    cy.loseLevel();
+    cy.get('button.newgame').click();
 
     // 5. Results
     cy.url().should('include', '/resultados');
@@ -104,7 +75,7 @@ describe('Hunt the Bishomalo Full App Flow', () => {
     cy.get('button.start-game').click();
     cy.get('.story-container').click();
 
-    cy.window().its('gameStore').then((store: any) => {
+    cy.getGameStore().then((store: any) => {
         store.updateGame({
             settings: { ...store.settings(), size: 8 }
         });

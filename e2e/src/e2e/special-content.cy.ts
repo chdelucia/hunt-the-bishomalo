@@ -11,7 +11,7 @@ describe('Special Content and Secret Routes', () => {
     cy.get('button.start-game').click();
     cy.get('.story-container').click();
 
-    cy.window().its('gameStore').then((store: any) => {
+    cy.getGameStore().then((store: any) => {
         store.updateGame({
             settings: { ...store.settings(), size: 8 }
         });
@@ -37,7 +37,7 @@ describe('Special Content and Secret Routes', () => {
     cy.get('.story-container').click();
 
     // Trigger Boss Fight via store manipulation
-    cy.window().its('gameStore').then((store: any) => {
+    cy.getGameStore().then((store: any) => {
         store.updateGame({
             settings: { ...store.settings(), size: 13 },
             hasWon: true
