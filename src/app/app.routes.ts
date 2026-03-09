@@ -6,13 +6,15 @@ import { homeGuard } from './guards/home.guard';
 export const appRoutes: Route[] = [
   {
     path: RouteTypes.ACHIEVEMENTS,
-    loadComponent: () => import('./components').then((mod) => mod.AchievementsComponent),
+    loadComponent: () =>
+      import('@hunt-the-bishomalo/shared-ui').then((mod) => mod.AchievementsComponent),
     title: 'Logros | Bisho malo',
   },
   {
     path: RouteTypes.JEDI,
     canActivate: [secretGuard],
-    loadComponent: () => import('./components').then((mod) => mod.JediMindTrickAnimationComponent),
+    loadComponent: () =>
+      import('@hunt-the-bishomalo/shared-ui').then((mod) => mod.JediMindTrickAnimationComponent),
     title: 'Jedi secreto | Bisho malo',
   },
   {

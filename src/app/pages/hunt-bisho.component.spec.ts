@@ -8,7 +8,7 @@ import {
   ACHIEVEMENT_SERVICE,
   LEADERBOARD_SERVICE,
 } from '@hunt-the-bishomalo/core/services';
-import { TitleComponent } from './../components';
+import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
 
 function createMockCell(overrides = {}) {
   return {

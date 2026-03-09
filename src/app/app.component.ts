@@ -1,9 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, isDevMode } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { ToastComponent } from './components';
-import { MenuComponent } from './components/menu/menu.component';
-import { GameControlsComponent } from './components/controls/game-controls.component';
+import { ToastComponent, MenuComponent, GameControlsComponent } from '@hunt-the-bishomalo/shared-ui';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 
 @Component({

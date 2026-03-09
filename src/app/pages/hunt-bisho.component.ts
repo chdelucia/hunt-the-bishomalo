@@ -8,7 +8,7 @@ import {
   TitleComponent,
   GameLivesComponent,
   GameLevelComponent,
-} from './../components';
+} from '@hunt-the-bishomalo/shared-ui';
 import { VisualEffectDirective } from './../directives/visual-effect.directive';
 import { RouterModule } from '@angular/router';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
