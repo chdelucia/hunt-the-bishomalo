@@ -12,7 +12,7 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     outputs:
-      base: ${{ steps.base.outputs.base }}
+      base: ${{ steps.compute_base.outputs.base }}
 
     steps:
       - uses: actions/checkout@v4
@@ -26,9 +26,8 @@ jobs:
       - uses: oven-sh/setup-bun@v2
 
       - name: Compute NX base
-        id: base
+        id: compute_base
         run: |
-          # Si existe base del PR, úsalo; si no, usa primer commit
           if [ -n "${GITHUB_EVENT_PULL_REQUEST_BASE_REF}" ]; then
             BASE=origin/${GITHUB_EVENT_PULL_REQUEST_BASE_REF}
             if ! git rev-parse --verify "$BASE" >/dev/null 2>&1; then
@@ -44,7 +43,7 @@ jobs:
       - name: Validate commits
         run: |
           bun add @commitlint/{cli,config-conventional}
-          bun x commitlint --from=${{ steps.base.outputs.base }} --to=HEAD
+          bun x commitlint --from=${{ steps.compute_base.outputs.base }} --to=HEAD
 
   install:
     runs-on: ubuntu-latest
