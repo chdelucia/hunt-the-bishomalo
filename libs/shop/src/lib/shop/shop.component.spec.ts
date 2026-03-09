@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ShopComponent } from './shop.component';
 import { Router } from '@angular/router';
 import { GameEngineService } from '@hunt-the-bishomalo/core/services';
@@ -66,7 +66,8 @@ describe('ShopComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should buy a product if gold is sufficient and effect is not heart', fakeAsync(() => {
+  it('should buy a product if gold is sufficient and effect is not heart', (done) => {
+    jest.useFakeTimers();
     const product: Product = {
       name: 'product.lantern.name',
       effect: 'lantern',
@@ -81,9 +82,11 @@ describe('ShopComponent', () => {
       inventory: [product],
     });
     expect(component.message()).toContain('shop.purchaseMessageSuccess');
-    tick(2000);
+    jest.advanceTimersByTime(2000);
     expect(component.message()).toBe('');
-  }));
+    jest.useRealTimers();
+    done();
+  });
 
   it('should increase lives if product effect is heart', () => {
     const product: Product = {
