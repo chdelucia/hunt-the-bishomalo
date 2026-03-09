@@ -1,8 +1,7 @@
 import { Component, inject, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
-import { GameEngineService } from '@hunt-the-bishomalo/core/services';
-import { AchievementService } from '@hunt-the-bishomalo/achievements';
+import { GameEngineService, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
 import { AchieveTypes } from '@hunt-the-bishomalo/data';
 
 @Component({
@@ -16,7 +15,7 @@ export class MobileControlsComponent {
   isFinish = input.required<boolean>();
 
   private readonly game = inject(GameEngineService);
-  private readonly achieve = inject(AchievementService);
+  private readonly achieve = inject(ACHIEVEMENT_SERVICE);
 
   moveForward(): void {
     this.game.moveForward();

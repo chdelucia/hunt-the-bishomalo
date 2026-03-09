@@ -5,7 +5,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Chars } from '@hunt-the-bishomalo/data';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
-import { AchievementService } from '@hunt-the-bishomalo/achievements';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
 
 const gameStoreMock = {
   updateGame: jest.fn(),
@@ -29,7 +29,7 @@ describe('CharactersComponent', () => {
       imports: [CharactersComponent, getTranslocoTestingModule()],
       providers: [
         { provide: GameStore, useValue: gameStoreMock },
-        { provide: AchievementService, useValue: achievementServiceMock },
+        { provide: ACHIEVEMENT_SERVICE, useValue: achievementServiceMock },
         { provide: Router, useValue: routerMock },
       ],
       schemas: [NO_ERRORS_SCHEMA],

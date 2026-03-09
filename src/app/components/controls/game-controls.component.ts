@@ -8,8 +8,7 @@ import {
 } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
-import { GameEngineService } from '@hunt-the-bishomalo/core/services';
-import { AchievementService } from '@hunt-the-bishomalo/achievements';
+import { GameEngineService, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
 import { AchieveTypes, RouteTypes } from '@hunt-the-bishomalo/data';
 import { Router } from '@angular/router';
 
@@ -25,7 +24,7 @@ export class GameControlsComponent {
   isVisible = signal(false);
 
   private readonly game = inject(GameEngineService);
-  private readonly achieve = inject(AchievementService);
+  private readonly achieve = inject(ACHIEVEMENT_SERVICE);
   private readonly router = inject(Router);
 
   private readonly keyActionMap: Record<string, () => void> = {

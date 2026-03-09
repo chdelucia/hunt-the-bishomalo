@@ -1,10 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { AchieveTypes, Chars, RouteTypes } from '@hunt-the-bishomalo/data';
-import { AchievementService } from '@hunt-the-bishomalo/achievements';
 import { Router } from '@angular/router';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { TranslocoModule } from '@jsverse/transloco';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
 
 @Component({
   selector: 'lib-characters',
@@ -16,7 +16,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 export class CharactersComponent {
   readonly gameStore = inject(GameStore);
   private readonly router = inject(Router);
-  private readonly achieve = inject(AchievementService);
+  private readonly achieve = inject(ACHIEVEMENT_SERVICE);
 
   readonly chars = [Chars.DEFAULT, Chars.LARA, Chars.LEGOLAS, Chars.LINK];
   readonly achievements: Record<Chars, AchieveTypes> = {

@@ -2,11 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ResultsComponent } from './results.component';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AchievementService } from '@hunt-the-bishomalo/achievements';
 import { LeaderboardService } from '../leaderboard.service';
 import { RouteTypes, ScoreEntry } from '@hunt-the-bishomalo/data';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
 
 const mockLeaderboard: ScoreEntry[] = [
   {
@@ -68,7 +68,7 @@ describe('ResultsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ResultsComponent, CommonModule, getTranslocoTestingModule()],
       providers: [
-        { provide: AchievementService, useValue: mockAchievementService },
+        { provide: ACHIEVEMENT_SERVICE, useValue: mockAchievementService },
         { provide: LeaderboardService, useValue: mockLeaderboardService },
         { provide: Router, useValue: routerMock },
         { provide: ActivatedRoute, useValue: activateRouteMock },

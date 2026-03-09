@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ToastComponent } from './toast.component';
-import { AchievementService } from '@hunt-the-bishomalo/achievements';
 import { CommonModule } from '@angular/common';
 import { Achievement } from '@hunt-the-bishomalo/data';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
 
 const achievementServiceMock = {
   completed: jest.fn(),
@@ -21,7 +21,7 @@ describe('ToastComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CommonModule, ToastComponent],
-      providers: [{ provide: AchievementService, useValue: achievementServiceMock }],
+      providers: [{ provide: ACHIEVEMENT_SERVICE, useValue: achievementServiceMock }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ToastComponent);

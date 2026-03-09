@@ -1,10 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BlackoutComponent } from './blackout.component';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
 
 describe('BlackoutComponent', () => {
   let component: BlackoutComponent;
   let fixture: ComponentFixture<BlackoutComponent>;
+
+  const mockAchievementService = {
+    activeAchievement: jest.fn(),
+  };
 
   beforeEach(async () => {
     jest
@@ -22,6 +27,7 @@ describe('BlackoutComponent', () => {
     });
     await TestBed.configureTestingModule({
       imports: [BlackoutComponent, getTranslocoTestingModule()],
+      providers: [{ provide: ACHIEVEMENT_SERVICE, useValue: mockAchievementService }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(BlackoutComponent);

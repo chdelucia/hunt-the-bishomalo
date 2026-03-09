@@ -3,6 +3,7 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
 import { ACHIEVEMENT_SERVICE, LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/core/services';
+import { signal } from '@angular/core';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -17,6 +18,7 @@ describe('AppComponent', () => {
             activeAchievement: jest.fn(),
             caclVictoryAchieve: jest.fn(),
             handleWumpusKillAchieve: jest.fn(),
+            completed: signal(undefined),
           },
         },
         { provide: LEADERBOARD_SERVICE, useValue: { clear: jest.fn() } },
