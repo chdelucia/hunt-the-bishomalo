@@ -1,5 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject, signal, computed } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { Achievement, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
@@ -14,7 +13,6 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
   selector: 'lib-achievements',
   standalone: true,
   imports: [
-    CommonModule,
     RouterModule,
     TranslocoModule,
     AchievementFilterComponent,
@@ -38,37 +36,30 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
     ]),
   ],
 })
-export class AchievementsComponent implements OnInit {
+export class AchievementsComponent {
   private readonly achieveService = inject(ACHIEVEMENT_SERVICE);
 
-  filter: 'all' | 'unlocked' | 'locked' = 'all';
-  achievements: Achievement[] = this.achieveService.achievements;
-  filteredAchievements: Achievement[] = [];
+  filter = signal<'all' | 'unlocked' | 'locked'>('all');
+  achievements = signal<Achievement[]>(this.achieveService.achievements);
 
-  unlockedCount = 0;
-  percentage = 0;
-
-  ngOnInit(): void {
-    this.updateFilteredAchievements();
-    this.calculateProgress();
-  }
-
-  updateFilteredAchievements(): void {
-    this.filteredAchievements = this.achievements.filter((achievement) => {
-      if (this.filter === 'all') return true;
-      if (this.filter === 'unlocked') return achievement.unlocked;
-      if (this.filter === 'locked') return !achievement.unlocked;
+  filteredAchievements = computed(() => {
+    const currentFilter = this.filter();
+    return this.achievements().filter((achievement) => {
+      if (currentFilter === 'all') return true;
+      if (currentFilter === 'unlocked') return achievement.unlocked;
+      if (currentFilter === 'locked') return !achievement.unlocked;
       return true;
     });
-  }
+  });
 
-  calculateProgress(): void {
-    this.unlockedCount = this.achievements.filter((a) => a.unlocked).length;
-    this.percentage = Math.round((this.unlockedCount / this.achievements.length) * 100);
-  }
+  unlockedCount = computed(() => this.achievements().filter((a) => a.unlocked).length);
+  percentage = computed(() => {
+    const total = this.achievements().length;
+    if (total === 0) return 0;
+    return Math.round((this.unlockedCount() / total) * 100);
+  });
 
   setFilter(newFilter: 'all' | 'unlocked' | 'locked'): void {
-    this.filter = newFilter;
-    this.updateFilteredAchievements();
+    this.filter.set(newFilter);
   }
 }

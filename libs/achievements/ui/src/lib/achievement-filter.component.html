@@ -2,33 +2,45 @@
   <button
     (click)="setFilter('all')"
     class="px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 border border-gray-500 shadow-sm"
-    [ngClass]="
-      currentFilter() === 'all'
-        ? 'bg-blue-600 text-white border-blue-400 scale-105 shadow-md'
-        : 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white'
-    "
+    [class.bg-blue-600]="currentFilter() === 'all'"
+    [class.text-white]="currentFilter() === 'all'"
+    [class.border-blue-400]="currentFilter() === 'all'"
+    [class.scale-105]="currentFilter() === 'all'"
+    [class.shadow-md]="currentFilter() === 'all'"
+    [class.bg-gray-700]="currentFilter() !== 'all'"
+    [class.text-gray-300]="currentFilter() !== 'all'"
+    [class.hover:bg-gray-600]="currentFilter() !== 'all'"
+    [class.hover:text-white]="currentFilter() !== 'all'"
   >
     {{ 'achievements.filterAll' | transloco }}
   </button>
   <button
     (click)="setFilter('unlocked')"
     class="px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 border border-gray-500 shadow-sm"
-    [ngClass]="
-      currentFilter() === 'unlocked'
-        ? 'bg-green-600 text-white border-green-400 scale-105 shadow-md'
-        : 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white'
-    "
+    [class.bg-green-600]="currentFilter() === 'unlocked'"
+    [class.text-white]="currentFilter() === 'unlocked'"
+    [class.border-green-400]="currentFilter() === 'unlocked'"
+    [class.scale-105]="currentFilter() === 'unlocked'"
+    [class.shadow-md]="currentFilter() === 'unlocked'"
+    [class.bg-gray-700]="currentFilter() !== 'unlocked'"
+    [class.text-gray-300]="currentFilter() !== 'unlocked'"
+    [class.hover:bg-gray-600]="currentFilter() !== 'unlocked'"
+    [class.hover:text-white]="currentFilter() !== 'unlocked'"
   >
     {{ 'achievements.filterUnlocked' | transloco }}
   </button>
   <button
     (click)="setFilter('locked')"
     class="px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 border border-gray-500 shadow-sm"
-    [ngClass]="
-      currentFilter() === 'locked'
-        ? 'bg-yellow-600 text-white border-yellow-400 scale-105 shadow-md'
-        : 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white'
-    "
+    [class.bg-yellow-600]="currentFilter() === 'locked'"
+    [class.text-white]="currentFilter() === 'locked'"
+    [class.border-yellow-400]="currentFilter() === 'locked'"
+    [class.scale-105]="currentFilter() === 'locked'"
+    [class.shadow-md]="currentFilter() === 'locked'"
+    [class.bg-gray-700]="currentFilter() !== 'locked'"
+    [class.text-gray-300]="currentFilter() !== 'locked'"
+    [class.hover:bg-gray-600]="currentFilter() !== 'locked'"
+    [class.hover:text-white]="currentFilter() !== 'locked'"
   >
     {{ 'achievements.filterLocked' | transloco }}
   </button>

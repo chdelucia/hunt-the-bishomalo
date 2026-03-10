@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ResultsComponent } from './results.component';
-import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LeaderboardService } from '../leaderboard.service';
 import { RouteTypes, ScoreEntry } from '@hunt-the-bishomalo/data';
@@ -66,7 +65,7 @@ describe('ResultsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ResultsComponent, CommonModule, getTranslocoTestingModule()],
+      imports: [ResultsComponent, getTranslocoTestingModule()],
       providers: [
         { provide: ACHIEVEMENT_SERVICE, useValue: mockAchievementService },
         { provide: LeaderboardService, useValue: mockLeaderboardService },

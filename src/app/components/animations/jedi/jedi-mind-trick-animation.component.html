@@ -1,11 +1,11 @@
 <div class="jedi-container" routerLink="/home">
   <div class="force-text">
-    @if (step >= 3) {
-      <div class="whisper-text" [ngClass]="'opacity-' + (step - 2)">Contrata a Chris</div>
+    @if (step() >= 3) {
+      <div class="whisper-text" [class]="'opacity-' + (step() - 2)">Contrata a Chris</div>
     }
   </div>
 
-  <div class="animation-container" [ngClass]="'step-' + step">
+  <div class="animation-container" [class]="'step-' + step()">
     <!-- Jedi -->
     <div class="jedi">
       <svg
@@ -45,7 +45,7 @@
         <path d="M95 65 Q100 70 105 65" stroke="#000" stroke-width="1.5" stroke-linecap="round" />
 
         <!-- Right hand -->
-        @if (step === 1) {
+        @if (step() === 1) {
           <rect
             x="115"
             y="90"
@@ -56,7 +56,7 @@
             transform="rotate(0, 120, 100)"
           />
         }
-        @if (step === 2) {
+        @if (step() === 2) {
           <rect
             x="115"
             y="90"
@@ -67,7 +67,7 @@
             transform="rotate(20, 120, 100)"
           />
         }
-        @if (step === 3) {
+        @if (step() === 3) {
           <rect
             x="115"
             y="90"
@@ -78,7 +78,7 @@
             transform="rotate(40, 120, 100)"
           />
         }
-        @if (step === 4) {
+        @if (step() === 4) {
           <rect
             x="115"
             y="90"
@@ -89,7 +89,7 @@
             transform="rotate(20, 120, 100)"
           />
         }
-        @if (step === 5) {
+        @if (step() === 5) {
           <rect
             x="115"
             y="90"
@@ -100,7 +100,7 @@
             transform="rotate(0, 120, 100)"
           />
         }
-        @if (step === 6) {
+        @if (step() === 6) {
           <rect
             x="115"
             y="90"
@@ -122,14 +122,14 @@
           y="40"
           width="1"
           height="45"
-          [attr.fill]="step % 2 === 0 ? '#00BFFF' : '#87CEFA'"
+          [attr.fill]="step() % 2 === 0 ? '#00BFFF' : '#87CEFA'"
           rx="0.5"
           filter="drop-shadow(0 0 5px #00BFFF)"
         />
       </svg>
     </div>
 
-    @for (wave of forceWaves; track wave; let i = $index) {
+    @for (wave of forceWaves(); track wave; let i = $index) {
       <div class="force-wave"></div>
     }
   </div>
