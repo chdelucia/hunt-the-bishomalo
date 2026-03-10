@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.5.5](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.5.4...v7.5.5) (2026-03-10)
+
+
+### Bug Fixes
+
+* resolve memory leaks and implement type-safe cleanup ([0e97f43](https://github.com/chdelucia/hunt-the-bishomalo/commit/0e97f4369f321be456955f7591520139fbdfe9dc))
+* resolve memory leaks and optimize performance across components ([4de6478](https://github.com/chdelucia/hunt-the-bishomalo/commit/4de64786b61073fd9fa4a81828fdc467e3f0254c))
+* resolve memory leaks, optimize performance, and align with zoneless architecture ([2f09cc4](https://github.com/chdelucia/hunt-the-bishomalo/commit/2f09cc4243ee9a4e90bde215a3f7d7799731fa61))
+* resolve memory leaks, optimize performance, and align with zoneless architecture ([a263af6](https://github.com/chdelucia/hunt-the-bishomalo/commit/a263af6a7fcc839ab0e3797436a1700a25b99304))
+
 ### [7.5.4](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.5.3...v7.5.4) (2026-03-10)
 
 
