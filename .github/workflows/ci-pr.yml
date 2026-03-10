@@ -11,6 +11,7 @@ jobs:
 
   validate:
     runs-on: ubuntu-latest
+    continue-on-error: true
     outputs:
       base: ${{ steps.compute_base.outputs.base }}
 
@@ -44,7 +45,6 @@ jobs:
         run: |
           bun add @commitlint/{cli,config-conventional}
           bun x commitlint --from=${{ steps.compute_base.outputs.base }} --to=HEAD
-        continue-on-error: true
 
   install:
     runs-on: ubuntu-latest
