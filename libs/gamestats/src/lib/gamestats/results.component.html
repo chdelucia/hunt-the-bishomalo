@@ -6,14 +6,14 @@
     <div class="tabs-container">
       <button
         class="tab-button"
-        [ngClass]="{ 'tab-activa': tabActiva() === 'general' }"
+        [class.tab-activa]="tabActiva() === 'general'"
         (click)="tabActiva.set('general')"
         >
         {{ 'results.tabGeneral' | transloco }}
       </button>
       <button
         class="tab-button"
-        [ngClass]="{ 'tab-activa': tabActiva() === 'niveles' }"
+        [class.tab-activa]="tabActiva() === 'niveles'"
         (click)="tabActiva.set('niveles')"
         >
         {{ 'results.tabLevels' | transloco }}

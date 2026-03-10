@@ -12,6 +12,7 @@
         [alt]="achievement().title"
         fill
         class="achievement-icon p-1"
+        style="object-fit: contain;"
       />
     </div>
     @if (!achievement().unlocked) {
@@ -28,7 +29,7 @@
       </h3>
       <span
         class="text-[10px] uppercase font-bold px-2 py-0.5 rounded text-white whitespace-nowrap"
-        [ngClass]="rarityColor()"
+        [class]="rarityColor()"
       >
         {{ getRarityName(achievement().rarity) }}
       </span>

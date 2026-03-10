@@ -13,24 +13,21 @@
       </h2>
 
       <lib-achievement-progress
-        [unlockedCount]="unlockedCount"
-        [totalCount]="achievements.length"
-        [percentage]="percentage"
+        [unlockedCount]="unlockedCount()"
+        [totalCount]="achievements().length"
+        [percentage]="percentage()"
       />
 
-      <lib-achievement-filter [currentFilter]="filter" (filterChanged)="setFilter($event)" />
+      <lib-achievement-filter [currentFilter]="filter()" (filterChanged)="setFilter($event)" />
     </div>
 
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-      [@listAnimation]="filteredAchievements.length"
-    >
-      @for (achievement of filteredAchievements; track achievement.id) {
-        <lib-achievement-item [achievement]="achievement" />
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 achievement-list">
+      @for (achievement of filteredAchievements(); track achievement.id; let i = $index) {
+        <lib-achievement-item [achievement]="achievement" [style.--index]="i" />
       }
     </div>
 
-    @if (filteredAchievements.length === 0) {
+    @if (filteredAchievements().length === 0) {
       <div class="text-center py-20 bg-gray-800 rounded-xl border border-dashed border-gray-600">
         <p class="text-gray-400 text-lg italic">
           {{ 'achievements.noAchievements' | transloco }}

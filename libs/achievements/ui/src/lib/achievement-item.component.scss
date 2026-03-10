@@ -1,8 +1,19 @@
 :host {
   display: block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 300ms ease-out forwards;
+  animation-delay: calc(var(--index, 0) * 50ms);
 }
 
 .achievement-icon {
   image-rendering: pixelated;
   object-fit: contain;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
