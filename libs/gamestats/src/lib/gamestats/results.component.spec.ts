@@ -2,11 +2,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ResultsComponent } from './results.component';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AchievementService } from '@hunt-the-bishomalo/achievements';
 import { LeaderboardService } from '../leaderboard.service';
 import { RouteTypes, ScoreEntry } from '@hunt-the-bishomalo/data';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { signal } from '@angular/core';
 
 const mockLeaderboard: ScoreEntry[] = [
   {
@@ -33,10 +34,9 @@ const mockLeaderboard: ScoreEntry[] = [
 
 const mockAchievementService = {
   achievements: [
-    { name: 'Logro 1', unlocked: true },
-    { name: 'Logro 2', unlocked: false },
-    { name: 'Logro 3', unlocked: true },
+    { id: '1', title: 'Logro 1', unlocked: true, rarity: 'common', description: '', svgIcon: '' },
   ],
+  completed: signal(undefined),
 };
 
 const mockLeaderboardService = {
@@ -68,7 +68,7 @@ describe('ResultsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ResultsComponent, CommonModule, getTranslocoTestingModule()],
       providers: [
-        { provide: AchievementService, useValue: mockAchievementService },
+        { provide: ACHIEVEMENT_SERVICE, useValue: mockAchievementService },
         { provide: LeaderboardService, useValue: mockLeaderboardService },
         { provide: Router, useValue: routerMock },
         { provide: ActivatedRoute, useValue: activateRouteMock },
@@ -86,7 +86,7 @@ describe('ResultsComponent', () => {
   });
 
   it('should compute unlocked achievements correctly', () => {
-    expect(component.unlockedAchievements).toBe(2);
+    expect(component.unlockedAchievements).toBe(1);
   });
 
   it('should return the fastest level', () => {

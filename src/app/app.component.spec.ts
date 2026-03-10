@@ -2,7 +2,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
-import { ACHIEVEMENT_SERVICE, LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/core/services';
+import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/core/services';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { signal } from '@angular/core';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -15,8 +17,11 @@ describe('AppComponent', () => {
           provide: ACHIEVEMENT_SERVICE,
           useValue: {
             activeAchievement: jest.fn(),
-            caclVictoryAchieve: jest.fn(),
+            calcVictoryAchieve: jest.fn(),
             handleWumpusKillAchieve: jest.fn(),
+            isAllCompleted: jest.fn(),
+            completed: signal(undefined),
+            achievements: [],
           },
         },
         { provide: LEADERBOARD_SERVICE, useValue: { clear: jest.fn() } },

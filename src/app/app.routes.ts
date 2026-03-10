@@ -6,7 +6,8 @@ import { homeGuard } from './guards/home.guard';
 export const appRoutes: Route[] = [
   {
     path: RouteTypes.ACHIEVEMENTS,
-    loadComponent: () => import('./components').then((mod) => mod.AchievementsComponent),
+    loadChildren: () =>
+      import('@hunt-the-bishomalo/achievements/shell').then((mod) => mod.achievementsRoutes),
     title: 'Logros | Bisho malo',
   },
   {

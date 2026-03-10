@@ -1,12 +1,5 @@
-import { InjectionToken } from '@angular/core';
-import { AchieveTypes, Cell } from '@hunt-the-bishomalo/data';
+import { ILeaderboardService } from '@hunt-the-bishomalo/data';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 
-export const ACHIEVEMENT_SERVICE = new InjectionToken<{
-  activeAchievement: (id: AchieveTypes) => void;
-  caclVictoryAchieve: (seconds: number) => void;
-  handleWumpusKillAchieve: (cell: Cell) => void;
-}>('ACHIEVEMENT_SERVICE');
-
-export const LEADERBOARD_SERVICE = new InjectionToken<{
-  clear: () => void;
-}>('LEADERBOARD_SERVICE');
+export { ACHIEVEMENT_SERVICE };
+export { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/data';

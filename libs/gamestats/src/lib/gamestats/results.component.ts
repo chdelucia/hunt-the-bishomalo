@@ -1,8 +1,8 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AchievementService } from '@hunt-the-bishomalo/achievements';
 import { LeaderboardService } from '../leaderboard.service';
 import { RouteTypes, ScoreEntry } from '@hunt-the-bishomalo/data';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -21,7 +21,7 @@ export class ResultsComponent {
 
   gameStore = inject(GameStore);
   leaderboardService = inject(LeaderboardService);
-  achieve = inject(AchievementService);
+  achieve = inject(ACHIEVEMENT_SERVICE);
   router = inject(Router);
   routeSnapshot = inject(ActivatedRoute);
 

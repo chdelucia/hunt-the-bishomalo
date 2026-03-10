@@ -1,9 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
-import { AchieveTypes, GameSound } from '@hunt-the-bishomalo/data';
+import { GameSound } from '@hunt-the-bishomalo/data';
+import { AchieveTypes, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { GameSoundService } from '@hunt-the-bishomalo/core/services';
-import { AchievementService } from '@hunt-the-bishomalo/achievements';
 
 @Component({
   selector: 'app-blackout',
@@ -14,7 +14,7 @@ import { AchievementService } from '@hunt-the-bishomalo/achievements';
 })
 export class BlackoutComponent implements OnInit {
   readonly sound = inject(GameSoundService);
-  readonly achieve = inject(AchievementService);
+  readonly achieve = inject(ACHIEVEMENT_SERVICE);
 
   ngOnInit(): void {
     this.sound.playSound(GameSound.BLACKOUT, false);

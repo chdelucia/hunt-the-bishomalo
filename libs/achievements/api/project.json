@@ -1,0 +1,13 @@
+{
+  "name": "achievements-api",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/achievements/api/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["scope:achievements", "type:api"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

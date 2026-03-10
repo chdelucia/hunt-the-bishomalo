@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MobileControlsComponent } from './mobile-controls.component';
-import { GameEngineService } from '@hunt-the-bishomalo/core/services';
+import { GameEngineService, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
 
 const gameEngineMock = {
@@ -11,6 +11,10 @@ const gameEngineMock = {
   newGame: jest.fn(),
 };
 
+const achievementServiceMock = {
+  activeAchievement: jest.fn(),
+};
+
 describe('MobileControlsComponent', () => {
   let component: MobileControlsComponent;
   let fixture: ComponentFixture<MobileControlsComponent>;
@@ -18,7 +22,10 @@ describe('MobileControlsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MobileControlsComponent, getTranslocoTestingModule()],
-      providers: [{ provide: GameEngineService, useValue: gameEngineMock }],
+      providers: [
+        { provide: GameEngineService, useValue: gameEngineMock },
+        { provide: ACHIEVEMENT_SERVICE, useValue: achievementServiceMock },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MobileControlsComponent);

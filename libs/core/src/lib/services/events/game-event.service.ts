@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
-import { AchieveTypes, Cell, GameEventEffectType, GameItem, GameSound } from '@hunt-the-bishomalo/data';
+import { Cell, GameEventEffectType, GameItem, GameSound } from '@hunt-the-bishomalo/data';
+import { AchieveTypes, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { GameSoundService } from '../sound/game-sound.service';
-import { ACHIEVEMENT_SERVICE } from '../tokens';
 import { GameStore } from '../../store';
 import { createGameEventEffects } from './effects';
 

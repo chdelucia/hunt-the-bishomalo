@@ -10,8 +10,7 @@ import {
   inject,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AchieveTypes } from '@hunt-the-bishomalo/data';
-import { AchievementService } from '@hunt-the-bishomalo/achievements';
+import { AchieveTypes, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 
 @Component({
   selector: 'app-jedi-mind-trick-animation',
@@ -32,7 +31,7 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
 
   private readonly ngZone = inject(NgZone);
   private readonly cdr = inject(ChangeDetectorRef);
-  private readonly achieveService = inject(AchievementService);
+  private readonly achieveService = inject(ACHIEVEMENT_SERVICE);
 
   ngOnInit(): void {
     const schedule = [
