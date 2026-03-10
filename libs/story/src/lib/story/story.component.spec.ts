@@ -21,7 +21,7 @@ const mockGameStoryService = {
   checkLevelTrigger: jest.fn(),
 };
 
-(global as any).SpeechSynthesisUtterance = class {
+(global as unknown as { SpeechSynthesisUtterance: unknown }).SpeechSynthesisUtterance = class {
   text: string;
   lang = 'es-ES';
   pitch = 1;
@@ -32,7 +32,7 @@ const mockGameStoryService = {
   }
 };
 
-(global as any).speechSynthesis = {
+(global as unknown as { speechSynthesis: unknown }).speechSynthesis = {
   speak: jest.fn((utterance) => {
     setTimeout(() => utterance.onend?.(), 0);
   }),
@@ -67,7 +67,7 @@ describe('StoryComponent', () => {
 
   it('should initialize with story and call startReading', () => {
     jest.useFakeTimers();
-    const spy = jest.spyOn<any, any>(component, 'startReading');
+    const spy = jest.spyOn<StoryComponent, 'startReading'>(component, 'startReading' as any);
     fixture.detectChanges();
     expect(component['fullText']).toBe(mockStory.text);
     expect(spy).toHaveBeenCalledWith(mockStory.text);
@@ -100,7 +100,7 @@ describe('StoryComponent', () => {
     global.speechSynthesis = {
       speak: speakMock,
       cancel: jest.fn(),
-    } as any;
+    } as unknown as SpeechSynthesis;
 
     component['startReading'](mockStory.text);
     // Move past interval calls

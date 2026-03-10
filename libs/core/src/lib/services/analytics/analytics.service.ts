@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable, isDevMode, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router, NavigationEnd } from '@angular/router';
@@ -6,8 +5,8 @@ import { filter } from 'rxjs/operators';
 
 declare global {
   interface Window {
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
+    dataLayer: Record<string, unknown>[];
+    gtag: (...args: unknown[]) => void;
   }
 }
 
@@ -36,7 +35,7 @@ export class AnalyticsService {
       });
   }
 
-  public sendEvent(eventName: string, params?: { [key: string]: any }): void {
+  public sendEvent(eventName: string, params?: Record<string, unknown>): void {
     if (!window.gtag) return;
     window.gtag('event', eventName, params || {});
   }

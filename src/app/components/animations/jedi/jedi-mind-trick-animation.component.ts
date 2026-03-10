@@ -5,9 +5,8 @@ import {
   OnDestroy,
   ElementRef,
   ViewChild,
-  NgZone,
-  ChangeDetectorRef,
   inject,
+  signal,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AchieveTypes, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
@@ -22,23 +21,21 @@ import { AchieveTypes, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achieveme
 export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
   @ViewChild('audioContainer') audioContainer!: ElementRef;
 
-  step = 1;
-  forceWaves: number[] = [];
+  step = signal(1);
+  forceWaves = signal<number[]>([]);
 
   private audioContext: AudioContext | null = null;
   private readonly timers: ReturnType<typeof setTimeout>[] = [];
 
-  private readonly ngZone = inject(NgZone);
-  private readonly cdr = inject(ChangeDetectorRef);
   private readonly achieveService = inject(ACHIEVEMENT_SERVICE);
 
   ngOnInit(): void {
     const schedule = [
-      { delay: 500, action: () => (this.step = 2) },
+      { delay: 500, action: () => this.step.set(2) },
       {
         delay: 1000,
         action: () => {
-          this.step = 3;
+          this.step.set(3);
           this.playForceSound();
           this.createForceWave();
         },
@@ -46,27 +43,24 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
       {
         delay: 1500,
         action: () => {
-          this.step = 4;
+          this.step.set(4);
           this.createForceWave();
         },
       },
       {
         delay: 2000,
         action: () => {
-          this.step = 5;
+          this.step.set(5);
           this.createForceWave();
         },
       },
-      { delay: 2500, action: () => (this.step = 6) },
+      { delay: 2500, action: () => this.step.set(6) },
     ];
 
     schedule.forEach((item) => {
       this.timers.push(
         setTimeout(() => {
-          this.ngZone.run(() => {
-            item.action();
-            this.cdr.detectChanges();
-          });
+          item.action();
         }, item.delay),
       );
     });
@@ -85,11 +79,11 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
   }
 
   playForceSound(): void {
-    this.ngZone.runOutsideAngular(() => {
-      this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
-      if (!this.audioContext) return;
+    const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    this.audioContext = new AudioContextClass();
+    if (!this.audioContext) return;
 
-      const oscillator = this.audioContext.createOscillator();
+    const oscillator = this.audioContext.createOscillator();
       oscillator.type = 'sine';
       oscillator.frequency.value = 200;
 
@@ -120,10 +114,9 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
       oscillator.stop(now + 2.5);
       modulator.stop(now + 2.5);
 
-      this.speakWhisper('Contrata a Chris', 0.4, 1000);
-      this.speakWhisper('Contrata a Chris', 0.2, 1300);
-      this.speakWhisper('Contrata a Chris', 0.1, 1600);
-    });
+    this.speakWhisper('Contrata a Chris', 0.4, 1000);
+    this.speakWhisper('Contrata a Chris', 0.2, 1300);
+    this.speakWhisper('Contrata a Chris', 0.1, 1600);
   }
 
   speakWhisper(text: string, volume: number, delay: number): void {
@@ -140,15 +133,11 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
 
   private createForceWave(): void {
     const id = Date.now();
-    this.forceWaves.push(id);
-    this.cdr.detectChanges();
+    this.forceWaves.update((prev) => [...prev, id]);
 
     this.timers.push(
       setTimeout(() => {
-        this.ngZone.run(() => {
-          this.forceWaves = this.forceWaves.filter((w) => w !== id);
-          this.cdr.detectChanges();
-        });
+        this.forceWaves.update((prev) => prev.filter((w) => w !== id));
       }, 2000),
     );
   }
