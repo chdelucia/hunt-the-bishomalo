@@ -32,7 +32,7 @@ export class StoryComponent implements OnInit, OnDestroy {
   readonly showExtraInfo = signal(false);
 
   private fullText = '';
-  private intervalId: any;
+  private intervalId?: ReturnType<typeof setInterval>;
 
   ngOnInit(): void {
     if (this.story) {

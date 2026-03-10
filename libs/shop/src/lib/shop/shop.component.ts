@@ -72,7 +72,7 @@ export class ShopComponent implements OnDestroy {
   readonly inventory = this.gameStore.inventory;
 
   message = signal('');
-  private messageTimeout: any;
+  private messageTimeout?: ReturnType<typeof setTimeout>;
 
   productos = computed(() => {
     if (Math.random() < this.settings().difficulty.maxChance) {

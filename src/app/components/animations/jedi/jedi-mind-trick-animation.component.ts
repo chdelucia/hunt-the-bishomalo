@@ -26,7 +26,7 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
   forceWaves: number[] = [];
 
   private audioContext: AudioContext | null = null;
-  private readonly timers: any[] = [];
+  private readonly timers: ReturnType<typeof setTimeout>[] = [];
 
   private readonly ngZone = inject(NgZone);
   private readonly cdr = inject(ChangeDetectorRef);
