@@ -32,6 +32,7 @@ export class StoryComponent implements OnInit, OnDestroy {
   readonly showExtraInfo = signal(false);
 
   private fullText = '';
+  private intervalId?: ReturnType<typeof setInterval>;
 
   ngOnInit(): void {
     if (this.story) {
@@ -44,6 +45,9 @@ export class StoryComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     speechSynthesis.cancel();
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
   }
 
   goToGame(): void {
@@ -99,12 +103,12 @@ export class StoryComponent implements OnInit, OnDestroy {
     speechSynthesis.speak(utterChapter);
 
     let i = 0;
-    const interval = setInterval(() => {
+    this.intervalId = setInterval(() => {
       const current = this.displayedText();
       this.displayedText.set(current + bodyText[i]);
       i++;
       if (i >= bodyText.length) {
-        clearInterval(interval);
+        clearInterval(this.intervalId);
         this.reading.set(false);
       }
     }, 90);

@@ -17,7 +17,6 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
 
   private audioContext: AudioContext | null = null;
   private readonly timers: ReturnType<typeof setTimeout>[] = [];
-  private echoTimeout: ReturnType<typeof setTimeout> | null = null;
 
   private readonly achieveService = inject(ACHIEVEMENT_SERVICE);
 
@@ -60,8 +59,10 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.timers.forEach((timer) => clearTimeout(timer));
-    if (this.echoTimeout) clearTimeout(this.echoTimeout);
     if (this.audioContext && this.audioContext.state !== 'closed') {
+      this.audioContext.close();
+    }
+    if (window.speechSynthesis) {
       window.speechSynthesis.cancel();
     }
 
@@ -110,21 +111,25 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
   }
 
   speakWhisper(text: string, volume: number, delay: number): void {
-    this.echoTimeout = setTimeout(() => {
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 0.6;
-      utterance.pitch = 0.7;
-      utterance.volume = volume;
-      window.speechSynthesis.speak(utterance);
-    }, delay);
+    this.timers.push(
+      setTimeout(() => {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.6;
+        utterance.pitch = 0.7;
+        utterance.volume = volume;
+        window.speechSynthesis.speak(utterance);
+      }, delay),
+    );
   }
 
   private createForceWave(): void {
     const id = Date.now();
     this.forceWaves.update((waves) => [...waves, id]);
 
-    setTimeout(() => {
-      this.forceWaves.update((waves) => waves.filter((w) => w !== id));
-    }, 2000);
+    this.timers.push(
+      setTimeout(() => {
+        this.forceWaves.update((waves) => waves.filter((w) => w !== id));
+      }, 2000),
+    );
   }
 }

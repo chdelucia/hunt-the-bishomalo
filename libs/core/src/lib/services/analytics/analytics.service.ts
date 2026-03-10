@@ -1,12 +1,12 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Injectable, isDevMode, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 declare global {
   interface Window {
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
+    dataLayer: Record<string, unknown>[];
+    gtag: (...args: unknown[]) => void;
   }
 }
 
@@ -22,7 +22,10 @@ export class AnalyticsService {
 
   private trackPageViews(): void {
     this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
+      .pipe(
+        filter((event) => event instanceof NavigationEnd),
+        takeUntilDestroyed(),
+      )
       .subscribe((event: NavigationEnd) => {
         window.gtag('event', 'page_view', {
           page_path: event.urlAfterRedirects,
@@ -32,7 +35,7 @@ export class AnalyticsService {
       });
   }
 
-  public sendEvent(eventName: string, params?: { [key: string]: any }): void {
+  public sendEvent(eventName: string, params?: Record<string, unknown>): void {
     if (!window.gtag) return;
     window.gtag('event', eventName, params || {});
   }
