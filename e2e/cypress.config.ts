@@ -13,5 +13,14 @@ export default defineConfig({
       ciBaseUrl: 'http://localhost:4200',
     }),
     baseUrl: 'http://localhost:4200',
+    setupNodeEvents(on) {
+      on('before:browser:launch', (browser = {} as Cypress.Browser, launchOptions) => {
+        if (browser.family === 'chromium' && browser.name !== 'electron') {
+          launchOptions.args.push('--mute-audio');
+          launchOptions.args.push('--disable-audio-output');
+        }
+        return launchOptions;
+      });
+    },
   },
 });
