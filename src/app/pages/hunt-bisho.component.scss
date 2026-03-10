@@ -14,13 +14,13 @@ main {
   display: flex;
   flex-direction: column;
   aspect-ratio: 1 / 1;
-  border: 3px solid #333;
+  border: 3px solid var(--color-border);
   width: fit-content;
   min-width: calc(min(95vw, 550px));
   margin: 0 auto;
   justify-content: center;
   align-items: center;
-  background-color: #f3f4f6;
+  background-color: var(--color-panel);
 }
 
 @for $i from 4 through 20 {

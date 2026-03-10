@@ -1,16 +1,19 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
 import { GameSettings, RouteTypes } from '@hunt-the-bishomalo/data';
 import { GameEngineService } from '@hunt-the-bishomalo/core/services';
 import { Router } from '@angular/router';
+import { GameMessageDisplayComponent } from './game-message-display.component';
+import { GameMessageActionsComponent } from './game-message-actions.component';
 
 @Component({
   selector: 'app-game-message',
   standalone: true,
-  imports: [TranslocoModule],
+  imports: [TranslocoModule, GameMessageDisplayComponent, GameMessageActionsComponent],
   templateUrl: './game-message.component.html',
   styleUrl: './game-message.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameMessageComponent {
   private readonly gameEngine = inject(GameEngineService);

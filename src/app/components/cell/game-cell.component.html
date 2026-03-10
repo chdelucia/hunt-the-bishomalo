@@ -1,27 +1,17 @@
-@let content = cell().content; @let size = settings.size;
+@let content = cell().content;
 
 <div class="cell" [class.visited]="cell().visited">
   @if (showElements() && content) {
-    <img [ngSrc]="content.image" [alt]="content.alt" fill />
+    <app-cell-content [content]="content" />
   } @else if (showHunter()) {
-    <img
-      [class.lantern]="hasLantern()"
-      [class.shield]="hasShield()"
-      [ngSrc]="bowImage()"
-      [attr.alt]="'cell.altHunter' | transloco"
-      [style.transform]="rotation() !== 180 ? 'rotate(' + rotation() + 'deg)' : 'scaleX(-1)'"
-      priority
-      fill
+    <app-hunter
+      [direction]="gameStore.hunter().direction"
+      [arrows]="gameStore.arrows()"
+      [selectedChar]="settings().selectedChar"
+      [hasGold]="gameStore.hasGold()"
+      [size]="settings().size"
+      [hasLantern]="!!hasLantern()"
+      [hasShield]="!!hasShield()"
     />
-
-    @if (showGoldIcon()) {
-      <img
-        class="gold"
-        ngSrc="boardicons/gold.svg"
-        alt="{{ 'cell.altGold' | transloco }}"
-        [width]="20 - size / 2"
-        [height]="20 - size / 2"
-      />
-    }
   }
 </div>
