@@ -1,12 +1,4 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  ElementRef,
-  viewChild,
-  inject,
-  signal,
-} from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, viewChild, signal, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AchieveTypes, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 
@@ -78,8 +70,8 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
   }
 
   playForceSound(): void {
-    const AudioContextClass = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
-    this.audioContext = new AudioContextClass();
+    this.audioContext = new (window.AudioContext ||
+      (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
     if (!this.audioContext) return;
 
     const oscillator = this.audioContext.createOscillator();
