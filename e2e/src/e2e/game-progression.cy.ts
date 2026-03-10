@@ -28,44 +28,28 @@ describe('Game Setup and Progression', () => {
     cy.get('button.start-game').click();
     cy.get('.story-container').click();
 
-    cy.window().its('gameStore').then((store: any) => {
-        const board = JSON.parse(JSON.stringify(store.board()));
-        board[0][1].content = {
-            type: 'gold',
-            image: 'boardicons/gold.svg',
-            alt: 'gold coin',
-            ariaLabel: 'gold',
-        };
-        store.updateGame({ board });
+    cy.get('.board').should('be.visible');
+    cy.screenshot('game-play-start');
 
-        cy.get('.board').should('be.visible');
-        cy.screenshot('game-play-start');
+    // Win Level using custom command
+    cy.winLevel();
 
-        // Move to gold
-        cy.get('[aria-label="Avanzar"]').click();
-        cy.screenshot('game-play-picked-gold');
+    // Victory message
+    cy.get('.game-message', { timeout: 15000 }).should('contain', 'ictoria');
+    cy.screenshot('game-play-picked-gold');
+    cy.screenshot('game-play-victory');
 
-        // Turn back and return to start
-        cy.get('[aria-label="Girar a la derecha"]').click();
-        cy.get('[aria-label="Girar a la derecha"]').click();
-        cy.get('[aria-label="Avanzar"]').click();
+    // Go to Shop
+    cy.get('button.newgame').click();
+    cy.url().should('include', '/tienda');
+    cy.get('.tienda-titulo', { timeout: 10000 }).should('be.visible');
+    cy.screenshot('game-shop-page');
 
-        // Victory message
-        cy.get('.game-message', { timeout: 15000 }).should('contain', 'ictoria');
-        cy.screenshot('game-play-victory');
+    // Verify inventory display in shop
+    cy.get('.inventario-container').should('exist');
 
-        // Go to Shop
-        cy.get('button.newgame').click();
-        cy.url().should('include', '/tienda');
-        cy.get('.tienda-titulo', { timeout: 10000 }).should('be.visible');
-        cy.screenshot('game-shop-page');
-
-        // Verify inventory display in shop
-        cy.get('.inventario-container').should('exist');
-
-        // Continue to next level
-        cy.get('button.boton-siguiente').click();
-        cy.url().should('include', '/story');
-    });
+    // Continue to next level
+    cy.get('button.boton-siguiente').click();
+    cy.url().should('include', '/story');
   });
 });
