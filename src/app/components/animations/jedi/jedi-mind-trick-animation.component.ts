@@ -1,13 +1,11 @@
-import { CommonModule } from '@angular/common';
 import {
   Component,
-  OnInit,
   OnDestroy,
   ElementRef,
-  ViewChild,
   NgZone,
-  ChangeDetectorRef,
   inject,
+  signal,
+  viewChild,
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AchieveTypes } from '@hunt-the-bishomalo/data';
@@ -16,31 +14,30 @@ import { AchievementService } from '@hunt-the-bishomalo/achievements';
 @Component({
   selector: 'app-jedi-mind-trick-animation',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [RouterModule],
   templateUrl: './jedi-mind-trick-animation.component.html',
   styleUrls: ['./jedi-mind-trick-animation.component.scss'],
 })
-export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
-  @ViewChild('audioContainer') audioContainer!: ElementRef;
+export class JediMindTrickAnimationComponent implements OnDestroy {
+  readonly audioContainer = viewChild<ElementRef>('audioContainer');
 
-  step = 1;
-  forceWaves: number[] = [];
+  readonly step = signal(1);
+  readonly forceWaves = signal<number[]>([]);
 
   private audioContext: AudioContext | null = null;
   private readonly timers: any[] = [];
   private echoTimeout: any = null;
 
   private readonly ngZone = inject(NgZone);
-  private readonly cdr = inject(ChangeDetectorRef);
   private readonly achieveService = inject(AchievementService);
 
-  ngOnInit(): void {
+  constructor() {
     const schedule = [
-      { delay: 500, action: () => (this.step = 2) },
+      { delay: 500, action: () => this.step.set(2) },
       {
         delay: 1000,
         action: () => {
-          this.step = 3;
+          this.step.set(3);
           this.playForceSound();
           this.createForceWave();
         },
@@ -48,27 +45,24 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
       {
         delay: 1500,
         action: () => {
-          this.step = 4;
+          this.step.set(4);
           this.createForceWave();
         },
       },
       {
         delay: 2000,
         action: () => {
-          this.step = 5;
+          this.step.set(5);
           this.createForceWave();
         },
       },
-      { delay: 2500, action: () => (this.step = 6) },
+      { delay: 2500, action: () => this.step.set(6) },
     ];
 
     schedule.forEach((item) => {
       this.timers.push(
         setTimeout(() => {
-          this.ngZone.run(() => {
-            item.action();
-            this.cdr.detectChanges();
-          });
+          item.action();
         }, item.delay),
       );
     });
@@ -138,14 +132,10 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
 
   private createForceWave(): void {
     const id = Date.now();
-    this.forceWaves.push(id);
-    this.cdr.detectChanges();
+    this.forceWaves.update((waves) => [...waves, id]);
 
     setTimeout(() => {
-      this.ngZone.run(() => {
-        this.forceWaves = this.forceWaves.filter((w) => w !== id);
-        this.cdr.detectChanges();
-      });
+      this.forceWaves.update((waves) => waves.filter((w) => w !== id));
     }, 2000);
   }
 }

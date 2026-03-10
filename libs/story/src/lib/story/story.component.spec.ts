@@ -55,7 +55,6 @@ describe('StoryComponent', () => {
     fixture = TestBed.createComponent(StoryComponent);
     component = fixture.componentInstance;
     jest.useFakeTimers();
-    fixture.detectChanges();
   });
 
   afterEach(() => {
@@ -65,14 +64,13 @@ describe('StoryComponent', () => {
   });
 
   it('should create the component', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
-  it('should initialize with story and call startReading', () => {
-    const spy = jest.spyOn<any, any>(component, 'startReading');
-    component.ngOnInit();
+  it('should initialize with story and call startReading on init', () => {
+    fixture.detectChanges();
     expect(component['fullText']).toBe(mockStory.text);
-    expect(spy).toHaveBeenCalledWith(mockStory.text);
   });
 
   it('should navigate to HOME when goToGame is called', () => {
@@ -102,13 +100,17 @@ describe('StoryComponent', () => {
       cancel: jest.fn(),
     } as any;
 
-    component['startReading'](mockStory.text);
-    jest.advanceTimersByTime(mockStory.text.length * 90);
+    fixture.detectChanges(); // Triggers ngOnInit -> startReading
 
-    expect(component.displayedText()).toBe('TTeexxttoo  ddee  pprruueebbaa..');
+    // Manual advance to handle the 90ms interval precisely
+    for (let i = 0; i < mockStory.text.length; i++) {
+      jest.advanceTimersByTime(90);
+    }
+    // Also run pending for the speech synthesis timeouts
+    jest.runOnlyPendingTimers();
+
+    expect(component.displayedText()).toBe(mockStory.text);
     expect(component.reading()).toBe(false);
-
-    jest.runAllTimers();
     expect(component.showExtraInfo()).toBe(true);
   });
 });

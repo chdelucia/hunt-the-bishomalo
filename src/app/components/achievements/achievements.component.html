@@ -16,9 +16,9 @@
               'achievements.progressStats'
                 | transloco
                   : {
-                      unlockedCount: unlockedCount,
-                      totalAchievements: achievements.length,
-                      percentage: percentage,
+                      unlockedCount: unlockedCount(),
+                      totalAchievements: achievements().length,
+                      percentage: percentage(),
                     }
             }}
           </p>
@@ -26,27 +26,24 @@
         <div class="filter-buttons">
           <button
             (click)="setFilter('all')"
-            [ngClass]="{ 'active-filter': filter === 'all', 'inactive-filter': filter !== 'all' }"
+            [class.active-filter]="filter() === 'all'"
+            [class.inactive-filter]="filter() !== 'all'"
             class="filter-button"
           >
             {{ 'achievements.filterAll' | transloco }}
           </button>
           <button
             (click)="setFilter('unlocked')"
-            [ngClass]="{
-              'active-filter': filter === 'unlocked',
-              'inactive-filter': filter !== 'unlocked',
-            }"
+            [class.active-filter]="filter() === 'unlocked'"
+            [class.inactive-filter]="filter() !== 'unlocked'"
             class="filter-button"
           >
             {{ 'achievements.filterUnlocked' | transloco }}
           </button>
           <button
             (click)="setFilter('locked')"
-            [ngClass]="{
-              'active-filter': filter === 'locked',
-              'inactive-filter': filter !== 'locked',
-            }"
+            [class.active-filter]="filter() === 'locked'"
+            [class.inactive-filter]="filter() !== 'locked'"
             class="filter-button"
           >
             {{ 'achievements.filterLocked' | transloco }}
@@ -55,26 +52,22 @@
       </div>
 
       <div class="progress-bar-container">
-        <div class="progress-bar" [style.width.%]="percentage"></div>
+        <div class="progress-bar" [style.width.%]="percentage()"></div>
       </div>
     </div>
 
     <div class="achievements-grid">
-      @for (achievement of filteredAchievements; track achievement) {
+      @for (achievement of filteredAchievements(); track achievement) {
         <div
-          [ngClass]="{
-            'achievement-unlocked': achievement.unlocked,
-            'achievement-locked': !achievement.unlocked,
-          }"
+          [class.achievement-unlocked]="achievement.unlocked"
+          [class.achievement-locked]="!achievement.unlocked"
           class="achievement-card"
         >
           <div class="achievement-content">
             <div class="achievement-header">
               <div
-                [ngClass]="{
-                  'icon-bg-unlocked': achievement.unlocked,
-                  'icon-bg-locked': !achievement.unlocked,
-                }"
+                [class.icon-bg-unlocked]="achievement.unlocked"
+                [class.icon-bg-locked]="!achievement.unlocked"
                 class="achievement-icon-container"
               >
                 <img
@@ -88,7 +81,7 @@
                 <h3 class="achievement-title">
                   {{ `achievements.${achievement.id}.title` | transloco }}
                 </h3>
-                <div [ngClass]="'rarity-' + achievement.rarity" class="rarity-badge">
+                <div [class]="'rarity-' + achievement.rarity" class="rarity-badge">
                   {{ getRarityName(achievement.rarity) }}
                 </div>
               </div>

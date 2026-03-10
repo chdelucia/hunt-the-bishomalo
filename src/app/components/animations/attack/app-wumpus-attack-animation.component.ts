@@ -1,14 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
   output,
   signal,
   computed,
-  OnDestroy,
   inject,
 } from '@angular/core';
-import { Subject, takeUntil, timer } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { timer } from 'rxjs';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 
 @Component({
@@ -19,19 +18,18 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppWumpusAttackAnimationComponent implements OnInit, OnDestroy {
+export class AppWumpusAttackAnimationComponent {
   step = signal(1);
   closeAnimation = output<void>();
 
-  private readonly destroy$ = new Subject<void>();
   readonly gameStore = inject(GameStore);
 
-  ngOnInit(): void {
+  constructor() {
     const steps = [500, 1000, 1500, 2000, 3500];
 
     steps.forEach((delay, index) => {
       timer(delay)
-        .pipe(takeUntil(this.destroy$))
+        .pipe(takeUntilDestroyed())
         .subscribe(() => {
           if (index < 4) {
             this.step.set(index + 2);
@@ -40,11 +38,6 @@ export class AppWumpusAttackAnimationComponent implements OnInit, OnDestroy {
           }
         });
     });
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 
   getPlayerLeft = computed(() => {

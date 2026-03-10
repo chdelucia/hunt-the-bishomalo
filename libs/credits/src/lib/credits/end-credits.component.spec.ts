@@ -44,7 +44,6 @@ describe('EndCreditsComponent', () => {
   });
 
   it('should call gameSound.stop and playSound on init', () => {
-    component.ngOnInit();
     expect(mockGameSoundService.stop).toHaveBeenCalled();
     expect(mockGameSoundService.playSound).toHaveBeenCalled();
   });

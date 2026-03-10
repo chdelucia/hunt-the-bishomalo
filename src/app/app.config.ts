@@ -1,4 +1,5 @@
 import { ApplicationConfig, provideZonelessChangeDetection, isDevMode } from '@angular/core';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter, withHashLocation, withInMemoryScrolling } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
@@ -15,6 +16,7 @@ export const appConfig: ApplicationConfig = {
     { provide: GAME_STORE, useExisting: GameStore },
     { provide: ACHIEVEMENT_SERVICE, useExisting: AchievementService },
     { provide: LEADERBOARD_SERVICE, useExisting: LeaderboardService },
+    provideAnimationsAsync(),
     provideZonelessChangeDetection(),
     provideRouter(
       appRoutes,

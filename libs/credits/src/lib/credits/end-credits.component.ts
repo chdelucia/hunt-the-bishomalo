@@ -38,6 +38,12 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
   private readonly gameEngine = inject(GameEngineService);
   private readonly gameSound = inject(GameSoundService);
 
+  ngOnInit(): void {
+    this.gameSound.stop();
+    this.gameSound.playSound(GameSound.GOKU, false);
+    this.startAutoScroll();
+  }
+
   private startAutoScroll(): void {
     const animate = (time: number) => {
       if (this.lastTime === 0) this.lastTime = time;
@@ -60,12 +66,6 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
     };
 
     this.animationFrameId = requestAnimationFrame(animate);
-  }
-
-  ngOnInit(): void {
-    this.gameSound.stop();
-    this.gameSound.playSound(GameSound.GOKU, false);
-    this.startAutoScroll();
   }
 
   ngOnDestroy(): void {

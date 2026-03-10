@@ -1,24 +1,43 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { Component, inject, signal, computed } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { Achievement } from '@hunt-the-bishomalo/data';
 import { AchievementService } from '@hunt-the-bishomalo/achievements';
 
 @Component({
   selector: 'app-achievements',
   standalone: true,
-  imports: [CommonModule, RouterModule, NgOptimizedImage, TranslocoModule],
+  imports: [RouterModule, NgOptimizedImage, TranslocoModule],
   templateUrl: './achievements.component.html',
   styleUrl: './achievements.component.scss',
 })
-export class AchievementsComponent implements OnInit {
+export class AchievementsComponent {
   private readonly achieveService = inject(AchievementService);
   private readonly translocoService = inject(TranslocoService);
 
-  filter: 'all' | 'unlocked' | 'locked' = 'all';
-  achievements: Achievement[] = this.achieveService.achievements;
-  filteredAchievements: Achievement[] = [];
+  readonly filter = signal<'all' | 'unlocked' | 'locked'>('all');
+  readonly achievements = signal(this.achieveService.achievements);
+
+  readonly filteredAchievements = computed(() => {
+    const filter = this.filter();
+    const achievements = this.achievements();
+    return achievements.filter((achievement) => {
+      if (filter === 'all') return true;
+      if (filter === 'unlocked') return achievement.unlocked;
+      if (filter === 'locked') return !achievement.unlocked;
+      return true;
+    });
+  });
+
+  readonly unlockedCount = computed(
+    () => this.achievements().filter((a) => a.unlocked).length,
+  );
+
+  readonly percentage = computed(() => {
+    const total = this.achievements().length;
+    if (total === 0) return 0;
+    return Math.round((this.unlockedCount() / total) * 100);
+  });
 
   rarityColors = {
     common: 'bg-gray-500',
@@ -28,31 +47,8 @@ export class AchievementsComponent implements OnInit {
     legendary: 'bg-yellow-500',
   };
 
-  unlockedCount = 0;
-  percentage = 0;
-
-  ngOnInit(): void {
-    this.updateFilteredAchievements();
-    this.calculateProgress();
-  }
-
-  updateFilteredAchievements(): void {
-    this.filteredAchievements = this.achievements.filter((achievement) => {
-      if (this.filter === 'all') return true;
-      if (this.filter === 'unlocked') return achievement.unlocked;
-      if (this.filter === 'locked') return !achievement.unlocked;
-      return true;
-    });
-  }
-
-  calculateProgress(): void {
-    this.unlockedCount = this.achievements.filter((a) => a.unlocked).length;
-    this.percentage = Math.round((this.unlockedCount / this.achievements.length) * 100);
-  }
-
   setFilter(newFilter: 'all' | 'unlocked' | 'locked'): void {
-    this.filter = newFilter;
-    this.updateFilteredAchievements();
+    this.filter.set(newFilter);
   }
 
   getRarityColor(rarity: string): string {
