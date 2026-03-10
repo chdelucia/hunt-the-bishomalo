@@ -17,7 +17,7 @@ describe('ToastComponent', () => {
     description: 'Achievement Description',
     svgIcon: '<svg></svg>',
     unlocked: true,
-    rarity: 'common'
+    rarity: 'common',
   } as Achievement;
 
   beforeEach(async () => {
