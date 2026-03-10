@@ -2,7 +2,8 @@ import { inject, Injectable, isDevMode } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameEngineService } from './game-engine.service';
 import { ACHIEVEMENT_SERVICE } from '../tokens';
-import { AchieveTypes, RouteTypes } from '@hunt-the-bishomalo/data';
+import { RouteTypes } from '@hunt-the-bishomalo/data';
+import { AchieveTypes } from '@hunt-the-bishomalo/achievements/api';
 
 @Injectable({ providedIn: 'root' })
 export class KeyboardManagerService {
