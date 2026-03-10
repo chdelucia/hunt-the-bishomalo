@@ -6,9 +6,8 @@ import {
   GameSoundService,
   LocalstorageService,
 } from '../index';
-import { ACHIEVEMENT_SERVICE, LEADERBOARD_SERVICE } from '../tokens';
+import { LEADERBOARD_SERVICE } from '../tokens';
 import {
-  AchieveTypes,
   Cell,
   CELL_CONTENTS,
   CellContentType,
@@ -17,6 +16,7 @@ import {
   GameSound,
   RouteTypes,
 } from '@hunt-the-bishomalo/data';
+import { AchieveTypes, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { GameStore } from '../../store';
 import { Observable, of, take } from 'rxjs';
 

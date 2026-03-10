@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BlackoutComponent } from './blackout.component';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 
 describe('BlackoutComponent', () => {
   let component: BlackoutComponent;

@@ -1,8 +1,8 @@
 import { Component, inject, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
-import { GameEngineService, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
-import { AchieveTypes } from '@hunt-the-bishomalo/data';
+import { GameEngineService } from '@hunt-the-bishomalo/core/services';
+import { AchieveTypes, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 
 @Component({
   selector: 'app-mobile-controls',

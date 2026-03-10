@@ -1,7 +1,8 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LeaderboardService } from '../leaderboard.service';
-import { RouteTypes, ScoreEntry, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/data';
+import { RouteTypes, ScoreEntry } from '@hunt-the-bishomalo/data';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { TranslocoModule } from '@jsverse/transloco';

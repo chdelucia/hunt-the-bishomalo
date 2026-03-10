@@ -1,6 +1,6 @@
 import { Component, effect, inject, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { Achievement, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/data';
+import { ACHIEVEMENT_SERVICE, Achievement } from '@hunt-the-bishomalo/achievements/api';
 
 interface ToastData {
   id: number;

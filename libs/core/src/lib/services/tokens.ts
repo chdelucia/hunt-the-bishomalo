@@ -1,5 +1,5 @@
-import { InjectionToken } from '@angular/core';
 import { ILeaderboardService } from '@hunt-the-bishomalo/data';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 
-export { ACHIEVEMENT_SERVICE, LEADERBOARD_SERVICE };
+export { ACHIEVEMENT_SERVICE };
+export { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/data';

@@ -8,8 +8,9 @@ import {
 } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
-import { GameEngineService, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
-import { AchieveTypes, RouteTypes } from '@hunt-the-bishomalo/data';
+import { GameEngineService } from '@hunt-the-bishomalo/core/services';
+import { AchieveTypes, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { RouteTypes } from '@hunt-the-bishomalo/data';
 import { Router } from '@angular/router';
 
 @Component({

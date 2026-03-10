@@ -1,6 +1,7 @@
 import { effect, inject, Injectable } from '@angular/core';
-import { ScoreEntry } from '@hunt-the-bishomalo/data';
-import { LocalstorageService, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
+import { ScoreEntry, LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/data';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { LocalstorageService } from '@hunt-the-bishomalo/core/services';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 
 @Injectable({ providedIn: 'root' })
@@ -34,7 +35,7 @@ export class LeaderboardService {
           deads: this.gameStore.isAlive() ? 0 : 1,
         });
         this.countSteps = 0;
-        if (this.gameStore.hasWon()) this.gameAchieve.caclVictoryAchieve(seconds);
+        if (this.gameStore.hasWon()) this.gameAchieve.calcVictoryAchieve(seconds);
       }
     });
     effect(() => {

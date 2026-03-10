@@ -84,8 +84,9 @@ describe('HuntBishoComponent', () => {
           provide: ACHIEVEMENT_SERVICE,
           useValue: {
             activeAchievement: jest.fn(),
-            caclVictoryAchieve: jest.fn(),
+            calcVictoryAchieve: jest.fn(),
             handleWumpusKillAchieve: jest.fn(),
+            isAllCompleted: jest.fn(),
           },
         },
         { provide: LEADERBOARD_SERVICE, useValue: { clear: jest.fn() } },
