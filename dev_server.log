@@ -1,0 +1,24 @@
+$ nx serve
+
+> nx run hunt-the-bishomalo:serve:development
+
+[33m❯[39m Building...
+[32m✔[39m Building...
+[37m[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mchunk-B5MMGMA7.js[37m  [2m | [22m[2m-[22m            [2m | [22m[36m153.49 kB[37m[2m | [22m
+[32mchunk-ICC4PDWQ.js[37m  [2m | [22m[2m-[22m            [2m | [22m [36m67.97 kB[37m[2m | [22m
+[32mmain.js[37m            [2m | [22m[2mmain[22m         [2m | [22m [36m20.32 kB[37m[2m | [22m
+[32mstyles.css[37m         [2m | [22m[2mstyles[22m       [2m | [22m  [36m2.44 kB[37m[2m | [22m
+[32mchunk-SUK4K73I.js[37m  [2m | [22m[2m-[22m            [2m | [22m  [36m1.76 kB[37m[2m | [22m
+[32mchunk-GOMI4DH3.js[37m  [2m | [22m[2m-[22m            [2m | [22m  [36m1.37 kB[37m[2m | [22m
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m247.35 kB[22m
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mchunk-SZ5323HE.js[37m  [2m | [22m[2mindex[22m        [2m | [22m[36m162.60 kB[37m[2m | [22m
+[32mchunk-4QLY7WVP.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m31.10 kB[37m[2m | [22m
+[32mchunk-PCH2XDKS.js[37m  [2m | [22m[2mindex[22m        [2m | [22m[36m726 bytes[37m[2m | [22m
+[32mchunk-VSBE6EXU.js[37m  [2m | [22m[2mindex[22m        [2m | [22m[36m309 bytes[37m[2m | [22m
+Application bundle generation complete. [5.266 seconds] - 2026-03-10T21:22:50.365Z
+[39m
+[37mWatch mode enabled. Watching for file changes...[39m
+[37mNOTE: Raw file sizes do not reflect development server per-request transformations.[39m
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4200[22m/[39m
