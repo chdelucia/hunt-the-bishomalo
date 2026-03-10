@@ -15,6 +15,7 @@ declare global {
   namespace Cypress {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     interface Chainable<Subject> {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       getGameStore(): Chainable<any>;
       winLevel(): Chainable<void>;
       loseLevel(): Chainable<void>;
@@ -27,6 +28,7 @@ Cypress.Commands.add('getGameStore', () => {
 });
 
 Cypress.Commands.add('winLevel', () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   cy.getGameStore().then((store: any) => {
     const board = JSON.parse(JSON.stringify(store.board()));
     board[0][1].content = {
@@ -44,6 +46,7 @@ Cypress.Commands.add('winLevel', () => {
 });
 
 Cypress.Commands.add('loseLevel', () => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   cy.getGameStore().then((store: any) => {
     store.updateGame({ lives: 1 });
     const board = JSON.parse(JSON.stringify(store.board()));
