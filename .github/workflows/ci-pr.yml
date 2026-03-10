@@ -122,7 +122,30 @@ jobs:
           key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
 
       - run: bun install --frozen-lockfile
-      - run: bun x nx affected -t test --coverage --parallel --base=${{ needs.validate.outputs.base }}
+      - run: bun x nx affected -t test --coverage --coverageReporters=lcov --parallel --base=${{ needs.validate.outputs.base }}
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage/
+          retention-days: 1
+
+  sonar:
+    runs-on: ubuntu-latest
+    needs: [test, validate]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Download coverage artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage
+          path: coverage/
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@v6
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   build:
     runs-on: ubuntu-latest
