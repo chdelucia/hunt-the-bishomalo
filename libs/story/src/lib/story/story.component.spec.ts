@@ -54,12 +54,9 @@ describe('StoryComponent', () => {
 
     fixture = TestBed.createComponent(StoryComponent);
     component = fixture.componentInstance;
-    jest.useFakeTimers();
-    fixture.detectChanges();
   });
 
   afterEach(() => {
-    jest.clearAllTimers();
     jest.useRealTimers();
     jest.clearAllMocks();
   });
@@ -69,10 +66,12 @@ describe('StoryComponent', () => {
   });
 
   it('should initialize with story and call startReading', () => {
+    jest.useFakeTimers();
     const spy = jest.spyOn<any, any>(component, 'startReading');
-    component.ngOnInit();
+    fixture.detectChanges();
     expect(component['fullText']).toBe(mockStory.text);
     expect(spy).toHaveBeenCalledWith(mockStory.text);
+    jest.useRealTimers();
   });
 
   it('should navigate to HOME when goToGame is called', () => {
@@ -87,6 +86,7 @@ describe('StoryComponent', () => {
   });
 
   it('should show text gradually and activate showExtraInfo at end of audio', () => {
+    jest.useFakeTimers();
     const speakMock = jest.fn((utterance) => {
       if (utterance.text.includes('Capítulo')) {
         setTimeout(() => utterance.onend?.(), 10);
@@ -103,12 +103,16 @@ describe('StoryComponent', () => {
     } as any;
 
     component['startReading'](mockStory.text);
-    jest.advanceTimersByTime(mockStory.text.length * 90);
+    // Move past interval calls
+    for (let i = 0; i < mockStory.text.length; i++) {
+      jest.advanceTimersByTime(90);
+    }
 
-    expect(component.displayedText()).toBe('TTeexxttoo  ddee  pprruueebbaa..');
+    expect(component.displayedText()).toBe('Texto de prueba.');
     expect(component.reading()).toBe(false);
 
     jest.runAllTimers();
     expect(component.showExtraInfo()).toBe(true);
+    jest.useRealTimers();
   });
 });

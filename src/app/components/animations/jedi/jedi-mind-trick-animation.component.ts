@@ -27,7 +27,6 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
 
   private audioContext: AudioContext | null = null;
   private readonly timers: any[] = [];
-  private echoTimeout: any = null;
 
   private readonly ngZone = inject(NgZone);
   private readonly cdr = inject(ChangeDetectorRef);
@@ -75,8 +74,10 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.timers.forEach((timer) => clearTimeout(timer));
-    if (this.echoTimeout) clearTimeout(this.echoTimeout);
     if (this.audioContext && this.audioContext.state !== 'closed') {
+      this.audioContext.close();
+    }
+    if (window.speechSynthesis) {
       window.speechSynthesis.cancel();
     }
 
@@ -126,13 +127,15 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
   }
 
   speakWhisper(text: string, volume: number, delay: number): void {
-    this.echoTimeout = setTimeout(() => {
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 0.6;
-      utterance.pitch = 0.7;
-      utterance.volume = volume;
-      window.speechSynthesis.speak(utterance);
-    }, delay);
+    this.timers.push(
+      setTimeout(() => {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.6;
+        utterance.pitch = 0.7;
+        utterance.volume = volume;
+        window.speechSynthesis.speak(utterance);
+      }, delay),
+    );
   }
 
   private createForceWave(): void {
@@ -140,11 +143,13 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
     this.forceWaves.push(id);
     this.cdr.detectChanges();
 
-    setTimeout(() => {
-      this.ngZone.run(() => {
-        this.forceWaves = this.forceWaves.filter((w) => w !== id);
-        this.cdr.detectChanges();
-      });
-    }, 2000);
+    this.timers.push(
+      setTimeout(() => {
+        this.ngZone.run(() => {
+          this.forceWaves = this.forceWaves.filter((w) => w !== id);
+          this.cdr.detectChanges();
+        });
+      }, 2000),
+    );
   }
 }

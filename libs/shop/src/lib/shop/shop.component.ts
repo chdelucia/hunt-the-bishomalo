@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, OnDestroy, signal } from '@angular/core';
 
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { GameEngineService } from '@hunt-the-bishomalo/core/services';
@@ -13,7 +13,7 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss',
 })
-export class ShopComponent {
+export class ShopComponent implements OnDestroy {
   private readonly baseProducts: Product[] = [
     {
       effect: 'heart',
@@ -72,6 +72,7 @@ export class ShopComponent {
   readonly inventory = this.gameStore.inventory;
 
   message = signal('');
+  private messageTimeout: any;
 
   productos = computed(() => {
     if (Math.random() < this.settings().difficulty.maxChance) {
@@ -87,7 +88,8 @@ export class ShopComponent {
 
     const canBuy = gold >= price;
 
-    setTimeout(() => this.message.set(''), 2000);
+    if (this.messageTimeout) clearTimeout(this.messageTimeout);
+    this.messageTimeout = setTimeout(() => this.message.set(''), 2000);
 
     if (!canBuy) {
       this.message.set(this.transloco.translate('shop.purchaseMessageNotEnoughCoins'));
@@ -132,5 +134,11 @@ export class ShopComponent {
       gold: gold - price,
       inventory: [...inventory, product],
     });
+  }
+
+  ngOnDestroy(): void {
+    if (this.messageTimeout) {
+      clearTimeout(this.messageTimeout);
+    }
   }
 }
