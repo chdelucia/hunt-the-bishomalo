@@ -7,7 +7,6 @@ import {
   AchievementItemComponent,
   AchievementProgressComponent
 } from '@hunt-the-bishomalo/achievements/ui';
-import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 
 @Component({
   selector: 'lib-achievements',
@@ -21,20 +20,6 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
   ],
   templateUrl: './achievements.html',
   styleUrl: './achievements.scss',
-  animations: [
-    trigger('listAnimation', [
-      transition('* <=> *', [
-        query(
-          ':enter',
-          [
-            style({ opacity: 0, transform: 'translateY(20px)' }),
-            stagger('50ms', animate('300ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))),
-          ],
-          { optional: true },
-        ),
-      ]),
-    ]),
-  ],
 })
 export class AchievementsComponent {
   private readonly achieveService = inject(ACHIEVEMENT_SERVICE);

@@ -1,46 +1,22 @@
-<div class="flex flex-wrap gap-2">
+<div class="filter-group">
   <button
     (click)="setFilter('all')"
-    class="px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 border border-gray-500 shadow-sm"
-    [class.bg-blue-600]="currentFilter() === 'all'"
-    [class.text-white]="currentFilter() === 'all'"
-    [class.border-blue-400]="currentFilter() === 'all'"
-    [class.scale-105]="currentFilter() === 'all'"
-    [class.shadow-md]="currentFilter() === 'all'"
-    [class.bg-gray-700]="currentFilter() !== 'all'"
-    [class.text-gray-300]="currentFilter() !== 'all'"
-    [class.hover:bg-gray-600]="currentFilter() !== 'all'"
-    [class.hover:text-white]="currentFilter() !== 'all'"
+    class="filter-btn all"
+    [class.active]="currentFilter() === 'all'"
   >
     {{ 'achievements.filterAll' | transloco }}
   </button>
   <button
     (click)="setFilter('unlocked')"
-    class="px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 border border-gray-500 shadow-sm"
-    [class.bg-green-600]="currentFilter() === 'unlocked'"
-    [class.text-white]="currentFilter() === 'unlocked'"
-    [class.border-green-400]="currentFilter() === 'unlocked'"
-    [class.scale-105]="currentFilter() === 'unlocked'"
-    [class.shadow-md]="currentFilter() === 'unlocked'"
-    [class.bg-gray-700]="currentFilter() !== 'unlocked'"
-    [class.text-gray-300]="currentFilter() !== 'unlocked'"
-    [class.hover:bg-gray-600]="currentFilter() !== 'unlocked'"
-    [class.hover:text-white]="currentFilter() !== 'unlocked'"
+    class="filter-btn unlocked"
+    [class.active]="currentFilter() === 'unlocked'"
   >
     {{ 'achievements.filterUnlocked' | transloco }}
   </button>
   <button
     (click)="setFilter('locked')"
-    class="px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 border border-gray-500 shadow-sm"
-    [class.bg-yellow-600]="currentFilter() === 'locked'"
-    [class.text-white]="currentFilter() === 'locked'"
-    [class.border-yellow-400]="currentFilter() === 'locked'"
-    [class.scale-105]="currentFilter() === 'locked'"
-    [class.shadow-md]="currentFilter() === 'locked'"
-    [class.bg-gray-700]="currentFilter() !== 'locked'"
-    [class.text-gray-300]="currentFilter() !== 'locked'"
-    [class.hover:bg-gray-600]="currentFilter() !== 'locked'"
-    [class.hover:text-white]="currentFilter() !== 'locked'"
+    class="filter-btn locked"
+    [class.active]="currentFilter() === 'locked'"
   >
     {{ 'achievements.filterLocked' | transloco }}
   </button>

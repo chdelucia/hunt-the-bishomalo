@@ -21,12 +21,9 @@
       <lib-achievement-filter [currentFilter]="filter()" (filterChanged)="setFilter($event)" />
     </div>
 
-    <div
-      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-      [@listAnimation]="filteredAchievements().length"
-    >
-      @for (achievement of filteredAchievements(); track achievement.id) {
-        <lib-achievement-item [achievement]="achievement" />
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 achievement-list">
+      @for (achievement of filteredAchievements(); track achievement.id; let i = $index) {
+        <lib-achievement-item [achievement]="achievement" [style.--index]="i" />
       }
     </div>
 
