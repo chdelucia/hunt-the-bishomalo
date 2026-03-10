@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { Achievement } from '@hunt-the-bishomalo/achievements/api';
 
 @Component({
   selector: 'lib-achievement-item',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage, TranslocoModule],
+  imports: [NgOptimizedImage, TranslocoModule],
   templateUrl: './achievement-item.component.html',
   styleUrl: './achievement-item.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

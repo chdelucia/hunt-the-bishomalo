@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, output, input } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'lib-achievement-filter',
   standalone: true,
-  imports: [CommonModule, TranslocoModule],
+  imports: [TranslocoModule],
   templateUrl: './achievement-filter.component.html',
   styleUrl: './achievement-filter.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

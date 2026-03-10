@@ -1,11 +1,11 @@
 <div class="jedi-container" routerLink="/home">
   <div class="force-text">
     @if (step() >= 3) {
-      <div class="whisper-text" [ngClass]="'opacity-' + (step() - 2)">Contrata a Chris</div>
+      <div class="whisper-text" [class]="'opacity-' + (step() - 2)">Contrata a Chris</div>
     }
   </div>
 
-  <div class="animation-container" [ngClass]="'step-' + step()">
+  <div class="animation-container" [class]="'step-' + step()">
     <!-- Jedi -->
     <div class="jedi">
       <svg

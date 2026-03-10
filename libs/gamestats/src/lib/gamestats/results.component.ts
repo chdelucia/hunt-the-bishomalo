@@ -1,5 +1,5 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
 import { LeaderboardService } from '../leaderboard.service';
 import { RouteTypes, ScoreEntry } from '@hunt-the-bishomalo/data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
@@ -9,7 +9,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'lib-results',
-  imports: [CommonModule, TranslocoModule],
+  imports: [TranslocoModule, DecimalPipe],
   standalone: true,
   templateUrl: './results.component.html',
   styleUrl: './results.component.scss',

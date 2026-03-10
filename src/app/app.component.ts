@@ -17,8 +17,8 @@ export class AppComponent {
   readonly game = inject(GameStore);
 
   constructor() {
-    if (isDevMode() || (window as any).Cypress) {
-      (window as any).gameStore = this.game;
+    if (isDevMode() || (window as unknown as { Cypress: unknown }).Cypress) {
+      (window as unknown as { gameStore: unknown }).gameStore = this.game;
     }
   }
 }
