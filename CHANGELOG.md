@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.5.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.4.3...v7.5.0) (2026-03-10)
+
+
+### Features
+
+* **achievements:** complete domain migration of achievements ([62d1328](https://github.com/chdelucia/hunt-the-bishomalo/commit/62d13280997bc4573adbc4d7704c16823f58314c))
+* **achievements:** complete migration to feature library with decoupled service ([c1f795e](https://github.com/chdelucia/hunt-the-bishomalo/commit/c1f795eff9250a685d2ee662755a36f831f826c3))
+* **achievements:** migrate achievements components to library ([6399628](https://github.com/chdelucia/hunt-the-bishomalo/commit/639962882796474d41666493a54a63d7d80924d5))
+* **achievements:** migrate achievements components to library and use injection token ([4253d55](https://github.com/chdelucia/hunt-the-bishomalo/commit/4253d552f9b17e1afccda5d1a208795562fec9b3))
+* **achievements:** migrate achievements to feature library and core service ([341096a](https://github.com/chdelucia/hunt-the-bishomalo/commit/341096aa72f1191b5faee31502197b22e28c4e95))
+* migrate achievements domain to Nx tiered library structure ([02680dd](https://github.com/chdelucia/hunt-the-bishomalo/commit/02680dd2ed98d9adbe88e0fc4d03db6f9ab130e8))
+
 ### [7.4.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.4.2...v7.4.3) (2026-03-10)
 
 
