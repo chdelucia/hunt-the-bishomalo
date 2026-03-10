@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.4.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.4.2...v7.4.3) (2026-03-10)
+
+
+### Bug Fixes
+
+* **e2e:** resolve ESLint errors and warnings in E2E support files ([16a1592](https://github.com/chdelucia/hunt-the-bishomalo/commit/16a1592e0cdf2802a89ddcb70e67fbdb4e71ccdb))
+* suppress ALSA console errors in headless E2E tests ([f4c0e95](https://github.com/chdelucia/hunt-the-bishomalo/commit/f4c0e9589a08fbfd4f9a6e0506ddf37af9bf6806))
+
 ### [7.4.2](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.4.1...v7.4.2) (2026-03-10)
 
 ### [7.4.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.4.0...v7.4.1) (2026-03-09)
