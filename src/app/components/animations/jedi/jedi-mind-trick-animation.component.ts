@@ -4,7 +4,6 @@ import {
   OnDestroy,
   ElementRef,
   viewChild,
-  signal,
   inject,
   signal,
 } from '@angular/core';
