@@ -20,7 +20,7 @@ Cypress.on('window:before:load', (win) => {
   // Mock AudioContext to avoid ALSA errors in headless environments
   const mockAudioContext = function () {
     const handler = {
-      get(target: any, prop: string) {
+      get(target: Record<string, unknown>, prop: string) {
         if (prop === 'state') return 'running';
         if (prop === 'currentTime') return 0;
         if (prop === 'destination') return {};
@@ -29,28 +29,28 @@ Cypress.on('window:before:load', (win) => {
 
         // Return a dummy function for any unmocked method to avoid crashes
         return () => ({
-          connect: () => {},
-          start: () => {},
-          stop: () => {},
-          disconnect: () => {},
-          setValueAtTime: () => {},
-          linearRampToValueAtTime: () => {},
-          exponentialRampToValueAtTime: () => {},
-          setTargetAtTime: () => {},
-          setValueCurveAtTime: () => {},
-          cancelScheduledValues: () => {},
-          cancelAndHoldAtTime: () => {},
+          connect: () => { /* Mock */ },
+          start: () => { /* Mock */ },
+          stop: () => { /* Mock */ },
+          disconnect: () => { /* Mock */ },
+          setValueAtTime: () => { /* Mock */ },
+          linearRampToValueAtTime: () => { /* Mock */ },
+          exponentialRampToValueAtTime: () => { /* Mock */ },
+          setTargetAtTime: () => { /* Mock */ },
+          setValueCurveAtTime: () => { /* Mock */ },
+          cancelScheduledValues: () => { /* Mock */ },
+          cancelAndHoldAtTime: () => { /* Mock */ },
           gain: {
             value: 1,
-            setValueAtTime: () => {},
-            linearRampToValueAtTime: () => {},
-            exponentialRampToValueAtTime: () => {},
+            setValueAtTime: () => { /* Mock */ },
+            linearRampToValueAtTime: () => { /* Mock */ },
+            exponentialRampToValueAtTime: () => { /* Mock */ },
           },
           frequency: {
             value: 440,
-            setValueAtTime: () => {},
-            linearRampToValueAtTime: () => {},
-            exponentialRampToValueAtTime: () => {},
+            setValueAtTime: () => { /* Mock */ },
+            linearRampToValueAtTime: () => { /* Mock */ },
+            exponentialRampToValueAtTime: () => { /* Mock */ },
           }
         });
       }
@@ -58,17 +58,19 @@ Cypress.on('window:before:load', (win) => {
     return new Proxy({}, handler);
   };
 
-  win.AudioContext = mockAudioContext as any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (win as any).AudioContext = mockAudioContext as any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (win as any).webkitAudioContext = mockAudioContext as any;
 
   // Mock speechSynthesis
   Object.defineProperty(win, 'speechSynthesis', {
     value: {
-      speak: () => {},
-      cancel: () => {},
+      speak: () => { /* Mock */ },
+      cancel: () => { /* Mock */ },
       getVoices: () => [],
-      pause: () => {},
-      resume: () => {},
+      pause: () => { /* Mock */ },
+      resume: () => { /* Mock */ },
       pending: false,
       speaking: false,
       paused: false,
@@ -78,21 +80,23 @@ Cypress.on('window:before:load', (win) => {
   });
 
   // Mock SpeechSynthesisUtterance
-  win.SpeechSynthesisUtterance = function (text?: string) {
-    return {
-      text: text || '',
-      lang: '',
-      voice: null,
-      volume: 1,
-      rate: 1,
-      pitch: 1,
-      onstart: null,
-      onend: null,
-      onerror: null,
-      onpause: null,
-      onresume: null,
-      onmark: null,
-      onboundary: null,
-    };
-  } as any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (win as any).SpeechSynthesisUtterance = function (this: unknown, text?: string) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const self = this as any;
+    self.text = text || '';
+    self.lang = '';
+    self.voice = null;
+    self.volume = 1;
+    self.rate = 1;
+    self.pitch = 1;
+    self.onstart = null;
+    self.onend = null;
+    self.onerror = null;
+    self.onpause = null;
+    self.onresume = null;
+    self.onmark = null;
+    self.onboundary = null;
+    return self;
+  };
 });

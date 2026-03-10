@@ -77,6 +77,7 @@ describe('Hunt the Bishomalo Full App Flow', () => {
     cy.get('button.start-game').click();
     cy.get('.story-container').click();
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     cy.getGameStore().then((store: any) => {
         store.updateGame({
             settings: { ...store.settings(), size: 8 }
