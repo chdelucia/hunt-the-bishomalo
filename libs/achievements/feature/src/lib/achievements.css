@@ -1,3 +1,5 @@
+@import "tailwindcss" reference;
+
 .achievements-container {
   min-height: 100vh;
   background-color: #1a202c;
@@ -54,4 +56,24 @@
   transform: rotate(45deg);
   left: 4px;
   top: 4px;
+}
+
+.progress-section {
+  @apply bg-gray-800 p-6 rounded-xl shadow-2xl border border-gray-700 mb-8;
+}
+
+.progress-title {
+  @apply text-2xl font-bold text-white mb-6 flex items-center;
+}
+
+.achievement-list {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+
+.empty-state {
+  @apply text-center py-20 bg-gray-800 rounded-xl border border-dashed border-gray-600;
+}
+
+.empty-text {
+  @apply text-gray-400 text-lg italic;
 }

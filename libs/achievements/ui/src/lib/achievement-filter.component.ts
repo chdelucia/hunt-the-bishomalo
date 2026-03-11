@@ -6,7 +6,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './achievement-filter.component.html',
-  styleUrl: './achievement-filter.component.scss',
+  styleUrl: './achievement-filter.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AchievementFilterComponent {

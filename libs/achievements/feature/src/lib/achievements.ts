@@ -19,7 +19,7 @@ import {
     AchievementProgressComponent,
   ],
   templateUrl: './achievements.html',
-  styleUrl: './achievements.scss',
+  styleUrl: './achievements.css',
 })
 export class AchievementsComponent {
   private readonly achieveService = inject(ACHIEVEMENT_SERVICE);

@@ -1,0 +1,29 @@
+@import "tailwindcss" reference;
+
+:host {
+  display: block;
+}
+
+.progress-container {
+  @apply mb-4;
+}
+
+.progress-labels {
+  @apply flex justify-between items-center mb-1;
+}
+
+.progress-text {
+  @apply text-gray-300 text-sm font-medium;
+}
+
+.percentage-text {
+  @apply text-blue-400 text-sm font-bold;
+}
+
+.progress-bar-wrapper {
+  @apply w-full bg-gray-700 rounded-full h-2.5 overflow-hidden shadow-inner;
+}
+
+.progress-bar-fill {
+  @apply bg-blue-600 h-2.5 rounded-full transition-all duration-1000 ease-out shadow-lg;
+}

@@ -1,0 +1,71 @@
+@import "tailwindcss" reference;
+
+.achievement-item {
+  @apply flex items-center p-3 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors duration-200 border border-gray-600;
+
+  &.locked {
+    @apply opacity-50;
+  }
+}
+
+.icon-container {
+  @apply relative w-16 h-16 mr-4 flex-shrink-0;
+}
+
+.icon-wrapper {
+  @apply w-full h-full rounded-full border-2 border-gray-500 overflow-hidden bg-gray-800;
+
+  &.locked {
+    @apply grayscale;
+  }
+}
+
+.achievement-icon {
+  @apply p-1;
+  object-fit: contain;
+  image-rendering: pixelated;
+}
+
+.lock-overlay {
+  @apply absolute inset-0 flex items-center justify-center;
+}
+
+.lock-icon {
+  @apply text-2xl opacity-50;
+}
+
+.content-wrapper {
+  @apply flex-grow;
+}
+
+.title-row {
+  @apply flex justify-between items-start mb-1;
+}
+
+.achievement-title {
+  @apply font-bold text-lg text-white leading-tight mr-2;
+}
+
+.rarity-badge {
+  @apply text-[10px] uppercase font-bold px-2 py-0.5 rounded text-white whitespace-nowrap;
+
+  &.rarity-common {
+    @apply bg-gray-500;
+  }
+  &.rarity-uncommon {
+    @apply bg-green-500;
+  }
+  &.rarity-rare {
+    @apply bg-blue-500;
+  }
+  &.rarity-epic {
+    @apply bg-purple-500;
+  }
+  &.rarity-legendary {
+    @apply bg-yellow-500;
+  }
+}
+
+.achievement-description {
+  @apply text-gray-300 text-sm leading-snug;
+}

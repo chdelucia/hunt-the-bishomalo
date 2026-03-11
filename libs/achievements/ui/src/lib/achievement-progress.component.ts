@@ -6,7 +6,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './achievement-progress.component.html',
-  styleUrl: './achievement-progress.component.scss',
+  styleUrl: './achievement-progress.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AchievementProgressComponent {
