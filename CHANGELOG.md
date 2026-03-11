@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.5.9](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.5.8...v7.5.9) (2026-03-11)
+
+
+### Bug Fixes
+
+* **i18n:** fix translations not loading in development mode ([f086bf1](https://github.com/chdelucia/hunt-the-bishomalo/commit/f086bf1590a8c178ed6bd2a8ef70158eb5821e29))
+
 ### [7.5.8](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.5.7...v7.5.8) (2026-03-11)
 
 ### [7.5.7](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.5.6...v7.5.7) (2026-03-11)
