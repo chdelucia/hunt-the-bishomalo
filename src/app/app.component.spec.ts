@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
-import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/core/services';
+import { LEADERBOARD_SERVICE, KeyboardManagerService } from '@hunt-the-bishomalo/core/services';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { signal } from '@angular/core';
 
@@ -25,6 +25,8 @@ describe('AppComponent', () => {
           },
         },
         { provide: LEADERBOARD_SERVICE, useValue: { clear: jest.fn() } },
+        { provide: KeyboardManagerService, useValue: { handleKeyDown: jest.fn() } },
+        { provide: KeyboardManagerService, useValue: { handleKeyDown: jest.fn() } },
       ],
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);

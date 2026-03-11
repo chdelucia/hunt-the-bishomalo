@@ -10,19 +10,18 @@ import { LEADERBOARD_SERVICE } from '../tokens';
 import {
   Cell,
   CELL_CONTENTS,
-  CellContentType,
   Direction,
-  GameSettings,
   GameSound,
   RouteTypes,
 } from '@hunt-the-bishomalo/data';
 import { AchieveTypes, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { GameStore } from '../../store';
-import { Observable, of, take } from 'rxjs';
+import { Observable, take } from 'rxjs';
+import { BoardGeneratorService } from './board-generator.service';
+import { PerceptionService } from './perception.service';
 
 @Injectable({ providedIn: 'root' })
 export class GameEngineService {
-  private readonly storageSettingsKey = 'hunt_the_bishomalo_settings';
   store = inject(GameStore);
   private readonly _settings = this.store.settings;
   private readonly _hunter = this.store.hunter;
@@ -33,6 +32,8 @@ export class GameEngineService {
   private readonly localStorageService = inject(LocalstorageService);
   private readonly gameEvents = inject(GameEventService);
   private readonly transloco = inject(TranslocoService);
+  private readonly boardGenerator = inject(BoardGeneratorService);
+  private readonly perceptionService = inject(PerceptionService);
 
   initGame(): void {
     this.sound.stop();
@@ -42,43 +43,19 @@ export class GameEngineService {
 
   public initializeGameBoard(): void {
     const settings = this._settings();
-    const board: Cell[][] = this.createBoard(settings);
-    this.placeGold(board);
-    this.placeWumpus(board, settings);
-    this.placePits(board, settings);
-    this.placeArrows(board, settings);
-    this.placeEvents(board);
+    const board: Cell[][] = this.boardGenerator.createBoard(settings);
+    this.boardGenerator.placeGold(board, settings);
+    this.boardGenerator.placeWumpus(board, settings);
+    this.boardGenerator.placePits(board, settings);
+    this.boardGenerator.placeArrows(board, settings);
+    this.boardGenerator.placeEvents(
+      board,
+      settings,
+      this.store.lives(),
+      this.store.dragonballs(),
+    );
     this.store.updateGame({ board });
     this.setHunterForNextLevel();
-  }
-
-  private createBoard(settings: GameSettings): Cell[][] {
-    return Array.from({ length: settings.size }, (_, x) =>
-      Array.from({ length: settings.size }, (_, y) => ({ x, y, visited: false })),
-    );
-  }
-
-  private placeGold(board: Cell[][]): void {
-    this.placeRandom(board).content = CELL_CONTENTS.gold;
-  }
-
-  private placeWumpus(board: Cell[][], settings: GameSettings): void {
-    for (let i = 0; i < (settings.wumpus || 1); i++) {
-      const type = `wumpus${settings.selectedChar}` as CellContentType;
-      this.placeRandom(board).content = CELL_CONTENTS[type];
-    }
-  }
-
-  private placePits(board: Cell[][], settings: GameSettings): void {
-    for (let i = 0; i < settings.pits; i++) {
-      this.placeRandom(board, new Set(['0,0', '0,1', '1,0'])).content = CELL_CONTENTS.pit;
-    }
-  }
-
-  private placeArrows(board: Cell[][], settings: GameSettings): void {
-    for (let i = 0; i < (settings.wumpus || 1) - 1; i++) {
-      this.placeRandom(board).content = CELL_CONTENTS.arrow;
-    }
   }
 
   private setHunterForNextLevel(): void {
@@ -90,34 +67,6 @@ export class GameEngineService {
       hasGold: false,
     });
     this.store.updateGame({ wumpusKilled: 0, isAlive: true, hasWon: false });
-  }
-
-  private placeRandom(board: Cell[][], excluded = new Set(['0,0'])): Cell {
-    const size = this._settings().size;
-    let cell: Cell;
-    do {
-      const x = Math.floor(Math.random() * size);
-      const y = Math.floor(Math.random() * size);
-      cell = board[x][y];
-    } while (cell.content || excluded.has(`${cell.x},${cell.y}`));
-    return cell;
-  }
-
-  private placeEvents(board: Cell[][]): void {
-    const { difficulty, size } = this._settings();
-    const ex = new Set(['0,0']);
-    const chance = (base: number, max: number) =>
-      Math.min(base + ((size - 4) / (difficulty.maxLevels - 4)) * (max - base), max);
-
-    if (
-      Math.random() < chance(difficulty.baseChance, difficulty.maxChance) &&
-      this.store.lives() < difficulty.maxLives
-    ) {
-      this.placeRandom(board, ex).content = CELL_CONTENTS.heart;
-    }
-    if (Math.random() < difficulty.baseChance && !this.store.dragonballs()) {
-      this.placeRandom(board, ex).content = CELL_CONTENTS.dragonball;
-    }
   }
 
   newGame(): void {
@@ -132,8 +81,8 @@ export class GameEngineService {
     const newSettings = {
       ...this._settings(),
       size: newSize,
-      pits: this.calculatePits(size, difficulty.luck),
-      wumpus: this.calculateWumpus(size, difficulty.luck),
+      pits: this.boardGenerator.calculatePits(size, difficulty.luck),
+      wumpus: this.boardGenerator.calculateWumpus(size, difficulty.luck),
       blackout: this.applyBlackoutChance(),
     };
     this.store.updateGame({ settings: newSettings });
@@ -339,25 +288,10 @@ export class GameEngineService {
     }
 
     this.sound.playSound(GameSound.WALK, false);
-    this.getPerceptionMessage()
+    this.perceptionService
+      .getPerceptionMessage(this.getAdjacentCells())
       .pipe(take(1))
       .subscribe((msg) => this.store.setMessage(msg));
-  }
-
-  private getPerceptionMessage(): Observable<string> {
-    const adjacentCells = this.getAdjacentCells();
-    const perceptions: string[] = [];
-
-    for (const cell of adjacentCells) {
-      const perception = this.getPerceptionFromCell(cell);
-      if (perception) perceptions.push(perception);
-    }
-
-    if (perceptions.length > 0) {
-      return of(perceptions.join(' '));
-    } else {
-      return this.transloco.selectTranslate('gameMessages.perceptionNothingSuspicious');
-    }
   }
 
   private getAdjacentCells(): Cell[] {
@@ -375,36 +309,6 @@ export class GameEngineService {
       .map(({ dx, dy }) => ({ x: x + dx, y: y + dy }))
       .filter(({ x, y }) => x >= 0 && y >= 0 && x < size && y < size)
       .map(({ x, y }) => board[x][y]);
-  }
-
-  private getPerceptionFromCell(cell: Cell): string | null {
-    if (cell.content?.type === 'wumpus') {
-      this.sound.playSound(GameSound.WUMPUS);
-      return this.transloco.translate('gameMessages.perceptionStench');
-    }
-    if (cell.content === CELL_CONTENTS.pit) {
-      this.sound.playSound(GameSound.WIND);
-      return this.transloco.translate('gameMessages.perceptionBreeze');
-    }
-    if (cell.content === CELL_CONTENTS.gold) {
-      this.sound.playSound(GameSound.GOLD);
-      return this.transloco.translate('gameMessages.perceptionShine');
-    }
-    return null;
-  }
-
-  private calculatePits(size: number, luck: number): number {
-    const penalty = 0.01 - luck / 1000;
-    const totalCells = size * size;
-    const basePercentage = 0.1 + penalty;
-    return Math.max(1, Math.round(totalCells * basePercentage));
-  }
-
-  private calculateWumpus(size: number, luck: number): number {
-    const penalty = 0.01 - luck / 1000;
-    const totalCells = size * size;
-    const basePercentage = 0.04 + penalty;
-    return Math.max(1, Math.round(totalCells * basePercentage));
   }
 
   private applyBlackoutChance(): boolean {
