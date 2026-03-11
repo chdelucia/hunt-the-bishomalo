@@ -1,13 +1,14 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
-import { TranslocoModule } from '@jsverse/transloco';
-import { Cell, Chars } from '@hunt-the-bishomalo/data';
+
+import { Cell } from '@hunt-the-bishomalo/data';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { CellContentComponent } from './content/cell-content.component';
+import { HunterComponent } from './hunter/hunter.component';
 
 @Component({
   selector: 'app-game-cell',
   standalone: true,
-  imports: [NgOptimizedImage, TranslocoModule],
+  imports: [CellContentComponent, HunterComponent],
   templateUrl: './game-cell.component.html',
   styleUrl: './game-cell.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,10 +18,11 @@ export class GameCellComponent {
 
   readonly gameStore = inject(GameStore);
 
-  settings = this.gameStore.settings();
+  settings = this.gameStore.settings;
 
   readonly hasLantern = computed(
-    () => this.gameStore.inventory().find((x) => x.effect === 'lantern') && this.settings.blackout,
+    () =>
+      this.gameStore.inventory().find((x) => x.effect === 'lantern') && this.settings().blackout,
   );
   readonly hasShield = computed(() =>
     this.gameStore.inventory().find((x) => x.effect === 'shield'),
@@ -36,36 +38,10 @@ export class GameCellComponent {
     );
   });
 
-  readonly showGoldIcon = computed(() => this.gameStore.hasGold() && this.settings.size < 12);
-
   readonly isHunterCell = computed(() => {
     const currentCell = this.gameStore.currentCell();
     return currentCell === this.cell();
   });
 
   readonly showHunter = computed(() => this.isHunterCell() && this.gameStore.isAlive());
-
-  readonly rotation = computed(() => {
-    switch (this.gameStore.hunter().direction) {
-      case 0:
-        return 270;
-      case 1:
-        return 0;
-      case 2:
-        return 90;
-      case 3:
-        return 180;
-      default:
-        return 0;
-    }
-  });
-
-  readonly bowImage = computed(() => {
-    const arrows = this.gameStore.arrows();
-    const { selectedChar } = this.settings;
-
-    const extension = selectedChar === Chars.DEFAULT ? 'svg' : 'png';
-    if (arrows) return `chars/${selectedChar}/bow.${extension}`;
-    return `chars/${selectedChar}/bowempty.${extension}`;
-  });
 }
