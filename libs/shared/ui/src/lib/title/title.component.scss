@@ -1,3 +1,4 @@
+@import "tailwindcss" reference;
 .title {
   margin: 0 auto;
   max-width: min(80vw, 800px);
@@ -15,7 +16,8 @@
   animation: draw 2s ease-out forwards, glow 2s ease-in-out infinite alternate;
 }
 .subtitle {
-  @apply text-[30px] text-blue-500;
+  @apply text-blue-400 text-xl mt-4 block text-center;
+  font-family: var(--font-primary);
 }
 
 @keyframes draw {

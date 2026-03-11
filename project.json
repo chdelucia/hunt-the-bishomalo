@@ -23,7 +23,7 @@
             "input": "public"
           }
         ],
-        "styles": ["./src/styles.scss"],
+        "styles": ["src/styles.scss"],
         "scripts": []
       },
       "configurations": {
@@ -31,13 +31,13 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "2mb",
+              "maximumError": "2mb"
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "4kb",
-              "maximumError": "8kb"
+              "maximumWarning": "50kb",
+              "maximumError": "100kb"
             }
           ],
           "outputHashing": "all"

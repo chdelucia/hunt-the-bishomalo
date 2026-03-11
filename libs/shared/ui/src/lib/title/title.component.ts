@@ -7,7 +7,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './title.component.html',
-  styleUrl: './title.component.css',
+  styleUrl: './title.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TitleComponent {

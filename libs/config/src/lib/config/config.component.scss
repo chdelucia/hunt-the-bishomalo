@@ -1,3 +1,4 @@
+@import "tailwindcss" reference;
 main {
   min-height: 100vh;
   background-image: url('/scenarios/9.png');
@@ -18,12 +19,9 @@ main {
   margin: 0 auto;
   justify-content: center;
   align-items: center;
-  background-color: #f3f4f6;
+   @apply bg-blue-900;
 }
 
 .message {
-  text-align: center;
-  font-size: large;
-  margin-bottom: 1.5rem;
-  color: var(--color-primary);
+  @apply text-center text-[large] mb-[1.5rem] text-red-500;
 }

@@ -11,7 +11,7 @@ import { BossStore, BossCell } from './boss-store';
   standalone: true,
   imports: [NgOptimizedImage, TranslocoModule],
   templateUrl: './boss-fight.component.html',
-  styleUrl: './boss-fight.component.css',
+  styleUrl: './boss-fight.component.scss',
   providers: [BossStore],
 })
 export class BossFightComponent implements OnInit {

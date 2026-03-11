@@ -18,7 +18,7 @@ import { LevelStory } from './stories.const';
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './story.component.html',
-  styleUrl: './story.component.css',
+  styleUrl: './story.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StoryComponent implements OnInit, OnDestroy {

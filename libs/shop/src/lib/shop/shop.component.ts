@@ -11,7 +11,7 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './shop.component.html',
-  styleUrl: './shop.component.css',
+  styleUrl: './shop.component.scss',
 })
 export class ShopComponent implements OnDestroy {
   private readonly baseProducts: Product[] = [
