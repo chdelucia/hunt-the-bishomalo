@@ -12,7 +12,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   imports: [TranslocoModule, DecimalPipe],
   standalone: true,
   templateUrl: './results.component.html',
-  styleUrl: './results.component.scss',
+  styleUrl: './results.component.css',
 })
 export class ResultsComponent {
   tabActiva = signal<'general' | 'niveles'>('general');

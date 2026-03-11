@@ -8,7 +8,7 @@ import { Achievement } from '@hunt-the-bishomalo/achievements/api';
   standalone: true,
   imports: [NgOptimizedImage, TranslocoModule],
   templateUrl: './achievement-item.component.html',
-  styleUrl: './achievement-item.component.scss',
+  styleUrl: './achievement-item.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AchievementItemComponent {

@@ -19,7 +19,7 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
   standalone: true,
   imports: [ReactiveFormsModule, NgOptimizedImage, TranslocoModule],
   templateUrl: './game-config.component.html',
-  styleUrls: ['./game-config.component.scss'],
+  styleUrls: ['./game-config.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameConfigComponent {

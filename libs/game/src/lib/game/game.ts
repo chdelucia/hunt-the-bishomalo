@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   selector: 'lib-game',
   imports: [],
   templateUrl: './game.html',
-  styleUrl: './game.scss',
+  styleUrl: './game.css',
 })
 export class Game {}

@@ -9,6 +9,6 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [GameConfigComponent, TitleComponent, TranslocoModule],
   templateUrl: './config.component.html',
-  styleUrl: './config.component.scss',
+  styleUrl: './config.component.css',
 })
 export class ConfigComponent {}

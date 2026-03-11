@@ -10,7 +10,7 @@ import { GameEngineService, GameSoundService } from '@hunt-the-bishomalo/core/se
   standalone: true,
   imports: [RouterModule, TranslocoModule],
   templateUrl: './end-credits.component.html',
-  styleUrl: './end-credits.component.scss',
+  styleUrl: './end-credits.component.css',
 })
 export class EndCreditsComponent implements OnInit, OnDestroy {
   readonly scrollPosition = signal(0);

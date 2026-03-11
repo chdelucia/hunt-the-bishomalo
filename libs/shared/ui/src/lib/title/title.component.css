@@ -15,7 +15,7 @@
   animation: draw 2s ease-out forwards, glow 2s ease-in-out infinite alternate;
 }
 .subtitle {
-  font-size: 30px;
+  @apply text-[30px] text-blue-500;
 }
 
 @keyframes draw {

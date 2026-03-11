@@ -8,6 +8,6 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [RouterModule, TranslocoModule],
   templateUrl: './instructions.component.html',
-  styleUrl: './instructions.component.scss',
+  styleUrl: './instructions.component.css',
 })
 export class InstructionsComponent {}
