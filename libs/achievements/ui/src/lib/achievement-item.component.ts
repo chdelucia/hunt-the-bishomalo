@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
+import { TranslocoModule } from '@jsverse/transloco';
 import { Achievement } from '@hunt-the-bishomalo/achievements/api';
 
 @Component({
@@ -14,8 +14,6 @@ import { Achievement } from '@hunt-the-bishomalo/achievements/api';
 export class AchievementItemComponent {
   achievement = input.required<Achievement>();
 
-  private readonly transloco = inject(TranslocoService);
-
   readonly rarityColors: Record<string, string> = {
     common: 'bg-gray-500',
     uncommon: 'bg-green-500',
@@ -27,8 +25,4 @@ export class AchievementItemComponent {
   readonly rarityColor = computed(
     () => this.rarityColors[this.achievement().rarity.toLowerCase()] || 'bg-gray-500',
   );
-
-  getRarityName(rarity: string): string {
-    return this.transloco.translate('rarity.' + rarity.toLowerCase());
-  }
 }

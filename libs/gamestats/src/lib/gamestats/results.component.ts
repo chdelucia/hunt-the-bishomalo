@@ -48,7 +48,7 @@ export class ResultsComponent {
       flechasDisparadas: totalArrows,
       objetosUsados: totalItems,
       nivelesCompletados: completedLevels,
-      tiempoJuego: `${hours}h ${minutes}m ${seconds}s`,
+      tiempo: { hours, minutes, seconds },
     };
   });
 

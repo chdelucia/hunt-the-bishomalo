@@ -32,6 +32,8 @@ export class GameStoryService {
       const textKey = `story.${charId}.${story.level}.text`;
       return {
         ...story,
+        titleKey,
+        textKey,
         title: this.transloco.translate(titleKey),
         text: this.transloco.translate(textKey),
       };
@@ -52,6 +54,8 @@ export class GameStoryService {
         const textKey = `story.${charId}.${s.level}.text`;
         return {
           ...s,
+          titleKey,
+          textKey,
           title: this.transloco.translate(titleKey),
           text: this.transloco.translate(textKey),
         };

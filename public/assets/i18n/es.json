@@ -9,7 +9,9 @@
   },
   "achievements": {
     "backToGame": "Volver al juego",
+    "progress": "Progreso",
     "progressTitle": "Progreso de logros",
+    "noAchievements": "No se han encontrado logros con el filtro seleccionado.",
     "progressStats": "Has desbloqueado {{unlockedCount}} de {{totalAchievements}} logros ({{percentage}}%)",
     "filterAll": "Todos",
     "filterUnlocked": "Desbloqueados",
@@ -304,6 +306,7 @@
     "summaryTitle": "Resumen de Aventura",
     "totalSteps": "Pasos Totales",
     "playTime": "Tiempo de Juego",
+    "timeFormat": "{{hours}}h {{minutes}}m {{seconds}}s",
     "levelsCompleted": "Niveles Completados",
     "achievementsUnlocked": "Logros Desbloqueados",
     "personalRecordsTitle": "Récords Personales",

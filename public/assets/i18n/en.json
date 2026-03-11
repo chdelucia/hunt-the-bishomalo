@@ -9,7 +9,9 @@
   },
   "achievements": {
     "backToGame": "Back to Game",
+    "progress": "Progress",
     "progressTitle": "Achievements Progress",
+    "noAchievements": "No achievements match the current filter.",
     "progressStats": "You have unlocked {{unlockedCount}} of {{totalAchievements}} achievements ({{percentage}}%)",
     "filterAll": "All",
     "filterUnlocked": "Unlocked",
@@ -304,6 +306,7 @@
     "summaryTitle": "Adventure Summary",
     "totalSteps": "Total Steps",
     "playTime": "Play Time",
+    "timeFormat": "{{hours}}h {{minutes}}m {{seconds}}s",
     "levelsCompleted": "Levels Completed",
     "achievementsUnlocked": "Achievements Unlocked",
     "personalRecordsTitle": "Personal Records",
