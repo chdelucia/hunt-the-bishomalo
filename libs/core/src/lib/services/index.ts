@@ -1,4 +1,6 @@
 export * from './engine/game-engine.service';
+export * from './engine/keyboard-manager.service';
+export * from './engine/keyboard-manager.service';
 export * from './sound/game-sound.service';
 export * from './analytics/analytics.service';
 export * from './localstorage/localstorage.service';
