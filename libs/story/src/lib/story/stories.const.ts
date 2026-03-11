@@ -5,6 +5,8 @@ export interface LevelStory {
   title: string;
   text: string;
   effect: string;
+  titleKey?: string;
+  textKey?: string;
 }
 
 export const STORIES: Record<Chars, LevelStory[]> = {

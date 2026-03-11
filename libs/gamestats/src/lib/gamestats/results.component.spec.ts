@@ -119,6 +119,8 @@ describe('ResultsComponent', () => {
     expect(stats.flechasDisparadas).toBe(4);
     expect(stats.objetosUsados).toBe(1);
     expect(stats.nivelesCompletados).toBe(2);
-    expect(stats.tiempoJuego).toBe('0h 3m 0s');
+    expect(stats.tiempo.hours).toBe(0);
+    expect(stats.tiempo.minutes).toBe(3);
+    expect(stats.tiempo.seconds).toBe(0);
   });
 });

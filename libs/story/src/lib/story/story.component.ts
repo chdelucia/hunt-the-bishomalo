@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { GameStoryService } from './game-story.service';
 import { RouteTypes } from '@hunt-the-bishomalo/data';
+import { LevelStory } from './stories.const';
 
 @Component({
   selector: 'lib-story',
@@ -54,12 +55,6 @@ export class StoryComponent implements OnInit, OnDestroy {
     speechSynthesis.cancel();
     if (this.story) this.storyService.checkLevelTrigger(this.story);
     this.router.navigate([RouteTypes.HOME]);
-  }
-
-  formatEffect(effect: string): string {
-    const translationKey = `diary.effect.${effect}`;
-    const translatedEffect = this.translocoService.translate(translationKey);
-    return translatedEffect !== translationKey ? translatedEffect : effect;
   }
 
   private startReading(text: string): void {

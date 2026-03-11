@@ -35,7 +35,9 @@
               <div class="stat-card">
                 <div class="stat-info">
                   <h3 class="stat-nombre">{{ 'results.playTime' | transloco }}</h3>
-                  <p class="stat-valor">{{ estadisticas.tiempoJuego }}</p>
+                  <p class="stat-valor">
+                    {{ 'results.timeFormat' | transloco: estadisticas.tiempo }}
+                  </p>
                 </div>
               </div>
               <div class="stat-card">

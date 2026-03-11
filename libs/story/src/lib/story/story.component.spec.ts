@@ -80,10 +80,6 @@ describe('StoryComponent', () => {
     expect(mockRouter.navigate).toHaveBeenCalledWith([RouteTypes.HOME]);
   });
 
-  it('should format effect correctly', () => {
-    expect(component.formatEffect('extraLife')).toBe('extraLife');
-    expect(component.formatEffect('unknownEffect')).toBe('unknownEffect');
-  });
 
   it('should show text gradually and activate showExtraInfo at end of audio', () => {
     jest.useFakeTimers();
