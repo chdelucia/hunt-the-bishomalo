@@ -7,9 +7,9 @@
       </a>
     </div>
 
-    <div class="progress-section bg-gray-800 p-6 rounded-xl shadow-2xl border border-gray-700 mb-8">
-      <h2 class="text-2xl font-bold text-white mb-6 flex items-center">
-        <span class="mr-2">🏆</span> {{ 'achievements.progressTitle' | transloco }}
+    <div class="progress-section">
+      <h2 class="progress-title">
+        <span class="emoji">🏆</span> {{ 'achievements.progressTitle' | transloco }}
       </h2>
 
       <lib-achievement-progress
@@ -21,15 +21,15 @@
       <lib-achievement-filter [currentFilter]="filter()" (filterChanged)="setFilter($event)" />
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 achievement-list">
+    <div class="achievement-list">
       @for (achievement of filteredAchievements(); track achievement.id; let i = $index) {
         <lib-achievement-item [achievement]="achievement" [style.--index]="i" />
       }
     </div>
 
     @if (filteredAchievements().length === 0) {
-      <div class="text-center py-20 bg-gray-800 rounded-xl border border-dashed border-gray-600">
-        <p class="text-gray-400 text-lg italic">
+      <div class="empty-state">
+        <p class="empty-message">
           {{ 'achievements.noAchievements' | transloco }}
         </p>
       </div>
