@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { GameStoryService } from './game-story.service';
 import { RouteTypes } from '@hunt-the-bishomalo/data';
-import { LevelStory } from './stories.const';
 
 @Component({
   selector: 'lib-story',
