@@ -25,7 +25,7 @@
 .back-link {
   display: flex;
   align-items: center;
-  color: #00ff5e;
+  color: var(--color-primary); // Changed from #00ff5e
   margin-right: 1rem;
   text-decoration: none;
   transition: color 0.3s;
@@ -54,4 +54,56 @@
   transform: rotate(45deg);
   left: 4px;
   top: 4px;
+}
+
+.progress-section {
+  background-color: var(--color-panel); // Changed from #1f2937
+  padding: 1.5rem; // p-6
+  border-radius: 0.75rem; // rounded-xl
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); // shadow-2xl
+  border: 1px solid var(--color-border); // Changed from #374151
+  margin-bottom: 2rem; // mb-8
+}
+
+.progress-title {
+  font-size: 1.5rem; // text-2xl
+  line-height: 2rem;
+  font-weight: 700; // font-bold
+  color: #ffffff; // text-white
+  margin-bottom: 1.5rem; // mb-6
+  display: flex; // flex
+  align-items: center; // items-center
+
+  .emoji {
+    margin-right: 0.5rem; // mr-2
+  }
+}
+
+.achievement-list {
+  display: grid; // grid
+  grid-template-columns: repeat(1, minmax(0, 1fr)); // grid-cols-1
+  gap: 1rem; // gap-4
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); // md:grid-cols-2
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr)); // lg:grid-cols-3
+  }
+}
+
+.empty-state {
+  text-align: center; // text-center
+  padding-top: 5rem; // py-20
+  padding-bottom: 5rem;
+  background-color: var(--color-panel); // Changed from #1f2937
+  border-radius: 0.75rem; // rounded-xl
+  border: 1px dashed #4b5563; // border border-dashed border-gray-600
+}
+
+.empty-message {
+  color: var(--color-text-secondary); // Changed from #9ca3af
+  font-size: 1.125rem; // text-lg
+  font-style: italic; // italic
 }

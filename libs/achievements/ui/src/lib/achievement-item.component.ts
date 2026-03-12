@@ -14,15 +14,15 @@ import { Achievement } from '@hunt-the-bishomalo/achievements/api';
 export class AchievementItemComponent {
   achievement = input.required<Achievement>();
 
-  readonly rarityColors: Record<string, string> = {
-    common: 'bg-gray-500',
-    uncommon: 'bg-green-500',
-    rare: 'bg-blue-500',
-    epic: 'bg-purple-500',
-    legendary: 'bg-yellow-500',
+  readonly rarityClasses: Record<string, string> = {
+    common: 'rarity-common',
+    uncommon: 'rarity-uncommon',
+    rare: 'rarity-rare',
+    epic: 'rarity-epic',
+    legendary: 'rarity-legendary',
   };
 
-  readonly rarityColor = computed(
-    () => this.rarityColors[this.achievement().rarity.toLowerCase()] || 'bg-gray-500',
+  readonly rarityClass = computed(
+    () => this.rarityClasses[this.achievement().rarity.toLowerCase()] || 'rarity-common',
   );
 }

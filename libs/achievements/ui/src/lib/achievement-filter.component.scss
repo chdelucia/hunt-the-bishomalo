@@ -1,23 +1,48 @@
 .filter-group {
-  @apply flex flex-wrap gap-2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .filter-btn {
-  @apply px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 border border-gray-500 shadow-sm bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--color-border); // Changed from #6b7280
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); // shadow-sm
+  background-color: var(--color-panel); // Changed from #374151
+  color: var(--color-text-secondary); // Changed from #d1d5db
+
+  &:hover {
+    background-color: #4b5563; // hover:bg-gray-600
+    color: #ffffff; // hover:text-white
+  }
 
   &.active {
-    @apply scale-105 shadow-md text-white;
+    transform: scale(1.05); // scale-105
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); // shadow-md
+    color: #ffffff; // text-white
 
     &.all {
-      @apply bg-blue-600 border-blue-400;
+      background-color: var(--color-button-next); // Changed from #2563eb
+      border-color: var(--color-blue); // Changed from #60a5fa
     }
 
     &.unlocked {
-      @apply bg-green-600 border-green-400;
+      background-color: var(--color-button-hover); // Changed from #16a34a
+      border-color: var(--color-primary); // Changed from #4ade80
     }
 
     &.locked {
-      @apply bg-yellow-600 border-yellow-400;
+      background-color: #ca8a04; // bg-yellow-600
+      border-color: var(--color-yellow); // Changed from #facc15
     }
   }
 }

@@ -1,40 +1,39 @@
 <div
-  class="flex items-center p-3 rounded-lg bg-gray-700 hover:bg-gray-600 transition-colors duration-200 border border-gray-600"
-  [class.opacity-50]="!achievement().unlocked"
+  class="achievement-item"
+  [class.locked-item]="!achievement().unlocked"
 >
-  <div class="relative w-16 h-16 mr-4 flex-shrink-0">
+  <div class="icon-container">
     <div
-      class="w-full h-full rounded-full border-2 border-gray-500 overflow-hidden bg-gray-800"
+      class="icon-wrapper"
       [class.grayscale]="!achievement().unlocked"
     >
       <img
         [ngSrc]="'achievements/' + achievement().svgIcon"
         [alt]="achievement().title"
         fill
-        class="achievement-icon p-1"
-        style="object-fit: contain;"
+        class="achievement-icon"
       />
     </div>
     @if (!achievement().unlocked) {
-      <div class="absolute inset-0 flex items-center justify-center">
-        <span class="text-2xl opacity-50">🔒</span>
+      <div class="lock-overlay">
+        <span class="lock-emoji">🔒</span>
       </div>
     }
   </div>
 
-  <div class="flex-grow">
-    <div class="flex justify-between items-start mb-1">
-      <h3 class="font-bold text-lg text-white leading-tight mr-2">
+  <div class="details">
+    <div class="details-header">
+      <h3 class="title">
         {{ 'achievements.' + achievement().id + '.title' | transloco }}
       </h3>
       <span
-        class="text-[10px] uppercase font-bold px-2 py-0.5 rounded text-white whitespace-nowrap"
-        [class]="rarityColor()"
+        class="rarity-badge"
+        [class]="rarityClass()"
       >
         {{ 'rarity.' + achievement().rarity.toLowerCase() | transloco }}
       </span>
     </div>
-    <p class="text-gray-300 text-sm leading-snug">
+    <p class="description">
       {{ 'achievements.' + achievement().id + '.description' | transloco }}
     </p>
   </div>
