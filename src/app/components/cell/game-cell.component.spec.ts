@@ -27,16 +27,17 @@ const mockSettings = {
 const mockGameState = {
   hunter: jest.fn().mockReturnValue(mockHunter),
   settings: jest.fn().mockReturnValue(mockSettings),
-  board: () => [],
-  message: () => '',
-  wumpusKilled: () => 0,
+  blackout: jest.fn().mockReturnValue(false),
+  board: jest.fn().mockReturnValue([]),
+  message: jest.fn().mockReturnValue(''),
+  wumpusKilled: jest.fn().mockReturnValue(0),
   hasGold: jest.fn(),
   inventory: jest.fn().mockReturnValue([]),
   isAlive: jest.fn(),
   hasWon: jest.fn(),
-  currentCell: () => mockCell,
-  arrows: () => 1,
-  lives: () => 4,
+  currentCell: jest.fn().mockReturnValue(mockCell),
+  arrows: jest.fn().mockReturnValue(1),
+  lives: jest.fn().mockReturnValue(4),
 };
 
 describe('GameCellComponent', () => {
@@ -210,5 +211,27 @@ describe('GameCellComponent', () => {
     });
 
     expect(component.showHunter()).toBeFalsy();
+  });
+
+  it('should have lantern when in inventory and blackout is active', () => {
+    mockGameState.inventory.mockReturnValue([{ effect: 'lantern' }]);
+    mockGameState.blackout.mockReturnValue(true);
+
+    const fixtureLocal = TestBed.createComponent(GameCellComponent);
+    fixtureLocal.componentRef.setInput('cell', mockCell);
+    fixtureLocal.detectChanges();
+
+    expect(fixtureLocal.componentInstance.hasLantern()).toBeTruthy();
+  });
+
+  it('should NOT have lantern when in inventory but blackout is NOT active', () => {
+    mockGameState.inventory.mockReturnValue([{ effect: 'lantern' }]);
+    mockGameState.blackout.mockReturnValue(false);
+
+    const fixtureLocal = TestBed.createComponent(GameCellComponent);
+    fixtureLocal.componentRef.setInput('cell', mockCell);
+    fixtureLocal.detectChanges();
+
+    expect(fixtureLocal.componentInstance.hasLantern()).toBeFalsy();
   });
 });
