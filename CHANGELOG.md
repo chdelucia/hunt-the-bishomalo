@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.6.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.5.10...v7.6.0) (2026-03-12)
+
+
+### Features
+
+* remove tailwind css and migrate to standard scss ([53db7b0](https://github.com/chdelucia/hunt-the-bishomalo/commit/53db7b058e88072db2f1e1556a3b7981f80744c8))
+
+
+### Bug Fixes
+
+* remove basura ([34e37a9](https://github.com/chdelucia/hunt-the-bishomalo/commit/34e37a9f6cb1b84b33db042f299705e23795427c))
+* resolve Jest toExecutor TypeError by upgrading to 30.3.0 ([9db25e2](https://github.com/chdelucia/hunt-the-bishomalo/commit/9db25e23e2e82d89723345cf56a274e770eb16fc))
+* resolve Jest toExecutor TypeError by upgrading to 30.3.0 ([a9b09f9](https://github.com/chdelucia/hunt-the-bishomalo/commit/a9b09f9fc4472e56e26e6e29c1292d6b45a0908a))
+* resolve linting errors and improve ESLint configuration ([61869e7](https://github.com/chdelucia/hunt-the-bishomalo/commit/61869e75669bd3d1d61d4d1e5c5a15ca3e7c7623))
+
 ### [7.5.10](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.5.9...v7.5.10) (2026-03-12)
 
 
