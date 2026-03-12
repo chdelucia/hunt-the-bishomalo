@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { signalStore, withState, withMethods, patchState } from '@ngrx/signals';
 import { TranslocoService } from '@jsverse/transloco';
-import { GameSoundService } from '@hunt-the-bishomalo/core/services';
+import { GameSoundService } from '@hunt-the-bishomalo/core';
 import { GameSound, GameSettings } from '@hunt-the-bishomalo/data';
 
 export interface BossCell {

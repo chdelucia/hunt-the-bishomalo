@@ -6,7 +6,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { TranslocoHttpLoader } from './utils/transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
 import { GAME_STORE } from '@hunt-the-bishomalo/story';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GameStore } from '@hunt-the-bishomalo/game/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { AchievementService } from '@hunt-the-bishomalo/achievements/data-access';

@@ -1,10 +1,10 @@
 export * from './404/not-found.component';
 export { CharactersComponent } from '@hunt-the-bishomalo/chars';
-export * from './hunt-bisho.component';
-export { ShopComponent } from '@hunt-the-bishomalo/shop';
+export { HuntBishoComponent } from '@hunt-the-bishomalo/game/api';
+export { ShopComponent } from '@hunt-the-bishomalo/shop/api';
 export { EndCreditsComponent } from '@hunt-the-bishomalo/credits';
 export { InstructionsComponent } from '@hunt-the-bishomalo/instructions';
-export { ResultsComponent } from '@hunt-the-bishomalo/gamestats';
+export { ResultsComponent } from '@hunt-the-bishomalo/gamestats/api';
 export { BossFightComponent } from '@hunt-the-bishomalo/boss';
 export { StoryComponent } from '@hunt-the-bishomalo/story';
 export { ConfigComponent } from '@hunt-the-bishomalo/config';

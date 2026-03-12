@@ -29,6 +29,8 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "21.2.1",
+    "@angular-devkit/core": "21.2.1",
+    "@angular-devkit/schematics": "21.2.1",
     "@angular/cli": "21.2.1",
     "@angular/compiler-cli": "21.2.1",
     "@angular/language-service": "21.2.1",
@@ -44,6 +46,7 @@
     "@nx/jest": "22.5.4",
     "@nx/js": "22.5.4",
     "@nx/web": "22.5.4",
+    "@schematics/angular": "21.2.1",
     "@swc-node/register": "1.11.1",
     "@swc/core": "1.15.8",
     "@swc/helpers": "0.5.19",

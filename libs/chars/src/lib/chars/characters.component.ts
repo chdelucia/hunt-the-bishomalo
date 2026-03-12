@@ -3,7 +3,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { Chars, RouteTypes } from '@hunt-the-bishomalo/data';
 import { ACHIEVEMENT_SERVICE, AchieveTypes } from '@hunt-the-bishomalo/achievements/api';
 import { Router } from '@angular/router';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GameStore } from '@hunt-the-bishomalo/game/api';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({

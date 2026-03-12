@@ -3,9 +3,9 @@ import { CharactersComponent } from './characters.component';
 import { Router } from '@angular/router';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Chars } from '@hunt-the-bishomalo/data';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
+import { GameStore } from '@hunt-the-bishomalo/game/api';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/game/api';
 
 const gameStoreMock = {
   updateGame: jest.fn(),

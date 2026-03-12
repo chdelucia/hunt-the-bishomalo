@@ -3,7 +3,7 @@ import { StoryComponent } from './story.component';
 import { Router } from '@angular/router';
 import { GameStoryService } from './game-story.service';
 import { RouteTypes } from '@hunt-the-bishomalo/data';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core';
 
 const mockRouter = {
   navigate: jest.fn(),

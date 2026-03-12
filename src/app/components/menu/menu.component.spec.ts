@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MenuComponent } from './menu.component';
-import { GameEngineService } from '@hunt-the-bishomalo/core/services';
+import { GameEngineService } from '@hunt-the-bishomalo/game/api';
 import { Router, RouterModule } from '@angular/router';
 import { Component } from '@angular/core';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core';
 
 @Component({ template: '' })
 class DummyComponent {}

@@ -3,10 +3,10 @@ import { BossFightComponent } from './boss-fight.component';
 import { CommonModule } from '@angular/common';
 import { signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { GameSoundService } from '@hunt-the-bishomalo/core/services';
+import { GameSoundService } from '@hunt-the-bishomalo/core';
 import { GameSettings, RouteTypes } from '@hunt-the-bishomalo/data';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { GameStore } from '@hunt-the-bishomalo/game/api';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core';
 import { BossCell } from './boss-store';
 
 describe('BossFightComponent', () => {

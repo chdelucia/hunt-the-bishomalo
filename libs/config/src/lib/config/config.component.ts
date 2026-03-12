@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { GameConfigComponent } from './game-config.component';
-import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
+import { TitleComponent } from '@hunt-the-bishomalo/shared/ui';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({

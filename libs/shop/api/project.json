@@ -1,0 +1,21 @@
+{
+  "name": "shop-api",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shop/api/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["scope:shop", "type:api"],
+  "targets": {
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/shop/api/jest.config.cts",
+        "tsConfig": "libs/shop/api/tsconfig.spec.json"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

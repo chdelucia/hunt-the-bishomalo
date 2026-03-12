@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, isDevMode } from '@angular/
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
-import { GameEngineService, GameSoundService } from '@hunt-the-bishomalo/core/services';
+import { GameEngineService, GameSoundService } from '@hunt-the-bishomalo/core';
 import {
   Chars,
   DIFFICULTY_CONFIGS,
@@ -12,7 +12,7 @@ import {
   RouteTypes,
 } from '@hunt-the-bishomalo/data';
 import { Router } from '@angular/router';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GameStore } from '@hunt-the-bishomalo/game/api';
 
 @Component({
   selector: 'lib-game-config',

@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
-import { GameEngineService } from '@hunt-the-bishomalo/core/services';
+import { GameEngineService } from '@hunt-the-bishomalo/game/api';
 import { RouteTypes } from '@hunt-the-bishomalo/data';
 
 @Component({

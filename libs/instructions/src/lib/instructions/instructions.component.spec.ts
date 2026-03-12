@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { InstructionsComponent } from './instructions.component';
 import { RouterModule } from '@angular/router';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core';
 
 describe('InstructionsComponent', () => {
   let component: InstructionsComponent;

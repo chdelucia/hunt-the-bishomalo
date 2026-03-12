@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HuntBishoComponent } from './hunt-bisho.component';
 import { RouterModule } from '@angular/router';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { GameStore } from '@hunt-the-bishomalo/game/api';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core';
 import {
   GameSoundService,
   ACHIEVEMENT_SERVICE,
   LEADERBOARD_SERVICE,
-} from '@hunt-the-bishomalo/core/services';
+} from '@hunt-the-bishomalo/game/api';
 import { TitleComponent } from './../components';
 
 function createMockCell(overrides = {}) {

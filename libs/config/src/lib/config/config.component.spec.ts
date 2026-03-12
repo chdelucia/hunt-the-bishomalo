@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ConfigComponent } from './config.component';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
-import { ACHIEVEMENT_SERVICE, LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/core/services';
-import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core';
+import { ACHIEVEMENT_SERVICE, LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/game/api';
+import { TitleComponent } from '@hunt-the-bishomalo/shared/ui';
 
 const mockAchievement = {
   activeAchievement: jest.fn(),

@@ -4,8 +4,8 @@ import { RouterOutlet } from '@angular/router';
 import { ToastComponent } from './components';
 import { MenuComponent } from './components/menu/menu.component';
 import { GameControlsComponent } from './components/controls/game-controls.component';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
-import { KeyboardManagerService } from '@hunt-the-bishomalo/core/services';
+import { GameStore } from '@hunt-the-bishomalo/game/api';
+import { KeyboardManagerService } from '@hunt-the-bishomalo/game/api';
 
 @Component({
   imports: [RouterOutlet, ToastComponent, MenuComponent, GameControlsComponent],

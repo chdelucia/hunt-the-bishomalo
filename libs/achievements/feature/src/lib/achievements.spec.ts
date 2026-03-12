@@ -7,7 +7,7 @@ import {
   AchievementProgressComponent
 } from '@hunt-the-bishomalo/achievements/ui';
 import { RouterModule } from '@angular/router';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { signal } from '@angular/core';
 
