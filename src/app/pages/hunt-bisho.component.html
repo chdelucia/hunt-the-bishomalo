@@ -21,7 +21,9 @@
     }
 
     @if (deathByWumpus()) {
-      <app-wumpus-attack-animation (closeAnimation)="handleclose()" />
+      @defer (on timer(100ms)) {
+        <app-wumpus-attack-animation (closeAnimation)="handleclose()" />
+      }
     }
   </section>
 

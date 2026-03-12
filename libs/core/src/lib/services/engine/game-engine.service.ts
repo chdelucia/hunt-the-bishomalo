@@ -1,4 +1,5 @@
-import { inject, Injectable } from '@angular/core';
+import { DestroyRef, inject, Injectable } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
 import {
@@ -34,6 +35,7 @@ export class GameEngineService {
   private readonly transloco = inject(TranslocoService);
   private readonly boardGenerator = inject(BoardGeneratorService);
   private readonly perceptionService = inject(PerceptionService);
+  private readonly destroyRef = inject(DestroyRef);
 
   initGame(): void {
     this.sound.stop();
@@ -290,7 +292,7 @@ export class GameEngineService {
     this.sound.playSound(GameSound.WALK, false);
     this.perceptionService
       .getPerceptionMessage(this.getAdjacentCells())
-      .pipe(take(1))
+      .pipe(take(1), takeUntilDestroyed(this.destroyRef))
       .subscribe((msg) => this.store.setMessage(msg));
   }
 
