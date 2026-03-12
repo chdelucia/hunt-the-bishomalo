@@ -19,13 +19,13 @@ export class GameCellComponent {
   readonly gameStore = inject(GameStore);
 
   settings = this.gameStore.settings;
+  blackout = this.gameStore.blackout;
 
   readonly hasLantern = computed(
-    () =>
-      this.gameStore.inventory().find((x) => x.effect === 'lantern') && this.settings().blackout,
+    () => this.gameStore.inventory().some((x) => x.effect === 'lantern') && !!this.blackout(),
   );
   readonly hasShield = computed(() =>
-    this.gameStore.inventory().find((x) => x.effect === 'shield'),
+    this.gameStore.inventory().some((x) => x.effect === 'shield'),
   );
 
   readonly showElements = computed(() => {

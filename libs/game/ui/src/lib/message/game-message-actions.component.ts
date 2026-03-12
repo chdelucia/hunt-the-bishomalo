@@ -55,7 +55,7 @@ import { TranslocoModule } from '@jsverse/transloco';
       font-size: 1.4rem;
       text-align: center;
       margin-top: 20px;
-      text-shadow: 0 0 1px #00ffea;
+      text-shadow: 0 0 1px var(--color-neon);
       cursor: pointer;
       font-family: 'Press Start 2P', monospace;
       border: none;

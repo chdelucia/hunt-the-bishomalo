@@ -15,34 +15,36 @@
   transition-duration: 200ms;
   border-width: 1px;
   border-style: solid;
-  border-color: var(--color-border); // Changed from #6b7280
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); // shadow-sm
-  background-color: var(--color-panel); // Changed from #374151
-  color: var(--color-text-secondary); // Changed from #d1d5db
+  border-color: var(--color-border);
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+  background-color: var(--color-panel);
+  color: var(--color-text-secondary);
 
   &:hover {
-    background-color: #4b5563; // hover:bg-gray-600
-    color: #ffffff; // hover:text-white
+    background-color: var(--color-gray-600);
+    color: var(--color-white);
   }
 
   &.active {
-    transform: scale(1.05); // scale-105
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); // shadow-md
-    color: #ffffff; // text-white
+    transform: scale(1.05);
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 10%),
+      0 2px 4px -1px rgb(0 0 0 / 6%);
+    color: var(--color-white);
 
     &.all {
-      background-color: var(--color-button-next); // Changed from #2563eb
-      border-color: var(--color-blue); // Changed from #60a5fa
+      background-color: var(--color-button-next);
+      border-color: var(--color-blue);
     }
 
     &.unlocked {
-      background-color: var(--color-button-hover); // Changed from #16a34a
-      border-color: var(--color-primary); // Changed from #4ade80
+      background-color: var(--color-button-hover);
+      border-color: var(--color-primary);
     }
 
     &.locked {
-      background-color: #ca8a04; // bg-yellow-600
-      border-color: var(--color-yellow); // Changed from #facc15
+      background-color: var(--color-yellow-500);
+      border-color: var(--color-yellow);
     }
   }
 }

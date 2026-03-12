@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.6.5](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.6.4...v7.6.5) (2026-03-12)
+
+### [7.6.4](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.6.3...v7.6.4) (2026-03-12)
+
+### [7.6.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.6.2...v7.6.3) (2026-03-12)
+
+
+### Bug Fixes
+
+* linter ([302c084](https://github.com/chdelucia/hunt-the-bishomalo/commit/302c0847694faec186d882207a45848c99924367))
+
+### [7.6.2](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.6.1...v7.6.2) (2026-03-12)
+
+
+### Bug Fixes
+
+* **blackout:** ensure hunter visibility with lantern and hide effect when no blackout ([0fb31be](https://github.com/chdelucia/hunt-the-bishomalo/commit/0fb31be14ba3ce4fddc7c6d3e19bfdf0619ec1e4))
+* **blackout:** ensure hunter visibility with lantern and hide effect when no blackout ([33eab9a](https://github.com/chdelucia/hunt-the-bishomalo/commit/33eab9a18d25a82ab90df58bffba51ae5ef3011b))
+
 ### [7.6.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.6.0...v7.6.1) (2026-03-12)
 
 ## [7.6.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.5.10...v7.6.0) (2026-03-12)

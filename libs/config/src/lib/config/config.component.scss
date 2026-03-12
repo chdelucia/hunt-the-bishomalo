@@ -12,13 +12,13 @@ main {
   display: flex;
   flex-direction: column;
   aspect-ratio: 1 / 1;
-  border: 3px solid #333;
+  border: 3px solid var(--color-gray-700);
   width: fit-content;
   min-width: calc(min(95vw, 550px));
   margin: 0 auto;
   justify-content: center;
   align-items: center;
-  background-color: #f3f4f6;
+  background-color: var(--color-gray-800);
 }
 
 .message {

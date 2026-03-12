@@ -1,0 +1,32 @@
+./node_modules/@module-federation/bridge-react-webpack-plugin/dist/index.es.js:        "<<<<<<<<<<<<< bridgeRouterAlias >>>>>>>>>>>>>",
+./node_modules/@module-federation/bridge-react-webpack-plugin/dist/index.es.js:    "<<<<<<<<<<<<< default bridgeRouterAlias >>>>>>>>>>>>>",
+./node_modules/@module-federation/bridge-react-webpack-plugin/dist/index.cjs.js:        "<<<<<<<<<<<<< bridgeRouterAlias >>>>>>>>>>>>>",
+./node_modules/@module-federation/bridge-react-webpack-plugin/dist/index.cjs.js:    "<<<<<<<<<<<<< default bridgeRouterAlias >>>>>>>>>>>>>",
+./node_modules/@module-federation/bridge-react-webpack-plugin/src/router-alias.ts:        '<<<<<<<<<<<<< bridgeRouterAlias >>>>>>>>>>>>>',
+./node_modules/@module-federation/bridge-react-webpack-plugin/src/router-alias.ts:    '<<<<<<<<<<<<< default bridgeRouterAlias >>>>>>>>>>>>>',
+./node_modules/@module-federation/node/node_modules/@module-federation/enhanced/node_modules/@module-federation/bridge-react-webpack-plugin/dist/index.es.js:        "<<<<<<<<<<<<< bridgeRouterAlias >>>>>>>>>>>>>",
+./node_modules/@module-federation/node/node_modules/@module-federation/enhanced/node_modules/@module-federation/bridge-react-webpack-plugin/dist/index.es.js:    "<<<<<<<<<<<<< default bridgeRouterAlias >>>>>>>>>>>>>",
+./node_modules/@module-federation/node/node_modules/@module-federation/enhanced/node_modules/@module-federation/bridge-react-webpack-plugin/dist/index.cjs.js:        "<<<<<<<<<<<<< bridgeRouterAlias >>>>>>>>>>>>>",
+./node_modules/@module-federation/node/node_modules/@module-federation/enhanced/node_modules/@module-federation/bridge-react-webpack-plugin/dist/index.cjs.js:    "<<<<<<<<<<<<< default bridgeRouterAlias >>>>>>>>>>>>>",
+./node_modules/@module-federation/node/node_modules/@module-federation/enhanced/node_modules/@module-federation/bridge-react-webpack-plugin/src/router-alias.ts:        '<<<<<<<<<<<<< bridgeRouterAlias >>>>>>>>>>>>>',
+./node_modules/@module-federation/node/node_modules/@module-federation/enhanced/node_modules/@module-federation/bridge-react-webpack-plugin/src/router-alias.ts:    '<<<<<<<<<<<<< default bridgeRouterAlias >>>>>>>>>>>>>',
+./node_modules/.cache/typescript@5.9.3@@@1/lib/typescript.js:var mergeConflictMarkerLength = "<<<<<<<".length;
+./node_modules/.cache/typescript@5.9.3@@@1/lib/_tsc.js:var mergeConflictMarkerLength = "<<<<<<<".length;
+./node_modules/.cache/@module-federation/bridge-react-webpack-plugin@0.21.6@@@1/dist/index.es.js:        "<<<<<<<<<<<<< bridgeRouterAlias >>>>>>>>>>>>>",
+./node_modules/.cache/@module-federation/bridge-react-webpack-plugin@0.21.6@@@1/dist/index.es.js:    "<<<<<<<<<<<<< default bridgeRouterAlias >>>>>>>>>>>>>",
+./node_modules/.cache/@module-federation/bridge-react-webpack-plugin@0.21.6@@@1/dist/index.cjs.js:        "<<<<<<<<<<<<< bridgeRouterAlias >>>>>>>>>>>>>",
+./node_modules/.cache/@module-federation/bridge-react-webpack-plugin@0.21.6@@@1/dist/index.cjs.js:    "<<<<<<<<<<<<< default bridgeRouterAlias >>>>>>>>>>>>>",
+./node_modules/.cache/@module-federation/bridge-react-webpack-plugin@0.21.6@@@1/src/router-alias.ts:        '<<<<<<<<<<<<< bridgeRouterAlias >>>>>>>>>>>>>',
+./node_modules/.cache/@module-federation/bridge-react-webpack-plugin@0.21.6@@@1/src/router-alias.ts:    '<<<<<<<<<<<<< default bridgeRouterAlias >>>>>>>>>>>>>',
+./node_modules/.cache/@module-federation/bridge-react-webpack-plugin@2.1.0@@@1/dist/index.es.js:        "<<<<<<<<<<<<< bridgeRouterAlias >>>>>>>>>>>>>",
+./node_modules/.cache/@module-federation/bridge-react-webpack-plugin@2.1.0@@@1/dist/index.es.js:    "<<<<<<<<<<<<< default bridgeRouterAlias >>>>>>>>>>>>>",
+./node_modules/.cache/@module-federation/bridge-react-webpack-plugin@2.1.0@@@1/dist/index.cjs.js:        "<<<<<<<<<<<<< bridgeRouterAlias >>>>>>>>>>>>>",
+./node_modules/.cache/@module-federation/bridge-react-webpack-plugin@2.1.0@@@1/dist/index.cjs.js:    "<<<<<<<<<<<<< default bridgeRouterAlias >>>>>>>>>>>>>",
+./node_modules/.cache/@module-federation/bridge-react-webpack-plugin@2.1.0@@@1/src/router-alias.ts:        '<<<<<<<<<<<<< bridgeRouterAlias >>>>>>>>>>>>>',
+./node_modules/.cache/@module-federation/bridge-react-webpack-plugin@2.1.0@@@1/src/router-alias.ts:    '<<<<<<<<<<<<< default bridgeRouterAlias >>>>>>>>>>>>>',
+./node_modules/.cache/@yarnpkg/lockfile@1.1.0@@@1/index.js:const MERGE_CONFLICT_START = '<<<<<<<';
+./node_modules/.cache/@schematics/angular@21.2.1@@@1/third_party/github.com/Microsoft/TypeScript/lib/typescript.js:var mergeConflictMarkerLength = "<<<<<<<".length;
+./node_modules/typescript/lib/typescript.js:var mergeConflictMarkerLength = "<<<<<<<".length;
+./node_modules/typescript/lib/_tsc.js:var mergeConflictMarkerLength = "<<<<<<<".length;
+./node_modules/@yarnpkg/lockfile/index.js:const MERGE_CONFLICT_START = '<<<<<<<';
+./node_modules/@schematics/angular/third_party/github.com/Microsoft/TypeScript/lib/typescript.js:var mergeConflictMarkerLength = "<<<<<<<".length;

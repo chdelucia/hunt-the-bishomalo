@@ -3,7 +3,7 @@
   h2 {
     text-align: center;
     margin-bottom: 2rem;
-    color: #333;
+    color: var(--color-gray-800);
   }
 
   .form-group {
@@ -21,26 +21,26 @@
       padding: 0.5rem;
       margin-bottom: 1rem;
       font-size: 1rem;
-      border: 1px solid #ccc;
+      border: 1px solid var(--color-gray-300);
       border-radius: 4px;
       transition: border-color 0.2s;
 
       &:focus {
-        border-color: #007bff;
+        border-color: var(--color-blue-600);
         outline: none;
       }
     }
 
     select {
       padding: 0.5rem;
-      margin-bottom: 0rem;
+      margin-bottom: 0;
       font-size: 1rem;
-      border: 1px solid #ccc;
+      border: 1px solid var(--color-gray-300);
       border-radius: 4px;
       transition: border-color 0.2s;
 
       &:focus {
-        border-color: #007bff;
+        border-color: var(--color-blue-600);
         outline: none;
       }
     }
@@ -80,7 +80,7 @@ img.grayscale {
 
 img.active {
   filter: none;
-  border: 2px solid #4caf50;
+  border: 2px solid var(--color-green-500);
   transform: scale(1.05);
 }
 
@@ -88,7 +88,7 @@ img.active {
   margin-top: 0.5rem;
   margin-bottom: 2rem;
   font-size: 0.7rem;
-  color: #555;
+  color: var(--color-gray-500);
   font-style: italic;
   line-height: 1.5rem;
 }
