@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  isDevMode,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, isDevMode, signal } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
 import { GameEngineService } from '@hunt-the-bishomalo/core/services';
