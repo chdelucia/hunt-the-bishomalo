@@ -3,7 +3,6 @@ import { LeaderboardService } from './leaderboard.service';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { LocalstorageService } from '@hunt-the-bishomalo/core/services';
-import { ScoreEntry } from '@hunt-the-bishomalo/data';
 import { signal, WritableSignal } from '@angular/core';
 
 describe('LeaderboardService', () => {
