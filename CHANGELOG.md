@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.5.10](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.5.9...v7.5.10) (2026-03-12)
+
+
+### Bug Fixes
+
+* **transloco:** use absolute path for translation assets ([31f5469](https://github.com/chdelucia/hunt-the-bishomalo/commit/31f546955b0368c61f15ee7a6587ae506d6f3beb))
+
 ### [7.5.9](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.5.8...v7.5.9) (2026-03-11)
 
 
