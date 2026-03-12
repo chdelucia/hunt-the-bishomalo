@@ -49,7 +49,6 @@ describe('GameControlsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-
   it('should reset same level', () => {
     component.resetGame();
     expect(mockGameService.initGame).toHaveBeenCalled();

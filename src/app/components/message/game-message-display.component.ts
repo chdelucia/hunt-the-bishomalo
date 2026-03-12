@@ -10,7 +10,12 @@ import { TranslocoModule } from '@jsverse/transloco';
     @if (hasMessage()) {
       <p>{{ message() }}</p>
       @if (bolaDrac()) {
-        <img ngSrc="boardicons/b4.png" width="32" height="32" [alt]="'message.dragonBallAlt' | transloco" />
+        <img
+          ngSrc="boardicons/b4.png"
+          width="32"
+          height="32"
+          [alt]="'message.dragonBallAlt' | transloco"
+        />
       }
     }
   `,

@@ -1,3 +1,0 @@
-$ nx serve
-/usr/bin/bash: line 1: nx: command not found
-error: script "start" exited with code 127
