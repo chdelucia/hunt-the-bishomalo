@@ -1,4 +1,5 @@
 import { Component, computed, inject, OnDestroy, signal } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { GameEngineService } from '@hunt-the-bishomalo/core/services';
@@ -9,7 +10,7 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
 @Component({
   selector: 'lib-shop',
   standalone: true,
-  imports: [TranslocoModule],
+  imports: [TranslocoModule, NgOptimizedImage],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss',
 })

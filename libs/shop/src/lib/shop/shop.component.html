@@ -6,7 +6,13 @@
 
       <div class="monedas-inventario">
         <div class="monedas-container">
-          <img src="boardicons/gold.svg" alt="{{ 'shop.goldAlt' | transloco }}" />
+          <img
+            ngSrc="boardicons/gold.svg"
+            alt="{{ 'shop.goldAlt' | transloco }}"
+            width="40"
+            height="40"
+            priority
+          />
           <span class="monedas-texto">{{ gold() }} {{ 'shop.coinsSuffix' | transloco }}</span>
         </div>
 
@@ -14,7 +20,7 @@
           @for (entry of inventory(); track entry.name) {
           <div class="inventario-item">
             <img
-              [src]="'shop/' + entry.icon"
+              [ngSrc]="'shop/' + entry.icon"
               alt="{{ 'shop.inventoryItemAlt' | transloco }}"
               width="40"
               height="40"
@@ -41,7 +47,7 @@
         <div class="producto-content">
           <div class="producto-icono-container">
             <img
-              [src]="'shop/' + producto.icon"
+              [ngSrc]="'shop/' + producto.icon"
               alt="{{ 'shop.productItemAlt' | transloco }}"
               width="90"
               height="90"
@@ -52,7 +58,12 @@
             <p class="producto-descripcion">{{ producto.description | transloco }}</p>
             <div class="producto-footer">
               <div class="producto-price">
-                <img src="boardicons/gold.svg" alt="{{ 'shop.goldAlt' | transloco }}" />
+                <img
+                  ngSrc="boardicons/gold.svg"
+                  alt="{{ 'shop.goldAlt' | transloco }}"
+                  width="20"
+                  height="20"
+                />
                 <span class="price-texto">{{ producto.price }}</span>
               </div>
               <button class="boton-comprar" (click)="buyProduct(producto)">
