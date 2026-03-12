@@ -19,7 +19,7 @@
 .back-link {
   display: flex;
   align-items: center;
-  color: #00ff5e;
+  color: var(--color-green-accent);
   margin-right: 1rem;
   text-decoration: none;
   transition: color 0.3s;
@@ -27,7 +27,7 @@
 }
 
 .back-link:hover {
-  color: #ffffff;
+  color: var(--color-white);
   cursor: pointer;
 }
 
@@ -120,7 +120,7 @@
 }
 
 .peligro-nombre {
-  color: white;
+  color: var(--color-white);
   margin-bottom: 0.5rem;
   font-size: 1.25rem;
 }
@@ -154,7 +154,7 @@
 }
 
 .categoria-titulo {
-  color: white;
+  color: var(--color-white);
   margin-bottom: 0.5rem;
   font-size: 1rem;
 }
@@ -210,23 +210,23 @@
 }
 
 .facil {
-  background-color: #15803d;
-  color: white;
+  background-color: var(--color-green-700);
+  color: var(--color-white);
 }
 
 .normal {
-  background-color: #0369a1;
-  color: white;
+  background-color: var(--color-blue-700);
+  color: var(--color-white);
 }
 
 .dificil {
-  background-color: #b45309;
-  color: white;
+  background-color: var(--color-yellow-500);
+  color: var(--color-white);
 }
 
 .extremo {
-  background-color: #b91c1c;
-  color: white;
+  background-color: var(--color-red-700);
+  color: var(--color-white);
 }
 
 .nivel-descripcion {
@@ -251,7 +251,7 @@
   border: 1px solid var(--color-border);
   padding: 0.75rem 1.25rem;
   border-radius: 2px;
-  color: white;
+  color: var(--color-white);
   text-decoration: none;
   transition: background-color 0.2s;
 }

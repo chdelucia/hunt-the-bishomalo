@@ -9,14 +9,14 @@
 .achievement-item {
   display: flex;
   align-items: center;
-  padding: 0.75rem; // p-3
-  border-radius: 0.5rem; // rounded-lg
-  background-color: var(--color-panel); // Changed from #374151
-  transition: background-color 0.2s; // transition-colors duration-200
-  border: 1px solid var(--color-border); // Changed from #4b5563
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  background-color: var(--color-panel);
+  transition: background-color 0.2s;
+  border: 1px solid var(--color-border);
 
   &:hover {
-    background-color: #4b5563; // hover:bg-gray-600
+    background-color: var(--color-gray-600);
   }
 }
 
@@ -35,11 +35,11 @@
 .icon-wrapper {
   width: 100%;
   height: 100%;
-  border-radius: 9999px; // rounded-full
+  border-radius: 9999px;
   border-width: 2px;
-  border-color: #6b7280; // border-gray-500
+  border-color: var(--color-gray-500);
   overflow: hidden;
-  background-color: #1f2937; // bg-gray-800
+  background-color: var(--color-gray-800);
 
   &.grayscale {
     filter: grayscale(100%);
@@ -77,36 +77,46 @@
 }
 
 .title {
-  font-weight: 700; // font-bold
-  font-size: 1.125rem; // text-lg
-  color: #ffffff; // text-white
-  line-height: 1.25; // leading-tight
-  margin: 0 0.5rem 0 0; // mr-2
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--color-white);
+  line-height: 1.25;
+  margin: 0 0.5rem 0 0;
 }
 
 .rarity-badge {
-  font-size: 10px; // text-[10px]
+  font-size: 10px;
   text-transform: uppercase;
-  font-weight: 700; // font-bold
-  padding: 0.125rem 0.5rem; // px-2 py-0.5
-  border-radius: 0.25rem; // rounded
-  color: #ffffff; // text-white
+  font-weight: 700;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+  color: var(--color-white);
   white-space: nowrap;
 }
 
 .description {
-  color: var(--color-text-secondary); // Changed from #d1d5db
-  font-size: 0.875rem; // text-sm
-  line-height: 1.375; // leading-snug
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.375;
   margin: 0;
 }
 
-// Rarity Colors
-.rarity-common { background-color: #6b7280; } // bg-gray-500
-.rarity-uncommon { background-color: #22c55e; } // bg-green-500
-.rarity-rare { background-color: var(--color-blue); } // Changed from #3b82f6
-.rarity-epic { background-color: var(--color-purple); } // Changed from #a855f7
-.rarity-legendary { background-color: var(--color-yellow); } // Changed from #eab308
+/* Rarity Colors */
+.rarity-common {
+  background-color: var(--color-gray-500);
+}
+.rarity-uncommon {
+  background-color: var(--color-green-500);
+}
+.rarity-rare {
+  background-color: var(--color-blue);
+}
+.rarity-epic {
+  background-color: var(--color-purple);
+}
+.rarity-legendary {
+  background-color: var(--color-yellow);
+}
 
 @keyframes fadeIn {
   to {

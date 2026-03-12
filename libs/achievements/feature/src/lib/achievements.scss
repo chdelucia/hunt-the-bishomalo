@@ -1,7 +1,7 @@
 .achievements-container {
   min-height: 100vh;
-  background-color: #1a202c;
-  color: #ffffff;
+  background-color: var(--color-gray-900);
+  color: var(--color-white);
   padding: 1.5rem;
 }
 
@@ -15,7 +15,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 2rem;
-  z-index: 6;
+  z-index: 100;
   position: relative;
   @media (max-width: 1024px) {
     display: none;
@@ -33,7 +33,7 @@
 }
 
 .back-link:hover {
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 .arrow-left-icon {
@@ -57,19 +57,19 @@
 }
 
 .progress-section {
-  background-color: var(--color-panel); // Changed from #1f2937
-  padding: 1.5rem; // p-6
-  border-radius: 0.75rem; // rounded-xl
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); // shadow-2xl
-  border: 1px solid var(--color-border); // Changed from #374151
-  margin-bottom: 2rem; // mb-8
+  background-color: var(--color-panel);
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%);
+  border: 1px solid var(--color-border);
+  margin-bottom: 2rem;
 }
 
 .progress-title {
-  font-size: 1.5rem; // text-2xl
+  font-size: 1.5rem;
   line-height: 2rem;
-  font-weight: 700; // font-bold
-  color: #ffffff; // text-white
+  font-weight: 700;
+  color: var(--color-white);
   margin-bottom: 1.5rem; // mb-6
   display: flex; // flex
   align-items: center; // items-center
@@ -94,12 +94,12 @@
 }
 
 .empty-state {
-  text-align: center; // text-center
-  padding-top: 5rem; // py-20
+  text-align: center;
+  padding-top: 5rem;
   padding-bottom: 5rem;
-  background-color: var(--color-panel); // Changed from #1f2937
-  border-radius: 0.75rem; // rounded-xl
-  border: 1px dashed #4b5563; // border border-dashed border-gray-600
+  background-color: var(--color-panel);
+  border-radius: 0.75rem;
+  border: 1px dashed var(--color-gray-600);
 }
 
 .empty-message {

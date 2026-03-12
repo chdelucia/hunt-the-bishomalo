@@ -23,10 +23,10 @@
   top: 1.5rem;
   right: 8rem;
   background: var(--color-background);
-  color: #fff;
+  color: var(--color-white);
   padding: 1rem 1.5rem;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgb(0 0 0 / 40%);
   z-index: 10;
   width: 280px;
 
