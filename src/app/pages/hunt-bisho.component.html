@@ -1,5 +1,5 @@
-@let board = game.board(); @let boardSize = board.length; @let isAlive = game.isAlive();
-@let hasWon = game.hasWon(); @let settings = game.settings();
+@let isAlive = game.isAlive(); @let hasWon = game.hasWon();
+@let settings = game.settings();
 
 <main [appVisualEffect]="game.message()" class="main-container">
   <lib-title [blackout]="settings.blackout || false" />
@@ -7,23 +7,8 @@
   @if (settings?.blackout && isAlive && !hasWon) {
     <app-blackout />
   }
-  <section class="board">
-    @for (row of board; track $index; let rowIndex = $index) {
-      <div class="row">
-        @for (cell of row; track $index) {
-          <app-game-cell
-            [class.escape]="!rowIndex && $first && game.hasGold()"
-            class="size-{{ boardSize }}"
-            [cell]="cell"
-          />
-        }
-      </div>
-    }
 
-    @if (deathByWumpus()) {
-      <app-wumpus-attack-animation (closeAnimation)="handleclose()" />
-    }
-  </section>
+  <app-game-board (closeAnimation)="handleClose()" />
 
   <section class="player-info">
     <app-game-level [settings]="settings"></app-game-level>

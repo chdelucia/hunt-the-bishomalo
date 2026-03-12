@@ -8,7 +8,13 @@ import {
   ACHIEVEMENT_SERVICE,
   LEADERBOARD_SERVICE,
 } from '@hunt-the-bishomalo/core/services';
-import { TitleComponent } from './../components';
+import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
+import { GameBoardComponent } from '../components/board/game-board.component';
+import { BlackoutComponent } from '../components/blackout/blackout.component';
+import { GameMessageComponent } from '../components/message/game-message.component';
+import { MobileControlsComponent } from '../components/controls/mobile/mobile-controls.component';
+import { GameLivesComponent } from '../components/lives/game-lives.component';
+import { GameLevelComponent } from '../components/level/game-level.component';
 
 function createMockCell(overrides = {}) {
   return {
@@ -34,6 +40,8 @@ const mockGameStoreService = {
   startTime: jest.fn(),
   currentCell: jest.fn(),
   selectedChar: jest.fn(),
+  isEatenByWumpus: jest.fn().mockReturnValue(true),
+  dragonballCollected: jest.fn().mockReturnValue(false),
   settings: jest.fn().mockReturnValue({
     size: 4,
     arrows: 2,
@@ -49,6 +57,7 @@ const mockGameStoreService = {
   }),
   message: jest.fn().mockReturnValue('¡El Wumpus te devoró!'),
   setMessage: jest.fn(),
+  $_setIsEatenByWumpus: jest.fn(),
   board: jest.fn().mockReturnValue([
     [createMockCell({ x: 0, y: 0 }), createMockCell({ x: 0, y: 1 })],
     [createMockCell({ x: 1, y: 0 }), createMockCell({ x: 1, y: 1 })],
@@ -76,6 +85,12 @@ describe('HuntBishoComponent', () => {
         RouterModule.forRoot([]),
         getTranslocoTestingModule(),
         TitleComponent,
+        GameBoardComponent,
+        BlackoutComponent,
+        GameMessageComponent,
+        MobileControlsComponent,
+        GameLivesComponent,
+        GameLevelComponent,
       ],
       providers: [
         { provide: GameStore, useValue: mockGameStoreService },
@@ -102,12 +117,9 @@ describe('HuntBishoComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should compute deathByWumpus as true when message is from wumpus', () => {
-    expect(component.deathByWumpus()).toBe(true);
-  });
 
   it('should call setMessage with GAME OVER prefix on handleClose', () => {
-    component.handleclose();
+    component.handleClose();
     expect(mockGameStoreService.setMessage).toHaveBeenCalledWith('GAME OVER ¡El Wumpus te devoró!');
   });
 });

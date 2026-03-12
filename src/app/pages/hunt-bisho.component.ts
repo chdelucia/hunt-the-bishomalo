@@ -1,14 +1,11 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
-import {
-  AppWumpusAttackAnimationComponent,
-  BlackoutComponent,
-  GameCellComponent,
-  GameMessageComponent,
-  MobileControlsComponent,
-  TitleComponent,
-  GameLivesComponent,
-  GameLevelComponent,
-} from './../components';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { BlackoutComponent } from './../components/blackout/blackout.component';
+import { GameMessageComponent } from './../components/message/game-message.component';
+import { MobileControlsComponent } from './../components/controls/mobile/mobile-controls.component';
+import { GameLivesComponent } from './../components/lives/game-lives.component';
+import { GameLevelComponent } from './../components/level/game-level.component';
+import { GameBoardComponent } from './../components/board/game-board.component';
+import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
 import { VisualEffectDirective } from './../directives/visual-effect.directive';
 import { RouterModule } from '@angular/router';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
@@ -17,15 +14,14 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
   selector: 'app-hunt-bisho',
   imports: [
     RouterModule,
-    GameCellComponent,
     VisualEffectDirective,
-    AppWumpusAttackAnimationComponent,
     TitleComponent,
     BlackoutComponent,
     GameMessageComponent,
     MobileControlsComponent,
     GameLivesComponent,
     GameLevelComponent,
+    GameBoardComponent,
   ],
   templateUrl: './hunt-bisho.component.html',
   styleUrl: './hunt-bisho.component.scss',
@@ -34,12 +30,8 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
 export class HuntBishoComponent {
   readonly game = inject(GameStore);
 
-  deathByWumpus = computed(() => {
-    const gameInstance = this.game;
-    return gameInstance?.message() === '¡El Wumpus te devoró!';
-  });
-
-  handleclose(): void {
+  handleClose(): void {
+    this.game.$_setIsEatenByWumpus(false);
     this.game.setMessage('GAME OVER ' + this.game.message());
   }
 }

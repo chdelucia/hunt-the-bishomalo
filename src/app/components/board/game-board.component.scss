@@ -1,0 +1,29 @@
+@use 'sass:math';
+
+.board {
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 1 / 1;
+  border: 3px solid var(--color-border);
+  width: fit-content;
+  min-width: calc(min(95vw, 550px));
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-panel);
+  position: relative;
+}
+
+.row {
+  display: flex;
+}
+
+@for $i from 4 through 20 {
+  app-game-cell.size-#{$i} {
+    --cellsize: max(20px, calc(min(95vw, 550px) / #{$i}));
+  }
+}
+
+.escape {
+  --exit-color: var(--color-text);
+}
