@@ -19,7 +19,7 @@ export class ToastComponent implements OnDestroy {
   private readonly service = inject(ACHIEVEMENT_SERVICE);
   private idCounter = 0;
   toasts = signal<ToastData[]>([]);
-  private toastTimeouts = new Map<number, ReturnType<typeof setTimeout>>();
+  private readonly toastTimeouts = new Map<number, ReturnType<typeof setTimeout>>();
 
   constructor() {
     effect(() => {
