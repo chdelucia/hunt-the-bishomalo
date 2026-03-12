@@ -1,5 +1,5 @@
 import { signal } from '@angular/core';
-import { Achievement, AchieveTypes, IAchievementService } from '@hunt-the-bishomalo/achievements/api';
+import { Achievement, IAchievementService } from '@hunt-the-bishomalo/achievements/api';
 
 export const mockAchievementService: IAchievementService = {
   achievements: [

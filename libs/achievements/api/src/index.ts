@@ -1,4 +1,5 @@
 import { InjectionToken, Signal } from '@angular/core';
+import { Cell } from '@hunt-the-bishomalo/data';
 
 export interface Achievement {
   id: string;
@@ -48,7 +49,7 @@ export interface IAchievementService {
   completed: Signal<Achievement | undefined>;
   activeAchievement: (id: AchieveTypes | string) => void;
   calcVictoryAchieve: (seconds: number) => void;
-  handleWumpusKillAchieve: (cell: any) => void;
+  handleWumpusKillAchieve: (cell: Cell) => void;
   isAllCompleted: () => void;
 }
 

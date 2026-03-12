@@ -1,5 +1,5 @@
 import { effect, inject, Injectable } from '@angular/core';
-import { ScoreEntry, LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/data';
+import { ScoreEntry } from '@hunt-the-bishomalo/data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { LocalstorageService } from '@hunt-the-bishomalo/core/services';
 import { GameStore } from '@hunt-the-bishomalo/core/store';

@@ -16,7 +16,7 @@ import {
 } from '@hunt-the-bishomalo/data';
 import { AchieveTypes, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { GameStore } from '../../store';
-import { Observable, take } from 'rxjs';
+import { take } from 'rxjs';
 import { BoardGeneratorService } from './board-generator.service';
 import { PerceptionService } from './perception.service';
 

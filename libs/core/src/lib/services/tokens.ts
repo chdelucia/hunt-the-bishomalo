@@ -1,4 +1,3 @@
-import { ILeaderboardService } from '@hunt-the-bishomalo/data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 
 export { ACHIEVEMENT_SERVICE };
