@@ -1,18 +1,78 @@
 :root {
-  --color-primary: #00ff5e;
-  --color-background: #111827;
-  --color-panel: #1f2937;
-  --color-border: #374151;
-  --color-text: #4ade80;
-  --color-text-secondary: #9ca3af;
-  --color-button: #15803d;
-  --color-button-hover: #16a34a;
-  --color-button-next: #1d4ed8;
-  --color-button-next-hover: #2563eb;
-  --color-yellow: #facc15;
-  --color-red: #ef4444;
-  --color-blue: #60a5fa;
-  --color-purple: #a855f7;
+  /* Generic Colors (Tailwind-like palette) */
+  --color-black: #000000;
+  --color-white: #ffffff;
+
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  --color-gray-950: #030712;
+
+  --color-green-400: #4ade80;
+  --color-green-300: #86efac;
+  --color-green-500: #22c55e;
+  --color-green-600: #16a34a;
+  --color-green-700: #15803d;
+  --color-green-900: #14532d;
+  --color-green-accent: #00ff5e;
+
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-red-700: #b91c1c;
+
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+
+  --color-yellow-400: #facc15;
+  --color-yellow-500: #eab308;
+
+  --color-cyan-400: #22d3ee;
+  --color-cyan-accent: #00ffea;
+  --color-cyan-dark: #00ffcc;
+
+  --color-purple-500: #a855f7;
+
+  /* Semantic Mappings */
+  --color-primary: var(--color-green-accent);
+  --color-background: var(--color-gray-900);
+  --color-panel: var(--color-gray-800);
+  --color-border: var(--color-gray-700);
+
+  --color-text: var(--color-green-300); /* Improved contrast on dark bg */
+  --color-text-secondary: var(--color-gray-300); /* Improved contrast from gray-400 */
+  --color-text-muted: var(--color-gray-400);
+  --color-text-white: var(--color-white);
+
+  --color-button: var(--color-green-700);
+  --color-button-hover: var(--color-green-600);
+  --color-button-next: var(--color-blue-700);
+  --color-button-next-hover: var(--color-blue-600);
+  --color-button-disabled: var(--color-gray-500);
+
+  --color-yellow: var(--color-yellow-400);
+  --color-red: var(--color-red-600); /* Improved contrast for white text */
+  --color-blue: var(--color-blue-400);
+  --color-purple: var(--color-purple-500);
+
+  --color-focus: var(--color-yellow-400);
+  --color-neon: var(--color-cyan-accent);
+  --color-neon-alt: var(--color-cyan-dark);
+
+  /* Effects */
+  --color-cloud: rgb(42 117 198 / 95%);
+  --color-stink-1: rgb(93 255 93 / 33%);
+  --color-stink-2: rgb(46 139 87 / 33%);
+  --color-sparkle-1: var(--color-yellow-400);
+  --color-sparkle-2: #ffec8b;
 }
 
 *,
@@ -25,9 +85,10 @@ body,
 html {
   margin: 0;
   padding: 0;
-  background-color: #1a202c;
+  background-color: var(--color-gray-900);
   font-family: 'Press Start 2P', monospace;
   image-rendering: pixelated;
+  color: var(--color-text);
 }
 
 button {
@@ -36,16 +97,16 @@ button {
   padding: 0.75rem;
   font-size: 1rem;
   font-weight: bold;
-  background-color: #007bff;
-  color: white;
+  background-color: var(--color-blue-600);
+  color: var(--color-white);
   border: none;
 
   &:hover {
     cursor: pointer;
-    background-color: #1a70cc;
+    background-color: var(--color-blue-700);
   }
   &:disabled {
-    background-color: #a0aec0;
+    background-color: var(--color-button-disabled);
     cursor: not-allowed;
   }
 }
@@ -63,7 +124,7 @@ button {
 
 .cloud {
   position: absolute;
-  background: rgb(42 117 198 / 95%);
+  background: var(--color-cloud);
   border-radius: 50%;
   filter: blur(30px);
   animation: windMove linear infinite;
@@ -88,7 +149,7 @@ button {
 
 .stink {
   position: absolute;
-  background: radial-gradient(circle, #5dff5d55, #2e8b5755);
+  background: radial-gradient(circle, var(--color-stink-1), var(--color-stink-2));
   border-radius: 50%;
   animation: stinkMove linear infinite;
   filter: blur(8px);
@@ -116,7 +177,7 @@ button {
   position: absolute;
   width: 15px;
   height: 15px;
-  background: radial-gradient(circle, #ffd700, #ffec8b);
+  background: radial-gradient(circle, var(--color-sparkle-1), var(--color-sparkle-2));
   border-radius: 50%;
   animation: sparklePulse ease-in-out infinite;
 }

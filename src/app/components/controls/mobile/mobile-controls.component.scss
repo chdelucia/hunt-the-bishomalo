@@ -19,18 +19,18 @@
 
 .control-btn {
   font-size: 1rem;
-  background: #00ffcc;
-  color: #000;
+  background: var(--color-neon-alt);
+  color: var(--color-black);
   padding: 1rem 1.5rem;
   border: none;
   border-radius: 8px;
   font-family: 'Press Start 2P', monospace;
-  box-shadow: 0 0 6px #00ffcc;
+  box-shadow: 0 0 6px var(--color-neon-alt);
   cursor: pointer;
   transition: background 0.2s;
 
   &:hover,
   &:active {
-    background: #00ddb3;
+    background: var(--color-cyan-dark);
   }
 }

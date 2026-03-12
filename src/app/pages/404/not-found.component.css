@@ -2,7 +2,7 @@
   margin-bottom: 2rem;
   border-radius: 2px;
   text-align: center;
-  color: #cdcbcb;
+  color: var(--color-gray-300);
   padding-top: 6rem;
 }
 
@@ -32,7 +32,7 @@
 
 .numero {
   font-size: 5rem;
-  text-shadow: 3px 3px 0 #cacaca;
+  text-shadow: 3px 3px 0 var(--color-gray-300);
   animation: pulsar 2s ease-in-out infinite;
 }
 
@@ -155,8 +155,8 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background-color: green;
-  color: white;
+  background-color: var(--color-green-700);
+  color: var(--color-white);
   border: none;
   padding: 1.75rem 1.5rem;
   border-radius: 2px;
@@ -167,7 +167,7 @@
 }
 
 .boton-error:hover {
-  background-color: rgb(14, 107, 28);
+  background-color: var(--color-green-900);
 }
 
 @media (max-width: 768px) {

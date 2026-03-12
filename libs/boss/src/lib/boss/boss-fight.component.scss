@@ -1,12 +1,12 @@
 @keyframes flash-hit {
   0% {
-    box-shadow: 0 0 0px #dc2626;
+    box-shadow: 0 0 0px var(--color-red-600);
   }
   50% {
-    box-shadow: 0 0 20px 5px #dc2626;
+    box-shadow: 0 0 20px 5px var(--color-red-600);
   }
   100% {
-    box-shadow: 0 0 0px #dc2626;
+    box-shadow: 0 0 0px var(--color-red-600);
   }
 }
 
@@ -36,9 +36,10 @@
   height: 100vh;
 
   #bossTitle {
-    color: white;
-    text-shadow: 1px 1px 6px black;
+    color: var(--color-white);
+    text-shadow: 1px 1px 6px var(--color-black);
   }
+
   .grid {
     display: flex;
     flex-direction: column;
@@ -51,9 +52,9 @@
     .cell {
       width: 100px;
       height: 100px;
-      background-color: #1f2937;
-      border: 1px solid #4b5563;
-      color: white;
+      background-color: var(--color-gray-800);
+      border: 1px solid var(--color-gray-600);
+      color: var(--color-white);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -69,27 +70,27 @@
       }
 
       &:focus-visible {
-        outline: 3px solid #facc15;
+        outline: 3px solid var(--color-focus);
         outline-offset: 2px;
       }
 
       &.hit {
-        background-color: #374151;
+        background-color: var(--color-gray-700);
       }
 
       &.boss-hit {
-        background-color: #ef4444;
+        background-color: var(--color-red-500);
         animation: flash-hit 0.5s ease-out;
       }
 
       &.miss {
-        background-color: #6b7280;
+        background-color: var(--color-gray-500);
         animation: shake 0.4s ease-in-out;
       }
 
       small {
         font-size: 0.6rem;
-        color: #d1d5db;
+        color: var(--color-gray-300);
         margin-top: 4px;
       }
     }
@@ -98,14 +99,14 @@
   .status-bar {
     margin-top: 1.5rem;
     font-size: 0.9rem;
-    color: #f3f4f6;
-    text-shadow: 1px 1px 6px black;
+    color: var(--color-gray-100);
+    text-shadow: 1px 1px 6px var(--color-black);
   }
 
   button {
     margin-top: 1rem;
     background-color: var(--color-button);
-    color: white;
+    color: var(--color-white);
     border: none;
     padding: 1.75rem 2.5rem;
     font-weight: bold;
@@ -114,7 +115,7 @@
     font-size: 1rem;
 
     &:focus-visible {
-      outline: 3px solid #facc15;
+      outline: 3px solid var(--color-focus);
       outline-offset: 2px;
     }
 
@@ -139,7 +140,7 @@
   color: var(--color-primary);
   line-height: 1.5rem;
   max-width: 800px;
-  background-color: black;
+  background-color: var(--color-black);
   padding: 0.5rem;
 }
 

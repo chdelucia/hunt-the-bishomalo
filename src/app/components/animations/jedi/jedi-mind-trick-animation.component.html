@@ -18,31 +18,36 @@
         <!-- Robe -->
         <path
           d="M60 180 L100 120 L140 180"
-          fill="#8B4513"
-          stroke="#8B4513"
+          fill="var(--color-purple-500)"
+          stroke="var(--color-purple-500)"
           stroke-width="2"
           stroke-linecap="round"
         />
         <path
           d="M70 120 L100 180 L130 120"
-          fill="#A0522D"
-          stroke="#A0522D"
+          fill="var(--color-gray-500)"
+          stroke="var(--color-gray-500)"
           stroke-width="2"
           stroke-linecap="round"
         />
 
         <!-- Body -->
-        <rect x="85" y="70" width="30" height="50" fill="#A0522D" />
+        <rect x="85" y="70" width="30" height="50" fill="var(--color-gray-500)" />
 
         <!-- Head -->
-        <circle cx="100" cy="60" r="20" fill="#FFE4B5" />
+        <circle cx="100" cy="60" r="20" fill="var(--color-white)" />
 
         <!-- Eyes -->
-        <circle cx="92" cy="55" r="3" fill="#000" />
-        <circle cx="108" cy="55" r="3" fill="#000" />
+        <circle cx="92" cy="55" r="3" fill="var(--color-black)" />
+        <circle cx="108" cy="55" r="3" fill="var(--color-black)" />
 
         <!-- Mouth -->
-        <path d="M95 65 Q100 70 105 65" stroke="#000" stroke-width="1.5" stroke-linecap="round" />
+        <path
+          d="M95 65 Q100 70 105 65"
+          stroke="var(--color-black)"
+          stroke-width="1.5"
+          stroke-linecap="round"
+        />
 
         <!-- Right hand -->
         @if (step() === 1) {
@@ -51,7 +56,7 @@
             y="90"
             width="10"
             height="20"
-            fill="#FFE4B5"
+            fill="var(--color-white)"
             rx="5"
             transform="rotate(0, 120, 100)"
           />
@@ -62,7 +67,7 @@
             y="90"
             width="10"
             height="20"
-            fill="#FFE4B5"
+            fill="var(--color-white)"
             rx="5"
             transform="rotate(20, 120, 100)"
           />
@@ -73,7 +78,7 @@
             y="90"
             width="10"
             height="20"
-            fill="#FFE4B5"
+            fill="var(--color-white)"
             rx="5"
             transform="rotate(40, 120, 100)"
           />
@@ -84,7 +89,7 @@
             y="90"
             width="10"
             height="20"
-            fill="#FFE4B5"
+            fill="var(--color-white)"
             rx="5"
             transform="rotate(20, 120, 100)"
           />
@@ -95,7 +100,7 @@
             y="90"
             width="10"
             height="20"
-            fill="#FFE4B5"
+            fill="var(--color-white)"
             rx="5"
             transform="rotate(0, 120, 100)"
           />
@@ -106,25 +111,25 @@
             y="90"
             width="10"
             height="20"
-            fill="#FFE4B5"
+            fill="var(--color-white)"
             rx="5"
             transform="rotate(-20, 120, 100)"
           />
         }
 
         <!-- Left hand -->
-        <rect x="75" y="90" width="10" height="20" fill="#FFE4B5" rx="5" />
+        <rect x="75" y="90" width="10" height="20" fill="var(--color-white)" rx="5" />
 
         <!-- Lightsaber -->
-        <rect x="130" y="85" width="5" height="15" fill="#808080" rx="2" />
+        <rect x="130" y="85" width="5" height="15" fill="var(--color-gray-500)" rx="2" />
         <rect
           x="132"
           y="40"
           width="1"
           height="45"
-          [attr.fill]="step() % 2 === 0 ? '#00BFFF' : '#87CEFA'"
+          [attr.fill]="step() % 2 === 0 ? 'var(--color-cyan-400)' : 'var(--color-blue-400)'"
           rx="0.5"
-          filter="drop-shadow(0 0 5px #00BFFF)"
+          filter="drop-shadow(0 0 5px var(--color-cyan-400))"
         />
       </svg>
     </div>
