@@ -1,0 +1,43 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "bundler",
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2022",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@hunt-the-bishomalo/data": ["libs/shared/data/src/index.ts"],
+      "@hunt-the-bishomalo/game/api": ["libs/game/api/src/index.ts"],
+      "@hunt-the-bishomalo/game/data-access": ["libs/game/data-access/src/index.ts"],
+      "@hunt-the-bishomalo/game/feature": ["libs/game/feature/src/index.ts"],
+      "@hunt-the-bishomalo/game/ui": ["libs/game/ui/src/index.ts"],
+      "@hunt-the-bishomalo/achievements/api": ["libs/achievements/api/src/index.ts"],
+      "@hunt-the-bishomalo/achievements/data-access": ["libs/achievements/data-access/src/index.ts"],
+      "@hunt-the-bishomalo/achievements/feature": ["libs/achievements/feature/src/index.ts"],
+      "@hunt-the-bishomalo/achievements/ui": ["libs/achievements/ui/src/index.ts"],
+      "@hunt-the-bishomalo/achievements/shell": ["libs/achievements/shell/src/index.ts"],
+      "@hunt-the-bishomalo/shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@hunt-the-bishomalo/story": ["libs/story/src/index.ts"],
+      "@hunt-the-bishomalo/shop/api": ["libs/shop/api/src/index.ts"],
+      "@hunt-the-bishomalo/shop/data-access": ["libs/shop/data-access/src/index.ts"],
+      "@hunt-the-bishomalo/shop/feature": ["libs/shop/feature/src/index.ts"],
+      "@hunt-the-bishomalo/boss": ["libs/boss/src/lib/index.ts"],
+      "@hunt-the-bishomalo/credits": ["libs/credits/src/index.ts"],
+      "@hunt-the-bishomalo/gamestats/api": ["libs/gamestats/api/src/index.ts"],
+      "@hunt-the-bishomalo/gamestats/data-access": ["libs/gamestats/data-access/src/index.ts"],
+      "@hunt-the-bishomalo/instructions": ["libs/instructions/src/index.ts"],
+      "@hunt-the-bishomalo/core": ["libs/core/src/index.ts"],
+      "@hunt-the-bishomalo/config": ["libs/config/src/index.ts"],
+      "@hunt-the-bishomalo/chars": ["libs/chars/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

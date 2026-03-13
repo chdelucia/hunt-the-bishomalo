@@ -1,0 +1,217 @@
+interactive rebase in progress; onto e9edfbc
+Last command done (1 command done):
+   pick df75268 # chore: temporary commit to allow merge
+No commands remaining.
+You are currently editing a commit while rebasing branch 'temp-resolve-conflicts' on 'e9edfbc'.
+  (use "git commit --amend" to amend the current commit)
+  (use "git rebase --continue" once you are satisfied with your changes)
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	new file:   build.log
+	new file:   build_err.log
+	new file:   build_error_full.log
+	new file:   build_full.log
+	new file:   build_output.log
+	new file:   build_output.txt
+	new file:   build_raw.log
+	modified:   bun.lock
+	new file:   conflicts.txt
+	modified:   libs/achievements/data-access/src/lib/achievement.service.ts
+	modified:   libs/achievements/feature/src/lib/achievements.spec.ts
+	modified:   libs/boss/src/lib/boss/boss-fight.component.spec.ts
+	modified:   libs/boss/src/lib/boss/boss-fight.component.ts
+	modified:   libs/boss/src/lib/boss/boss-store.ts
+	modified:   libs/chars/src/lib/chars/characters.component.spec.ts
+	modified:   libs/chars/src/lib/chars/characters.component.ts
+	modified:   libs/config/src/lib/config/config.component.spec.ts
+	modified:   libs/config/src/lib/config/config.component.ts
+	modified:   libs/config/src/lib/config/game-config.component.ts
+	modified:   libs/core/src/index.ts
+	modified:   libs/core/src/lib/services/index.ts
+	modified:   libs/core/src/lib/services/sound/game-sound.service.ts
+	modified:   libs/credits/src/lib/credits/end-credits.component.spec.ts
+	modified:   libs/credits/src/lib/credits/end-credits.component.ts
+	new file:   libs/game/api/README.md
+	new file:   libs/game/api/eslint.config.mjs
+	new file:   libs/game/api/jest.config.cts
+	new file:   libs/game/api/project.json
+	new file:   libs/game/api/src/index.ts
+	renamed:    libs/game/src/test-setup.ts -> libs/game/api/src/test-setup.ts
+	new file:   libs/game/api/tsconfig.json
+	new file:   libs/game/api/tsconfig.lib.json
+	new file:   libs/game/api/tsconfig.spec.json
+	new file:   libs/game/data-access/README.md
+	new file:   libs/game/data-access/eslint.config.mjs
+	new file:   libs/game/data-access/jest.config.cts
+	new file:   libs/game/data-access/project.json
+	new file:   libs/game/data-access/src/index.ts
+	renamed:    libs/core/src/lib/services/engine/board-generator.service.ts -> libs/game/data-access/src/lib/board-generator.service.ts
+	renamed:    libs/core/src/lib/services/events/effects.ts -> libs/game/data-access/src/lib/effects.ts
+	renamed:    libs/core/src/lib/store/features/config.feature.ts -> libs/game/data-access/src/lib/features/config.feature.ts
+	renamed:    libs/core/src/lib/store/features/game-status.feature.ts -> libs/game/data-access/src/lib/features/game-status.feature.ts
+	renamed:    libs/core/src/lib/store/features/hunter.feature.ts -> libs/game/data-access/src/lib/features/hunter.feature.ts
+	renamed:    libs/core/src/lib/services/engine/game-engine.service.ts -> libs/game/data-access/src/lib/game-engine.service.ts
+	renamed:    libs/core/src/lib/services/events/game-event.service.ts -> libs/game/data-access/src/lib/game-event.service.ts
+	renamed:    libs/core/src/lib/store/game-store.spec.ts -> libs/game/data-access/src/lib/game-store.spec.ts
+	renamed:    libs/core/src/lib/store/game-store.ts -> libs/game/data-access/src/lib/game-store.ts
+	renamed:    libs/core/src/lib/store/index.ts -> libs/game/data-access/src/lib/index.ts
+	renamed:    libs/core/src/lib/services/engine/keyboard-manager.service.ts -> libs/game/data-access/src/lib/keyboard-manager.service.ts
+	renamed:    libs/core/src/lib/services/engine/perception.service.ts -> libs/game/data-access/src/lib/perception.service.ts
+	renamed:    libs/gamestats/src/test-setup.ts -> libs/game/data-access/src/test-setup.ts
+	new file:   libs/game/data-access/tsconfig.json
+	new file:   libs/game/data-access/tsconfig.lib.json
+	new file:   libs/game/data-access/tsconfig.spec.json
+	new file:   libs/game/feature/README.md
+	new file:   libs/game/feature/eslint.config.mjs
+	new file:   libs/game/feature/jest.config.cts
+	new file:   libs/game/feature/project.json
+	new file:   libs/game/feature/src/index.ts
+	renamed:    src/app/components/animations/attack/app-wumpus-attack-animation.component.html -> libs/game/feature/src/lib/animations/attack/app-wumpus-attack-animation.component.html
+	renamed:    src/app/components/animations/attack/app-wumpus-attack-animation.component.scss -> libs/game/feature/src/lib/animations/attack/app-wumpus-attack-animation.component.scss
+	renamed:    src/app/components/animations/attack/app-wumpus-attack-animation.component.spec.ts -> libs/game/feature/src/lib/animations/attack/app-wumpus-attack-animation.component.spec.ts
+	renamed:    src/app/components/animations/attack/app-wumpus-attack-animation.component.ts -> libs/game/feature/src/lib/animations/attack/app-wumpus-attack-animation.component.ts
+	renamed:    src/app/components/animations/jedi/jedi-mind-trick-animation.component.html -> libs/game/feature/src/lib/animations/jedi/jedi-mind-trick-animation.component.html
+	renamed:    src/app/components/animations/jedi/jedi-mind-trick-animation.component.scss -> libs/game/feature/src/lib/animations/jedi/jedi-mind-trick-animation.component.scss
+	renamed:    src/app/components/animations/jedi/jedi-mind-trick-animation.component.spec.ts -> libs/game/feature/src/lib/animations/jedi/jedi-mind-trick-animation.component.spec.ts
+	renamed:    src/app/components/animations/jedi/jedi-mind-trick-animation.component.ts -> libs/game/feature/src/lib/animations/jedi/jedi-mind-trick-animation.component.ts
+	renamed:    src/app/pages/hunt-bisho.component.html -> libs/game/feature/src/lib/hunt-bisho.component.html
+	renamed:    src/app/pages/hunt-bisho.component.scss -> libs/game/feature/src/lib/hunt-bisho.component.scss
+	renamed:    src/app/pages/hunt-bisho.component.ts -> libs/game/feature/src/lib/hunt-bisho.component.ts
+	renamed:    libs/shop/src/test-setup.ts -> libs/game/feature/src/test-setup.ts
+	new file:   libs/game/feature/tsconfig.json
+	new file:   libs/game/feature/tsconfig.lib.json
+	new file:   libs/game/feature/tsconfig.spec.json
+	deleted:    libs/game/src/index.ts
+	deleted:    libs/game/src/lib/game/game.html
+	deleted:    libs/game/src/lib/game/game.scss
+	deleted:    libs/game/src/lib/game/game.spec.ts
+	deleted:    libs/game/src/lib/game/game.ts
+	new file:   libs/game/ui/README.md
+	new file:   libs/game/ui/eslint.config.mjs
+	new file:   libs/game/ui/jest.config.cts
+	new file:   libs/game/ui/project.json
+	new file:   libs/game/ui/src/index.ts
+	renamed:    src/app/components/blackout/blackout.component.html -> libs/game/ui/src/lib/blackout/blackout.component.html
+	renamed:    src/app/components/blackout/blackout.component.scss -> libs/game/ui/src/lib/blackout/blackout.component.scss
+	renamed:    src/app/components/blackout/blackout.component.spec.ts -> libs/game/ui/src/lib/blackout/blackout.component.spec.ts
+	renamed:    src/app/components/blackout/blackout.component.ts -> libs/game/ui/src/lib/blackout/blackout.component.ts
+	renamed:    src/app/components/cell/content/cell-content.component.html -> libs/game/ui/src/lib/cell/content/cell-content.component.html
+	renamed:    src/app/components/cell/content/cell-content.component.scss -> libs/game/ui/src/lib/cell/content/cell-content.component.scss
+	renamed:    src/app/components/cell/content/cell-content.component.ts -> libs/game/ui/src/lib/cell/content/cell-content.component.ts
+	renamed:    src/app/components/cell/game-cell.component.html -> libs/game/ui/src/lib/cell/game-cell.component.html
+	renamed:    src/app/components/cell/game-cell.component.scss -> libs/game/ui/src/lib/cell/game-cell.component.scss
+	renamed:    src/app/components/cell/game-cell.component.spec.ts -> libs/game/ui/src/lib/cell/game-cell.component.spec.ts
+	renamed:    src/app/components/cell/game-cell.component.ts -> libs/game/ui/src/lib/cell/game-cell.component.ts
+	renamed:    src/app/components/cell/hunter/hunter.component.html -> libs/game/ui/src/lib/cell/hunter/hunter.component.html
+	renamed:    src/app/components/cell/hunter/hunter.component.scss -> libs/game/ui/src/lib/cell/hunter/hunter.component.scss
+	renamed:    src/app/components/cell/hunter/hunter.component.spec.ts -> libs/game/ui/src/lib/cell/hunter/hunter.component.spec.ts
+	renamed:    src/app/components/cell/hunter/hunter.component.ts -> libs/game/ui/src/lib/cell/hunter/hunter.component.ts
+	renamed:    src/app/components/controls/game-controls.component.html -> libs/game/ui/src/lib/controls/game-controls.component.html
+	renamed:    src/app/components/controls/game-controls.component.scss -> libs/game/ui/src/lib/controls/game-controls.component.scss
+	renamed:    src/app/components/controls/game-controls.component.spec.ts -> libs/game/ui/src/lib/controls/game-controls.component.spec.ts
+	renamed:    src/app/components/controls/game-controls.component.ts -> libs/game/ui/src/lib/controls/game-controls.component.ts
+	renamed:    src/app/components/controls/mobile/mobile-controls.component.html -> libs/game/ui/src/lib/controls/mobile/mobile-controls.component.html
+	renamed:    src/app/components/controls/mobile/mobile-controls.component.scss -> libs/game/ui/src/lib/controls/mobile/mobile-controls.component.scss
+	renamed:    src/app/components/controls/mobile/mobile-controls.component.spec.ts -> libs/game/ui/src/lib/controls/mobile/mobile-controls.component.spec.ts
+	renamed:    src/app/components/controls/mobile/mobile-controls.component.ts -> libs/game/ui/src/lib/controls/mobile/mobile-controls.component.ts
+	renamed:    src/app/components/level/game-level.component.html -> libs/game/ui/src/lib/level/game-level.component.html
+	renamed:    src/app/components/level/game-level.component.scss -> libs/game/ui/src/lib/level/game-level.component.scss
+	renamed:    src/app/components/level/game-level.component.spec.ts -> libs/game/ui/src/lib/level/game-level.component.spec.ts
+	renamed:    src/app/components/level/game-level.component.ts -> libs/game/ui/src/lib/level/game-level.component.ts
+	renamed:    src/app/components/lives/game-lives.component.html -> libs/game/ui/src/lib/lives/game-lives.component.html
+	renamed:    src/app/components/lives/game-lives.component.scss -> libs/game/ui/src/lib/lives/game-lives.component.scss
+	renamed:    src/app/components/lives/game-lives.component.spec.ts -> libs/game/ui/src/lib/lives/game-lives.component.spec.ts
+	renamed:    src/app/components/lives/game-lives.component.ts -> libs/game/ui/src/lib/lives/game-lives.component.ts
+	renamed:    src/app/components/message/game-message-actions.component.ts -> libs/game/ui/src/lib/message/game-message-actions.component.ts
+	renamed:    src/app/components/message/game-message-display.component.ts -> libs/game/ui/src/lib/message/game-message-display.component.ts
+	renamed:    src/app/components/message/game-message.component.html -> libs/game/ui/src/lib/message/game-message.component.html
+	renamed:    src/app/components/message/game-message.component.scss -> libs/game/ui/src/lib/message/game-message.component.scss
+	renamed:    src/app/components/message/game-message.component.spec.ts -> libs/game/ui/src/lib/message/game-message.component.spec.ts
+	renamed:    src/app/components/message/game-message.component.ts -> libs/game/ui/src/lib/message/game-message.component.ts
+	new file:   libs/game/ui/src/lib/visual-effect.directive.ts
+	new file:   libs/game/ui/src/test-setup.ts
+	new file:   libs/game/ui/tsconfig.json
+	new file:   libs/game/ui/tsconfig.lib.json
+	new file:   libs/game/ui/tsconfig.spec.json
+	new file:   libs/gamestats/api/README.md
+	new file:   libs/gamestats/api/eslint.config.mjs
+	new file:   libs/gamestats/api/jest.config.cts
+	new file:   libs/gamestats/api/project.json
+	new file:   libs/gamestats/api/src/index.ts
+	new file:   libs/gamestats/api/src/test-setup.ts
+	new file:   libs/gamestats/api/tsconfig.json
+	new file:   libs/gamestats/api/tsconfig.lib.json
+	new file:   libs/gamestats/api/tsconfig.spec.json
+	new file:   libs/gamestats/data-access/README.md
+	new file:   libs/gamestats/data-access/eslint.config.mjs
+	new file:   libs/gamestats/data-access/jest.config.cts
+	new file:   libs/gamestats/data-access/project.json
+	new file:   libs/gamestats/data-access/src/index.ts
+	renamed:    libs/gamestats/src/lib/leaderboard.service.spec.ts -> libs/gamestats/data-access/src/lib/leaderboard.service.spec.ts
+	renamed:    libs/gamestats/src/lib/leaderboard.service.ts -> libs/gamestats/data-access/src/lib/leaderboard.service.ts
+	new file:   libs/gamestats/data-access/src/test-setup.ts
+	new file:   libs/gamestats/data-access/tsconfig.json
+	new file:   libs/gamestats/data-access/tsconfig.lib.json
+	new file:   libs/gamestats/data-access/tsconfig.spec.json
+	deleted:    libs/gamestats/src/index.ts
+	deleted:    libs/gamestats/src/lib/gamestats/gamestats.scss
+	deleted:    libs/gamestats/src/lib/gamestats/results.component.html
+	deleted:    libs/gamestats/src/lib/gamestats/results.component.spec.ts
+	deleted:    libs/gamestats/src/lib/gamestats/results.component.ts
+	modified:   libs/instructions/src/lib/instructions/instructions.component.spec.ts
+	new file:   libs/shop/api/README.md
+	new file:   libs/shop/api/eslint.config.mjs
+	new file:   libs/shop/api/jest.config.cts
+	new file:   libs/shop/api/project.json
+	new file:   libs/shop/api/src/index.ts
+	new file:   libs/shop/api/src/test-setup.ts
+	new file:   libs/shop/api/tsconfig.json
+	new file:   libs/shop/api/tsconfig.lib.json
+	new file:   libs/shop/api/tsconfig.spec.json
+	new file:   libs/shop/data-access/README.md
+	new file:   libs/shop/data-access/eslint.config.mjs
+	new file:   libs/shop/data-access/jest.config.cts
+	new file:   libs/shop/data-access/project.json
+	new file:   libs/shop/data-access/src/index.ts
+	new file:   libs/shop/data-access/src/test-setup.ts
+	new file:   libs/shop/data-access/tsconfig.json
+	new file:   libs/shop/data-access/tsconfig.lib.json
+	new file:   libs/shop/data-access/tsconfig.spec.json
+	new file:   libs/shop/feature/README.md
+	new file:   libs/shop/feature/eslint.config.mjs
+	new file:   libs/shop/feature/jest.config.cts
+	new file:   libs/shop/feature/project.json
+	new file:   libs/shop/feature/src/index.ts
+	renamed:    libs/shop/src/lib/shop/shop.component.html -> libs/shop/feature/src/lib/shop.component.html
+	renamed:    libs/shop/src/lib/shop/shop.component.scss -> libs/shop/feature/src/lib/shop.component.scss
+	renamed:    libs/shop/src/lib/shop/shop.component.spec.ts -> libs/shop/feature/src/lib/shop.component.spec.ts
+	renamed:    libs/shop/src/lib/shop/shop.component.ts -> libs/shop/feature/src/lib/shop.component.ts
+	new file:   libs/shop/feature/src/test-setup.ts
+	new file:   libs/shop/feature/tsconfig.json
+	new file:   libs/shop/feature/tsconfig.lib.json
+	new file:   libs/shop/feature/tsconfig.spec.json
+	deleted:    libs/shop/src/index.ts
+	modified:   libs/story/src/lib/story/story.component.spec.ts
+	new file:   merge_output.txt
+	new file:   merge_output_full.txt
+	new file:   merge_result.txt
+	modified:   package.json
+	modified:   src/app/app.component.spec.ts
+	modified:   src/app/app.component.ts
+	modified:   src/app/app.config.ts
+	modified:   src/app/components/index.ts
+	modified:   src/app/components/menu/menu.component.spec.ts
+	modified:   src/app/components/menu/menu.component.ts
+	modified:   src/app/guards/home.guard.spec.ts
+	modified:   src/app/guards/home.guard.ts
+	modified:   src/app/pages/404/not-found.component.spec.ts
+	modified:   src/app/pages/hunt-bisho.component.spec.ts
+	modified:   src/app/pages/index.ts
+	new file:   tsc_da_output.log
+	new file:   tsc_output.log
+	modified:   tsconfig.base.json
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	status.log
