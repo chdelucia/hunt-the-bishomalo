@@ -25,4 +25,21 @@ export class AchievementItemComponent {
   readonly rarityClass = computed(
     () => this.rarityClasses[this.achievement().rarity.toLowerCase()] || 'rarity-common',
   );
+
+  readonly rarityBadgeColor = computed(() => {
+    switch (this.achievement().rarity.toLowerCase()) {
+      case 'common':
+        return 'primary';
+      case 'uncommon':
+        return 'success';
+      case 'rare':
+        return 'warning';
+      case 'epic':
+        return 'error';
+      case 'legendary':
+        return 'error';
+      default:
+        return 'primary';
+    }
+  });
 }

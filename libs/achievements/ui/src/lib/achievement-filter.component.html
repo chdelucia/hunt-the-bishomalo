@@ -1,22 +1,22 @@
 <div class="filter-group">
   <button
     (click)="setFilter('all')"
-    class="filter-btn all"
-    [class.active]="currentFilter() === 'all'"
+    class="filter-btn all nes-btn"
+    [class.is-primary]="currentFilter() === 'all'"
   >
     {{ 'achievements.filterAll' | transloco }}
   </button>
   <button
     (click)="setFilter('unlocked')"
-    class="filter-btn unlocked"
-    [class.active]="currentFilter() === 'unlocked'"
+    class="filter-btn unlocked nes-btn"
+    [class.is-success]="currentFilter() === 'unlocked'"
   >
     {{ 'achievements.filterUnlocked' | transloco }}
   </button>
   <button
     (click)="setFilter('locked')"
-    class="filter-btn locked"
-    [class.active]="currentFilter() === 'locked'"
+    class="filter-btn locked nes-btn"
+    [class.is-warning]="currentFilter() === 'locked'"
   >
     {{ 'achievements.filterLocked' | transloco }}
   </button>

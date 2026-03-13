@@ -1,19 +1,19 @@
 @let estadisticas = estadisticasGenerales();
-<div class="resultados-panel">
-  <h1 class="resultados-titulo">{{ 'results.title' | transloco }}</h1>
+<div class="resultados-panel nes-container is-dark with-title">
+  <p class="title">{{ 'results.title' | transloco }}</p>
 
   @if(leaderboard.length){
     <div class="tabs-container">
       <button
-        class="tab-button"
-        [class.tab-activa]="tabActiva() === 'general'"
+        class="tab-button nes-btn"
+        [class.is-primary]="tabActiva() === 'general'"
         (click)="tabActiva.set('general')"
         >
         {{ 'results.tabGeneral' | transloco }}
       </button>
       <button
-        class="tab-button"
-        [class.tab-activa]="tabActiva() === 'niveles'"
+        class="tab-button nes-btn"
+        [class.is-primary]="tabActiva() === 'niveles'"
         (click)="tabActiva.set('niveles')"
         >
         {{ 'results.tabLevels' | transloco }}
@@ -26,13 +26,13 @@
           <div class="resumen-seccion">
             <h2 class="resumen-titulo">{{ 'results.summaryTitle' | transloco }}</h2>
             <div class="stats-grid">
-              <div class="stat-card">
+              <div class="stat-card nes-container is-dark">
                 <div class="stat-info">
                   <h3 class="stat-nombre">{{ 'results.totalSteps' | transloco }}</h3>
                   <p class="stat-valor">{{ estadisticas.pasosTotales }}</p>
                 </div>
               </div>
-              <div class="stat-card">
+              <div class="stat-card nes-container is-dark">
                 <div class="stat-info">
                   <h3 class="stat-nombre">{{ 'results.playTime' | transloco }}</h3>
                   <p class="stat-valor">
@@ -40,13 +40,13 @@
                   </p>
                 </div>
               </div>
-              <div class="stat-card">
+              <div class="stat-card nes-container is-dark">
                 <div class="stat-info">
                   <h3 class="stat-nombre">{{ 'results.levelsCompleted' | transloco }}</h3>
                   <p class="stat-valor">{{ estadisticas.nivelesCompletados }}</p>
                 </div>
               </div>
-              <div class="stat-card">
+              <div class="stat-card nes-container is-dark">
                 <div class="stat-info">
                   <h3 class="stat-nombre">{{ 'results.achievementsUnlocked' | transloco }}</h3>
                   <p class="stat-valor">{{ unlockedAchievements }}</p>
@@ -106,7 +106,7 @@
   @if (tabActiva() === 'niveles') {
     <div class="tab-contenido">
       <div class="niveles-container">
-        <table class="niveles-tabla">
+        <table class="niveles-tabla nes-table is-bordered is-dark">
           <thead>
             <tr>
               <th>{{ 'results.tableHeaderTime' | transloco }}</th>
@@ -135,7 +135,7 @@
 
 <div class="button-wrapper">
   <button
-    class="next-btn"
+    class="next-btn nes-btn is-primary"
     [attr.aria-label]="'results.nextButtonAriaLabel' | transloco"
     (click)="goToCredits()"
     >

@@ -8,7 +8,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   template: `
     @if (lives() <= 0) {
       <button
-        class="newgame"
+        class="newgame nes-btn is-error"
         (click)="newGame.emit()"
         [attr.aria-label]="'message.newGameAriaLabel' | transloco"
       >
@@ -17,7 +17,7 @@ import { TranslocoModule } from '@jsverse/transloco';
     } @else {
       @if (shouldShowRetry()) {
         <button
-          class="newgame"
+          class="newgame nes-btn is-warning"
           (click)="restartGame.emit()"
           [attr.aria-label]="'message.restartGameAriaLabel' | transloco"
         >
@@ -26,7 +26,7 @@ import { TranslocoModule } from '@jsverse/transloco';
       } @else if (shouldShowNextLevel()) {
         @if (showCongrats()) {
           <button
-            class="newgame"
+            class="newgame nes-btn is-success"
             (click)="nextLevel.emit()"
             [attr.aria-label]="'message.nextLevelAriaLabel' | transloco"
           >
@@ -34,7 +34,7 @@ import { TranslocoModule } from '@jsverse/transloco';
           </button>
         } @else {
           <button
-            class="newgame"
+            class="newgame nes-btn is-primary"
             [attr.aria-label]="'message.nextLevelAriaLabel' | transloco"
             (click)="goToBoss.emit()"
           >

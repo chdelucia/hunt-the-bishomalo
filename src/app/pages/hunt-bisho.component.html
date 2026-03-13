@@ -28,14 +28,18 @@
   </section>
 
   <section class="player-info">
-    <div class="nes-badge">
-      <app-game-level [settings]="settings"></app-game-level>
+    <div class="nes-badge is-icon">
+      <span class="is-dark">Level</span>
+      <span class="is-success"><app-game-level [settings]="settings"></app-game-level></span>
     </div>
-    <div class="nes-badge">
-      <app-game-lives
-        [lives]="game.lives()"
-        [maxLives]="settings.difficulty.maxLives"
-      ></app-game-lives>
+    <div class="nes-badge is-icon">
+      <span class="is-dark">HP</span>
+      <span class="is-error">
+        <app-game-lives
+          [lives]="game.lives()"
+          [maxLives]="settings.difficulty.maxLives"
+        ></app-game-lives>
+      </span>
     </div>
   </section>
 

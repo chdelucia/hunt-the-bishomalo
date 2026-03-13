@@ -7,25 +7,24 @@
 </button>
 
 @if (opened) {
-  <div class="mobile-menu">
-    <ul>
-      <li><button>&nbsp;</button></li>
+  <div class="mobile-menu nes-container is-dark">
+    <ul class="nes-list is-disc">
       <li>
-        <button (click)="nagivateTo(ROUTES.HOME)">{{ 'menu.home' | transloco }}</button>
+        <button class="nes-btn is-primary" (click)="nagivateTo(ROUTES.HOME)">{{ 'menu.home' | transloco }}</button>
       </li>
       <li>
-        <button (click)="nagivateTo(ROUTES.ACHIEVEMENTS)">
+        <button class="nes-btn is-primary" (click)="nagivateTo(ROUTES.ACHIEVEMENTS)">
           {{ 'menu.achievements' | transloco }}
         </button>
       </li>
       <li>
-        <button (click)="nagivateTo(ROUTES.RULES)">{{ 'menu.instructions' | transloco }}</button>
+        <button class="nes-btn is-primary" (click)="nagivateTo(ROUTES.RULES)">{{ 'menu.instructions' | transloco }}</button>
       </li>
       <li>
-        <button (click)="nagivateTo(ROUTES.CREDITS)">{{ 'menu.credits' | transloco }}</button>
+        <button class="nes-btn is-primary" (click)="nagivateTo(ROUTES.CREDITS)">{{ 'menu.credits' | transloco }}</button>
       </li>
       <li>
-        <button (click)="newGame()" class="newgame">{{ 'menu.newGame' | transloco }}</button>
+        <button (click)="newGame()" class="newgame nes-btn is-error">{{ 'menu.newGame' | transloco }}</button>
       </li>
     </ul>
   </div>

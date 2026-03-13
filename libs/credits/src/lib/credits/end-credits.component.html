@@ -1,6 +1,6 @@
-<div class="creditos-panel">
+<div class="creditos-panel nes-container is-dark with-title">
+  <p class="title">{{ 'credits.title' | transloco }}</p>
   <div class="creditos-titulo-container">
-    <h1 class="creditos-titulo">{{ 'credits.title' | transloco }}</h1>
     <p class="creditos-subtitulo">{{ 'credits.subtitle' | transloco }}</p>
   </div>
 
@@ -76,7 +76,7 @@
           <div class="creditos-mensaje">
             <p [innerHTML]="'credits.quoteSolo' | transloco"></p>
           </div>
-          <button class="boton-creditos red" (click)="newGame()">
+          <button class="boton-creditos nes-btn is-error" (click)="newGame()">
             {{ 'credits.newGameButton' | transloco }}
           </button>
         </div>

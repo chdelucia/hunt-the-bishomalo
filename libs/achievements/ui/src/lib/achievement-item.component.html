@@ -1,5 +1,5 @@
 <div
-  class="achievement-item"
+  class="achievement-item nes-container is-dark"
   [class.locked-item]="!achievement().unlocked"
 >
   <div class="icon-container">
@@ -27,10 +27,12 @@
         {{ 'achievements.' + achievement().id + '.title' | transloco }}
       </h3>
       <span
-        class="rarity-badge"
+        class="rarity-badge nes-badge"
         [class]="rarityClass()"
       >
-        {{ 'rarity.' + achievement().rarity.toLowerCase() | transloco }}
+        <span [class]="'is-' + rarityBadgeColor()">
+          {{ 'rarity.' + achievement().rarity.toLowerCase() | transloco }}
+        </span>
       </span>
     </div>
     <p class="description">

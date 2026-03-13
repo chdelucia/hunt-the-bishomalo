@@ -1,7 +1,7 @@
 @if (!isFinish()) {
   <div class="mobile-controls">
     <button
-      class="control-btn"
+      class="control-btn nes-btn is-primary"
       (click)="turnRight()"
       [attr.aria-label]="'mobileControls.turnRightAriaLabel' | transloco"
     >
@@ -15,7 +15,7 @@
     </button>
 
     <button
-      class="control-btn"
+      class="control-btn nes-btn is-primary"
       (click)="shootArrow()"
       [attr.aria-label]="'mobileControls.shootArrowAriaLabel' | transloco"
     >
@@ -29,7 +29,7 @@
     </button>
 
     <button
-      class="control-btn"
+      class="control-btn nes-btn is-primary"
       (click)="moveForward()"
       [attr.aria-label]="'mobileControls.moveForwardAriaLabel' | transloco"
     >

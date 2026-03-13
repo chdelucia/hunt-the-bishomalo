@@ -1,15 +1,14 @@
-<div class="instrucciones-panel">
+<div class="instrucciones-panel nes-container is-dark with-title">
+  <p class="title">{{ 'instructions.mainTitle' | transloco }}</p>
   <div class="header-container">
-    <a routerLink="/home" class="back-link">
-      <i class="arrow-left-icon"></i>
+    <a routerLink="/home" class="back-link nes-btn is-primary">
       <span>{{ 'instructions.backToGame' | transloco }}</span>
     </a>
   </div>
 
-  <h1 class="instrucciones-titulo">{{ 'instructions.mainTitle' | transloco }}</h1>
   <p class="instrucciones-subtitulo">{{ 'instructions.subtitle' | transloco }}</p>
 
-  <div class="seccion-instrucciones">
+  <div class="seccion-instrucciones nes-container is-dark with-title">
     <div class="seccion-header">
       <svg
         width="32"
@@ -23,7 +22,7 @@
         <circle cx="12" cy="12" r="6" stroke="var(--color-green-400)" stroke-width="2" />
         <circle cx="12" cy="12" r="2" fill="var(--color-green-400)" />
       </svg>
-      <h2 class="seccion-titulo">{{ 'instructions.objectiveTitle' | transloco }}</h2>
+      <p class="title">{{ 'instructions.objectiveTitle' | transloco }}</p>
     </div>
     <div class="seccion-contenido">
       <p>
@@ -32,7 +31,7 @@
     </div>
   </div>
 
-  <div class="seccion-instrucciones">
+  <div class="seccion-instrucciones nes-container is-dark with-title">
     <div class="seccion-header">
       <svg
         width="32"
@@ -52,7 +51,7 @@
           fill-opacity="0.3"
         />
       </svg>
-      <h2 class="seccion-titulo">{{ 'instructions.dangersTitle' | transloco }}</h2>
+      <p class="title">{{ 'instructions.dangersTitle' | transloco }}</p>
     </div>
     <div class="seccion-contenido">
       <div class="peligros-lista">
@@ -121,7 +120,7 @@
     </div>
   </div>
 
-  <div class="seccion-instrucciones">
+  <div class="seccion-instrucciones nes-container is-dark with-title">
     <div class="seccion-header">
       <svg
         width="32"
@@ -147,7 +146,7 @@
           stroke-linejoin="round"
         />
       </svg>
-      <h2 class="seccion-titulo">{{ 'instructions.notesTitle' | transloco }}</h2>
+      <p class="title">{{ 'instructions.notesTitle' | transloco }}</p>
     </div>
     <div class="seccion-contenido">
       <ul class="notas-lista">

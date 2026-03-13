@@ -6,7 +6,7 @@
   <img src="controller.svg" alt="{{ 'controls.openControlsAlt' | transloco }}" />
 </button>
 <aside
-  class="game-controls"
+  class="game-controls nes-container is-dark with-title"
   [attr.aria-label]="'controls.gameControlsAriaLabel' | transloco"
   [class.show]="isVisible()"
 >
@@ -17,7 +17,7 @@
   >
     &times;
   </button>
-  <h2 class="title">{{ 'controls.title' | transloco }}</h2>
+  <p class="title">{{ 'controls.title' | transloco }}</p>
   <ul class="control-list">
     <li><span class="key">⬆</span> {{ 'controls.moveForward' | transloco }}</li>
     <li><span class="key">⬅ ➡</span> {{ 'controls.turn' | transloco }}</li>

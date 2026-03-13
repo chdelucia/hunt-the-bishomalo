@@ -23,7 +23,7 @@
             "input": "public"
           }
         ],
-        "styles": ["./src/styles.scss"],
+        "styles": ["./src/styles.scss", "node_modules/nes.css/css/nes.css"],
         "scripts": []
       },
       "configurations": {
