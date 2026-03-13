@@ -28,11 +28,15 @@
   </section>
 
   <section class="player-info">
-    <app-game-level [settings]="settings"></app-game-level>
-    <app-game-lives
-      [lives]="game.lives()"
-      [maxLives]="settings.difficulty.maxLives"
-    ></app-game-lives>
+    <div class="nes-badge">
+      <app-game-level [settings]="settings"></app-game-level>
+    </div>
+    <div class="nes-badge">
+      <app-game-lives
+        [lives]="game.lives()"
+        [maxLives]="settings.difficulty.maxLives"
+      ></app-game-lives>
+    </div>
   </section>
 
   <app-game-message

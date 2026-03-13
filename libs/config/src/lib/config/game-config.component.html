@@ -1,20 +1,22 @@
 @let chars = gameStore.unlockedChars();
 
-<form [formGroup]="configForm" (ngSubmit)="submitForm()" class="config-form">
-  <h2>{{ 'config.title' | transloco }}</h2>
-
-  <div class="form-group">
+<div class="nes-container with-title is-dark">
+  <p class="title">{{ 'config.title' | transloco }}</p>
+  <form [formGroup]="configForm" (ngSubmit)="submitForm()" class="config-form">
+    <div class="form-group">
     <label for="player">{{ 'config.playerNameLabel' | transloco }}</label>
-    <input id="player" type="text" formControlName="player" />
+    <input id="player" type="text" formControlName="player" class="nes-input" />
   </div>
 
   <div class="form-group">
     <label for="difficulty">{{ 'config.difficultyLabel' | transloco }}</label>
+    <div class="nes-select">
     <select id="difficulty" formControlName="difficulty">
       <option value="easy">{{ 'config.difficultyEasy' | transloco }}</option>
       <option value="normal">{{ 'config.difficultyNormal' | transloco }}</option>
       <option value="hard">{{ 'config.difficultyHard' | transloco }}</option>
     </select>
+  </div>
   </div>
 
   @let options = configs[this.configForm.get('difficulty')?.value];
@@ -36,7 +38,7 @@
 @if (isDevMode) {
   <div class="form-group">
     <label for="size">{{ 'config.levelLabel' | transloco }}</label>
-    <input id="size" type="number" formControlName="size" min="1" max="20" />
+    <input id="size" type="number" formControlName="size" min="1" max="20" class="nes-input" />
   </div>
 }
 
@@ -61,7 +63,8 @@
     }
   </div>
 
-  <button type="submit" [disabled]="configForm.invalid" class="start-game">
-    {{ 'config.playButton' | transloco }}
-  </button>
-</form>
+    <button type="submit" [disabled]="configForm.invalid" class="start-game nes-btn is-primary">
+      {{ 'config.playButton' | transloco }}
+    </button>
+  </form>
+</div>

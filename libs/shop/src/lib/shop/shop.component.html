@@ -1,7 +1,7 @@
 <div class="tienda-container">
   <div class="tienda-content">
-    <div class="tienda-info-panel">
-      <h1 class="tienda-titulo">{{ 'shop.title' | transloco }}</h1>
+    <div class="tienda-info-panel nes-container is-dark with-title">
+      <p class="title">{{ 'shop.title' | transloco }}</p>
       <p class="tienda-subtitulo">{{ 'shop.subtitle' | transloco }}</p>
 
       <div class="monedas-inventario">
@@ -31,7 +31,7 @@
       </div>
 
       <div class="next-button">
-        <button class="boton-siguiente" (click)="nextLevel()">
+        <button class="boton-siguiente nes-btn is-primary" (click)="nextLevel()">
           {{ 'shop.nextLevelButton' | transloco }}
         </button>
       </div>
@@ -66,7 +66,7 @@
                 />
                 <span class="price-texto">{{ producto.price }}</span>
               </div>
-              <button class="boton-comprar" (click)="buyProduct(producto)">
+              <button class="boton-comprar nes-btn is-success" (click)="buyProduct(producto)">
                 {{ 'shop.buyButton' | transloco }}
               </button>
             </div>

@@ -1,3 +1,5 @@
+@import 'nes.css/css/nes.min.css';
+
 :root {
   /* Generic Colors (Tailwind-like palette) */
   --color-black: #000000;
@@ -92,6 +94,7 @@ html {
 }
 
 button {
+  @apply nes-btn;
   font-family: 'Press Start 2P', monospace;
   width: fit-content;
   padding: 0.75rem;
@@ -99,7 +102,6 @@ button {
   font-weight: bold;
   background-color: var(--color-blue-600);
   color: var(--color-white);
-  border: none;
 
   &:hover {
     cursor: pointer;
