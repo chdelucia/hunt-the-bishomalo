@@ -102,6 +102,22 @@ describe('ShopComponent', () => {
     expect(mockGameStoreService.updateGame).toHaveBeenCalledWith({ lives: 4 });
   });
 
+  it('should not buy a product if it is already in inventory and is not heart', () => {
+    const product: Product = {
+      name: 'product.lantern.name',
+      effect: 'lantern',
+      description: 'product.lantern.description',
+      price: 100,
+      icon: 'lantern.svg',
+    };
+
+    mockGameStoreService.inventory.mockReturnValueOnce([product]);
+
+    component.buyProduct(product);
+    expect(mockGameStoreService.updateHunter).not.toHaveBeenCalled();
+    expect(component.message()).toBe('shop.purchaseMessageAlreadyOwned');
+  });
+
   it('should call nextLevel and navigate to STORY', () => {
     component.nextLevel();
     expect(mockGameEngineService.nextLevel).toHaveBeenCalled();

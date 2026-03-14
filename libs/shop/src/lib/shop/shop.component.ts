@@ -92,6 +92,7 @@ export class ShopComponent implements OnDestroy {
     const { price, effect } = product;
     const lives = this.gameStore.lives();
 
+    const isAlreadyOwned = this.isOwned(product);
     const canBuy = gold >= price;
 
     if (this.messageTimeout) clearTimeout(this.messageTimeout);
@@ -99,6 +100,11 @@ export class ShopComponent implements OnDestroy {
 
     if (!canBuy) {
       this.message.set(this.transloco.translate('shop.purchaseMessageNotEnoughCoins'));
+      return;
+    }
+
+    if (isAlreadyOwned) {
+      this.message.set(this.transloco.translate('shop.purchaseMessageAlreadyOwned'));
       return;
     }
 
@@ -113,6 +119,13 @@ export class ShopComponent implements OnDestroy {
     this.message.set(
       this.transloco.translate('shop.purchaseMessageSuccess', { productName }),
     );
+  }
+
+  isOwned(product: Product): boolean {
+    if (product.effect === 'heart') {
+      return false;
+    }
+    return this.inventory().some((item) => item.effect === product.effect);
   }
 
   nextLevel(): void {
