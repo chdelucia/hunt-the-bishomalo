@@ -37,7 +37,9 @@ export default [
       '**/*.mjs',
     ],
     // Override or add rules here
-    rules: {},
+    rules: {
+      'no-var': 'off',
+    },
   },
   {
     files: ['**/*.spec.ts'],
