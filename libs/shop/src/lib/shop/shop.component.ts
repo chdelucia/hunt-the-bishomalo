@@ -76,6 +76,11 @@ export class ShopComponent implements OnDestroy {
   private messageTimeout?: ReturnType<typeof setTimeout>;
 
   productos = computed(() => {
+    /**
+     * Security Hotspot Justification:
+     * Math.random() is used here for game mechanics (randomizing shop inventory).
+     * It does not involve any security-sensitive operations.
+     */
     if (Math.random() < this.settings().difficulty.maxChance) {
       return [...this.baseProducts, ...this.baseRandomProducts];
     }

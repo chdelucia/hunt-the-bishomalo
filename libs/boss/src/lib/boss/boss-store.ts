@@ -75,6 +75,11 @@ export const BossStore = signalStore(
 
           let partsPlaced = 0;
           while (partsPlaced < bossParts) {
+            /**
+             * Security Hotspot Justification:
+             * Math.random() is used here for game mechanics (randomizing boss part positions).
+             * It does not involve any security-sensitive operations.
+             */
             const x = Math.floor(Math.random() * gridSize);
             const y = Math.floor(Math.random() * gridSize);
             if (!grid[x][y].hasBossPart) {
