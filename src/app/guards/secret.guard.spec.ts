@@ -1,21 +1,32 @@
+import { isDevMode, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { CanActivateFn, Router, RouterModule } from '@angular/router';
+import { CanActivateFn, Router } from '@angular/router';
+import { RouteTypes } from '@hunt-the-bishomalo/data';
 import { secretGuard } from './secret.guard';
 
-describe('secretGuard (Jest)', () => {
-  let mockRouter: jest.Mocked<Router>;
+jest.mock('@angular/core', () => ({
+  ...jest.requireActual('@angular/core'),
+  isDevMode: jest.fn(),
+}));
 
-  const executeGuard: CanActivateFn = (...params) =>
+describe('secretGuard (Jest)', () => {
+  let mockRouter: any;
+  const mockIsDevMode = isDevMode as jest.Mock;
+  const currentNavigationSignal = signal<any>(null);
+
+  const executeGuard = (...params: Parameters<CanActivateFn>) =>
     TestBed.runInInjectionContext(() => secretGuard(...params));
 
   beforeEach(() => {
     mockRouter = {
       navigateByUrl: jest.fn(),
-      getCurrentNavigation: jest.fn(),
-    } as unknown as jest.Mocked<Router>;
+      currentNavigation: currentNavigationSignal,
+    };
+
+    mockIsDevMode.mockReturnValue(false);
+    currentNavigationSignal.set(null);
 
     TestBed.configureTestingModule({
-      imports: [RouterModule.forRoot([])],
       providers: [{ provide: Router, useValue: mockRouter }],
     });
   });
@@ -23,30 +34,38 @@ describe('secretGuard (Jest)', () => {
   const mockRoute: any = {};
   const mockState: any = { url: '/secret' }; // Simula un RouterStateSnapshot
 
+  it('should allow activation when in dev mode', () => {
+    mockIsDevMode.mockReturnValue(true);
+
+    const result = executeGuard(mockRoute, mockState);
+    expect(result).toBe(true);
+    expect(mockRouter.navigateByUrl).not.toHaveBeenCalled();
+  });
+
   it('should allow activation when fromSecretPath is true in navigation extras', () => {
-    mockRouter.getCurrentNavigation.mockReturnValue({
+    currentNavigationSignal.set({
       extras: { state: { fromSecretPath: true } },
-    } as any);
+    });
 
     const result = executeGuard(mockRoute, mockState);
     expect(result).toBe(true);
   });
 
   it('should deny activation and redirect to /home if fromSecretPath is false', () => {
-    mockRouter.getCurrentNavigation.mockReturnValue({
+    currentNavigationSignal.set({
       extras: { state: { fromSecretPath: false } },
-    } as any);
+    });
 
     const result = executeGuard(mockRoute, mockState);
     expect(result).toBe(false);
-    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('home');
+    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith(RouteTypes.HOME);
   });
 
   it('should deny activation and redirect to /home if navigation is undefined', () => {
-    mockRouter.getCurrentNavigation.mockReturnValue(null);
+    currentNavigationSignal.set(null);
 
     const result = executeGuard(mockRoute, mockState);
     expect(result).toBe(false);
-    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('home');
+    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith(RouteTypes.HOME);
   });
 });
