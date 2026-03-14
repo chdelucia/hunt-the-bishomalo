@@ -9,7 +9,7 @@
     >
       <img
         [ngSrc]="'achievements/' + achievement().svgIcon"
-        [alt]="achievement().title"
+        [alt]="'achievements.' + achievement().id + '.title' | transloco"
         fill
         class="achievement-icon"
       />

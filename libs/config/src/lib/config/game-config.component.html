@@ -47,7 +47,7 @@
   @for(char of chars; track $index) {
     <img
       [ngSrc]="$index === 0 ? `chars/${char}/bow.svg` : `chars/${char}/bow.png`"
-      [alt]="char"
+      [alt]="'charName.' + char | transloco"
       draggable="false"
       width="60"
       height="80"

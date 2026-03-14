@@ -24,7 +24,7 @@
               alt="{{ 'shop.inventoryItemAlt' | transloco }}"
               width="40"
               height="40"
-            />x1
+            />{{ 'shop.quantity' | transloco : { count: 1 } }}
           </div>
           }
         </div>
@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    @if(gold() < 60) {
+    @if(gold() < MIN_SHOP_PRICE) {
     <p class="disclaimer">{{ 'shop.notEnoughGoldMessage' | transloco }}</p>
     }@else{
 

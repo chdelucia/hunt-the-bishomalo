@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, isDevMode } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
-import { TranslocoModule } from '@jsverse/transloco';
+import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { GameEngineService, GameSoundService } from '@hunt-the-bishomalo/core/services';
 import {
   Chars,
@@ -28,12 +29,24 @@ export class GameConfigComponent {
   private readonly fb = inject(FormBuilder);
   private readonly gameSound = inject(GameSoundService);
   private readonly router = inject(Router);
+  private readonly transloco = inject(TranslocoService);
 
   isDevMode = isDevMode();
   readonly configs = DIFFICULTY_CONFIGS as Record<string, GameDificulty>;
 
+  constructor() {
+    this.transloco
+      .selectTranslate('charName.default')
+      .pipe(takeUntilDestroyed())
+      .subscribe((val) => {
+        if (!this.configForm.get('player')?.value) {
+          this.configForm.get('player')?.setValue(val);
+        }
+      });
+  }
+
   configForm: FormGroup = this.fb.group({
-    player: ['Kukuxumushu', Validators.required],
+    player: ['', Validators.required],
     size: [1, [Validators.required, Validators.min(1), Validators.max(20)]],
     selectedChar: [Chars.DEFAULT, [Validators.required]],
     difficulty: [DifficultyTypes.EASY, [Validators.required]],
