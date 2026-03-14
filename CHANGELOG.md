@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.7.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.6.6...v7.7.0) (2026-03-14)
+
+
+### Features
+
+* change colors ([6c1e1fc](https://github.com/chdelucia/hunt-the-bishomalo/commit/6c1e1fcead06c6c80cc756f0abd854a8fd50a8bb))
+
 ### [7.6.6](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.6.5...v7.6.6) (2026-03-14)
 
 ### [7.6.5](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.6.4...v7.6.5) (2026-03-12)
