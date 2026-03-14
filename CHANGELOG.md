@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.7.5](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.7.4...v7.7.5) (2026-03-14)
+
+
+### Bug Fixes
+
+* **ci:** stabilize cypress installation and dependency caching ([56bd31f](https://github.com/chdelucia/hunt-the-bishomalo/commit/56bd31f44e2a21c58a5eba2f7567b7ad7be62e2a))
+* downgrade cypress to 15.11.0 to resolve chalk.blue error ([442d4a1](https://github.com/chdelucia/hunt-the-bishomalo/commit/442d4a12a6f53cc4134b4c03fef817629f437271))
+* new bun ([0af82a7](https://github.com/chdelucia/hunt-the-bishomalo/commit/0af82a727c70a1679d1b92c653b5b6db483b0f42))
+* remove useless files ([a036777](https://github.com/chdelucia/hunt-the-bishomalo/commit/a03677778bd46f979e19b31cb0a507a1b02df068))
+
 ### [7.7.4](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.7.3...v7.7.4) (2026-03-14)
 
 ### [7.7.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.7.2...v7.7.3) (2026-03-14)
