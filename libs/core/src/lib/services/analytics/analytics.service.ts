@@ -4,10 +4,8 @@ import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 declare global {
-  interface Window {
-    dataLayer: Record<string, unknown>[];
-    gtag: (...args: unknown[]) => void;
-  }
+  var dataLayer: Record<string, unknown>[];
+  var gtag: (...args: unknown[]) => void;
 }
 
 @Injectable({
@@ -27,17 +25,19 @@ export class AnalyticsService {
         takeUntilDestroyed(),
       )
       .subscribe((event: NavigationEnd) => {
-        window.gtag('event', 'page_view', {
-          page_path: event.urlAfterRedirects,
-          page_location: window.location.href,
-          page_title: document.title,
-        });
+        if (typeof gtag === 'function') {
+          gtag('event', 'page_view', {
+            page_path: event.urlAfterRedirects,
+            page_location: globalThis.location.href,
+            page_title: document.title,
+          });
+        }
       });
   }
 
   public sendEvent(eventName: string, params?: Record<string, unknown>): void {
-    if (!window.gtag) return;
-    window.gtag('event', eventName, params || {});
+    if (typeof gtag !== 'function') return;
+    gtag('event', eventName, params || {});
   }
 
   public trackAchievementUnlocked(id: string, title: string): void {
