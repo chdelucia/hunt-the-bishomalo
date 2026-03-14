@@ -70,9 +70,13 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
   }
 
   playForceSound(): void {
-    this.audioContext = new (globalThis.AudioContext ||
-      (globalThis as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
-    if (!this.audioContext) return;
+    const AudioContextClass =
+      globalThis.AudioContext ||
+      (globalThis as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+
+    if (!AudioContextClass) return;
+
+    this.audioContext = new AudioContextClass();
 
     const oscillator = this.audioContext.createOscillator();
     oscillator.type = 'sine';

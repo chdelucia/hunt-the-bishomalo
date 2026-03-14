@@ -113,4 +113,54 @@ describe('JediMindTrickAnimationComponent', () => {
     jest.advanceTimersByTime(300);
     expect(mockSpeechSynthesis.speak).toHaveBeenCalledTimes(3);
   });
+
+  it('should handle ngOnDestroy when audioContext is null', () => {
+    (component as any).audioContext = null;
+    mockAudioContext.close.mockClear();
+    component.ngOnDestroy();
+    expect(mockAudioContext.close).not.toHaveBeenCalled();
+    expect(mockAchievementService.activeAchievement).toHaveBeenCalled();
+  });
+
+  it('should handle ngOnDestroy when audioContext is closed', () => {
+    const closedAudioContext = { ...mockAudioContext, state: 'closed', close: jest.fn() };
+    (component as any).audioContext = closedAudioContext;
+    component.ngOnDestroy();
+    expect(closedAudioContext.close).not.toHaveBeenCalled();
+  });
+
+  it('should handle ngOnDestroy when speechSynthesis is missing', () => {
+    const originalSpeechSynthesis = globalThis.speechSynthesis;
+    (globalThis as any).speechSynthesis = undefined;
+    component.ngOnDestroy();
+    expect(mockAchievementService.activeAchievement).toHaveBeenCalled();
+    (globalThis as any).speechSynthesis = originalSpeechSynthesis;
+  });
+
+  it('should use webkitAudioContext as fallback', () => {
+    const originalAudioContext = (globalThis as any).AudioContext;
+    const originalWebkitAudioContext = (globalThis as any).webkitAudioContext;
+    (globalThis as any).AudioContext = undefined;
+    (globalThis as any).webkitAudioContext = jest.fn().mockImplementation(() => mockAudioContext);
+
+    component.playForceSound();
+
+    expect((globalThis as any).webkitAudioContext).toHaveBeenCalled();
+    expect(mockAudioContext.createOscillator).toHaveBeenCalled();
+
+    (globalThis as any).webkitAudioContext = originalWebkitAudioContext;
+    (globalThis as any).AudioContext = originalAudioContext;
+  });
+
+  it('should return early in playForceSound if no AudioContext is available', () => {
+    const originalAudioContext = (globalThis as any).AudioContext;
+    (globalThis as any).AudioContext = undefined;
+    (globalThis as any).webkitAudioContext = undefined;
+
+    component.playForceSound();
+
+    expect(mockAudioContext.createOscillator).not.toHaveBeenCalled();
+
+    (globalThis as any).AudioContext = originalAudioContext;
+  });
 });
