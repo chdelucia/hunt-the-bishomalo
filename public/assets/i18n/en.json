@@ -358,7 +358,8 @@
     "disclaimerTag": "#ShouldHaveStudied",
     "disclaimer2": "Items cannot be accumulated. We do not refund money.",
     "purchaseMessageNotEnoughCoins": "You don't have enough coins!",
-    "purchaseMessageSuccess": "You bought {{productName}}!"
+    "purchaseMessageSuccess": "You bought {{productName}}!",
+    "quantity": "x{{count}}"
   },
   "storyPage": {
     "chapterPrefix": "CHAPTER ",

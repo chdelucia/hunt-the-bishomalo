@@ -22,11 +22,14 @@ export interface BossState {
   gameOver: boolean;
 }
 
+const DEFAULT_GRID_SIZE = 5;
+const DEFAULT_BOSS_PARTS = 5;
+
 const initialState: BossState = {
-  gridSize: 5,
+  gridSize: DEFAULT_GRID_SIZE,
   grid: [],
-  bossParts: 5,
-  bossRemaining: 5,
+  bossParts: DEFAULT_BOSS_PARTS,
+  bossRemaining: DEFAULT_BOSS_PARTS,
   playerLives: 3,
   message: '',
   gameOver: false,
@@ -61,8 +64,8 @@ export const BossStore = signalStore(
           gameSound.stop();
           gameSound.playSound(GameSound.BATTLE, false);
 
-          const gridSize = 5;
-          const bossParts = 5;
+          const gridSize = DEFAULT_GRID_SIZE;
+          const bossParts = DEFAULT_BOSS_PARTS;
           const grid = Array.from({ length: gridSize }, (_, x) =>
             Array.from({ length: gridSize }, (_, y) => ({
               x,

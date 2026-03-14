@@ -15,6 +15,8 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
   styleUrl: './shop.component.scss',
 })
 export class ShopComponent implements OnDestroy {
+  readonly MIN_SHOP_PRICE = 60;
+
   private readonly baseProducts: Product[] = [
     {
       effect: 'heart',

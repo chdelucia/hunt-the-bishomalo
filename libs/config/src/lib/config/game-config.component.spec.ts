@@ -51,7 +51,7 @@ describe('GameConfigComponent', () => {
 
   it('should initialize with default form values', () => {
     expect(component.configForm.value).toEqual({
-      player: 'Kukuxumushu',
+      player: 'charName.default',
       size: 1,
       selectedChar: Chars.DEFAULT,
       difficulty: DifficultyTypes.EASY,

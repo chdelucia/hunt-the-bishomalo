@@ -358,7 +358,8 @@
     "disclaimerTag": "#HaberEstudiado",
     "disclaimer2": "Los objetos no se pueden acumular. No devolvemos el dinero.",
     "purchaseMessageNotEnoughCoins": "¡No tienes suficientes monedas!",
-    "purchaseMessageSuccess": "¡Has comprado {{productName}}!"
+    "purchaseMessageSuccess": "¡Has comprado {{productName}}!",
+    "quantity": "x{{count}}"
   },
   "product": {
     "heart": {
