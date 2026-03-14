@@ -1,11 +1,15 @@
-import { inject } from '@angular/core';
+import { inject, isDevMode } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { RouteTypes } from '@hunt-the-bishomalo/data';
 
 export const secretGuard: CanActivateFn = () => {
   const router = inject(Router);
 
-  const nav = router.getCurrentNavigation();
+  if (isDevMode()) {
+    return true;
+  }
+
+  const nav = router.currentNavigation();
   const cameFromSecretPath = nav?.extras?.state?.['fromSecretPath'];
 
   if (cameFromSecretPath) {
