@@ -24,8 +24,8 @@ export class AppComponent {
   }
 
   constructor() {
-    if (isDevMode() || (window as unknown as { Cypress: unknown }).Cypress) {
-      (window as unknown as { gameStore: unknown }).gameStore = this.game;
+    if (isDevMode() || (globalThis as unknown as { Cypress: unknown }).Cypress) {
+      (globalThis as unknown as { gameStore: unknown }).gameStore = this.game;
     }
   }
 }

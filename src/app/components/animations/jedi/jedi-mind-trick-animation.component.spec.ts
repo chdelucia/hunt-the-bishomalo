@@ -41,9 +41,9 @@ describe('JediMindTrickAnimationComponent', () => {
   };
 
   beforeEach(async () => {
-    (window as any).AudioContext = jest.fn().mockImplementation(() => mockAudioContext);
-    (window as any).speechSynthesis = mockSpeechSynthesis;
-    (window as any).SpeechSynthesisUtterance = jest.fn();
+    (globalThis as any).AudioContext = jest.fn().mockImplementation(() => mockAudioContext);
+    (globalThis as any).speechSynthesis = mockSpeechSynthesis;
+    (globalThis as any).SpeechSynthesisUtterance = jest.fn();
     jest.useFakeTimers();
 
     await TestBed.configureTestingModule({

@@ -62,16 +62,16 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
     if (this.audioContext && this.audioContext.state !== 'closed') {
       this.audioContext.close();
     }
-    if (window.speechSynthesis) {
-      window.speechSynthesis.cancel();
+    if (globalThis.speechSynthesis) {
+      globalThis.speechSynthesis.cancel();
     }
 
     this.achieveService.activeAchievement(AchieveTypes.JEDI);
   }
 
   playForceSound(): void {
-    this.audioContext = new (window.AudioContext ||
-      (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
+    this.audioContext = new (globalThis.AudioContext ||
+      (globalThis as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
     if (!this.audioContext) return;
 
     const oscillator = this.audioContext.createOscillator();
@@ -117,7 +117,7 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
         utterance.rate = 0.6;
         utterance.pitch = 0.7;
         utterance.volume = volume;
-        window.speechSynthesis.speak(utterance);
+        globalThis.speechSynthesis.speak(utterance);
       }, delay),
     );
   }

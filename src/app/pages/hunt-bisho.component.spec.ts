@@ -60,7 +60,7 @@ describe('HuntBishoComponent', () => {
   let fixture: ComponentFixture<HuntBishoComponent>;
 
   beforeEach(async () => {
-    jest.spyOn(window, 'Audio').mockImplementation(() => {
+    jest.spyOn(globalThis, 'Audio').mockImplementation(() => {
       return {
         play: jest.fn(),
         pause: jest.fn(),
