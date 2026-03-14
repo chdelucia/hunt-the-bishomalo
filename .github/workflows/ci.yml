@@ -10,44 +10,35 @@ permissions:
   contents: write
 
 env:
-  NODE_VERSION: '20'
-  CACHE_DEPENDENCY_PATH: bun.lock
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    outputs:
-      cache-key: ${{ steps.cache-key.outputs.key }}
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: Generate cache key
-        id: cache-key
-        run: echo "key=${{ runner.os }}-bun-${{ env.NODE_VERSION }}-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}" >> $GITHUB_OUTPUT
 
   install:
     runs-on: ubuntu-latest
-    needs: setup
-    outputs:
-      cache-hit: ${{ steps.npm-cache.outputs.cache-hit }}
     steps:
       - uses: actions/checkout@v6
 
       - uses: oven-sh/setup-bun@v2
 
-      - name: Restore node_modules cache
-        id: npm-cache
-        uses: actions/cache@v5
+      - uses: actions/cache@v5
         with:
-          path: node_modules
-          key: ${{ runner.os }}-bun-${{ env.NODE_VERSION }}-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
-          restore-keys: |
-            ${{ runner.os }}-bun-${{ env.NODE_VERSION }}-
+          path: |
+            node_modules
+            ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
 
       - name: Install dependencies
-        if: steps.npm-cache.outputs.cache-hit != 'true'
         run: bun install --frozen-lockfile
+
+      - name: Install Cypress
+        run: bun x cypress install
+
+      - name: Cache Cypress binary
+        uses: actions/cache@v5
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-cache-${{ runner.os }}-${{ hashFiles('bun.lock') }}
 
       - name: Verify Nx CLI
         run: bun x nx --version
@@ -61,11 +52,14 @@ jobs:
 
       - uses: oven-sh/setup-bun@v2
 
-      - name: Restore node_modules cache
-        uses: actions/cache@v5
+      - uses: actions/cache@v5
         with:
-          path: node_modules
-          key: ${{ runner.os }}-bun-${{ env.NODE_VERSION }}-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
+          path: |
+            node_modules
+            ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+
+      - run: bun install --frozen-lockfile
 
       - name: Validate commit messages
         run: |
@@ -83,11 +77,13 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: oven-sh/setup-bun@v2
-      - name: Restore node_modules cache
-        uses: actions/cache@v5
+      - uses: actions/cache@v5
         with:
-          path: node_modules
-          key: ${{ runner.os }}-bun-${{ env.NODE_VERSION }}-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
+          path: |
+            node_modules
+            ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+      - run: bun install --frozen-lockfile
       - name: Lint (Nx monorepo)
         run: bun x nx run-many -t lint --parallel
 
@@ -97,11 +93,13 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: oven-sh/setup-bun@v2
-      - name: Restore node_modules cache
-        uses: actions/cache@v5
+      - uses: actions/cache@v5
         with:
-          path: node_modules
-          key: ${{ runner.os }}-bun-${{ env.NODE_VERSION }}-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
+          path: |
+            node_modules
+            ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+      - run: bun install --frozen-lockfile
       - name: Unit Tests (coverage)
         run: bun x nx run-many -t test --coverage --coverageReporters=lcov --parallel
       - name: Upload coverage artifact
@@ -135,18 +133,18 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: oven-sh/setup-bun@v2
-      - name: Restore node_modules cache
-        uses: actions/cache@v5
+      - uses: actions/cache@v5
         with:
-          path: node_modules
-          key: ${{ runner.os }}-bun-${{ env.NODE_VERSION }}-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
-      - name: Cache Cypress binary
+          path: |
+            node_modules
+            ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+      - run: bun install --frozen-lockfile
+      - name: Restore Cypress binary cache
         uses: actions/cache@v5
         with:
           path: ~/.cache/Cypress
-          key: cypress-cache-${{ runner.os }}-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
-          restore-keys: |
-            cypress-cache-${{ runner.os }}-
+          key: cypress-cache-${{ runner.os }}-${{ hashFiles('bun.lock') }}
       - name: Install Cypress if needed
         run: bun x cypress install
       - name: Run Nx E2E (non-blocking)
@@ -159,11 +157,13 @@ jobs:
     steps:
       - uses: actions/checkout@v6
       - uses: oven-sh/setup-bun@v2
-      - name: Restore node_modules cache
-        uses: actions/cache@v5
+      - uses: actions/cache@v5
         with:
-          path: node_modules
-          key: ${{ runner.os }}-bun-${{ env.NODE_VERSION }}-${{ hashFiles(env.CACHE_DEPENDENCY_PATH) }}
+          path: |
+            node_modules
+            ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
+      - run: bun install --frozen-lockfile
       - name: Build production (Nx)
         run: bun x nx run-many -t build --configuration=production
 
@@ -176,6 +176,12 @@ jobs:
         with:
           fetch-depth: 0
       - uses: oven-sh/setup-bun@v2
+      - uses: actions/cache@v5
+        with:
+          path: |
+            node_modules
+            ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
       - name: Install dependencies
         run: bun install --frozen-lockfile
       - name: Configure Git
