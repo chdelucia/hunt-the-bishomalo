@@ -18,7 +18,7 @@ interface ToastData {
 export class ToastComponent implements OnDestroy {
   private readonly service = inject(ACHIEVEMENT_SERVICE);
   private idCounter = 0;
-  toasts = signal<ToastData[]>([]);
+  readonly toasts = signal<ToastData[]>([]);
   private readonly toastTimeouts = new Map<number, ReturnType<typeof setTimeout>>();
 
   constructor() {

@@ -12,7 +12,7 @@ import { RouteTypes } from '@hunt-the-bishomalo/data';
   styleUrl: './menu.component.scss',
 })
 export class MenuComponent {
-  isOpen = signal(false);
+  readonly isOpen = signal(false);
   private readonly gameEngine = inject(GameEngineService);
   private readonly router = inject(Router);
 

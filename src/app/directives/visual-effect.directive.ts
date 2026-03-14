@@ -5,7 +5,7 @@ import { Directive, ElementRef, Renderer2, inject, input, effect } from '@angula
   standalone: true,
 })
 export class VisualEffectDirective {
-  perception = input<string>('', { alias: 'appVisualEffect' });
+  readonly perception = input<string>('', { alias: 'appVisualEffect' });
 
   private readonly el = inject(ElementRef);
   private readonly renderer = inject(Renderer2);

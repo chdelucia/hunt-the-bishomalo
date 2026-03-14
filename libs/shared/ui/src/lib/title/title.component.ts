@@ -11,5 +11,5 @@ import { TranslocoModule } from '@jsverse/transloco';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TitleComponent {
-  blackout = input.required<boolean>();
+  readonly blackout = input.required<boolean>();
 }

@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameControlsComponent {
-  isVisible = signal(false);
+  readonly isVisible = signal(false);
 
   private readonly game = inject(GameEngineService);
   private readonly router = inject(Router);

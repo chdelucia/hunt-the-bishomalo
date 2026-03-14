@@ -26,7 +26,7 @@ export class CharactersComponent {
     default: AchieveTypes.PICKGOLD,
   };
 
-  selectedChar = signal<Chars | null>(null);
+  readonly selectedChar = signal<Chars | null>(null);
 
   onClick(): void {
     const selected = this.selectedChar();

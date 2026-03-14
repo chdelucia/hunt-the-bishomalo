@@ -34,7 +34,7 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
 export class HuntBishoComponent {
   readonly game = inject(GameStore);
 
-  deathByWumpus = computed(() => {
+  readonly deathByWumpus = computed(() => {
     const gameInstance = this.game;
     return gameInstance?.message() === '¡El Wumpus te devoró!';
   });

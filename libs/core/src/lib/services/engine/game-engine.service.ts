@@ -23,7 +23,7 @@ import { PerceptionService } from './perception.service';
 
 @Injectable({ providedIn: 'root' })
 export class GameEngineService {
-  store = inject(GameStore);
+  readonly store = inject(GameStore);
   private readonly _settings = this.store.settings;
   private readonly _hunter = this.store.hunter;
   private readonly sound = inject(GameSoundService);
