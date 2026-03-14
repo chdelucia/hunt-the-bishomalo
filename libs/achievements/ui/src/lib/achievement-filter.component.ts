@@ -10,7 +10,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AchievementFilterComponent {
-  currentFilter = input.required<'all' | 'unlocked' | 'locked'>();
+  readonly currentFilter = input.required<'all' | 'unlocked' | 'locked'>();
   filterChanged = output<'all' | 'unlocked' | 'locked'>();
 
   setFilter(filter: 'all' | 'unlocked' | 'locked'): void {

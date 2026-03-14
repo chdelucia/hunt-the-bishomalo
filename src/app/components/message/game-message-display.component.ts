@@ -27,7 +27,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameMessageDisplayComponent {
-  message = input.required<string>();
-  hasMessage = input.required<boolean>();
-  bolaDrac = input.required<boolean>();
+  readonly message = input.required<string>();
+  readonly hasMessage = input.required<boolean>();
+  readonly bolaDrac = input.required<boolean>();
 }

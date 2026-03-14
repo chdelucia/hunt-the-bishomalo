@@ -360,6 +360,7 @@
     "purchaseMessageNotEnoughCoins": "¡No tienes suficientes monedas!",
     "purchaseMessageSuccess": "¡Has comprado {{productName}}!",
     "quantity": "x{{count}}"
+    "purchaseMessageAlreadyOwned": "¡Ya tienes este objeto!",
   },
   "product": {
     "heart": {

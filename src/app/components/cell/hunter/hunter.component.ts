@@ -12,13 +12,13 @@ import { Chars, Direction } from '@hunt-the-bishomalo/data';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HunterComponent {
-  direction = input.required<Direction>();
-  arrows = input.required<number>();
-  selectedChar = input.required<string>();
-  hasGold = input.required<boolean>();
-  size = input.required<number>();
-  hasLantern = input.required<boolean>();
-  hasShield = input.required<boolean>();
+  readonly direction = input.required<Direction>();
+  readonly arrows = input.required<number>();
+  readonly selectedChar = input.required<string>();
+  readonly hasGold = input.required<boolean>();
+  readonly size = input.required<number>();
+  readonly hasLantern = input.required<boolean>();
+  readonly hasShield = input.required<boolean>();
 
   readonly rotation = computed(() => {
     switch (this.direction()) {

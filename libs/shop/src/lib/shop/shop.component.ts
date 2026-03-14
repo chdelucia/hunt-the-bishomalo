@@ -74,10 +74,10 @@ export class ShopComponent implements OnDestroy {
   readonly gold = this.gameStore.gold;
   readonly inventory = this.gameStore.inventory;
 
-  message = signal('');
+  readonly message = signal('');
   private messageTimeout?: ReturnType<typeof setTimeout>;
 
-  productos = computed(() => {
+  readonly productos = computed(() => {
     /**
      * Security Hotspot Justification:
      * Math.random() is used here for game mechanics (randomizing shop inventory).
@@ -94,6 +94,7 @@ export class ShopComponent implements OnDestroy {
     const { price, effect } = product;
     const lives = this.gameStore.lives();
 
+    const isAlreadyOwned = this.isOwned(product);
     const canBuy = gold >= price;
 
     if (this.messageTimeout) clearTimeout(this.messageTimeout);
@@ -101,6 +102,11 @@ export class ShopComponent implements OnDestroy {
 
     if (!canBuy) {
       this.message.set(this.transloco.translate('shop.purchaseMessageNotEnoughCoins'));
+      return;
+    }
+
+    if (isAlreadyOwned) {
+      this.message.set(this.transloco.translate('shop.purchaseMessageAlreadyOwned'));
       return;
     }
 
@@ -115,6 +121,13 @@ export class ShopComponent implements OnDestroy {
     this.message.set(
       this.transloco.translate('shop.purchaseMessageSuccess', { productName }),
     );
+  }
+
+  isOwned(product: Product): boolean {
+    if (product.effect === 'heart') {
+      return false;
+    }
+    return this.inventory().some((item) => item.effect === product.effect);
   }
 
   nextLevel(): void {

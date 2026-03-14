@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.7.6](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.7.5...v7.7.6) (2026-03-14)
+
+
+### Bug Fixes
+
+* **shop:** prevent stacking of non-consumable items ([9d3b696](https://github.com/chdelucia/hunt-the-bishomalo/commit/9d3b69602dfe666daef50029304840124712545c))
+
 ### [7.7.5](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.7.4...v7.7.5) (2026-03-14)
 
 

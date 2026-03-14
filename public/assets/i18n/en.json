@@ -360,6 +360,7 @@
     "purchaseMessageNotEnoughCoins": "You don't have enough coins!",
     "purchaseMessageSuccess": "You bought {{productName}}!",
     "quantity": "x{{count}}"
+    "purchaseMessageAlreadyOwned": "You already own this item!",
   },
   "storyPage": {
     "chapterPrefix": "CHAPTER ",

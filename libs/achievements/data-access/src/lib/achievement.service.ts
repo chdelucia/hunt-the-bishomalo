@@ -13,9 +13,9 @@ import { Achievement, AchieveTypes, IAchievementService } from '@hunt-the-bishom
   providedIn: 'root',
 })
 export class AchievementService implements IAchievementService {
-  achievements = ACHIEVEMENTS_LIST.map((ach) => ({ ...ach }));
+  readonly achievements = ACHIEVEMENTS_LIST.map((ach) => ({ ...ach }));
   private readonly storageKey = 'hunt_the_bishomalo_achievements';
-  completed = signal<Achievement | undefined>(undefined);
+  readonly completed = signal<Achievement | undefined>(undefined);
 
   private readonly gameStore = inject(GameStore);
   private readonly gameSound = inject(GameSoundService);
