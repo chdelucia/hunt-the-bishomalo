@@ -74,7 +74,11 @@
             </svg>
           </div>
           <div class="creditos-mensaje">
-            <p [innerHTML]="'credits.quoteSolo' | transloco"></p>
+            <p>
+              {{ 'credits.quoteSolo' | transloco }}
+              <br />
+              {{ 'credits.quoteSoloAuthor' | transloco }}
+            </p>
           </div>
           <button class="boton-creditos red" (click)="newGame()">
             {{ 'credits.newGameButton' | transloco }}

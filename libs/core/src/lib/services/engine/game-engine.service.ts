@@ -225,6 +225,11 @@ export class GameEngineService {
 
   private getDrop(cell: Cell): void {
     const { luck } = this._settings().difficulty;
+    /**
+     * Security Hotspot Justification:
+     * Math.random() is used here for game mechanics (random item drop calculation).
+     * It does not involve any security-sensitive operations.
+     */
     const roll = Math.random() * 100;
     if (roll < 2) cell.content = CELL_CONTENTS.extrawumpus;
     else if (roll < 20 + luck) cell.content = CELL_CONTENTS.extraheart;
@@ -314,6 +319,11 @@ export class GameEngineService {
   }
 
   private applyBlackoutChance(): boolean {
+    /**
+     * Security Hotspot Justification:
+     * Math.random() is used here for game mechanics (random blackout chance).
+     * It does not involve any security-sensitive operations.
+     */
     return Math.random() < 0.08;
   }
 }

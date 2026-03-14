@@ -44,6 +44,11 @@ export class VisualEffectDirective {
     for (let i = 0; i < 8; i++) {
       const cloud = this.renderer.createElement('div');
       this.renderer.addClass(cloud, 'cloud');
+      /**
+       * Security Hotspot Justification:
+       * Math.random() is used here for visual effects (randomizing cloud positions and sizes).
+       * It does not involve any security-sensitive operations.
+       */
       this.setStyles(cloud, {
         width: `${50 + Math.random() * 80}px`,
         height: `${30 + Math.random() * 40}px`,
