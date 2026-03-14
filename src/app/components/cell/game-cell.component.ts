@@ -14,7 +14,7 @@ import { HunterComponent } from './hunter/hunter.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameCellComponent {
-  cell = input.required<Cell>();
+  readonly cell = input.required<Cell>();
 
   readonly gameStore = inject(GameStore);
 

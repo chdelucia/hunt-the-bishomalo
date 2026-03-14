@@ -10,10 +10,10 @@ import { AchieveTypes, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achieveme
   styleUrls: ['./jedi-mind-trick-animation.component.scss'],
 })
 export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
-  audioContainer = viewChild<ElementRef>('audioContainer');
+  readonly audioContainer = viewChild<ElementRef>('audioContainer');
 
-  step = signal(1);
-  forceWaves = signal<number[]>([]);
+  readonly step = signal(1);
+  readonly forceWaves = signal<number[]>([]);
 
   private audioContext: AudioContext | null = null;
   private readonly timers: ReturnType<typeof setTimeout>[] = [];

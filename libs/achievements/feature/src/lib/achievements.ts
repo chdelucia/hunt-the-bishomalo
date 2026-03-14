@@ -24,10 +24,10 @@ import {
 export class AchievementsComponent {
   private readonly achieveService = inject(ACHIEVEMENT_SERVICE);
 
-  filter = signal<'all' | 'unlocked' | 'locked'>('all');
-  achievements = signal<Achievement[]>(this.achieveService.achievements);
+  readonly filter = signal<'all' | 'unlocked' | 'locked'>('all');
+  readonly achievements = signal<Achievement[]>(this.achieveService.achievements);
 
-  filteredAchievements = computed(() => {
+  readonly filteredAchievements = computed(() => {
     const currentFilter = this.filter();
     return this.achievements().filter((achievement) => {
       if (currentFilter === 'all') return true;
@@ -37,8 +37,8 @@ export class AchievementsComponent {
     });
   });
 
-  unlockedCount = computed(() => this.achievements().filter((a) => a.unlocked).length);
-  percentage = computed(() => {
+  readonly unlockedCount = computed(() => this.achievements().filter((a) => a.unlocked).length);
+  readonly percentage = computed(() => {
     const total = this.achievements().length;
     if (total === 0) return 0;
     return Math.round((this.unlockedCount() / total) * 100);

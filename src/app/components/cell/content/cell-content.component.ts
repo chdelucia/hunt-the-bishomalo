@@ -11,5 +11,5 @@ import { CellContent } from '@hunt-the-bishomalo/data';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CellContentComponent {
-  content = input.required<CellContent>();
+  readonly content = input.required<CellContent>();
 }

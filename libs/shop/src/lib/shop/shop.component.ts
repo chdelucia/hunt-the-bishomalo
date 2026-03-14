@@ -72,10 +72,10 @@ export class ShopComponent implements OnDestroy {
   readonly gold = this.gameStore.gold;
   readonly inventory = this.gameStore.inventory;
 
-  message = signal('');
+  readonly message = signal('');
   private messageTimeout?: ReturnType<typeof setTimeout>;
 
-  productos = computed(() => {
+  readonly productos = computed(() => {
     /**
      * Security Hotspot Justification:
      * Math.random() is used here for game mechanics (randomizing shop inventory).

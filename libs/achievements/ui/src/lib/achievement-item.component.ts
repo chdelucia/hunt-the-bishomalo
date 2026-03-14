@@ -12,7 +12,7 @@ import { Achievement } from '@hunt-the-bishomalo/achievements/api';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AchievementItemComponent {
-  achievement = input.required<Achievement>();
+  readonly achievement = input.required<Achievement>();
 
   readonly rarityClasses: Record<string, string> = {
     common: 'rarity-common',
