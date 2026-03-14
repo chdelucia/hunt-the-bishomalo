@@ -11,5 +11,5 @@ export class GameLivesComponent {
   lives = input.required<number>();
   maxLives = input.required<number>();
 
-  livesArray = computed(() => Array(this.maxLives()).fill(0));
+  livesArray = computed(() => new Array(this.maxLives()).fill(0));
 }
