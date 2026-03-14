@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameLivesComponent } from './game-lives.component';
 
-describe('GameIvesComponent', () => {
+describe('GameLivesComponent', () => {
   let component: GameLivesComponent;
   let fixture: ComponentFixture<GameLivesComponent>;
 
@@ -19,5 +19,9 @@ describe('GameIvesComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have correct livesArray length matching maxLives input', () => {
+    expect(component.livesArray().length).toBe(component.maxLives());
   });
 });
