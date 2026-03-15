@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ShopComponent } from './shop.component';
 import { Router } from '@angular/router';
-import { GameEngineService } from '@hunt-the-bishomalo/core/services';
+import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
 import { Product, RouteTypes } from '@hunt-the-bishomalo/data';
 import { CommonModule } from '@angular/common';
 import { GameStore } from '@hunt-the-bishomalo/core/store';

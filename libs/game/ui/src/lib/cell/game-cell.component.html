@@ -1,0 +1,17 @@
+@let content = cell().content;
+
+<div class="cell" [class.visited]="cell().visited">
+  @if (showElements() && content) {
+    <lib-cell-content [content]="content" />
+  } @else if (showHunter()) {
+    <lib-hunter
+      [direction]="gameStore.hunter().direction"
+      [arrows]="gameStore.arrows()"
+      [selectedChar]="settings().selectedChar"
+      [hasGold]="gameStore.hasGold()"
+      [size]="settings().size"
+      [hasLantern]="!!hasLantern()"
+      [hasShield]="!!hasShield()"
+    />
+  }
+</div>

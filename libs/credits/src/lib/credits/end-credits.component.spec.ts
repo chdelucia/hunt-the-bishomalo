@@ -2,7 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EndCreditsComponent } from './end-credits.component';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { GameEngineService, GameSoundService } from '@hunt-the-bishomalo/core/services';
+import { GameSoundService } from '@hunt-the-bishomalo/core/services';
+import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
 
 const mockGameEngineService = {

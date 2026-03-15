@@ -13,7 +13,8 @@ export const appRoutes: Route[] = [
   {
     path: RouteTypes.JEDI,
     canActivate: [secretGuard],
-    loadComponent: () => import('./components').then((mod) => mod.JediMindTrickAnimationComponent),
+    loadComponent: () =>
+      import('@hunt-the-bishomalo/game/feature').then((mod) => mod.JediMindTrickAnimationComponent),
     title: 'Jedi secreto | Bisho malo',
   },
   {
@@ -64,7 +65,7 @@ export const appRoutes: Route[] = [
   {
     path: RouteTypes.HOME,
     canActivate: [homeGuard],
-    loadComponent: () => import('./pages').then((mod) => mod.HuntBishoComponent),
+    loadChildren: () => import('@hunt-the-bishomalo/game/shell').then((mod) => mod.gameRoutes),
     title: 'Game Bisho malo',
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },

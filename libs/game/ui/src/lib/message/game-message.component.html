@@ -1,0 +1,22 @@
+<section class="game-message" aria-live="polite">
+  @if (lives() <= 0) {
+    <p>{{ 'message.gameOver' | transloco }}</p>
+  } @else {
+    <lib-game-message-display
+      [message]="message()"
+      [hasMessage]="_hasMessage()"
+      [bolaDrac]="_bolaDrac()"
+    />
+  }
+
+  <lib-game-message-actions
+    [lives]="lives()"
+    [shouldShowRetry]="_shouldShowRetry()"
+    [shouldShowNextLevel]="_shouldShowNextLevel()"
+    [showCongrats]="_showCongrats()"
+    (newGame)="newGame()"
+    (restartGame)="restartGame()"
+    (nextLevel)="nextLevel()"
+    (goToBoss)="goToBoss()"
+  />
+</section>
