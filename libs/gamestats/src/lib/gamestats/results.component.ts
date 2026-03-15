@@ -15,22 +15,22 @@ import { TranslocoModule } from '@jsverse/transloco';
   styleUrl: './results.component.scss',
 })
 export class ResultsComponent {
-  tabActiva = signal<'general' | 'niveles'>('general');
+  readonly tabActiva = signal<'general' | 'niveles'>('general');
   leaderboard: ScoreEntry[] = [];
   unlockedAchievements = 0;
 
-  gameStore = inject(GameStore);
-  leaderboardService = inject(LeaderboardService);
-  achieve = inject(ACHIEVEMENT_SERVICE);
-  router = inject(Router);
-  routeSnapshot = inject(ActivatedRoute);
+  private readonly gameStore = inject(GameStore);
+  private readonly leaderboardService = inject(LeaderboardService);
+  private readonly achieve = inject(ACHIEVEMENT_SERVICE);
+  private readonly router = inject(Router);
+  private readonly routeSnapshot = inject(ActivatedRoute);
 
   constructor() {
     this.unlockedAchievements = this.achieve.achievements.filter((item) => item.unlocked).length;
     this.leaderboard = this.leaderboardService._leaderboard;
   }
 
-  estadisticasGenerales = computed(() => {
+  readonly estadisticasGenerales = computed(() => {
     const totalSteps = this.leaderboard.reduce((sum, e) => sum + e.steps, 0);
     const totalDeaths = this.leaderboard.reduce((sum, e) => sum + e.deads, 0);
     const totalArrows = this.leaderboard.reduce((sum, e) => sum + e.wumpusKilled, 0);
@@ -52,11 +52,11 @@ export class ResultsComponent {
     };
   });
 
-  nivelMasRapido = computed(() => {
+  readonly nivelMasRapido = computed(() => {
     return [...this.leaderboard].sort((a, b) => a.timeInSeconds - b.timeInSeconds)[0];
   });
 
-  nivelMenosPasos = computed(() => {
+  readonly nivelMenosPasos = computed(() => {
     return [...this.leaderboard].sort((a, b) => a.steps - b.steps)[0];
   });
 

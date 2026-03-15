@@ -10,7 +10,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AchievementProgressComponent {
-  unlockedCount = input.required<number>();
-  totalCount = input.required<number>();
-  percentage = input.required<number>();
+  readonly unlockedCount = input.required<number>();
+  readonly totalCount = input.required<number>();
+  readonly percentage = input.required<number>();
 }

@@ -21,8 +21,8 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppWumpusAttackAnimationComponent implements OnInit {
-  step = signal(1);
-  closeAnimation = output<void>();
+  readonly step = signal(1);
+  readonly closeAnimation = output<void>();
 
   readonly gameStore = inject(GameStore);
   private readonly destroyRef = inject(DestroyRef);
@@ -43,7 +43,7 @@ export class AppWumpusAttackAnimationComponent implements OnInit {
     });
   }
 
-  getPlayerLeft = computed(() => {
+  readonly getPlayerLeft = computed(() => {
     switch (this.step()) {
       case 1:
         return '-100px';
@@ -58,7 +58,7 @@ export class AppWumpusAttackAnimationComponent implements OnInit {
     }
   });
 
-  getWumpusScale = computed(() => {
+  readonly getWumpusScale = computed(() => {
     switch (this.step()) {
       case 1:
         return 1;

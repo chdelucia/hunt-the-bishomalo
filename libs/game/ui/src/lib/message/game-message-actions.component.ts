@@ -76,10 +76,10 @@ import { TranslocoModule } from '@jsverse/transloco';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameMessageActionsComponent {
-  lives = input.required<number>();
-  shouldShowRetry = input.required<boolean>();
-  shouldShowNextLevel = input.required<boolean>();
-  showCongrats = input.required<boolean>();
+  readonly lives = input.required<number>();
+  readonly shouldShowRetry = input.required<boolean>();
+  readonly shouldShowNextLevel = input.required<boolean>();
+  readonly showCongrats = input.required<boolean>();
 
   restartGame = output();
   nextLevel = output();

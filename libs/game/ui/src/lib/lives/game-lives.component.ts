@@ -8,8 +8,8 @@ import { Component, computed, input } from '@angular/core';
   styleUrl: './game-lives.component.scss',
 })
 export class GameLivesComponent {
-  lives = input.required<number>();
-  maxLives = input.required<number>();
+  readonly lives = input.required<number>();
+  readonly maxLives = input.required<number>();
 
-  livesArray = computed(() => new Array(this.maxLives()).fill(0));
+  readonly livesArray = computed(() => new Array(this.maxLives()).fill(0));
 }
