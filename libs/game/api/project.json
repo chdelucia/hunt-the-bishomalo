@@ -1,0 +1,13 @@
+{
+  "name": "game-api",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/game/api/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["scope:game", "type:api"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

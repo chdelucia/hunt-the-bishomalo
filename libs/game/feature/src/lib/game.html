@@ -1,0 +1,47 @@
+@let board = game.board(); @let boardSize = board.length; @let isAlive = game.isAlive();
+@let hasWon = game.hasWon(); @let settings = game.settings();
+
+<main [libVisualEffect]="game.message()" class="main-container">
+  <lib-title [blackout]="settings.blackout || false" />
+
+  @if (settings?.blackout && isAlive && !hasWon) {
+    <lib-blackout />
+  }
+  <section class="board">
+    @for (row of board; track $index; let rowIndex = $index) {
+      <div class="row">
+        @for (cell of row; track $index) {
+          <lib-game-cell
+            [class.escape]="!rowIndex && $first && game.hasGold()"
+            class="size-{{ boardSize }}"
+            [cell]="cell"
+          />
+        }
+      </div>
+    }
+
+    @if (deathByWumpus()) {
+      @defer (on timer(100ms)) {
+        <lib-wumpus-attack-animation (closeAnimation)="handleclose()" />
+      }
+    }
+  </section>
+
+  <section class="player-info">
+    <lib-game-level [settings]="settings"></lib-game-level>
+    <lib-game-lives
+      [lives]="game.lives()"
+      [maxLives]="settings.difficulty.maxLives"
+    ></lib-game-lives>
+  </section>
+
+  <lib-game-message
+    [message]="game.message()"
+    [isAlive]="isAlive"
+    [hasWon]="hasWon"
+    [settings]="settings"
+    [lives]="game.lives()"
+  />
+
+  <lib-mobile-controls [isFinish]="hasWon || !isAlive" />
+</main>

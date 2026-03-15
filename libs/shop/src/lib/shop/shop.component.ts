@@ -2,7 +2,7 @@ import { Component, computed, inject, OnDestroy, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { GameEngineService } from '@hunt-the-bishomalo/core/services';
+import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
 import { Product, RouteTypes } from '@hunt-the-bishomalo/data';
 import { Router } from '@angular/router';
 import { GameStore } from '@hunt-the-bishomalo/core/store';

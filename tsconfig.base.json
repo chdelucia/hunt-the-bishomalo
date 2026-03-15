@@ -15,7 +15,11 @@
     "baseUrl": ".",
     "paths": {
       "@hunt-the-bishomalo/data": ["libs/shared/data/src/index.ts"],
-      "@hunt-the-bishomalo/game": ["libs/game/src/index.ts"],
+      "@hunt-the-bishomalo/game/api": ["libs/game/api/src/index.ts"],
+      "@hunt-the-bishomalo/game/data-access": ["libs/game/data-access/src/index.ts"],
+      "@hunt-the-bishomalo/game/feature": ["libs/game/feature/src/index.ts"],
+      "@hunt-the-bishomalo/game/ui": ["libs/game/ui/src/index.ts"],
+      "@hunt-the-bishomalo/game/shell": ["libs/game/shell/src/index.ts"],
       "@hunt-the-bishomalo/achievements/api": ["libs/achievements/api/src/index.ts"],
       "@hunt-the-bishomalo/achievements/data-access": ["libs/achievements/data-access/src/index.ts"],
       "@hunt-the-bishomalo/achievements/feature": ["libs/achievements/feature/src/index.ts"],
