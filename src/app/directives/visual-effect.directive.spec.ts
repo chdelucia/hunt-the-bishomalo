@@ -87,7 +87,14 @@ describe('VisualEffectDirective', () => {
     fixture.changeDetectorRef.detectChanges();
 
     layer = debugEl.nativeElement.querySelector('.effect-layer');
-    expect(layer.querySelectorAll('.cloud').length).toBe(0);
-    expect(layer.querySelectorAll('.sparkle').length).toBeGreaterThan(0);
+    const cloudLayer = Array.from(layer.children).find((child: any) =>
+      child.querySelector('.cloud')
+    ) as HTMLElement;
+    const sparkleLayer = Array.from(layer.children).find((child: any) =>
+      child.querySelector('.sparkle')
+    ) as HTMLElement;
+
+    expect(cloudLayer.style.display).toBe('none');
+    expect(sparkleLayer.style.display).not.toBe('none');
   });
 });

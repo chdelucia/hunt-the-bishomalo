@@ -10,6 +10,11 @@ export class VisualEffectDirective {
   private readonly el = inject(ElementRef);
   private readonly renderer = inject(Renderer2);
 
+  private container: HTMLElement | null = null;
+  private cloudsLayer: HTMLElement | null = null;
+  private stinkLayer: HTMLElement | null = null;
+  private sparklesLayer: HTMLElement | null = null;
+
   constructor() {
     effect(() => {
       const perceptionValue = this.perception();
@@ -18,37 +23,82 @@ export class VisualEffectDirective {
   }
 
   private updateEffects(perception: string): void {
-    this.clearEffects();
+    const hasBreeze = perception.includes('brisa') || perception.includes('breeze');
+    const hasStench = perception.includes('hedor') || perception.includes('stench');
+    const hasShine = perception.includes('brillo') || perception.includes('shine');
 
-    const container = this.renderer.createElement('div');
-    this.renderer.addClass(container, 'effect-layer');
-
-    if (perception.includes('brisa') || perception.includes('breeze')) {
-      this.addClouds(container);
+    if (!hasBreeze && !hasStench && !hasShine) {
+      this.removeBaseContainer();
+      return;
     }
 
-    if (perception.includes('hedor') || perception.includes('stench')) {
-      this.addStink(container);
+    if (!this.container) {
+      this.createBaseContainer();
     }
 
-    if (perception.includes('brillo') || perception.includes('shine')) {
-      this.addSparkles(container);
+    this.toggleLayer('clouds', hasBreeze);
+    this.toggleLayer('stink', hasStench);
+    this.toggleLayer('sparkles', hasShine);
+  }
+
+  private createBaseContainer(): void {
+    this.container = this.renderer.createElement('div');
+    this.renderer.addClass(this.container, 'effect-layer');
+    this.renderer.appendChild(this.el.nativeElement, this.container);
+  }
+
+  private removeBaseContainer(): void {
+    if (this.container) {
+      this.renderer.removeChild(this.el.nativeElement, this.container);
+      this.container = null;
+      this.cloudsLayer = null;
+      this.stinkLayer = null;
+      this.sparklesLayer = null;
+    }
+  }
+
+  private toggleLayer(type: 'clouds' | 'stink' | 'sparkles', show: boolean): void {
+    let layer = this.getLayer(type);
+
+    if (show && !layer) {
+      layer = this.createLayer(type);
+      this.setLayer(type, layer);
+      this.renderer.appendChild(this.container, layer);
     }
 
-    if (container.childNodes.length > 0) {
-      this.renderer.appendChild(this.el.nativeElement, container);
+    if (layer) {
+      if (show) {
+        this.renderer.removeStyle(layer, 'display');
+      } else {
+        this.renderer.setStyle(layer, 'display', 'none');
+      }
     }
+  }
+
+  private getLayer(type: 'clouds' | 'stink' | 'sparkles'): HTMLElement | null {
+    if (type === 'clouds') return this.cloudsLayer;
+    if (type === 'stink') return this.stinkLayer;
+    return this.sparklesLayer;
+  }
+
+  private setLayer(type: 'clouds' | 'stink' | 'sparkles', layer: HTMLElement): void {
+    if (type === 'clouds') this.cloudsLayer = layer;
+    else if (type === 'stink') this.stinkLayer = layer;
+    else this.sparklesLayer = layer;
+  }
+
+  private createLayer(type: 'clouds' | 'stink' | 'sparkles'): HTMLElement {
+    const layer = this.renderer.createElement('div');
+    if (type === 'clouds') this.addClouds(layer);
+    else if (type === 'stink') this.addStink(layer);
+    else this.addSparkles(layer);
+    return layer;
   }
 
   private addClouds(container: HTMLElement) {
     for (let i = 0; i < 8; i++) {
       const cloud = this.renderer.createElement('div');
       this.renderer.addClass(cloud, 'cloud');
-      /**
-       * Security Hotspot Justification:
-       * Math.random() is used here for visual effects (randomizing cloud positions and sizes).
-       * It does not involve any security-sensitive operations.
-       */
       this.setStyles(cloud, {
         width: `${50 + Math.random() * 80}px`,
         height: `${30 + Math.random() * 40}px`,
@@ -100,12 +150,5 @@ export class VisualEffectDirective {
 
   private camelToKebab(str: string): string {
     return str.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-  }
-
-  private clearEffects(): void {
-    const oldLayer = this.el.nativeElement.querySelector('.effect-layer');
-    if (oldLayer) {
-      this.renderer.removeChild(this.el.nativeElement, oldLayer);
-    }
   }
 }

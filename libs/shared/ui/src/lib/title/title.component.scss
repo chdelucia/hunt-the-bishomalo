@@ -11,8 +11,12 @@
   stroke-width: 2px;
   stroke-dasharray: 200;
   stroke-dashoffset: 200;
-  filter: drop-shadow(0 0 3px var(--color-green-accent))
-    drop-shadow(0 0 6px var(--color-green-accent));
+  /* Use text-shadow for a more performant glow effect if possible,
+     but since this is an SVG <text> with stroke, we'll keep a simpler filter
+     and use will-change to help the browser. */
+  filter: drop-shadow(0 0 2px var(--color-green-accent));
+  will-change: stroke-dashoffset, filter, stroke;
+
   animation:
     draw 2s ease-out forwards,
     glow 2s ease-in-out infinite alternate;
@@ -31,10 +35,10 @@
 @keyframes glow {
   0% {
     stroke: var(--color-green-accent);
-    filter: drop-shadow(0 0 3px var(--color-green-accent));
+    filter: drop-shadow(0 0 2px var(--color-green-accent));
   }
   100% {
     stroke: var(--color-neon);
-    filter: drop-shadow(0 0 5px var(--color-neon));
+    filter: drop-shadow(0 0 4px var(--color-neon));
   }
 }
