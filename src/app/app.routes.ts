@@ -65,8 +65,7 @@ export const appRoutes: Route[] = [
   {
     path: RouteTypes.HOME,
     canActivate: [homeGuard],
-    loadChildren: () =>
-      import('@hunt-the-bishomalo/game/shell').then((mod) => mod.gameRoutes),
+    loadChildren: () => import('@hunt-the-bishomalo/game/shell').then((mod) => mod.gameRoutes),
     title: 'Game Bisho malo',
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
