@@ -1,5 +1,3 @@
-import { Cell } from './cell.model';
-
 export interface Achievement {
   id: string;
   title: string;
