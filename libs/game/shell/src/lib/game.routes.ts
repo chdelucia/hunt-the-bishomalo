@@ -1,9 +1,13 @@
 import { Route } from '@angular/router';
-import { Game } from '@hunt-the-bishomalo/game/feature';
 
 export const gameRoutes: Route[] = [
   {
     path: '',
-    component: Game,
+    loadComponent: () => import('@hunt-the-bishomalo/game/feature').then((m) => m.Game),
+  },
+  {
+    path: 'secret',
+    loadComponent: () =>
+      import('@hunt-the-bishomalo/game/feature').then((m) => m.JediMindTrickAnimationComponent),
   },
 ];

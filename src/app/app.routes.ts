@@ -13,53 +13,52 @@ export const appRoutes: Route[] = [
   {
     path: RouteTypes.JEDI,
     canActivate: [secretGuard],
-    loadComponent: () =>
-      import('@hunt-the-bishomalo/game/feature').then((mod) => mod.JediMindTrickAnimationComponent),
+    loadChildren: () => import('@hunt-the-bishomalo/game/shell').then((mod) => mod.gameRoutes),
     title: 'Jedi secreto | Bisho malo',
   },
   {
     path: RouteTypes.CHARS,
     canActivate: [secretGuard],
-    loadComponent: () => import('./pages').then((mod) => mod.CharactersComponent),
+    loadChildren: () => import('@hunt-the-bishomalo/chars/shell').then((mod) => mod.charsRoutes),
     title: 'Selecciona tu recompensa | Bisho malo',
   },
   {
     path: RouteTypes.SHOP,
     canActivate: [secretGuard],
-    loadComponent: () => import('./pages').then((mod) => mod.ShopComponent),
+    loadChildren: () => import('@hunt-the-bishomalo/shop/shell').then((mod) => mod.shopRoutes),
     title: 'Tienda de objetos | Bisho malo',
   },
   {
     path: RouteTypes.CREDITS,
-    loadComponent: () => import('./pages').then((mod) => mod.EndCreditsComponent),
+    loadChildren: () => import('@hunt-the-bishomalo/credits/shell').then((mod) => mod.creditsRoutes),
     title: 'Creditos por Chris Heredia | Bisho malo',
   },
   {
     path: RouteTypes.RULES,
-    loadComponent: () => import('./pages').then((mod) => mod.InstructionsComponent),
+    loadChildren: () => import('@hunt-the-bishomalo/instructions/shell').then((mod) => mod.instructionsRoutes),
     title: 'Instrucciones | Bisho malo',
   },
   {
     path: RouteTypes.SETTINGS,
-    loadComponent: () => import('./pages').then((mod) => mod.ConfigComponent),
+    loadChildren: () => import('@hunt-the-bishomalo/config/shell').then((mod) => mod.configRoutes),
     title: 'Configuracion | Bisho malo',
   },
   {
     path: RouteTypes.RESULTS,
     canActivate: [secretGuard],
-    loadComponent: () => import('./pages').then((mod) => mod.ResultsComponent),
+    loadChildren: () => import('@hunt-the-bishomalo/gamestats/shell').then((mod) => mod.gamestatsRoutes),
     title: 'Resultados de la partida | Bisho malo',
   },
   {
     path: RouteTypes.BOSS,
     canActivate: [secretGuard],
-    loadComponent: () => import('./pages').then((mod) => mod.BossFightComponent),
+    loadChildren: () => import('@hunt-the-bishomalo/boss/shell').then((mod) => mod.bossRoutes),
     title: 'Final boss | Bisho malo',
   },
   {
     path: RouteTypes.STORY,
     canActivate: [secretGuard],
-    loadComponent: () => import('./pages').then((mod) => mod.StoryComponent),
+    loadChildren: () => import('@hunt-the-bishomalo/story/shell').then((mod) => mod.storyRoutes),
     title: 'Storytelling | Bisho malo',
   },
   {

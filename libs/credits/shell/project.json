@@ -1,0 +1,13 @@
+{
+  "name": "credits-shell",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/credits/shell/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["scope:credits", "type:shell"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

@@ -1,6 +1,4 @@
-import { Cell, GameEventEffectType, GameItem } from '@hunt-the-bishomalo/data';
-
-type CauseOfDeath = 'pit' | 'wumpus';
+import { Cell, GameEventEffectType, GameItem, CauseOfDeath } from '@hunt-the-bishomalo/data';
 
 export type EffectsContext = {
   hasItem: (name: string) => boolean;

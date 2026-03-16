@@ -14,11 +14,39 @@ export default [
         'error',
         {
           enforceBuildableLibDependency: true,
-          allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
+          allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$', '@hunt-the-bishomalo/story/api'],
           depConstraints: [
             {
-              sourceTag: '*',
-              onlyDependOnLibsWithTags: ['*'],
+              sourceTag: 'type:app',
+              onlyDependOnLibsWithTags: ['type:shell', 'type:api', 'type:data-access', 'type:data', 'type:shared', 'type:ui'],
+            },
+            {
+              sourceTag: 'type:shell',
+              onlyDependOnLibsWithTags: ['type:feature', 'type:api', 'type:data-access', 'type:data', 'type:shared'],
+            },
+            {
+              sourceTag: 'type:feature',
+              onlyDependOnLibsWithTags: ['type:api', 'type:data-access', 'type:ui', 'type:data', 'type:shared'],
+            },
+            {
+              sourceTag: 'type:ui',
+              onlyDependOnLibsWithTags: ['type:api', 'type:data-access', 'type:data', 'type:shared'],
+            },
+            {
+              sourceTag: 'type:data-access',
+              onlyDependOnLibsWithTags: ['type:api', 'type:data', 'type:shared'],
+            },
+            {
+              sourceTag: 'type:api',
+              onlyDependOnLibsWithTags: ['type:api', 'type:data-access', 'type:data', 'type:shared'],
+            },
+            {
+              sourceTag: 'type:data',
+              onlyDependOnLibsWithTags: ['type:data', 'type:shared'],
+            },
+            {
+              sourceTag: 'type:shared',
+              onlyDependOnLibsWithTags: ['type:shared', 'type:data', 'type:api'],
             },
           ],
         },
