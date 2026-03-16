@@ -5,7 +5,8 @@
     "instructions": "Instructions",
     "newGame": "New Game",
     "achievementsAlt": "Achievements",
-    "credits": "Credits"
+    "credits": "Credits",
+    "toggleAriaLabel": "Toggle main menu"
   },
   "achievements": {
     "backToGame": "Back to Game",
@@ -164,7 +165,8 @@
     "levelLabel": "Level (max 20):",
     "selectCharacterLabel": "Select Character:",
     "playButton": "Play",
-    "difficultyDescription": "{{maxLives}} lives, {{maxLevels}} levels, luck: {{chance}}%"
+    "difficultyDescription": "{{maxLives}} lives, {{maxLevels}} levels, luck: {{chance}}%",
+    "selectCharAriaLabel": "Select character: {{name}}"
   },
   "controls": {
     "openControlsAriaLabel": "Open game controls",
@@ -185,7 +187,8 @@
     "moveForwardAriaLabel": "Move Forward"
   },
   "level": {
-    "display": "Level {{level}}"
+    "display": "Level {{level}}",
+    "livesAriaLabel": "Lives: {{current}} of {{max}}"
   },
   "message": {
     "gameOver": "GAME OVER! You ran out of lives. #shouldhavestudied",

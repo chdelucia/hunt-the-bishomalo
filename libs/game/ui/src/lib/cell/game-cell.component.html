@@ -1,6 +1,11 @@
 @let content = cell().content;
 
-<div class="cell" [class.visited]="cell().visited">
+<div
+  class="cell"
+  [class.visited]="cell().visited"
+  role="gridcell"
+  [attr.aria-label]="ariaLabel()"
+>
   @if (showElements() && content) {
     <lib-cell-content [content]="content" />
   } @else if (showHunter()) {

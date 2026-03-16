@@ -5,7 +5,8 @@
     "instructions": "Instrucciones",
     "newGame": "Nueva partida",
     "achievementsAlt": "Logros",
-    "credits": "Creditos"
+    "credits": "Creditos",
+    "toggleAriaLabel": "Alternar menú principal"
   },
   "achievements": {
     "backToGame": "Volver al juego",
@@ -152,7 +153,13 @@
   "cell": {
     "altHunterWithGold": "cazador con oro",
     "altHunter": "cazador",
-    "altGold": "oro"
+    "altGold": "oro",
+    "ariaLabel": "Celda {{index}}. {{status}}",
+    "statusVisited": "Visitada",
+    "statusNotVisited": "No visitada",
+    "statusCurrent": "Posición actual",
+    "statusHunter": "El cazador está aquí",
+    "statusWall": "Muro"
   },
   "config": {
     "title": "Configuración",
@@ -164,7 +171,8 @@
     "levelLabel": "Nivel (max 20):",
     "selectCharacterLabel": "Selecciona personaje:",
     "playButton": "Jugar",
-    "difficultyDescription": "{{maxLives}} vidas, {{maxLevels}} niveles, suerte: {{chance}}%"
+    "difficultyDescription": "{{maxLives}} vidas, {{maxLevels}} niveles, suerte: {{chance}}%",
+    "selectCharAriaLabel": "Seleccionar personaje: {{name}}"
   },
   "controls": {
     "openControlsAriaLabel": "Abrir controles del juego",
@@ -185,7 +193,8 @@
     "moveForwardAriaLabel": "Avanzar"
   },
   "level": {
-    "display": "Nivel {{level}}"
+    "display": "Nivel {{level}}",
+    "livesAriaLabel": "Vidas: {{current}} de {{max}}"
   },
   "message": {
     "gameOver": "GAME OVER! Te quedaste sin vidas. #haberestudiao",

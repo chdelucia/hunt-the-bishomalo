@@ -7,7 +7,12 @@
   @if (settings?.blackout && isAlive && !hasWon) {
     <lib-blackout />
   }
-  <section class="board" [style.--board-size]="boardSize">
+  <section
+    class="board"
+    [style.--board-size]="boardSize"
+    role="grid"
+    [attr.aria-label]="'bossFight.boardAriaLabel' | transloco"
+  >
     @for (row of board; track $index; let rowIndex = $index) {
       @for (cell of row; track cell) {
         <lib-game-cell

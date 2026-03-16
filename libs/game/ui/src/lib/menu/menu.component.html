@@ -1,15 +1,20 @@
 @let opened = isOpen();
 
-<button class="menu-toggle" [class.open]="opened" (click)="toggleMenu()">
+<button
+  class="menu-toggle"
+  [class.open]="opened"
+  (click)="toggleMenu()"
+  [attr.aria-label]="'menu.toggleAriaLabel' | transloco"
+  [attr.aria-expanded]="opened"
+>
   <div class="bar bar1" [class.open]="opened"></div>
   <div class="bar bar2" [class.open]="opened"></div>
   <div class="bar bar3" [class.open]="opened"></div>
 </button>
 
 @if (opened) {
-  <div class="mobile-menu">
+  <div class="mobile-menu" role="dialog" [attr.aria-label]="'menu.toggleAriaLabel' | transloco">
     <ul>
-      <li><button>&nbsp;</button></li>
       <li>
         <button (click)="nagivateTo(ROUTES.HOME)">{{ 'menu.home' | transloco }}</button>
       </li>

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { TranslocoService } from '@jsverse/transloco';
 
 import { Cell } from '@hunt-the-bishomalo/data';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
@@ -16,6 +17,7 @@ import { HunterComponent } from './hunter/hunter.component';
 export class GameCellComponent {
   readonly cell = input.required<Cell>();
 
+  private readonly transloco = inject(TranslocoService);
   readonly gameStore = inject(GameStore);
 
   settings = this.gameStore.settings;
@@ -44,4 +46,21 @@ export class GameCellComponent {
   });
 
   readonly showHunter = computed(() => this.isHunterCell() && this.gameStore.isAlive());
+
+  readonly ariaLabel = computed(() => {
+    this.transloco.getActiveLang(); // Add dependency on language changes
+    const cell = this.cell();
+    const index = `${cell.x},${cell.y}`;
+    let status = '';
+
+    if (this.isHunterCell()) {
+      status = this.transloco.translate('cell.statusHunter');
+    } else if (cell.visited) {
+      status = this.transloco.translate('cell.statusVisited');
+    } else {
+      status = this.transloco.translate('cell.statusNotVisited');
+    }
+
+    return this.transloco.translate('cell.ariaLabel', { index, status });
+  });
 }

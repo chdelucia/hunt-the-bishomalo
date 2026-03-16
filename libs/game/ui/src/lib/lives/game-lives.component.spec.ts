@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameLivesComponent } from './game-lives.component';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
 
 describe('GameLivesComponent', () => {
   let component: GameLivesComponent;
@@ -7,7 +8,7 @@ describe('GameLivesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GameLivesComponent],
+      imports: [GameLivesComponent, getTranslocoTestingModule()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GameLivesComponent);

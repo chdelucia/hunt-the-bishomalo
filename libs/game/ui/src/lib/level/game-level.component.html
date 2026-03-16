@@ -1,4 +1,6 @@
 @let level = _level();
 @if (level) {
-  <div class="level">{{ 'level.display' | transloco: { level: level } }}</div>
+  <div class="level" aria-live="polite" aria-atomic="true">
+    {{ 'level.display' | transloco: { level: level } }}
+  </div>
 }

@@ -1,8 +1,9 @@
 import { Component, computed, input } from '@angular/core';
+import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
   selector: 'lib-game-lives',
-  imports: [],
+  imports: [TranslocoModule],
   standalone: true,
   templateUrl: './game-lives.component.html',
   styleUrl: './game-lives.component.scss',

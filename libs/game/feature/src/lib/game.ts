@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { TranslocoModule } from '@jsverse/transloco';
 import {
   AppWumpusAttackAnimationComponent,
   BlackoutComponent,
@@ -17,6 +18,7 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
   selector: 'lib-game',
   imports: [
     RouterModule,
+    TranslocoModule,
     GameCellComponent,
     VisualEffectDirective,
     AppWumpusAttackAnimationComponent,
