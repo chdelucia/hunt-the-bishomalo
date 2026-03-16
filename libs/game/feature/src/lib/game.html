@@ -7,17 +7,14 @@
   @if (settings?.blackout && isAlive && !hasWon) {
     <lib-blackout />
   }
-  <section class="board">
+  <section class="board" [style.--board-size]="boardSize">
     @for (row of board; track $index; let rowIndex = $index) {
-      <div class="row">
-        @for (cell of row; track $index) {
-          <lib-game-cell
-            [class.escape]="!rowIndex && $first && game.hasGold()"
-            class="size-{{ boardSize }}"
-            [cell]="cell"
-          />
-        }
-      </div>
+      @for (cell of row; track cell) {
+        <lib-game-cell
+          [class.escape]="!rowIndex && $first && game.hasGold()"
+          [cell]="cell"
+        />
+      }
     }
 
     @if (deathByWumpus()) {
