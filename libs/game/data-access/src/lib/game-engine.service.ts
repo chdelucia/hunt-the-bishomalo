@@ -23,6 +23,18 @@ import { PerceptionService } from './perception.service';
 
 @Injectable({ providedIn: 'root' })
 export class GameEngineService {
+  private readonly BLACKOUT_CHANCE = 0.08;
+  private readonly DROP_ROLL_MAX = 100;
+  private readonly DROP_WUMPUS_THRESHOLD = 2;
+  private readonly DROP_HEART_THRESHOLD = 20;
+  private readonly DROP_GOLD_THRESHOLD = 35;
+  private readonly DROP_ARROW_THRESHOLD = 40;
+  private readonly SECRET_SIZE = 8;
+  private readonly SECRET_X = 7;
+  private readonly SECRET_Y = 8;
+  private readonly BLACKOUT_GOLD_BONUS = 200;
+  private readonly LEVEL_OFFSET = 3;
+
   readonly store = inject(GameStore);
   private readonly _settings = this.store.settings;
   private readonly _hunter = this.store.hunter;
@@ -134,7 +146,7 @@ export class GameEngineService {
   }
 
   private checkSecret(size: number, x: number, y: number): void {
-    if (size === 8 && x === 7 && y === 8) {
+    if (size === this.SECRET_SIZE && x === this.SECRET_X && y === this.SECRET_Y) {
       this.router.navigate([RouteTypes.JEDI], {
         state: { fromSecretPath: true },
       });
@@ -230,11 +242,11 @@ export class GameEngineService {
      * Math.random() is used here for game mechanics (random item drop calculation).
      * It does not involve any security-sensitive operations.
      */
-    const roll = Math.random() * 100;
-    if (roll < 2) cell.content = CELL_CONTENTS.extrawumpus;
-    else if (roll < 20 + luck) cell.content = CELL_CONTENTS.extraheart;
-    else if (roll < 35 + luck) cell.content = CELL_CONTENTS.extragold;
-    else if (roll < 40 + luck) cell.content = CELL_CONTENTS.extraarrow;
+    const roll = Math.random() * this.DROP_ROLL_MAX;
+    if (roll < this.DROP_WUMPUS_THRESHOLD) cell.content = CELL_CONTENTS.extrawumpus;
+    else if (roll < this.DROP_HEART_THRESHOLD + luck) cell.content = CELL_CONTENTS.extraheart;
+    else if (roll < this.DROP_GOLD_THRESHOLD + luck) cell.content = CELL_CONTENTS.extragold;
+    else if (roll < this.DROP_ARROW_THRESHOLD + luck) cell.content = CELL_CONTENTS.extraarrow;
   }
 
   private handleMissedArrow(): void {
@@ -255,7 +267,7 @@ export class GameEngineService {
 
   private handleVictory(): void {
     let gold = 0;
-    if (this._settings().blackout) gold = 200;
+    if (this._settings().blackout) gold = this.BLACKOUT_GOLD_BONUS;
     this.store.setMessage(this.transloco.translate('gameMessages.victory'));
     this.store.updateGame({
       hasWon: true,
@@ -265,7 +277,7 @@ export class GameEngineService {
   }
 
   private playVictorySound(): void {
-    if (this._settings().size === this._settings().difficulty.maxLevels + 3) {
+    if (this._settings().size === this._settings().difficulty.maxLevels + this.LEVEL_OFFSET) {
       this.sound.playSound(GameSound.FINISH, false);
     } else {
       this.sound.playSound(GameSound.WHONOR, false);
@@ -324,6 +336,6 @@ export class GameEngineService {
      * Math.random() is used here for game mechanics (random blackout chance).
      * It does not involve any security-sensitive operations.
      */
-    return Math.random() < 0.08;
+    return Math.random() < this.BLACKOUT_CHANCE;
   }
 }

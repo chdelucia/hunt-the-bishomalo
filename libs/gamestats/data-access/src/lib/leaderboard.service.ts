@@ -6,6 +6,8 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
 
 @Injectable({ providedIn: 'root' })
 export class LeaderboardService {
+  private readonly LEVEL_OFFSET = 4;
+  private readonly MS_PER_SECOND = 1000;
   private readonly storageKey = 'hunt_the_bishomalo_leaderboard';
   _leaderboard: ScoreEntry[] = [];
 
@@ -28,8 +30,8 @@ export class LeaderboardService {
           playerName: player,
           timeInSeconds: seconds,
           date: endTime,
-          level: size - 4 + 1,
-          blackout: !!blackout,
+          level: size - this.LEVEL_OFFSET + 1,
+          blackout: blackout ?? false,
           wumpusKilled: this.gameStore.wumpusKilled(),
           steps: this.countSteps,
           deads: this.gameStore.isAlive() ? 0 : 1,
@@ -61,6 +63,6 @@ export class LeaderboardService {
 
   private calculateElapsedSeconds(endTime: Date): number {
     const startime = new Date(this.gameStore.startTime());
-    return startime ? Math.round((endTime.getTime() - startime.getTime()) / 1000) : 0;
+    return startime ? Math.round((endTime.getTime() - startime.getTime()) / this.MS_PER_SECOND) : 0;
   }
 }

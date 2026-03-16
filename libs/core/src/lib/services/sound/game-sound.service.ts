@@ -63,8 +63,9 @@ export class GameSoundService {
     const audio = this.getOrCreateAudio(key);
     audio.loop = loop;
     audio.currentTime = 0;
-    audio.play().catch((err) => {
-      console.info('Audio play failed:', err);
+    audio.play().catch(() => {
+      // Audio play may fail due to browser auto-play restrictions or user interaction requirements.
+      // This is expected in some scenarios and can be safely ignored.
     });
   }
 

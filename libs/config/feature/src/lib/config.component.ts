@@ -11,4 +11,9 @@ import { TranslocoModule } from '@jsverse/transloco';
   templateUrl: './config.component.html',
   styleUrl: './config.component.scss',
 })
-export class ConfigComponent {}
+export class ConfigComponent {
+  /**
+   * Component created to handle the configuration page.
+   * Logic is currently managed via template and child components.
+   */
+}

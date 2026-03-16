@@ -10,4 +10,9 @@ import { TranslocoModule } from '@jsverse/transloco';
   templateUrl: './instructions.component.html',
   styleUrl: './instructions.component.scss',
 })
-export class InstructionsComponent {}
+export class InstructionsComponent {
+  /**
+   * Component created to handle the instructions page.
+   * Content is purely static and managed via the HTML template.
+   */
+}

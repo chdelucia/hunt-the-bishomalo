@@ -16,6 +16,7 @@ import { GameMessageActionsComponent } from './game-message-actions.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameMessageComponent {
+  private readonly LEVEL_OFFSET = 3;
   private readonly gameEngine = inject(GameEngineService);
   private readonly router = inject(Router);
   readonly message = input.required<string>();
@@ -25,11 +26,11 @@ export class GameMessageComponent {
   readonly lives = input.required<number>();
 
   readonly _bolaDrac = computed(() => this.message().includes('drac'));
-  readonly _hasMessage = computed(() => !!this.message() && !!this.settings().size);
-  readonly _shouldShowRetry = computed(() => !this.isAlive() && !!this.settings().size);
-  readonly _shouldShowNextLevel = computed(() => this.hasWon() && !!this.settings().size);
+  readonly _hasMessage = computed(() => this.message() !== '' && this.settings().size > 0);
+  readonly _shouldShowRetry = computed(() => !this.isAlive() && this.settings().size > 0);
+  readonly _shouldShowNextLevel = computed(() => this.hasWon() && this.settings().size > 0);
   readonly _showCongrats = computed(
-    () => this.settings().size < this.settings().difficulty.maxLevels + 3,
+    () => this.settings().size < this.settings().difficulty.maxLevels + this.LEVEL_OFFSET,
   );
 
   restartGame(): void {

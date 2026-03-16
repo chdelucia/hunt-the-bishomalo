@@ -3,6 +3,12 @@ import { Cell, CELL_CONTENTS, CellContentType, GameSettings } from '@hunt-the-bi
 
 @Injectable({ providedIn: 'root' })
 export class BoardGeneratorService {
+  private readonly BASE_SIZE = 4;
+  private readonly PENALTY_BASE = 0.01;
+  private readonly LUCK_DIVISOR = 1000;
+  private readonly PIT_PERCENTAGE = 0.1;
+  private readonly WUMPUS_PERCENTAGE = 0.04;
+
   createBoard(settings: GameSettings): Cell[][] {
     return Array.from({ length: settings.size }, (_, x) =>
       Array.from({ length: settings.size }, (_, y) => ({ x, y, visited: false })),
@@ -41,7 +47,11 @@ export class BoardGeneratorService {
     const { difficulty, size } = settings;
     const ex = new Set(['0,0']);
     const chance = (base: number, max: number) =>
-      Math.min(base + ((size - 4) / (difficulty.maxLevels - 4)) * (max - base), max);
+      Math.min(
+        base +
+          ((size - this.BASE_SIZE) / (difficulty.maxLevels - this.BASE_SIZE)) * (max - base),
+        max,
+      );
 
     /**
      * Security Hotspot Justification:
@@ -76,16 +86,16 @@ export class BoardGeneratorService {
   }
 
   calculatePits(size: number, luck: number): number {
-    const penalty = 0.01 - luck / 1000;
+    const penalty = this.PENALTY_BASE - luck / this.LUCK_DIVISOR;
     const totalCells = size * size;
-    const basePercentage = 0.1 + penalty;
+    const basePercentage = this.PIT_PERCENTAGE + penalty;
     return Math.max(1, Math.round(totalCells * basePercentage));
   }
 
   calculateWumpus(size: number, luck: number): number {
-    const penalty = 0.01 - luck / 1000;
+    const penalty = this.PENALTY_BASE - luck / this.LUCK_DIVISOR;
     const totalCells = size * size;
-    const basePercentage = 0.04 + penalty;
+    const basePercentage = this.WUMPUS_PERCENTAGE + penalty;
     return Math.max(1, Math.round(totalCells * basePercentage));
   }
 }
