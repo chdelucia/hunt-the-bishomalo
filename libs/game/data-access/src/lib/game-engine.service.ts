@@ -5,9 +5,9 @@ import { TranslocoService } from '@jsverse/transloco';
 import {
   GameEventService,
   GameSoundService,
+  LEADERBOARD_SERVICE,
   LocalstorageService,
 } from '@hunt-the-bishomalo/core/services';
-import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/core/services';
 import {
   Cell,
   CELL_CONTENTS,
