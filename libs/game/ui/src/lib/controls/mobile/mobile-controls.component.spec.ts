@@ -1,20 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MobileControlsComponent } from './mobile-controls.component';
-import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
-
-const gameEngineMock = {
-  moveForward: jest.fn(),
-  turnLeft: jest.fn(),
-  turnRight: jest.fn(),
-  shootArrow: jest.fn(),
-  newGame: jest.fn(),
-};
-
-const achievementServiceMock = {
-  activeAchievement: jest.fn(),
-};
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 
 describe('MobileControlsComponent', () => {
   let component: MobileControlsComponent;
@@ -23,10 +9,6 @@ describe('MobileControlsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MobileControlsComponent, getTranslocoTestingModule()],
-      providers: [
-        { provide: GameEngineService, useValue: gameEngineMock },
-        { provide: ACHIEVEMENT_SERVICE, useValue: achievementServiceMock },
-      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MobileControlsComponent);
@@ -39,18 +21,21 @@ describe('MobileControlsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call moveForward() when GO button is clicked', () => {
+  it('should emit moveForwardRequested when moveForward() is called', () => {
+    const spy = jest.spyOn(component.moveForwardRequested, 'emit');
     component.moveForward();
-    expect(gameEngineMock.moveForward).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
   });
 
-  it('should call turnLeft() when rotate button is clicked', () => {
+  it('should emit turnRightRequested when turnRight() is called', () => {
+    const spy = jest.spyOn(component.turnRightRequested, 'emit');
     component.turnRight();
-    expect(gameEngineMock.turnRight).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
   });
 
-  it('should call shootArrow() when shoot button is clicked', () => {
+  it('should emit shootArrowRequested when shootArrow() is called', () => {
+    const spy = jest.spyOn(component.shootArrowRequested, 'emit');
     component.shootArrow();
-    expect(gameEngineMock.shootArrow).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
   });
 });

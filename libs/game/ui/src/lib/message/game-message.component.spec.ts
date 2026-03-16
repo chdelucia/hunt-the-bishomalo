@@ -1,26 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameMessageComponent } from './game-message.component';
-import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
 import { Router } from '@angular/router';
 import { RouteTypes } from '@hunt-the-bishomalo/data';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
-
-const gameEngineMock = {
-  initGame: jest.fn(),
-  newGame: jest.fn(),
-  nextLevel: jest.fn(),
-  settings: jest.fn().mockReturnValue({
-    difficulty: {
-      maxLevels: 10,
-      maxChance: 0.35,
-      baseChance: 0.12,
-      gold: 60,
-      maxLives: 8,
-      luck: 8,
-      bossTries: 12,
-    },
-  }),
-};
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 
 const routerMock = {
   navigate: jest.fn(),
@@ -34,7 +16,6 @@ describe('GameMessageComponent', () => {
     await TestBed.configureTestingModule({
       imports: [GameMessageComponent, getTranslocoTestingModule()],
       providers: [
-        { provide: GameEngineService, useValue: gameEngineMock },
         { provide: Router, useValue: routerMock },
       ],
     }).compileComponents();
@@ -66,16 +47,10 @@ describe('GameMessageComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call initGame to restar the game', () => {
+  it('should emit restartRequested to restart the game', () => {
+    const spy = jest.spyOn(component.restartRequested, 'emit');
     component.restartGame();
-    expect(gameEngineMock.initGame).toHaveBeenCalled();
-  });
-
-  describe('restartGame', () => {
-    it('should call initGame without arguments', () => {
-      component.restartGame();
-      expect(gameEngineMock.initGame).toHaveBeenCalledWith();
-    });
+    expect(spy).toHaveBeenCalled();
   });
 
   it('should display message when present', () => {
@@ -125,6 +100,7 @@ describe('GameMessageComponent', () => {
   });
 
   it('should call restartGame when retry button is clicked', () => {
+    const spy = jest.spyOn(component.restartRequested, 'emit');
     fixture.componentRef.setInput('isAlive', false);
     fixture.componentRef.setInput('settings', {
       size: 5,
@@ -145,7 +121,7 @@ describe('GameMessageComponent', () => {
     const button = fixture.nativeElement.querySelector('button.newgame');
     button.click();
 
-    expect(gameEngineMock.initGame).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
   });
 
   it('should show next level button when player has won', () => {

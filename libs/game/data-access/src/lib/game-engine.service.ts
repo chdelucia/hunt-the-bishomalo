@@ -6,23 +6,25 @@ import {
   GameEventService,
   GameSoundService,
   LocalstorageService,
+  LEADERBOARD_SERVICE,
+  ACHIEVEMENT_SERVICE,
+  IGameEngineService
 } from '@hunt-the-bishomalo/core/services';
-import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/core/services';
 import {
   Cell,
   CELL_CONTENTS,
   Direction,
   GameSound,
   RouteTypes,
+  AchieveTypes
 } from '@hunt-the-bishomalo/data';
-import { AchieveTypes, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { take } from 'rxjs';
 import { BoardGeneratorService } from './board-generator.service';
 import { PerceptionService } from './perception.service';
 
 @Injectable({ providedIn: 'root' })
-export class GameEngineService {
+export class GameEngineService implements IGameEngineService {
   readonly store = inject(GameStore);
   private readonly _settings = this.store.settings;
   private readonly _hunter = this.store.hunter;

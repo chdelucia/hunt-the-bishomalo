@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HunterComponent } from './hunter.component';
 import { Chars, Direction } from '@hunt-the-bishomalo/data';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 
 describe('HunterComponent', () => {
   let component: HunterComponent;

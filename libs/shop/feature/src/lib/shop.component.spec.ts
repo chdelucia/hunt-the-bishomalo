@@ -5,7 +5,7 @@ import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
 import { Product, RouteTypes } from '@hunt-the-bishomalo/data';
 import { CommonModule } from '@angular/common';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 
 const mockHunter = {
   gold: 150,

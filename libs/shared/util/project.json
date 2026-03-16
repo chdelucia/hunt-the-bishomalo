@@ -1,10 +1,9 @@
 {
-  "name": "story-shell",
+  "name": "shared-util",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/story/shell/src",
-  "prefix": "lib",
+  "sourceRoot": "libs/shared/util/src",
   "projectType": "library",
-  "tags": ["scope:shared", "type:shell"],
+  "tags": ["scope:shared", "type:util"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint"

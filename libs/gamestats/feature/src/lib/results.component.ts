@@ -2,7 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { LeaderboardService } from '@hunt-the-bishomalo/gamestats/data-access';
 import { RouteTypes, ScoreEntry } from '@hunt-the-bishomalo/data';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { TranslocoModule } from '@jsverse/transloco';

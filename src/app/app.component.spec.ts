@@ -1,10 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
-import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/core/services';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
+import { LEADERBOARD_SERVICE, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
 import { KeyboardManagerService } from '@hunt-the-bishomalo/game/data-access';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { signal } from '@angular/core';
 
 describe('AppComponent', () => {
@@ -26,7 +25,6 @@ describe('AppComponent', () => {
           },
         },
         { provide: LEADERBOARD_SERVICE, useValue: { clear: jest.fn() } },
-        { provide: KeyboardManagerService, useValue: { handleKeyDown: jest.fn() } },
         { provide: KeyboardManagerService, useValue: { handleKeyDown: jest.fn() } },
       ],
     }).compileComponents();

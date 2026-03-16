@@ -2,11 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Game } from './game';
 import { RouterModule } from '@angular/router';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { signal } from '@angular/core';
-import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/core/services';
+import { LEADERBOARD_SERVICE, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
 import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 
 describe('Game', () => {
   let component: Game;
@@ -26,6 +25,13 @@ describe('Game', () => {
     message: signal(''),
     lives: signal(3),
     hasGold: signal(false),
+    currentCell: signal(undefined),
+    inventory: signal([]),
+    hunter: signal({
+        direction: 0,
+        arrows: 1,
+        hasGold: false,
+    }),
     setMessage: jest.fn(),
   };
 

@@ -6,7 +6,7 @@ import { Router, RouterModule } from '@angular/router';
 import { GameSoundService } from '@hunt-the-bishomalo/core/services';
 import { GameSettings, RouteTypes } from '@hunt-the-bishomalo/data';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { BossCell } from './boss-store';
 
 describe('BossFightComponent', () => {

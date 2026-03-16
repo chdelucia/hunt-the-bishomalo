@@ -2,9 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EndCreditsComponent } from './end-credits.component';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { GameSoundService } from '@hunt-the-bishomalo/core/services';
-import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { GameSoundService, GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/core/services';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 
 const mockGameEngineService = {
   newGame: jest.fn(),
@@ -27,7 +26,7 @@ describe('EndCreditsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [EndCreditsComponent, CommonModule, getTranslocoTestingModule()],
       providers: [
-        { provide: GameEngineService, useValue: mockGameEngineService },
+        { provide: GAME_ENGINE_TOKEN, useValue: mockGameEngineService },
         { provide: GameSoundService, useValue: mockGameSoundService },
         { provide: Router, useValue: mockRouter },
       ],

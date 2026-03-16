@@ -1,7 +1,6 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, output, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
-import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
 import { RouteTypes } from '@hunt-the-bishomalo/data';
 
 @Component({
@@ -13,7 +12,8 @@ import { RouteTypes } from '@hunt-the-bishomalo/data';
 })
 export class MenuComponent {
   readonly isOpen = signal(false);
-  private readonly gameEngine = inject(GameEngineService);
+  readonly newGameRequested = output<void>();
+
   private readonly router = inject(Router);
 
   readonly ROUTES = RouteTypes;
@@ -28,7 +28,7 @@ export class MenuComponent {
   }
 
   newGame(): void {
-    this.gameEngine.newGame();
+    this.newGameRequested.emit();
     this.nagivateTo(RouteTypes.SETTINGS);
   }
 }

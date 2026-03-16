@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NotFoundComponent } from './not-found.component';
 import { RouterModule } from '@angular/router';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 
 describe('NotFoundComponent', () => {
   let component: NotFoundComponent;

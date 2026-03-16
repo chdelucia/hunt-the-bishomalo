@@ -2,8 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, isDevMode } from '@angular/
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
-import { GameSoundService } from '@hunt-the-bishomalo/core/services';
-import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
+import { GameSoundService, GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/core/services';
 import {
   Chars,
   DIFFICULTY_CONFIGS,
@@ -25,7 +24,7 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
 })
 export class GameConfigComponent {
   readonly gameStore = inject(GameStore);
-  private readonly gameEngine = inject(GameEngineService);
+  private readonly gameEngine = inject(GAME_ENGINE_TOKEN);
   private readonly fb = inject(FormBuilder);
   private readonly gameSound = inject(GameSoundService);
   private readonly router = inject(Router);

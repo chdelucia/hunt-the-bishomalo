@@ -14,39 +14,79 @@ export default [
         'error',
         {
           enforceBuildableLibDependency: true,
-          allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$', '@hunt-the-bishomalo/story/api'],
+          allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
           depConstraints: [
             {
               sourceTag: 'type:app',
-              onlyDependOnLibsWithTags: ['type:shell', 'type:api', 'type:data-access', 'type:data', 'type:shared', 'type:ui'],
+              onlyDependOnLibsWithTags: ['type:shell', 'type:api', 'type:data-access', 'type:model', 'type:util', 'type:ui'],
             },
             {
               sourceTag: 'type:shell',
-              onlyDependOnLibsWithTags: ['type:feature', 'type:api', 'type:data-access', 'type:data', 'type:shared'],
+              onlyDependOnLibsWithTags: ['type:feature', 'type:ui', 'type:api', 'type:data-access', 'type:model', 'type:util'],
             },
             {
               sourceTag: 'type:feature',
-              onlyDependOnLibsWithTags: ['type:api', 'type:data-access', 'type:ui', 'type:data', 'type:shared'],
+              onlyDependOnLibsWithTags: ['type:ui', 'type:data-access', 'type:api', 'type:model', 'type:util'],
             },
             {
               sourceTag: 'type:ui',
-              onlyDependOnLibsWithTags: ['type:api', 'type:data-access', 'type:data', 'type:shared'],
+              onlyDependOnLibsWithTags: ['type:model', 'type:util'],
             },
             {
               sourceTag: 'type:data-access',
-              onlyDependOnLibsWithTags: ['type:api', 'type:data', 'type:shared'],
+              onlyDependOnLibsWithTags: ['type:api', 'type:model', 'type:util', 'type:data-access'],
             },
             {
               sourceTag: 'type:api',
-              onlyDependOnLibsWithTags: ['type:api', 'type:data-access', 'type:data', 'type:shared'],
+              onlyDependOnLibsWithTags: ['type:model', 'type:util', 'type:data-access'],
             },
             {
-              sourceTag: 'type:data',
-              onlyDependOnLibsWithTags: ['type:data', 'type:shared'],
+              sourceTag: 'type:model',
+              onlyDependOnLibsWithTags: ['type:model', 'type:util'],
             },
             {
-              sourceTag: 'type:shared',
-              onlyDependOnLibsWithTags: ['type:shared', 'type:data', 'type:api'],
+              sourceTag: 'scope:shared',
+              onlyDependOnLibsWithTags: ['scope:shared', 'scope:core'],
+            },
+            {
+              sourceTag: 'scope:core',
+              onlyDependOnLibsWithTags: ['scope:shared', 'scope:core'],
+            },
+            {
+              sourceTag: 'type:util',
+              onlyDependOnLibsWithTags: ['type:util'],
+            },
+            {
+              sourceTag: 'scope:achievements',
+              onlyDependOnLibsWithTags: ['scope:achievements', 'scope:shared', 'scope:core'],
+            },
+            {
+              sourceTag: 'scope:boss',
+              onlyDependOnLibsWithTags: ['scope:boss', 'scope:shared', 'scope:core'],
+            },
+            {
+              sourceTag: 'scope:chars',
+              onlyDependOnLibsWithTags: ['scope:chars', 'scope:shared', 'scope:core'],
+            },
+            {
+              sourceTag: 'scope:config',
+              onlyDependOnLibsWithTags: ['scope:config', 'scope:shared', 'scope:core'],
+            },
+            {
+              sourceTag: 'scope:credits',
+              onlyDependOnLibsWithTags: ['scope:credits', 'scope:shared', 'scope:core'],
+            },
+            {
+              sourceTag: 'scope:game',
+              onlyDependOnLibsWithTags: ['scope:game', 'scope:shared', 'scope:core'],
+            },
+            {
+              sourceTag: 'scope:gamestats',
+              onlyDependOnLibsWithTags: ['scope:gamestats', 'scope:shared', 'scope:core'],
+            },
+            {
+              sourceTag: 'scope:instructions',
+              onlyDependOnLibsWithTags: ['scope:instructions', 'scope:shared', 'scope:core'],
             },
           ],
         },

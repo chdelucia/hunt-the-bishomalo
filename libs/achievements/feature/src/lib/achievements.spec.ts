@@ -1,13 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AchievementsComponent } from './achievements';
-import { Achievement, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { Achievement } from '@hunt-the-bishomalo/data';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
 import {
   AchievementFilterComponent,
   AchievementItemComponent,
   AchievementProgressComponent
 } from '@hunt-the-bishomalo/achievements/ui';
 import { RouterModule } from '@angular/router';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { signal } from '@angular/core';
 

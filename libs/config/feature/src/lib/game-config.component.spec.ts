@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameConfigComponent } from './game-config.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
-import { GameSoundService } from '@hunt-the-bishomalo/core/services';
-import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
+import { GameSoundService, GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/core/services';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { provideRouter, Router } from '@angular/router';
 import { Chars, DifficultyTypes, RouteTypes, GameSound } from '@hunt-the-bishomalo/data';
@@ -27,7 +26,7 @@ describe('GameConfigComponent', () => {
     await TestBed.configureTestingModule({
       imports: [GameConfigComponent, ReactiveFormsModule, getTranslocoTestingModule()],
       providers: [
-        { provide: GameEngineService, useValue: mockGameEngine },
+        { provide: GAME_ENGINE_TOKEN, useValue: mockGameEngine },
         { provide: GameSoundService, useValue: mockGameSound },
         provideRouter([
           { path: RouteTypes.STORY, redirectTo: '' },

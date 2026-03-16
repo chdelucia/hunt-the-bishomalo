@@ -1,24 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameControlsComponent } from './game-controls.component';
-import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { provideRouter, Router } from '@angular/router';
 import { RouteTypes } from '@hunt-the-bishomalo/data';
-
-const mockGameService = {
-  moveForward: jest.fn(),
-  turnLeft: jest.fn(),
-  turnRight: jest.fn(),
-  shootArrow: jest.fn(),
-  exit: jest.fn(),
-  initGame: jest.fn(),
-  newGame: jest.fn(),
-};
-
-const achievementServiceMock = {
-  activeAchievement: jest.fn(),
-};
 
 describe('GameControlsComponent', () => {
   let component: GameControlsComponent;
@@ -29,8 +13,6 @@ describe('GameControlsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [GameControlsComponent, getTranslocoTestingModule()],
       providers: [
-        { provide: GameEngineService, useValue: mockGameService },
-        { provide: ACHIEVEMENT_SERVICE, useValue: achievementServiceMock },
         provideRouter([
           { path: RouteTypes.SETTINGS, redirectTo: '' },
           { path: RouteTypes.RULES, redirectTo: '' },
@@ -52,15 +34,17 @@ describe('GameControlsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should reset same level', () => {
+  it('should emit resetGameRequested', () => {
+    const spy = jest.spyOn(component.resetGameRequested, 'emit');
     component.resetGame();
-    expect(mockGameService.initGame).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
   });
 
-  it('should call newGame and navigate to settings', () => {
+  it('should emit newGameRequested and navigate to settings', () => {
+    const spy = jest.spyOn(component.newGameRequested, 'emit');
     const navigateSpy = jest.spyOn(router, 'navigate');
     component.newGame();
-    expect(mockGameService.newGame).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
     expect(navigateSpy).toHaveBeenCalledWith([RouteTypes.SETTINGS]);
   });
 
@@ -70,24 +54,28 @@ describe('GameControlsComponent', () => {
     expect(navigateSpy).toHaveBeenCalledWith([RouteTypes.RULES]);
   });
 
-  it('should call moveForward', () => {
+  it('should emit moveForwardRequested', () => {
+    const spy = jest.spyOn(component.moveForwardRequested, 'emit');
     component.moveForward();
-    expect(mockGameService.moveForward).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
   });
 
-  it('should call turnLeft', () => {
+  it('should emit turnLeftRequested', () => {
+    const spy = jest.spyOn(component.turnLeftRequested, 'emit');
     component.turnLeft();
-    expect(mockGameService.turnLeft).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
   });
 
-  it('should call turnRight', () => {
+  it('should emit turnRightRequested', () => {
+    const spy = jest.spyOn(component.turnRightRequested, 'emit');
     component.turnRight();
-    expect(mockGameService.turnRight).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
   });
 
-  it('should call shootArrow', () => {
+  it('should emit shootArrowRequested', () => {
+    const spy = jest.spyOn(component.shootArrowRequested, 'emit');
     component.shootArrow();
-    expect(mockGameService.shootArrow).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
   });
 
   it('should toggle isVisible', () => {

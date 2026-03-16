@@ -1,12 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ToastComponent } from './toast.component';
 import { CommonModule } from '@angular/common';
-import { signal } from '@angular/core';
-import { Achievement, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { Achievement } from '@hunt-the-bishomalo/data';
 
-const achievementServiceMock = {
-  completed: signal(undefined),
-};
 describe('ToastComponent', () => {
   let component: ToastComponent;
   let fixture: ComponentFixture<ToastComponent>;
@@ -23,7 +19,6 @@ describe('ToastComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CommonModule, ToastComponent],
-      providers: [{ provide: ACHIEVEMENT_SERVICE, useValue: achievementServiceMock }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ToastComponent);
@@ -34,10 +29,9 @@ describe('ToastComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should add a toast when achievement is completed', () => {
-    achievementServiceMock.completed.set(fakeAchievement);
-
-    fixture.detectChanges(); // Dispara el effect
+  it('should add a toast when achievement input is set', () => {
+    fixture.componentRef.setInput('achievement', fakeAchievement);
+    fixture.detectChanges(); // Trigger the effect
 
     const toasts = component.toasts();
     expect(toasts.length).toBe(1);
@@ -47,7 +41,7 @@ describe('ToastComponent', () => {
   it(
     'should remove toast after timeout',
     fakeTimersTest(() => {
-      achievementServiceMock.completed.set(fakeAchievement);
+      fixture.componentRef.setInput('achievement', fakeAchievement);
       fixture.detectChanges();
 
       expect(component.toasts().length).toBe(1);

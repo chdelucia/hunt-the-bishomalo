@@ -1,9 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MenuComponent } from './menu.component';
-import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
 import { Router, RouterModule } from '@angular/router';
 import { Component } from '@angular/core';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 
 @Component({ template: '' })
 class DummyComponent {}
@@ -14,9 +13,6 @@ const routes = [
   { path: 'test-url', component: DummyComponent },
 ];
 
-const gameEngineServiceMock = {
-  newGame: jest.fn(),
-};
 describe('MenuComponent', () => {
   let component: MenuComponent;
   let fixture: ComponentFixture<MenuComponent>;
@@ -25,7 +21,6 @@ describe('MenuComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MenuComponent, RouterModule.forRoot(routes), getTranslocoTestingModule()],
-      providers: [{ provide: GameEngineService, useValue: gameEngineServiceMock }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MenuComponent);
@@ -58,8 +53,9 @@ describe('MenuComponent', () => {
   });
 
   it('should start new game and navigate home', () => {
+    const spy = jest.spyOn(component.newGameRequested, 'emit');
     component.newGame();
-    expect(gameEngineServiceMock.newGame).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
     expect(router.navigateByUrl).toHaveBeenCalledWith('/settings');
   });
 });
