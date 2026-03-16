@@ -14,3 +14,5 @@ export type GameEventEffectType =
   | 'extragold'
   | 'dragonball'
   | 'apple';
+
+export type CauseOfDeath = 'pit' | 'wumpus';

@@ -1,0 +1,13 @@
+{
+  "name": "instructions-shell",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/instructions/shell/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["scope:instructions", "type:shell"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

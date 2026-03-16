@@ -37,7 +37,7 @@ export default [
         'error',
         {
           type: 'element',
-          prefix: 'app',
+          prefix: ['app', 'lib'],
           style: 'kebab-case',
         },
       ],

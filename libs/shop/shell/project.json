@@ -1,0 +1,13 @@
+{
+  "name": "shop-shell",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shop/shell/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["scope:shop", "type:shell"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

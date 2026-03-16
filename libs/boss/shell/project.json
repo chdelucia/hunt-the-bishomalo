@@ -1,0 +1,13 @@
+{
+  "name": "boss-shell",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/boss/shell/src",
+  "prefix": "lib",
+  "projectType": "library",
+  "tags": ["scope:boss", "type:shell"],
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
