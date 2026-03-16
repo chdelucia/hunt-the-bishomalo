@@ -55,4 +55,38 @@ describe('EndCreditsComponent', () => {
     expect(mockGameEngineService.newGame).toHaveBeenCalled();
     expect(mockRouter.navigateByUrl).toHaveBeenCalled();
   });
+
+  it('should update scroll position automatically', () => {
+    const initialPos = component.scrollPosition();
+    const rafSpy = jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb: any) => {
+      return 1;
+    });
+
+    (component as any).lastTime = 100;
+    (component as any).startAutoScroll();
+
+    const animate = rafSpy.mock.calls[0][0];
+    animate(200);
+
+    expect(component.scrollPosition()).toBeGreaterThan(initialPos);
+    rafSpy.mockRestore();
+  });
+
+  it('should stop scrolling when reaching MAX_SCROLL_POSITION', () => {
+    component.scrollPosition.set(component.MAX_SCROLL_POSITION);
+    component.autoScroll.set(true);
+
+    const rafSpy = jest.spyOn(window, 'requestAnimationFrame').mockImplementation(() => 1);
+
+    (component as any).lastTime = 100;
+    (component as any).startAutoScroll();
+
+    const animate = rafSpy.mock.calls[0][0];
+    animate(200);
+
+    expect(component.scrollPosition()).toBe(component.MAX_SCROLL_POSITION);
+    expect(component.autoScroll()).toBe(false);
+    expect(mockGameSoundService.stop).toHaveBeenCalled();
+    rafSpy.mockRestore();
+  });
 });
