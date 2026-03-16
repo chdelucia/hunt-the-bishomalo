@@ -1,0 +1,177 @@
+import { TestBed } from '@angular/core/testing';
+import { GameEventService } from './game-event.service';
+import { GameSoundService } from '../sound/game-sound.service';
+import { GameStore } from '../../store';
+import { ACHIEVEMENT_SERVICE, AchieveTypes } from '@hunt-the-bishomalo/achievements/api';
+import { Cell, Direction, GameSound, CELL_CONTENTS } from '@hunt-the-bishomalo/data';
+import { signal } from '@angular/core';
+
+describe('GameEventService', () => {
+  let service: GameEventService;
+  let gameStoreMock: any;
+  let gameSoundMock: any;
+  let achievementMock: any;
+
+  beforeEach(() => {
+    gameSoundMock = {
+      playSound: jest.fn(),
+    };
+
+    achievementMock = {
+      activeAchievement: jest.fn(),
+    };
+
+    gameStoreMock = {
+      inventory: signal([]),
+      arrows: signal(1),
+      lives: signal(3),
+      dragonballs: signal(0),
+      gold: signal(0),
+      settings: signal({
+        difficulty: {
+          maxLives: 8,
+          gold: 100,
+        }
+      }),
+      setMessage: jest.fn(),
+      updateGame: jest.fn(),
+      updateHunter: jest.fn(),
+    };
+
+    TestBed.configureTestingModule({
+      providers: [
+        GameEventService,
+        { provide: GameSoundService, useValue: gameSoundMock },
+        { provide: GameStore, useValue: gameStoreMock },
+        { provide: ACHIEVEMENT_SERVICE, useValue: achievementMock },
+      ],
+    });
+
+    service = TestBed.inject(GameEventService);
+  });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+
+  describe('applyEffectsOnDeath', () => {
+    it('should use rewind item if available', () => {
+      gameStoreMock.inventory.set([{ effect: 'rewind' }]);
+      const cell: Cell = { x: 1, y: 1, visited: true };
+      const prev = { x: 0, y: 0 };
+
+      const result = service.applyEffectsOnDeath('pit', cell, prev);
+
+      expect(result).toBe(true);
+      expect(gameSoundMock.playSound).toHaveBeenCalledWith(GameSound.REWIND, false);
+      expect(gameStoreMock.updateHunter).toHaveBeenCalledWith(expect.objectContaining({
+        x: 0,
+        y: 0,
+        inventory: []
+      }));
+    });
+
+    it('should use shield item if available and not rewind', () => {
+      gameStoreMock.inventory.set([{ effect: 'shield' }]);
+      const cell: Cell = { x: 1, y: 1, visited: true };
+      const prev = { x: 0, y: 0 };
+
+      const result = service.applyEffectsOnDeath('wumpus', cell, prev);
+
+      expect(result).toBe(true);
+      expect(gameSoundMock.playSound).toHaveBeenCalledWith(GameSound.SHIELD, false);
+      expect(gameStoreMock.updateHunter).toHaveBeenCalledWith(expect.objectContaining({
+        x: 0,
+        y: 0,
+        inventory: []
+      }));
+    });
+
+    it('should handle pit death', () => {
+      gameStoreMock.inventory.set([{ effect: 'extra-die' }]);
+      const cell: Cell = { x: 1, y: 1, visited: true };
+      const prev = { x: 0, y: 0 };
+
+      const result = service.applyEffectsOnDeath('pit', cell, prev);
+
+      expect(result).toBe(true);
+      expect(gameSoundMock.playSound).toHaveBeenCalledWith(GameSound.PITDIE, false);
+      expect(achievementMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.DEATHBYPIT);
+    });
+
+    it('should handle wumpus death', () => {
+      gameStoreMock.inventory.set([{ effect: 'extra-wumpus' }]);
+      const cell: Cell = { x: 1, y: 1, visited: true };
+      const prev = { x: 0, y: 0 };
+
+      const result = service.applyEffectsOnDeath('wumpus', cell, prev);
+
+      expect(result).toBe(true);
+      expect(gameSoundMock.playSound).toHaveBeenCalledWith(GameSound.SCREAM, false);
+      expect(achievementMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.DEATHBYWUMPUES);
+    });
+  });
+
+  describe('applyEffectByCellContent', () => {
+    it('should handle gold pickup', () => {
+      gameStoreMock.inventory.set([{ effect: 'extra-goldem' }]);
+      const cell: Cell = {
+        x: 1,
+        y: 1,
+        visited: true,
+        content: { type: 'gold' } as any,
+      };
+      service.applyEffectByCellContent(cell);
+
+      expect(gameSoundMock.playSound).toHaveBeenCalledWith(GameSound.PICKUP, false);
+      expect(cell.content).toBeUndefined();
+    });
+
+    it('should handle dragonball pickup', () => {
+      gameStoreMock.inventory.set([{ effect: 'dragonballs' }]);
+      const cell: Cell = {
+        x: 1,
+        y: 1,
+        visited: true,
+        content: { type: 'dragonball' } as any,
+      };
+      service.applyEffectByCellContent(cell);
+
+      expect(gameStoreMock.updateHunter).toHaveBeenCalledWith({ dragonballs: 1 });
+      expect(gameSoundMock.playSound).toHaveBeenCalledWith(GameSound.SUCCESS, false);
+      expect(cell.content).toBeUndefined();
+    });
+
+    it('should handle arrow pickup', () => {
+      gameStoreMock.inventory.set([{ effect: 'flecha-extra' }]);
+      const cell: Cell = {
+        x: 1,
+        y: 1,
+        visited: true,
+        content: { type: 'arrow' } as any,
+      };
+      service.applyEffectByCellContent(cell);
+
+      expect(gameSoundMock.playSound).toHaveBeenCalledWith(GameSound.PICKUP, false);
+      expect(achievementMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.PICKARROW);
+      expect(gameStoreMock.updateHunter).toHaveBeenCalledWith({ arrows: 2 });
+      expect(cell.content).toBeUndefined();
+    });
+
+    it('should handle heart pickup', () => {
+      gameStoreMock.inventory.set([{ effect: 'extra-heart' }]);
+      const cell: Cell = {
+        x: 1,
+        y: 1,
+        visited: true,
+        content: { type: 'heart' } as any,
+      };
+      service.applyEffectByCellContent(cell);
+
+      expect(gameSoundMock.playSound).toHaveBeenCalledWith(GameSound.PICKUP, false);
+      expect(achievementMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.PICKHEART);
+      expect(gameStoreMock.updateGame).toHaveBeenCalledWith({ lives: 4 });
+      expect(cell.content).toBeUndefined();
+    });
+  });
+});
