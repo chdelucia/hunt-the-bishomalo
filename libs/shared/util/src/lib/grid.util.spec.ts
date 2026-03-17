@@ -13,6 +13,7 @@ describe('gridUtils', () => {
       expect(isInBounds(0, -1, 5)).toBe(false);
       expect(isInBounds(5, 0, 5)).toBe(false);
       expect(isInBounds(0, 5, 5)).toBe(false);
+      expect(isInBounds(5, 5, 5)).toBe(false);
     });
   });
 
@@ -32,6 +33,14 @@ describe('gridUtils', () => {
       expect(adj).toContainEqual({ x: 1, y: 0 });
       expect(adj).toContainEqual({ x: 0, y: 1 });
     });
+
+    it('should return 3 adjacent positions for an edge cell', () => {
+      const adj = getAdjacentPositions(0, 1, 3);
+      expect(adj).toHaveLength(3);
+      expect(adj).toContainEqual({ x: 0, y: 0 });
+      expect(adj).toContainEqual({ x: 0, y: 2 });
+      expect(adj).toContainEqual({ x: 1, y: 1 });
+    });
   });
 
   describe('getRandomPosition', () => {
@@ -42,6 +51,16 @@ describe('gridUtils', () => {
       expect(pos.x).toBeLessThan(size);
       expect(pos.y).toBeGreaterThanOrEqual(0);
       expect(pos.y).toBeLessThan(size);
+    });
+
+    it('should eventually return different positions', () => {
+      const size = 10;
+      const positions = new Set<string>();
+      for (let i = 0; i < 100; i++) {
+        const { x, y } = getRandomPosition(size);
+        positions.add(`${x},${y}`);
+      }
+      expect(positions.size).toBeGreaterThan(1);
     });
   });
 });
