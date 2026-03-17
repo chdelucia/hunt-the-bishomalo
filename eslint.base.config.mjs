@@ -88,6 +88,10 @@ export default [
               sourceTag: 'scope:instructions',
               onlyDependOnLibsWithTags: ['scope:instructions', 'scope:shared', 'scope:core'],
             },
+            {
+              sourceTag: 'scope:shop',
+              onlyDependOnLibsWithTags: ['scope:shop', 'scope:shared', 'scope:core', 'scope:game'],
+            },
           ],
         },
       ],
