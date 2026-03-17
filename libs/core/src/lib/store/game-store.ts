@@ -24,10 +24,7 @@ export const GameStore = signalStore(
     currentCell: computed(() => {
       const { x, y } = hunter();
       const currentBoard = board();
-      if (currentBoard.length > 0 && currentBoard[x] && currentBoard[x][y]) {
-        return currentBoard[x][y];
-      }
-      return null;
+      return currentBoard?.[x]?.[y] ?? null;
     }),
   })),
   withMethods((store, localStorage = inject(LocalstorageService)) => {

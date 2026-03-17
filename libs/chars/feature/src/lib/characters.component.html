@@ -3,29 +3,32 @@
 <section class="prizes">
   <p class="title">{{ 'characters.selectYourPrize' | transloco }}</p>
 
-  <div class="character-container" role="radiogroup" [attr.aria-label]="'characters.selectYourPrize' | transloco">
+  <div class="character-container">
     @for(char of chars; track $index) {
-    <button
-      type="button"
+    <label
       class="character"
       [class.selected]="char === selectedChar()"
       [class.owned]="onwedChars?.includes(char)"
-      [disabled]="onwedChars?.includes(char)"
-      (click)="selectedChar.set(char)"
-      role="radio"
-      [attr.aria-checked]="char === selectedChar()"
-      [attr.aria-label]="'charName.' + char | transloco"
     >
+      <input
+        type="radio"
+        name="character"
+        [value]="char"
+        [checked]="char === selectedChar()"
+        [disabled]="onwedChars?.includes(char) ?? false"
+        (change)="selectedChar.set(char)"
+        class="sr-only"
+      />
       <img
         [ngSrc]="$index === 0 ? `chars/${char}/bow.svg` : `chars/${char}/bow.png`"
-        [alt]="char"
+        [alt]="'charName.' + char | transloco"
         draggable="false"
         width="120"
         height="180"
         priority
       />
       <div class="char-name">{{ 'charName.' + char | transloco }}</div>
-    </button>
+    </label>
     }
   </div>
 

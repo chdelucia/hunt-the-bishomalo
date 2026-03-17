@@ -1,5 +1,5 @@
 import { effect, inject, Injectable, signal } from '@angular/core';
-import { Cell, GameSound } from '@hunt-the-bishomalo/data';
+import { Achievement, AchieveTypes, Cell, GameSound } from '@hunt-the-bishomalo/data';
 import {
   AnalyticsService,
   GameSoundService,
@@ -8,7 +8,6 @@ import {
 } from '@hunt-the-bishomalo/core/services';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { ACHIEVEMENTS_LIST } from './achievements.const';
-import { Achievement, AchieveTypes } from '@hunt-the-bishomalo/data';
 
 @Injectable({
   providedIn: 'root',
