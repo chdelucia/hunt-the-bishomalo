@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { KeyboardManagerService } from './keyboard-manager.service';
 import { GameEngineService } from './game-engine.service';
 import { Router } from '@angular/router';
-import { ACHIEVEMENT_SERVICE, AchieveTypes } from '@hunt-the-bishomalo/achievements/api';
-import { RouteTypes } from '@hunt-the-bishomalo/data';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
+import { RouteTypes, AchieveTypes } from '@hunt-the-bishomalo/data';
 
 describe('KeyboardManagerService', () => {
   let service: KeyboardManagerService;
