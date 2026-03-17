@@ -60,9 +60,12 @@
   border-radius: 10px;
   padding: 5px;
   text-align: center;
-  width: 120px;
+  width: 130px;
   user-select: none;
   text-shadow: 1px 1px 8px var(--color-black);
+  background: none;
+  border: none;
+  font-family: inherit;
 
   img {
     width: 100%;

@@ -31,7 +31,7 @@
       </div>
 
       <div class="next-button">
-        <button class="boton-siguiente" (click)="nextLevel()">
+        <button type="button" class="boton-siguiente" (click)="nextLevel()">
           {{ 'shop.nextLevelButton' | transloco }}
         </button>
       </div>
@@ -67,6 +67,7 @@
                 <span class="price-texto">{{ producto.price }}</span>
               </div>
               <button
+                type="button"
                 class="boton-comprar"
                 [disabled]="isOwned(producto)"
                 (click)="buyProduct(producto)"

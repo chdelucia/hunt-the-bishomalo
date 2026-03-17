@@ -5,7 +5,6 @@ import { TranslocoService } from '@jsverse/transloco';
 import {
   GameEventService,
   GameSoundService,
-  LEADERBOARD_SERVICE,
   LocalstorageService,
   ACHIEVEMENT_SERVICE,
   IGameEngineService

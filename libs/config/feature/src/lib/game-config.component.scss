@@ -67,21 +67,29 @@
   margin-bottom: 2rem;
 }
 
-img {
+.char-btn {
+  background: none;
+  border: none;
+  padding: 0;
   cursor: pointer;
   transition: filter 0.3s ease, transform 0.2s ease;
   border-radius: 6px;
-}
 
-img.grayscale {
-  filter: grayscale(100%);
-  opacity: 0.6;
-}
+  &.grayscale {
+    filter: grayscale(100%);
+    opacity: 0.6;
+  }
 
-img.active {
-  filter: none;
-  border: 2px solid var(--color-green-500);
-  transform: scale(1.05);
+  &.active {
+    filter: none;
+    outline: 2px solid var(--color-green-500);
+    transform: scale(1.05);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-blue-500);
+    outline-offset: 2px;
+  }
 }
 
 .difficulty-description {

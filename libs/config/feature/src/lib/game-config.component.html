@@ -43,23 +43,28 @@
 <div class="form-group">
   <label for="selectedChar">{{ 'config.selectCharacterLabel' | transloco }}</label>
 </div>
-<div class="char-selector">
+<div class="char-selector" role="radiogroup" [attr.aria-label]="'config.selectCharacterLabel' | transloco">
   @for(char of chars; track $index) {
-    <img
-      [ngSrc]="$index === 0 ? `chars/${char}/bow.svg` : `chars/${char}/bow.png`"
-      [alt]="char"
-      draggable="false"
-      width="60"
-      height="80"
+    <button
+      type="button"
+      class="char-btn"
       [class.active]="configForm.get('selectedChar')?.value === char"
       [class.grayscale]="configForm.get('selectedChar')?.value !== char"
       (click)="selectChar(char)"
-      (keydown)="selectChar(char)"
-      tabindex="0"
-      role="button"
+      role="radio"
+      [attr.aria-checked]="configForm.get('selectedChar')?.value === char"
+      [attr.aria-label]="char"
+    >
+      <img
+        [ngSrc]="$index === 0 ? `chars/${char}/bow.svg` : `chars/${char}/bow.png`"
+        [alt]="char"
+        draggable="false"
+        width="60"
+        height="80"
       />
-    }
-  </div>
+    </button>
+  }
+</div>
 
   <button type="submit" [disabled]="configForm.invalid" class="start-game">
     {{ 'config.playButton' | transloco }}

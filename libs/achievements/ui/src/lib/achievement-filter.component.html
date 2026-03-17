@@ -1,5 +1,6 @@
 <div class="filter-group">
   <button
+    type="button"
     (click)="setFilter('all')"
     class="filter-btn all"
     [class.active]="currentFilter() === 'all'"
@@ -7,6 +8,7 @@
     {{ 'achievements.filterAll' | transloco }}
   </button>
   <button
+    type="button"
     (click)="setFilter('unlocked')"
     class="filter-btn unlocked"
     [class.active]="currentFilter() === 'unlocked'"
@@ -14,6 +16,7 @@
     {{ 'achievements.filterUnlocked' | transloco }}
   </button>
   <button
+    type="button"
     (click)="setFilter('locked')"
     class="filter-btn locked"
     [class.active]="currentFilter() === 'locked'"
