@@ -3,10 +3,9 @@ import { signalStore, withState, withMethods, patchState } from '@ngrx/signals';
 import { TranslocoService } from '@jsverse/transloco';
 import { GameSoundService } from '@hunt-the-bishomalo/core/services';
 import { GameSound, GameSettings } from '@hunt-the-bishomalo/data';
+import { Point } from '@hunt-the-bishomalo/shared-util';
 
-export interface BossCell {
-  x: number;
-  y: number;
+export interface BossCell extends Point {
   hit: boolean;
   hasBossPart: boolean;
   hint?: string;

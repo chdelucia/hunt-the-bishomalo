@@ -1,3 +1,4 @@
+import { Point } from '@hunt-the-bishomalo/shared-util';
 import { Direction } from './direction.enum';
 import { GameItem } from './game-item.model';
 
@@ -8,9 +9,7 @@ export enum Chars {
   LEGOLAS = 'legolas',
 }
 
-export interface Hunter {
-  x: number;
-  y: number;
+export interface Hunter extends Point {
   direction: Direction;
   arrows: number;
   hasGold: boolean;

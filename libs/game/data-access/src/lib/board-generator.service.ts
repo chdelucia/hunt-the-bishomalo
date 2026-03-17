@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Cell, CELL_CONTENTS, CellContentType, GameSettings } from '@hunt-the-bishomalo/data';
+import { getRandomPosition } from '@hunt-the-bishomalo/shared-util';
 
 @Injectable({ providedIn: 'root' })
 export class BoardGeneratorService {
@@ -63,13 +64,7 @@ export class BoardGeneratorService {
     const size = settings.size;
     let cell: Cell;
     do {
-      /**
-       * Security Hotspot Justification:
-       * Math.random() is used here for game mechanics (random coordinate selection).
-       * It does not involve any security-sensitive operations.
-       */
-      const x = Math.floor(Math.random() * size);
-      const y = Math.floor(Math.random() * size);
+      const { x, y } = getRandomPosition(size);
       cell = board[x][y];
     } while (cell.content || excluded.has(`${cell.x},${cell.y}`));
     return cell;

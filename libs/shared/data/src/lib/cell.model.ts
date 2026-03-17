@@ -14,6 +14,8 @@ export type CellContentType =
   | 'extraarrow'
   | 'dragonball';
 
+import { Point } from '@hunt-the-bishomalo/shared-util';
+
 export interface CellContent {
   type: CellContentType;
   image: string;
@@ -21,9 +23,7 @@ export interface CellContent {
   ariaLabel: string;
 }
 
-export interface Cell {
-  x: number;
-  y: number;
+export interface Cell extends Point {
   visited?: boolean;
   content?: CellContent;
 }
