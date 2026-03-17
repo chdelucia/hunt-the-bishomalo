@@ -1,5 +1,6 @@
 import { Direction } from './direction.enum';
 import { GameItem } from './game-item.model';
+import { Point } from './position.model';
 
 export enum Chars {
   DEFAULT = 'default',
@@ -8,9 +9,7 @@ export enum Chars {
   LEGOLAS = 'legolas',
 }
 
-export interface Hunter {
-  x: number;
-  y: number;
+export interface Hunter extends Point {
   direction: Direction;
   arrows: number;
   hasGold: boolean;

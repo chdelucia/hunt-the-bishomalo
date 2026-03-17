@@ -7,7 +7,6 @@ import {
   GameSoundService,
   LEADERBOARD_SERVICE,
   LocalstorageService,
-  LEADERBOARD_SERVICE,
   ACHIEVEMENT_SERVICE,
   IGameEngineService
 } from '@hunt-the-bishomalo/core/services';
@@ -19,6 +18,7 @@ import {
   RouteTypes,
   AchieveTypes
 } from '@hunt-the-bishomalo/data';
+import { isInBounds, getAdjacentPositions } from '@hunt-the-bishomalo/shared-util';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { take } from 'rxjs';
 import { BoardGeneratorService } from './board-generator.service';
@@ -122,7 +122,7 @@ export class GameEngineService implements IGameEngineService {
 
     this.checkSecret(size, newX, newY);
 
-    if (newX < 0 || newY < 0 || newX >= size || newY >= size) {
+    if (!isInBounds({ x: newX, y: newY }, size)) {
       const wallCollisionMessage = this.transloco.translate('gameMessages.wallCollision');
       if (this.store.message() === wallCollisionMessage) {
         this.achieve.activeAchievement(AchieveTypes.HARDHEAD);
@@ -188,7 +188,7 @@ export class GameEngineService implements IGameEngineService {
     const size = this._settings().size;
     let lastCell: Cell = board[x][y];
 
-    while (this.isInBounds(x, y, size)) {
+    while (isInBounds({ x, y }, size)) {
       const cell = board[x][y];
       lastCell = cell;
       if (cell.content?.type === 'wumpus') {
@@ -197,10 +197,6 @@ export class GameEngineService implements IGameEngineService {
       ({ x, y } = this.nextPosition(x, y, direction));
     }
     return { hitWumpus: false, cell: lastCell };
-  }
-
-  private isInBounds(x: number, y: number, size: number): boolean {
-    return x >= 0 && y >= 0 && x < size && y < size;
   }
 
   private nextPosition(x: number, y: number, dir: Direction): { x: number; y: number } {
@@ -305,20 +301,11 @@ export class GameEngineService implements IGameEngineService {
   }
 
   private getAdjacentCells(): Cell[] {
-    const { x, y } = this._hunter();
+    const hunter = this._hunter();
     const size = this._settings().size;
     const board = this.store.board();
-    const directions = [
-      { dx: -1, dy: 0 },
-      { dx: 1, dy: 0 },
-      { dx: 0, dy: -1 },
-      { dx: 0, dy: 1 },
-    ];
 
-    return directions
-      .map(({ dx, dy }) => ({ x: x + dx, y: y + dy }))
-      .filter(({ x, y }) => x >= 0 && y >= 0 && x < size && y < size)
-      .map(({ x, y }) => board[x][y]);
+    return getAdjacentPositions(hunter, size).map(({ x, y }) => board[x][y]);
   }
 
   private applyBlackoutChance(): boolean {

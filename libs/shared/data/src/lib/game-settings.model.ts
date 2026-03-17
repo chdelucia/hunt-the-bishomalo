@@ -8,11 +8,11 @@ export interface GameSettings {
   wumpus: number;
   blackout?: boolean;
   selectedChar: Chars;
-  difficulty: GameDificulty;
+  difficulty: GameDifficulty;
   startTime: string;
 }
 
-export interface GameDificulty {
+export interface GameDifficulty {
   maxLevels: number;
   maxChance: number;
   gold: number;
@@ -28,7 +28,7 @@ export enum DifficultyTypes {
   HARD = 'hard',
 }
 
-export const DIFFICULTY_CONFIGS: Record<DifficultyTypes, GameDificulty> = {
+export const DIFFICULTY_CONFIGS: Record<DifficultyTypes, GameDifficulty> = {
   easy: {
     maxLevels: 10,
     maxChance: 0.35,

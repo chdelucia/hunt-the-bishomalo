@@ -7,7 +7,7 @@ import {
   Chars,
   DIFFICULTY_CONFIGS,
   DifficultyTypes,
-  GameDificulty,
+  GameDifficulty,
   GameSound,
   RouteTypes,
 } from '@hunt-the-bishomalo/data';
@@ -30,7 +30,7 @@ export class GameConfigComponent {
   private readonly router = inject(Router);
 
   isDevMode = isDevMode();
-  readonly configs = DIFFICULTY_CONFIGS as Record<string, GameDificulty>;
+  readonly configs = DIFFICULTY_CONFIGS as Record<string, GameDifficulty>;
 
   configForm: FormGroup = this.fb.group({
     player: ['Kukuxumushu', Validators.required],

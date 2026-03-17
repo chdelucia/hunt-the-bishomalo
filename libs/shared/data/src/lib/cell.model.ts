@@ -1,3 +1,5 @@
+import { Point } from './position.model';
+
 export type CellContentType =
   | 'wumpus'
   | 'wumpuslara'
@@ -21,14 +23,10 @@ export interface CellContent {
   ariaLabel: string;
 }
 
-export interface Cell {
-  x: number;
-  y: number;
+export interface Cell extends Point {
   visited?: boolean;
   content?: CellContent;
 }
-
-export type CharacterType = 'default' | 'link' | 'lara' | 'legolas';
 
 export const CELL_CONTENTS: Record<CellContentType, CellContent> = {
   wumpus: {

@@ -2,11 +2,10 @@ import { inject } from '@angular/core';
 import { signalStore, withState, withMethods, patchState } from '@ngrx/signals';
 import { TranslocoService } from '@jsverse/transloco';
 import { GameSoundService } from '@hunt-the-bishomalo/core/services';
-import { GameSound, GameSettings } from '@hunt-the-bishomalo/data';
+import { GameSound, GameSettings, Point } from '@hunt-the-bishomalo/data';
+import { getRandomPosition } from '@hunt-the-bishomalo/shared-util';
 
-export interface BossCell {
-  x: number;
-  y: number;
+export interface BossCell extends Point {
   hit: boolean;
   hasBossPart: boolean;
   hint?: string;
@@ -75,13 +74,7 @@ export const BossStore = signalStore(
 
           let partsPlaced = 0;
           while (partsPlaced < bossParts) {
-            /**
-             * Security Hotspot Justification:
-             * Math.random() is used here for game mechanics (randomizing boss part positions).
-             * It does not involve any security-sensitive operations.
-             */
-            const x = Math.floor(Math.random() * gridSize);
-            const y = Math.floor(Math.random() * gridSize);
+            const { x, y } = getRandomPosition(gridSize);
             if (!grid[x][y].hasBossPart) {
               grid[x][y].hasBossPart = true;
               partsPlaced++;
