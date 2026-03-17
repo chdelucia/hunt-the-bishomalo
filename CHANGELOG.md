@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.8.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.7.14...v7.8.0) (2026-03-17)
+
+
+### Features
+
+* **a11y:** improve accessibility and integrate template linting ([6a6f715](https://github.com/chdelucia/hunt-the-bishomalo/commit/6a6f715de1d43772331a60429faab0fc1f853ecb))
+
+
+### Bug Fixes
+
+* **game:** add missing LEADERBOARD_SERVICE import in GameEngineService ([6a725fd](https://github.com/chdelucia/hunt-the-bishomalo/commit/6a725fd3f6e19c9b27f231345caecbb2c8df6793))
+* **sonar:** explicitly list all coverage report paths ([3790ad8](https://github.com/chdelucia/hunt-the-bishomalo/commit/3790ad8a5b761769b61239ea7f2ddb63604e7ae1))
+
 ### [7.7.14](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.7.13...v7.7.14) (2026-03-17)
 
 
