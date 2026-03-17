@@ -67,6 +67,18 @@
   margin-bottom: 2rem;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 .char-btn {
   background: none;
   border: none;
@@ -74,6 +86,7 @@
   cursor: pointer;
   transition: filter 0.3s ease, transform 0.2s ease;
   border-radius: 6px;
+  display: block;
 
   &.grayscale {
     filter: grayscale(100%);
@@ -86,7 +99,7 @@
     transform: scale(1.05);
   }
 
-  &:focus-visible {
+  &:focus-within {
     outline: 2px solid var(--color-blue-500);
     outline-offset: 2px;
   }

@@ -5,4 +5,3 @@ export * from './events/game-event.service';
 export * from './achievement-service.interface';
 export * from './leaderboard-service.interface';
 export * from './game-engine.interface';
-export * from './tokens';

@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, output, input } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
 
+type AchievementFilterType = 'all' | 'unlocked' | 'locked';
+
 @Component({
   selector: 'lib-achievement-filter',
   standalone: true,
@@ -10,10 +12,10 @@ import { TranslocoModule } from '@jsverse/transloco';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AchievementFilterComponent {
-  readonly currentFilter = input.required<'all' | 'unlocked' | 'locked'>();
-  filterChanged = output<'all' | 'unlocked' | 'locked'>();
+  readonly currentFilter = input.required<AchievementFilterType>();
+  filterChanged = output<AchievementFilterType>();
 
-  setFilter(filter: 'all' | 'unlocked' | 'locked'): void {
+  setFilter(filter: AchievementFilterType): void {
     this.filterChanged.emit(filter);
   }
 }
