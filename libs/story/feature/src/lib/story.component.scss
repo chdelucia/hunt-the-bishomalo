@@ -18,6 +18,14 @@
   box-shadow: 0 0 30px var(--color-panel);
   animation: slideUp 1.5s ease forwards;
   cursor: pointer;
+  border: none;
+  font-family: inherit;
+  display: block;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-yellow);
+    outline-offset: 4px;
+  }
 }
 .chapter {
   font-size: clamp(1rem, 2vw, 2rem);

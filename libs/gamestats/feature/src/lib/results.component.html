@@ -3,16 +3,22 @@
   <h1 class="resultados-titulo">{{ 'results.title' | transloco }}</h1>
 
   @if(leaderboard.length){
-    <div class="tabs-container">
+    <div class="tabs-container" role="tablist">
       <button
+        type="button"
         class="tab-button"
+        role="tab"
+        [attr.aria-selected]="tabActiva() === 'general'"
         [class.tab-activa]="tabActiva() === 'general'"
         (click)="tabActiva.set('general')"
         >
         {{ 'results.tabGeneral' | transloco }}
       </button>
       <button
+        type="button"
         class="tab-button"
+        role="tab"
+        [attr.aria-selected]="tabActiva() === 'niveles'"
         [class.tab-activa]="tabActiva() === 'niveles'"
         (click)="tabActiva.set('niveles')"
         >
@@ -135,6 +141,7 @@
 
 <div class="button-wrapper">
   <button
+    type="button"
     class="next-btn"
     [attr.aria-label]="'results.nextButtonAriaLabel' | transloco"
     (click)="goToCredits()"

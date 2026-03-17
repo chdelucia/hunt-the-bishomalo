@@ -64,6 +64,8 @@
       position: relative;
       transition: transform 0.1s ease-in-out;
       user-select: none;
+      font-family: inherit;
+      padding: 0;
 
       &:hover {
         background-color: var(--color-red);
