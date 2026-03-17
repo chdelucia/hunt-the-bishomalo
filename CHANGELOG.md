@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.8.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.8.2...v7.8.3) (2026-03-17)
+
+
+### Bug Fixes
+
+* **sonar:** enable unit test coverage for boss, instructions, and shop domains ([25fa110](https://github.com/chdelucia/hunt-the-bishomalo/commit/25fa110e5d44625ab0c5eaa4f3c28e397c595ecd))
+* **sonar:** enable unit test coverage for boss, instructions, and shop domains ([beb9547](https://github.com/chdelucia/hunt-the-bishomalo/commit/beb9547768b6afd5c7eea666381c07fea6d31032))
+
 ### [7.8.2](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.8.1...v7.8.2) (2026-03-17)
 
 ### [7.8.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.8.0...v7.8.1) (2026-03-17)
