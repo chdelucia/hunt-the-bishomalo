@@ -4,7 +4,7 @@
   "sourceRoot": "libs/shop/feature/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["scope:game", "type:feature"],
+  "tags": ["scope:shop", "type:feature"],
   "targets": {
     "test": {
       "executor": "@nx/jest:jest",

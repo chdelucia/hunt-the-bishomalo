@@ -4,7 +4,7 @@
   "sourceRoot": "libs/shop/shell/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["scope:game", "type:shell"],
+  "tags": ["scope:shop", "type:shell"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint"

@@ -4,7 +4,7 @@
   "sourceRoot": "libs/story/shell/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["scope:shared", "type:shell"],
+  "tags": ["scope:story", "type:shell"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint"

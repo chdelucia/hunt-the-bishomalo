@@ -4,7 +4,7 @@
   "sourceRoot": "libs/story/api/src",
   "prefix": "lib",
   "projectType": "library",
-  "tags": ["scope:shared", "type:api"],
+  "tags": ["scope:story", "type:api"],
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint"

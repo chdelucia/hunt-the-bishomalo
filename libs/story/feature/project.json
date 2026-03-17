@@ -5,7 +5,7 @@
   "prefix": "lib",
   "projectType": "library",
   "tags": [
-    "scope:shared",
+    "scope:story",
     "type:feature"
   ],
   "targets": {
