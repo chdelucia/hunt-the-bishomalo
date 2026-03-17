@@ -90,7 +90,7 @@ export default [
             },
             {
               sourceTag: 'scope:shop',
-              onlyDependOnLibsWithTags: ['scope:shop', 'scope:shared', 'scope:core'],
+              onlyDependOnLibsWithTags: ['scope:shop', 'scope:shared', 'scope:core', 'scope:game'],
             },
           ],
         },
