@@ -24,11 +24,6 @@ export function getRandomPosition(size: number): Point {
    * It does not involve any security-sensitive operations.
    */
   const x = Math.floor(Math.random() * size);
-  /**
-   * Security Hotspot Justification:
-   * Math.random() is used here for game mechanics (random coordinate selection).
-   * It does not involve any security-sensitive operations.
-   */
   const y = Math.floor(Math.random() * size);
   return { x, y };
 }
