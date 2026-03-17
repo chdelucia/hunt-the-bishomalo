@@ -36,6 +36,7 @@
       "@hunt-the-bishomalo/boss/shell": ["libs/boss/shell/src/index.ts"],
       "@hunt-the-bishomalo/credits/feature": ["libs/credits/feature/src/index.ts"],
       "@hunt-the-bishomalo/credits/shell": ["libs/credits/shell/src/index.ts"],
+      "@hunt-the-bishomalo/gamestats/api": ["libs/gamestats/api/src/index.ts"],
       "@hunt-the-bishomalo/gamestats/feature": ["libs/gamestats/feature/src/index.ts"],
       "@hunt-the-bishomalo/gamestats/data-access": ["libs/gamestats/data-access/src/index.ts"],
       "@hunt-the-bishomalo/gamestats/shell": ["libs/gamestats/shell/src/index.ts"],

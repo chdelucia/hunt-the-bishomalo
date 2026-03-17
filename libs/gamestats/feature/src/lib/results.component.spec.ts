@@ -5,7 +5,7 @@ import { LeaderboardService } from '@hunt-the-bishomalo/gamestats/data-access';
 import { RouteTypes, ScoreEntry } from '@hunt-the-bishomalo/data';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { signal } from '@angular/core';
 
 const mockLeaderboard: ScoreEntry[] = [

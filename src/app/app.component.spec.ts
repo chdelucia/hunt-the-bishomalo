@@ -2,7 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
-import { LEADERBOARD_SERVICE, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { KeyboardManagerService } from '@hunt-the-bishomalo/game/data-access';
 import { signal } from '@angular/core';
 

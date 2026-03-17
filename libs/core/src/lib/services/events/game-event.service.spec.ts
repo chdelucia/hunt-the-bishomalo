@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { GameEventService } from './game-event.service';
 import { GameSoundService } from '../sound/game-sound.service';
 import { GameStore } from '../../store';
-import { ACHIEVEMENT_SERVICE } from '../achievement-service.interface';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { Cell, GameSound, AchieveTypes } from '@hunt-the-bishomalo/data';
 import { signal } from '@angular/core';
 

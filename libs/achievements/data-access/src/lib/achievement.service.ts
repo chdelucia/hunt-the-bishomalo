@@ -3,9 +3,9 @@ import { Achievement, AchieveTypes, Cell, GameSound } from '@hunt-the-bishomalo/
 import {
   AnalyticsService,
   GameSoundService,
-  LocalstorageService,
-  IAchievementService
+  LocalstorageService
 } from '@hunt-the-bishomalo/core/services';
+import { IAchievementService } from '@hunt-the-bishomalo/achievements/api';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { ACHIEVEMENTS_LIST } from './achievements.const';
 

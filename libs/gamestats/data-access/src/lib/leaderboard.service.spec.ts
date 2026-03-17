@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { LeaderboardService } from './leaderboard.service';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
-import { ACHIEVEMENT_SERVICE, LocalstorageService } from '@hunt-the-bishomalo/core/services';
+import { LocalstorageService } from '@hunt-the-bishomalo/core/services';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { signal, WritableSignal } from '@angular/core';
 
 describe('LeaderboardService', () => {

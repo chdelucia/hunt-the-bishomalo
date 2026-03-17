@@ -1,7 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ConfigComponent } from './config.component';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
-import { ACHIEVEMENT_SERVICE, LEADERBOARD_SERVICE, GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/core/services';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
+import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
 
 const mockAchievement = {

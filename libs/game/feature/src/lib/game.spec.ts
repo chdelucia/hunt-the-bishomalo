@@ -4,7 +4,8 @@ import { RouterModule } from '@angular/router';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { signal } from '@angular/core';
-import { LEADERBOARD_SERVICE, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
 
 describe('Game', () => {
