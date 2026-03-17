@@ -12,6 +12,7 @@ describe('AppWumpusAttackAnimationComponent', () => {
 
     fixture = TestBed.createComponent(AppWumpusAttackAnimationComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('selectedChar', 'default');
     fixture.detectChanges();
   });
 
@@ -29,6 +30,7 @@ describe('AppWumpusAttackAnimationComponent', () => {
     // Re-create component with fake timers active so ngOnInit uses them
     fixture = TestBed.createComponent(AppWumpusAttackAnimationComponent);
     component = fixture.componentInstance;
+    fixture.componentRef.setInput('selectedChar', 'default');
     fixture.detectChanges();
 
     expect(component.step()).toBe(1);

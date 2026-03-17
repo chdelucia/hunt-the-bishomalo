@@ -1,6 +1,6 @@
-import { Component, effect, inject, OnDestroy, signal } from '@angular/core';
+import { Component, effect, input, OnDestroy, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { ACHIEVEMENT_SERVICE, Achievement } from '@hunt-the-bishomalo/achievements/api';
+import { Achievement } from '@hunt-the-bishomalo/data';
 
 interface ToastData {
   id: number;
@@ -16,14 +16,15 @@ interface ToastData {
   styleUrl: './toast.component.scss',
 })
 export class ToastComponent implements OnDestroy {
-  private readonly service = inject(ACHIEVEMENT_SERVICE);
+  achievement = input<Achievement | undefined>();
+
   private idCounter = 0;
   readonly toasts = signal<ToastData[]>([]);
   private readonly toastTimeouts = new Map<number, ReturnType<typeof setTimeout>>();
 
   constructor() {
     effect(() => {
-      const achievement = this.service.completed();
+      const achievement = this.achievement();
       if (achievement) {
         this.addToast(achievement);
       }

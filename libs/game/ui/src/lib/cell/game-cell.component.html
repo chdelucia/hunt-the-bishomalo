@@ -5,10 +5,10 @@
     <lib-cell-content [content]="content" />
   } @else if (showHunter()) {
     <lib-hunter
-      [direction]="gameStore.hunter().direction"
-      [arrows]="gameStore.arrows()"
+      [direction]="hunter().direction"
+      [arrows]="hunter().arrows"
       [selectedChar]="settings().selectedChar"
-      [hasGold]="gameStore.hasGold()"
+      [hasGold]="hunter().hasGold"
       [size]="settings().size"
       [hasLantern]="!!hasLantern()"
       [hasShield]="!!hasShield()"

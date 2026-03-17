@@ -30,12 +30,14 @@ export const appRoutes: Route[] = [
   },
   {
     path: RouteTypes.CREDITS,
-    loadChildren: () => import('@hunt-the-bishomalo/credits/shell').then((mod) => mod.creditsRoutes),
+    loadChildren: () =>
+      import('@hunt-the-bishomalo/credits/shell').then((mod) => mod.creditsRoutes),
     title: 'Creditos por Chris Heredia | Bisho malo',
   },
   {
     path: RouteTypes.RULES,
-    loadChildren: () => import('@hunt-the-bishomalo/instructions/shell').then((mod) => mod.instructionsRoutes),
+    loadChildren: () =>
+      import('@hunt-the-bishomalo/instructions/shell').then((mod) => mod.instructionsRoutes),
     title: 'Instrucciones | Bisho malo',
   },
   {
@@ -46,7 +48,8 @@ export const appRoutes: Route[] = [
   {
     path: RouteTypes.RESULTS,
     canActivate: [secretGuard],
-    loadChildren: () => import('@hunt-the-bishomalo/gamestats/shell').then((mod) => mod.gamestatsRoutes),
+    loadChildren: () =>
+      import('@hunt-the-bishomalo/gamestats/shell').then((mod) => mod.gamestatsRoutes),
     title: 'Resultados de la partida | Bisho malo',
   },
   {

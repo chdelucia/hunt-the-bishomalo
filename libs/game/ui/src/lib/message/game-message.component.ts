@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
 import { GameSettings, RouteTypes } from '@hunt-the-bishomalo/data';
-import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
 import { Router } from '@angular/router';
 import { GameMessageDisplayComponent } from './game-message-display.component';
 import { GameMessageActionsComponent } from './game-message-actions.component';
@@ -16,7 +15,7 @@ import { GameMessageActionsComponent } from './game-message-actions.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameMessageComponent {
-  private readonly gameEngine = inject(GameEngineService);
+  readonly restartRequested = output<void>();
   private readonly router = inject(Router);
   readonly message = input.required<string>();
   readonly isAlive = input.required<boolean>();
@@ -33,7 +32,7 @@ export class GameMessageComponent {
   );
 
   restartGame(): void {
-    this.gameEngine.initGame();
+    this.restartRequested.emit();
   }
 
   nextLevel(): void {

@@ -1,8 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameCellComponent } from './game-cell.component';
 import { Cell, Chars, Hunter } from '@hunt-the-bishomalo/data';
-import { getTranslocoTestingModule } from '@hunt-the-bishomalo/core/utils';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 const mockCell: Cell = { x: 2, y: 3 };
@@ -24,22 +23,6 @@ const mockSettings = {
   selectedChar: Chars.DEFAULT,
 };
 
-const mockGameState = {
-  hunter: jest.fn().mockReturnValue(mockHunter),
-  settings: jest.fn().mockReturnValue(mockSettings),
-  blackout: jest.fn().mockReturnValue(false),
-  board: jest.fn().mockReturnValue([]),
-  message: jest.fn().mockReturnValue(''),
-  wumpusKilled: jest.fn().mockReturnValue(0),
-  hasGold: jest.fn(),
-  inventory: jest.fn().mockReturnValue([]),
-  isAlive: jest.fn(),
-  hasWon: jest.fn(),
-  currentCell: jest.fn().mockReturnValue(mockCell),
-  arrows: jest.fn().mockReturnValue(1),
-  lives: jest.fn().mockReturnValue(4),
-};
-
 describe('GameCellComponent', () => {
   let component: GameCellComponent;
   let fixture: ComponentFixture<GameCellComponent>;
@@ -47,7 +30,6 @@ describe('GameCellComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [GameCellComponent, getTranslocoTestingModule()],
-      providers: [{ provide: GameStore, useValue: mockGameState }],
       schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
@@ -55,6 +37,13 @@ describe('GameCellComponent', () => {
     component = fixture.componentInstance;
 
     fixture.componentRef.setInput('cell', mockCell);
+    fixture.componentRef.setInput('isAlive', true);
+    fixture.componentRef.setInput('hasWon', false);
+    fixture.componentRef.setInput('inventory', []);
+    fixture.componentRef.setInput('settings', mockSettings);
+    fixture.componentRef.setInput('blackout', false);
+    fixture.componentRef.setInput('isHunterCell', true);
+    fixture.componentRef.setInput('hunter', mockHunter);
 
     fixture.detectChanges();
   });
@@ -71,8 +60,8 @@ describe('GameCellComponent', () => {
   });
 
   it('should show elements when game is not alive', () => {
-    mockGameState.isAlive.mockReturnValue(false);
-    mockGameState.hasWon.mockReturnValue(false);
+    fixture.componentRef.setInput('isAlive', false);
+    fixture.componentRef.setInput('hasWon', false);
 
     fixture.componentRef.setInput('cell', {
       visited: false,
@@ -86,8 +75,8 @@ describe('GameCellComponent', () => {
   });
 
   it('should show elements when game secret', () => {
-    mockGameState.isAlive.mockReturnValue(true);
-    mockGameState.hasWon.mockReturnValue(false);
+    fixture.componentRef.setInput('isAlive', true);
+    fixture.componentRef.setInput('hasWon', false);
 
     fixture.componentRef.setInput('cell', {
       visited: false,
@@ -101,8 +90,8 @@ describe('GameCellComponent', () => {
   });
 
   it('should show elements when game secretv2', () => {
-    mockGameState.isAlive.mockReturnValue(true);
-    mockGameState.hasWon.mockReturnValue(false);
+    fixture.componentRef.setInput('isAlive', true);
+    fixture.componentRef.setInput('hasWon', false);
 
     fixture.componentRef.setInput('cell', {
       content: { image: 'algo.png', alt: 'secretss' },
@@ -112,8 +101,8 @@ describe('GameCellComponent', () => {
   });
 
   it('should show elements when die', () => {
-    mockGameState.isAlive.mockReturnValue(false);
-    mockGameState.hasWon.mockReturnValue(false);
+    fixture.componentRef.setInput('isAlive', false);
+    fixture.componentRef.setInput('hasWon', false);
 
     fixture.componentRef.setInput('cell', {
       visited: false,
@@ -127,8 +116,8 @@ describe('GameCellComponent', () => {
   });
 
   it('should show elements when game has been won', () => {
-    mockGameState.isAlive.mockReturnValue(true);
-    mockGameState.hasWon.mockReturnValue(true);
+    fixture.componentRef.setInput('isAlive', true);
+    fixture.componentRef.setInput('hasWon', true);
 
     fixture.componentRef.setInput('cell', {
       visited: false,
@@ -141,8 +130,8 @@ describe('GameCellComponent', () => {
   });
 
   it('should show elements when cell has been visited', () => {
-    mockGameState.isAlive.mockReturnValue(true);
-    mockGameState.hasWon.mockReturnValue(false);
+    fixture.componentRef.setInput('isAlive', true);
+    fixture.componentRef.setInput('hasWon', false);
 
     fixture.componentRef.setInput('cell', {
       visited: true,
@@ -155,8 +144,8 @@ describe('GameCellComponent', () => {
   });
 
   it('should show elements when content alt is secret', () => {
-    mockGameState.isAlive.mockReturnValue(true);
-    mockGameState.hasWon.mockReturnValue(false);
+    fixture.componentRef.setInput('isAlive', true);
+    fixture.componentRef.setInput('hasWon', false);
 
     fixture.componentRef.setInput('cell', {
       visited: false,
@@ -169,8 +158,8 @@ describe('GameCellComponent', () => {
   });
 
   it('should not show elements when game is alive, not won, not dev, not visited, and alt is not secret', () => {
-    mockGameState.isAlive.mockReturnValue(true);
-    mockGameState.hasWon.mockReturnValue(false);
+    fixture.componentRef.setInput('isAlive', true);
+    fixture.componentRef.setInput('hasWon', false);
 
     fixture.componentRef.setInput('cell', {
       visited: false,
@@ -183,14 +172,15 @@ describe('GameCellComponent', () => {
   });
 
   it('should show hunter when cell has hunter and player is alive', () => {
-    mockGameState.isAlive.mockReturnValue(true);
+    fixture.componentRef.setInput('isAlive', true);
+    fixture.componentRef.setInput('isHunterCell', true);
     fixture.componentRef.setInput('cell', mockCell);
     fixture.detectChanges();
     expect(component.showHunter()).toBeTruthy();
   });
 
   it('should not show hunter when player is dead', () => {
-    mockGameState.isAlive.mockReturnValue(false);
+    fixture.componentRef.setInput('isAlive', false);
     fixture.componentRef.setInput('cell', {
       visited: false,
       content: { alt: 'somethingElse', image: 'algo.png' },
@@ -202,7 +192,8 @@ describe('GameCellComponent', () => {
   });
 
   it('should not show hunter when cell is not hunter', () => {
-    mockGameState.isAlive.mockReturnValue(true);
+    fixture.componentRef.setInput('isAlive', true);
+    fixture.componentRef.setInput('isHunterCell', false);
     fixture.componentRef.setInput('cell', {
       visited: false,
       content: { alt: 'somethingElse', image: 'algo.png' },
@@ -214,24 +205,20 @@ describe('GameCellComponent', () => {
   });
 
   it('should have lantern when in inventory and blackout is active', () => {
-    mockGameState.inventory.mockReturnValue([{ effect: 'lantern' }]);
-    mockGameState.blackout.mockReturnValue(true);
+    fixture.componentRef.setInput('inventory', [{ effect: 'lantern' }]);
+    fixture.componentRef.setInput('blackout', true);
 
-    const fixtureLocal = TestBed.createComponent(GameCellComponent);
-    fixtureLocal.componentRef.setInput('cell', mockCell);
-    fixtureLocal.detectChanges();
+    fixture.detectChanges();
 
-    expect(fixtureLocal.componentInstance.hasLantern()).toBeTruthy();
+    expect(component.hasLantern()).toBeTruthy();
   });
 
   it('should NOT have lantern when in inventory but blackout is NOT active', () => {
-    mockGameState.inventory.mockReturnValue([{ effect: 'lantern' }]);
-    mockGameState.blackout.mockReturnValue(false);
+    fixture.componentRef.setInput('inventory', [{ effect: 'lantern' }]);
+    fixture.componentRef.setInput('blackout', false);
 
-    const fixtureLocal = TestBed.createComponent(GameCellComponent);
-    fixtureLocal.componentRef.setInput('cell', mockCell);
-    fixtureLocal.detectChanges();
+    fixture.detectChanges();
 
-    expect(fixtureLocal.componentInstance.hasLantern()).toBeFalsy();
+    expect(component.hasLantern()).toBeFalsy();
   });
 });

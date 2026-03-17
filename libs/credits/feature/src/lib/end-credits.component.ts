@@ -3,8 +3,7 @@ import { Component, OnDestroy, OnInit, signal, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { GameSound, RouteTypes } from '@hunt-the-bishomalo/data';
-import { GameSoundService } from '@hunt-the-bishomalo/core/services';
-import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
+import { GameSoundService, GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/core/services';
 
 @Component({
   selector: 'lib-end-credits',
@@ -36,7 +35,7 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
   private animationFrameId = 0;
 
   private readonly router = inject(Router);
-  private readonly gameEngine = inject(GameEngineService);
+  private readonly gameEngine = inject(GAME_ENGINE_TOKEN);
   private readonly gameSound = inject(GameSoundService);
 
   private startAutoScroll(): void {

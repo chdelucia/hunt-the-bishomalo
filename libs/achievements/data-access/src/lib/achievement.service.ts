@@ -4,10 +4,11 @@ import {
   AnalyticsService,
   GameSoundService,
   LocalstorageService,
+  IAchievementService
 } from '@hunt-the-bishomalo/core/services';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { ACHIEVEMENTS_LIST } from './achievements.const';
-import { Achievement, AchieveTypes, IAchievementService } from '@hunt-the-bishomalo/achievements/api';
+import { Achievement, AchieveTypes } from '@hunt-the-bishomalo/data';
 
 @Injectable({
   providedIn: 'root',

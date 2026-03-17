@@ -1,9 +1,16 @@
-<lib-menu>
+<lib-menu (newGameRequested)="handleNewGame()">
   @if (game.size() && game.isAlive()) {
-    <lib-game-controls />
+    <lib-game-controls
+      (newGameRequested)="handleNewGame()"
+      (moveForwardRequested)="handleMoveForward()"
+      (turnLeftRequested)="handleTurnLeft()"
+      (turnRightRequested)="handleTurnRight()"
+      (shootArrowRequested)="handleShootArrow()"
+      (resetGameRequested)="handleRestart()"
+    />
   }
 </lib-menu>
 
 <router-outlet></router-outlet>
 
-<lib-toast />
+<lib-toast [achievement]="achieve.completed()" />

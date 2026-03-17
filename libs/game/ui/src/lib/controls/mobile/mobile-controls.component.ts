@@ -1,8 +1,6 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
-import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
-import { AchieveTypes, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 
 @Component({
   selector: 'lib-mobile-controls',
@@ -14,19 +12,19 @@ import { AchieveTypes, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achieveme
 export class MobileControlsComponent {
   isFinish = input.required<boolean>();
 
-  private readonly game = inject(GameEngineService);
-  private readonly achieve = inject(ACHIEVEMENT_SERVICE);
+  readonly moveForwardRequested = output<void>();
+  readonly turnRightRequested = output<void>();
+  readonly shootArrowRequested = output<void>();
 
   moveForward(): void {
-    this.game.moveForward();
+    this.moveForwardRequested.emit();
   }
 
   turnRight(): void {
-    this.game.turnRight();
+    this.turnRightRequested.emit();
   }
 
   shootArrow(): void {
-    this.game.shootArrow();
-    this.achieve.activeAchievement(AchieveTypes.GAMER);
+    this.shootArrowRequested.emit();
   }
 }

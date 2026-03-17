@@ -7,10 +7,10 @@ import {
   computed,
   inject,
   DestroyRef,
+  input,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { timer } from 'rxjs';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
 
 @Component({
   selector: 'lib-wumpus-attack-animation',
@@ -22,9 +22,9 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
 })
 export class AppWumpusAttackAnimationComponent implements OnInit {
   readonly step = signal(1);
+  readonly selectedChar = input.required<string>();
   readonly closeAnimation = output<void>();
 
-  readonly gameStore = inject(GameStore);
   private readonly destroyRef = inject(DestroyRef);
 
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core';
 import {
   AppWumpusAttackAnimationComponent,
   BlackoutComponent,
@@ -12,6 +12,9 @@ import {
 import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
 import { RouterModule } from '@angular/router';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
+import { ACHIEVEMENT_SERVICE, GameSoundService } from '@hunt-the-bishomalo/core/services';
+import { AchieveTypes, GameSound } from '@hunt-the-bishomalo/data';
 
 @Component({
   selector: 'lib-game',
@@ -33,13 +36,58 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
 })
 export class Game {
   readonly game = inject(GameStore);
+  private readonly gameEngine = inject(GameEngineService);
+  private readonly achieve = inject(ACHIEVEMENT_SERVICE);
+  private readonly sound = inject(GameSoundService);
 
   readonly deathByWumpus = computed(() => {
     const gameInstance = this.game;
     return gameInstance?.message() === '¡El Wumpus te devoró!';
   });
 
+  constructor() {
+    effect(() => {
+      const isAlive = this.game.isAlive();
+      const hasWon = this.game.hasWon();
+      const settings = this.game.settings();
+
+      if (settings?.blackout && isAlive && !hasWon) {
+        this.sound.playSound(GameSound.BLACKOUT, false);
+        this.achieve.activeAchievement(AchieveTypes.BLACKOUT);
+      }
+    });
+  }
+
   handleclose(): void {
     this.game.setMessage('GAME OVER ' + this.game.message());
+  }
+
+  handleNewGame(): void {
+    this.gameEngine.newGame();
+  }
+
+  handleRestart(): void {
+    this.gameEngine.initGame();
+  }
+
+  handleMoveForward(): void {
+    this.gameEngine.moveForward();
+  }
+
+  handleTurnLeft(): void {
+    this.gameEngine.turnLeft();
+  }
+
+  handleTurnRight(): void {
+    this.gameEngine.turnRight();
+  }
+
+  handleShootArrow(): void {
+    this.gameEngine.shootArrow();
+  }
+
+  handleMobileShootArrow(): void {
+    this.handleShootArrow();
+    this.achieve.activeAchievement(AchieveTypes.GAMER);
   }
 }
