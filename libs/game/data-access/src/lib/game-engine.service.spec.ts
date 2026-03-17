@@ -3,12 +3,11 @@ import { GameEngineService } from './game-engine.service';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
-import { GameSoundService, GameEventService, LocalstorageService, LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/core/services';
-import { ACHIEVEMENT_SERVICE, AchieveTypes } from '@hunt-the-bishomalo/achievements/api';
+import { GameSoundService, GameEventService, LocalstorageService, LEADERBOARD_SERVICE, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
 import { BoardGeneratorService } from './board-generator.service';
 import { PerceptionService } from './perception.service';
 import { signal } from '@angular/core';
-import { Direction, GameSound, RouteTypes, CELL_CONTENTS } from '@hunt-the-bishomalo/data';
+import { Direction, AchieveTypes, RouteTypes } from '@hunt-the-bishomalo/data';
 import { of } from 'rxjs';
 
 describe('GameEngineService', () => {

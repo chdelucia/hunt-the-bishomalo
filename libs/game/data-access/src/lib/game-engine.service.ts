@@ -7,7 +7,6 @@ import {
   GameSoundService,
   LEADERBOARD_SERVICE,
   LocalstorageService,
-  LEADERBOARD_SERVICE,
   ACHIEVEMENT_SERVICE,
   IGameEngineService
 } from '@hunt-the-bishomalo/core/services';
