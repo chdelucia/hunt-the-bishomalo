@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.9.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.8.4...v7.9.0) (2026-03-17)
+
+
+### Features
+
+* **core:** relocate and refactor application guards ([6ed8127](https://github.com/chdelucia/hunt-the-bishomalo/commit/6ed8127ea5bb12f6b42f7d80a775b090a5da6abb))
+
 ### [7.8.4](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.8.3...v7.8.4) (2026-03-17)
 
 ### [7.8.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.8.2...v7.8.3) (2026-03-17)
