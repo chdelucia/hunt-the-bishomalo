@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.7.14](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.7.13...v7.7.14) (2026-03-17)
+
+
+### Bug Fixes
+
+* lint ([648c608](https://github.com/chdelucia/hunt-the-bishomalo/commit/648c608f6a6d6e4b6ed3f019b4fe75de7ec97f47))
+* resolve build, lint and unit test failures across libs ([a0da6e1](https://github.com/chdelucia/hunt-the-bishomalo/commit/a0da6e16b8a96876fa8eebc68405966cbe56f416))
+
 ### [7.7.13](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.7.12...v7.7.13) (2026-03-16)
 
 ### [7.7.12](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.7.11...v7.7.12) (2026-03-16)
