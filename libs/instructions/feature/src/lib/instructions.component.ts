@@ -10,4 +10,8 @@ import { TranslocoModule } from '@jsverse/transloco';
   templateUrl: './instructions.component.html',
   styleUrl: './instructions.component.scss',
 })
+/**
+ * InstructionsComponent is a pure template container that displays the game instructions.
+ * No additional logic is required in the class as all functionality is handled via the template.
+ */
 export class InstructionsComponent {}
