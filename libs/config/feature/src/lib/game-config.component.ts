@@ -2,7 +2,8 @@ import { ChangeDetectionStrategy, Component, inject, isDevMode } from '@angular/
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
-import { GameSoundService, GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/core/services';
+import { GameSoundService } from '@hunt-the-bishomalo/core/services';
+import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import {
   Chars,
   DIFFICULTY_CONFIGS,

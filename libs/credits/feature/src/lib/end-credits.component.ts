@@ -3,7 +3,8 @@ import { Component, OnDestroy, OnInit, signal, inject } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { GameSound, RouteTypes } from '@hunt-the-bishomalo/data';
-import { GameSoundService, GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/core/services';
+import { GameSoundService } from '@hunt-the-bishomalo/core/services';
+import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 
 @Component({
   selector: 'lib-end-credits',

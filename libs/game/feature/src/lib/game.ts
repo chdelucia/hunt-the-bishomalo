@@ -13,7 +13,8 @@ import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
 import { RouterModule } from '@angular/router';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
-import { ACHIEVEMENT_SERVICE, GameSoundService } from '@hunt-the-bishomalo/core/services';
+import { GameSoundService } from '@hunt-the-bishomalo/core/services';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { AchieveTypes, GameSound } from '@hunt-the-bishomalo/data';
 
 @Component({

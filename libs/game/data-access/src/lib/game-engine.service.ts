@@ -6,10 +6,10 @@ import {
   GameEventService,
   GameSoundService,
   LocalstorageService,
-  ACHIEVEMENT_SERVICE,
-  LEADERBOARD_SERVICE,
-  IGameEngineService
 } from '@hunt-the-bishomalo/core/services';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { IGameEngineService } from '@hunt-the-bishomalo/game/api';
+import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import {
   Cell,
   CELL_CONTENTS,

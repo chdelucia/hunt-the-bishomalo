@@ -1,1 +1,1 @@
-export const GAME_API = 'game-api';
+export * from './lib/game-engine.interface';

@@ -4,7 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { ToastComponent, MenuComponent, GameControlsComponent } from '@hunt-the-bishomalo/game/ui';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { GameEngineService, KeyboardManagerService } from '@hunt-the-bishomalo/game/data-access';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/services';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 
 @Component({
   imports: [RouterOutlet, ToastComponent, MenuComponent, GameControlsComponent],
