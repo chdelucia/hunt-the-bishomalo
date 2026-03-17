@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { PerceptionService } from './perception.service';
 import { TranslocoService } from '@jsverse/transloco';
 import { GameSoundService } from '@hunt-the-bishomalo/core/services';
-import { Cell, CELL_CONTENTS, GameSound } from '@hunt-the-bishomalo/data';
+import { Cell } from '@hunt-the-bishomalo/data';
 import { of } from 'rxjs';
 
 describe('PerceptionService', () => {

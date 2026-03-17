@@ -7,7 +7,7 @@ import { GameSoundService, GameEventService, LocalstorageService, LEADERBOARD_SE
 import { BoardGeneratorService } from './board-generator.service';
 import { PerceptionService } from './perception.service';
 import { signal } from '@angular/core';
-import { Direction, GameSound, RouteTypes, CELL_CONTENTS, AchieveTypes } from '@hunt-the-bishomalo/data';
+import { Direction, AchieveTypes, RouteTypes } from '@hunt-the-bishomalo/data';
 import { of } from 'rxjs';
 
 describe('GameEngineService', () => {

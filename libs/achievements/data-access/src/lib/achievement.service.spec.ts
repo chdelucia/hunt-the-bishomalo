@@ -3,8 +3,7 @@ import { AchievementService } from './achievement.service';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { GameSoundService, LocalstorageService, AnalyticsService } from '@hunt-the-bishomalo/core/services';
 import { signal } from '@angular/core';
-import { AchieveTypes } from '@hunt-the-bishomalo/achievements/api';
-import { GameSound } from '@hunt-the-bishomalo/data';
+import { GameSound, AchieveTypes } from '@hunt-the-bishomalo/data';
 
 describe('AchievementService', () => {
   let service: AchievementService;
