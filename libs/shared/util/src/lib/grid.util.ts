@@ -1,4 +1,4 @@
-import { Point } from '@hunt-the-bishomalo/data';
+import { Point } from './point.model';
 
 /**
  * Checks if a position is within the bounds of a square grid.

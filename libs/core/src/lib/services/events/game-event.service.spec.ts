@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { GameEventService } from './game-event.service';
 import { GameSoundService } from '../sound/game-sound.service';
 import { GameStore } from '../../store';
-import { ACHIEVEMENT_SERVICE } from '../achievement-service.interface';
-import { Cell, GameSound, AchieveTypes } from '@hunt-the-bishomalo/data';
+import { ACHIEVEMENT_SERVICE, AchieveTypes } from '@hunt-the-bishomalo/achievements/api';
+import { Cell, Direction, GameSound, CELL_CONTENTS } from '@hunt-the-bishomalo/data';
 import { signal } from '@angular/core';
 
 describe('GameEventService', () => {

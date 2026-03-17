@@ -1,6 +1,6 @@
+import { Point } from '@hunt-the-bishomalo/shared-util';
 import { Direction } from './direction.enum';
 import { GameItem } from './game-item.model';
-import { Point } from './position.model';
 
 export enum Chars {
   DEFAULT = 'default',

@@ -1,4 +1,4 @@
-import { Point } from './position.model';
+import { Point } from '@hunt-the-bishomalo/shared-util';
 
 export type CellContentType =
   | 'wumpus'

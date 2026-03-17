@@ -2,8 +2,8 @@ import { inject } from '@angular/core';
 import { signalStore, withState, withMethods, patchState } from '@ngrx/signals';
 import { TranslocoService } from '@jsverse/transloco';
 import { GameSoundService } from '@hunt-the-bishomalo/core/services';
-import { GameSound, GameSettings, Point } from '@hunt-the-bishomalo/data';
-import { getRandomPosition } from '@hunt-the-bishomalo/shared-util';
+import { GameSound, GameSettings } from '@hunt-the-bishomalo/data';
+import { Point, getRandomPosition } from '@hunt-the-bishomalo/shared-util';
 
 export interface BossCell extends Point {
   hit: boolean;
