@@ -5,6 +5,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 import { GameSound, RouteTypes } from '@hunt-the-bishomalo/data';
 import { GameSoundService } from '@hunt-the-bishomalo/core/services';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
+import { GameStore } from '@hunt-the-bishomalo/core/store';
 
 @Component({
   selector: 'lib-end-credits',
@@ -38,6 +39,7 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
   private readonly router = inject(Router);
   private readonly gameEngine = inject(GAME_ENGINE_TOKEN);
   private readonly gameSound = inject(GameSoundService);
+  protected readonly store = inject(GameStore);
 
   private startAutoScroll(): void {
     const animate = (time: number) => {
@@ -71,10 +73,15 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     cancelAnimationFrame(this.animationFrameId);
+    this.gameSound.stop();
   }
 
   newGame(): void {
     this.gameEngine.newGame();
     this.router.navigateByUrl(RouteTypes.SETTINGS);
+  }
+
+  backToHome(): void {
+    this.router.navigateByUrl(RouteTypes.HOME);
   }
 }
