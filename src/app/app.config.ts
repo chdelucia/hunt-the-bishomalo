@@ -18,7 +18,7 @@ import { TranslocoHttpLoader } from './utils/transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
 import { GAME_STORE } from '@hunt-the-bishomalo/story/api';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
-import { LogRocketService } from '@hunt-the-bishomalo/core/services';
+import { MonitoringService } from '@hunt-the-bishomalo/core/services';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
@@ -35,8 +35,9 @@ export const appConfig: ApplicationConfig = {
     { provide: GAME_ENGINE_TOKEN, useExisting: GameEngineService },
     {
       provide: APP_INITIALIZER,
-      useFactory: (logRocket: LogRocketService) => () => logRocket.init(),
-      deps: [LogRocketService],
+      useFactory: (monitoringService: MonitoringService) => () =>
+        monitoringService.init(),
+      deps: [MonitoringService],
       multi: true,
     },
     {
