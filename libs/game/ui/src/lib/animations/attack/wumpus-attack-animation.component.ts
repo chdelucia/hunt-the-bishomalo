@@ -9,6 +9,7 @@ import {
   DestroyRef,
   input,
 } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { timer } from 'rxjs';
 
@@ -17,7 +18,7 @@ import { timer } from 'rxjs';
   standalone: true,
   templateUrl: './wumpus-attack-animation.component.html',
   styleUrls: ['./wumpus-attack-animation.component.scss'],
-  imports: [],
+  imports: [NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppWumpusAttackAnimationComponent implements OnInit {
@@ -43,7 +44,7 @@ export class AppWumpusAttackAnimationComponent implements OnInit {
     });
   }
 
-  readonly getPlayerLeft = computed(() => {
+  readonly getPlayerTranslateX = computed(() => {
     switch (this.step()) {
       case 1:
         return '-100px';
