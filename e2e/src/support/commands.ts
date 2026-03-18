@@ -39,7 +39,7 @@ Cypress.Commands.add('winLevel', () => {
 
     // Assert hunter has gold
     cy.getGameStore().then(store => {
-        expect(store.hunter().hasGold).to.be.true;
+        expect(store.hunter().hasGold).to.equal(true);
     });
 
     // Turn around and move back to (0, 0)

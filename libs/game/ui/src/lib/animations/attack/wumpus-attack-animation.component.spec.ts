@@ -42,13 +42,13 @@ describe('AppWumpusAttackAnimationComponent', () => {
 
   it('should return correct player position', () => {
     component.step.set(1);
-    expect(component.getPlayerTranslateX()).toBe('-100px');
+    expect(component.getPlayerLeft()).toBe('-100px');
 
     component.step.set(3);
-    expect(component.getPlayerTranslateX()).toBe('0');
+    expect(component.getPlayerLeft()).toBe('0');
 
     component.step.set(5);
-    expect(component.getPlayerTranslateX()).toBe('40px');
+    expect(component.getPlayerLeft()).toBe('40px');
   });
 
   it('should return correct wumpus scale', () => {

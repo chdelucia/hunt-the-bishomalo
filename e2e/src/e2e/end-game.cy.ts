@@ -7,7 +7,8 @@ describe('End Game and Results', () => {
 
 
   it('should handle game over and display detailed results', () => {
-    cy.get('input#player').clear().type('Test Player');
+    cy.get('input#player').clear();
+    cy.get('input#player').type('Test Player');
     // Select a character to enable the start button
     cy.get('.char-selector label').first().click();
     cy.get('button.start-game').click();

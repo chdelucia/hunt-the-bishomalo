@@ -33,7 +33,8 @@ describe('Hunt the Bishomalo Full App Flow', () => {
   });
 
   it('should complete game configuration and start the game', () => {
-    cy.get('input#player', { timeout: 10000 }).clear().type('Cypress Player');
+    cy.get('input#player', { timeout: 10000 }).clear();
+    cy.get('input#player').type('Cypress Player');
     cy.get('select#difficulty').select('easy');
 
     // Select second character if available
@@ -54,7 +55,8 @@ describe('Hunt the Bishomalo Full App Flow', () => {
 
   it('should complete a full game loop: win level -> shop -> purchase -> next level -> results', () => {
     // 1. Setup and start game
-    cy.get('input#player').clear().type('Full Loop Player');
+    cy.get('input#player').clear();
+    cy.get('input#player').type('Full Loop Player');
     // Select character
     cy.get('.char-selector label').first().click();
     cy.get('button.start-game').click();
@@ -103,7 +105,8 @@ describe('Hunt the Bishomalo Full App Flow', () => {
   });
 
   it('should navigate to secret Jedi route', () => {
-    cy.get('input#player').clear().type('Jedi seeker');
+    cy.get('input#player').clear();
+    cy.get('input#player').type('Jedi seeker');
     cy.get('.char-selector label').first().click();
     cy.get('button.start-game').click();
     cy.get('.story-container').click();

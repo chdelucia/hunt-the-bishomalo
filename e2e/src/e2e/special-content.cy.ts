@@ -8,7 +8,8 @@ describe('Special Content and Secret Routes', () => {
 
 
   it('should navigate to the secret Jedi route at size 8', () => {
-    cy.get('input#player').clear().type('Jedi Seeker');
+    cy.get('input#player').clear();
+    cy.get('input#player').type('Jedi Seeker');
     cy.get('select#difficulty').select('easy');
     // Must select a character
     cy.get('.char-selector label').first().click();
@@ -37,7 +38,8 @@ describe('Special Content and Secret Routes', () => {
   });
 
   it('should reach and defeat the Boss', () => {
-    cy.get('input#player').clear().type('Boss Slayer');
+    cy.get('input#player').clear();
+    cy.get('input#player').type('Boss Slayer');
     cy.get('select#difficulty').select('easy');
     // Must select a character
     cy.get('.char-selector label').first().click();
@@ -67,8 +69,8 @@ describe('Special Content and Secret Routes', () => {
           cy.wrap($el).click({force: true});
       });
 
-      // Wait for possible navigation or state change
-      cy.wait(2000);
+      // Instead of cy.wait(2000), wait for the game message or status bar to update
+      cy.get('.game-message', { timeout: 10000 }).should('be.visible');
 
       cy.compareSnapshot('special-boss-fight-end');
     });

@@ -7,7 +7,8 @@ describe('Edge Cases and Hazard Interactions', () => {
         cy.viewport('iphone-xr');
 
         cy.get('lib-game-config', { timeout: 20000 }).should('be.visible');
-        cy.get('input#player').clear().type('Edge Case Hero');
+        cy.get('input#player').clear();
+        cy.get('input#player').type('Edge Case Hero');
         cy.get('.char-selector label').first().click();
         cy.get('button.start-game').click();
         cy.get('.story-container', { timeout: 15000 }).click();
@@ -45,6 +46,7 @@ describe('Edge Cases and Hazard Interactions', () => {
         });
 
         // Place a wumpus at (0, 1)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         cy.getGameStore().then((store: any) => {
             const board = JSON.parse(JSON.stringify(store.board()));
             board[0][1].content = {
@@ -62,7 +64,7 @@ describe('Edge Cases and Hazard Interactions', () => {
         // Verify alive and lives (easy mode has 8 lives)
         cy.getGameStore().then(store => {
             const hunter = store.hunter();
-            expect(store.isAlive()).to.be.true;
+            expect(store.isAlive()).to.equal(true);
             expect(store.lives()).to.equal(8);
             expect(hunter.inventory).to.have.length(0);
         });
@@ -79,6 +81,7 @@ describe('Edge Cases and Hazard Interactions', () => {
         });
 
         // Place a pit at (0, 1)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         cy.getGameStore().then((store: any) => {
             const board = JSON.parse(JSON.stringify(store.board()));
             board[0][1].content = {
