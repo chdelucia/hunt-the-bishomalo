@@ -6,6 +6,7 @@ export interface Achievement {
   unlocked: boolean;
   rarity: string;
   date?: string;
+  hidden?: boolean;
 }
 
 export enum AchieveTypes {

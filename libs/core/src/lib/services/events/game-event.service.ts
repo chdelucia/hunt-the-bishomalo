@@ -1,6 +1,5 @@
 import { inject, Injectable } from '@angular/core';
 import { Cell, GameEventEffectType, GameItem, GameSound, CauseOfDeath, AchieveTypes } from '@hunt-the-bishomalo/data';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { GAME_ACHIEVEMENTS_SERVICE } from '@hunt-the-bishomalo/game/api';
 import { GameSoundService } from '../sound/game-sound.service';
 import { GameStore } from '../../store';
@@ -31,7 +30,6 @@ export class GameEventService {
 
   readonly gameStore = inject(GameStore);
   readonly gameSound = inject(GameSoundService);
-  readonly gameAchieve = inject(ACHIEVEMENT_SERVICE);
   readonly gameSpecificAchieve = inject(GAME_ACHIEVEMENTS_SERVICE);
 
   applyEffectsOnDeath(cause: CauseOfDeath, cell: Cell, prev: { x: number; y: number }): boolean {
@@ -90,7 +88,7 @@ export class GameEventService {
 
   private handlePickupArrow(cell: Cell): void {
     this.gameSound.playSound(GameSound.PICKUP, false);
-    this.gameAchieve.activeAchievement(AchieveTypes.PICKARROW);
+    this.gameSpecificAchieve.activeAchievement(AchieveTypes.PICKARROW);
     this.gameStore.updateHunter({
       arrows: (this.gameStore.arrows() || 0) + 1,
     });
@@ -99,14 +97,14 @@ export class GameEventService {
 
   private handlePitDeath(): void {
     this.gameSound.playSound(GameSound.PITDIE, false);
-    this.gameAchieve.activeAchievement(AchieveTypes.DEATHBYPIT);
+    this.gameSpecificAchieve.activeAchievement(AchieveTypes.DEATHBYPIT);
     this.gameStore.updateGame({ lives: this.gameStore.lives() - 1 });
     this.gameSpecificAchieve.isAllCompleted();
   }
 
   private handleWumpusDeath(): void {
     this.gameSound.playSound(GameSound.SCREAM, false);
-    this.gameAchieve.activeAchievement(AchieveTypes.DEATHBYWUMPUES);
+    this.gameSpecificAchieve.activeAchievement(AchieveTypes.DEATHBYWUMPUES);
     this.gameStore.updateGame({ lives: this.gameStore.lives() - 1 });
     this.gameSpecificAchieve.isAllCompleted();
   }
@@ -122,7 +120,7 @@ export class GameEventService {
 
   private extraHeart(cell: Cell): void {
     this.gameSound.playSound(GameSound.PICKUP, false);
-    this.gameAchieve.activeAchievement(AchieveTypes.PICKHEART);
+    this.gameSpecificAchieve.activeAchievement(AchieveTypes.PICKHEART);
     this.gameStore.updateGame({
       lives: Math.min(this.gameStore.lives() + 1, this.gameStore.settings().difficulty.maxLives),
     });
@@ -131,7 +129,7 @@ export class GameEventService {
 
   private extraGold(cell: Cell): void {
     this.gameSound.playSound(GameSound.PICKUP, false);
-    this.gameAchieve.activeAchievement(AchieveTypes.PICKGOLD);
+    this.gameSpecificAchieve.activeAchievement(AchieveTypes.PICKGOLD);
     this.gameStore.updateHunter({
       hasGold: true,
       gold: (this.gameStore.gold() || 0) + this.gameStore.settings().difficulty.gold,

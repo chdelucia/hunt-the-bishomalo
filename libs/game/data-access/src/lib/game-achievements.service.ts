@@ -87,6 +87,10 @@ export class GameAchievementsService implements IGameAchievementsService {
       this.achieveService.activeAchievement(AchieveTypes.NOVICECARTO);
   }
 
+  activeAchievement(id: AchieveTypes | string): void {
+    this.achieveService.activeAchievement(id);
+  }
+
   isAllCompleted(): void {
     const victory = this.achieveService.achievements.filter((x) => x.unlocked);
     if (this.achieveService.achievements.length - victory.length <= 1) {
