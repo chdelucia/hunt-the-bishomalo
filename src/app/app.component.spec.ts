@@ -3,6 +3,7 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { GAME_ACHIEVEMENTS_SERVICE } from '@hunt-the-bishomalo/game/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { KeyboardManagerService } from '@hunt-the-bishomalo/game/data-access';
 import { signal } from '@angular/core';
@@ -14,6 +15,15 @@ describe('AppComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AppComponent, RouterModule.forRoot([]), getTranslocoTestingModule()],
       providers: [
+        {
+          provide: GAME_ACHIEVEMENTS_SERVICE,
+          useValue: {
+            activeAchievement: jest.fn(),
+            calcVictoryAchieve: jest.fn(),
+            handleWumpusKillAchieve: jest.fn(),
+            isAllCompleted: jest.fn(),
+          },
+        },
         {
           provide: ACHIEVEMENT_SERVICE,
           useValue: {

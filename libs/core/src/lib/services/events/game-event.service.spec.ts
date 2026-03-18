@@ -3,6 +3,7 @@ import { GameEventService } from './game-event.service';
 import { GameSoundService } from '../sound/game-sound.service';
 import { GameStore } from '../../store';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { GAME_ACHIEVEMENTS_SERVICE } from '@hunt-the-bishomalo/game/api';
 import { Cell, GameSound, AchieveTypes } from '@hunt-the-bishomalo/data';
 import { signal } from '@angular/core';
 
@@ -19,6 +20,7 @@ describe('GameEventService', () => {
 
     achievementMock = {
       activeAchievement: jest.fn(),
+      isAllCompleted: jest.fn(),
     };
 
     gameStoreMock = {
@@ -44,6 +46,7 @@ describe('GameEventService', () => {
         { provide: GameSoundService, useValue: gameSoundMock },
         { provide: GameStore, useValue: gameStoreMock },
         { provide: ACHIEVEMENT_SERVICE, useValue: achievementMock },
+        { provide: GAME_ACHIEVEMENTS_SERVICE, useValue: achievementMock },
       ],
     });
 

@@ -14,7 +14,11 @@ import { RouterModule } from '@angular/router';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
 import { GameSoundService } from '@hunt-the-bishomalo/core/services';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import {
+  ACHIEVEMENT_SERVICE,
+  IAchievementService,
+} from '@hunt-the-bishomalo/achievements/api';
+import { GAME_ACHIEVEMENTS_SERVICE } from '@hunt-the-bishomalo/game/api';
 import { AchieveTypes, GameSound } from '@hunt-the-bishomalo/data';
 
 @Component({
@@ -38,7 +42,8 @@ import { AchieveTypes, GameSound } from '@hunt-the-bishomalo/data';
 export class Game {
   readonly game = inject(GameStore);
   private readonly gameEngine = inject(GameEngineService);
-  private readonly achieve = inject(ACHIEVEMENT_SERVICE);
+  private readonly achieve = inject(ACHIEVEMENT_SERVICE) as IAchievementService;
+  private readonly gameAchieve = inject(GAME_ACHIEVEMENTS_SERVICE);
   private readonly sound = inject(GameSoundService);
 
   readonly deathByWumpus = computed(() => {
@@ -54,7 +59,7 @@ export class Game {
 
       if (settings?.blackout && isAlive && !hasWon) {
         this.sound.playSound(GameSound.BLACKOUT, false);
-        this.achieve.activeAchievement(AchieveTypes.BLACKOUT);
+        this.gameAchieve.activeAchievement(AchieveTypes.BLACKOUT);
       }
     });
   }
@@ -89,6 +94,6 @@ export class Game {
 
   handleMobileShootArrow(): void {
     this.handleShootArrow();
-    this.achieve.activeAchievement(AchieveTypes.GAMER);
+    this.gameAchieve.activeAchievement(AchieveTypes.GAMER);
   }
 }
