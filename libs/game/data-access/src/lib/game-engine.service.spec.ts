@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { GameSoundService, GameEventService, LocalstorageService } from '@hunt-the-bishomalo/core/services';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { GAME_ACHIEVEMENTS_SERVICE } from '@hunt-the-bishomalo/game/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { BoardGeneratorService } from './board-generator.service';
 import { PerceptionService } from './perception.service';
@@ -87,7 +87,7 @@ describe('GameEngineService', () => {
         { provide: GameStore, useValue: storeMock },
         { provide: GameSoundService, useValue: soundMock },
         { provide: LEADERBOARD_SERVICE, useValue: leaderboardMock },
-        { provide: ACHIEVEMENT_SERVICE, useValue: achieveMock },
+        { provide: GAME_ACHIEVEMENTS_SERVICE, useValue: achieveMock },
         { provide: Router, useValue: routerMock },
         { provide: GameEventService, useValue: gameEventMock },
         { provide: TranslocoService, useValue: translocoMock },

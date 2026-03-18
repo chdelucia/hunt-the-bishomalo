@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Cell, GameEventEffectType, GameItem, GameSound, CauseOfDeath, AchieveTypes } from '@hunt-the-bishomalo/data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { GAME_ACHIEVEMENTS_SERVICE } from '@hunt-the-bishomalo/game/api';
 import { GameSoundService } from '../sound/game-sound.service';
 import { GameStore } from '../../store';
 import { createGameEventEffects } from './effects';
@@ -31,6 +32,7 @@ export class GameEventService {
   readonly gameStore = inject(GameStore);
   readonly gameSound = inject(GameSoundService);
   readonly gameAchieve = inject(ACHIEVEMENT_SERVICE);
+  readonly gameSpecificAchieve = inject(GAME_ACHIEVEMENTS_SERVICE);
 
   applyEffectsOnDeath(cause: CauseOfDeath, cell: Cell, prev: { x: number; y: number }): boolean {
     for (const effect of this.effects) {
@@ -99,12 +101,14 @@ export class GameEventService {
     this.gameSound.playSound(GameSound.PITDIE, false);
     this.gameAchieve.activeAchievement(AchieveTypes.DEATHBYPIT);
     this.gameStore.updateGame({ lives: this.gameStore.lives() - 1 });
+    this.gameSpecificAchieve.isAllCompleted();
   }
 
   private handleWumpusDeath(): void {
     this.gameSound.playSound(GameSound.SCREAM, false);
     this.gameAchieve.activeAchievement(AchieveTypes.DEATHBYWUMPUES);
     this.gameStore.updateGame({ lives: this.gameStore.lives() - 1 });
+    this.gameSpecificAchieve.isAllCompleted();
   }
 
   private handleDragonball(cell: Cell): void {

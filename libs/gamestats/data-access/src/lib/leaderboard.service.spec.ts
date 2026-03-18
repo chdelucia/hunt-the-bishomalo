@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { LeaderboardService } from './leaderboard.service';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { LocalstorageService } from '@hunt-the-bishomalo/core/services';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { GAME_ACHIEVEMENTS_SERVICE } from '@hunt-the-bishomalo/game/api';
 import { signal, WritableSignal } from '@angular/core';
 
 describe('LeaderboardService', () => {
@@ -49,7 +49,7 @@ describe('LeaderboardService', () => {
       providers: [
         LeaderboardService,
         { provide: GameStore, useValue: mockGameStore },
-        { provide: ACHIEVEMENT_SERVICE, useValue: mockAchievementService },
+        { provide: GAME_ACHIEVEMENTS_SERVICE, useValue: mockAchievementService },
         { provide: LocalstorageService, useValue: mockLocalStorageService },
       ],
     });

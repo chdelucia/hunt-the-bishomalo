@@ -1,7 +1,7 @@
 import { effect, inject, Injectable } from '@angular/core';
 import { ScoreEntry } from '@hunt-the-bishomalo/data';
 import { LocalstorageService } from '@hunt-the-bishomalo/core/services';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { GAME_ACHIEVEMENTS_SERVICE } from '@hunt-the-bishomalo/game/api';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 
 @Injectable({ providedIn: 'root' })
@@ -10,7 +10,7 @@ export class LeaderboardService {
   _leaderboard: ScoreEntry[] = [];
 
   private readonly gameStore = inject(GameStore);
-  private readonly gameAchieve = inject(ACHIEVEMENT_SERVICE);
+  private readonly gameAchieve = inject(GAME_ACHIEVEMENTS_SERVICE);
   private readonly localStorageService = inject(LocalstorageService);
   private readonly _hunter = this.gameStore.hunter;
   private readonly _settings = this.gameStore.settings;

@@ -7,8 +7,10 @@ import {
   GameSoundService,
   LocalstorageService,
 } from '@hunt-the-bishomalo/core/services';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
-import { IGameEngineService } from '@hunt-the-bishomalo/game/api';
+import {
+  GAME_ACHIEVEMENTS_SERVICE,
+  IGameEngineService,
+} from '@hunt-the-bishomalo/game/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import {
   Cell,
@@ -30,7 +32,7 @@ export class GameEngineService implements IGameEngineService {
   private readonly _hunter = this.store.hunter;
   private readonly sound = inject(GameSoundService);
   private readonly leaderBoard = inject(LEADERBOARD_SERVICE);
-  private readonly achieve = inject(ACHIEVEMENT_SERVICE);
+  private readonly achieve = inject(GAME_ACHIEVEMENTS_SERVICE);
   private readonly router = inject(Router);
   private readonly localStorageService = inject(LocalstorageService);
   private readonly gameEvents = inject(GameEventService);

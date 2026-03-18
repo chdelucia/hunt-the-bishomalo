@@ -1,4 +1,6 @@
-export const ACHIEVEMENTS_LIST = [
+import { Achievement } from '@hunt-the-bishomalo/data';
+
+export const ACHIEVEMENTS_LIST: Achievement[] = [
   {
     id: 'lara',
     title: 'Tomb Raider III',
