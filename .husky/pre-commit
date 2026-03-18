@@ -1,5 +1,3 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
 
 bun x prettier --write "src/**/*.{ts,tsx,js,json,css,scss,html,md}"
 bun x jest --color

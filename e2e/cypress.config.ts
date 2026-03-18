@@ -1,5 +1,6 @@
 import { nxE2EPreset } from '@nx/cypress/plugins/cypress-preset';
 import { defineConfig } from 'cypress';
+import { configureVisualRegression } from 'cypress-visual-regression';
 
 export default defineConfig({
   e2e: {
@@ -13,7 +14,16 @@ export default defineConfig({
       ciBaseUrl: 'http://localhost:4200',
     }),
     baseUrl: 'http://localhost:4200',
-    setupNodeEvents(on) {
+    env: {
+      visualRegressionType: 'regression',
+      visualRegressionBaseDirectory: 'e2e/src/snapshots/base',
+      visualRegressionDiffDirectory: 'e2e/src/snapshots/diff',
+      visualRegressionGenerateDiff: 'always',
+      visualRegressionFailSilently: false
+    },
+    screenshotsFolder: 'e2e/src/snapshots/actual',
+    setupNodeEvents(on, config) {
+      configureVisualRegression(on);
       on('before:browser:launch', (browser = {} as Cypress.Browser, launchOptions) => {
         if (browser.family === 'chromium' && browser.name !== 'electron') {
           launchOptions.args.push('--mute-audio');
@@ -21,6 +31,7 @@ export default defineConfig({
         }
         return launchOptions;
       });
+      return config;
     },
   },
 });
