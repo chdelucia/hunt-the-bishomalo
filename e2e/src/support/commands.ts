@@ -1,15 +1,5 @@
 /// <reference types="cypress" />
 
-// ***********************************************
-// This example commands.ts shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Cypress {
@@ -19,6 +9,7 @@ declare global {
       getGameStore(): Chainable<any>;
       winLevel(): Chainable<void>;
       loseLevel(): Chainable<void>;
+      addItemToInventory(item: { name: string; icon: string; effect: string }): Chainable<void>;
     }
   }
 }
@@ -31,6 +22,7 @@ Cypress.Commands.add('winLevel', () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   cy.getGameStore().then((store: any) => {
     const board = JSON.parse(JSON.stringify(store.board()));
+    // Place gold at (0, 1)
     board[0][1].content = {
       type: 'gold',
       image: 'boardicons/gold.svg',
@@ -38,10 +30,28 @@ Cypress.Commands.add('winLevel', () => {
       ariaLabel: 'gold',
     };
     store.updateGame({ board });
+
+    // Verify gold is on the board
+    cy.get('[aria-label="gold"]', { timeout: 10000 }).should('be.visible');
+
+    // Move to (0, 1) to pick up gold
     cy.get('[aria-label="Avanzar"]').click();
+
+    // Assert hunter has gold
+    cy.getGameStore().then(store => {
+        expect(store.hunter().hasGold).to.be.true;
+    });
+
+    // Turn around and move back to (0, 0)
     cy.get('[aria-label="Girar a la derecha"]').click();
     cy.get('[aria-label="Girar a la derecha"]').click();
     cy.get('[aria-label="Avanzar"]').click();
+
+    // Assert hunter is back at (0, 0)
+    cy.getGameStore().then(store => {
+        expect(store.hunter().x).to.equal(0);
+        expect(store.hunter().y).to.equal(0);
+    });
   });
 });
 
@@ -59,4 +69,14 @@ Cypress.Commands.add('loseLevel', () => {
     store.updateGame({ board });
     cy.get('[aria-label="Avanzar"]').click();
   });
+});
+
+Cypress.Commands.add('addItemToInventory', (item) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    cy.getGameStore().then((store: any) => {
+        const currentInventory = store.hunter().inventory || [];
+        store.updateHunter({
+            inventory: [...currentInventory, item]
+        });
+    });
 });

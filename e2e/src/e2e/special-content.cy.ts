@@ -2,14 +2,18 @@ describe('Special Content and Secret Routes', () => {
   beforeEach(() => {
     cy.visit('/');
     cy.clearLocalStorage();
+    cy.viewport('iphone-xr');
+    cy.get('lib-game-config', { timeout: 15000 }).should('be.visible');
   });
 
 
   it('should navigate to the secret Jedi route at size 8', () => {
-    cy.get('input#player').clear();
-    cy.get('input#player').type('Jedi Seeker');
+    cy.get('input#player').clear().type('Jedi Seeker');
+    cy.get('select#difficulty').select('easy');
+    // Must select a character
+    cy.get('.char-selector label').first().click();
     cy.get('button.start-game').click();
-    cy.get('.story-container').click();
+    cy.get('.story-container', { timeout: 10000 }).click();
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     cy.getGameStore().then((store: any) => {
@@ -27,15 +31,18 @@ describe('Special Content and Secret Routes', () => {
 
         cy.url().should('include', '/secret');
         cy.get('.jedi-container', { timeout: 25000 }).should('exist');
-        cy.screenshot('special-jedi-route');
+        cy.get('.jedi').should('be.visible');
+        cy.compareSnapshot('special-jedi-route');
     });
   });
 
   it('should reach and defeat the Boss', () => {
-    cy.get('input#player').clear();
-    cy.get('input#player').type('Boss Slayer');
+    cy.get('input#player').clear().type('Boss Slayer');
+    cy.get('select#difficulty').select('easy');
+    // Must select a character
+    cy.get('.char-selector label').first().click();
     cy.get('button.start-game').click();
-    cy.get('.story-container').click();
+    cy.get('.story-container', { timeout: 10000 }).click();
 
     // Trigger Boss Fight via store manipulation
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -49,17 +56,21 @@ describe('Special Content and Secret Routes', () => {
       cy.get('button.newgame', { timeout: 25000 }).should('be.visible').click();
 
       cy.url().should('include', '/boss');
-      cy.get('h2#bossTitle').should('be.visible');
+      cy.get('h2#bossTitle', { timeout: 10000 }).should('be.visible');
+      cy.compareSnapshot('boss-fight-start');
 
       // Interact with boss grid
-      cy.get('.grid .cell').should('have.length', 25);
+      cy.get('.grid .cell', { timeout: 10000 }).should('have.length', 25);
 
-      // Click some cells to simulate battle
-      for(let i=0; i<10; i++) {
-          cy.get('.grid .cell').eq(i).click();
-      }
+      // Click cells to simulate battle
+      cy.get('.grid .cell').each(($el) => {
+          cy.wrap($el).click({force: true});
+      });
 
-      cy.screenshot('special-boss-fight-midway');
+      // Wait for possible navigation or state change
+      cy.wait(2000);
+
+      cy.compareSnapshot('special-boss-fight-end');
     });
   });
 });
