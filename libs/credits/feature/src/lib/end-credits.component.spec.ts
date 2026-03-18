@@ -89,4 +89,28 @@ describe('EndCreditsComponent', () => {
     expect(mockGameSoundService.stop).toHaveBeenCalled();
     rafSpy.mockRestore();
   });
+
+  it('should stop sound on destroy', () => {
+    component.ngOnDestroy();
+    expect(mockGameSoundService.stop).toHaveBeenCalled();
+  });
+
+  it('should navigate to home on backToHome', () => {
+    component.backToHome();
+    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('home');
+  });
+
+  it('should show backToHome button when lives > 0', () => {
+    component.store.$_updateGameStatus({ lives: 1 });
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('button')?.textContent).toContain('credits.backToHomeButton');
+  });
+
+  it('should show newGame button when lives <= 0', () => {
+    component.store.$_updateGameStatus({ lives: 0 });
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('button')?.textContent).toContain('credits.newGameButton');
+  });
 });

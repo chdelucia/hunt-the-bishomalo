@@ -80,8 +80,14 @@
               {{ 'credits.quoteSoloAuthor' | transloco }}
             </p>
           </div>
-          <button type="button" class="boton-creditos red" (click)="newGame()">
-            {{ 'credits.newGameButton' | transloco }}
-          </button>
+          @if (store.lives() > 0) {
+            <button type="button" class="boton-creditos red" (click)="backToHome()">
+              {{ 'credits.backToHomeButton' | transloco }}
+            </button>
+          } @else {
+            <button type="button" class="boton-creditos red" (click)="newGame()">
+              {{ 'credits.newGameButton' | transloco }}
+            </button>
+          }
         </div>
       </div>
