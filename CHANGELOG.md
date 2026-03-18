@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.12.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.10.2...v7.12.0) (2026-03-18)
+
+
+### Features
+
+* **core:** integrate LogRocket for session recording and error tracking ([c0065bf](https://github.com/chdelucia/hunt-the-bishomalo/commit/c0065bf833d1fe29ed6c8e49f2a180e834852a1b))
+* **e2e:** improve E2E tests with visual regression and edge cases ([756e20e](https://github.com/chdelucia/hunt-the-bishomalo/commit/756e20e41b603ba5015ed1e08c8d30f6891ffe8e))
+* **e2e:** improve full flows, edge cases and visual regression ([7c59587](https://github.com/chdelucia/hunt-the-bishomalo/commit/7c595873e66778540dfc8fa44d002f62330db24f))
+* integrate Sentry Angular SDK ([782b240](https://github.com/chdelucia/hunt-the-bishomalo/commit/782b2408cf925ff3fc2a9053b6374b07f02c6692))
+
+
+### Bug Fixes
+
+* **credits:** stop music on exit and update button logic ([88caaad](https://github.com/chdelucia/hunt-the-bishomalo/commit/88caaad5329b54c69f04f2846bebd84d31b9da15))
+* lint ([1469a87](https://github.com/chdelucia/hunt-the-bishomalo/commit/1469a875b7269bc6b535bef9591cb676ea6f6455))
+
 ### [7.8.4](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.8.3...v7.8.4) (2026-03-17)
 
 ### [7.8.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.8.2...v7.8.3) (2026-03-17)
