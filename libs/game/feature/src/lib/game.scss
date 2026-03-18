@@ -12,6 +12,7 @@ main {
   aspect-ratio: 1 / 1;
   border: 3px solid var(--color-border);
   width: min(95vw, 550px);
+  min-height: min(95vw, 550px);
   margin: 0 auto;
   background-color: var(--color-panel);
 }

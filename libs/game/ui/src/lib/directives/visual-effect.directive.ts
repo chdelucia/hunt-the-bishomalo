@@ -36,7 +36,9 @@ export class VisualEffectDirective {
     }
 
     if (container.childNodes.length > 0) {
-      this.renderer.appendChild(this.el.nativeElement, container);
+      requestAnimationFrame(() => {
+        this.renderer.appendChild(this.el.nativeElement, container);
+      });
     }
   }
 
