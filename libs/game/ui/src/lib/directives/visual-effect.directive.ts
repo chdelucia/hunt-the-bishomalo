@@ -18,26 +18,28 @@ export class VisualEffectDirective {
   }
 
   private updateEffects(perception: string): void {
-    this.clearEffects();
+    requestAnimationFrame(() => {
+      this.clearEffects();
 
-    const container = this.renderer.createElement('div');
-    this.renderer.addClass(container, 'effect-layer');
+      const container = this.renderer.createElement('div');
+      this.renderer.addClass(container, 'effect-layer');
 
-    if (perception.includes('brisa') || perception.includes('breeze')) {
-      this.addClouds(container);
-    }
+      if (perception.includes('brisa') || perception.includes('breeze')) {
+        this.addClouds(container);
+      }
 
-    if (perception.includes('hedor') || perception.includes('stench')) {
-      this.addStink(container);
-    }
+      if (perception.includes('hedor') || perception.includes('stench')) {
+        this.addStink(container);
+      }
 
-    if (perception.includes('brillo') || perception.includes('shine')) {
-      this.addSparkles(container);
-    }
+      if (perception.includes('brillo') || perception.includes('shine')) {
+        this.addSparkles(container);
+      }
 
-    if (container.childNodes.length > 0) {
-      this.renderer.appendChild(this.el.nativeElement, container);
-    }
+      if (container.childNodes.length > 0) {
+        this.renderer.appendChild(this.el.nativeElement, container);
+      }
+    });
   }
 
   private addClouds(container: HTMLElement) {

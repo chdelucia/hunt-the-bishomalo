@@ -26,7 +26,7 @@
     }
 
     @if (deathByWumpus()) {
-      @defer (on timer(100ms)) {
+      @defer (on idle) {
         <lib-wumpus-attack-animation
           [selectedChar]="settings.selectedChar"
           (closeAnimation)="handleclose()"
@@ -52,10 +52,12 @@
     (restartRequested)="handleRestart()"
   />
 
-  <lib-mobile-controls
-    [isFinish]="hasWon || !isAlive"
-    (moveForwardRequested)="handleMoveForward()"
-    (turnRightRequested)="handleTurnRight()"
-    (shootArrowRequested)="handleMobileShootArrow()"
-  />
+  @defer (on idle) {
+    <lib-mobile-controls
+      [isFinish]="hasWon || !isAlive"
+      (moveForwardRequested)="handleMoveForward()"
+      (turnRightRequested)="handleTurnRight()"
+      (shootArrowRequested)="handleMobileShootArrow()"
+    />
+  }
 </main>

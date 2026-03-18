@@ -1,4 +1,4 @@
-import { Component, inject, signal, computed } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, computed } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { Achievement } from '@hunt-the-bishomalo/data';
@@ -21,6 +21,7 @@ import {
   ],
   templateUrl: './achievements.html',
   styleUrl: './achievements.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AchievementsComponent {
   private readonly achieveService = inject(ACHIEVEMENT_SERVICE);

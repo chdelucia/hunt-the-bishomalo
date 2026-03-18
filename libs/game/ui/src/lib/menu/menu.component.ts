@@ -1,14 +1,16 @@
-import { Component, inject, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, output, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { RouteTypes } from '@hunt-the-bishomalo/data';
 
 @Component({
   selector: 'lib-menu',
   standalone: true,
-  imports: [RouterModule, TranslocoModule],
+  imports: [RouterModule, TranslocoModule, NgOptimizedImage],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MenuComponent {
   readonly isOpen = signal(false);

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, isDevMode, output, signal } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 
 import { TranslocoModule } from '@jsverse/transloco';
 import { RouteTypes } from '@hunt-the-bishomalo/data';
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'lib-game-controls',
   standalone: true,
-  imports: [TranslocoModule],
+  imports: [TranslocoModule, NgOptimizedImage],
   templateUrl: './game-controls.component.html',
   styleUrl: './game-controls.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

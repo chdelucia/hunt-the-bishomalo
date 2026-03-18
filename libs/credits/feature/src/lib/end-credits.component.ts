@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, signal, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, signal, inject } from '@angular/core';
 
 import { Router, RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -12,6 +12,7 @@ import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
   imports: [RouterModule, TranslocoModule],
   templateUrl: './end-credits.component.html',
   styleUrl: './end-credits.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EndCreditsComponent implements OnInit, OnDestroy {
   readonly scrollPosition = signal(0);

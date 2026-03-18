@@ -13,4 +13,6 @@
 
 <router-outlet></router-outlet>
 
-<lib-toast [achievement]="achieve.completed()" />
+@defer (on idle) {
+  <lib-toast [achievement]="achieve.completed()" />
+}

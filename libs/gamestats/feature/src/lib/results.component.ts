@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { LeaderboardService } from '@hunt-the-bishomalo/gamestats/data-access';
 import { RouteTypes, ScoreEntry } from '@hunt-the-bishomalo/data';
@@ -13,6 +13,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   templateUrl: './results.component.html',
   styleUrl: './results.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResultsComponent {
   readonly tabActiva = signal<'general' | 'niveles'>('general');

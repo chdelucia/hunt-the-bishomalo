@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
 import { GameSettings } from '@hunt-the-bishomalo/data';
@@ -8,6 +8,7 @@ import { GameSettings } from '@hunt-the-bishomalo/data';
   imports: [TranslocoModule],
   templateUrl: './game-level.component.html',
   styleUrl: './game-level.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameLevelComponent {
   readonly settings = input.required<GameSettings>();

@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnDestroy, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnDestroy, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
@@ -13,6 +13,7 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
   imports: [TranslocoModule, NgOptimizedImage],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShopComponent implements OnDestroy {
   private readonly baseProducts: Product[] = [

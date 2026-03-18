@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { Chars, RouteTypes, AchieveTypes } from '@hunt-the-bishomalo/data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
@@ -12,6 +12,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   imports: [NgOptimizedImage, TranslocoModule],
   templateUrl: './characters.component.html',
   styleUrl: './characters.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CharactersComponent {
   readonly gameStore = inject(GameStore);

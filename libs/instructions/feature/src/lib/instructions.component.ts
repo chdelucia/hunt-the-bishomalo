@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -9,6 +9,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   imports: [RouterModule, TranslocoModule],
   templateUrl: './instructions.component.html',
   styleUrl: './instructions.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 /**
  * InstructionsComponent is a pure template container that displays the game instructions.

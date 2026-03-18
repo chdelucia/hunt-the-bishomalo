@@ -1,4 +1,4 @@
-import { Component, effect, input, OnDestroy, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, OnDestroy, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { Achievement } from '@hunt-the-bishomalo/data';
 
@@ -14,6 +14,7 @@ interface ToastData {
   imports: [NgOptimizedImage],
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToastComponent implements OnDestroy {
   achievement = input<Achievement | undefined>();

@@ -1,5 +1,4 @@
 import { Injectable, isDevMode } from '@angular/core';
-import LogRocket from 'logrocket';
 
 @Injectable({
   providedIn: 'root',
@@ -10,11 +9,12 @@ export class LogRocketService {
   /**
    * Initializes LogRocket if not in development mode or if explicitly requested.
    */
-  public init(): void {
+  public async init(): Promise<void> {
     if (this.isDev()) {
       return;
     }
 
+    const { default: LogRocket } = await import('logrocket');
     LogRocket.init(this.LOGROCKET_PROJECT_ID);
   }
 

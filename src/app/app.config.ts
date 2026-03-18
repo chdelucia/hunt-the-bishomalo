@@ -6,6 +6,7 @@ import {
   ErrorHandler,
 } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideClientHydration } from '@angular/platform-browser';
 import {
   provideRouter,
   withHashLocation,
@@ -55,6 +56,7 @@ export const appConfig: ApplicationConfig = {
       multi: true,
     },
     provideAnimations(),
+    provideClientHydration(),
     provideZonelessChangeDetection(),
     provideRouter(
       appRoutes,

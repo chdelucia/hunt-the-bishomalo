@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { RouteTypes } from '@hunt-the-bishomalo/data';
@@ -13,6 +13,7 @@ import { BossStore, BossCell } from './boss-store';
   templateUrl: './boss-fight.component.html',
   styleUrl: './boss-fight.component.scss',
   providers: [BossStore],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BossFightComponent implements OnInit {
   readonly gameStore = inject(GameStore);

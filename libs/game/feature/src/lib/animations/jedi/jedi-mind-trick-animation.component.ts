@@ -1,4 +1,13 @@
-import { Component, OnInit, OnDestroy, ElementRef, viewChild, signal, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  OnDestroy,
+  ElementRef,
+  viewChild,
+  signal,
+  inject,
+} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AchieveTypes } from '@hunt-the-bishomalo/data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
@@ -9,6 +18,7 @@ import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
   imports: [RouterModule],
   templateUrl: './jedi-mind-trick-animation.component.html',
   styleUrls: ['./jedi-mind-trick-animation.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
   readonly audioContainer = viewChild<ElementRef>('audioContainer');

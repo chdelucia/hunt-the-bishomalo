@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 
@@ -8,6 +8,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   imports: [NgOptimizedImage, TranslocoModule],
   templateUrl: './mobile-controls.component.html',
   styleUrl: './mobile-controls.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MobileControlsComponent {
   isFinish = input.required<boolean>();
