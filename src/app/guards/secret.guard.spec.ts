@@ -1,4 +1,4 @@
-import { isDevMode } from '@angular/core';
+import { isDevMode, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { CanActivateFn, Router } from '@angular/router';
 import { RouteTypes } from '@hunt-the-bishomalo/data';
@@ -12,6 +12,7 @@ jest.mock('@angular/core', () => ({
 describe('secretGuard (Jest)', () => {
   let mockRouter: any;
   const mockIsDevMode = isDevMode as jest.Mock;
+  const currentNavigationSignal = signal<any>(null);
 
   const executeGuard = (...params: Parameters<CanActivateFn>) =>
     TestBed.runInInjectionContext(() => secretGuard(...params));
@@ -19,11 +20,11 @@ describe('secretGuard (Jest)', () => {
   beforeEach(() => {
     mockRouter = {
       navigateByUrl: jest.fn(),
-      currentNavigation: jest.fn(),
+      currentNavigation: currentNavigationSignal,
     };
 
     mockIsDevMode.mockReturnValue(false);
-    mockRouter.currentNavigation.mockReturnValue(null);
+    currentNavigationSignal.set(null);
 
     TestBed.configureTestingModule({
       providers: [{ provide: Router, useValue: mockRouter }],
@@ -31,7 +32,7 @@ describe('secretGuard (Jest)', () => {
   });
 
   const mockRoute: any = {};
-  const mockState: any = { url: '/secret' };
+  const mockState: any = { url: '/secret' }; // Simula un RouterStateSnapshot
 
   it('should allow activation when in dev mode', () => {
     mockIsDevMode.mockReturnValue(true);
@@ -42,7 +43,7 @@ describe('secretGuard (Jest)', () => {
   });
 
   it('should allow activation when fromSecretPath is true in navigation extras', () => {
-    mockRouter.currentNavigation.mockReturnValue({
+    currentNavigationSignal.set({
       extras: { state: { fromSecretPath: true } },
     });
 
@@ -51,7 +52,7 @@ describe('secretGuard (Jest)', () => {
   });
 
   it('should deny activation and redirect to /home if fromSecretPath is false', () => {
-    mockRouter.currentNavigation.mockReturnValue({
+    currentNavigationSignal.set({
       extras: { state: { fromSecretPath: false } },
     });
 
@@ -61,7 +62,7 @@ describe('secretGuard (Jest)', () => {
   });
 
   it('should deny activation and redirect to /home if navigation is undefined', () => {
-    mockRouter.currentNavigation.mockReturnValue(null);
+    currentNavigationSignal.set(null);
 
     const result = executeGuard(mockRoute, mockState);
     expect(result).toBe(false);

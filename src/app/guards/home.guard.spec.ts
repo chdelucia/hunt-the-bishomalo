@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { CanActivateFn, Router } from '@angular/router';
+import { CanActivateFn, Router, RouterModule } from '@angular/router';
 import { homeGuard } from './home.guard';
-import { GameStore } from '../store';
-import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
+import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
 import { RouteTypes } from '@hunt-the-bishomalo/data';
 
 const mockGameStore = {
@@ -16,19 +16,19 @@ const mockGameEngine = {
 describe('homeGuard (Jest)', () => {
   let mockRouter: jest.Mocked<Router>;
 
-  const executeGuard: CanActivateFn = (route, state) =>
-    TestBed.runInInjectionContext(() => homeGuard(route, state));
+  const executeGuard: CanActivateFn = (...params) =>
+    TestBed.runInInjectionContext(() => homeGuard(...params));
 
   beforeEach(() => {
     mockRouter = {
       navigateByUrl: jest.fn(),
     } as unknown as jest.Mocked<Router>;
-
     TestBed.configureTestingModule({
+      imports: [RouterModule.forRoot([])],
       providers: [
         { provide: Router, useValue: mockRouter },
         { provide: GameStore, useValue: mockGameStore },
-        { provide: GAME_ENGINE_TOKEN, useValue: mockGameEngine },
+        { provide: GameEngineService, useValue: mockGameEngine },
       ],
     });
   });

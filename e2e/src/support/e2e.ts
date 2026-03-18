@@ -15,6 +15,9 @@
 
 // Import commands.ts using ES2015 syntax:
 import './commands';
+import { addCompareSnapshotCommand } from 'cypress-visual-regression/dist/command';
+
+addCompareSnapshotCommand();
 
 Cypress.on('window:before:load', (win) => {
   // Mock AudioContext to avoid ALSA errors in headless environments
