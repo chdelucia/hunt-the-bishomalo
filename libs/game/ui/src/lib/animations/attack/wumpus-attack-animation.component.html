@@ -3,22 +3,21 @@
   <div class="animation step-{{ step() }}">
     <div
       class="player"
-      [style.left]="getPlayerLeft()"
+      [style.transform]="'translateY(-50%) translateX(' + getPlayerTranslateX() + ')' + (step() >= 4 ? ' rotate(15deg)' : '')"
       [style.opacity]="step() < 5 ? 1 : 0.3"
-      [style.transform]="'translateY(-50%)' + (step() >= 4 ? ' rotate(15deg)' : '')"
     >
       @if (selected === 'default') {
-        <img [src]="'chars/' + selected + '/bow.svg'" alt="bow" />
+        <img [ngSrc]="'chars/' + selected + '/bow.svg'" alt="bow" width="120" height="180" priority />
       } @else {
-        <img [src]="'chars/' + selected + '/bow.png'" alt="char" />
+        <img [ngSrc]="'chars/' + selected + '/bow.png'" alt="char" width="120" height="180" priority />
       }
     </div>
 
     <div class="wumpus" [style.transform]="'translateY(-50%) scale(' + getWumpusScale() + ')'">
       @if (selected === 'default') {
-        <img [src]="'chars/' + selected + '/wumpus.svg'" alt="bow" />
+        <img [ngSrc]="'chars/' + selected + '/wumpus.svg'" alt="wumpus" width="140" height="280" priority />
       } @else {
-        <img [src]="'chars/' + selected + '/wumpus.png'" alt="char" width="140" height="280" />
+        <img [ngSrc]="'chars/' + selected + '/wumpus.png'" alt="wumpus" width="140" height="280" priority />
       }
     </div>
 
