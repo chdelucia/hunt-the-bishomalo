@@ -12,7 +12,7 @@ import {
 import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
 import { RouterModule } from '@angular/router';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
-import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
+import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { GameSoundService } from '@hunt-the-bishomalo/core/services';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { AchieveTypes, GameSound } from '@hunt-the-bishomalo/data';
@@ -37,7 +37,7 @@ import { AchieveTypes, GameSound } from '@hunt-the-bishomalo/data';
 })
 export class Game {
   readonly game = inject(GameStore);
-  private readonly gameEngine = inject(GameEngineService);
+  private readonly gameEngine = inject(GAME_ENGINE_TOKEN);
   private readonly achieve = inject(ACHIEVEMENT_SERVICE);
   private readonly sound = inject(GameSoundService);
 

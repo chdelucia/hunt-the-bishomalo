@@ -2,7 +2,7 @@ import { Component, computed, inject, OnDestroy, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
+import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { Product, RouteTypes } from '@hunt-the-bishomalo/data';
 import { Router } from '@angular/router';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
@@ -67,7 +67,7 @@ export class ShopComponent implements OnDestroy {
 
   private readonly gameStore = inject(GameStore);
   private readonly settings = this.gameStore.settings;
-  private readonly gameEngine = inject(GameEngineService);
+  private readonly gameEngine = inject(GAME_ENGINE_TOKEN);
   private readonly router = inject(Router);
   private readonly transloco = inject(TranslocoService);
 

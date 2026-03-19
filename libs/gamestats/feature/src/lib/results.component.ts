@@ -1,6 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
-import { LeaderboardService } from '@hunt-the-bishomalo/gamestats/data-access';
+import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { RouteTypes, ScoreEntry } from '@hunt-the-bishomalo/data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -20,7 +20,7 @@ export class ResultsComponent {
   unlockedAchievements = 0;
 
   private readonly gameStore = inject(GameStore);
-  private readonly leaderboardService = inject(LeaderboardService);
+  private readonly leaderboardService = inject(LEADERBOARD_SERVICE);
   private readonly achieve = inject(ACHIEVEMENT_SERVICE);
   private readonly router = inject(Router);
   private readonly routeSnapshot = inject(ActivatedRoute);

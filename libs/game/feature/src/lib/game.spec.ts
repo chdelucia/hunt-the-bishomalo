@@ -6,7 +6,7 @@ import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { signal } from '@angular/core';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
-import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
+import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 
 describe('Game', () => {
   let component: Game;
@@ -53,7 +53,17 @@ describe('Game', () => {
             achievements: [],
           },
         },
-        GameEngineService
+        {
+          provide: GAME_ENGINE_TOKEN,
+          useValue: {
+            newGame: jest.fn(),
+            initGame: jest.fn(),
+            moveForward: jest.fn(),
+            turnLeft: jest.fn(),
+            turnRight: jest.fn(),
+            shootArrow: jest.fn(),
+          },
+        },
       ]
     }).compileComponents();
 
