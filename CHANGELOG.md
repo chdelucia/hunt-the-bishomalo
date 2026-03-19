@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.13.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.12.0...v7.13.0) (2026-03-19)
+
+
+### Features
+
+* **shop:** improve micro-ux and accessibility ([2d859d3](https://github.com/chdelucia/hunt-the-bishomalo/commit/2d859d3c559dc80583941bb9abc3489f3480244c))
+
 ## [7.12.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.10.2...v7.12.0) (2026-03-18)
 
 
