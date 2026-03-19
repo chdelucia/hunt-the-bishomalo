@@ -65,6 +65,23 @@ describe('GameConfigComponent', () => {
     expect(mockGameEngine.initGame).not.toHaveBeenCalled();
   });
 
+  it('should be invalid if player name exceeds 20 characters', () => {
+    component.configForm.patchValue({ player: 'a'.repeat(21) });
+    expect(component.configForm.get('player')?.valid).toBeFalsy();
+    expect(component.configForm.get('player')?.hasError('maxlength')).toBeTruthy();
+  });
+
+  it('should be invalid if player name contains prohibited characters', () => {
+    component.configForm.patchValue({ player: 'Player!@#' });
+    expect(component.configForm.get('player')?.valid).toBeFalsy();
+    expect(component.configForm.get('player')?.hasError('pattern')).toBeTruthy();
+  });
+
+  it('should be valid with alphanumeric characters, spaces, hyphens and underscores', () => {
+    component.configForm.patchValue({ player: 'Player 1-abc_XYZ' });
+    expect(component.configForm.get('player')?.valid).toBeTruthy();
+  });
+
   it('should submit and navigate if form is valid', () => {
     const navigateSpy = jest.spyOn(router, 'navigate');
     const updateGameSpy = jest.spyOn(gameStore, 'updateGame');

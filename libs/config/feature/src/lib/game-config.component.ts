@@ -34,7 +34,10 @@ export class GameConfigComponent {
   readonly configs = DIFFICULTY_CONFIGS as Record<string, GameDificulty>;
 
   configForm: FormGroup = this.fb.group({
-    player: ['Kukuxumushu', Validators.required],
+    player: [
+      'Kukuxumushu',
+      [Validators.required, Validators.maxLength(20), Validators.pattern(/^[a-zA-Z0-9\s\-_]*$/)],
+    ],
     size: [1, [Validators.required, Validators.min(1), Validators.max(20)]],
     selectedChar: [Chars.DEFAULT, [Validators.required]],
     difficulty: [DifficultyTypes.EASY, [Validators.required]],
