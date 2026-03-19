@@ -11,7 +11,7 @@ import {
 } from '@hunt-the-bishomalo/game/ui';
 import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
 import { RouterModule } from '@angular/router';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { GameSoundService } from '@hunt-the-bishomalo/core/services';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
@@ -36,7 +36,7 @@ import { AchieveTypes, GameSound } from '@hunt-the-bishomalo/data';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Game {
-  readonly game = inject(GameStore);
+  readonly game = inject(GAME_STORE_TOKEN);
   private readonly gameEngine = inject(GAME_ENGINE_TOKEN);
   private readonly achieve = inject(ACHIEVEMENT_SERVICE);
   private readonly sound = inject(GameSoundService);
@@ -55,6 +55,22 @@ export class Game {
       if (settings?.blackout && isAlive && !hasWon) {
         this.sound.playSound(GameSound.BLACKOUT, false);
         this.achieve.activeAchievement(AchieveTypes.BLACKOUT);
+      }
+    });
+
+    effect(() => {
+      if (this.game.wumpusKilled() === 5) {
+        this.achieve.activeAchievement(AchieveTypes.PENTA);
+        this.sound.playSound(GameSound.PENTA, false);
+      }
+    });
+
+    effect(() => {
+      if (!this.game.isAlive()) {
+        const achievement = this.game.blackout()
+          ? AchieveTypes.DEATHBYBLACKOUT
+          : AchieveTypes.LASTBREATH;
+        this.achieve.activeAchievement(achievement);
       }
     });
   }

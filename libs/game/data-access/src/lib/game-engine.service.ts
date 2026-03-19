@@ -18,14 +18,14 @@ import {
   RouteTypes,
   AchieveTypes
 } from '@hunt-the-bishomalo/data';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
 import { take } from 'rxjs';
 import { BoardGeneratorService } from './board-generator.service';
 import { PerceptionService } from './perception.service';
 
 @Injectable({ providedIn: 'root' })
 export class GameEngineService implements IGameEngineService {
-  readonly store = inject(GameStore);
+  readonly store = inject(GAME_STORE_TOKEN);
   private readonly _settings = this.store.settings;
   private readonly _hunter = this.store.hunter;
   private readonly sound = inject(GameSoundService);
@@ -221,7 +221,7 @@ export class GameEngineService implements IGameEngineService {
     this.sound.stopWumpus();
     this.sound.playSound(GameSound.PAIN, false);
     this.store.countWumpusKilled();
-    this.achieve.handleWumpusKillAchieve(cell);
+    this.handleWumpusKillAchieve(cell);
     this.getDrop(cell);
   }
 
@@ -242,6 +242,57 @@ export class GameEngineService implements IGameEngineService {
   private handleMissedArrow(): void {
     this.store.setMessage(this.transloco.translate('gameMessages.arrowMissed'));
     if (!this._hunter().arrows) this.achieve.activeAchievement(AchieveTypes.MISSEDSHOT);
+  }
+
+  calcVictoryAchieve(seconds: number): void {
+    const wumpusKilled = this.store.wumpusKilled();
+    const { arrows } = this._hunter();
+    const { blackout, size } = this._settings();
+
+    if (blackout) this.achieve.activeAchievement(AchieveTypes.WINBLACKWOUT);
+    if (arrows > 1 && !wumpusKilled) this.achieve.activeAchievement(AchieveTypes.WASTEDARROWS);
+    else {
+      if (size >= 12) this.achieve.activeAchievement(AchieveTypes.WINLARGEMAP);
+      if (seconds <= 10) this.achieve.activeAchievement(AchieveTypes.SPEEDRUNNER);
+      if (!wumpusKilled) this.achieve.activeAchievement(AchieveTypes.WRAT);
+      if (wumpusKilled) this.achieve.activeAchievement(AchieveTypes.WINHERO);
+      this.cartographyAchieve();
+    }
+    this.achieve.isAllCompleted();
+  }
+
+  handleWumpusKillAchieve(cell: Cell): void {
+    const { blackout } = this._settings();
+    const distance = this.calcDistance(cell);
+    if (blackout) this.achieve.activeAchievement(AchieveTypes.BLINDWUMPUSKILLED);
+    else if (distance > 3) this.achieve.activeAchievement(AchieveTypes.SNIPER);
+    else if (distance === 1) this.achieve.activeAchievement(AchieveTypes.DEATHDUEL);
+    else this.achieve.activeAchievement(AchieveTypes.WUMPUSKILLED);
+  }
+
+  private calcDistance(cell: Cell): number {
+    const { x, y } = this._hunter();
+    if (x === cell.x) return Math.abs(y - cell.y);
+    if (y === cell.y) return Math.abs(x - cell.x);
+    return 0;
+  }
+
+  private countVisitedCells(): number {
+    const board = this.store.board();
+    let count = 0;
+    for (const row of board) {
+      for (const cell of row) {
+        if (cell.visited) count++;
+      }
+    }
+    return count;
+  }
+
+  private cartographyAchieve(): void {
+    const visited = this.countVisitedCells();
+    const { size, pits } = this._settings();
+    if (size * size - pits === visited) this.achieve.activeAchievement(AchieveTypes.EXPERTCARTO);
+    if (visited > size * size * 0.5) this.achieve.activeAchievement(AchieveTypes.NOVICECARTO);
   }
 
   exit(): void {

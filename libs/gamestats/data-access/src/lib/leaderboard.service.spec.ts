@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { LeaderboardService } from './leaderboard.service';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
+import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { LocalstorageService } from '@hunt-the-bishomalo/core/services';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { signal, WritableSignal } from '@angular/core';
 
 describe('LeaderboardService', () => {
   let service: LeaderboardService;
   let mockGameStore: any;
-  let mockAchievementService: any;
+  let mockGameEngine: any;
   let mockLocalStorageService: any;
 
   let hasWonSignal: WritableSignal<boolean>;
@@ -35,7 +35,7 @@ describe('LeaderboardService', () => {
       startTime: startTimeSignal,
     };
 
-    mockAchievementService = {
+    mockGameEngine = {
       calcVictoryAchieve: jest.fn(),
     };
 
@@ -48,8 +48,8 @@ describe('LeaderboardService', () => {
     TestBed.configureTestingModule({
       providers: [
         LeaderboardService,
-        { provide: GameStore, useValue: mockGameStore },
-        { provide: ACHIEVEMENT_SERVICE, useValue: mockAchievementService },
+        { provide: GAME_STORE_TOKEN, useValue: mockGameStore },
+        { provide: GAME_ENGINE_TOKEN, useValue: mockGameEngine },
         { provide: LocalstorageService, useValue: mockLocalStorageService },
       ],
     });
@@ -76,19 +76,19 @@ describe('LeaderboardService', () => {
     hasWonSignal.set(true);
     TestBed.flushEffects();
 
-    expect(service._leaderboard.length).toBe(1);
-    expect(service._leaderboard[0].playerName).toBe('TestPlayer');
-    expect(service._leaderboard[0].timeInSeconds).toBeGreaterThanOrEqual(10);
+    expect(service.leaderboard.length).toBe(1);
+    expect(service.leaderboard[0].playerName).toBe('TestPlayer');
+    expect(service.leaderboard[0].timeInSeconds).toBeGreaterThanOrEqual(10);
     expect(mockLocalStorageService.setValue).toHaveBeenCalled();
-    expect(mockAchievementService.calcVictoryAchieve).toHaveBeenCalled();
+    expect(mockGameEngine.calcVictoryAchieve).toHaveBeenCalled();
   });
 
   it('should add entry when player dies', () => {
     isAliveSignal.set(false);
     TestBed.flushEffects();
 
-    expect(service._leaderboard.length).toBe(1);
-    expect(service._leaderboard[0].deads).toBe(1);
+    expect(service.leaderboard.length).toBe(1);
+    expect(service.leaderboard[0].deads).toBe(1);
     expect(mockLocalStorageService.setValue).toHaveBeenCalled();
   });
 
@@ -101,12 +101,12 @@ describe('LeaderboardService', () => {
     isAliveSignal.set(false);
     TestBed.flushEffects();
 
-    expect(service._leaderboard[0].steps).toBe(2);
+    expect(service.leaderboard[0].steps).toBe(2);
   });
 
   it('should clear leaderboard', () => {
     service.clear();
     expect(mockLocalStorageService.clearValue).toHaveBeenCalledWith('hunt_the_bishomalo_leaderboard');
-    expect(service._leaderboard).toEqual([]);
+    expect(service.leaderboard).toEqual([]);
   });
 });

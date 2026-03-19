@@ -1,6 +1,6 @@
 import { effect, inject, Injectable } from '@angular/core';
 import { GameSound } from '@hunt-the-bishomalo/data';
-import { GameStore } from '../../store';
+import { GAME_STORE_TOKEN } from '../../store';
 
 const SOUND_PATHS: Record<GameSound, string> = {
   [GameSound.WUMPUS]: 'sounds/monster.mp3',
@@ -38,7 +38,7 @@ const SOUND_PATHS: Record<GameSound, string> = {
 })
 export class GameSoundService {
   private audioMap: Record<GameSound, HTMLAudioElement> = {} as Record<GameSound, HTMLAudioElement>;
-  private readonly gameStore = inject(GameStore);
+  private readonly gameStore = inject(GAME_STORE_TOKEN);
   constructor() {
     effect(() => this.gameOver());
   }

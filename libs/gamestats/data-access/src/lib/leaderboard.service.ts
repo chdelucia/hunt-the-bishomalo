@@ -1,16 +1,17 @@
 import { effect, inject, Injectable } from '@angular/core';
 import { ScoreEntry } from '@hunt-the-bishomalo/data';
 import { LocalstorageService } from '@hunt-the-bishomalo/core/services';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
+import { ILeaderboardService } from '@hunt-the-bishomalo/gamestats/api';
 
 @Injectable({ providedIn: 'root' })
-export class LeaderboardService {
+export class LeaderboardService implements ILeaderboardService {
   private readonly storageKey = 'hunt_the_bishomalo_leaderboard';
-  _leaderboard: ScoreEntry[] = [];
+  leaderboard: ScoreEntry[] = [];
 
-  private readonly gameStore = inject(GameStore);
-  private readonly gameAchieve = inject(ACHIEVEMENT_SERVICE);
+  private readonly gameStore = inject(GAME_STORE_TOKEN);
+  private readonly gameEngine = inject(GAME_ENGINE_TOKEN);
   private readonly localStorageService = inject(LocalstorageService);
   private readonly _hunter = this.gameStore.hunter;
   private readonly _settings = this.gameStore.settings;
@@ -18,7 +19,7 @@ export class LeaderboardService {
   private countSteps = 0;
 
   constructor() {
-    this._leaderboard = this.loadLeaderboardFromStorage();
+    this.leaderboard = this.loadLeaderboardFromStorage();
     effect(() => {
       if (this.gameStore.hasWon() || !this.gameStore.isAlive()) {
         const { player, blackout, size } = this._settings();
@@ -35,7 +36,7 @@ export class LeaderboardService {
           deads: this.gameStore.isAlive() ? 0 : 1,
         });
         this.countSteps = 0;
-        if (this.gameStore.hasWon()) this.gameAchieve.calcVictoryAchieve(seconds);
+        if (this.gameStore.hasWon()) this.gameEngine.calcVictoryAchieve(seconds);
       }
     });
     effect(() => {
@@ -50,13 +51,13 @@ export class LeaderboardService {
   }
 
   private addEntry(entry: ScoreEntry): void {
-    this._leaderboard.push(entry);
-    this.localStorageService.setValue<ScoreEntry[]>(this.storageKey, this._leaderboard);
+    this.leaderboard.push(entry);
+    this.localStorageService.setValue<ScoreEntry[]>(this.storageKey, this.leaderboard);
   }
 
   clear(): void {
     this.localStorageService.clearValue(this.storageKey);
-    this._leaderboard = [];
+    this.leaderboard = [];
   }
 
   private calculateElapsedSeconds(endTime: Date): number {

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Game } from './game';
 import { RouterModule } from '@angular/router';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { signal } from '@angular/core';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
@@ -28,6 +28,8 @@ describe('Game', () => {
     hasGold: signal(false),
     currentCell: signal(undefined),
     inventory: signal([]),
+    wumpusKilled: signal(0),
+    blackout: signal(false),
     hunter: signal({
         direction: 0,
         arrows: 1,
@@ -40,7 +42,7 @@ describe('Game', () => {
     await TestBed.configureTestingModule({
       imports: [Game, RouterModule.forRoot([]), getTranslocoTestingModule()],
       providers: [
-        { provide: GameStore, useValue: mockGameStore },
+        { provide: GAME_STORE_TOKEN, useValue: mockGameStore },
         { provide: LEADERBOARD_SERVICE, useValue: { clear: jest.fn() } },
         {
           provide: ACHIEVEMENT_SERVICE,

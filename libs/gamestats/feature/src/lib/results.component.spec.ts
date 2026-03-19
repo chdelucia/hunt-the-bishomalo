@@ -3,7 +3,7 @@ import { ResultsComponent } from './results.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { RouteTypes, ScoreEntry } from '@hunt-the-bishomalo/data';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { signal } from '@angular/core';
@@ -39,7 +39,7 @@ const mockAchievementService = {
 };
 
 const mockLeaderboardService = {
-  _leaderboard: mockLeaderboard,
+  leaderboard: mockLeaderboard,
 };
 
 const routerMock = {
@@ -71,7 +71,7 @@ describe('ResultsComponent', () => {
         { provide: LEADERBOARD_SERVICE, useValue: mockLeaderboardService },
         { provide: Router, useValue: routerMock },
         { provide: ActivatedRoute, useValue: activateRouteMock },
-        { provide: GameStore, useValue: mockGameStore },
+        { provide: GAME_STORE_TOKEN, useValue: mockGameStore },
       ],
     }).compileComponents();
 

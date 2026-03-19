@@ -4,7 +4,7 @@ import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { RouteTypes, ScoreEntry } from '@hunt-the-bishomalo/data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
@@ -19,7 +19,7 @@ export class ResultsComponent {
   leaderboard: ScoreEntry[] = [];
   unlockedAchievements = 0;
 
-  private readonly gameStore = inject(GameStore);
+  private readonly gameStore = inject(GAME_STORE_TOKEN);
   private readonly leaderboardService = inject(LEADERBOARD_SERVICE);
   private readonly achieve = inject(ACHIEVEMENT_SERVICE);
   private readonly router = inject(Router);
@@ -27,7 +27,7 @@ export class ResultsComponent {
 
   constructor() {
     this.unlockedAchievements = this.achieve.achievements.filter((item) => item.unlocked).length;
-    this.leaderboard = this.leaderboardService._leaderboard;
+    this.leaderboard = this.leaderboardService.leaderboard;
   }
 
   readonly estadisticasGenerales = computed(() => {

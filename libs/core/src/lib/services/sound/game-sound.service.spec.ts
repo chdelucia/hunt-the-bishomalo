@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { GameSoundService } from './game-sound.service';
-import { GameStore } from '../../store';
+import { GAME_STORE_TOKEN } from '../../store';
 import { GameSound } from '@hunt-the-bishomalo/data';
 import { signal } from '@angular/core';
 
@@ -27,7 +27,7 @@ describe('GameSoundService', () => {
     TestBed.configureTestingModule({
       providers: [
         GameSoundService,
-        { provide: GameStore, useValue: gameStoreMock },
+        { provide: GAME_STORE_TOKEN, useValue: gameStoreMock },
       ],
     });
 
