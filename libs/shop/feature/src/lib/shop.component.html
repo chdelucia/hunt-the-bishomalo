@@ -21,7 +21,7 @@
           <div class="inventario-item">
             <img
               [ngSrc]="'shop/' + entry.icon"
-              alt="{{ 'shop.inventoryItemAlt' | transloco }}"
+              alt="{{ entry.name | transloco }}"
               width="40"
               height="40"
             />x1
@@ -48,7 +48,7 @@
           <div class="producto-icono-container">
             <img
               [ngSrc]="'shop/' + producto.icon"
-              alt="{{ 'shop.productItemAlt' | transloco }}"
+              alt="{{ producto.name | transloco }}"
               width="90"
               height="90"
             />
@@ -93,5 +93,5 @@
 </div>
 
 @if(message()){
-<div class="mensaje-compra">{{ message() }}</div>
+<div class="mensaje-compra" role="status" aria-live="polite">{{ message() }}</div>
 }

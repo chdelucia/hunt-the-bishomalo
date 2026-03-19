@@ -15,6 +15,8 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
   styleUrl: './shop.component.scss',
 })
 export class ShopComponent implements OnDestroy {
+  private readonly MESSAGE_TIMEOUT_MS = 3000;
+
   private readonly baseProducts: Product[] = [
     {
       effect: 'heart',
@@ -96,7 +98,7 @@ export class ShopComponent implements OnDestroy {
     const canBuy = gold >= price;
 
     if (this.messageTimeout) clearTimeout(this.messageTimeout);
-    this.messageTimeout = setTimeout(() => this.message.set(''), 2000);
+    this.messageTimeout = setTimeout(() => this.message.set(''), this.MESSAGE_TIMEOUT_MS);
 
     if (!canBuy) {
       this.message.set(this.transloco.translate('shop.purchaseMessageNotEnoughCoins'));
