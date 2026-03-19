@@ -4,6 +4,8 @@ import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
+import { signal } from '@angular/core';
 import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
 
 const mockAchievement = {
@@ -26,6 +28,14 @@ describe('ConfigComponent', () => {
         { provide: ACHIEVEMENT_SERVICE, useValue: mockAchievement },
         { provide: LEADERBOARD_SERVICE, useValue: mockLeaderboard },
         { provide: GAME_ENGINE_TOKEN, useValue: mockGameEngine },
+        {
+          provide: GAME_STORE_TOKEN,
+          useValue: {
+            updateGame: jest.fn(),
+            unlockedChars: jest.fn().mockReturnValue([]),
+            lives: jest.fn().mockReturnValue(3),
+          },
+        },
       ],
     }).compileComponents();
 

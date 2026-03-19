@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Cell, GameEventEffectType, GameItem, GameSound, CauseOfDeath, AchieveTypes } from '@hunt-the-bishomalo/data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { GameSoundService } from '../sound/game-sound.service';
-import { GameStore } from '../../store';
+import { GAME_STORE_TOKEN } from '../../store';
 import { createGameEventEffects } from './effects';
 
 export interface GameEventEffect {
@@ -28,7 +28,7 @@ export class GameEventService {
     removeFirstItemByEffect: this.removeFirstItemByEffect.bind(this),
   });
 
-  readonly gameStore = inject(GameStore);
+  readonly gameStore = inject(GAME_STORE_TOKEN);
   readonly gameSound = inject(GameSoundService);
   readonly gameAchieve = inject(ACHIEVEMENT_SERVICE);
 
@@ -90,7 +90,7 @@ export class GameEventService {
     this.gameSound.playSound(GameSound.PICKUP, false);
     this.gameAchieve.activeAchievement(AchieveTypes.PICKARROW);
     this.gameStore.updateHunter({
-      arrows: (this.gameStore.arrows() || 0) + 1,
+      arrows: (this.gameStore.hunter().arrows || 0) + 1,
     });
     cell.content = undefined;
   }
@@ -130,7 +130,7 @@ export class GameEventService {
     this.gameAchieve.activeAchievement(AchieveTypes.PICKGOLD);
     this.gameStore.updateHunter({
       hasGold: true,
-      gold: (this.gameStore.gold() || 0) + this.gameStore.settings().difficulty.gold,
+      gold: (this.gameStore.hunter().gold || 0) + this.gameStore.settings().difficulty.gold,
     });
     cell.content = undefined;
   }

@@ -3,7 +3,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { Chars, RouteTypes, AchieveTypes } from '@hunt-the-bishomalo/data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { Router } from '@angular/router';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
@@ -14,7 +14,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   styleUrl: './characters.component.scss',
 })
 export class CharactersComponent {
-  readonly gameStore = inject(GameStore);
+  readonly gameStore = inject(GAME_STORE_TOKEN);
   private readonly router = inject(Router);
   private readonly achieve = inject(ACHIEVEMENT_SERVICE);
 

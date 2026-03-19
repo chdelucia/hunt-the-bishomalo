@@ -13,7 +13,7 @@ import {
   RouteTypes,
 } from '@hunt-the-bishomalo/data';
 import { Router } from '@angular/router';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
 
 @Component({
   selector: 'lib-game-config',
@@ -24,7 +24,7 @@ import { GameStore } from '@hunt-the-bishomalo/core/store';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameConfigComponent {
-  readonly gameStore = inject(GameStore);
+  readonly gameStore = inject(GAME_STORE_TOKEN);
   private readonly gameEngine = inject(GAME_ENGINE_TOKEN);
   private readonly fb = inject(FormBuilder);
   private readonly gameSound = inject(GameSoundService);

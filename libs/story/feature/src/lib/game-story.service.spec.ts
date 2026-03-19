@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { GameStoryService } from './game-story.service';
-import { GAME_STORE } from '@hunt-the-bishomalo/story/api';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
 import { TranslocoService } from '@jsverse/transloco';
 import { Chars } from '@hunt-the-bishomalo/data';
 import { signal } from '@angular/core';
@@ -26,7 +26,7 @@ describe('GameStoryService', () => {
     TestBed.configureTestingModule({
       providers: [
         GameStoryService,
-        { provide: GAME_STORE, useValue: gameStoreMock },
+        { provide: GAME_STORE_TOKEN, useValue: gameStoreMock },
         { provide: TranslocoService, useValue: translocoMock },
       ],
     });

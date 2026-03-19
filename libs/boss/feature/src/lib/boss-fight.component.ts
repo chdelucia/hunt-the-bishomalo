@@ -3,7 +3,7 @@ import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { RouteTypes } from '@hunt-the-bishomalo/data';
 import { Router } from '@angular/router';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
 import { BossStore, BossCell } from './boss-store';
 
 @Component({
@@ -15,7 +15,7 @@ import { BossStore, BossCell } from './boss-store';
   providers: [BossStore],
 })
 export class BossFightComponent implements OnInit {
-  readonly gameStore = inject(GameStore);
+  readonly gameStore = inject(GAME_STORE_TOKEN);
   readonly bossStore = inject(BossStore);
   private readonly router = inject(Router);
   private readonly translocoService = inject(TranslocoService);

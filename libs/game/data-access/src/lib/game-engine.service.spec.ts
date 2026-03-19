@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { GameEngineService } from './game-engine.service';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
 import { GameSoundService, GameEventService, LocalstorageService } from '@hunt-the-bishomalo/core/services';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
@@ -44,6 +44,8 @@ describe('GameEngineService', () => {
       message: signal(''),
       isAlive: signal(true),
       hasWon: signal(false),
+      wumpusKilled: signal(0),
+      startTime: signal(new Date().toISOString()),
       currentCell: jest.fn(),
       updateGame: jest.fn(),
       updateHunter: jest.fn(),
@@ -58,10 +60,11 @@ describe('GameEngineService', () => {
       stopWumpus: jest.fn(),
     };
 
-    leaderboardMock = { clear: jest.fn() };
+    leaderboardMock = { clear: jest.fn(), addEntry: jest.fn() };
     achieveMock = {
       activeAchievement: jest.fn(),
       handleWumpusKillAchieve: jest.fn(),
+      isAllCompleted: jest.fn(),
     };
     routerMock = { navigate: jest.fn() };
     gameEventMock = {
@@ -84,7 +87,7 @@ describe('GameEngineService', () => {
     TestBed.configureTestingModule({
       providers: [
         GameEngineService,
-        { provide: GameStore, useValue: storeMock },
+        { provide: GAME_STORE_TOKEN, useValue: storeMock },
         { provide: GameSoundService, useValue: soundMock },
         { provide: LEADERBOARD_SERVICE, useValue: leaderboardMock },
         { provide: ACHIEVEMENT_SERVICE, useValue: achieveMock },
@@ -276,5 +279,63 @@ describe('GameEngineService', () => {
      storeMock.hunter.set({ direction: Direction.LEFT });
      service.turnRight();
      expect(storeMock.updateHunter).toHaveBeenCalledWith({ direction: Direction.UP });
+  });
+
+  describe('tracking and achievements', () => {
+    it('should track steps', () => {
+      // Step counter increments when x or y is not 0
+      storeMock.hunter.set({ x: 1, y: 0 });
+      TestBed.flushEffects();
+      // Accessing private countSteps via any to verify internal state if needed,
+      // but better to verify it via the leaderboard call.
+      storeMock.isAlive.set(false);
+      TestBed.flushEffects();
+      expect(leaderboardMock.addEntry).toHaveBeenCalledWith(expect.objectContaining({
+        steps: 1
+      }));
+    });
+
+    it('should calculate victory achievements and check all completed', () => {
+      storeMock.wumpusKilled.set(1);
+      storeMock.hunter.set({ arrows: 1 });
+      storeMock.settings.set({ size: 12, difficulty: { luck: 5 } });
+
+      service.calcVictoryAchieve(5); // 5 seconds (speedrunner)
+
+      expect(achieveMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.WINLARGEMAP);
+      expect(achieveMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.SPEEDRUNNER);
+      expect(achieveMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.WINHERO);
+      expect(achieveMock.isAllCompleted).toHaveBeenCalled();
+    });
+
+    it('should handle game over with victory', () => {
+      storeMock.hasWon.set(true);
+      TestBed.flushEffects();
+      expect(leaderboardMock.addEntry).toHaveBeenCalled();
+      expect(achieveMock.isAllCompleted).toHaveBeenCalled();
+    });
+
+
+    it('should handle wumpus kill achievements', () => {
+      storeMock.hunter.set({ x: 0, y: 0 });
+      service.handleWumpusKillAchieve({ x: 0, y: 5 } as any);
+      expect(achieveMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.SNIPER);
+
+      service.handleWumpusKillAchieve({ x: 0, y: 1 } as any);
+      expect(achieveMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.DEATHDUEL);
+    });
+
+    it('should handle cartography achievements', () => {
+      storeMock.settings.set({ size: 4, pits: 0 });
+      storeMock.board.set([
+        [{ visited: true }, { visited: true }, { visited: true }, { visited: true }],
+        [{ visited: true }, { visited: true }, { visited: true }, { visited: true }],
+        [{ visited: true }, { visited: true }, { visited: true }, { visited: true }],
+        [{ visited: true }, { visited: true }, { visited: true }, { visited: true }],
+      ]);
+
+      (service as any).cartographyAchieve();
+      expect(achieveMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.EXPERTCARTO);
+    });
   });
 });

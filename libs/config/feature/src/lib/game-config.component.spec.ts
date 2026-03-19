@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { GameSoundService } from '@hunt-the-bishomalo/core/services';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
 import { provideRouter, Router } from '@angular/router';
 import { Chars, DifficultyTypes, RouteTypes, GameSound } from '@hunt-the-bishomalo/data';
 
@@ -29,6 +29,13 @@ describe('GameConfigComponent', () => {
       providers: [
         { provide: GAME_ENGINE_TOKEN, useValue: mockGameEngine },
         { provide: GameSoundService, useValue: mockGameSound },
+        {
+          provide: GAME_STORE_TOKEN,
+          useValue: {
+            updateGame: jest.fn(),
+            unlockedChars: jest.fn().mockReturnValue([]),
+          },
+        },
         provideRouter([
           { path: RouteTypes.STORY, redirectTo: '' },
         ]),
@@ -38,7 +45,7 @@ describe('GameConfigComponent', () => {
     fixture = TestBed.createComponent(GameConfigComponent);
     component = fixture.componentInstance;
     router = TestBed.inject(Router);
-    gameStore = TestBed.inject(GameStore);
+    gameStore = TestBed.inject(GAME_STORE_TOKEN);
     fixture.detectChanges();
   });
 
