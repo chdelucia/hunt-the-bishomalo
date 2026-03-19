@@ -23,7 +23,7 @@ describe('GameEventService', () => {
 
     gameStoreMock = {
       inventory: signal([]),
-      arrows: signal(1),
+      hunter: signal({ arrows: 1, gold: 0 }),
       lives: signal(3),
       dragonballs: signal(0),
       gold: signal(0),

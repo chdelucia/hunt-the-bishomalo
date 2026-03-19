@@ -1,4 +1,4 @@
-import { DestroyRef, inject, Injectable } from '@angular/core';
+import { DestroyRef, effect, inject, Injectable } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
@@ -30,6 +30,8 @@ export class GameEngineService implements IGameEngineService {
   private readonly _hunter = this.store.hunter;
   private readonly sound = inject(GameSoundService);
   private readonly leaderBoard = inject(LEADERBOARD_SERVICE);
+
+  private countSteps = 0;
   private readonly achieve = inject(ACHIEVEMENT_SERVICE);
   private readonly router = inject(Router);
   private readonly localStorageService = inject(LocalstorageService);
@@ -38,6 +40,43 @@ export class GameEngineService implements IGameEngineService {
   private readonly boardGenerator = inject(BoardGeneratorService);
   private readonly perceptionService = inject(PerceptionService);
   private readonly destroyRef = inject(DestroyRef);
+
+  constructor() {
+    effect(() => this.trackSteps());
+    effect(() => this.handleGameOver());
+  }
+
+  private trackSteps(): void {
+    const { x, y } = this._hunter();
+    if (x || y) this.countSteps += 1;
+  }
+
+  private handleGameOver(): void {
+    if (this.store.hasWon() || !this.store.isAlive()) {
+      const { player, blackout, size } = this._settings();
+      const endTime = new Date();
+      const seconds = this.calculateElapsedSeconds(endTime);
+
+      this.leaderBoard.addEntry({
+        playerName: player,
+        timeInSeconds: seconds,
+        date: endTime,
+        level: size - 4 + 1,
+        blackout: !!blackout,
+        wumpusKilled: this.store.wumpusKilled(),
+        steps: this.countSteps,
+        deads: this.store.isAlive() ? 0 : 1,
+      });
+
+      this.countSteps = 0;
+      if (this.store.hasWon()) this.calcVictoryAchieve(seconds);
+    }
+  }
+
+  private calculateElapsedSeconds(endTime: Date): number {
+    const startime = new Date(this.store.startTime());
+    return startime ? Math.round((endTime.getTime() - startime.getTime()) / 1000) : 0;
+  }
 
   initGame(): void {
     this.sound.stop();

@@ -56,7 +56,7 @@ const activateRouteMock = {
 };
 
 const mockGameStore = {
-  unlockedChars: [],
+  unlockedChars: signal([]),
 };
 
 describe('ResultsComponent', () => {

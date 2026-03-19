@@ -1,44 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { LeaderboardService } from './leaderboard.service';
-import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
-import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { LocalstorageService } from '@hunt-the-bishomalo/core/services';
-import { signal, WritableSignal } from '@angular/core';
 
 describe('LeaderboardService', () => {
   let service: LeaderboardService;
-  let mockGameStore: any;
-  let mockGameEngine: any;
   let mockLocalStorageService: any;
 
-  let hasWonSignal: WritableSignal<boolean>;
-  let isAliveSignal: WritableSignal<boolean>;
-  let hunterSignal: WritableSignal<{ x: number; y: number }>;
-  let settingsSignal: WritableSignal<any>;
-  let wumpusKilledSignal: WritableSignal<number>;
-  let startTimeSignal: WritableSignal<string>;
-
   beforeEach(() => {
-    hasWonSignal = signal(false);
-    isAliveSignal = signal(true);
-    hunterSignal = signal({ x: 0, y: 0 });
-    settingsSignal = signal({ player: 'TestPlayer', blackout: false, size: 4 });
-    wumpusKilledSignal = signal(0);
-    startTimeSignal = signal(new Date().toISOString());
-
-    mockGameStore = {
-      hasWon: hasWonSignal,
-      isAlive: isAliveSignal,
-      hunter: hunterSignal,
-      settings: settingsSignal,
-      wumpusKilled: wumpusKilledSignal,
-      startTime: startTimeSignal,
-    };
-
-    mockGameEngine = {
-      calcVictoryAchieve: jest.fn(),
-    };
-
     mockLocalStorageService = {
       getValue: jest.fn().mockReturnValue([]),
       setValue: jest.fn(),
@@ -48,8 +16,6 @@ describe('LeaderboardService', () => {
     TestBed.configureTestingModule({
       providers: [
         LeaderboardService,
-        { provide: GAME_STORE_TOKEN, useValue: mockGameStore },
-        { provide: GAME_ENGINE_TOKEN, useValue: mockGameEngine },
         { provide: LocalstorageService, useValue: mockLocalStorageService },
       ],
     });
@@ -65,43 +31,11 @@ describe('LeaderboardService', () => {
     expect(mockLocalStorageService.getValue).toHaveBeenCalledWith('hunt_the_bishomalo_leaderboard');
   });
 
-  it('should add entry when player wins', () => {
-    const startTime = new Date();
-    startTime.setSeconds(startTime.getSeconds() - 10);
-    startTimeSignal.set(startTime.toISOString());
-
-    // Trigger winning state
-    TestBed.flushEffects(); // Ensure constructor effects are ready
-
-    hasWonSignal.set(true);
-    TestBed.flushEffects();
-
+  it('should add entry', () => {
+    const entry = { playerName: 'Test', level: 1 } as any;
+    service.addEntry(entry);
     expect(service.leaderboard.length).toBe(1);
-    expect(service.leaderboard[0].playerName).toBe('TestPlayer');
-    expect(service.leaderboard[0].timeInSeconds).toBeGreaterThanOrEqual(10);
     expect(mockLocalStorageService.setValue).toHaveBeenCalled();
-    expect(mockGameEngine.calcVictoryAchieve).toHaveBeenCalled();
-  });
-
-  it('should add entry when player dies', () => {
-    isAliveSignal.set(false);
-    TestBed.flushEffects();
-
-    expect(service.leaderboard.length).toBe(1);
-    expect(service.leaderboard[0].deads).toBe(1);
-    expect(mockLocalStorageService.setValue).toHaveBeenCalled();
-  });
-
-  it('should count steps when hunter moves', () => {
-    hunterSignal.set({ x: 1, y: 0 });
-    TestBed.flushEffects();
-    hunterSignal.set({ x: 1, y: 1 });
-    TestBed.flushEffects();
-
-    isAliveSignal.set(false);
-    TestBed.flushEffects();
-
-    expect(service.leaderboard[0].steps).toBe(2);
   });
 
   it('should clear leaderboard', () => {
