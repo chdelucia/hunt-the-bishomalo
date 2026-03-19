@@ -7,10 +7,34 @@ import { signal } from '@angular/core';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
+import { AchieveTypes } from '@hunt-the-bishomalo/data';
+import { GameSoundService } from '@hunt-the-bishomalo/core/services';
 
 describe('Game', () => {
   let component: Game;
   let fixture: ComponentFixture<Game>;
+
+  const ACHIEVEMENT_SERVICE_MOCK = {
+    activeAchievement: jest.fn(),
+    calcVictoryAchieve: jest.fn(),
+    handleWumpusKillAchieve: jest.fn(),
+    isAllCompleted: jest.fn(),
+    completed: signal(undefined),
+    achievements: [],
+  };
+
+  const GAME_ENGINE_MOCK = {
+    newGame: jest.fn(),
+    initGame: jest.fn(),
+    moveForward: jest.fn(),
+    turnLeft: jest.fn(),
+    turnRight: jest.fn(),
+    shootArrow: jest.fn(),
+  };
+
+  const GAME_SOUND_MOCK = {
+    playSound: jest.fn(),
+  };
 
   const mockGameStore = {
     board: signal([]),
@@ -44,28 +68,9 @@ describe('Game', () => {
       providers: [
         { provide: GAME_STORE_TOKEN, useValue: mockGameStore },
         { provide: LEADERBOARD_SERVICE, useValue: { clear: jest.fn() } },
-        {
-          provide: ACHIEVEMENT_SERVICE,
-          useValue: {
-            activeAchievement: jest.fn(),
-            calcVictoryAchieve: jest.fn(),
-            handleWumpusKillAchieve: jest.fn(),
-            isAllCompleted: jest.fn(),
-            completed: signal(undefined),
-            achievements: [],
-          },
-        },
-        {
-          provide: GAME_ENGINE_TOKEN,
-          useValue: {
-            newGame: jest.fn(),
-            initGame: jest.fn(),
-            moveForward: jest.fn(),
-            turnLeft: jest.fn(),
-            turnRight: jest.fn(),
-            shootArrow: jest.fn(),
-          },
-        },
+        { provide: ACHIEVEMENT_SERVICE, useValue: ACHIEVEMENT_SERVICE_MOCK },
+        { provide: GAME_ENGINE_TOKEN, useValue: GAME_ENGINE_MOCK },
+        { provide: GameSoundService, useValue: GAME_SOUND_MOCK },
       ]
     }).compileComponents();
 
@@ -92,5 +97,52 @@ describe('Game', () => {
     mockGameStore.message.set('You died');
     component.handleclose();
     expect(mockGameStore.setMessage).toHaveBeenCalledWith('GAME OVER You died');
+  });
+
+  describe('side effects and actions', () => {
+    it('should trigger blackout achievement', () => {
+        mockGameStore.settings.set({ blackout: true, difficulty: { maxLives: 3 } });
+        mockGameStore.isAlive.set(true);
+        mockGameStore.hasWon.set(false);
+        TestBed.flushEffects();
+        expect(ACHIEVEMENT_SERVICE_MOCK.activeAchievement).toHaveBeenCalledWith(AchieveTypes.BLACKOUT);
+    });
+
+    it('should trigger penta achievement', () => {
+        mockGameStore.wumpusKilled.set(5);
+        TestBed.flushEffects();
+        expect(ACHIEVEMENT_SERVICE_MOCK.activeAchievement).toHaveBeenCalledWith(AchieveTypes.PENTA);
+    });
+
+    it('should trigger death achievement on game over', () => {
+        mockGameStore.isAlive.set(false);
+        mockGameStore.blackout.set(false);
+        TestBed.flushEffects();
+        expect(ACHIEVEMENT_SERVICE_MOCK.activeAchievement).toHaveBeenCalledWith(AchieveTypes.LASTBREATH);
+    });
+
+    it('should call engine actions', () => {
+        component.handleNewGame();
+        expect(GAME_ENGINE_MOCK.newGame).toHaveBeenCalled();
+
+        component.handleRestart();
+        expect(GAME_ENGINE_MOCK.initGame).toHaveBeenCalled();
+
+        component.handleMoveForward();
+        expect(GAME_ENGINE_MOCK.moveForward).toHaveBeenCalled();
+
+        component.handleTurnLeft();
+        expect(GAME_ENGINE_MOCK.turnLeft).toHaveBeenCalled();
+
+        component.handleTurnRight();
+        expect(GAME_ENGINE_MOCK.turnRight).toHaveBeenCalled();
+
+        component.handleShootArrow();
+        expect(GAME_ENGINE_MOCK.shootArrow).toHaveBeenCalled();
+
+        component.handleMobileShootArrow();
+        expect(GAME_ENGINE_MOCK.shootArrow).toHaveBeenCalled();
+        expect(ACHIEVEMENT_SERVICE_MOCK.activeAchievement).toHaveBeenCalledWith(AchieveTypes.GAMER);
+    });
   });
 });
