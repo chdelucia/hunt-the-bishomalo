@@ -77,6 +77,12 @@
   border-radius: 2px;
   width: 100%;
   overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 20%);
+  }
 }
 
 .producto-content {
@@ -113,11 +119,24 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  transition: transform 0.1s ease;
+
+  &:active:not(:disabled) {
+    transform: scale(0.95);
+  }
 }
 
 .next-button {
   margin-top: 2rem;
   text-align: right;
+
+  .boton-siguiente {
+    transition: transform 0.1s ease;
+
+    &:active:not(:disabled) {
+      transform: scale(0.95);
+    }
+  }
 }
 
 .disclaimer {

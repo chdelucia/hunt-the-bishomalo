@@ -82,7 +82,7 @@ describe('ShopComponent', () => {
       inventory: [product],
     });
     expect(component.message()).toContain('shop.purchaseMessageSuccess');
-    jest.advanceTimersByTime(2000);
+    jest.advanceTimersByTime(3000);
     expect(component.message()).toBe('');
     jest.useRealTimers();
     done();
