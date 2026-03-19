@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer2, inject, input, effect } from '@angular/core';
+import { Directive, ElementRef, Renderer2, inject, input, effect, DestroyRef } from '@angular/core';
 
 @Directive({
   selector: '[libVisualEffect]',
@@ -9,12 +9,37 @@ export class VisualEffectDirective {
 
   private readonly el = inject(ElementRef);
   private readonly renderer = inject(Renderer2);
+  private readonly destroyRef = inject(DestroyRef);
+  private animationFrameId: number | null = null;
 
   constructor() {
     effect(() => {
       const perceptionValue = this.perception();
-      this.updateEffects(perceptionValue);
+      this.scheduleUpdate(perceptionValue);
     });
+
+    this.destroyRef.onDestroy(() => {
+      this.cancelScheduledUpdate();
+    });
+  }
+
+  /**
+   * Schedules the update of visual effects using requestAnimationFrame
+   * to batch DOM manipulations and improve Interaction to Next Paint (INP).
+   */
+  private scheduleUpdate(perception: string): void {
+    this.cancelScheduledUpdate();
+    this.animationFrameId = requestAnimationFrame(() => {
+      this.updateEffects(perception);
+      this.animationFrameId = null;
+    });
+  }
+
+  private cancelScheduledUpdate(): void {
+    if (this.animationFrameId !== null) {
+      cancelAnimationFrame(this.animationFrameId);
+      this.animationFrameId = null;
+    }
   }
 
   private updateEffects(perception: string): void {

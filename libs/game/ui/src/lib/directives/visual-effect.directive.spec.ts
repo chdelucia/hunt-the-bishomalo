@@ -30,64 +30,83 @@ describe('VisualEffectDirective', () => {
     expect(directive).toBeTruthy();
   });
 
-  it('should not render anything if perception is empty', () => {
+  it('should not render anything if perception is empty', (done) => {
     fixture.componentInstance.effect = '';
     fixture.detectChanges();
-    const layer = debugEl.nativeElement.querySelector('.effect-layer');
-    expect(layer).toBeNull();
+
+    requestAnimationFrame(() => {
+      const layer = debugEl.nativeElement.querySelector('.effect-layer');
+      expect(layer).toBeNull();
+      done();
+    });
   });
 
-  it('should render clouds when perception includes "brisa"', () => {
+  it('should render clouds when perception includes "brisa"', (done) => {
     fixture.componentInstance.effect = 'brisa';
     fixture.detectChanges();
 
-    const layer = debugEl.nativeElement.querySelector('.effect-layer');
-    const clouds = layer.querySelectorAll('.cloud');
-    expect(clouds.length).toBeGreaterThan(0);
+    requestAnimationFrame(() => {
+      const layer = debugEl.nativeElement.querySelector('.effect-layer');
+      const clouds = layer.querySelectorAll('.cloud');
+      expect(clouds.length).toBeGreaterThan(0);
+      done();
+    });
   });
 
-  it('should render stink when perception includes "hedor"', () => {
+  it('should render stink when perception includes "hedor"', (done) => {
     fixture.componentInstance.effect = 'hedor';
     fixture.detectChanges();
 
-    const layer = debugEl.nativeElement.querySelector('.effect-layer');
-    const stinks = layer.querySelectorAll('.stink');
-    expect(stinks.length).toBeGreaterThan(0);
+    requestAnimationFrame(() => {
+      const layer = debugEl.nativeElement.querySelector('.effect-layer');
+      const stinks = layer.querySelectorAll('.stink');
+      expect(stinks.length).toBeGreaterThan(0);
+      done();
+    });
   });
 
-  it('should render sparkles when perception includes "brillo"', () => {
+  it('should render sparkles when perception includes "brillo"', (done) => {
     fixture.componentInstance.effect = 'brillo';
     fixture.detectChanges();
 
-    const layer = debugEl.nativeElement.querySelector('.effect-layer');
-    const sparkles = layer.querySelectorAll('.sparkle');
-    expect(sparkles.length).toBeGreaterThan(0);
+    requestAnimationFrame(() => {
+      const layer = debugEl.nativeElement.querySelector('.effect-layer');
+      const sparkles = layer.querySelectorAll('.sparkle');
+      expect(sparkles.length).toBeGreaterThan(0);
+      done();
+    });
   });
 
-  it('should render multiple effects if perception includes multiple cues', () => {
+  it('should render multiple effects if perception includes multiple cues', (done) => {
     fixture.componentInstance.effect = 'brisa hedor brillo';
     fixture.detectChanges();
 
-    const layer = debugEl.nativeElement.querySelector('.effect-layer');
-    expect(layer.querySelectorAll('.cloud').length).toBeGreaterThan(0);
-    expect(layer.querySelectorAll('.stink').length).toBeGreaterThan(0);
-    expect(layer.querySelectorAll('.sparkle').length).toBeGreaterThan(0);
+    requestAnimationFrame(() => {
+      const layer = debugEl.nativeElement.querySelector('.effect-layer');
+      expect(layer.querySelectorAll('.cloud').length).toBeGreaterThan(0);
+      expect(layer.querySelectorAll('.stink').length).toBeGreaterThan(0);
+      expect(layer.querySelectorAll('.sparkle').length).toBeGreaterThan(0);
+      done();
+    });
   });
 
-  it('should clear previous effects on perception change', () => {
+  it('should clear previous effects on perception change', (done) => {
     fixture.componentInstance.effect = 'brisa';
     fixture.detectChanges();
 
-    let layer = debugEl.nativeElement.querySelector('.effect-layer');
-    expect(layer).not.toBeNull();
+    requestAnimationFrame(() => {
+      let layer = debugEl.nativeElement.querySelector('.effect-layer');
+      expect(layer).not.toBeNull();
 
-    fixture.componentInstance.effect = 'brillo';
-    // Use changeDetectorRef to avoid ExpressionChangedAfterItHasBeenCheckedError in tests
-    // when manually triggering detectChanges after a state change.
-    fixture.changeDetectorRef.detectChanges();
+      fixture.componentInstance.effect = 'brillo';
+      fixture.changeDetectorRef.detectChanges();
 
-    layer = debugEl.nativeElement.querySelector('.effect-layer');
-    expect(layer.querySelectorAll('.cloud').length).toBe(0);
-    expect(layer.querySelectorAll('.sparkle').length).toBeGreaterThan(0);
+      requestAnimationFrame(() => {
+        layer = debugEl.nativeElement.querySelector('.effect-layer');
+        expect(layer.querySelectorAll('.cloud').length).toBe(0);
+        expect(layer.querySelectorAll('.sparkle').length).toBeGreaterThan(0);
+        done();
+      });
+    });
   });
 });
