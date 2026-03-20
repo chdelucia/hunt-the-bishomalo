@@ -5,6 +5,10 @@ import { RouteTypes } from '@hunt-the-bishomalo/data';
 import { Router } from '@angular/router';
 import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 
+/**
+ * @description
+ * Component to display the game controls on desktop devices.
+ */
 @Component({
   selector: 'lib-game-controls',
   standalone: true,

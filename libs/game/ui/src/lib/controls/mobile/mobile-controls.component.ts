@@ -3,6 +3,10 @@ import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 
+/**
+ * @description
+ * Component to display the mobile controls.
+ */
 @Component({
   selector: 'lib-mobile-controls',
   standalone: true,
