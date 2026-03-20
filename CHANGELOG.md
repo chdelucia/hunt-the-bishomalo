@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.13.8](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.13.7...v7.13.8) (2026-03-20)
+
+
+### Bug Fixes
+
+* pin Node.js version and explicit Bun commands for Vercel ([8266a57](https://github.com/chdelucia/hunt-the-bishomalo/commit/8266a57e0cf2524c94ce15f46bea89c5a44cf97b))
+
 ### [7.13.7](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.13.6...v7.13.7) (2026-03-20)
 
 
