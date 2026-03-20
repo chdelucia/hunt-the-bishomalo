@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.13.8](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.13.7...v7.13.8) (2026-03-20)
+
+
+### Bug Fixes
+
+* pin Node.js version and explicit Bun commands for Vercel ([8266a57](https://github.com/chdelucia/hunt-the-bishomalo/commit/8266a57e0cf2524c94ce15f46bea89c5a44cf97b))
+
+### [7.13.7](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.13.6...v7.13.7) (2026-03-20)
+
+
+### Bug Fixes
+
+* improve color contrast in shop and config screens ([de3acca](https://github.com/chdelucia/hunt-the-bishomalo/commit/de3accaab68201b93f74a5b7709e3fa8e0fa13fe))
+
 ### [7.13.6](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.13.5...v7.13.6) (2026-03-20)
 
 ### [7.13.5](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.13.4...v7.13.5) (2026-03-20)
