@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { GameSoundService } from './game-sound.service';
-import { GAME_STORE_TOKEN } from '../../store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { GameSound } from '@hunt-the-bishomalo/data';
 import { signal } from '@angular/core';
 
