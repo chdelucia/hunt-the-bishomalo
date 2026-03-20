@@ -2,8 +2,12 @@ import { TestBed } from '@angular/core/testing';
 import { GameEngineService } from './game-engine.service';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
-import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
-import { GameSoundService, GameEventService, LocalstorageService } from '@hunt-the-bishomalo/core/services';
+import {
+  GAME_STORE_TOKEN,
+  GAME_SOUND_TOKEN,
+  GAME_EVENT_SERVICE_TOKEN,
+  LOCALSTORAGE_SERVICE_TOKEN,
+} from '@hunt-the-bishomalo/core/api';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { BoardGeneratorService } from './board-generator.service';
@@ -88,15 +92,15 @@ describe('GameEngineService', () => {
       providers: [
         GameEngineService,
         { provide: GAME_STORE_TOKEN, useValue: storeMock },
-        { provide: GameSoundService, useValue: soundMock },
+        { provide: GAME_SOUND_TOKEN, useValue: soundMock },
         { provide: LEADERBOARD_SERVICE, useValue: leaderboardMock },
         { provide: ACHIEVEMENT_SERVICE, useValue: achieveMock },
         { provide: Router, useValue: routerMock },
-        { provide: GameEventService, useValue: gameEventMock },
+        { provide: GAME_EVENT_SERVICE_TOKEN, useValue: gameEventMock },
         { provide: TranslocoService, useValue: translocoMock },
         { provide: BoardGeneratorService, useValue: boardGenMock },
         { provide: PerceptionService, useValue: perceptionMock },
-        { provide: LocalstorageService, useValue: {} },
+        { provide: LOCALSTORAGE_SERVICE_TOKEN, useValue: {} },
       ],
     });
 

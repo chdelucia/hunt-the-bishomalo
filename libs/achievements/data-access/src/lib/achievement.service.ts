@@ -1,10 +1,10 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { Achievement, AchieveTypes, GameSound } from '@hunt-the-bishomalo/data';
 import {
-  AnalyticsService,
-  GameSoundService,
-  LocalstorageService
-} from '@hunt-the-bishomalo/core/services';
+  ANALYTICS_SERVICE_TOKEN,
+  GAME_SOUND_TOKEN,
+  LOCALSTORAGE_SERVICE_TOKEN,
+} from '@hunt-the-bishomalo/core/api';
 import { IAchievementService, ACHIEVEMENTS_LIST_TOKEN } from '@hunt-the-bishomalo/achievements/api';
 
 @Injectable({
@@ -16,9 +16,9 @@ export class AchievementService implements IAchievementService {
   private readonly storageKey = 'hunt_the_bishomalo_achievements';
   readonly completed = signal<Achievement | undefined>(undefined);
 
-  private readonly gameSound = inject(GameSoundService);
-  private readonly analytics = inject(AnalyticsService);
-  private readonly localStoreService = inject(LocalstorageService);
+  private readonly gameSound = inject(GAME_SOUND_TOKEN);
+  private readonly analytics = inject(ANALYTICS_SERVICE_TOKEN);
+  private readonly localStoreService = inject(LOCALSTORAGE_SERVICE_TOKEN);
 
   constructor() {
     this.syncAchievementsWithStorage();

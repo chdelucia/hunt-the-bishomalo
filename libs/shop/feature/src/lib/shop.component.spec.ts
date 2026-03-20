@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { Product, RouteTypes } from '@hunt-the-bishomalo/data';
 import { CommonModule } from '@angular/common';
-import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 
 const mockHunter = {

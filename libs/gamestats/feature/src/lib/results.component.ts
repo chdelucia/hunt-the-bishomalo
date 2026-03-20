@@ -4,7 +4,7 @@ import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { RouteTypes, ScoreEntry } from '@hunt-the-bishomalo/data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({

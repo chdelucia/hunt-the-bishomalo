@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { GameStoryService } from './game-story.service';
-import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { TranslocoService } from '@jsverse/transloco';
 import { Chars } from '@hunt-the-bishomalo/data';
 import { signal } from '@angular/core';

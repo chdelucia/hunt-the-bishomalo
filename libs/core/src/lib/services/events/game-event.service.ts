@@ -1,8 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { Cell, GameEventEffectType, GameItem, GameSound, CauseOfDeath, AchieveTypes } from '@hunt-the-bishomalo/data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
-import { GameSoundService } from '../sound/game-sound.service';
-import { GAME_STORE_TOKEN } from '../../store';
+import { GAME_STORE_TOKEN, IGameEventService, GAME_SOUND_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { createGameEventEffects } from './effects';
 
 export interface GameEventEffect {
@@ -14,7 +13,7 @@ export interface GameEventEffect {
 }
 
 @Injectable({ providedIn: 'root' })
-export class GameEventService {
+export class GameEventService implements IGameEventService {
   private readonly effects: GameEventEffect[] = createGameEventEffects({
     hasItem: this.hasItem.bind(this),
     handleRewind: this.handleRewind.bind(this),
@@ -29,7 +28,7 @@ export class GameEventService {
   });
 
   readonly gameStore = inject(GAME_STORE_TOKEN);
-  readonly gameSound = inject(GameSoundService);
+  readonly gameSound = inject(GAME_SOUND_TOKEN);
   readonly gameAchieve = inject(ACHIEVEMENT_SERVICE);
 
   applyEffectsOnDeath(cause: CauseOfDeath, cell: Cell, prev: { x: number; y: number }): boolean {

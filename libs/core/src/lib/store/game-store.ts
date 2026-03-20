@@ -1,6 +1,6 @@
 import { computed, inject } from '@angular/core';
 import { signalStore, patchState, withHooks, withMethods, withComputed } from '@ngrx/signals';
-import { LocalstorageService } from '../services';
+import { LOCALSTORAGE_SERVICE_TOKEN, IGameStore } from '@hunt-the-bishomalo/core/api';
 import { GameSettings, Chars, GameState, GameItem, Hunter } from '@hunt-the-bishomalo/data';
 import { withHunterFeature } from './features/hunter.feature';
 import { withConfigFeature, storageSettingsKey } from './features/config.feature';
@@ -17,6 +17,9 @@ const storageKey = 'hunt_the_bishomalo_hunter';
 
 export const GameStore = signalStore(
   { providedIn: 'root' },
+  {
+    type: {} as IGameStore,
+  },
   withHunterFeature(),
   withConfigFeature(),
   withGameStatusFeature(),
@@ -27,7 +30,7 @@ export const GameStore = signalStore(
       return currentBoard?.[x]?.[y] ?? null;
     }),
   })),
-  withMethods((store, localStorage = inject(LocalstorageService)) => {
+  withMethods((store, localStorage = inject(LOCALSTORAGE_SERVICE_TOKEN)) => {
     const persistGameState = () => {
       const currentHunter = store.hunter();
       localStorage.setValue<GameLocalStorageInfo>(storageKey, {

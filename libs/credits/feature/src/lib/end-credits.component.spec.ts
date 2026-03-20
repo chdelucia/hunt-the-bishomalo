@@ -2,9 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EndCreditsComponent } from './end-credits.component';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { GameSoundService } from '@hunt-the-bishomalo/core/services';
+import { GAME_SOUND_TOKEN, GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
-import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { signal } from '@angular/core';
 
@@ -30,7 +29,7 @@ describe('EndCreditsComponent', () => {
       imports: [EndCreditsComponent, CommonModule, getTranslocoTestingModule()],
       providers: [
         { provide: GAME_ENGINE_TOKEN, useValue: mockGameEngineService },
-        { provide: GameSoundService, useValue: mockGameSoundService },
+        { provide: GAME_SOUND_TOKEN, useValue: mockGameSoundService },
         { provide: Router, useValue: mockRouter },
         {
           provide: GAME_STORE_TOKEN,
