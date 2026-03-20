@@ -3,7 +3,7 @@ import { ResultsComponent } from './results.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { RouteTypes, ScoreEntry } from '@hunt-the-bishomalo/data';
-import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { signal } from '@angular/core';

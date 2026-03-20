@@ -1,13 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { TranslocoService } from '@jsverse/transloco';
 import { Cell, CELL_CONTENTS, GameSound } from '@hunt-the-bishomalo/data';
-import { GameSoundService } from '@hunt-the-bishomalo/core/services';
+import { GAME_SOUND_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { Observable, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class PerceptionService {
   private readonly transloco = inject(TranslocoService);
-  private readonly sound = inject(GameSoundService);
+  private readonly sound = inject(GAME_SOUND_TOKEN);
 
   getPerceptionMessage(adjacentCells: Cell[]): Observable<string> {
     const perceptions: string[] = [];

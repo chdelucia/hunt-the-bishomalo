@@ -11,8 +11,21 @@ import { appRoutes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { TranslocoHttpLoader } from './utils/transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
-import { GameStore, GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
-import { MonitoringService } from '@hunt-the-bishomalo/core/services';
+import { GameStore } from '@hunt-the-bishomalo/core/store';
+import {
+  MonitoringService,
+  GameSoundService,
+  LocalstorageService,
+  AnalyticsService,
+  GameEventService,
+} from '@hunt-the-bishomalo/core/services';
+import {
+  GAME_STORE_TOKEN,
+  GAME_SOUND_TOKEN,
+  LOCALSTORAGE_SERVICE_TOKEN,
+  ANALYTICS_SERVICE_TOKEN,
+  GAME_EVENT_SERVICE_TOKEN,
+} from '@hunt-the-bishomalo/core/api';
 import { ACHIEVEMENT_SERVICE, ACHIEVEMENTS_LIST_TOKEN } from '@hunt-the-bishomalo/achievements/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
@@ -24,6 +37,10 @@ import * as Sentry from '@sentry/angular';
 export const appConfig: ApplicationConfig = {
   providers: [
     { provide: GAME_STORE_TOKEN, useExisting: GameStore },
+    { provide: GAME_SOUND_TOKEN, useExisting: GameSoundService },
+    { provide: LOCALSTORAGE_SERVICE_TOKEN, useExisting: LocalstorageService },
+    { provide: ANALYTICS_SERVICE_TOKEN, useExisting: AnalyticsService },
+    { provide: GAME_EVENT_SERVICE_TOKEN, useExisting: GameEventService },
     { provide: ACHIEVEMENTS_LIST_TOKEN, useValue: ACHIEVEMENTS_LIST },
     { provide: ACHIEVEMENT_SERVICE, useExisting: AchievementService },
     { provide: LEADERBOARD_SERVICE, useExisting: LeaderboardService },

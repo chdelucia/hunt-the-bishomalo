@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { PerceptionService } from './perception.service';
 import { TranslocoService } from '@jsverse/transloco';
-import { GameSoundService } from '@hunt-the-bishomalo/core/services';
+import { GAME_SOUND_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { Cell } from '@hunt-the-bishomalo/data';
 import { of } from 'rxjs';
 
@@ -23,7 +23,7 @@ describe('PerceptionService', () => {
       providers: [
         PerceptionService,
         { provide: TranslocoService, useValue: translocoMock },
-        { provide: GameSoundService, useValue: soundMock },
+        { provide: GAME_SOUND_TOKEN, useValue: { playSound: jest.fn() } },
       ],
     });
     service = TestBed.inject(PerceptionService);

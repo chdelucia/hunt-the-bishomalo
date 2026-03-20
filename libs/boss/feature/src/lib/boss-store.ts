@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { signalStore, withState, withMethods, patchState } from '@ngrx/signals';
 import { TranslocoService } from '@jsverse/transloco';
-import { GameSoundService } from '@hunt-the-bishomalo/core/services';
+import { GAME_SOUND_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { GameSound, GameSettings } from '@hunt-the-bishomalo/data';
 
 export interface BossCell {
@@ -35,7 +35,7 @@ const initialState: BossState = {
 export const BossStore = signalStore(
   withState(initialState),
   withMethods(
-    (store, gameSound = inject(GameSoundService), translocoService = inject(TranslocoService)) => {
+    (store, gameSound = inject(GAME_SOUND_TOKEN), translocoService = inject(TranslocoService)) => {
       const getHint = (grid: BossCell[][], x: number, y: number): string => {
         const row = grid[x];
         const col = grid.map((r) => r[y]);

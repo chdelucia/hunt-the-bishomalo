@@ -11,9 +11,8 @@ import {
 } from '@hunt-the-bishomalo/game/ui';
 import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
 import { RouterModule } from '@angular/router';
-import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN, GAME_SOUND_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
-import { GameSoundService } from '@hunt-the-bishomalo/core/services';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { AchieveTypes, GameSound } from '@hunt-the-bishomalo/data';
 
@@ -39,7 +38,7 @@ export class Game {
   readonly game = inject(GAME_STORE_TOKEN);
   private readonly gameEngine = inject(GAME_ENGINE_TOKEN);
   private readonly achieve = inject(ACHIEVEMENT_SERVICE);
-  private readonly sound = inject(GameSoundService);
+  private readonly sound = inject(GAME_SOUND_TOKEN);
 
   readonly deathByWumpus = computed(() => {
     const gameInstance = this.game;

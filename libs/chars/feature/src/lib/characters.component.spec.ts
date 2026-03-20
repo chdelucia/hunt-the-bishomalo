@@ -3,7 +3,7 @@ import { CharactersComponent } from './characters.component';
 import { Router } from '@angular/router';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Chars } from '@hunt-the-bishomalo/data';
-import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 

@@ -3,10 +3,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { TranslocoService } from '@jsverse/transloco';
 import {
-  GameEventService,
-  GameSoundService,
-  LocalstorageService,
-} from '@hunt-the-bishomalo/core/services';
+  GAME_EVENT_SERVICE_TOKEN,
+  GAME_SOUND_TOKEN,
+  LOCALSTORAGE_SERVICE_TOKEN,
+  GAME_STORE_TOKEN,
+} from '@hunt-the-bishomalo/core/api';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { IGameEngineService } from '@hunt-the-bishomalo/game/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
@@ -18,7 +19,6 @@ import {
   RouteTypes,
   AchieveTypes
 } from '@hunt-the-bishomalo/data';
-import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
 import { take } from 'rxjs';
 import { BoardGeneratorService } from './board-generator.service';
 import { PerceptionService } from './perception.service';
@@ -28,14 +28,14 @@ export class GameEngineService implements IGameEngineService {
   readonly store = inject(GAME_STORE_TOKEN);
   private readonly _settings = this.store.settings;
   private readonly _hunter = this.store.hunter;
-  private readonly sound = inject(GameSoundService);
+  private readonly sound = inject(GAME_SOUND_TOKEN);
   private readonly leaderBoard = inject(LEADERBOARD_SERVICE);
 
   private countSteps = 0;
   private readonly achieve = inject(ACHIEVEMENT_SERVICE);
   private readonly router = inject(Router);
-  private readonly localStorageService = inject(LocalstorageService);
-  private readonly gameEvents = inject(GameEventService);
+  private readonly localStorageService = inject(LOCALSTORAGE_SERVICE_TOKEN);
+  private readonly gameEvents = inject(GAME_EVENT_SERVICE_TOKEN);
   private readonly transloco = inject(TranslocoService);
   private readonly boardGenerator = inject(BoardGeneratorService);
   private readonly perceptionService = inject(PerceptionService);

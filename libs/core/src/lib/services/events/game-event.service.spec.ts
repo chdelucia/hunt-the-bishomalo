@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { GameEventService } from './game-event.service';
-import { GameSoundService } from '../sound/game-sound.service';
-import { GAME_STORE_TOKEN } from '../../store';
+import { GAME_SOUND_TOKEN, GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { Cell, GameSound, AchieveTypes } from '@hunt-the-bishomalo/data';
 import { signal } from '@angular/core';
@@ -41,7 +40,7 @@ describe('GameEventService', () => {
     TestBed.configureTestingModule({
       providers: [
         GameEventService,
-        { provide: GameSoundService, useValue: gameSoundMock },
+        { provide: GAME_SOUND_TOKEN, useValue: gameSoundMock },
         { provide: GAME_STORE_TOKEN, useValue: gameStoreMock },
         { provide: ACHIEVEMENT_SERVICE, useValue: achievementMock },
       ],

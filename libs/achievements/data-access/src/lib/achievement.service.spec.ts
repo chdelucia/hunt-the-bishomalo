@@ -1,9 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { AchievementService } from './achievement.service';
 import { ACHIEVEMENTS_LIST_TOKEN } from '@hunt-the-bishomalo/achievements/api';
-import { GameSoundService, LocalstorageService, AnalyticsService } from '@hunt-the-bishomalo/core/services';
-import { signal } from '@angular/core';
-import { GameSound, AchieveTypes } from '@hunt-the-bishomalo/data';
+import {
+  GAME_SOUND_TOKEN,
+  LOCALSTORAGE_SERVICE_TOKEN,
+  ANALYTICS_SERVICE_TOKEN,
+} from '@hunt-the-bishomalo/core/api';
+import { AchieveTypes } from '@hunt-the-bishomalo/data';
 
 describe('AchievementService', () => {
   let service: AchievementService;
@@ -30,9 +33,9 @@ describe('AchievementService', () => {
       providers: [
         AchievementService,
         { provide: ACHIEVEMENTS_LIST_TOKEN, useValue: [] },
-        { provide: GameSoundService, useValue: soundMock },
-        { provide: LocalstorageService, useValue: localStorageMock },
-        { provide: AnalyticsService, useValue: analyticsMock },
+        { provide: GAME_SOUND_TOKEN, useValue: soundMock },
+        { provide: LOCALSTORAGE_SERVICE_TOKEN, useValue: localStorageMock },
+        { provide: ANALYTICS_SERVICE_TOKEN, useValue: analyticsMock },
       ],
     });
 

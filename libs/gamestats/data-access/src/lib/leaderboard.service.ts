@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { ScoreEntry } from '@hunt-the-bishomalo/data';
-import { LocalstorageService } from '@hunt-the-bishomalo/core/services';
+import { LOCALSTORAGE_SERVICE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { ILeaderboardService } from '@hunt-the-bishomalo/gamestats/api';
 
 @Injectable({ providedIn: 'root' })
@@ -8,7 +8,7 @@ export class LeaderboardService implements ILeaderboardService {
   private readonly storageKey = 'hunt_the_bishomalo_leaderboard';
   leaderboard: ScoreEntry[] = [];
 
-  private readonly localStorageService = inject(LocalstorageService);
+  private readonly localStorageService = inject(LOCALSTORAGE_SERVICE_TOKEN);
 
   constructor() {
     this.leaderboard = this.loadLeaderboardFromStorage();

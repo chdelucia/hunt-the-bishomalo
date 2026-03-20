@@ -3,9 +3,8 @@ import { BossFightComponent } from './boss-fight.component';
 import { CommonModule } from '@angular/common';
 import { signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { GameSoundService } from '@hunt-the-bishomalo/core/services';
+import { GAME_SOUND_TOKEN, GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { GameSettings, RouteTypes } from '@hunt-the-bishomalo/data';
-import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { BossCell } from './boss-store';
 
@@ -46,7 +45,7 @@ describe('BossFightComponent', () => {
       ],
       providers: [
         { provide: GAME_STORE_TOKEN, useValue: gameStoreMock },
-        { provide: GameSoundService, useValue: gameSoundMock },
+        { provide: GAME_SOUND_TOKEN, useValue: gameSoundMock },
         { provide: Router, useValue: routerMock },
       ],
     }).compileComponents();

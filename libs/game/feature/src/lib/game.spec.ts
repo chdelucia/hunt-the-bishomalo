@@ -1,14 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Game } from './game';
 import { RouterModule } from '@angular/router';
-import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN, GAME_SOUND_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { signal } from '@angular/core';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { AchieveTypes } from '@hunt-the-bishomalo/data';
-import { GameSoundService } from '@hunt-the-bishomalo/core/services';
 
 describe('Game', () => {
   let component: Game;
@@ -70,7 +69,7 @@ describe('Game', () => {
         { provide: LEADERBOARD_SERVICE, useValue: { clear: jest.fn() } },
         { provide: ACHIEVEMENT_SERVICE, useValue: ACHIEVEMENT_SERVICE_MOCK },
         { provide: GAME_ENGINE_TOKEN, useValue: GAME_ENGINE_MOCK },
-        { provide: GameSoundService, useValue: GAME_SOUND_MOCK },
+        { provide: GAME_SOUND_TOKEN, useValue: GAME_SOUND_MOCK },
       ]
     }).compileComponents();
 

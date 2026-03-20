@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { GameStore } from './game-store';
 import { Chars, GameSettings, Hunter, Cell, Direction } from '@hunt-the-bishomalo/data';
-import { LocalstorageService } from '../services';
+import { LOCALSTORAGE_SERVICE_TOKEN } from '@hunt-the-bishomalo/core/api';
 
 const localStorageServiceMock = {
   getValue: jest.fn(),
@@ -45,7 +45,7 @@ describe('GameStore (SignalStore)', () => {
     TestBed.configureTestingModule({
       providers: [
         GameStore,
-        { provide: LocalstorageService, useValue: localStorageServiceMock },
+        { provide: LOCALSTORAGE_SERVICE_TOKEN, useValue: localStorageServiceMock },
       ],
     });
 

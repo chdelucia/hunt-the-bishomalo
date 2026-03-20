@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { LeaderboardService } from './leaderboard.service';
-import { LocalstorageService } from '@hunt-the-bishomalo/core/services';
+import { LOCALSTORAGE_SERVICE_TOKEN } from '@hunt-the-bishomalo/core/api';
 
 describe('LeaderboardService', () => {
   let service: LeaderboardService;
@@ -16,7 +16,7 @@ describe('LeaderboardService', () => {
     TestBed.configureTestingModule({
       providers: [
         LeaderboardService,
-        { provide: LocalstorageService, useValue: mockLocalStorageService },
+        { provide: LOCALSTORAGE_SERVICE_TOKEN, useValue: mockLocalStorageService },
       ],
     });
 

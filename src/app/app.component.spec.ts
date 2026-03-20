@@ -5,7 +5,12 @@ import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { KeyboardManagerService } from '@hunt-the-bishomalo/game/data-access';
-import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/store';
+import {
+  GAME_STORE_TOKEN,
+  LOCALSTORAGE_SERVICE_TOKEN,
+  GAME_SOUND_TOKEN,
+  GAME_EVENT_SERVICE_TOKEN,
+} from '@hunt-the-bishomalo/core/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { signal } from '@angular/core';
 
@@ -28,6 +33,15 @@ describe('AppComponent', () => {
           },
         },
         { provide: LEADERBOARD_SERVICE, useValue: { clear: jest.fn() } },
+        {
+          provide: LOCALSTORAGE_SERVICE_TOKEN,
+          useValue: { getValue: jest.fn(), setValue: jest.fn() },
+        },
+        { provide: GAME_SOUND_TOKEN, useValue: { stop: jest.fn(), playSound: jest.fn() } },
+        {
+          provide: GAME_EVENT_SERVICE_TOKEN,
+          useValue: { applyEffectsOnDeath: jest.fn(), applyEffectByCellContent: jest.fn() },
+        },
         { provide: KeyboardManagerService, useValue: { handleKeyDown: jest.fn() } },
         {
           provide: GAME_STORE_TOKEN,
