@@ -17,9 +17,6 @@ const storageKey = 'hunt_the_bishomalo_hunter';
 
 export const GameStore = signalStore(
   { providedIn: 'root' },
-  {
-    type: {} as IGameStore,
-  },
   withHunterFeature(),
   withConfigFeature(),
   withGameStatusFeature(),
@@ -105,7 +102,7 @@ export const GameStore = signalStore(
   }),
   withHooks({
     onInit(store) {
-      store.syncHunterWithStorage();
+      (store as any).syncHunterWithStorage();
     },
   }),
 );
