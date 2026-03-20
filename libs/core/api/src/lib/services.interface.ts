@@ -1,4 +1,4 @@
-import { InjectionToken, Signal } from '@angular/core';
+import { InjectionToken } from '@angular/core';
 import { GameSound, CauseOfDeath, Cell } from '@hunt-the-bishomalo/data';
 
 export interface IGameSoundService {
