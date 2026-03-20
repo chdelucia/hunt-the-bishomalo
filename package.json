@@ -4,7 +4,7 @@
   "license": "MIT",
   "packageManager": "bun@1.2.14",
   "engines": {
-    "node": ">=20.0.0",
+    "node": "22.x",
     "bun": ">=1.2.14"
   },
   "scripts": {
