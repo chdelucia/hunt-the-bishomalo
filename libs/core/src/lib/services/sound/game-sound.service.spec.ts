@@ -93,4 +93,20 @@ describe('GameSoundService', () => {
     service.playSound(GameSound.GOLD, false);
     expect(audioMock.play).not.toHaveBeenCalled();
   });
+
+  it('should play sound if sound is enabled', () => {
+    gameStoreMock.soundEnabled.set(true);
+    service.playSound(GameSound.GOLD, false);
+    expect(audioMock.play).toHaveBeenCalled();
+  });
+
+  it('should not play GAMEOVER sound when lives reaches 0 and sound is disabled', () => {
+    gameStoreMock.soundEnabled.set(false);
+    gameStoreMock.lives.set(0);
+
+    // Trigger effect
+    TestBed.flushEffects();
+
+    expect(audioMock.play).not.toHaveBeenCalled();
+  });
 });

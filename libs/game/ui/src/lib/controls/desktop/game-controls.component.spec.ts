@@ -5,6 +5,7 @@ import { provideRouter, Router } from '@angular/router';
 import { RouteTypes } from '@hunt-the-bishomalo/data';
 import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { signal } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 describe('GameControlsComponent', () => {
   let component: GameControlsComponent;
@@ -108,5 +109,14 @@ describe('GameControlsComponent', () => {
     expect(gameStoreMock.updateGame).toHaveBeenCalledWith({
       settings: expect.objectContaining({ soundEnabled: true }),
     });
+  });
+
+  it('should call toggleSound when sound button is clicked', () => {
+    component.isVisible.set(true);
+    fixture.detectChanges();
+    const button = fixture.debugElement.query(By.css('.sound-toggle'));
+    const spy = jest.spyOn(component, 'toggleSound');
+    button.nativeElement.click();
+    expect(spy).toHaveBeenCalled();
   });
 });

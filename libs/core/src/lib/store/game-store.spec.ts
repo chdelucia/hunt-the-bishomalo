@@ -39,6 +39,7 @@ describe('GameStore (SignalStore)', () => {
       bossTries: 3,
     },
     startTime: '12/08/2025',
+    soundEnabled: true,
   };
 
   beforeEach(() => {
@@ -68,6 +69,21 @@ describe('GameStore (SignalStore)', () => {
   it('should set settings and reflect in signal', () => {
     store.updateGame({ settings: mockSettings });
     expect(store.settings()).toEqual(mockSettings);
+  });
+
+  it('should toggle soundEnabled correctly', () => {
+    store.updateGame({ settings: { ...mockSettings, soundEnabled: false } });
+    expect(store.soundEnabled()).toBe(false);
+
+    store.updateGame({ settings: { ...mockSettings, soundEnabled: true } });
+    expect(store.soundEnabled()).toBe(true);
+  });
+
+  it('should default soundEnabled to true if not present in settings', () => {
+    const settingsWithoutSound = { ...mockSettings };
+    delete (settingsWithoutSound as any).soundEnabled;
+    store.updateGame({ settings: settingsWithoutSound });
+    expect(store.soundEnabled()).toBe(true);
   });
 
   it('should update board correctly', () => {
