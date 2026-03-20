@@ -40,33 +40,33 @@
   </div>
 }
 
-<div class="form-group">
-  <label for="selectedChar">{{ 'config.selectCharacterLabel' | transloco }}</label>
-</div>
-<div class="char-selector">
-  @for(char of chars; track $index) {
-    <label
-      class="char-btn"
-      [class.active]="configForm.get('selectedChar')?.value === char"
-      [class.grayscale]="configForm.get('selectedChar')?.value !== char"
-    >
-      <input
-        type="radio"
-        formControlName="selectedChar"
-        [value]="char"
-        (change)="selectChar(char)"
-        class="sr-only"
-      />
-      <img
-        [ngSrc]="$index === 0 ? `chars/${char}/bow.svg` : `chars/${char}/bow.png`"
-        [alt]="char"
-        draggable="false"
-        width="60"
-        height="80"
-      />
-    </label>
-  }
-</div>
+<fieldset class="char-fieldset">
+  <legend>{{ 'config.selectCharacterLabel' | transloco }}</legend>
+  <div class="char-selector">
+    @for(char of chars; track $index) {
+      <label
+        class="char-btn"
+        [class.active]="configForm.get('selectedChar')?.value === char"
+        [class.grayscale]="configForm.get('selectedChar')?.value !== char"
+      >
+        <input
+          type="radio"
+          formControlName="selectedChar"
+          [value]="char"
+          (change)="selectChar(char)"
+          class="sr-only"
+        />
+        <img
+          [ngSrc]="$index === 0 ? `chars/${char}/bow.svg` : `chars/${char}/bow.png`"
+          [alt]="char"
+          draggable="false"
+          width="60"
+          height="80"
+        />
+      </label>
+    }
+  </div>
+</fieldset>
 
   <button type="submit" [disabled]="configForm.invalid" class="start-game">
     {{ 'config.playButton' | transloco }}

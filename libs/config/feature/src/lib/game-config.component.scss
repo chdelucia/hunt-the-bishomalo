@@ -46,6 +46,19 @@
     }
   }
 
+  .char-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 1rem;
+
+    legend {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+  }
+
   button.start-game {
     width: 100%;
     font-family: 'Press Start 2P', monospace;
