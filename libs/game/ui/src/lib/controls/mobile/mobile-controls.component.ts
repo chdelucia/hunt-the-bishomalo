@@ -1,6 +1,7 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 
 @Component({
   selector: 'lib-mobile-controls',
@@ -10,6 +11,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   styleUrl: './mobile-controls.component.scss',
 })
 export class MobileControlsComponent {
+  readonly gameStore = inject(GAME_STORE_TOKEN);
   isFinish = input.required<boolean>();
 
   readonly moveForwardRequested = output<void>();
@@ -26,5 +28,14 @@ export class MobileControlsComponent {
 
   shootArrow(): void {
     this.shootArrowRequested.emit();
+  }
+
+  toggleSound(): void {
+    this.gameStore.updateGame({
+      settings: {
+        ...this.gameStore.settings(),
+        soundEnabled: !this.gameStore.soundEnabled(),
+      },
+    });
   }
 }

@@ -175,7 +175,8 @@
     "moveForward": "Move Forward",
     "turn": "Turn",
     "shoot": "Shoot",
-    "newGame": "New Game"
+    "newGame": "New Game",
+    "soundToggle": "Sound"
   },
   "mobileControls": {
     "turnRightAriaLabel": "Turn Right",

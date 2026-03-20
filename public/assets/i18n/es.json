@@ -175,7 +175,8 @@
     "moveForward": "Avanzar",
     "turn": "Girar",
     "shoot": "Disparar",
-    "newGame": "Nueva partida"
+    "newGame": "Nueva partida",
+    "soundToggle": "Sonido"
   },
   "mobileControls": {
     "turnRightAriaLabel": "Girar a la derecha",

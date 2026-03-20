@@ -22,6 +22,7 @@ describe('GameSoundService', () => {
 
     gameStoreMock = {
       lives: signal(3),
+      soundEnabled: signal(true),
     };
 
     TestBed.configureTestingModule({
@@ -85,5 +86,11 @@ describe('GameSoundService', () => {
     TestBed.flushEffects();
 
     expect(playSpy).toHaveBeenCalledWith(GameSound.GAMEOVER, false);
+  });
+
+  it('should not play sound if sound is disabled', () => {
+    gameStoreMock.soundEnabled.set(false);
+    service.playSound(GameSound.GOLD, false);
+    expect(audioMock.play).not.toHaveBeenCalled();
   });
 });
