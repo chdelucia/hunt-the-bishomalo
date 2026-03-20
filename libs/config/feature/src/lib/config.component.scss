@@ -13,6 +13,8 @@ main {
   min-width: calc(min(95vw, 550px));
   margin: 0 auto;
   justify-content: center;
+  background-color: var(--color-panel);
+  border: 3px solid var(--color-border);
 }
 
 .message {
