@@ -1,39 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameControlsComponent } from './game-controls.component';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
-import { provideRouter, Router } from '@angular/router';
-import { RouteTypes } from '@hunt-the-bishomalo/data';
-import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
-import { signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
 describe('GameControlsComponent', () => {
   let component: GameControlsComponent;
   let fixture: ComponentFixture<GameControlsComponent>;
-  let router: Router;
-  let gameStoreMock: any;
 
   beforeEach(async () => {
-    gameStoreMock = {
-      settings: signal({}),
-      soundEnabled: signal(true),
-      updateGame: jest.fn(),
-    };
-
     await TestBed.configureTestingModule({
       imports: [GameControlsComponent, getTranslocoTestingModule()],
-      providers: [
-        provideRouter([
-          { path: RouteTypes.SETTINGS, redirectTo: '' },
-          { path: RouteTypes.RULES, redirectTo: '' },
-        ]),
-        { provide: GAME_STORE_TOKEN, useValue: gameStoreMock },
-      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GameControlsComponent);
     component = fixture.componentInstance;
-    router = TestBed.inject(Router);
+    fixture.componentRef.setInput('soundEnabled', true);
     fixture.detectChanges();
   });
 
@@ -51,18 +32,16 @@ describe('GameControlsComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should emit newGameRequested and navigate to settings', () => {
+  it('should emit newGameRequested', () => {
     const spy = jest.spyOn(component.newGameRequested, 'emit');
-    const navigateSpy = jest.spyOn(router, 'navigate');
     component.newGame();
     expect(spy).toHaveBeenCalled();
-    expect(navigateSpy).toHaveBeenCalledWith([RouteTypes.SETTINGS]);
   });
 
-  it('should navigate to rules', () => {
-    const navigateSpy = jest.spyOn(router, 'navigate');
+  it('should emit navigateToControlsRequested', () => {
+    const spy = jest.spyOn(component.navigateToControlsRequested, 'emit');
     component.navigateToControls();
-    expect(navigateSpy).toHaveBeenCalledWith([RouteTypes.RULES]);
+    expect(spy).toHaveBeenCalled();
   });
 
   it('should emit moveForwardRequested', () => {
@@ -97,18 +76,10 @@ describe('GameControlsComponent', () => {
     expect(component.isVisible()).toBe(false);
   });
 
-  it('should toggle sound', () => {
-    gameStoreMock.soundEnabled.set(true);
+  it('should emit toggleSoundRequested when toggleSound() is called', () => {
+    const spy = jest.spyOn(component.toggleSoundRequested, 'emit');
     component.toggleSound();
-    expect(gameStoreMock.updateGame).toHaveBeenCalledWith({
-      settings: expect.objectContaining({ soundEnabled: false }),
-    });
-
-    gameStoreMock.soundEnabled.set(false);
-    component.toggleSound();
-    expect(gameStoreMock.updateGame).toHaveBeenCalledWith({
-      settings: expect.objectContaining({ soundEnabled: true }),
-    });
+    expect(spy).toHaveBeenCalled();
   });
 
   it('should call toggleSound when sound button is clicked', () => {

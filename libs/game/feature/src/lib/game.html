@@ -54,8 +54,11 @@
 
   <lib-mobile-controls
     [isFinish]="hasWon || !isAlive"
+    [soundEnabled]="game.soundEnabled()"
     (moveForwardRequested)="handleMoveForward()"
+    (turnLeftRequested)="handleTurnLeft()"
     (turnRightRequested)="handleTurnRight()"
     (shootArrowRequested)="handleMobileShootArrow()"
+    (toggleSoundRequested)="handleToggleSound()"
   />
 </main>

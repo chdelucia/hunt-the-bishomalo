@@ -104,6 +104,15 @@ export class Game {
     this.gameEngine.shootArrow();
   }
 
+  handleToggleSound(): void {
+    this.game.updateGame({
+      settings: {
+        ...this.game.settings(),
+        soundEnabled: !this.game.soundEnabled(),
+      },
+    });
+  }
+
   handleMobileShootArrow(): void {
     this.handleShootArrow();
     this.achieve.activeAchievement(AchieveTypes.GAMER);
