@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
 import { GAME_STORE_TOKEN, GAME_SOUND_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
-import { AchieveTypes, GameSound } from '@hunt-the-bishomalo/data';
+import { AchieveTypes, GameSound, GameItem } from '@hunt-the-bishomalo/data';
 
 @Component({
   selector: 'lib-game',
@@ -39,6 +39,8 @@ export class Game {
   private readonly gameEngine = inject(GAME_ENGINE_TOKEN);
   private readonly achieve = inject(ACHIEVEMENT_SERVICE);
   private readonly sound = inject(GAME_SOUND_TOKEN);
+
+  readonly emptyInventory: GameItem[] = [];
 
   readonly deathByWumpus = computed(() => {
     const gameInstance = this.game;

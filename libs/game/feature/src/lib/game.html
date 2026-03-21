@@ -16,11 +16,11 @@
           [cell]="cell"
           [isAlive]="isAlive"
           [hasWon]="hasWon"
-          [inventory]="game.inventory()"
+          [inventory]="currentCell === cell ? game.inventory() : emptyInventory"
           [settings]="settings"
           [blackout]="settings.blackout || false"
           [isHunterCell]="currentCell === cell"
-          [hunter]="game.hunter()"
+          [hunter]="currentCell === cell ? game.hunter() : null"
         />
       }
     }
