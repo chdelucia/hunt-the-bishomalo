@@ -71,8 +71,14 @@
                 class="boton-comprar"
                 [disabled]="isOwned(producto)"
                 (click)="buyProduct(producto)"
+                [attr.aria-label]="
+                  isOwned(producto)
+                    ? ('shop.alreadyOwnedAriaLabel' | transloco: { productName: (producto.name | transloco) })
+                    : ('shop.buyButtonAriaLabel'
+                      | transloco: { productName: (producto.name | transloco), price: producto.price })
+                "
               >
-                {{ 'shop.buyButton' | transloco }}
+                {{ (isOwned(producto) ? 'shop.alreadyOwned' : 'shop.buyButton') | transloco }}
               </button>
             </div>
           </div>
@@ -93,5 +99,14 @@
 </div>
 
 @if(message()){
-<output class="mensaje-compra" aria-live="polite">{{ message() }}</output>
+<output
+  class="mensaje-compra"
+  aria-live="polite"
+  (click)="clearMessage()"
+  (keydown.enter)="clearMessage()"
+  (keydown.space)="clearMessage()"
+  tabindex="0"
+>
+  {{ message() }}
+</output>
 }
