@@ -10,6 +10,7 @@ export interface GameSettings {
   selectedChar: Chars;
   difficulty: GameDificulty;
   startTime: string;
+  soundEnabled: boolean;
 }
 
 export interface GameDificulty {

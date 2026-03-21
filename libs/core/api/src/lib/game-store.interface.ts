@@ -16,6 +16,7 @@ export interface IGameStore {
   readonly wumpusKilled: Signal<number>;
   readonly startTime: Signal<string>;
   readonly blackout: Signal<boolean>;
+  readonly soundEnabled: Signal<boolean>;
   readonly dragonballs: Signal<number>;
   readonly gold: Signal<number>;
 

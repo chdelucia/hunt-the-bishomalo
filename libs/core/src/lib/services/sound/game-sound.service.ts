@@ -60,6 +60,9 @@ export class GameSoundService implements IGameSoundService {
   }
 
   private play(key: GameSound, loop = true): void {
+    if (!this.gameStore.soundEnabled()) {
+      return;
+    }
     const audio = this.getOrCreateAudio(key);
     audio.loop = loop;
     audio.currentTime = 0;

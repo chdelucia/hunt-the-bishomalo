@@ -23,5 +23,11 @@
     <li><span class="key">⬅ ➡</span> {{ 'controls.turn' | transloco }}</li>
     <li><span class="key">↩</span> {{ 'controls.shoot' | transloco }}</li>
     <li><span class="key">N</span> {{ 'controls.newGame' | transloco }}</li>
+    <li>
+      <button class="sound-toggle" (click)="toggleSound()">
+        <span class="key">{{ gameStore.soundEnabled() ? '🔊' : '🔇' }}</span>
+        {{ 'controls.soundToggle' | transloco }}
+      </button>
+    </li>
   </ul>
 </aside>

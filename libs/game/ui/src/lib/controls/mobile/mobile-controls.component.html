@@ -43,5 +43,13 @@
         <path d="M12 2l8 8h-6v8h-4v-8H4z" />
       </svg>
     </button>
+
+    <button
+      class="control-btn"
+      (click)="toggleSound()"
+      [attr.aria-label]="'controls.soundToggle' | transloco"
+    >
+      <span class="sound-icon">{{ gameStore.soundEnabled() ? '🔊' : '🔇' }}</span>
+    </button>
   </div>
 }

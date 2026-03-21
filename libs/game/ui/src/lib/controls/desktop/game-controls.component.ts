@@ -3,7 +3,12 @@ import { ChangeDetectionStrategy, Component, inject, isDevMode, output, signal }
 import { TranslocoModule } from '@jsverse/transloco';
 import { RouteTypes } from '@hunt-the-bishomalo/data';
 import { Router } from '@angular/router';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 
+/**
+ * @description
+ * Component to display the game controls on desktop devices.
+ */
 @Component({
   selector: 'lib-game-controls',
   standalone: true,
@@ -13,6 +18,7 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameControlsComponent {
+  readonly gameStore = inject(GAME_STORE_TOKEN);
   readonly isVisible = signal(false);
 
   readonly newGameRequested = output<void>();
@@ -55,5 +61,14 @@ export class GameControlsComponent {
 
   toggle(): void {
     this.isVisible.update((value) => !value);
+  }
+
+  toggleSound(): void {
+    this.gameStore.updateGame({
+      settings: {
+        ...this.gameStore.settings(),
+        soundEnabled: !this.gameStore.soundEnabled(),
+      },
+    });
   }
 }

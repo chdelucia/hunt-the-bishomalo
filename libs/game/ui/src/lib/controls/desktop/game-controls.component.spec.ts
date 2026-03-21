@@ -3,13 +3,23 @@ import { GameControlsComponent } from './game-controls.component';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { provideRouter, Router } from '@angular/router';
 import { RouteTypes } from '@hunt-the-bishomalo/data';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
+import { signal } from '@angular/core';
+import { By } from '@angular/platform-browser';
 
 describe('GameControlsComponent', () => {
   let component: GameControlsComponent;
   let fixture: ComponentFixture<GameControlsComponent>;
   let router: Router;
+  let gameStoreMock: any;
 
   beforeEach(async () => {
+    gameStoreMock = {
+      settings: signal({}),
+      soundEnabled: signal(true),
+      updateGame: jest.fn(),
+    };
+
     await TestBed.configureTestingModule({
       imports: [GameControlsComponent, getTranslocoTestingModule()],
       providers: [
@@ -17,6 +27,7 @@ describe('GameControlsComponent', () => {
           { path: RouteTypes.SETTINGS, redirectTo: '' },
           { path: RouteTypes.RULES, redirectTo: '' },
         ]),
+        { provide: GAME_STORE_TOKEN, useValue: gameStoreMock },
       ],
     }).compileComponents();
 
@@ -84,5 +95,28 @@ describe('GameControlsComponent', () => {
     expect(component.isVisible()).toBe(true);
     component.toggle();
     expect(component.isVisible()).toBe(false);
+  });
+
+  it('should toggle sound', () => {
+    gameStoreMock.soundEnabled.set(true);
+    component.toggleSound();
+    expect(gameStoreMock.updateGame).toHaveBeenCalledWith({
+      settings: expect.objectContaining({ soundEnabled: false }),
+    });
+
+    gameStoreMock.soundEnabled.set(false);
+    component.toggleSound();
+    expect(gameStoreMock.updateGame).toHaveBeenCalledWith({
+      settings: expect.objectContaining({ soundEnabled: true }),
+    });
+  });
+
+  it('should call toggleSound when sound button is clicked', () => {
+    component.isVisible.set(true);
+    fixture.detectChanges();
+    const button = fixture.debugElement.query(By.css('.sound-toggle'));
+    const spy = jest.spyOn(component, 'toggleSound');
+    button.nativeElement.click();
+    expect(spy).toHaveBeenCalled();
   });
 });
