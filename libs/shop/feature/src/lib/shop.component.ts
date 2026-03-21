@@ -97,7 +97,7 @@ export class ShopComponent implements OnDestroy {
     const isAlreadyOwned = this.isOwned(product);
     const canBuy = gold >= price;
 
-    if (this.messageTimeout) clearTimeout(this.messageTimeout);
+    this.clearMessage();
     this.messageTimeout = setTimeout(() => this.message.set(''), this.MESSAGE_TIMEOUT_MS);
 
     if (!canBuy) {
@@ -128,6 +128,14 @@ export class ShopComponent implements OnDestroy {
       return false;
     }
     return this.inventory().some((item) => item.effect === product.effect);
+  }
+
+  clearMessage(): void {
+    this.message.set('');
+    if (this.messageTimeout) {
+      clearTimeout(this.messageTimeout);
+      this.messageTimeout = undefined;
+    }
   }
 
   nextLevel(): void {

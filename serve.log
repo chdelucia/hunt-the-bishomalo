@@ -1,0 +1,37 @@
+
+> nx run hunt-the-bishomalo:serve:development
+
+[33m❯[39m Building...
+[32m✔[39m Building...
+[37m[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mchunk-CC73N3RL.js[37m  [2m | [22m[2m-[22m            [2m | [22m[36m114.93 kB[37m[2m | [22m
+[32mmain.js[37m            [2m | [22m[2mmain[22m         [2m | [22m [36m66.04 kB[37m[2m | [22m
+[32mchunk-FKIUPJUA.js[37m  [2m | [22m[2m-[22m            [2m | [22m  [36m7.42 kB[37m[2m | [22m
+[32mstyles.css[37m         [2m | [22m[2mstyles[22m       [2m | [22m  [36m4.18 kB[37m[2m | [22m
+[32mchunk-GOMI4DH3.js[37m  [2m | [22m[2m-[22m            [2m | [22m  [36m1.37 kB[37m[2m | [22m
+[32mchunk-HZDJTTBA.js[37m  [2m | [22m[2m-[22m            [2m | [22m[36m365 bytes[37m[2m | [22m
+[32mchunk-ZNERT6KK.js[37m  [2m | [22m[2m-[22m            [2m | [22m[36m258 bytes[37m[2m | [22m
+[32mchunk-3C2CH5EY.js[37m  [2m | [22m[2m-[22m            [2m | [22m[36m239 bytes[37m[2m | [22m
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m194.80 kB[22m
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mchunk-DF7XDXCQ.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m39.59 kB[37m[2m | [22m
+[32mchunk-LIM7V2K7.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m35.68 kB[37m[2m | [22m
+[32mchunk-VKPYPKTL.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m34.21 kB[37m[2m | [22m
+[32mchunk-AEYCURUG.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m31.77 kB[37m[2m | [22m
+[32mchunk-G5XFLDAR.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m27.66 kB[37m[2m | [22m
+[32mchunk-YAERW7YS.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m26.99 kB[37m[2m | [22m
+[32mchunk-DARE7KLK.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m25.80 kB[37m[2m | [22m
+[32mchunk-XB6JOAZM.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m23.38 kB[37m[2m | [22m
+[32mch[39m[37munk-6OABQJZX.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m23.13 kB[37m[2m | [22m
+[32mchunk-TK6GV2NL.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m15.04 kB[37m[2m | [22m
+[32mchunk-DCVGOEAY.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m13.27 kB[37m[2m | [22m
+[32mchunk-FSVQ2D2Y.js[37m  [2m | [22m[2m-[22m            [2m | [22m [36m10.06 kB[37m[2m | [22m
+[32mchunk-KVR7K3JJ.js[37m  [2m | [22m[2mindex[22m        [2m | [22m[36m391 bytes[37m[2m | [22m
+[32mchunk-WN3WBW2T.js[37m  [2m | [22m[2mindex[22m        [2m | [22m[36m309 bytes[37m[2m | [22m
+[32mchunk-NDOQV7J7.js[37m  [2m | [22m[2mindex[22m        [2m | [22m[36m309 bytes[37m[2m | [22m
+[2m...and 7 more lazy chunks files. Use "--verbose" to show all the files.[22m
+Application bundle generation complete. [6.863 seconds] - 2026-03-21T05:20:41.165Z
+[39m
+[37mWatch mode enabled. Watching for file changes...[39m
+[37mNOTE: Raw file sizes do not reflect development server per-request transformations.[39m
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4200[22m/[39m
