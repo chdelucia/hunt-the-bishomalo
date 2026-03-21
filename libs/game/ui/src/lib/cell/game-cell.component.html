@@ -4,14 +4,17 @@
   @if (showElements() && content) {
     <lib-cell-content [content]="content" />
   } @else if (showHunter()) {
-    <lib-hunter
-      [direction]="hunter().direction"
-      [arrows]="hunter().arrows"
-      [selectedChar]="settings().selectedChar"
-      [hasGold]="hunter().hasGold"
-      [size]="settings().size"
-      [hasLantern]="!!hasLantern()"
-      [hasShield]="!!hasShield()"
-    />
+    @let hunterInstance = hunter();
+    @if (hunterInstance) {
+      <lib-hunter
+        [direction]="hunterInstance.direction"
+        [arrows]="hunterInstance.arrows"
+        [selectedChar]="settings().selectedChar"
+        [hasGold]="hunterInstance.hasGold"
+        [size]="settings().size"
+        [hasLantern]="!!hasLantern()"
+        [hasShield]="!!hasShield()"
+      />
+    }
   }
 </div>

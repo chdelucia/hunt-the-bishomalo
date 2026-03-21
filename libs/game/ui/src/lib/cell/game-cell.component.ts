@@ -16,11 +16,11 @@ export class GameCellComponent {
   readonly cell = input.required<Cell>();
   readonly isAlive = input.required<boolean>();
   readonly hasWon = input.required<boolean>();
-  readonly inventory = input.required<GameItem[]>();
+  readonly inventory = input<GameItem[]>([]);
   readonly settings = input.required<GameSettings>();
   readonly blackout = input.required<boolean>();
   readonly isHunterCell = input.required<boolean>();
-  readonly hunter = input.required<Hunter>();
+  readonly hunter = input<Hunter | null>(null);
 
   readonly hasLantern = computed(
     () => this.inventory().some((x) => x.effect === 'lantern') && !!this.blackout(),
@@ -32,5 +32,5 @@ export class GameCellComponent {
     return !this.isAlive() || this.hasWon() || cell.visited || cell.content?.alt === 'secret';
   });
 
-  readonly showHunter = computed(() => this.isHunterCell() && this.isAlive());
+  readonly showHunter = computed(() => this.isHunterCell() && this.isAlive() && !!this.hunter());
 }
