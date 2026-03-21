@@ -1,29 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MobileControlsComponent } from './mobile-controls.component';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
-import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
-import { signal } from '@angular/core';
 
 describe('MobileControlsComponent', () => {
   let component: MobileControlsComponent;
   let fixture: ComponentFixture<MobileControlsComponent>;
-  let gameStoreMock: any;
 
   beforeEach(async () => {
-    gameStoreMock = {
-      settings: signal({}),
-      soundEnabled: signal(true),
-      updateGame: jest.fn(),
-    };
-
     await TestBed.configureTestingModule({
       imports: [MobileControlsComponent, getTranslocoTestingModule()],
-      providers: [{ provide: GAME_STORE_TOKEN, useValue: gameStoreMock }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MobileControlsComponent);
     component = fixture.componentInstance;
     fixture.componentRef.setInput('isFinish', false);
+    fixture.componentRef.setInput('soundEnabled', true);
     fixture.detectChanges();
   });
 
@@ -49,17 +40,15 @@ describe('MobileControlsComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should toggle sound', () => {
-    gameStoreMock.soundEnabled.set(true);
-    component.toggleSound();
-    expect(gameStoreMock.updateGame).toHaveBeenCalledWith({
-      settings: expect.objectContaining({ soundEnabled: false }),
-    });
+  it('should emit turnLeftRequested when turnLeft() is called', () => {
+    const spy = jest.spyOn(component.turnLeftRequested, 'emit');
+    component.turnLeft();
+    expect(spy).toHaveBeenCalled();
+  });
 
-    gameStoreMock.soundEnabled.set(false);
+  it('should emit toggleSoundRequested when toggleSound() is called', () => {
+    const spy = jest.spyOn(component.toggleSoundRequested, 'emit');
     component.toggleSound();
-    expect(gameStoreMock.updateGame).toHaveBeenCalledWith({
-      settings: expect.objectContaining({ soundEnabled: true }),
-    });
+    expect(spy).toHaveBeenCalled();
   });
 });

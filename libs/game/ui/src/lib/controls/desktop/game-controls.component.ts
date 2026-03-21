@@ -1,9 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject, isDevMode, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, isDevMode, output, signal } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
-import { RouteTypes } from '@hunt-the-bishomalo/data';
-import { Router } from '@angular/router';
-import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 
 /**
  * @description
@@ -18,25 +15,24 @@ import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameControlsComponent {
-  readonly gameStore = inject(GAME_STORE_TOKEN);
+  soundEnabled = input.required<boolean>();
   readonly isVisible = signal(false);
 
   readonly newGameRequested = output<void>();
+  readonly navigateToControlsRequested = output<void>();
   readonly moveForwardRequested = output<void>();
   readonly turnLeftRequested = output<void>();
   readonly turnRightRequested = output<void>();
   readonly shootArrowRequested = output<void>();
   readonly resetGameRequested = output<void>();
-
-  private readonly router = inject(Router);
+  readonly toggleSoundRequested = output<void>();
 
   newGame(): void {
     this.newGameRequested.emit();
-    this.router.navigate([RouteTypes.SETTINGS]);
   }
 
   navigateToControls() {
-    this.router.navigate([RouteTypes.RULES]);
+    this.navigateToControlsRequested.emit();
   }
 
   moveForward(): void {
@@ -64,11 +60,6 @@ export class GameControlsComponent {
   }
 
   toggleSound(): void {
-    this.gameStore.updateGame({
-      settings: {
-        ...this.gameStore.settings(),
-        soundEnabled: !this.gameStore.soundEnabled(),
-      },
-    });
+    this.toggleSoundRequested.emit();
   }
 }

@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component, HostListener, inject, isDevMode } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router } from '@angular/router';
 
 import { ToastComponent, MenuComponent, GameControlsComponent } from '@hunt-the-bishomalo/game/ui';
 import { GameStore } from '@hunt-the-bishomalo/core/store';
 import { GameEngineService, KeyboardManagerService } from '@hunt-the-bishomalo/game/data-access';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { RouteTypes } from '@hunt-the-bishomalo/data';
 
 @Component({
   imports: [RouterOutlet, ToastComponent, MenuComponent, GameControlsComponent],
@@ -18,6 +19,7 @@ export class AppComponent {
   readonly achieve = inject(ACHIEVEMENT_SERVICE);
   private readonly keyboardManager = inject(KeyboardManagerService);
   private readonly gameEngine = inject(GameEngineService);
+  private readonly router = inject(Router);
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent): void {
@@ -26,6 +28,11 @@ export class AppComponent {
 
   handleNewGame(): void {
     this.gameEngine.newGame();
+    this.router.navigate([RouteTypes.SETTINGS]);
+  }
+
+  handleNavigateToControls(): void {
+    this.router.navigate([RouteTypes.RULES]);
   }
 
   handleRestart(): void {
@@ -46,6 +53,15 @@ export class AppComponent {
 
   handleShootArrow(): void {
     this.gameEngine.shootArrow();
+  }
+
+  handleToggleSound(): void {
+    this.game.updateGame({
+      settings: {
+        ...this.game.settings(),
+        soundEnabled: !this.game.soundEnabled(),
+      },
+    });
   }
 
   constructor() {
