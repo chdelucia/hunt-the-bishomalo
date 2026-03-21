@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.14.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.13.8...v7.14.0) (2026-03-21)
+
+
+### Features
+
+* add option to toggle game sounds in game controls ([71f19a8](https://github.com/chdelucia/hunt-the-bishomalo/commit/71f19a800f20929118518686b8884175579352a0))
+* **core,game-ui:** add sound toggle to game controls ([9a1053e](https://github.com/chdelucia/hunt-the-bishomalo/commit/9a1053ec92d40406a16d8a2da3ac3c32072ec05b))
+* **core,game-ui:** add sound toggle to game controls and fix lints ([0c1b158](https://github.com/chdelucia/hunt-the-bishomalo/commit/0c1b1589ab18a88401a0d426dec41d9fe93e7c1b))
+* **core,game-ui:** add sound toggle to game controls and fix lints/tests ([96627c2](https://github.com/chdelucia/hunt-the-bishomalo/commit/96627c2556e516241e6e390769fd6832396f0543))
+
+
+### Bug Fixes
+
+* improve color contrast in game configuration and shop confirmation message ([0d67c92](https://github.com/chdelucia/hunt-the-bishomalo/commit/0d67c92a4d5e5b5d20da68686503a0f217547d08))
+
 ### [7.13.6](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.13.5...v7.13.6) (2026-03-20)
 
 ### [7.13.5](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.13.4...v7.13.5) (2026-03-20)
