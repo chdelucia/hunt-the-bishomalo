@@ -55,10 +55,33 @@ describe('AppWumpusAttackAnimationComponent', () => {
     component.step.set(1);
     expect(component.getWumpusScale()).toBe(1);
 
+    component.step.set(2);
+    expect(component.getWumpusScale()).toBe(1.2);
+
     component.step.set(3);
     expect(component.getWumpusScale()).toBe(1.5);
 
+    component.step.set(4);
+    expect(component.getWumpusScale()).toBe(1.8);
+
     component.step.set(5);
     expect(component.getWumpusScale()).toBe(2);
+  });
+
+  it('should return correct player position for all steps', () => {
+    component.step.set(1);
+    expect(component.getPlayerLeft()).toBe('-100px');
+
+    component.step.set(2);
+    expect(component.getPlayerLeft()).toBe('-50px');
+
+    component.step.set(3);
+    expect(component.getPlayerLeft()).toBe('0');
+
+    component.step.set(4);
+    expect(component.getPlayerLeft()).toBe('20px');
+
+    component.step.set(5);
+    expect(component.getPlayerLeft()).toBe('40px');
   });
 });
