@@ -1,11 +1,14 @@
 import { InjectionToken, Signal } from '@angular/core';
-import { Cell, GameSettings, Hunter, Chars, GameState } from '@hunt-the-bishomalo/data';
+import { Cell, GameSettings, Hunter, Chars, GameState, GameDificulty } from '@hunt-the-bishomalo/data';
 
 export interface IGameStore {
   readonly board: Signal<Cell[][]>;
   readonly isAlive: Signal<boolean>;
   readonly hasWon: Signal<boolean>;
   readonly settings: Signal<GameSettings>;
+  readonly size: Signal<number>;
+  readonly selectedChar: Signal<Chars>;
+  readonly difficulty: Signal<GameDificulty>;
   readonly message: Signal<string>;
   readonly lives: Signal<number>;
   readonly hasGold: Signal<boolean>;

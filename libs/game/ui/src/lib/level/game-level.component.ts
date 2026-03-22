@@ -1,7 +1,6 @@
 import { Component, computed, input } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
-import { GameSettings } from '@hunt-the-bishomalo/data';
 
 @Component({
   selector: 'lib-game-level',
@@ -10,10 +9,10 @@ import { GameSettings } from '@hunt-the-bishomalo/data';
   styleUrl: './game-level.component.scss',
 })
 export class GameLevelComponent {
-  readonly settings = input.required<GameSettings>();
+  readonly size = input.required<number>();
 
   readonly _level = computed(() => {
-    const size = this.settings().size;
+    const size = this.size();
     return size ? size - 4 + 1 : null;
   });
 }

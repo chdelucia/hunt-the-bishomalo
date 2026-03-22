@@ -17,7 +17,8 @@
           [isAlive]="isAlive"
           [hasWon]="hasWon"
           [inventory]="currentCell === cell ? game.inventory() : emptyInventory"
-          [settings]="settings"
+          [selectedChar]="game.selectedChar()"
+          [size]="game.size()"
           [blackout]="settings.blackout || false"
           [isHunterCell]="currentCell === cell"
           [hunter]="currentCell === cell ? game.hunter() : null"
@@ -28,7 +29,7 @@
     @if (deathByWumpus()) {
       @defer (on timer(100ms)) {
         <lib-wumpus-attack-animation
-          [selectedChar]="settings.selectedChar"
+          [selectedChar]="game.selectedChar()"
           (closeAnimation)="handleclose()"
         />
       }
@@ -36,10 +37,10 @@
   </section>
 
   <section class="player-info">
-    <lib-game-level [settings]="settings"></lib-game-level>
+    <lib-game-level [size]="game.size()"></lib-game-level>
     <lib-game-lives
       [lives]="game.lives()"
-      [maxLives]="settings.difficulty.maxLives"
+      [maxLives]="game.difficulty().maxLives"
     ></lib-game-lives>
   </section>
 
@@ -47,7 +48,8 @@
     [message]="game.message()"
     [isAlive]="isAlive"
     [hasWon]="hasWon"
-    [settings]="settings"
+    [size]="game.size()"
+    [maxLevels]="game.difficulty().maxLevels"
     [lives]="game.lives()"
     (restartRequested)="handleRestart()"
   />

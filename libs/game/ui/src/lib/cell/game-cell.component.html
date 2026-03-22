@@ -9,9 +9,9 @@
       <lib-hunter
         [direction]="hunterInstance.direction"
         [arrows]="hunterInstance.arrows"
-        [selectedChar]="settings().selectedChar"
+        [selectedChar]="selectedChar()"
         [hasGold]="hunterInstance.hasGold"
-        [size]="settings().size"
+        [size]="size()"
         [hasLantern]="!!hasLantern()"
         [hasShield]="!!hasShield()"
       />
