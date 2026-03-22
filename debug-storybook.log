@@ -1,0 +1,870 @@
+[22:48:00.918] [INFO] Running automigrations
+[22:48:00.923] [DEBUG] Extracting storybook data...
+[22:48:00.924] [DEBUG] Getting Storybook info...
+[22:48:01.166] [DEBUG] Loading main config...
+[22:48:01.166] [DEBUG] Getting stories paths...
+[22:48:01.217] [DEBUG] Getting package manager...
+[22:48:02.751] [DEBUG] Getting package.json info for /app/package.json...
+[22:48:02.751] [DEBUG] Getting Storybook version...
+[22:48:02.752] [DEBUG] Detecting CSF factory usage...
+[22:48:02.795] [INFO] Checking possible migrations..
+[22:48:02.796] [DEBUG] Running eslintPlugin migration checks
+[22:48:02.797] [DEBUG] Using cached package.json for /app/package.json...
+[22:48:02.800] [DEBUG] End of eslintPlugin migration checks
+[22:48:02.800] [INFO] 🔎 found a 'eslintPlugin' migration:
+[22:48:02.802] [INFO] We'll install and configure the Storybook ESLint plugin for you.
+[22:48:02.805] [DEBUG] Adding dependencies: eslint-plugin-storybook@8.6.14
+[22:48:02.805] [DEBUG] Using cached package.json for /app/package.json...
+[22:48:02.805] [DEBUG] Getting CLI versions from NPM for eslint-plugin-storybook...
+[22:48:02.805] [DEBUG] Executing command: npm info eslint-plugin-storybook version
+[22:48:03.495] [DEBUG] Using cached package.json for /app/package.json...
+[22:48:03.497] [DEBUG] Detected flat config at /app/libs/shared/ui-storybook/eslint.config.mjs
+[22:48:03.525] [INFO] ✅ ran eslintPlugin migration
+[22:48:03.526] [INFO] Ran eslintPlugin migration
+[22:48:03.526] [DEBUG] Running addon-mdx-gfm-remove migration checks
+[22:48:03.526] [DEBUG] Using cached package.json for /app/package.json...
+[22:48:03.526] [DEBUG] End of addon-mdx-gfm-remove migration checks
+[22:48:03.527] [DEBUG] Running addon-storysource-code-panel migration checks
+[22:48:03.527] [DEBUG] End of addon-storysource-code-panel migration checks
+[22:48:03.527] [DEBUG] Running initial-globals migration checks
+[22:48:03.532] [DEBUG] End of initial-globals migration checks
+[22:48:03.532] [DEBUG] Running addon-globals-api migration checks
+[22:48:03.539] [DEBUG] End of addon-globals-api migration checks
+[22:48:03.539] [DEBUG] Running addon-a11y-addon-test migration checks
+[22:48:03.539] [DEBUG] End of addon-a11y-addon-test migration checks
+[22:48:03.539] [DEBUG] Running consolidated-imports migration checks
+[22:48:03.541] [DEBUG] End of consolidated-imports migration checks
+[22:48:03.541] [INFO] 🔎 found a 'consolidated-imports' migration:
+[22:48:03.541] [INFO] We've detected Storybook packages that have been renamed or consolidated. We'll update these packages by scanning your codebase and updating any imports from these packages.
+[22:48:03.587] [INFO] ✅ ran consolidated-imports migration
+[22:48:03.587] [INFO] Ran consolidated-imports migration
+[22:48:03.587] [DEBUG] Running addon-experimental-test migration checks
+[22:48:03.588] [DEBUG] Getting installed version for @storybook/experimental-addon-test...
+[22:48:03.588] [DEBUG] Executing command: npm ls --json --depth=99
+[22:48:08.841] [DEBUG] Executing command: npm ls --json --depth=0
+[22:48:12.815] [DEBUG] An issue occurred while trying to find dependencies metadata using npm: ExecaError: Command failed with exit code 1: npm ls --json '--depth=0'
+
+{
+  "version": "7.14.7",
+  "name": "@hunt-the-bishomalo/source",
+  "problems": [
+    "extraneous: @adobe/css-tools@4.4.4 /app/node_modules/@adobe/css-tools",
+    "extraneous: @nodelib/fs.scandir@2.1.5 /app/node_modules/@nodelib/fs.scandir",
+    "extraneous: @nodelib/fs.stat@2.0.5 /app/node_modules/@nodelib/fs.stat",
+    "extraneous: @nodelib/fs.walk@1.2.8 /app/node_modules/@nodelib/fs.walk",
+    "extraneous: @storybook/core-common@8.6.14 /app/node_modules/@storybook/core-common",
+    "extraneous: @storybook/icons@1.6.0 /app/node_modules/@storybook/icons",
+    "extraneous: @testing-library/dom@10.4.1 /app/node_modules/@testing-library/dom",
+    "extraneous: @testing-library/jest-dom@6.9.1 /app/node_modules/@testing-library/jest-dom",
+    "extraneous: @testing-library/user-event@14.6.1 /app/node_modules/@testing-library/user-event",
+    "extraneous: @types/aria-query@5.0.4 /app/node_modules/@types/aria-query",
+    "extraneous: @types/chai@5.2.3 /app/node_modules/@types/chai",
+    "extraneous: @types/deep-eql@4.0.2 /app/node_modules/@types/deep-eql",
+    "extraneous: @vitest/expect@3.2.4 /app/node_modules/@vitest/expect",
+    "extraneous: @vitest/pretty-format@3.2.4 /app/node_modules/@vitest/pretty-format",
+    "extraneous: @vitest/spy@3.2.4 /app/node_modules/@vitest/spy",
+    "extraneous: @vitest/utils@3.2.4 /app/node_modules/@vitest/utils",
+    "extraneous: array-union@3.0.1 /app/node_modules/array-union",
+    "extraneous: assertion-error@2.0.1 /app/node_modules/assertion-error",
+    "extraneous: chai@5.3.3 /app/node_modules/chai",
+    "extraneous: check-error@2.1.3 /app/node_modules/check-error",
+    "extraneous: cookies@0.9.1 /app/node_modules/cookies",
+    "extraneous: css.escape@1.5.1 /app/node_modules/css.escape",
+    "extraneous: deep-eql@5.0.2 /app/node_modules/deep-eql",
+    "extraneous: deep-equal@1.0.1 /app/node_modules/deep-equal",
+    "extraneous: dir-glob@3.0.1 /app/node_modules/dir-glob",
+    "extraneous: dom-accessibility-api@0.6.3 /app/node_modules/dom-accessibility-api",
+    "missing: eslint-plugin-storybook@8.6.14, required by @hunt-the-bishomalo/source@7.14.7",
+    "extraneous: fast-glob@3.3.3 /app/node_modules/fast-glob",
+    "extraneous: fastq@1.20.1 /app/node_modules/fastq",
+    "extraneous: globby@12.2.0 /app/node_modules/globby",
+    "extraneous: http-assert@1.5.0 /app/node_modules/http-assert",
+    "extraneous: keygrip@1.1.0 /app/node_modules/keygrip",
+    "extraneous: koa-compose@4.1.0 /app/node_modules/koa-compose",
+    "extraneous: koa@3.0.3 /app/node_modules/koa",
+    "extraneous: loupe@3.2.1 /app/node_modules/loupe",
+    "extraneous: lz-string@1.5.0 /app/node_modules/lz-string",
+    "extraneous: merge2@1.4.1 /app/node_modules/merge2",
+    "extraneous: node-machine-id@1.1.12 /app/node_modules/node-machine-id",
+    "extraneous: pathval@2.0.1 /app/node_modules/pathval",
+    "extraneous: punycode@1.4.1 /app/node_modules/punycode",
+    "extraneous: queue-microtask@1.2.3 /app/node_modules/queue-microtask",
+    "extraneous: reusify@1.1.0 /app/node_modules/reusify",
+    "extraneous: run-parallel@1.2.0 /app/node_modules/run-parallel",
+    "extraneous: tinyrainbow@2.0.0 /app/node_modules/tinyrainbow",
+    "extraneous: tinyspy@4.0.4 /app/node_modules/tinyspy",
+    "extraneous: tr46@0.0.3 /app/node_modules/tr46",
+    "extraneous: tsscmp@1.0.6 /app/node_modules/tsscmp",
+    "extraneous: use-sync-external-store@1.6.0 /app/node_modules/use-sync-external-store",
+    "extraneous: whatwg-url@5.0.0 /app/node_modules/whatwg-url"
+  ],
+  "dependencies": {
+    "@adobe/css-tools": {
+      "version": "4.4.4",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: @adobe/css-tools@4.4.4 /app/node_modules/@adobe/css-tools"
+      ]
+    },
+    "@angular-devkit/build-angular": {
+      "version": "21.2.2",
+      "overridden": false
+    },
+    "@angular-devkit/core": {
+      "version": "21.2.2",
+      "overridden": false
+    },
+    "@angular-devkit/schematics": {
+      "version": "21.2.2",
+      "overridden": false
+    },
+    "@angular/animations": {
+      "version": "21.2.4",
+      "overridden": false
+    },
+    "@angular/cli": {
+      "version": "21.2.2",
+      "overridden": false
+    },
+    "@angular/common": {
+      "version": "21.2.4",
+      "overridden": false
+    },
+    "@angular/compiler-cli": {
+      "version": "21.2.4",
+      "overridden": false
+    },
+    "@angular/compiler": {
+      "version": "21.2.4",
+      "overridden": false
+    },
+    "@angular/core": {
+      "version": "21.2.4",
+      "overridden": false
+    },
+    "@angular/forms": {
+      "version": "21.2.4",
+      "overridden": false
+    },
+    "@angular/language-service": {
+      "version": "21.2.4",
+      "overridden": false
+    },
+    "@angular/platform-browser-dynamic": {
+      "version": "21.2.4",
+      "overridden": false
+    },
+    "@angular/platform-browser": {
+      "version": "21.2.4",
+      "overridden": false
+    },
+    "@angular/router": {
+      "version": "21.2.4",
+      "overridden": false
+    },
+    "@commitlint/cli": {
+      "version": "20.4.4",
+      "overridden": false
+    },
+    "@commitlint/config-conventional": {
+      "version": "20.4.4",
+      "overridden": false
+    },
+    "@eslint/js": {
+      "version": "9.14.0",
+      "overridden": false
+    },
+    "@jsverse/transloco-keys-manager": {
+      "version": "8.1.0",
+      "overridden": false
+    },
+    "@jsverse/transloco": {
+      "version": "8.2.1",
+      "overridden": false
+    },
+    "@ngrx/signals": {
+      "version": "21.0.1",
+      "overridden": false
+    },
+    "@nodelib/fs.scandir": {
+      "version": "2.1.5",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: @nodelib/fs.scandir@2.1.5 /app/node_modules/@nodelib/fs.scandir"
+      ]
+    },
+    "@nodelib/fs.stat": {
+      "version": "2.0.5",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: @nodelib/fs.stat@2.0.5 /app/node_modules/@nodelib/fs.stat"
+      ]
+    },
+    "@nodelib/fs.walk": {
+      "version": "1.2.8",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: @nodelib/fs.walk@1.2.8 /app/node_modules/@nodelib/fs.walk"
+      ]
+    },
+    "@nx/angular": {
+      "version": "22.6.1",
+      "overridden": false
+    },
+    "@nx/cypress": {
+      "version": "22.6.1",
+      "overridden": false
+    },
+    "@nx/eslint-plugin": {
+      "version": "22.6.1",
+      "overridden": false
+    },
+    "@nx/eslint": {
+      "version": "22.6.1",
+      "overridden": false
+    },
+    "@nx/jest": {
+      "version": "22.6.1",
+      "overridden": false
+    },
+    "@nx/js": {
+      "version": "22.6.1",
+      "overridden": false
+    },
+    "@nx/storybook": {
+      "version": "22.6.1",
+      "overridden": false
+    },
+    "@nx/web": {
+      "version": "22.6.1",
+      "overridden": false
+    },
+    "@schematics/angular": {
+      "version": "21.2.2",
+      "overridden": false
+    },
+    "@sentry/angular": {
+      "version": "10.44.0",
+      "overridden": false
+    },
+    "@storybook/addon-essentials": {
+      "version": "8.6.14",
+      "overridden": false
+    },
+    "@storybook/angular": {
+      "version": "8.6.14",
+      "overridden": false
+    },
+    "@storybook/builder-webpack5": {
+      "version": "8.6.14",
+      "overridden": false
+    },
+    "@storybook/core-common": {
+      "version": "8.6.14",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: @storybook/core-common@8.6.14 /app/node_modules/@storybook/core-common"
+      ]
+    },
+    "@storybook/icons": {
+      "version": "1.6.0",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: @storybook/icons@1.6.0 /app/node_modules/@storybook/icons"
+      ]
+    },
+    "@storybook/manager-webpack5": {
+      "version": "6.5.16",
+      "overridden": false
+    },
+    "@swc-node/register": {
+      "version": "1.11.1",
+      "overridden": false
+    },
+    "@swc/core": {
+      "version": "1.15.18",
+      "overridden": false
+    },
+    "@swc/helpers": {
+      "version": "0.5.19",
+      "overridden": false
+    },
+    "@testing-library/dom": {
+      "version": "10.4.1",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: @testing-library/dom@10.4.1 /app/node_modules/@testing-library/dom"
+      ]
+    },
+    "@testing-library/jest-dom": {
+      "version": "6.9.1",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: @testing-library/jest-dom@6.9.1 /app/node_modules/@testing-library/jest-dom"
+      ]
+    },
+    "@testing-library/user-event": {
+      "version": "14.6.1",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: @testing-library/user-event@14.6.1 /app/node_modules/@testing-library/user-event"
+      ]
+    },
+    "@types/aria-query": {
+      "version": "5.0.4",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: @types/aria-query@5.0.4 /app/node_modules/@types/aria-query"
+      ]
+    },
+    "@types/chai": {
+      "version": "5.2.3",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: @types/chai@5.2.3 /app/node_modules/@types/chai"
+      ]
+    },
+    "@types/deep-eql": {
+      "version": "4.0.2",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: @types/deep-eql@4.0.2 /app/node_modules/@types/deep-eql"
+      ]
+    },
+    "@types/jest": {
+      "version": "30.0.0",
+      "overridden": false
+    },
+    "@types/node": {
+      "version": "25.5.0",
+      "overridden": false
+    },
+    "@typescript-eslint/utils": {
+      "version": "8.57.0",
+      "overridden": false
+    },
+    "@vitest/expect": {
+      "version": "3.2.4",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: @vitest/expect@3.2.4 /app/node_modules/@vitest/expect"
+      ]
+    },
+    "@vitest/pretty-format": {
+      "version": "3.2.4",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: @vitest/pretty-format@3.2.4 /app/node_modules/@vitest/pretty-format"
+      ]
+    },
+    "@vitest/spy": {
+      "version": "3.2.4",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: @vitest/spy@3.2.4 /app/node_modules/@vitest/spy"
+      ]
+    },
+    "@vitest/utils": {
+      "version": "3.2.4",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: @vitest/utils@3.2.4 /app/node_modules/@vitest/utils"
+      ]
+    },
+    "angular-eslint": {
+      "version": "21.3.0",
+      "overridden": false
+    },
+    "array-union": {
+      "version": "3.0.1",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: array-union@3.0.1 /app/node_modules/array-union"
+      ]
+    },
+    "assertion-error": {
+      "version": "2.0.1",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: assertion-error@2.0.1 /app/node_modules/assertion-error"
+      ]
+    },
+    "chai": {
+      "version": "5.3.3",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: chai@5.3.3 /app/node_modules/chai"
+      ]
+    },
+    "check-error": {
+      "version": "2.1.3",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: check-error@2.1.3 /app/node_modules/check-error"
+      ]
+    },
+    "cookies": {
+      "version": "0.9.1",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: cookies@0.9.1 /app/node_modules/cookies"
+      ]
+    },
+    "css.escape": {
+      "version": "1.5.1",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: css.escape@1.5.1 /app/node_modules/css.escape"
+      ]
+    },
+    "cypress-visual-regression": {
+      "version": "5.3.0",
+      "overridden": false
+    },
+    "cypress": {
+      "version": "15.11.0",
+      "overridden": false
+    },
+    "deep-eql": {
+      "version": "5.0.2",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: deep-eql@5.0.2 /app/node_modules/deep-eql"
+      ]
+    },
+    "deep-equal": {
+      "version": "1.0.1",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: deep-equal@1.0.1 /app/node_modules/deep-equal"
+      ]
+    },
+    "dir-glob": {
+      "version": "3.0.1",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: dir-glob@3.0.1 /app/node_modules/dir-glob"
+      ]
+    },
+    "dom-accessibility-api": {
+      "version": "0.6.3",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: dom-accessibility-api@0.6.3 /app/node_modules/dom-accessibility-api"
+      ]
+    },
+    "eslint-config-prettier": {
+      "version": "10.1.8",
+      "overridden": false
+    },
+    "eslint-plugin-cypress": {
+      "version": "6.2.0",
+      "overridden": false
+    },
+    "eslint-plugin-storybook": {
+      "required": "8.6.14",
+      "missing": true,
+      "problems": [
+        "missing: eslint-plugin-storybook@8.6.14, required by @hunt-the-bishomalo/source@7.14.7"
+      ]
+    },
+    "eslint": {
+      "version": "10.0.3",
+      "overridden": false
+    },
+    "fast-glob": {
+      "version": "3.3.3",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: fast-glob@3.3.3 /app/node_modules/fast-glob"
+      ]
+    },
+    "fastq": {
+      "version": "1.20.1",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: fastq@1.20.1 /app/node_modules/fastq"
+      ]
+    },
+    "globby": {
+      "version": "12.2.0",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: globby@12.2.0 /app/node_modules/globby"
+      ]
+    },
+    "http-assert": {
+      "version": "1.5.0",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: http-assert@1.5.0 /app/node_modules/http-assert"
+      ]
+    },
+    "husky": {
+      "version": "9.1.7",
+      "overridden": false
+    },
+    "is-ci": {
+      "version": "4.1.0",
+      "overridden": false
+    },
+    "jest-environment-jsdom": {
+      "version": "30.3.0",
+      "overridden": false
+    },
+    "jest-environment-node": {
+      "version": "30.3.0",
+      "overridden": false
+    },
+    "jest-preset-angular": {
+      "version": "16.1.1",
+      "overridden": false
+    },
+    "jest-util": {
+      "version": "30.3.0",
+      "overridden": false
+    },
+    "jest": {
+      "version": "30.3.0",
+      "overridden": false
+    },
+    "keygrip": {
+      "version": "1.1.0",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: keygrip@1.1.0 /app/node_modules/keygrip"
+      ]
+    },
+    "koa-compose": {
+      "version": "4.1.0",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: koa-compose@4.1.0 /app/node_modules/koa-compose"
+      ]
+    },
+    "koa": {
+      "version": "3.0.3",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: koa@3.0.3 /app/node_modules/koa"
+      ]
+    },
+    "logrocket": {
+      "version": "12.1.0",
+      "overridden": false
+    },
+    "loupe": {
+      "version": "3.2.1",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: loupe@3.2.1 /app/node_modules/loupe"
+      ]
+    },
+    "lz-string": {
+      "version": "1.5.0",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: lz-string@1.5.0 /app/node_modules/lz-string"
+      ]
+    },
+    "merge2": {
+      "version": "1.4.1",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: merge2@1.4.1 /app/node_modules/merge2"
+      ]
+    },
+    "node-machine-id": {
+      "version": "1.1.12",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: node-machine-id@1.1.12 /app/node_modules/node-machine-id"
+      ]
+    },
+    "nx": {
+      "version": "22.6.1",
+      "overridden": false
+    },
+    "pathval": {
+      "version": "2.0.1",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: pathval@2.0.1 /app/node_modules/pathval"
+      ]
+    },
+    "prettier": {
+      "version": "3.8.1",
+      "overridden": false
+    },
+    "punycode": {
+      "version": "1.4.1",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: punycode@1.4.1 /app/node_modules/punycode"
+      ]
+    },
+    "queue-microtask": {
+      "version": "1.2.3",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: queue-microtask@1.2.3 /app/node_modules/queue-microtask"
+      ]
+    },
+    "reusify": {
+      "version": "1.1.0",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: reusify@1.1.0 /app/node_modules/reusify"
+      ]
+    },
+    "run-parallel": {
+      "version": "1.2.0",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: run-parallel@1.2.0 /app/node_modules/run-parallel"
+      ]
+    },
+    "rxjs": {
+      "version": "7.8.2",
+      "overridden": false
+    },
+    "standard-version": {
+      "version": "9.5.0",
+      "overridden": false
+    },
+    "storybook": {
+      "version": "8.6.14",
+      "overridden": false
+    },
+    "tinyrainbow": {
+      "version": "2.0.0",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: tinyrainbow@2.0.0 /app/node_modules/tinyrainbow"
+      ]
+    },
+    "tinyspy": {
+      "version": "4.0.4",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: tinyspy@4.0.4 /app/node_modules/tinyspy"
+      ]
+    },
+    "tr46": {
+      "version": "0.0.3",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: tr46@0.0.3 /app/node_modules/tr46"
+      ]
+    },
+    "ts-jest": {
+      "version": "29.4.6",
+      "overridden": false
+    },
+    "ts-node": {
+      "version": "10.9.2",
+      "overridden": false
+    },
+    "tslib": {
+      "version": "2.8.1",
+      "overridden": false
+    },
+    "tsscmp": {
+      "version": "1.0.6",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: tsscmp@1.0.6 /app/node_modules/tsscmp"
+      ]
+    },
+    "typescript-eslint": {
+      "version": "8.57.0",
+      "overridden": false
+    },
+    "typescript": {
+      "version": "5.9.3",
+      "overridden": false
+    },
+    "use-sync-external-store": {
+      "version": "1.6.0",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: use-sync-external-store@1.6.0 /app/node_modules/use-sync-external-store"
+      ]
+    },
+    "whatwg-url": {
+      "version": "5.0.0",
+      "overridden": false,
+      "extraneous": true,
+      "problems": [
+        "extraneous: whatwg-url@5.0.0 /app/node_modules/whatwg-url"
+      ]
+    }
+  },
+  "error": {
+    "code": "ELSPROBLEMS",
+    "summary": "extraneous: @adobe/css-tools@4.4.4 /app/node_modules/@adobe/css-tools\nextraneous: @nodelib/fs.scandir@2.1.5 /app/node_modules/@nodelib/fs.scandir\nextraneous: @nodelib/fs.stat@2.0.5 /app/node_modules/@nodelib/fs.stat\nextraneous: @nodelib/fs.walk@1.2.8 /app/node_modules/@nodelib/fs.walk\nextraneous: @storybook/core-common@8.6.14 /app/node_modules/@storybook/core-common\nextraneous: @storybook/icons@1.6.0 /app/node_modules/@storybook/icons\nextraneous: @testing-library/dom@10.4.1 /app/node_modules/@testing-library/dom\nextraneous: @testing-library/jest-dom@6.9.1 /app/node_modules/@testing-library/jest-dom\nextraneous: @testing-library/user-event@14.6.1 /app/node_modules/@testing-library/user-event\nextraneous: @types/aria-query@5.0.4 /app/node_modules/@types/aria-query\nextraneous: @types/chai@5.2.3 /app/node_modules/@types/chai\nextraneous: @types/deep-eql@4.0.2 /app/node_modules/@types/deep-eql\nextraneous: @vitest/expect@3.2.4 /app/node_modules/@vitest/expect\nextraneous: @vitest/pretty-format@3.2.4 /app/node_modules/@vitest/pretty-format\nextraneous: @vitest/spy@3.2.4 /app/node_modules/@vitest/spy\nextraneous: @vitest/utils@3.2.4 /app/node_modules/@vitest/utils\nextraneous: array-union@3.0.1 /app/node_modules/array-union\nextraneous: assertion-error@2.0.1 /app/node_modules/assertion-error\nextraneous: chai@5.3.3 /app/node_modules/chai\nextraneous: check-error@2.1.3 /app/node_modules/check-error\nextraneous: cookies@0.9.1 /app/node_modules/cookies\nextraneous: css.escape@1.5.1 /app/node_modules/css.escape\nextraneous: deep-eql@5.0.2 /app/node_modules/deep-eql\nextraneous: deep-equal@1.0.1 /app/node_modules/deep-equal\nextraneous: dir-glob@3.0.1 /app/node_modules/dir-glob\nextraneous: dom-accessibility-api@0.6.3 /app/node_modules/dom-accessibility-api\nmissing: eslint-plugin-storybook@8.6.14, required by @hunt-the-bishomalo/source@7.14.7\nextraneous: fast-glob@3.3.3 /app/node_modules/fast-glob\nextraneous: fastq@1.20.1 /app/node_modules/fastq\nextraneous: globby@12.2.0 /app/node_modules/globby\nextraneous: http-assert@1.5.0 /app/node_modules/http-assert\nextraneous: keygrip@1.1.0 /app/node_modules/keygrip\nextraneous: koa-compose@4.1.0 /app/node_modules/koa-compose\nextraneous: koa@3.0.3 /app/node_modules/koa\nextraneous: loupe@3.2.1 /app/node_modules/loupe\nextraneous: lz-string@1.5.0 /app/node_modules/lz-string\nextraneous: merge2@1.4.1 /app/node_modules/merge2\nextraneous: node-machine-id@1.1.12 /app/node_modules/node-machine-id\nextraneous: pathval@2.0.1 /app/node_modules/pathval\nextraneous: punycode@1.4.1 /app/node_modules/punycode\nextraneous: queue-microtask@1.2.3 /app/node_modules/queue-microtask\nextraneous: reusify@1.1.0 /app/node_modules/reusify\nextraneous: run-parallel@1.2.0 /app/node_modules/run-parallel\nextraneous: tinyrainbow@2.0.0 /app/node_modules/tinyrainbow\nextraneous: tinyspy@4.0.4 /app/node_modules/tinyspy\nextraneous: tr46@0.0.3 /app/node_modules/tr46\nextraneous: tsscmp@1.0.6 /app/node_modules/tsscmp\nextraneous: use-sync-external-store@1.6.0 /app/node_modules/use-sync-external-store\nextraneous: whatwg-url@5.0.0 /app/node_modules/whatwg-url",
+    "detail": ""
+  }
+}
+[22:48:12.815] [DEBUG] No installations found for @storybook/experimental-addon-test
+[22:48:12.815] [DEBUG] End of addon-experimental-test migration checks
+[22:48:12.815] [DEBUG] Running rnstorybook-config migration checks
+[22:48:12.815] [DEBUG] Using cached package.json for /app/package.json...
+[22:48:12.815] [DEBUG] End of rnstorybook-config migration checks
+[22:48:12.815] [DEBUG] Running migrate-addon-console migration checks
+[22:48:12.815] [DEBUG] Using cached package.json for /app/package.json...
+[22:48:12.815] [DEBUG] End of migrate-addon-console migration checks
+[22:48:12.815] [DEBUG] Running nextjs-to-nextjs-vite migration checks
+[22:48:12.815] [DEBUG] Using cached package.json for /app/package.json...
+[22:48:12.815] [DEBUG] End of nextjs-to-nextjs-vite migration checks
+[22:48:12.815] [DEBUG] Running remove-addon-interactions migration checks
+[22:48:12.815] [DEBUG] Using cached package.json for /app/package.json...
+[22:48:12.815] [DEBUG] End of remove-addon-interactions migration checks
+[22:48:12.815] [DEBUG] Running renderer-to-framework migration checks
+[22:48:12.817] [DEBUG] End of renderer-to-framework migration checks
+[22:48:12.817] [DEBUG] Running remove-essential-addons migration checks
+[22:48:12.817] [DEBUG] Using cached package.json for /app/package.json...
+[22:48:12.817] [DEBUG] End of remove-essential-addons migration checks
+[22:48:12.817] [INFO] 🔎 found a 'remove-essential-addons' migration:
+[22:48:12.818] [INFO] In Storybook 9.0, several addons have been moved into Storybook's core and are no longer needed as separate packages. We'll remove the unnecessary addons from your configuration and dependencies, and update your code to use the new core features.
+[22:48:12.823] [DEBUG] Uninstalling @storybook/addon-essentials
+[22:48:12.823] [DEBUG] Using cached package.json for /app/package.json...
+[22:48:12.823] [DEBUG] Using cached package.json for /app/package.json...
+[22:48:12.824] [DEBUG] Removing '@storybook/addon-essentials' from main.js addons field.
+[22:48:12.833] [DEBUG] Getting Storybook info...
+[22:48:12.840] [DEBUG] Loading main config...
+[22:48:12.840] [DEBUG] Getting stories paths...
+[22:48:12.840] [DEBUG] Getting package manager...
+[22:48:12.859] [DEBUG] Getting package.json info for /app/package.json...
+[22:48:12.859] [DEBUG] Getting Storybook version...
+[22:48:12.859] [DEBUG] Detecting CSF factory usage...
+[22:48:12.874] [INFO] Verifying @storybook/addon-docs
+[22:48:12.875] [DEBUG] Getting dependency version for storybook...
+[22:48:12.875] [DEBUG] Using cached package.json for /app/package.json...
+[22:48:12.875] [INFO] Installing @storybook/addon-docs@10.3.1
+[22:48:12.875] [DEBUG] Using cached package.json for /app/package.json...
+[22:48:12.875] [DEBUG] Getting CLI versions from NPM for @storybook/addon-docs...
+[22:48:12.875] [DEBUG] Executing command: npm info @storybook/addon-docs version
+[22:48:14.185] [DEBUG] Using cached package.json for /app/package.json...
+[22:48:14.186] [INFO] Adding '@storybook/addon-docs' to the "addons" field in libs/shared/ui-storybook/.storybook/main.ts
+[22:48:14.306] [INFO] ✅ ran remove-essential-addons migration
+[22:48:14.306] [INFO] Ran remove-essential-addons migration
+[22:48:14.307] [DEBUG] Running addon-a11y-parameters migration checks
+[22:48:14.307] [DEBUG] End of addon-a11y-parameters migration checks
+[22:48:14.307] [DEBUG] Running remove-docs-autodocs migration checks
+[22:48:14.311] [DEBUG] End of remove-docs-autodocs migration checks
+[22:48:14.311] [DEBUG] Running wrap-getAbsolutePath migration checks
+[22:48:14.316] [DEBUG] End of wrap-getAbsolutePath migration checks
+[22:48:14.316] [INFO] 🔎 found a 'wrap-getAbsolutePath' migration:
+[22:48:14.318] [INFO] We have detected that you're using Storybook in a monorepo or PnP project. Some fields in your main config must be updated.
+[22:48:14.342] [INFO] ✅ ran wrap-getAbsolutePath migration
+[22:48:14.343] [INFO] Ran wrap-getAbsolutePath migration
+[22:48:14.343] [DEBUG] Running fix-faux-esm-require migration checks
+[22:48:14.345] [DEBUG] End of fix-faux-esm-require migration checks
+[22:48:14.345] [INFO] Migration check ran successfully
+[22:48:14.346] [INFO] Successful migrations:
+
+eslintPlugin, consolidated-imports, remove-essential-addons, wrap-getAbsolutePath
+
+─────────────────────────────────────────────────
+
+If you'd like to run the migrations again, you can do so by running
+npx storybook automigrate
+
+The automigrations try to migrate common patterns in your project, but might not contain everything needed to migrate to the latest version of Storybook.
+
+Please check the changelog and migration guide for manual migrations and more information:
+https://storybook.js.org/docs/releases/migration-guide?ref=upgrade
+And reach out on Discord if you need help: https://discord.gg/storybook
+[22:48:14.355] [INFO] Installing dependencies...
+[22:48:14.355] [INFO] Installing dependencies...
+[22:48:14.356] [DEBUG] Executing command: bun install
+[22:48:14.381] [INFO] Installing dependencies...: bun install v1.2.14 (6a363a38)
+
+[22:48:14.381] [INFO] Installing dependencies...: bun install v1.2.14 (6a36
+[22:48:14.774] [ERROR] Installation of dependencies failed! {"error":"ExecaError: Command failed with exit code 1: bun install\n\nResolving dependencies\nResolved, downloaded and extracted [21]\nwarn: incorrect peer dependency \"storybook@8.6.14\"\n\nwarn: incorrect peer dependency \"storybook@8.6.14\"\n\nwarn: incorrect peer dependency \"storybook@8.6.14\"\n\nerror: No version matching \"8.6.14\" found for specifier \"eslint-plugin-storybook\" (but package exists)\nerror: eslint-plugin-storybook@8.6.14 failed to resolve\n\nbun install v1.2.14 (6a363a38)\n    at getFinalError (file:///home/jules/.npm/_npx/b24e58115fc5e719/node_modules/storybook/dist/_node-chunks/chunk-X6B7XGEZ.js:13109:10)\n    at makeError (file:///home/jules/.npm/_npx/b24e58115fc5e719/node_modules/storybook/dist/_node-chunks/chunk-X6B7XGEZ.js:14645:15)\n    at getAsyncResult (file:///home/jules/.npm/_npx/b24e58115fc5e719/node_modules/storybook/dist/_node-chunks/chunk-X6B7XGEZ.js:17291:158)\n    at handlePromise (file:///home/jules/.npm/_npx/b24e58115fc5e719/node_modules/storybook/dist/_node-chunks/chunk-X6B7XGEZ.js:17277:162)\n    at async Object.executeTaskWithSpinner (file:///home/jules/.npm/_npx/b24e58115fc5e719/node_modules/storybook/dist/_node-chunks/chunk-CHR7DWLX.js:3683:11)\n    at async BUNProxy.installDependencies (file:///home/jules/.npm/_npx/b24e58115fc5e719/node_modules/storybook/dist/_node-chunks/chunk-X6B7XGEZ.js:11258:5)\n    at async doAutomigrate (file:///home/jules/.npm/_npx/b24e58115fc5e719/node_modules/@storybook/cli/dist/_node-chunks/run-CB6VWOP5.js:7772:32)\n    at async file:///home/jules/.npm/_npx/b24e58115fc5e719/node_modules/@storybook/cli/dist/_node-chunks/run-CB6VWOP5.js:9715:90\n    at async withTelemetry (file:///home/jules/.npm/_npx/b24e58115fc5e719/node_modules/storybook/dist/_node-chunks/chunk-CRA4LABS.js:218:12)"}
+[22:48:14.774] [ERROR] Installation of dependencies failed!
+[22:48:14.775] [ERROR] [38;2;241;97;97mExecaError: Command failed with exit code 1: bun install
+
+Resolving dependencies
+Resolved, downloaded and extracted [21]
+warn: incorrect peer dependency "storybook@8.6.14"
+
+warn: incorrect peer dependency "storybook@8.6.14"
+
+warn: incorrect peer dependency "storybook@8.6.14"
+
+error: No version matching "8.6.14" found for specifier "eslint-plugin-storybook" (but package exists)
+error: eslint-plugin-storybook@8.6.14 failed to resolve
+
+bun install v1.2.14 (6a363a38)[39m
+    at getFinalError (file:///home/jules/.npm/_npx/b24e58115fc5e719/node_modules/storybook/dist/_node-chunks/chunk-X6B7XGEZ.js:13109:10)
+    at makeError (file:///home/jules/.npm/_npx/b24e58115fc5e719/node_modules/storybook/dist/_node-chunks/chunk-X6B7XGEZ.js:14645:15)
+    at getAsyncResult (file:///home/jules/.npm/_npx/b24e58115fc5e719/node_modules/storybook/dist/_node-chunks/chunk-X6B7XGEZ.js:17291:158)
+    at handlePromise (file:///home/jules/.npm/_npx/b24e58115fc5e719/node_modules/storybook/dist/_node-chunks/chunk-X6B7XGEZ.js:17277:162)
+    at async Object.executeTaskWithSpinner (file:///home/jules/.npm/_npx/b24e58115fc5e719/node_modules/storybook/dist/_node-chunks/chunk-CHR7DWLX.js:3683:11)
+    at async BUNProxy.installDependencies (file:///home/jules/.npm/_npx/b24e58115fc5e719/node_modules/storybook/dist/_node-chunks/chunk-X6B7XGEZ.js:11258:5)
+    at async doAutomigrate (file:///home/jules/.npm/_npx/b24e58115fc5e719/node_modules/@storybook/cli/dist/_node-chunks/run-CB6VWOP5.js:7772:32)
+    at async file:///home/jules/.npm/_npx/b24e58115fc5e719/node_modules/@storybook/cli/dist/_node-chunks/run-CB6VWOP5.js:9715:90
+    at async withTelemetry (file:///home/jules/.npm/_npx/b24e58115fc5e719/node_modules/storybook/dist/_node-chunks/chunk-CRA4LABS.js:218:12)
+[22:48:15.350] [ERROR] ExecaError: Command failed with exit code 1: bun install
+
+Resolving dependencies
+Resolved, downloaded and extracted [21]
+warn: incorrect peer dependency "storybook@8.6.14"
+
+warn: incorrect peer dependency "storybook@8.6.14"
+
+warn: incorrect peer dependency "storybook@8.6.14"
+
+error: No version matching "8.6.14" found for specifier "eslint-plugin-storybook" (but package exists)
+error: eslint-plugin-storybook@8.6.14 failed to resolve
+
+bun install v1.2.14 (6a363a38)

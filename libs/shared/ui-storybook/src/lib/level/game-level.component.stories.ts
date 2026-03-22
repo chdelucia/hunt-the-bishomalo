@@ -11,12 +11,12 @@ type Story = StoryObj<GameLevelComponent>;
 
 export const LevelOne: Story = {
   args: {
-    level: 1,
+    size: 4,
   },
 };
 
 export const HighLevel: Story = {
   args: {
-    level: 99,
+    size: 102,
   },
 };

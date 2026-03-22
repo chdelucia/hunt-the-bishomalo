@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { GameMessageDisplayComponent } from './game-message-display.component';
-import { expect } from 'storybook/test';
+import { expect } from '@storybook/test';
 
 const meta: Meta<GameMessageDisplayComponent> = {
   component: GameMessageDisplayComponent,

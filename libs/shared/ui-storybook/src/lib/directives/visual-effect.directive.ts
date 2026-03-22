@@ -124,7 +124,7 @@ export class VisualEffectDirective {
   }
 
   private camelToKebab(str: string): string {
-    return str.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+    return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
   }
 
   private clearEffects(): void {

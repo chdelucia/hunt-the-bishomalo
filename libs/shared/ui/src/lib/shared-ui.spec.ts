@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TitleComponent } from './title/title.component';
+import { TitleComponent } from '@hunt-the-bishomalo/shared/ui-storybook';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 
 describe('Shared UI Components', () => {

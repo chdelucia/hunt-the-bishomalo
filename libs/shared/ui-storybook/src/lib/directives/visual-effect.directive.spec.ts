@@ -8,7 +8,7 @@ import { VisualEffectDirective } from './visual-effect.directive';
   standalone: true,
   imports: [VisualEffectDirective],
 })
-class TestHostComponent {
+export class TestHostComponent {
   effect = '';
 }
 

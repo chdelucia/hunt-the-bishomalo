@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { CellContentComponent } from './cell-content.component';
-import { expect } from 'storybook/test';
+import { expect } from '@storybook/test';
 
 const meta: Meta<CellContentComponent> = {
   component: CellContentComponent,

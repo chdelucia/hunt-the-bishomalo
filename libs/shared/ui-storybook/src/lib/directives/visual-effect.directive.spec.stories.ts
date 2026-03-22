@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { TestHostComponent } from './visual-effect.directive.spec';
-import { expect } from 'storybook/test';
+import { expect } from '@storybook/test';
 
 const meta: Meta<TestHostComponent> = {
   component: TestHostComponent,
