@@ -8,15 +8,11 @@ import { of } from 'rxjs';
 describe('PerceptionService', () => {
   let service: PerceptionService;
   let translocoMock: any;
-  let soundMock: any;
 
   beforeEach(() => {
     translocoMock = {
       translate: jest.fn(key => key),
       selectTranslate: jest.fn(() => of('nothing')),
-    };
-    soundMock = {
-      playSound: jest.fn(),
     };
 
     TestBed.configureTestingModule({
