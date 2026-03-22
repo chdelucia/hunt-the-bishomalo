@@ -365,7 +365,8 @@
     "disclaimer2": "Los objetos no se pueden acumular. No devolvemos el dinero.",
     "purchaseMessageNotEnoughCoins": "¡No tienes suficientes monedas!",
     "purchaseMessageAlreadyOwned": "¡Ya tienes este objeto!",
-    "purchaseMessageSuccess": "¡Has comprado {{productName}}!"
+    "purchaseMessageSuccess": "¡Has comprado {{productName}}!",
+    "dismissMessageAriaLabel": "Cerrar mensaje"
   },
   "product": {
     "heart": {

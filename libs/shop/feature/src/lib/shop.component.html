@@ -99,14 +99,14 @@
 </div>
 
 @if(message()){
-<output
-  class="mensaje-compra"
-  aria-live="polite"
-  (click)="clearMessage()"
-  (keydown.enter)="clearMessage()"
-  (keydown.space)="clearMessage()"
-  tabindex="0"
->
-  {{ message() }}
+<output class="mensaje-compra" aria-live="polite">
+  <button
+    type="button"
+    class="boton-mensaje"
+    (click)="clearMessage()"
+    [attr.aria-label]="'shop.dismissMessageAriaLabel' | transloco"
+  >
+    {{ message() }}
+  </button>
 </output>
 }

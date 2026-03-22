@@ -365,7 +365,8 @@
     "disclaimer2": "Items cannot be accumulated. We do not refund money.",
     "purchaseMessageNotEnoughCoins": "You don't have enough coins!",
     "purchaseMessageAlreadyOwned": "You already own this item!",
-    "purchaseMessageSuccess": "You bought {{productName}}!"
+    "purchaseMessageSuccess": "You bought {{productName}}!",
+    "dismissMessageAriaLabel": "Dismiss message"
   },
   "storyPage": {
     "chapterPrefix": "CHAPTER ",

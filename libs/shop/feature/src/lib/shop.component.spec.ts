@@ -125,4 +125,10 @@ describe('ShopComponent', () => {
       state: { fromSecretPath: true },
     });
   });
+
+  it('should clear message when clearMessage is called', () => {
+    component.message.set('Test Message');
+    component.clearMessage();
+    expect(component.message()).toBe('');
+  });
 });
