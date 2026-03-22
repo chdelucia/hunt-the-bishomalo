@@ -177,7 +177,7 @@ export class GameEngineService implements IGameEngineService {
 
   private checkSecret(size: number, x: number, y: number): void {
     if (size === 8 && x === 7 && y === 8) {
-      this.router.navigate([RouteTypes.JEDI], {
+      this.router.navigate([RouteTypes.JEDI, 'secret'], {
         state: { fromSecretPath: true },
       });
     }

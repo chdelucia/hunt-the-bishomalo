@@ -155,7 +155,7 @@ describe('GameEngineService', () => {
     storeMock.settings.set({ size: 8, difficulty: { luck: 5 } });
     storeMock.hunter.set({ x: 7, y: 7, direction: Direction.RIGHT });
     service.moveForward();
-    expect(routerMock.navigate).toHaveBeenCalledWith([RouteTypes.JEDI], expect.anything());
+    expect(routerMock.navigate).toHaveBeenCalledWith([RouteTypes.JEDI, 'secret'], expect.anything());
   });
 
   it('should handle survivor', () => {
@@ -228,7 +228,7 @@ describe('GameEngineService', () => {
      storeMock.settings.set({ size: 8 });
      storeMock.hunter.set({ x: 7, y: 7, direction: Direction.RIGHT });
      service.moveForward();
-     expect(routerMock.navigate).toHaveBeenCalledWith([RouteTypes.JEDI], expect.anything());
+     expect(routerMock.navigate).toHaveBeenCalledWith([RouteTypes.JEDI, 'secret'], expect.anything());
   });
 
   it('should handle move forward in multiple directions', () => {
