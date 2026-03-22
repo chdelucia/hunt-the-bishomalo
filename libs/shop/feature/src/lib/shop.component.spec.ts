@@ -131,4 +131,58 @@ describe('ShopComponent', () => {
     component.clearMessage();
     expect(component.message()).toBe('');
   });
+
+  it('should show error message if gold is not sufficient', () => {
+    mockGameStoreService.gold.mockReturnValue(50);
+    const product: Product = {
+      name: 'product.lantern.name',
+      effect: 'lantern',
+      description: 'product.lantern.description',
+      price: 100,
+      icon: 'lantern.svg',
+    };
+
+    component.buyProduct(product);
+    expect(mockGameStoreService.updateHunter).not.toHaveBeenCalled();
+    expect(component.message()).toBe('shop.purchaseMessageNotEnoughCoins');
+  });
+
+  it('should call clearMessage when clicking the dismiss button in template', () => {
+    component.message.set('Purchase successful');
+    fixture.detectChanges();
+
+    const dismissButton = fixture.nativeElement.querySelector('.boton-mensaje');
+    expect(dismissButton).toBeTruthy();
+
+    dismissButton.click();
+    fixture.detectChanges();
+
+    expect(component.message()).toBe('');
+  });
+
+  it('should call updateHunter and updateGame correctly when buying a heart', () => {
+    mockGameStoreService.gold.mockReturnValue(100);
+    mockGameStoreService.lives.mockReturnValue(3);
+    const product: Product = {
+      name: 'Vida extra',
+      effect: 'heart',
+      description: 'Una vida más',
+      price: 60,
+      icon: 'heart.svg',
+    };
+
+    component.buyProduct(product);
+
+    expect(mockGameStoreService.updateHunter).toHaveBeenCalledWith({ gold: 40 });
+    expect(mockGameStoreService.updateGame).toHaveBeenCalledWith({ lives: 4 });
+  });
+
+  it('should handle difficulty settings correctly for randomizing products', () => {
+    jest.spyOn(Math, 'random').mockReturnValue(0.1);
+    const fixture2 = TestBed.createComponent(ShopComponent);
+    const component2 = fixture2.componentInstance;
+    fixture2.detectChanges();
+    expect(component2.productos().length).toBeGreaterThan(4);
+    jest.spyOn(Math, 'random').mockRestore();
+  });
 });
