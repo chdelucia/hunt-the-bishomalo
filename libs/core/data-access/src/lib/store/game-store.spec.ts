@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { GameStore } from './game-store';
-import { Chars, GameSettings, Hunter, Cell, Direction } from '@hunt-the-bishomalo/data';
+import { Chars, GameSettings, Hunter, Cell, Direction } from '@hunt-the-bishomalo/shared-data';
 import { LOCALSTORAGE_SERVICE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { LocalstorageService } from '../services';
 

@@ -1,5 +1,5 @@
 import { InjectionToken, Signal } from '@angular/core';
-import { Cell, GameSettings, Hunter, Chars, GameState, GameDificulty } from '@hunt-the-bishomalo/data';
+import { Cell, GameSettings, Hunter, Chars, GameState, GameDificulty } from '@hunt-the-bishomalo/shared-data';
 
 export interface IGameStore {
   readonly board: Signal<Cell[][]>;

@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
 import { secretGuard } from './guards/secret.guard';
-import { RouteTypes } from '@hunt-the-bishomalo/data';
+import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
 import { homeGuard } from './guards/home.guard';
 
 export const appRoutes: Route[] = [

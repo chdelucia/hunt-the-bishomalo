@@ -1,8 +1,8 @@
 export default {
-  displayName: 'core',
-  preset: '../../jest.preset.js',
+  displayName: 'core-data-access',
+  preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/libs/core',
+  coverageDirectory: '../../../coverage/libs/core/data-access',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

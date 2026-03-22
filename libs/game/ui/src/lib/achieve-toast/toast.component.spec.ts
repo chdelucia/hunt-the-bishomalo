@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ToastComponent } from './toast.component';
 import { CommonModule } from '@angular/common';
-import { Achievement } from '@hunt-the-bishomalo/data';
+import { Achievement } from '@hunt-the-bishomalo/shared-data';
 
 describe('ToastComponent', () => {
   let component: ToastComponent;

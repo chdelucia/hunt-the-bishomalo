@@ -4,7 +4,7 @@ import {
   withMethods,
   patchState,
 } from '@ngrx/signals';
-import { Cell } from '@hunt-the-bishomalo/data';
+import { Cell } from '@hunt-the-bishomalo/shared-data';
 
 export const initialStatus = {
   board: [] as Cell[][],

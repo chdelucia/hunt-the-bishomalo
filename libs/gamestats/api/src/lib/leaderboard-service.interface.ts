@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { ScoreEntry } from '@hunt-the-bishomalo/data';
+import { ScoreEntry } from '@hunt-the-bishomalo/shared-data';
 
 export interface ILeaderboardService {
   readonly leaderboard: ScoreEntry[];

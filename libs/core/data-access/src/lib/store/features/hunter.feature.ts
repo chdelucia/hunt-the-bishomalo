@@ -6,7 +6,7 @@ import {
   withMethods,
   patchState,
 } from '@ngrx/signals';
-import { Hunter, Direction } from '@hunt-the-bishomalo/data';
+import { Hunter, Direction } from '@hunt-the-bishomalo/shared-data';
 
 export const initialHunter: Hunter = {
   x: 0,

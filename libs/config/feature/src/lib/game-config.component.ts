@@ -11,7 +11,7 @@ import {
   GameDificulty,
   GameSound,
   RouteTypes,
-} from '@hunt-the-bishomalo/data';
+} from '@hunt-the-bishomalo/shared-data';
 import { Router } from '@angular/router';
 
 @Component({

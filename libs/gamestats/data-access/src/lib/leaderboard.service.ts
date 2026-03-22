@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { ScoreEntry } from '@hunt-the-bishomalo/data';
+import { ScoreEntry } from '@hunt-the-bishomalo/shared-data';
 import { LOCALSTORAGE_SERVICE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { ILeaderboardService } from '@hunt-the-bishomalo/gamestats/api';
 

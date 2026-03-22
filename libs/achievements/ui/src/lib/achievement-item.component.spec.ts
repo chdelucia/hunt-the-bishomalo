@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AchievementItemComponent } from './achievement-item.component';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
-import { Achievement, AchieveTypes } from '@hunt-the-bishomalo/data';
+import { Achievement, AchieveTypes } from '@hunt-the-bishomalo/shared-data';
 
 describe('AchievementItemComponent', () => {
   let component: AchievementItemComponent;

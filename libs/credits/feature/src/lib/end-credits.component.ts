@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit, signal, inject } from '@angular/core';
 
 import { Router, RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
-import { GameSound, RouteTypes } from '@hunt-the-bishomalo/data';
+import { GameSound, RouteTypes } from '@hunt-the-bishomalo/shared-data';
 import { GAME_SOUND_TOKEN, GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 

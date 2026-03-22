@@ -10,7 +10,7 @@ import {
 import { Router } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { GameStoryService } from './game-story.service';
-import { RouteTypes } from '@hunt-the-bishomalo/data';
+import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
 
 @Component({
   selector: 'lib-story',

@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { TranslocoService } from '@jsverse/transloco';
-import { Cell, CELL_CONTENTS, GameSound } from '@hunt-the-bishomalo/data';
+import { Cell, CELL_CONTENTS, GameSound } from '@hunt-the-bishomalo/shared-data';
 import { GAME_SOUND_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { Observable, of } from 'rxjs';
 

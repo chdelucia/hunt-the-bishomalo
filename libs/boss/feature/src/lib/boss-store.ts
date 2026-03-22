@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { signalStore, withState, withMethods, patchState } from '@ngrx/signals';
 import { TranslocoService } from '@jsverse/transloco';
 import { GAME_SOUND_TOKEN } from '@hunt-the-bishomalo/core/api';
-import { GameSound, GameSettings } from '@hunt-the-bishomalo/data';
+import { GameSound, GameSettings } from '@hunt-the-bishomalo/shared-data';
 
 export interface BossCell {
   x: number;

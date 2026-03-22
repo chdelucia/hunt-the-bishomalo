@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
-import { RouteTypes } from '@hunt-the-bishomalo/data';
+import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
 import { Router } from '@angular/router';
 import { GameMessageDisplayComponent } from './game-message-display.component';
 import { GameMessageActionsComponent } from './game-message-actions.component';

@@ -11,14 +11,14 @@ import { appRoutes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { TranslocoHttpLoader } from './utils/transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GameStore } from '@hunt-the-bishomalo/core/data-access';
 import {
   MonitoringService,
   GameSoundService,
   LocalstorageService,
   AnalyticsService,
   GameEventService,
-} from '@hunt-the-bishomalo/core/services';
+} from '@hunt-the-bishomalo/core/data-access';
 import {
   GAME_STORE_TOKEN,
   GAME_SOUND_TOKEN,
