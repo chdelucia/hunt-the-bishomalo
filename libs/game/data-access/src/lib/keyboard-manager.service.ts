@@ -11,6 +11,11 @@ export class KeyboardManagerService {
   private readonly router = inject(Router);
 
   handleKeyDown(event: KeyboardEvent): void {
+    const target = event.target as HTMLElement;
+    if (target?.tagName && ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName)) {
+      return;
+    }
+
     const action = this.keyActionMap[event.code];
     if (action) {
       event.preventDefault();
