@@ -1,6 +1,6 @@
 import { effect, inject, Injectable } from '@angular/core';
 import { GameSound } from '@hunt-the-bishomalo/data';
-import { GameStore } from '../../store';
+import { GAME_STORE_TOKEN, IGameSoundService } from '@hunt-the-bishomalo/core/api';
 
 const SOUND_PATHS: Record<GameSound, string> = {
   [GameSound.WUMPUS]: 'sounds/monster.mp3',
@@ -36,9 +36,9 @@ const SOUND_PATHS: Record<GameSound, string> = {
 @Injectable({
   providedIn: 'root',
 })
-export class GameSoundService {
+export class GameSoundService implements IGameSoundService {
   private audioMap: Record<GameSound, HTMLAudioElement> = {} as Record<GameSound, HTMLAudioElement>;
-  private readonly gameStore = inject(GameStore);
+  private readonly gameStore = inject(GAME_STORE_TOKEN);
   constructor() {
     effect(() => this.gameOver());
   }
@@ -60,6 +60,9 @@ export class GameSoundService {
   }
 
   private play(key: GameSound, loop = true): void {
+    if (!this.gameStore.soundEnabled()) {
+      return;
+    }
     const audio = this.getOrCreateAudio(key);
     audio.loop = loop;
     audio.currentTime = 0;

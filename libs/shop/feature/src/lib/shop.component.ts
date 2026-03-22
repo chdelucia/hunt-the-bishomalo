@@ -2,10 +2,10 @@ import { Component, computed, inject, OnDestroy, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
+import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { Product, RouteTypes } from '@hunt-the-bishomalo/data';
 import { Router } from '@angular/router';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 
 @Component({
   selector: 'lib-shop',
@@ -65,9 +65,9 @@ export class ShopComponent implements OnDestroy {
     },
   ];
 
-  private readonly gameStore = inject(GameStore);
+  private readonly gameStore = inject(GAME_STORE_TOKEN);
   private readonly settings = this.gameStore.settings;
-  private readonly gameEngine = inject(GameEngineService);
+  private readonly gameEngine = inject(GAME_ENGINE_TOKEN);
   private readonly router = inject(Router);
   private readonly transloco = inject(TranslocoService);
 
@@ -97,7 +97,7 @@ export class ShopComponent implements OnDestroy {
     const isAlreadyOwned = this.isOwned(product);
     const canBuy = gold >= price;
 
-    if (this.messageTimeout) clearTimeout(this.messageTimeout);
+    this.clearMessage();
     this.messageTimeout = setTimeout(() => this.message.set(''), this.MESSAGE_TIMEOUT_MS);
 
     if (!canBuy) {
@@ -128,6 +128,14 @@ export class ShopComponent implements OnDestroy {
       return false;
     }
     return this.inventory().some((item) => item.effect === product.effect);
+  }
+
+  clearMessage(): void {
+    this.message.set('');
+    if (this.messageTimeout) {
+      clearTimeout(this.messageTimeout);
+      this.messageTimeout = undefined;
+    }
   }
 
   nextLevel(): void {

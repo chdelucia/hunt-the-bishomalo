@@ -1,13 +1,20 @@
 @let opened = isOpen();
 
-<button class="menu-toggle" [class.open]="opened" (click)="toggleMenu()">
+<button
+  class="menu-toggle"
+  [class.open]="opened"
+  (click)="toggleMenu()"
+  [attr.aria-label]="(opened ? 'menu.closeMenuAriaLabel' : 'menu.openMenuAriaLabel') | transloco"
+  [attr.aria-expanded]="opened"
+  aria-controls="mobile-navigation"
+>
   <div class="bar bar1" [class.open]="opened"></div>
   <div class="bar bar2" [class.open]="opened"></div>
   <div class="bar bar3" [class.open]="opened"></div>
 </button>
 
 @if (opened) {
-  <div class="mobile-menu">
+  <div class="mobile-menu" id="mobile-navigation">
     <ul>
       <li><button>&nbsp;</button></li>
       <li>
@@ -33,12 +40,13 @@
 
 <div class="menu-desktop">
   <div class="left-icons">
-    <img
-      class="achivements"
-      [routerLink]="ROUTES.ACHIEVEMENTS"
-      src="trophy.svg"
-      alt="{{ 'menu.achievementsAlt' | transloco }}"
-    />
+    <a [routerLink]="['/', ROUTES.ACHIEVEMENTS]" class="achievement-link">
+      <img
+        class="achivements"
+        src="trophy.svg"
+        alt="{{ 'menu.achievementsAlt' | transloco }}"
+      />
+    </a>
   </div>
   <div class="right-icon">
     <ng-content></ng-content>

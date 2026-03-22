@@ -105,16 +105,38 @@
     z-index: 90;
   }
 
-  .left-icons img,
+  .left-icons a,
   .right-icon img {
     width: 90px;
     height: 90px;
     margin: 0 8px;
     cursor: pointer;
     transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     &:hover {
       transform: scale(1.1);
     }
+  }
+
+  .left-icons img {
+    width: 90px;
+    height: 90px;
+    margin: 0 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .left-icons a img {
+    width: 100%;
+    height: 100%;
+    margin: 0;
   }
 }
 

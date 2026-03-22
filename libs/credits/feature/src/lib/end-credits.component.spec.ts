@@ -2,9 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EndCreditsComponent } from './end-credits.component';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { GameSoundService } from '@hunt-the-bishomalo/core/services';
+import { GAME_SOUND_TOKEN, GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
+import { signal } from '@angular/core';
 
 const mockGameEngineService = {
   newGame: jest.fn(),
@@ -28,8 +29,15 @@ describe('EndCreditsComponent', () => {
       imports: [EndCreditsComponent, CommonModule, getTranslocoTestingModule()],
       providers: [
         { provide: GAME_ENGINE_TOKEN, useValue: mockGameEngineService },
-        { provide: GameSoundService, useValue: mockGameSoundService },
+        { provide: GAME_SOUND_TOKEN, useValue: mockGameSoundService },
         { provide: Router, useValue: mockRouter },
+        {
+          provide: GAME_STORE_TOKEN,
+          useValue: {
+            lives: signal(3),
+            resetStore: jest.fn(),
+          },
+        },
       ],
     }).compileComponents();
 
@@ -101,14 +109,14 @@ describe('EndCreditsComponent', () => {
   });
 
   it('should show backToHome button when lives > 0', () => {
-    component.store.$_updateGameStatus({ lives: 1 });
+    (component.store.lives as any).set(1);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('button')?.textContent).toContain('credits.backToHomeButton');
   });
 
   it('should show newGame button when lives <= 0', () => {
-    component.store.$_updateGameStatus({ lives: 0 });
+    (component.store.lives as any).set(0);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('button')?.textContent).toContain('credits.newGameButton');

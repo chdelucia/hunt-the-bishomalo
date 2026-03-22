@@ -1,9 +1,10 @@
 import { Injectable, isDevMode } from '@angular/core';
+import { ILocalstorageService } from '@hunt-the-bishomalo/core/api';
 
 @Injectable({
   providedIn: 'root',
 })
-export class LocalstorageService {
+export class LocalstorageService implements ILocalstorageService {
   getValue<T>(key: string): T | null {
     const item = localStorage.getItem(key);
     if (!item) {

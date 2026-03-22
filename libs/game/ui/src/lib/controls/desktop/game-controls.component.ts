@@ -1,9 +1,11 @@
-import { ChangeDetectionStrategy, Component, inject, isDevMode, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, isDevMode, output, signal } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
-import { RouteTypes } from '@hunt-the-bishomalo/data';
-import { Router } from '@angular/router';
 
+/**
+ * @description
+ * Component to display the game controls on desktop devices.
+ */
 @Component({
   selector: 'lib-game-controls',
   standalone: true,
@@ -13,24 +15,24 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameControlsComponent {
+  soundEnabled = input.required<boolean>();
   readonly isVisible = signal(false);
 
   readonly newGameRequested = output<void>();
+  readonly navigateToControlsRequested = output<void>();
   readonly moveForwardRequested = output<void>();
   readonly turnLeftRequested = output<void>();
   readonly turnRightRequested = output<void>();
   readonly shootArrowRequested = output<void>();
   readonly resetGameRequested = output<void>();
-
-  private readonly router = inject(Router);
+  readonly toggleSoundRequested = output<void>();
 
   newGame(): void {
     this.newGameRequested.emit();
-    this.router.navigate([RouteTypes.SETTINGS]);
   }
 
   navigateToControls() {
-    this.router.navigate([RouteTypes.RULES]);
+    this.navigateToControlsRequested.emit();
   }
 
   moveForward(): void {
@@ -55,5 +57,9 @@ export class GameControlsComponent {
 
   toggle(): void {
     this.isVisible.update((value) => !value);
+  }
+
+  toggleSound(): void {
+    this.toggleSoundRequested.emit();
   }
 }

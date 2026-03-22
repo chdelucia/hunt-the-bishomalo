@@ -1,12 +1,15 @@
-<lib-menu (newGameRequested)="handleNewGame()">
+<lib-menu (newGameRequested)="gameEngine.newGame()">
   @if (game.size() && game.isAlive()) {
     <lib-game-controls
-      (newGameRequested)="handleNewGame()"
-      (moveForwardRequested)="handleMoveForward()"
-      (turnLeftRequested)="handleTurnLeft()"
-      (turnRightRequested)="handleTurnRight()"
-      (shootArrowRequested)="handleShootArrow()"
-      (resetGameRequested)="handleRestart()"
+      [soundEnabled]="game.soundEnabled()"
+      (newGameRequested)="gameEngine.newGame()"
+      (navigateToControlsRequested)="router.navigate([RouteTypes.RULES])"
+      (moveForwardRequested)="gameEngine.moveForward()"
+      (turnLeftRequested)="gameEngine.turnLeft()"
+      (turnRightRequested)="gameEngine.turnRight()"
+      (shootArrowRequested)="gameEngine.shootArrow()"
+      (resetGameRequested)="gameEngine.initGame()"
+      (toggleSoundRequested)="game.toggleSound()"
     />
   }
 </lib-menu>

@@ -14,6 +14,7 @@ describe('MobileControlsComponent', () => {
     fixture = TestBed.createComponent(MobileControlsComponent);
     component = fixture.componentInstance;
     fixture.componentRef.setInput('isFinish', false);
+    fixture.componentRef.setInput('soundEnabled', true);
     fixture.detectChanges();
   });
 
@@ -36,6 +37,18 @@ describe('MobileControlsComponent', () => {
   it('should emit shootArrowRequested when shootArrow() is called', () => {
     const spy = jest.spyOn(component.shootArrowRequested, 'emit');
     component.shootArrow();
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should emit turnLeftRequested when turnLeft() is called', () => {
+    const spy = jest.spyOn(component.turnLeftRequested, 'emit');
+    component.turnLeft();
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should emit toggleSoundRequested when toggleSound() is called', () => {
+    const spy = jest.spyOn(component.toggleSoundRequested, 'emit');
+    component.toggleSound();
     expect(spy).toHaveBeenCalled();
   });
 });

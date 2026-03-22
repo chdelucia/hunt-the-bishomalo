@@ -24,6 +24,7 @@ export function withConfigFeature() {
       level: computed(() => (settings().size ? settings().size - 4 : 0)),
       selectedChar: computed(() => settings().selectedChar),
       startTime: computed(() => settings().startTime),
+      soundEnabled: computed(() => settings().soundEnabled ?? true),
     })),
     withMethods((store, localStorage = inject(LocalstorageService)) => ({
       $_updateSettings(settings: GameSettings) {

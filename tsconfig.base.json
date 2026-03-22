@@ -40,6 +40,7 @@
       "@hunt-the-bishomalo/gamestats/feature": ["libs/gamestats/feature/src/index.ts"],
       "@hunt-the-bishomalo/gamestats/data-access": ["libs/gamestats/data-access/src/index.ts"],
       "@hunt-the-bishomalo/gamestats/shell": ["libs/gamestats/shell/src/index.ts"],
+      "@hunt-the-bishomalo/core/api": ["libs/core/api/src/index.ts"],
       "@hunt-the-bishomalo/core/store": ["libs/core/src/lib/store/index.ts"],
       "@hunt-the-bishomalo/core/services": ["libs/core/src/lib/services/index.ts"],
       "@hunt-the-bishomalo/instructions/feature": ["libs/instructions/feature/src/index.ts"],

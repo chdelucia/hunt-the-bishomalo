@@ -2,14 +2,14 @@ import { inject, Injectable } from '@angular/core';
 import { Chars } from '@hunt-the-bishomalo/data';
 import { LevelStory, STORIES } from './stories.const';
 import { TranslocoService } from '@jsverse/transloco';
-import { GAME_STORE } from '@hunt-the-bishomalo/story/api';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GameStoryService {
   private readonly stories = STORIES;
-  private readonly gameStore = inject(GAME_STORE);
+  private readonly gameStore = inject(GAME_STORE_TOKEN);
   private readonly _settings = this.gameStore.settings;
   private readonly transloco = inject(TranslocoService);
 

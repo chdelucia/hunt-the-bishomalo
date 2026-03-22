@@ -3,7 +3,7 @@ import { CharactersComponent } from './characters.component';
 import { Router } from '@angular/router';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Chars } from '@hunt-the-bishomalo/data';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 
@@ -28,7 +28,7 @@ describe('CharactersComponent', () => {
     await TestBed.configureTestingModule({
       imports: [CharactersComponent, getTranslocoTestingModule()],
       providers: [
-        { provide: GameStore, useValue: gameStoreMock },
+        { provide: GAME_STORE_TOKEN, useValue: gameStoreMock },
         { provide: ACHIEVEMENT_SERVICE, useValue: achievementServiceMock },
         { provide: Router, useValue: routerMock },
       ],

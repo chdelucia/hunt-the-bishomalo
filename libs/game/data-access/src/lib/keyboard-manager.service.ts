@@ -11,6 +11,11 @@ export class KeyboardManagerService {
   private readonly router = inject(Router);
 
   handleKeyDown(event: KeyboardEvent): void {
+    const target = event.target as HTMLElement;
+    if (target?.tagName && ['INPUT', 'TEXTAREA', 'SELECT'].includes(target.tagName)) {
+      return;
+    }
+
     const action = this.keyActionMap[event.code];
     if (action) {
       event.preventDefault();
@@ -41,7 +46,6 @@ export class KeyboardManagerService {
     },
     KeyN: () => {
       this.game.newGame();
-      this.router.navigate([RouteTypes.SETTINGS]);
     },
     KeyI: () => {
       this.router.navigate([RouteTypes.RULES]);

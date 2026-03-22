@@ -1,10 +1,10 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
-import { LeaderboardService } from '@hunt-the-bishomalo/gamestats/data-access';
+import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { RouteTypes, ScoreEntry } from '@hunt-the-bishomalo/data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { ActivatedRoute, Router } from '@angular/router';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
@@ -19,15 +19,15 @@ export class ResultsComponent {
   leaderboard: ScoreEntry[] = [];
   unlockedAchievements = 0;
 
-  private readonly gameStore = inject(GameStore);
-  private readonly leaderboardService = inject(LeaderboardService);
+  private readonly gameStore = inject(GAME_STORE_TOKEN);
+  private readonly leaderboardService = inject(LEADERBOARD_SERVICE);
   private readonly achieve = inject(ACHIEVEMENT_SERVICE);
   private readonly router = inject(Router);
   private readonly routeSnapshot = inject(ActivatedRoute);
 
   constructor() {
     this.unlockedAchievements = this.achieve.achievements.filter((item) => item.unlocked).length;
-    this.leaderboard = this.leaderboardService._leaderboard;
+    this.leaderboard = this.leaderboardService.leaderboard;
   }
 
   readonly estadisticasGenerales = computed(() => {
@@ -67,7 +67,7 @@ export class ResultsComponent {
   goToCredits(): void {
     const boss = this.routeSnapshot.snapshot.queryParams['boss'];
 
-    if (this.gameStore.unlockedChars.length === 4 || !boss) {
+    if (this.gameStore.unlockedChars().length === 4 || !boss) {
       this.router.navigateByUrl(RouteTypes.CREDITS);
       return;
     }

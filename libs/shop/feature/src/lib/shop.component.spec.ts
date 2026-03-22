@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ShopComponent } from './shop.component';
 import { Router } from '@angular/router';
-import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
+import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { Product, RouteTypes } from '@hunt-the-bishomalo/data';
 import { CommonModule } from '@angular/common';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 
 const mockHunter = {
@@ -49,8 +49,8 @@ describe('ShopComponent', () => {
     await TestBed.configureTestingModule({
       imports: [ShopComponent, CommonModule, getTranslocoTestingModule()],
       providers: [
-        { provide: GameStore, useValue: mockGameStoreService },
-        { provide: GameEngineService, useValue: mockGameEngineService },
+        { provide: GAME_STORE_TOKEN, useValue: mockGameStoreService },
+        { provide: GAME_ENGINE_TOKEN, useValue: mockGameEngineService },
         { provide: Router, useValue: mockRouter },
       ],
     }).compileComponents();

@@ -1,4 +1,5 @@
 import { Injectable, isDevMode, inject } from '@angular/core';
+import { IAnalyticsService } from '@hunt-the-bishomalo/core/api';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -11,7 +12,7 @@ declare global {
 @Injectable({
   providedIn: 'root',
 })
-export class AnalyticsService {
+export class AnalyticsService implements IAnalyticsService {
   private readonly router = inject(Router);
 
   constructor() {

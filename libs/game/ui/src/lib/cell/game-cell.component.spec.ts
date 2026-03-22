@@ -40,7 +40,8 @@ describe('GameCellComponent', () => {
     fixture.componentRef.setInput('isAlive', true);
     fixture.componentRef.setInput('hasWon', false);
     fixture.componentRef.setInput('inventory', []);
-    fixture.componentRef.setInput('settings', mockSettings);
+    fixture.componentRef.setInput('selectedChar', Chars.DEFAULT);
+    fixture.componentRef.setInput('size', 4);
     fixture.componentRef.setInput('blackout', false);
     fixture.componentRef.setInput('isHunterCell', true);
     fixture.componentRef.setInput('hunter', mockHunter);

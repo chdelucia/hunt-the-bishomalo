@@ -5,7 +5,9 @@
     "instructions": "Instructions",
     "newGame": "New Game",
     "achievementsAlt": "Achievements",
-    "credits": "Credits"
+    "credits": "Credits",
+    "openMenuAriaLabel": "Open menu",
+    "closeMenuAriaLabel": "Close menu"
   },
   "achievements": {
     "backToGame": "Back to Game",
@@ -175,7 +177,8 @@
     "moveForward": "Move Forward",
     "turn": "Turn",
     "shoot": "Shoot",
-    "newGame": "New Game"
+    "newGame": "New Game",
+    "soundToggle": "Sound"
   },
   "mobileControls": {
     "turnRightAriaLabel": "Turn Right",
@@ -354,6 +357,9 @@
     "nextLevelButton": "Next Level",
     "notEnoughGoldMessage": "You don't have enough gold. Get out of here before I regret it!",
     "buyButton": "Buy",
+    "alreadyOwned": "Owned",
+    "buyButtonAriaLabel": "Buy {{productName}} for {{price}} coins",
+    "alreadyOwnedAriaLabel": "{{productName}} already owned",
     "disclaimer1": "The shop is not responsible for the misuse of items. Like, I already had maximum hearts... like, I already had a lantern...",
     "disclaimerTag": "#ShouldHaveStudied",
     "disclaimer2": "Items cannot be accumulated. We do not refund money.",

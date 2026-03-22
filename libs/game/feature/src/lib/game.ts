@@ -11,11 +11,10 @@ import {
 } from '@hunt-the-bishomalo/game/ui';
 import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
 import { RouterModule } from '@angular/router';
-import { GameStore } from '@hunt-the-bishomalo/core/store';
-import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
-import { GameSoundService } from '@hunt-the-bishomalo/core/services';
+import { GAME_STORE_TOKEN, GAME_SOUND_TOKEN } from '@hunt-the-bishomalo/core/api';
+import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
-import { AchieveTypes, GameSound } from '@hunt-the-bishomalo/data';
+import { AchieveTypes, GameSound, GameItem } from '@hunt-the-bishomalo/data';
 
 @Component({
   selector: 'lib-game',
@@ -36,10 +35,12 @@ import { AchieveTypes, GameSound } from '@hunt-the-bishomalo/data';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Game {
-  readonly game = inject(GameStore);
-  private readonly gameEngine = inject(GameEngineService);
+  readonly game = inject(GAME_STORE_TOKEN);
+  readonly gameEngine = inject(GAME_ENGINE_TOKEN);
   private readonly achieve = inject(ACHIEVEMENT_SERVICE);
-  private readonly sound = inject(GameSoundService);
+  private readonly sound = inject(GAME_SOUND_TOKEN);
+
+  readonly emptyInventory: GameItem[] = [];
 
   readonly deathByWumpus = computed(() => {
     const gameInstance = this.game;
@@ -57,38 +58,30 @@ export class Game {
         this.achieve.activeAchievement(AchieveTypes.BLACKOUT);
       }
     });
+
+    effect(() => {
+      if (this.game.wumpusKilled() === 5) {
+        this.achieve.activeAchievement(AchieveTypes.PENTA);
+        this.sound.playSound(GameSound.PENTA, false);
+      }
+    });
+
+    effect(() => {
+      if (!this.game.isAlive()) {
+        const achievement = this.game.blackout()
+          ? AchieveTypes.DEATHBYBLACKOUT
+          : AchieveTypes.LASTBREATH;
+        this.achieve.activeAchievement(achievement);
+      }
+    });
   }
 
   handleclose(): void {
     this.game.setMessage('GAME OVER ' + this.game.message());
   }
 
-  handleNewGame(): void {
-    this.gameEngine.newGame();
-  }
-
-  handleRestart(): void {
-    this.gameEngine.initGame();
-  }
-
-  handleMoveForward(): void {
-    this.gameEngine.moveForward();
-  }
-
-  handleTurnLeft(): void {
-    this.gameEngine.turnLeft();
-  }
-
-  handleTurnRight(): void {
-    this.gameEngine.turnRight();
-  }
-
-  handleShootArrow(): void {
-    this.gameEngine.shootArrow();
-  }
-
   handleMobileShootArrow(): void {
-    this.handleShootArrow();
+    this.gameEngine.shootArrow();
     this.achieve.activeAchievement(AchieveTypes.GAMER);
   }
 }

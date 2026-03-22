@@ -30,7 +30,7 @@ export default [
             },
             {
               sourceTag: 'type:ui',
-              onlyDependOnLibsWithTags: ['type:model', 'type:util'],
+              onlyDependOnLibsWithTags: ['type:model', 'type:util', 'type:api'],
             },
             {
               sourceTag: 'type:data-access',
@@ -58,39 +58,39 @@ export default [
             },
             {
               sourceTag: 'scope:achievements',
-              onlyDependOnLibsWithTags: ['scope:achievements', 'scope:shared', 'scope:core', 'type:api'],
+              onlyDependOnLibsWithTags: ['scope:achievements', 'scope:shared', 'type:api'],
             },
             {
               sourceTag: 'scope:boss',
-              onlyDependOnLibsWithTags: ['scope:boss', 'scope:shared', 'scope:core', 'type:api'],
+              onlyDependOnLibsWithTags: ['scope:boss', 'scope:shared', 'type:api'],
             },
             {
               sourceTag: 'scope:chars',
-              onlyDependOnLibsWithTags: ['scope:chars', 'scope:shared', 'scope:core', 'type:api'],
+              onlyDependOnLibsWithTags: ['scope:chars', 'scope:shared', 'type:api'],
             },
             {
               sourceTag: 'scope:config',
-              onlyDependOnLibsWithTags: ['scope:config', 'scope:shared', 'scope:core', 'type:api'],
+              onlyDependOnLibsWithTags: ['scope:config', 'scope:shared', 'type:api'],
             },
             {
               sourceTag: 'scope:credits',
-              onlyDependOnLibsWithTags: ['scope:credits', 'scope:shared', 'scope:core', 'type:api'],
+              onlyDependOnLibsWithTags: ['scope:credits', 'scope:shared', 'type:api'],
             },
             {
               sourceTag: 'scope:game',
-              onlyDependOnLibsWithTags: ['scope:game', 'scope:shared', 'scope:core', 'type:api'],
+              onlyDependOnLibsWithTags: ['scope:game', 'scope:shared', 'type:api'],
             },
             {
               sourceTag: 'scope:gamestats',
-              onlyDependOnLibsWithTags: ['scope:gamestats', 'scope:shared', 'scope:core', 'type:api'],
+              onlyDependOnLibsWithTags: ['scope:gamestats', 'scope:shared', 'type:api'],
             },
             {
               sourceTag: 'scope:instructions',
-              onlyDependOnLibsWithTags: ['scope:instructions', 'scope:shared', 'scope:core', 'type:api'],
+              onlyDependOnLibsWithTags: ['scope:instructions', 'scope:shared', 'type:api'],
             },
             {
               sourceTag: 'scope:shop',
-              onlyDependOnLibsWithTags: ['scope:shop', 'scope:shared', 'scope:core', 'scope:game'],
+              onlyDependOnLibsWithTags: ['scope:shop', 'scope:shared', 'type:api'],
             },
           ],
         },

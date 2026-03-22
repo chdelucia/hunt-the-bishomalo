@@ -93,12 +93,23 @@ describe('KeyboardManagerService', () => {
     const event = new KeyboardEvent('keydown', { code: 'KeyN' });
     service.handleKeyDown(event);
     expect(gameMock.newGame).toHaveBeenCalled();
-    expect(routerMock.navigate).toHaveBeenCalledWith([RouteTypes.SETTINGS]);
   });
 
   it('should handle KeyI and navigate to rules', () => {
     const event = new KeyboardEvent('keydown', { code: 'KeyI' });
     service.handleKeyDown(event);
     expect(routerMock.navigate).toHaveBeenCalledWith([RouteTypes.RULES]);
+  });
+
+  it('should ignore keyboard events if the target is an input, textarea or select', () => {
+    const input = document.createElement('input');
+    const event = new KeyboardEvent('keydown', { code: 'ArrowUp' });
+    Object.defineProperty(event, 'target', { value: input });
+    const preventDefaultSpy = jest.spyOn(event, 'preventDefault');
+
+    service.handleKeyDown(event);
+
+    expect(gameMock.moveForward).not.toHaveBeenCalled();
+    expect(preventDefaultSpy).not.toHaveBeenCalled();
   });
 });
