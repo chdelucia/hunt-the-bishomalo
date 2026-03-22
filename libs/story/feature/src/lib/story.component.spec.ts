@@ -111,4 +111,36 @@ describe('StoryComponent', () => {
     expect(component.showExtraInfo()).toBe(true);
     jest.useRealTimers();
   });
+
+  it('should call goToGame when story is not defined in ngOnInit', () => {
+    mockGameStoryService.getStory.mockReturnValueOnce(null);
+
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      imports: [StoryComponent, getTranslocoTestingModule()],
+      providers: [
+        { provide: Router, useValue: mockRouter },
+        { provide: GameStoryService, useValue: mockGameStoryService },
+      ],
+    }).compileComponents();
+
+    const fixtureNew = TestBed.createComponent(StoryComponent);
+    const componentNew = fixtureNew.componentInstance;
+    const goToGameSpy = jest.spyOn(componentNew, 'goToGame');
+
+    componentNew.ngOnInit();
+
+    expect(goToGameSpy).toHaveBeenCalled();
+  });
+
+  it('should cancel speech and clear interval on destroy', () => {
+    jest.useFakeTimers();
+    component['startReading'](mockStory.text);
+    const cancelSpy = jest.spyOn(speechSynthesis, 'cancel');
+
+    component.ngOnDestroy();
+
+    expect(cancelSpy).toHaveBeenCalled();
+    jest.useRealTimers();
+  });
 });

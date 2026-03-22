@@ -13,7 +13,7 @@ import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { BoardGeneratorService } from './board-generator.service';
 import { PerceptionService } from './perception.service';
 import { signal } from '@angular/core';
-import { Direction, AchieveTypes, RouteTypes } from '@hunt-the-bishomalo/shared-data';
+import { Direction, AchieveTypes, RouteTypes, GameSound } from '@hunt-the-bishomalo/shared-data';
 import { of } from 'rxjs';
 
 describe('GameEngineService', () => {
@@ -346,5 +346,154 @@ describe('GameEngineService', () => {
       (service as any).cartographyAchieve();
       expect(achieveMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.EXPERTCARTO);
     });
+
+  it('should handle calculateElapsedSeconds with a valid start time', () => {
+    const now = new Date();
+    const tenSecondsAgo = new Date(now.getTime() - 10000);
+    storeMock.startTime.set(tenSecondsAgo.toISOString());
+    const result = (service as any).calculateElapsedSeconds(now);
+    expect(result).toBe(10);
+  });
+
+  it('should handle shootArrow when player is dead', () => {
+    storeMock.isAlive.set(false);
+    service.shootArrow();
+    expect(soundMock.playSound).not.toHaveBeenCalled();
+  });
+
+  it('should handle shootArrow when player has no arrows', () => {
+    storeMock.hunter.set({ arrows: 0 });
+    service.shootArrow();
+    expect(storeMock.setMessage).toHaveBeenCalledWith('gameMessages.noArrows');
+  });
+
+  it('should handle win with blackout', () => {
+    storeMock.wumpusKilled.set(0);
+    storeMock.hunter.set({ arrows: 1 });
+    storeMock.settings.set({ size: 4, blackout: true, difficulty: { luck: 5 } });
+
+    service.calcVictoryAchieve(15);
+
+    expect(achieveMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.WINBLACKWOUT);
+  });
+
+  it('should handle win with wasted arrows', () => {
+    storeMock.wumpusKilled.set(0);
+    storeMock.hunter.set({ arrows: 2 });
+    storeMock.settings.set({ size: 4, blackout: false, difficulty: { luck: 5 } });
+
+    service.calcVictoryAchieve(15);
+
+    expect(achieveMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.WASTEDARROWS);
+  });
+
+  it('should handle wumpus kill in blackout', () => {
+    storeMock.settings.set({ blackout: true });
+    service.handleWumpusKillAchieve({ x: 0, y: 1 } as any);
+    expect(achieveMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.BLINDWUMPUSKILLED);
+  });
+
+  it('should play finish sound when max level is reached', () => {
+    storeMock.settings.set({ size: 13, difficulty: { maxLevels: 10 }, blackout: false });
+    storeMock.hunter.set({ hasGold: true, gold: 0 });
+    storeMock.currentCell.mockReturnValue({ x: 0, y: 0 });
+
+    service.exit();
+    expect(soundMock.playSound).toHaveBeenCalledWith(GameSound.FINISH, false);
+  });
+
+  it('should handle wumpus kill at different distance for achievements', () => {
+    storeMock.settings.set({ blackout: false });
+    storeMock.hunter.set({ x: 0, y: 0 });
+
+    service.handleWumpusKillAchieve({ x: 0, y: 2 } as any);
+    expect(achieveMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.WUMPUSKILLED);
+  });
+
+  it('should return 0 distance if not in same row or column', () => {
+    storeMock.hunter.set({ x: 0, y: 0 });
+    const distance = (service as any).calcDistance({ x: 1, y: 1 });
+    expect(distance).toBe(0);
+  });
+
+  it('should play WHONOR sound when not max level', () => {
+    storeMock.settings.set({ size: 4, difficulty: { maxLevels: 10 }, blackout: false });
+    storeMock.hunter.set({ hasGold: true, gold: 0 });
+    storeMock.currentCell.mockReturnValue({ x: 0, y: 0 });
+
+    service.exit();
+    expect(soundMock.playSound).toHaveBeenCalledWith(GameSound.WHONOR, false);
+  });
+
+  it('should handle checkCurrentCell when hunter can exit with victory', () => {
+    storeMock.hunter.set({ hasGold: true, x: 0, y: 0 });
+    storeMock.currentCell.mockReturnValue({ x: 0, y: 0 });
+    const exitSpy = jest.spyOn(service, 'exit');
+
+    (service as any).checkCurrentCell(0, 0);
+    expect(exitSpy).toHaveBeenCalled();
+  });
+
+  it('should handle checkCurrentCell when cell has content but not deadly', () => {
+    const cell = { x: 1, y: 1, content: { type: 'gold' } };
+    storeMock.currentCell.mockReturnValue(cell);
+    storeMock.hunter.set({ x: 1, y: 1 });
+
+    (service as any).checkCurrentCell(0, 0);
+    expect(gameEventMock.applyEffectByCellContent).toHaveBeenCalledWith(cell);
+  });
+
+  it('should handle cartography novice achievement', () => {
+    storeMock.settings.set({ size: 4, pits: 0 });
+    storeMock.board.set([
+      [{ visited: true }, { visited: true }, { visited: true }, { visited: true }],
+      [{ visited: true }, { visited: true }, { visited: true }, { visited: true }],
+      [{ visited: true }, { visited: false }, { visited: false }, { visited: false }],
+      [{ visited: false }, { visited: false }, { visited: false }, { visited: false }],
+    ]);
+
+    (service as any).cartographyAchieve();
+    expect(achieveMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.NOVICECARTO);
+  });
+
+  it('should handle win with no wumpus killed and no arrows wasted', () => {
+    storeMock.wumpusKilled.set(0);
+    storeMock.hunter.set({ arrows: 1 });
+    storeMock.settings.set({ size: 4, blackout: false, difficulty: { luck: 5 } });
+
+    service.calcVictoryAchieve(15);
+
+    expect(achieveMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.WRAT);
+  });
+
+  it('should handle all drop types for wumpus kill', () => {
+    const board = createMockBoard(4);
+    const cell = board[0][1];
+    cell.content = { type: 'wumpus' } as any;
+    storeMock.board.set(board);
+    storeMock.hunter.set({ x: 0, y: 0, direction: Direction.RIGHT, arrows: 1 });
+
+    const randomSpy = jest.spyOn(Math, 'random');
+
+    // extraheart -> type: heart
+    randomSpy.mockReturnValue(0.1); // 10 < 20+5
+    service.shootArrow();
+    expect(cell.content?.type).toBe('heart');
+
+    // extragold -> type: gold
+    cell.content = { type: 'wumpus' } as any;
+    randomSpy.mockReturnValue(0.3); // 30 < 35+5
+    service.shootArrow();
+    expect(cell.content?.type).toBe('gold');
+
+    // extraarrow -> type: arrow
+    cell.content = { type: 'wumpus' } as any;
+    randomSpy.mockReturnValue(0.42); // 42 < 40+5? NO. Ah, wait. luck is 5. 40+5=45.
+    // 0.42 * 100 = 42. 42 < 45.
+    service.shootArrow();
+    expect(cell.content?.type).toBe('arrow');
+
+    randomSpy.mockRestore();
+  });
   });
 });

@@ -123,4 +123,43 @@ describe('ResultsComponent', () => {
     expect(stats.tiempo.minutes).toBe(3);
     expect(stats.tiempo.seconds).toBe(0);
   });
+
+  it('should go to CREDITS when no boss param', () => {
+    activateRouteMock.snapshot.queryParams.boss = false;
+    component.goToCredits();
+    expect(routerMock.navigateByUrl).toHaveBeenCalledWith(RouteTypes.CREDITS);
+  });
+
+  it('should go to CREDITS when all chars unlocked', () => {
+    activateRouteMock.snapshot.queryParams.boss = true;
+    mockGameStore.unlockedChars.set(['1', '2', '3', '4'] as any);
+    component.goToCredits();
+    expect(routerMock.navigateByUrl).toHaveBeenCalledWith(RouteTypes.CREDITS);
+  });
+
+  it('should return 0 completed levels if leaderboard is empty', () => {
+    // Reset component with empty leaderboard
+    mockLeaderboardService.leaderboard = [];
+
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      imports: [ResultsComponent, getTranslocoTestingModule()],
+      providers: [
+        { provide: ACHIEVEMENT_SERVICE, useValue: mockAchievementService },
+        { provide: LEADERBOARD_SERVICE, useValue: mockLeaderboardService },
+        { provide: Router, useValue: routerMock },
+        { provide: ActivatedRoute, useValue: activateRouteMock },
+        { provide: GAME_STORE_TOKEN, useValue: mockGameStore },
+      ],
+    }).compileComponents();
+
+    const fixtureNew = TestBed.createComponent(ResultsComponent);
+    const componentNew = fixtureNew.componentInstance;
+
+    const stats = componentNew.estadisticasGenerales();
+    expect(stats.nivelesCompletados).toBe(0);
+
+    // Restore for other tests
+    mockLeaderboardService.leaderboard = mockLeaderboard;
+  });
 });
