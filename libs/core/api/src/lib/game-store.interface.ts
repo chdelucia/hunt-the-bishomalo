@@ -13,7 +13,7 @@ export interface IGameStore {
   readonly lives: Signal<number>;
   readonly hasGold: Signal<boolean>;
   readonly currentCell: Signal<Cell | null>;
-  readonly inventory: Signal<any[]>; // Use any or a generic item type if needed
+  readonly inventory: Signal<unknown[]>; // Use unknown or a generic item type if needed
   readonly hunter: Signal<Hunter>;
   readonly unlockedChars: Signal<Chars[]>;
   readonly wumpusKilled: Signal<number>;

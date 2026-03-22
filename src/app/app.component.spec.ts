@@ -19,7 +19,11 @@ describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent, RouterModule.forRoot([]), getTranslocoTestingModule()],
+      imports: [
+        AppComponent,
+        RouterModule.forRoot([{ path: 'settings', redirectTo: '' }]),
+        getTranslocoTestingModule(),
+      ],
       providers: [
         {
           provide: ACHIEVEMENT_SERVICE,
