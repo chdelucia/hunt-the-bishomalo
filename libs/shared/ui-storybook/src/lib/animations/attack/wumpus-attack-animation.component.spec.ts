@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppWumpusAttackAnimationComponent } from './wumpus-attack-animation.component';
+import { WumpusAttackAnimationComponent } from './wumpus-attack-animation.component';
 
-describe('AppWumpusAttackAnimationComponent', () => {
-  let component: AppWumpusAttackAnimationComponent;
-  let fixture: ComponentFixture<AppWumpusAttackAnimationComponent>;
+describe('WumpusAttackAnimationComponent', () => {
+  let component: WumpusAttackAnimationComponent;
+  let fixture: ComponentFixture<WumpusAttackAnimationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppWumpusAttackAnimationComponent],
+      imports: [WumpusAttackAnimationComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(AppWumpusAttackAnimationComponent);
+    fixture = TestBed.createComponent(WumpusAttackAnimationComponent);
     component = fixture.componentInstance;
     fixture.componentRef.setInput('selectedChar', 'default');
     fixture.detectChanges();
@@ -28,7 +28,7 @@ describe('AppWumpusAttackAnimationComponent', () => {
   it('should update step over time and emit closeAnimation', (done) => {
     jest.useFakeTimers();
     // Re-create component with fake timers active so ngOnInit uses them
-    fixture = TestBed.createComponent(AppWumpusAttackAnimationComponent);
+    fixture = TestBed.createComponent(WumpusAttackAnimationComponent);
     component = fixture.componentInstance;
     fixture.componentRef.setInput('selectedChar', 'default');
     fixture.detectChanges();

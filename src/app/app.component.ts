@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, HostListener, inject, isDevMode } from '@angular/core';
 import { RouterOutlet, Router } from '@angular/router';
 
-import { ToastComponent, MenuComponent, GameControlsComponent } from '@hunt-the-bishomalo/game/ui';
+import { MenuComponent } from '@hunt-the-bishomalo/game/ui';
+import { ToastComponent, GameControlsComponent } from '@hunt-the-bishomalo/shared/ui-storybook';
 import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { KeyboardManagerService } from '@hunt-the-bishomalo/game/data-access';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';

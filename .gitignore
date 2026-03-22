@@ -47,3 +47,6 @@ server.log
 # Cypress Visual Regression
 e2e/src/snapshots/actual
 e2e/src/snapshots/diff
+
+
+storybook-static

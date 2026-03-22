@@ -5,8 +5,8 @@ import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import {
   AchievementFilterComponent,
   AchievementItemComponent,
-  AchievementProgressComponent
-} from '@hunt-the-bishomalo/achievements/ui';
+  AchievementProgressComponent,
+} from '@hunt-the-bishomalo/shared/ui-storybook';
 import { RouterModule } from '@angular/router';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';

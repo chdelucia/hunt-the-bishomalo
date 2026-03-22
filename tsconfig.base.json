@@ -21,7 +21,9 @@
       "@hunt-the-bishomalo/game/ui": ["libs/game/ui/src/index.ts"],
       "@hunt-the-bishomalo/game/shell": ["libs/game/shell/src/index.ts"],
       "@hunt-the-bishomalo/achievements/api": ["libs/achievements/api/src/index.ts"],
-      "@hunt-the-bishomalo/achievements/data-access": ["libs/achievements/data-access/src/index.ts"],
+      "@hunt-the-bishomalo/achievements/data-access": [
+        "libs/achievements/data-access/src/index.ts"
+      ],
       "@hunt-the-bishomalo/achievements/feature": ["libs/achievements/feature/src/index.ts"],
       "@hunt-the-bishomalo/achievements/ui": ["libs/achievements/ui/src/index.ts"],
       "@hunt-the-bishomalo/achievements/shell": ["libs/achievements/shell/src/index.ts"],
@@ -49,7 +51,8 @@
       "@hunt-the-bishomalo/config/feature": ["libs/config/feature/src/index.ts"],
       "@hunt-the-bishomalo/config/shell": ["libs/config/shell/src/index.ts"],
       "@hunt-the-bishomalo/chars/feature": ["libs/chars/feature/src/index.ts"],
-      "@hunt-the-bishomalo/chars/shell": ["libs/chars/shell/src/index.ts"]
+      "@hunt-the-bishomalo/chars/shell": ["libs/chars/shell/src/index.ts"],
+      "@hunt-the-bishomalo/shared/ui-storybook": ["libs/shared/ui-storybook/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

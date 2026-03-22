@@ -20,7 +20,7 @@ import { timer } from 'rxjs';
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppWumpusAttackAnimationComponent implements OnInit {
+export class WumpusAttackAnimationComponent implements OnInit {
   readonly step = signal(1);
   readonly selectedChar = input.required<string>();
   readonly closeAnimation = output<void>();

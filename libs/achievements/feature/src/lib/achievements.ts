@@ -6,8 +6,8 @@ import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import {
   AchievementFilterComponent,
   AchievementItemComponent,
-  AchievementProgressComponent
-} from '@hunt-the-bishomalo/achievements/ui';
+  AchievementProgressComponent,
+} from '@hunt-the-bishomalo/shared/ui-storybook';
 
 @Component({
   selector: 'lib-achievements',

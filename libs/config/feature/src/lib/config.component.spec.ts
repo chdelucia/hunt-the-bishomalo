@@ -6,7 +6,7 @@ import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { GAME_STORE_TOKEN, GAME_SOUND_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { signal } from '@angular/core';
-import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
+import { TitleComponent } from '@hunt-the-bishomalo/shared/ui-storybook';
 
 const mockAchievement = {
   activeAchievement: jest.fn(),

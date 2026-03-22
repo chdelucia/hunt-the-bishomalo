@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core';
 import {
-  AppWumpusAttackAnimationComponent,
+  WumpusAttackAnimationComponent as AppWumpusAttackAnimationComponent,
   BlackoutComponent,
   GameCellComponent,
   GameMessageComponent,
@@ -8,8 +8,8 @@ import {
   GameLivesComponent,
   GameLevelComponent,
   VisualEffectDirective,
-} from '@hunt-the-bishomalo/game/ui';
-import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
+  TitleComponent,
+} from '@hunt-the-bishomalo/shared/ui-storybook';
 import { RouterModule } from '@angular/router';
 import { GAME_STORE_TOKEN, GAME_SOUND_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';

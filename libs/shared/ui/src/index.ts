@@ -1,1 +1,1 @@
-export * from './lib/title/title.component';
+export * from '@hunt-the-bishomalo/shared/ui-storybook';
