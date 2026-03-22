@@ -70,4 +70,19 @@ describe('GameStoryService', () => {
     expect(gameStoreMock.updateHunter).not.toHaveBeenCalled();
     expect(gameStoreMock.updateGame).not.toHaveBeenCalled();
   });
+
+  it('should return undefined if no story matches level', () => {
+    gameStoreMock.settings.set({ size: 100, selectedChar: Chars.DEFAULT });
+    const story = service.getStory();
+    expect(story).toBeUndefined();
+  });
+
+  it('should handle missing charStories', () => {
+    gameStoreMock.settings.set({ size: 4, selectedChar: 'UNKNOWN_CHAR' as any });
+    const story = service.getStory();
+    expect(story).toBeUndefined();
+
+    const entries = service.getJournalEntries();
+    expect(entries).toEqual([]);
+  });
 });

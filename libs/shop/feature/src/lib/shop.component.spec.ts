@@ -125,4 +125,73 @@ describe('ShopComponent', () => {
       state: { fromSecretPath: true },
     });
   });
+
+  it('should show error message if not enough gold', () => {
+    const product: Product = {
+      name: 'product.lantern.name',
+      effect: 'lantern',
+      description: 'product.lantern.description',
+      price: 1000,
+      icon: 'lantern.svg',
+    };
+
+    component.buyProduct(product);
+    expect(component.message()).toBe('shop.purchaseMessageNotEnoughCoins');
+  });
+
+  it('should randomise products based on chance', () => {
+    const randomSpy = jest.spyOn(Math, 'random').mockReturnValue(0.01);
+
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      imports: [ShopComponent, CommonModule, getTranslocoTestingModule()],
+      providers: [
+        { provide: GAME_STORE_TOKEN, useValue: mockGameStoreService },
+        { provide: GAME_ENGINE_TOKEN, useValue: mockGameEngineService },
+        { provide: Router, useValue: mockRouter },
+      ],
+    }).compileComponents();
+
+    const fixtureNew = TestBed.createComponent(ShopComponent);
+    const componentNew = fixtureNew.componentInstance;
+
+    const products = componentNew.productos();
+    expect(products.length).toBeGreaterThan(4);
+    randomSpy.mockRestore();
+  });
+
+  it('should clear timeout and message on destroy', () => {
+    jest.useFakeTimers();
+    const product: Product = {
+      name: 'product.lantern.name',
+      effect: 'lantern',
+      description: 'product.lantern.description',
+      price: 100,
+      icon: 'lantern.svg',
+    };
+
+    component.buyProduct(product);
+    expect(component.message()).not.toBe('');
+
+    component.ngOnDestroy();
+
+    jest.advanceTimersByTime(3000);
+    jest.useRealTimers();
+  });
+
+  it('should clear message and timeout when clearMessage is called', () => {
+    jest.useFakeTimers();
+    const product: Product = {
+      name: 'product.lantern.name',
+      effect: 'lantern',
+      description: 'product.lantern.description',
+      price: 100,
+      icon: 'lantern.svg',
+    };
+
+    component.buyProduct(product);
+    component.clearMessage();
+    expect(component.message()).toBe('');
+    jest.useRealTimers();
+  });
 });

@@ -96,4 +96,14 @@ describe('AchievementsComponent', () => {
   it('should correctly compute percentage', () => {
     expect(component.percentage()).toBe(Math.round((2 / 3) * 100));
   });
+
+  it('should return 0 percentage if no achievements', () => {
+    component.achievements.set([]);
+    expect(component.percentage()).toBe(0);
+  });
+
+  it('should handle unknown filter by returning all', () => {
+    component.setFilter('unknown' as any);
+    expect(component.filteredAchievements().length).toBe(mockAchievements.length);
+  });
 });

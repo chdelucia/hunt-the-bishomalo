@@ -42,12 +42,15 @@ export const BossStore = signalStore(
 
         const inRow = row.filter((c) => c.hasBossPart && !c.hit).length;
         const inCol = col.filter((c) => c.hasBossPart && !c.hit).length;
-
-        if (inRow >= inCol) {
+        if (inRow >= inCol && inRow > 0) {
           return translocoService.translate('bossFightMessages.hintInRow', { count: inRow });
         }
 
-        return translocoService.translate('bossFightMessages.hintInCol', { count: inCol });
+        if (inCol > 0) {
+          return translocoService.translate('bossFightMessages.hintInCol', { count: inCol });
+        }
+
+        return '';
       };
 
       const revealAllBossParts = (grid: BossCell[][]): BossCell[][] => {
@@ -118,7 +121,9 @@ export const BossStore = signalStore(
                 } else {
                   newPlayerLives--;
                   const hint = getHint(grid(), c.x, c.y);
-                  newMessage = translocoService.translate('bossFightMessages.miss', { hint });
+                  newMessage = hint
+                    ? translocoService.translate('bossFightMessages.miss', { hint })
+                    : translocoService.translate('bossFightMessages.missNoHint');
                   return { ...c, hit, hint };
                 }
                 return { ...c, hit };
