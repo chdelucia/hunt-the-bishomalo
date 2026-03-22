@@ -47,7 +47,7 @@ describe('AppComponent', () => {
           provide: GAME_STORE_TOKEN,
           useValue: {
             settings: signal({ size: 4, difficulty: { luck: 5 } }),
-            hunter: signal({ x: 0, y: 0 }),
+            hunter: signal({ x: 0, y: 0, direction: 0, arrows: 1 }),
             lives: signal(3),
             dragonballs: signal(0),
             board: signal([]),
@@ -55,6 +55,11 @@ describe('AppComponent', () => {
             isAlive: signal(true),
             hasWon: signal(false),
             syncHunterWithStorage: jest.fn(),
+            resetStore: jest.fn(),
+            updateGame: jest.fn(),
+            updateHunter: jest.fn(),
+            setMessage: jest.fn(),
+            countWumpusKilled: jest.fn(),
           },
         },
         { provide: GAME_ENGINE_TOKEN, useValue: {} },
@@ -67,5 +72,66 @@ describe('AppComponent', () => {
 
   it(`should have as title 'hunt-the-bishomalo'`, () => {
     expect(component.title).toEqual('hunt-the-bishomalo');
+  });
+
+  it('should handle keyboard events', () => {
+    const event = new KeyboardEvent('keydown', { key: 'ArrowUp' });
+    const keyboardManager = TestBed.inject(KeyboardManagerService);
+    component.handleKeyDown(event);
+    expect(keyboardManager.handleKeyDown).toHaveBeenCalledWith(event);
+  });
+
+  it('should call handleNewGame', () => {
+    const gameEngine = (component as any).gameEngine;
+    jest.spyOn(gameEngine, 'newGame').mockImplementation(() => {
+      // mock
+    });
+    component.handleNewGame();
+    expect(gameEngine.newGame).toHaveBeenCalled();
+  });
+
+  it('should call handleRestart', () => {
+    const gameEngine = (component as any).gameEngine;
+    jest.spyOn(gameEngine, 'initGame').mockImplementation(() => {
+      // mock
+    });
+    component.handleRestart();
+    expect(gameEngine.initGame).toHaveBeenCalled();
+  });
+
+  it('should call handleMoveForward', () => {
+    const gameEngine = (component as any).gameEngine;
+    jest.spyOn(gameEngine, 'moveForward').mockImplementation(() => {
+      // mock
+    });
+    component.handleMoveForward();
+    expect(gameEngine.moveForward).toHaveBeenCalled();
+  });
+
+  it('should call handleTurnLeft', () => {
+    const gameEngine = (component as any).gameEngine;
+    jest.spyOn(gameEngine, 'turnLeft').mockImplementation(() => {
+      // mock
+    });
+    component.handleTurnLeft();
+    expect(gameEngine.turnLeft).toHaveBeenCalled();
+  });
+
+  it('should call handleTurnRight', () => {
+    const gameEngine = (component as any).gameEngine;
+    jest.spyOn(gameEngine, 'turnRight').mockImplementation(() => {
+      // mock
+    });
+    component.handleTurnRight();
+    expect(gameEngine.turnRight).toHaveBeenCalled();
+  });
+
+  it('should call handleShootArrow', () => {
+    const gameEngine = (component as any).gameEngine;
+    jest.spyOn(gameEngine, 'shootArrow').mockImplementation(() => {
+      // mock
+    });
+    component.handleShootArrow();
+    expect(gameEngine.shootArrow).toHaveBeenCalled();
   });
 });
