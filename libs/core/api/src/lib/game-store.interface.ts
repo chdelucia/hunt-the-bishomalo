@@ -25,6 +25,7 @@ export interface IGameStore {
   countWumpusKilled(): void;
   setMessage(message: string): void;
   resetStore(): void;
+  toggleSound(): void;
 }
 
 export const GAME_STORE_TOKEN = new InjectionToken<IGameStore>('GAME_STORE_TOKEN');

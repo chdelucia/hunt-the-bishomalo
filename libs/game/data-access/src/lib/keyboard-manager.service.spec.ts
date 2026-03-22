@@ -93,7 +93,6 @@ describe('KeyboardManagerService', () => {
     const event = new KeyboardEvent('keydown', { code: 'KeyN' });
     service.handleKeyDown(event);
     expect(gameMock.newGame).toHaveBeenCalled();
-    expect(routerMock.navigate).toHaveBeenCalledWith([RouteTypes.SETTINGS]);
   });
 
   it('should handle KeyI and navigate to rules', () => {

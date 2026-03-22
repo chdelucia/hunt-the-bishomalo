@@ -46,7 +46,6 @@ export class KeyboardManagerService {
     },
     KeyN: () => {
       this.game.newGame();
-      this.router.navigate([RouteTypes.SETTINGS]);
     },
     KeyI: () => {
       this.router.navigate([RouteTypes.RULES]);

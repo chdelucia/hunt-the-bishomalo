@@ -123,36 +123,9 @@ describe('Game', () => {
     });
 
     it('should call engine actions', () => {
-        component.handleNewGame();
-        expect(GAME_ENGINE_MOCK.newGame).toHaveBeenCalled();
-
-        component.handleRestart();
-        expect(GAME_ENGINE_MOCK.initGame).toHaveBeenCalled();
-
-        component.handleMoveForward();
-        expect(GAME_ENGINE_MOCK.moveForward).toHaveBeenCalled();
-
-        component.handleTurnLeft();
-        expect(GAME_ENGINE_MOCK.turnLeft).toHaveBeenCalled();
-
-        component.handleTurnRight();
-        expect(GAME_ENGINE_MOCK.turnRight).toHaveBeenCalled();
-
-        component.handleShootArrow();
-        expect(GAME_ENGINE_MOCK.shootArrow).toHaveBeenCalled();
-
         component.handleMobileShootArrow();
         expect(GAME_ENGINE_MOCK.shootArrow).toHaveBeenCalled();
         expect(ACHIEVEMENT_SERVICE_MOCK.activeAchievement).toHaveBeenCalledWith(AchieveTypes.GAMER);
-    });
-
-    it('should handle toggle sound', () => {
-        const updateSpy = jest.spyOn(mockGameStore, 'updateGame');
-        mockGameStore.soundEnabled.set(true);
-        component.handleToggleSound();
-        expect(updateSpy).toHaveBeenCalledWith({
-            settings: expect.objectContaining({ soundEnabled: false }),
-        });
     });
   });
 });

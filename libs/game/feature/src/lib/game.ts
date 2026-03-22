@@ -36,7 +36,7 @@ import { AchieveTypes, GameSound, GameItem } from '@hunt-the-bishomalo/data';
 })
 export class Game {
   readonly game = inject(GAME_STORE_TOKEN);
-  private readonly gameEngine = inject(GAME_ENGINE_TOKEN);
+  readonly gameEngine = inject(GAME_ENGINE_TOKEN);
   private readonly achieve = inject(ACHIEVEMENT_SERVICE);
   private readonly sound = inject(GAME_SOUND_TOKEN);
 
@@ -80,41 +80,8 @@ export class Game {
     this.game.setMessage('GAME OVER ' + this.game.message());
   }
 
-  handleNewGame(): void {
-    this.gameEngine.newGame();
-  }
-
-  handleRestart(): void {
-    this.gameEngine.initGame();
-  }
-
-  handleMoveForward(): void {
-    this.gameEngine.moveForward();
-  }
-
-  handleTurnLeft(): void {
-    this.gameEngine.turnLeft();
-  }
-
-  handleTurnRight(): void {
-    this.gameEngine.turnRight();
-  }
-
-  handleShootArrow(): void {
-    this.gameEngine.shootArrow();
-  }
-
-  handleToggleSound(): void {
-    this.game.updateGame({
-      settings: {
-        ...this.game.settings(),
-        soundEnabled: !this.game.soundEnabled(),
-      },
-    });
-  }
-
   handleMobileShootArrow(): void {
-    this.handleShootArrow();
+    this.gameEngine.shootArrow();
     this.achieve.activeAchievement(AchieveTypes.GAMER);
   }
 }

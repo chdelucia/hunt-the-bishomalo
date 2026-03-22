@@ -49,16 +49,16 @@
     [hasWon]="hasWon"
     [settings]="settings"
     [lives]="game.lives()"
-    (restartRequested)="handleRestart()"
+    (restartRequested)="gameEngine.initGame()"
   />
 
   <lib-mobile-controls
     [isFinish]="hasWon || !isAlive"
     [soundEnabled]="game.soundEnabled()"
-    (moveForwardRequested)="handleMoveForward()"
-    (turnLeftRequested)="handleTurnLeft()"
-    (turnRightRequested)="handleTurnRight()"
+    (moveForwardRequested)="gameEngine.moveForward()"
+    (turnLeftRequested)="gameEngine.turnLeft()"
+    (turnRightRequested)="gameEngine.turnRight()"
     (shootArrowRequested)="handleMobileShootArrow()"
-    (toggleSoundRequested)="handleToggleSound()"
+    (toggleSoundRequested)="game.toggleSound()"
   />
 </main>

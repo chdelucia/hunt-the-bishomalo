@@ -98,6 +98,14 @@ export const GameStore = signalStore(
       setMessage(message: string) {
         store.$_setMessage(message);
       },
+
+      toggleSound() {
+        store.$_updateSettings({
+          ...store.settings(),
+          soundEnabled: !store.soundEnabled(),
+        });
+        persistGameState();
+      },
     };
   }),
   withHooks({
