@@ -100,6 +100,9 @@ button {
   background-color: var(--color-blue-600);
   color: var(--color-white);
   border: none;
+  transition:
+    background-color 0.2s ease,
+    outline 0.1s ease;
 
   &:hover {
     cursor: pointer;
@@ -109,6 +112,16 @@ button {
     background-color: var(--color-button-disabled);
     cursor: not-allowed;
   }
+  &:focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+}
+
+a:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
 
 .effect-layer {
