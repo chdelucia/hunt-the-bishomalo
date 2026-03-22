@@ -58,7 +58,7 @@ describe('EndCreditsComponent', () => {
 
   it('should update scroll position automatically', () => {
     const initialPos = component.scrollPosition();
-    const rafSpy = jest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb: any) => {
+    const rafSpy = jest.spyOn(window, 'requestAnimationFrame').mockImplementation(() => {
       return 1;
     });
 
