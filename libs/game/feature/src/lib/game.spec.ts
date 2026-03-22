@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { GAME_STORE_TOKEN, GAME_SOUND_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { signal } from '@angular/core';
+import { Chars } from '@hunt-the-bishomalo/data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
@@ -43,8 +44,15 @@ describe('Game', () => {
         blackout: false,
         size: 4,
         difficulty: {
-            maxLives: 3
+            maxLives: 3,
+            maxLevels: 10
         }
+    }),
+    size: signal(4),
+    selectedChar: signal(Chars.DEFAULT),
+    difficulty: signal({
+        maxLives: 3,
+        maxLevels: 10
     }),
     message: signal(''),
     lives: signal(3),

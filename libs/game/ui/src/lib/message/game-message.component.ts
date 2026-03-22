@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
-import { GameSettings, RouteTypes } from '@hunt-the-bishomalo/data';
+import { RouteTypes } from '@hunt-the-bishomalo/data';
 import { Router } from '@angular/router';
 import { GameMessageDisplayComponent } from './game-message-display.component';
 import { GameMessageActionsComponent } from './game-message-actions.component';
@@ -20,16 +20,15 @@ export class GameMessageComponent {
   readonly message = input.required<string>();
   readonly isAlive = input.required<boolean>();
   readonly hasWon = input.required<boolean>();
-  readonly settings = input.required<GameSettings>();
+  readonly size = input.required<number>();
+  readonly maxLevels = input.required<number>();
   readonly lives = input.required<number>();
 
   readonly _bolaDrac = computed(() => this.message().includes('drac'));
-  readonly _hasMessage = computed(() => !!this.message() && !!this.settings().size);
-  readonly _shouldShowRetry = computed(() => !this.isAlive() && !!this.settings().size);
-  readonly _shouldShowNextLevel = computed(() => this.hasWon() && !!this.settings().size);
-  readonly _showCongrats = computed(
-    () => this.settings().size < this.settings().difficulty.maxLevels + 3,
-  );
+  readonly _hasMessage = computed(() => !!this.message() && !!this.size());
+  readonly _shouldShowRetry = computed(() => !this.isAlive() && !!this.size());
+  readonly _shouldShowNextLevel = computed(() => this.hasWon() && !!this.size());
+  readonly _showCongrats = computed(() => this.size() < this.maxLevels() + 3);
 
   restartGame(): void {
     this.restartRequested.emit();

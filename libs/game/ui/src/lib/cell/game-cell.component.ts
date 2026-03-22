@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import { Cell, GameItem, GameSettings, Hunter } from '@hunt-the-bishomalo/data';
+import { Cell, Chars, GameItem, Hunter } from '@hunt-the-bishomalo/data';
 import { CellContentComponent } from './content/cell-content.component';
 import { HunterComponent } from './hunter/hunter.component';
 
@@ -17,7 +17,8 @@ export class GameCellComponent {
   readonly isAlive = input.required<boolean>();
   readonly hasWon = input.required<boolean>();
   readonly inventory = input<GameItem[]>([]);
-  readonly settings = input.required<GameSettings>();
+  readonly selectedChar = input.required<Chars>();
+  readonly size = input.required<number>();
   readonly blackout = input.required<boolean>();
   readonly isHunterCell = input.required<boolean>();
   readonly hunter = input<Hunter | null>(null);
