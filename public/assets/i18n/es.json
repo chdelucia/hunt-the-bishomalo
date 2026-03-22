@@ -5,7 +5,9 @@
     "instructions": "Instrucciones",
     "newGame": "Nueva partida",
     "achievementsAlt": "Logros",
-    "credits": "Creditos"
+    "credits": "Creditos",
+    "openMenuAriaLabel": "Abrir menú",
+    "closeMenuAriaLabel": "Cerrar menú"
   },
   "achievements": {
     "backToGame": "Volver al juego",

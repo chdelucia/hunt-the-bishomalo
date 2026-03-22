@@ -5,7 +5,9 @@
     "instructions": "Instructions",
     "newGame": "New Game",
     "achievementsAlt": "Achievements",
-    "credits": "Credits"
+    "credits": "Credits",
+    "openMenuAriaLabel": "Open menu",
+    "closeMenuAriaLabel": "Close menu"
   },
   "achievements": {
     "backToGame": "Back to Game",
