@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.55.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.14.7...v7.55.0) (2026-03-22)
+
+
+### Features
+
+* agent skills ([90749c8](https://github.com/chdelucia/hunt-the-bishomalo/commit/90749c8c5a183fed2bbb1d54bdc04f84a12fd861))
+* mcp serve config ([4ef7b50](https://github.com/chdelucia/hunt-the-bishomalo/commit/4ef7b5016c48952ff4b2bc2aeadbacd25c467dc6))
+
+
+### Bug Fixes
+
+* build ([4e855a4](https://github.com/chdelucia/hunt-the-bishomalo/commit/4e855a457a2e9575ca119ab30b2b666d0c0de775))
+* lint ([796319f](https://github.com/chdelucia/hunt-the-bishomalo/commit/796319f8146a4bbc323eb4d8b2d23652a2eff618))
+
 ### [7.14.7](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.14.6...v7.14.7) (2026-03-22)
 
 ### [7.14.6](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.14.5...v7.14.6) (2026-03-22)
