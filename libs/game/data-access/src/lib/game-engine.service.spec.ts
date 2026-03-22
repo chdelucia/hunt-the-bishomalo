@@ -111,6 +111,11 @@ describe('GameEngineService', () => {
     expect(service).toBeTruthy();
   });
 
+  it('should navigate to settings on newGame', () => {
+    service.newGame();
+    expect(routerMock.navigate).toHaveBeenCalledWith([RouteTypes.SETTINGS]);
+  });
+
   it('should initialize game', () => {
     storeMock.currentCell.mockReturnValue({ x: 0, y: 0 });
     service.initGame();

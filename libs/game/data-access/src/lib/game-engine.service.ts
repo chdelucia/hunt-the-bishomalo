@@ -116,6 +116,7 @@ export class GameEngineService implements IGameEngineService {
     this.sound.stop();
     this.store.resetStore();
     this.leaderBoard.clear();
+    this.router.navigate([RouteTypes.SETTINGS]);
   }
 
   nextLevel(): void {

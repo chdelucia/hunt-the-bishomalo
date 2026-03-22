@@ -22,12 +22,14 @@ export interface IGameStore {
   readonly soundEnabled: Signal<boolean>;
   readonly dragonballs: Signal<number>;
   readonly gold: Signal<number>;
+  readonly size: Signal<number>;
 
   updateHunter(partial: Partial<Hunter>): void;
   updateGame(partial: Partial<GameState>): void;
   countWumpusKilled(): void;
   setMessage(message: string): void;
   resetStore(): void;
+  toggleSound(): void;
 }
 
 export const GAME_STORE_TOKEN = new InjectionToken<IGameStore>('GAME_STORE_TOKEN');

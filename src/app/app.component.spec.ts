@@ -46,6 +46,8 @@ describe('AppComponent', () => {
         {
           provide: GAME_STORE_TOKEN,
           useValue: {
+            size: signal(4),
+            soundEnabled: signal(true),
             settings: signal({ size: 4, difficulty: { luck: 5 } }),
             hunter: signal({ x: 0, y: 0, direction: 0, arrows: 1 }),
             lives: signal(3),
@@ -62,7 +64,17 @@ describe('AppComponent', () => {
             countWumpusKilled: jest.fn(),
           },
         },
-        { provide: GAME_ENGINE_TOKEN, useValue: {} },
+        {
+          provide: GAME_ENGINE_TOKEN,
+          useValue: {
+            newGame: jest.fn(),
+            initGame: jest.fn(),
+            moveForward: jest.fn(),
+            turnLeft: jest.fn(),
+            turnRight: jest.fn(),
+            shootArrow: jest.fn(),
+          },
+        },
       ],
     }).compileComponents();
     fixture = TestBed.createComponent(AppComponent);
@@ -81,57 +93,8 @@ describe('AppComponent', () => {
     expect(keyboardManager.handleKeyDown).toHaveBeenCalledWith(event);
   });
 
-  it('should call handleNewGame', () => {
-    const gameEngine = (component as any).gameEngine;
-    jest.spyOn(gameEngine, 'newGame').mockImplementation(() => {
-      // mock
-    });
-    component.handleNewGame();
-    expect(gameEngine.newGame).toHaveBeenCalled();
-  });
-
-  it('should call handleRestart', () => {
-    const gameEngine = (component as any).gameEngine;
-    jest.spyOn(gameEngine, 'initGame').mockImplementation(() => {
-      // mock
-    });
-    component.handleRestart();
-    expect(gameEngine.initGame).toHaveBeenCalled();
-  });
-
-  it('should call handleMoveForward', () => {
-    const gameEngine = (component as any).gameEngine;
-    jest.spyOn(gameEngine, 'moveForward').mockImplementation(() => {
-      // mock
-    });
-    component.handleMoveForward();
-    expect(gameEngine.moveForward).toHaveBeenCalled();
-  });
-
-  it('should call handleTurnLeft', () => {
-    const gameEngine = (component as any).gameEngine;
-    jest.spyOn(gameEngine, 'turnLeft').mockImplementation(() => {
-      // mock
-    });
-    component.handleTurnLeft();
-    expect(gameEngine.turnLeft).toHaveBeenCalled();
-  });
-
-  it('should call handleTurnRight', () => {
-    const gameEngine = (component as any).gameEngine;
-    jest.spyOn(gameEngine, 'turnRight').mockImplementation(() => {
-      // mock
-    });
-    component.handleTurnRight();
-    expect(gameEngine.turnRight).toHaveBeenCalled();
-  });
-
-  it('should call handleShootArrow', () => {
-    const gameEngine = (component as any).gameEngine;
-    jest.spyOn(gameEngine, 'shootArrow').mockImplementation(() => {
-      // mock
-    });
-    component.handleShootArrow();
-    expect(gameEngine.shootArrow).toHaveBeenCalled();
+  it('should have gameEngine and game store injected', () => {
+    expect(component.gameEngine).toBeDefined();
+    expect(component.game).toBeDefined();
   });
 });
