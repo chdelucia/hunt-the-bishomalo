@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { CellContent } from '@hunt-the-bishomalo/data';
+import { CellContent } from '@hunt-the-bishomalo/shared-data';
 
 @Component({
   selector: 'lib-cell-content',

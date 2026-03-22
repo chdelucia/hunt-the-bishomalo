@@ -1,7 +1,7 @@
 import { Component, inject, signal, computed } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Achievement } from '@hunt-the-bishomalo/data';
+import { Achievement } from '@hunt-the-bishomalo/shared-data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import {
   AchievementFilterComponent,

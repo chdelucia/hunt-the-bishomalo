@@ -1,4 +1,4 @@
-import { Chars } from '@hunt-the-bishomalo/data';
+import { Chars } from '@hunt-the-bishomalo/shared-data';
 
 export interface LevelStory {
   level: number;

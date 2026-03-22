@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { GameSound, CauseOfDeath, Cell } from '@hunt-the-bishomalo/data';
+import { GameSound, CauseOfDeath, Cell } from '@hunt-the-bishomalo/shared-data';
 
 export interface IGameSoundService {
   playSound(sound: GameSound, loop?: boolean): void;

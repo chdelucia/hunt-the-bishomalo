@@ -1,7 +1,7 @@
 import { computed, inject } from '@angular/core';
 import { signalStore, patchState, withHooks, withMethods, withComputed } from '@ngrx/signals';
 import { LOCALSTORAGE_SERVICE_TOKEN } from '@hunt-the-bishomalo/core/api';
-import { GameSettings, Chars, GameState, GameItem, Hunter } from '@hunt-the-bishomalo/data';
+import { GameSettings, Chars, GameState, GameItem, Hunter } from '@hunt-the-bishomalo/shared-data';
 import { withHunterFeature } from './features/hunter.feature';
 import { withConfigFeature, storageSettingsKey } from './features/config.feature';
 import { withGameStatusFeature } from './features/game-status.feature';

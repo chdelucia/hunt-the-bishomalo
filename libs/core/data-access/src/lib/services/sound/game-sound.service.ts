@@ -1,5 +1,5 @@
 import { effect, inject, Injectable } from '@angular/core';
-import { GameSound } from '@hunt-the-bishomalo/data';
+import { GameSound } from '@hunt-the-bishomalo/shared-data';
 import { GAME_STORE_TOKEN, IGameSoundService } from '@hunt-the-bishomalo/core/api';
 
 const SOUND_PATHS: Record<GameSound, string> = {

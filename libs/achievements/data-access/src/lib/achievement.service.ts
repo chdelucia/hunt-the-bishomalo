@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { Achievement, AchieveTypes, GameSound } from '@hunt-the-bishomalo/data';
+import { Achievement, AchieveTypes, GameSound } from '@hunt-the-bishomalo/shared-data';
 import {
   ANALYTICS_SERVICE_TOKEN,
   GAME_SOUND_TOKEN,

@@ -1,6 +1,6 @@
 import { inject, isDevMode } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { RouteTypes } from '@hunt-the-bishomalo/data';
+import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
 
 export const secretGuard: CanActivateFn = () => {
   const router = inject(Router);

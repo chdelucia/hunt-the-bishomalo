@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
-import { RouteTypes } from '@hunt-the-bishomalo/data';
+import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
 import { Router } from '@angular/router';
 import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { BossStore, BossCell } from './boss-store';

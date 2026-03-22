@@ -1,7 +1,7 @@
 import { Component, inject, output, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
-import { RouteTypes } from '@hunt-the-bishomalo/data';
+import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
 
 @Component({
   selector: 'lib-menu',

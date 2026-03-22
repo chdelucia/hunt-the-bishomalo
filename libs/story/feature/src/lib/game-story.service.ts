@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Chars } from '@hunt-the-bishomalo/data';
+import { Chars } from '@hunt-the-bishomalo/shared-data';
 import { LevelStory, STORIES } from './stories.const';
 import { TranslocoService } from '@jsverse/transloco';
 import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';

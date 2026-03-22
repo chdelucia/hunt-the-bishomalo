@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { GameEventService } from './game-event.service';
 import { GAME_SOUND_TOKEN, GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
-import { Cell, GameSound, AchieveTypes } from '@hunt-the-bishomalo/data';
+import { Cell, GameSound, AchieveTypes } from '@hunt-the-bishomalo/shared-data';
 import { signal } from '@angular/core';
 
 describe('GameEventService', () => {
@@ -109,6 +109,17 @@ describe('GameEventService', () => {
       expect(gameSoundMock.playSound).toHaveBeenCalledWith(GameSound.SCREAM, false);
       expect(achievementMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.DEATHBYWUMPUES);
     });
+
+    it('should kill player if no effects can be applied', () => {
+      gameStoreMock.inventory.set([]);
+      const cell: Cell = { x: 1, y: 1, visited: true };
+      const prev = { x: 0, y: 0 };
+
+      const result = service.applyEffectsOnDeath('wumpus', cell, prev);
+
+      expect(result).toBe(false);
+      expect(gameStoreMock.updateGame).toHaveBeenCalledWith({ isAlive: false });
+    });
   });
 
   describe('applyEffectByCellContent', () => {
@@ -171,6 +182,33 @@ describe('GameEventService', () => {
       expect(achievementMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.PICKHEART);
       expect(gameStoreMock.updateGame).toHaveBeenCalledWith({ lives: 4 });
       expect(cell.content).toBeUndefined();
+    });
+
+    it('should respect max lives', () => {
+      gameStoreMock.lives.set(8);
+      const cell: Cell = {
+        x: 1,
+        y: 1,
+        visited: true,
+        content: { type: 'heart' } as any,
+      };
+      service.applyEffectByCellContent(cell);
+
+      expect(gameStoreMock.updateGame).toHaveBeenCalledWith({ lives: 8 });
+    });
+
+    it('should not pickup second dragonball if already have one', () => {
+      gameStoreMock.dragonballs.set(1);
+      const cell: Cell = {
+        x: 1,
+        y: 1,
+        visited: true,
+        content: { type: 'dragonball' } as any,
+      };
+      service.applyEffectByCellContent(cell);
+
+      expect(gameStoreMock.updateHunter).not.toHaveBeenCalled();
+      expect(cell.content).toBeDefined();
     });
   });
 });

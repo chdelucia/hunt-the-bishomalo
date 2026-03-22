@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameCellComponent } from './game-cell.component';
-import { Cell, Chars, Hunter } from '@hunt-the-bishomalo/data';
+import { Cell, Chars, Hunter } from '@hunt-the-bishomalo/shared-data';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 

@@ -6,7 +6,7 @@ import {
   LOCALSTORAGE_SERVICE_TOKEN,
   ANALYTICS_SERVICE_TOKEN,
 } from '@hunt-the-bishomalo/core/api';
-import { AchieveTypes } from '@hunt-the-bishomalo/data';
+import { AchieveTypes } from '@hunt-the-bishomalo/shared-data';
 
 describe('AchievementService', () => {
   let service: AchievementService;

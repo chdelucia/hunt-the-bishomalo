@@ -18,7 +18,7 @@ import {
   GameSound,
   RouteTypes,
   AchieveTypes
-} from '@hunt-the-bishomalo/data';
+} from '@hunt-the-bishomalo/shared-data';
 import { take } from 'rxjs';
 import { BoardGeneratorService } from './board-generator.service';
 import { PerceptionService } from './perception.service';

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Cell, CELL_CONTENTS, CellContentType, GameSettings } from '@hunt-the-bishomalo/data';
+import { Cell, CELL_CONTENTS, CellContentType, GameSettings } from '@hunt-the-bishomalo/shared-data';
 
 @Injectable({ providedIn: 'root' })
 export class BoardGeneratorService {

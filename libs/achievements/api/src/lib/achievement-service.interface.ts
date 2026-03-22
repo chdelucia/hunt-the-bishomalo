@@ -1,5 +1,5 @@
 import { InjectionToken, Signal } from '@angular/core';
-import { Achievement, AchieveTypes } from '@hunt-the-bishomalo/data';
+import { Achievement, AchieveTypes } from '@hunt-the-bishomalo/shared-data';
 
 export interface IAchievementService {
   achievements: Achievement[];

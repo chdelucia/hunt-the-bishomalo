@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { Cell } from '@hunt-the-bishomalo/data';
+import { Cell } from '@hunt-the-bishomalo/shared-data';
 
 export interface IGameEngineService {
   initGame(): void;

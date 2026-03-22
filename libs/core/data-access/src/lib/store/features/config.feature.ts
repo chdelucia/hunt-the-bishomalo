@@ -6,7 +6,7 @@ import {
   withMethods,
   patchState,
 } from '@ngrx/signals';
-import { GameSettings, Chars } from '@hunt-the-bishomalo/data';
+import { GameSettings, Chars } from '@hunt-the-bishomalo/shared-data';
 import { LocalstorageService } from '../../services';
 
 export const storageSettingsKey = 'hunt_the_bishomalo_settings';

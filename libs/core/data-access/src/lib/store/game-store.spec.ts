@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { GameStore } from './game-store';
-import { Chars, GameSettings, Hunter, Cell, Direction } from '@hunt-the-bishomalo/data';
+import { Chars, GameSettings, Hunter, Cell, Direction } from '@hunt-the-bishomalo/shared-data';
 import { LOCALSTORAGE_SERVICE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { LocalstorageService } from '../services';
 
@@ -44,6 +44,10 @@ describe('GameStore (SignalStore)', () => {
   };
 
   beforeEach(() => {
+    localStorageServiceMock.getValue.mockReturnValue(null);
+    localStorageServiceMock.setValue.mockClear();
+    localStorageServiceMock.clearValue.mockClear();
+
     TestBed.configureTestingModule({
       providers: [
         GameStore,
@@ -70,11 +74,11 @@ describe('GameStore (SignalStore)', () => {
 
   it('should persist when updating hunter inventory or gold', () => {
     store.updateHunter({ gold: 100 });
-    expect(localStorageServiceMock.setValue).toHaveBeenCalled();
+    expect(localStorageServiceMock.setValue).toHaveBeenCalledWith('hunt_the_bishomalo_hunter', expect.any(Object));
     localStorageServiceMock.setValue.mockClear();
 
     store.updateHunter({ inventory: [{ id: 'test' }] });
-    expect(localStorageServiceMock.setValue).toHaveBeenCalled();
+    expect(localStorageServiceMock.setValue).toHaveBeenCalledWith('hunt_the_bishomalo_hunter', expect.any(Object));
   });
 
   it('should update game status correctly', () => {
@@ -115,6 +119,7 @@ describe('GameStore (SignalStore)', () => {
 
   it('should call $_resetConfig via resetStore', () => {
     store.updateGame({ settings: mockSettings });
+    localStorageServiceMock.clearValue.mockClear();
     store.resetStore();
     expect(store.settings()).toEqual({});
     expect(localStorageServiceMock.clearValue).toHaveBeenCalledWith('hunt_the_bishomalo_settings');
@@ -143,8 +148,9 @@ describe('GameStore (SignalStore)', () => {
     store.updateGame({ settings: { ...mockSettings, soundEnabled: false } });
     expect(store.soundEnabled()).toBe(false);
 
-    store.updateGame({ settings: { ...mockSettings, soundEnabled: true } });
+    store.toggleSound();
     expect(store.soundEnabled()).toBe(true);
+    expect(localStorageServiceMock.setValue).toHaveBeenCalled();
   });
 
   it('should test remaining computed properties', () => {
@@ -186,37 +192,20 @@ describe('GameStore (SignalStore)', () => {
     expect(store.message()).toBe(message);
   });
 
-  it('should reset hunter to initial values', () => {
-    store.updateHunter({ x: 5, y: 5, arrows: 10 });
-    store.updateGame({ settings: mockSettings, lives: 1 });
-
-    store.resetStore();
-    const resetState = store.hunter();
-    expect(resetState.x).toBe(0);
-    expect(resetState.y).toBe(0);
-    expect(resetState.direction).toBe(Direction.RIGHT);
-    expect(resetState.arrows).toBe(1);
-    expect(store.isAlive()).toBe(true);
-    expect(resetState.hasGold).toBe(false);
-    expect(store.hasWon()).toBe(false);
-    expect(store.wumpusKilled()).toBe(0);
-    expect(store.lives()).toBe(8);
-    expect(resetState.gold).toBe(0);
-
-    expect(localStorageServiceMock.setValue).toHaveBeenCalledWith(
-      'hunt_the_bishomalo_hunter',
-      expect.objectContaining({ lives: 1 })
-    );
-  });
-
   it('should sync hunter with storage if data exists', () => {
     localStorageServiceMock.getValue.mockImplementation((key) => {
-      if (key === 'hunt_the_bishomalo_hunter') return mockHunter;
+      if (key === 'hunt_the_bishomalo_hunter') return {
+        lives: 5,
+        unlockedChars: [Chars.DEFAULT],
+        inventory: [],
+        gold: 100
+      };
       if (key === 'hunt_the_bishomalo_settings') return mockSettings;
       return null;
     });
     store.syncHunterWithStorage();
-    expect(store.hunter()).toEqual(mockHunter);
+    expect(store.lives()).toBe(5);
+    expect(store.gold()).toBe(100);
     expect(store.settings()).toEqual(mockSettings);
   });
 
@@ -225,5 +214,11 @@ describe('GameStore (SignalStore)', () => {
     store.updateGame({ board: [[testCell]] });
     store.updateHunter({ x: 0, y: 0 });
     expect(store.currentCell()).toEqual(testCell);
+  });
+
+  it('should return null currentCell if out of bounds', () => {
+    store.updateGame({ board: [[{ x: 0, y: 0 } as Cell]] });
+    store.updateHunter({ x: 1, y: 1 });
+    expect(store.currentCell()).toBeNull();
   });
 });

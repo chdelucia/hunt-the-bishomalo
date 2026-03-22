@@ -1,7 +1,7 @@
 import { isDevMode, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { CanActivateFn, Router } from '@angular/router';
-import { RouteTypes } from '@hunt-the-bishomalo/data';
+import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
 import { secretGuard } from './secret.guard';
 
 jest.mock('@angular/core', () => ({

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { GAME_SOUND_TOKEN, GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
-import { GameSettings, RouteTypes } from '@hunt-the-bishomalo/data';
+import { GameSettings, RouteTypes } from '@hunt-the-bishomalo/shared-data';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { BossCell } from './boss-store';
 

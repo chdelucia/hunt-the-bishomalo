@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
-import { Cell, Chars, GameItem, Hunter } from '@hunt-the-bishomalo/data';
+import { Cell, Chars, GameItem, Hunter } from '@hunt-the-bishomalo/shared-data';
 import { CellContentComponent } from './content/cell-content.component';
 import { HunterComponent } from './hunter/hunter.component';
 

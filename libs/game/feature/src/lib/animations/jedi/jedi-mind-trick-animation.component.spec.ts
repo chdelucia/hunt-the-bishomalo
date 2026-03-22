@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { JediMindTrickAnimationComponent } from './jedi-mind-trick-animation.component';
 import { RouterModule } from '@angular/router';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
-import { AchieveTypes } from '@hunt-the-bishomalo/data';
+import { AchieveTypes } from '@hunt-the-bishomalo/shared-data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 
 describe('JediMindTrickAnimationComponent', () => {

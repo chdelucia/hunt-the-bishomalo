@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameMessageComponent } from './game-message.component';
 import { Router } from '@angular/router';
-import { RouteTypes } from '@hunt-the-bishomalo/data';
+import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 
 const routerMock = {

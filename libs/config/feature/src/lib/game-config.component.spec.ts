@@ -5,7 +5,7 @@ import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { GAME_SOUND_TOKEN, GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { provideRouter, Router } from '@angular/router';
-import { Chars, DifficultyTypes, RouteTypes, GameSound } from '@hunt-the-bishomalo/data';
+import { Chars, DifficultyTypes, RouteTypes, GameSound } from '@hunt-the-bishomalo/shared-data';
 
 const mockGameEngine = {
   initGame: jest.fn(),

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { BoardGeneratorService } from './board-generator.service';
-import { GameSettings, Chars, CELL_CONTENTS } from '@hunt-the-bishomalo/data';
+import { GameSettings, Chars, CELL_CONTENTS } from '@hunt-the-bishomalo/shared-data';
 
 describe('BoardGeneratorService', () => {
   let service: BoardGeneratorService;

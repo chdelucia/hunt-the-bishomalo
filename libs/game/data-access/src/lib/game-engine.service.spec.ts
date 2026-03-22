@@ -13,7 +13,7 @@ import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { BoardGeneratorService } from './board-generator.service';
 import { PerceptionService } from './perception.service';
 import { signal } from '@angular/core';
-import { Direction, AchieveTypes, RouteTypes } from '@hunt-the-bishomalo/data';
+import { Direction, AchieveTypes, RouteTypes } from '@hunt-the-bishomalo/shared-data';
 import { of } from 'rxjs';
 
 describe('GameEngineService', () => {

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Chars, Direction } from '@hunt-the-bishomalo/data';
+import { Chars, Direction } from '@hunt-the-bishomalo/shared-data';
 
 @Component({
   selector: 'lib-hunter',
