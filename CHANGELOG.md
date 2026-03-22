@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.14.5](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.14.4...v7.14.5) (2026-03-22)
+
+
+### Bug Fixes
+
+* prevent game keyboard controls from triggering when typing in inputs ([f1dcb62](https://github.com/chdelucia/hunt-the-bishomalo/commit/f1dcb62500b5fe8cc9c517409595e7f0207eac66))
+
 ### [7.14.4](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.14.3...v7.14.4) (2026-03-21)
 
 ### [7.14.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.14.2...v7.14.3) (2026-03-21)
