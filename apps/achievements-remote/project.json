@@ -1,12 +1,12 @@
 {
-  "name": "hunt-the-bishomalo",
-  "$schema": "node_modules/nx/schemas/project-schema.json",
-  "includedScripts": [],
+  "name": "achievements-remote",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
-  "sourceRoot": "./src",
+  "sourceRoot": "apps/achievements-remote/src",
   "tags": [
-    "type:app"
+    "type:app",
+    "scope:achievements"
   ],
   "targets": {
     "build": {
@@ -14,10 +14,10 @@
       "options": {},
       "configurations": {
         "production": {
-          "target": "hunt-the-bishomalo:esbuild:production"
+          "target": "achievements-remote:esbuild:production"
         },
         "development": {
-          "target": "hunt-the-bishomalo:esbuild:development",
+          "target": "achievements-remote:esbuild:development",
           "dev": true
         }
       },
@@ -26,7 +26,7 @@
     "serve": {
       "executor": "@angular-architects/native-federation:build",
       "options": {
-        "target": "hunt-the-bishomalo:serve-original:development",
+        "target": "achievements-remote:serve-original:development",
         "rebuildDelay": 500,
         "dev": true,
         "cacheExternalArtifacts": false,
@@ -34,36 +34,26 @@
       },
       "continuous": true
     },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "buildTarget": "hunt-the-bishomalo:build"
-      }
-    },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": [
-          "./src"
-        ]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": [
-        "{workspaceRoot}/coverage/{projectName}"
+        "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "options": {
-        "jestConfig": "jest.config.app.ts"
+        "jestConfig": "apps/achievements-remote/jest.config.cts",
+        "tsConfig": "apps/achievements-remote/tsconfig.spec.json"
       }
     },
     "serve-static": {
       "continuous": true,
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "hunt-the-bishomalo:build",
+        "buildTarget": "achievements-remote:build",
         "port": 4200,
-        "staticFilePath": "dist/hunt-the-bishomalo/browser",
+        "staticFilePath": "dist/apps/achievements-remote/browser",
         "spa": true
       }
     },
@@ -73,26 +63,22 @@
         "{options.outputPath}"
       ],
       "options": {
-        "outputPath": "dist/hunt-the-bishomalo",
-        "index": "./src/index.html",
-        "browser": "./src/main.ts",
-        "polyfills": [
-          "es-module-shims"
-        ],
-        "tsConfig": "tsconfig.app.json",
+        "outputPath": "dist/apps/achievements-remote",
+        "browser": "apps/achievements-remote/src/main.ts",
+        "tsConfig": "apps/achievements-remote/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
-            "input": "public"
-          },
-          "src/favicon.ico",
-          "src/assets"
+            "input": "apps/achievements-remote/public"
+          }
         ],
         "styles": [
-          "./src/styles.scss"
+          "apps/achievements-remote/src/styles.scss"
         ],
-        "scripts": []
+        "polyfills": [
+          "es-module-shims"
+        ]
       },
       "configurations": {
         "production": {
@@ -104,8 +90,8 @@
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "6kb",
-              "maximumError": "12kb"
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
             }
           ],
           "outputHashing": "all"
@@ -120,18 +106,18 @@
     },
     "serve-original": {
       "continuous": true,
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@angular/build:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "hunt-the-bishomalo:esbuild:production"
+          "buildTarget": "achievements-remote:esbuild:production"
         },
         "development": {
-          "buildTarget": "hunt-the-bishomalo:esbuild:development"
+          "buildTarget": "achievements-remote:esbuild:development"
         }
       },
       "defaultConfiguration": "development",
       "options": {
-        "port": 4200
+        "port": 4201
       }
     }
   }

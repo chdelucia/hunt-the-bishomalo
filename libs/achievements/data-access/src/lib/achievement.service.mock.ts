@@ -17,12 +17,6 @@ export const mockAchievementService: IAchievementService = {
   activeAchievement: () => {
     // Mock implementation
   },
-  calcVictoryAchieve: () => {
-    // Mock implementation
-  },
-  handleWumpusKillAchieve: () => {
-    // Mock implementation
-  },
   isAllCompleted: () => {
     // Mock implementation
   },

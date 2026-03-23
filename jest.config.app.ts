@@ -15,7 +15,7 @@ export default {
       },
     ],
   },
-  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$|@jsverse)'],
+  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$|@jsverse|@angular-architects)'],
   moduleNameMapper: {
     '^@angular/core/testing$': '<rootDir>/node_modules/@angular/core/fesm2022/testing.mjs',
     '^@angular/common/testing$': '<rootDir>/node_modules/@angular/common/fesm2022/testing.mjs',
