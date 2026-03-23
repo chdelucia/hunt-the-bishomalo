@@ -34,7 +34,7 @@
 [32mchunk-PAKSBJ46.js[37m  [2m | [22m[2mbootstrap[22m          [2m | [22m  [36m4.04 kB[37m[2m | [22m
 [32mchunk-YQOESBWP.js[37m  [2m | [22m[2m-[22m                  [2m | [22m[36m754 bytes[37m[2m | [22m
 [32mchunk-6I7ODEEQ.js[37m  [2m | [22m[2machievements-routes[22m[2m | [22m[36m677 bytes[37m[2m | [22m
-Application bundle generation complete. [5.956 seconds] - 2026-03-23T19:09:35.085Z
+Application bundle generation complete. [6.828 seconds] - 2026-03-23T19:38:32.408Z
 [39m
 [37mWatch mode enabled. Watching for file changes...[39m
 [37mNOTE: Raw file sizes do not reflect development server per-request transformations.[39m
@@ -49,9 +49,8 @@ Application bundle generation complete. [5.956 seconds] - 2026-03-23T19:09:35.08
 [1mLazy chunk files[22m   [2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
 [32mchunk-LIC2JT5R.js[37m  [2m | [22m[2mbootstrap[22m    [2m | [22m [36m17.67 kB[37m[2m | [22m
 [32mchunk-6SQLDPIH.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m14.23 kB[37m[2m | [22m
-Application bundle generation complete. [6.250 seconds] - 2026-03-23T19:09:45.747Z
+Application bundle generation complete. [6.688 seconds] - 2026-03-23T19:38:43.900Z
 [39m
 [37mWatch mode enabled. Watching for file changes...[39m
 [37mNOTE: Raw file sizes do not reflect development server per-request transformations.[39m
   [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4200[22m/[39m
-Task "achievements-remote:serve" is continuous but exited with code 143
