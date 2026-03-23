@@ -398,17 +398,14 @@ export class GameEngineService implements IGameEngineService {
     const { x, y } = this._hunter();
     const size = this._settings().size;
     const board = this.store.board();
-    const directions = [
-      { dx: -1, dy: 0 },
-      { dx: 1, dy: 0 },
-      { dx: 0, dy: -1 },
-      { dx: 0, dy: 1 },
-    ];
+    const adjacent: Cell[] = [];
 
-    return directions
-      .map(({ dx, dy }) => ({ x: x + dx, y: y + dy }))
-      .filter(({ x, y }) => x >= 0 && y >= 0 && x < size && y < size)
-      .map(({ x, y }) => board[x][y]);
+    if (x > 0) adjacent.push(board[x - 1][y]);
+    if (x < size - 1) adjacent.push(board[x + 1][y]);
+    if (y > 0) adjacent.push(board[x][y - 1]);
+    if (y < size - 1) adjacent.push(board[x][y + 1]);
+
+    return adjacent;
   }
 
   private applyBlackoutChance(): boolean {
