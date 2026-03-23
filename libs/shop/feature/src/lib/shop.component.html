@@ -99,14 +99,13 @@
 </div>
 
 @if(message()){
-<output
-  class="mensaje-compra"
-  aria-live="polite"
-  (click)="clearMessage()"
-  (keydown.enter)="clearMessage()"
-  (keydown.space)="clearMessage()"
-  tabindex="0"
->
-  {{ message() }}
+<output aria-live="polite">
+  <button
+    type="button"
+    class="mensaje-compra"
+    (click)="clearMessage()"
+  >
+    {{ message() }}
+  </button>
 </output>
 }
