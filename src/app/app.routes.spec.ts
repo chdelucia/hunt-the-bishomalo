@@ -1,4 +1,5 @@
 import { appRoutes } from './app.routes';
+import { loadRemoteModule } from '@angular-architects/native-federation';
 
 jest.mock('@angular-architects/native-federation', () => ({
   loadRemoteModule: jest.fn((remoteName: string) => {
@@ -10,6 +11,15 @@ jest.mock('@angular-architects/native-federation', () => ({
 }));
 
 describe('appRoutes', () => {
+
+  it('should call loadRemoteModule for achievements route', async () => {
+    const route = appRoutes.find(r => r.path === 'logros');
+    expect(route).toBeDefined();
+    if (route?.loadChildren) {
+      await (route.loadChildren() as any);
+      expect(loadRemoteModule).toHaveBeenCalledWith('achievements', './Routes');
+    }
+  });
 
   it('should have the expected number of routes', () => {
     expect(appRoutes.length).toBeGreaterThan(0);
