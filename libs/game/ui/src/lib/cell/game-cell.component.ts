@@ -23,25 +23,13 @@ export class GameCellComponent {
   readonly isHunterCell = input.required<boolean>();
   readonly hunter = input<Hunter | null>(null);
 
-  /**
-   * Optimized computed signal to determine when to show cell elements.
-   * Uses Signal caching to avoid recalculating on every change detection cycle.
-   */
   readonly showElements = computed(() => {
     const cell = this.cell();
     return !this.isAlive() || this.hasWon() || cell.visited || cell.content?.alt === 'secret';
   });
 
-  /**
-   * Optimized computed signal to determine when to show the hunter.
-   */
   readonly showHunter = computed(() => this.isHunterCell() && this.isAlive() && !!this.hunter());
 
-  /**
-   * Computed signals for hunter item effects.
-   * Caching results here prevents O(N) inventory scans during every CD cycle
-   * for the specific cell that holds the hunter.
-   */
   readonly hasLantern = computed(
     () => !!this.blackout() && this.inventory().some((x) => x.effect === 'lantern'),
   );
