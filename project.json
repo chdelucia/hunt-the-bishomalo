@@ -27,6 +27,7 @@
       "executor": "@angular-architects/native-federation:build",
       "options": {
         "target": "hunt-the-bishomalo:serve-original:development",
+        "proxyConfig": "proxy.conf.json",
         "rebuildDelay": 500,
         "dev": true,
         "cacheExternalArtifacts": false,
@@ -131,7 +132,8 @@
       },
       "defaultConfiguration": "development",
       "options": {
-        "port": 4200
+        "port": 4200,
+        "proxyConfig": "proxy.conf.json"
       }
     }
   }

@@ -34,11 +34,10 @@
 [32mchunk-PAKSBJ46.js[37m  [2m | [22m[2mbootstrap[22m          [2m | [22m  [36m4.04 kB[37m[2m | [22m
 [32mchunk-YQOESBWP.js[37m  [2m | [22m[2m-[22m                  [2m | [22m[36m754 bytes[37m[2m | [22m
 [32mchunk-6I7ODEEQ.js[37m  [2m | [22m[2machievements-routes[22m[2m | [22m[36m677 bytes[37m[2m | [22m
-Application bundle generation complete. [4.626 seconds] - 2026-03-23T16:34:09.377Z
+Application bundle generation complete. [5.956 seconds] - 2026-03-23T19:09:35.085Z
 [39m
 [37mWatch mode enabled. Watching for file changes...[39m
 [37mNOTE: Raw file sizes do not reflect development server per-request transformations.[39m
-[2m4:34:09 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because vite config has changed
   [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4201[22m/[39m
 [33m❯[39m Building...
 [32m✔[39m Building...
@@ -50,26 +49,9 @@ Application bundle generation complete. [4.626 seconds] - 2026-03-23T16:34:09.37
 [1mLazy chunk files[22m   [2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
 [32mchunk-LIC2JT5R.js[37m  [2m | [22m[2mbootstrap[22m    [2m | [22m [36m17.67 kB[37m[2m | [22m
 [32mchunk-6SQLDPIH.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m14.23 kB[37m[2m | [22m
-Application bundle generation complete. [12.341 seconds] - 2026-03-23T16:34:26.129Z
+Application bundle generation complete. [6.250 seconds] - 2026-03-23T19:09:45.747Z
 [39m
 [37mWatch mode enabled. Watching for file changes...[39m
 [37mNOTE: Raw file sizes do not reflect development server per-request transformations.[39m
-[2m4:34:26 PM[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m Re-optimizing dependencies because vite config has changed
   [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4200[22m/[39m
-[42m[38;5;15m INFO [39m[49m [Federation SSE] Client connected. Active connections: 1
-[42m[38;5;15m INFO [39m[49m [Federation SSE] Client disconnected. Active connections: 0
-[33m❯[39m Changes detected. Rebuilding...
-[32m✔[39m Changes detected. Rebuilding...
-[37m[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
-[32mpolyfills.js[37m       [2m | [22m[2mpolyfills[22m    [2m | [22m [36m98.73 kB[37m[2m | [22m
-[32mstyles.css[37m         [2m | [22m[2mstyles[22m       [2m | [22m  [36m4.44 kB[37m[2m | [22m
-[32mmain.js[37m            [2m | [22m[2mmain[22m         [2m | [22m[36m276 bytes[37m[2m | [22m
-[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m103.45 kB[22m
-[1mLazy chunk files[22m   [2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
-[32mchunk-LIC2JT5R.js[37m  [2m | [22m[2mbootstrap[22m    [2m | [22m [36m17.67 kB[37m[2m | [22m
-[32mchunk-6SQLDPIH.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m14.23 kB[37m[2m | [22m
-Application bundle generation complete. [0.426 seconds] - 2026-03-23T17:49:33.139Z
-[39m
-[37mPage reload sent to client(s).[39m
-[42m[38;5;15m INFO [39m[49m Building federation artefacts
-[42m[38;5;15m INFO [39m[49m Done!
+Task "achievements-remote:serve" is continuous but exited with code 143
