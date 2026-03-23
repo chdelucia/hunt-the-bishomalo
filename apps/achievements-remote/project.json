@@ -63,7 +63,7 @@
         "{options.outputPath}"
       ],
       "options": {
-        "outputPath": "dist/apps/achievements-remote",
+        "outputPath": "dist/browser/achievements-remote",
         "browser": "apps/achievements-remote/src/main.ts",
         "tsConfig": "apps/achievements-remote/tsconfig.app.json",
         "inlineStyleLanguage": "scss",

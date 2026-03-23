@@ -73,7 +73,7 @@
         "{options.outputPath}"
       ],
       "options": {
-        "outputPath": "dist/hunt-the-bishomalo",
+        "outputPath": "dist/browser",
         "index": "./src/index.html",
         "browser": "./src/main.ts",
         "polyfills": [
