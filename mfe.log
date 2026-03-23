@@ -1,9 +1,0 @@
-
- NX   Running target serve for 2 projects:
-
-- hunt-the-bishomalo
-- achievements-remote
-
-
-Waiting for achievements-remote:serve in another nx process
-Waiting for hunt-the-bishomalo:serve in another nx process

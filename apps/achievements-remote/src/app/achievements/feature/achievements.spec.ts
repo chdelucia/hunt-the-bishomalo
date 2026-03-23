@@ -6,7 +6,7 @@ import {
   AchievementFilterComponent,
   AchievementItemComponent,
   AchievementProgressComponent
-} from '@hunt-the-bishomalo/achievements/ui';
+} from '../ui/index';
 import { RouterModule } from '@angular/router';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';

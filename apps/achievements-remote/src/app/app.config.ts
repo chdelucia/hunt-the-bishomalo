@@ -4,7 +4,7 @@ import { appRoutes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { provideTransloco } from '@jsverse/transloco';
 import { TranslocoHttpLoader } from './transloco-loader';
-import { AchievementService, ACHIEVEMENTS_LIST } from '@hunt-the-bishomalo/achievements/data-access';
+import { AchievementService, ACHIEVEMENTS_LIST } from './achievements/data-access/index';
 import { ACHIEVEMENT_SERVICE, ACHIEVEMENTS_LIST_TOKEN } from '@hunt-the-bishomalo/achievements/api';
 import {
   GAME_SOUND_TOKEN,

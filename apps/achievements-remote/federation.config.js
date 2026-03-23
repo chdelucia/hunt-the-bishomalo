@@ -4,14 +4,13 @@ module.exports = withNativeFederation({
   name: 'achievements-remote',
 
   exposes: {
-    './Routes': './libs/achievements/shell/src/index.ts',
+    './Routes': './apps/achievements-remote/src/app/achievements/shell/achievements.routes.ts',
   },
 
   shared: {
     ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
     '@jsverse/transloco': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
     '@hunt-the-bishomalo/achievements/api': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-    '@hunt-the-bishomalo/achievements/data-access': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
     '@hunt-the-bishomalo/shared-data': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
     '@hunt-the-bishomalo/core/api': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
     '@hunt-the-bishomalo/core/data-access': { singleton: true, strictVersion: true, requiredVersion: 'auto' },

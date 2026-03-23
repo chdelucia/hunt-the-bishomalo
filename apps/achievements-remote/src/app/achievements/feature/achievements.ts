@@ -7,7 +7,7 @@ import {
   AchievementFilterComponent,
   AchievementItemComponent,
   AchievementProgressComponent
-} from '@hunt-the-bishomalo/achievements/ui';
+} from '../ui/index';
 
 @Component({
   selector: 'lib-achievements',

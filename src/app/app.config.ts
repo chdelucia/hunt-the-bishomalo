@@ -29,13 +29,34 @@ import {
 import { ACHIEVEMENT_SERVICE, ACHIEVEMENTS_LIST_TOKEN } from '@hunt-the-bishomalo/achievements/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
-import {
-  AchievementService,
-  ACHIEVEMENTS_LIST,
-} from '@hunt-the-bishomalo/achievements/data-access';
 import { LeaderboardService } from '@hunt-the-bishomalo/gamestats/data-access';
 import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
 import * as Sentry from '@sentry/angular';
+
+// Achievements implementation is in the remote, but we still need it functional in the shell for tracking.
+import { Injectable, signal, inject } from '@angular/core';
+import { Achievement } from '@hunt-the-bishomalo/shared-data';
+
+@Injectable({ providedIn: 'root' })
+class ShellAchievementService {
+  private readonly storageKey = 'hunt_the_bishomalo_achievements';
+  readonly achievements: Achievement[] = [];
+  readonly completed = signal<Achievement | undefined>(undefined);
+  private readonly localStoreService = inject(LOCALSTORAGE_SERVICE_TOKEN);
+  private readonly analytics = inject(ANALYTICS_SERVICE_TOKEN);
+
+  activeAchievement(id: string): void {
+    const storedIds = this.localStoreService.getValue<string[]>(this.storageKey) || [];
+    if (!storedIds.includes(id)) {
+      const newIds = [...storedIds, id];
+      this.localStoreService.setValue(this.storageKey, newIds);
+      this.analytics.trackAchievementUnlocked(id, id);
+      const dummyAchieve: unknown = { id, title: id, description: '', icon: '', svgIcon: '', rarity: 'common', unlocked: true };
+      this.completed.set(dummyAchieve as Achievement);
+    }
+  }
+  isAllCompleted(): void {}
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -44,8 +65,8 @@ export const appConfig: ApplicationConfig = {
     { provide: LOCALSTORAGE_SERVICE_TOKEN, useExisting: LocalstorageService },
     { provide: ANALYTICS_SERVICE_TOKEN, useExisting: AnalyticsService },
     { provide: GAME_EVENT_SERVICE_TOKEN, useExisting: GameEventService },
-    { provide: ACHIEVEMENTS_LIST_TOKEN, useValue: ACHIEVEMENTS_LIST },
-    { provide: ACHIEVEMENT_SERVICE, useClass: AchievementService },
+    { provide: ACHIEVEMENTS_LIST_TOKEN, useValue: [] },
+    { provide: ACHIEVEMENT_SERVICE, useClass: ShellAchievementService },
     { provide: LEADERBOARD_SERVICE, useClass: LeaderboardService },
     { provide: GAME_ENGINE_TOKEN, useClass: GameEngineService },
     {
