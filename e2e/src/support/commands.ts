@@ -22,17 +22,18 @@ Cypress.Commands.add('winLevel', () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   cy.getGameStore().then((store: any) => {
     const board = JSON.parse(JSON.stringify(store.board()));
-    // Place gold at (0, 1)
+    // Place gold at (0, 1) and make it visited so it shows up
+    board[0][1].visited = true;
     board[0][1].content = {
       type: 'gold',
       image: 'boardicons/gold.svg',
       alt: 'gold coin',
-      ariaLabel: 'gold',
+      ariaLabel: 'Oro',
     };
     store.updateGame({ board });
 
-    // Verify gold is on the board
-    cy.get('[aria-label="gold"]', { timeout: 10000 }).should('be.visible');
+    // Verify gold is on the board - using alt because it's what's rendered in the img tag
+    cy.get('[alt="gold coin"]', { timeout: 10000 }).should('be.visible');
 
     // Move to (0, 1) to pick up gold
     cy.get('[aria-label="Avanzar"]').click();
@@ -60,11 +61,12 @@ Cypress.Commands.add('loseLevel', () => {
   cy.getGameStore().then((store: any) => {
     store.updateGame({ lives: 1 });
     const board = JSON.parse(JSON.stringify(store.board()));
+    board[0][1].visited = true;
     board[0][1].content = {
       type: 'wumpus',
       image: 'chars/default/wumpus.svg',
       alt: 'wumpus',
-      ariaLabel: 'wumpus',
+      ariaLabel: 'Wumpus',
     };
     store.updateGame({ board });
     cy.get('[aria-label="Avanzar"]').click();

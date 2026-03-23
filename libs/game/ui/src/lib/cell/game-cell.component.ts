@@ -23,15 +23,15 @@ export class GameCellComponent {
   readonly isHunterCell = input.required<boolean>();
   readonly hunter = input<Hunter | null>(null);
 
-  readonly hasLantern = computed(
-    () => this.inventory().some((x) => x.effect === 'lantern') && !!this.blackout(),
-  );
-  readonly hasShield = computed(() => this.inventory().some((x) => x.effect === 'shield'));
-
   readonly showElements = computed(() => {
     const cell = this.cell();
     return !this.isAlive() || this.hasWon() || cell.visited || cell.content?.alt === 'secret';
   });
 
   readonly showHunter = computed(() => this.isHunterCell() && this.isAlive() && !!this.hunter());
+
+  readonly hasLantern = computed(
+    () => !!this.blackout() && this.inventory().some((x) => x.effect === 'lantern'),
+  );
+  readonly hasShield = computed(() => this.inventory().some((x) => x.effect === 'shield'));
 }

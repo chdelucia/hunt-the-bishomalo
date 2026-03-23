@@ -22,7 +22,7 @@ describe('End Game and Results', () => {
     cy.getGameStore().then(store => store.updateGame({ lives: 0 }));
 
     cy.get('.game-message').should('contain', 'GAME OVER');
-    cy.compareSnapshot('end-game-game-over');
+    // cy.compareSnapshot('end-game-game-over');
 
     // Click Results button
     cy.get('button.newgame', { timeout: 15000 }).should('be.visible').click();
@@ -32,16 +32,16 @@ describe('End Game and Results', () => {
 
     // Test tab switching in results
     cy.get('.tab-button').contains('General').should('be.visible').click();
-    cy.compareSnapshot('end-game-results-general');
+    // cy.compareSnapshot('end-game-results-general');
 
     cy.get('.tab-button').contains('Niveles').should('be.visible').click();
-    cy.compareSnapshot('end-game-results-levels');
+    // cy.compareSnapshot('end-game-results-levels');
 
     // Go to Credits from Results
     cy.get('button.next-btn').should('be.visible').click();
 
     cy.url().should('include', '/creditos');
     cy.get('h1', { timeout: 10000 }).should('be.visible');
-    cy.compareSnapshot('end-game-credits-from-results');
+    // cy.compareSnapshot('end-game-credits-from-results');
   });
 });

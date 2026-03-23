@@ -193,5 +193,35 @@ describe('ShopComponent', () => {
     component.clearMessage();
     expect(component.message()).toBe('');
     jest.useRealTimers();
+      });
+  it('should clear the message when clearMessage is called', () => {
+    component.message.set('Test message');
+    component.clearMessage();
+    expect(component.message()).toBe('');
+  });
+
+  it('should render the message in a button within an output element', () => {
+    component.message.set('Success!');
+    fixture.detectChanges();
+
+    const outputElement = fixture.nativeElement.querySelector('output');
+    expect(outputElement).toBeTruthy();
+    expect(outputElement.getAttribute('aria-live')).toBe('polite');
+
+    const buttonElement = outputElement.querySelector('button.mensaje-compra');
+    expect(buttonElement).toBeTruthy();
+    expect(buttonElement.textContent).toContain('Success!');
+    expect(buttonElement.type).toBe('button');
+  });
+
+  it('should call clearMessage when the message button is clicked', () => {
+    const spy = jest.spyOn(component, 'clearMessage');
+    component.message.set('Success!');
+    fixture.detectChanges();
+
+    const buttonElement = fixture.nativeElement.querySelector('button.mensaje-compra');
+    buttonElement.click();
+
+    expect(spy).toHaveBeenCalled();
   });
 });

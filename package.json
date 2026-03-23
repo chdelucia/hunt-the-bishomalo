@@ -1,10 +1,10 @@
 {
   "name": "@hunt-the-bishomalo/source",
-  "version": "7.56.0",
+  "version": "7.56.5",
   "license": "MIT",
   "packageManager": "bun@1.2.14",
   "engines": {
-    "node": ">=20.0.0",
+    "node": "^22.0.0",
     "bun": ">=1.2.14"
   },
   "scripts": {
