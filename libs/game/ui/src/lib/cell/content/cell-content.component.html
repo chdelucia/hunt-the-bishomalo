@@ -1,1 +1,6 @@
-<img [ngSrc]="content().image" [alt]="content().alt" fill />
+<img
+  [ngSrc]="content().image"
+  [alt]="content().alt | transloco"
+  [attr.aria-label]="content().ariaLabel | transloco"
+  fill
+/>

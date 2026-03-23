@@ -181,6 +181,8 @@
     "soundToggle": "Sound"
   },
   "mobileControls": {
+    "turnLeftAriaLabel": "Turn Left",
+    "turnLeftAlt": "Turn Left",
     "turnRightAriaLabel": "Turn Right",
     "turnRightAlt": "Turn Right",
     "shootArrowAriaLabel": "Shoot Arrow",
@@ -259,6 +261,7 @@
     "quoteSolo": "\"Yes, I did it all by myself. Any problem?\"",
     "quoteSoloAuthor": "- Christian Heredia",
     "newGameButton": "Start New Game",
+    "backToHomeButton": "Back to Home",
     "role.leadProgrammer": "Lead Programmer",
     "role.gameDesigner": "Game Designer",
     "role.pixelArtist": "Pixel Artist",
@@ -682,8 +685,32 @@
   },
   "cellContent": {
     "wumpus": {
-      "alt": "Wumpus (en)",
-      "ariaLabel": "Wumpus Label (en)"
+      "alt": "Wumpus",
+      "ariaLabel": "Wumpus"
+    },
+    "gold": {
+      "alt": "Gold coin",
+      "ariaLabel": "Gold"
+    },
+    "pit": {
+      "alt": "Pit",
+      "ariaLabel": "Pit"
+    },
+    "arrow": {
+      "alt": "Arrow",
+      "ariaLabel": "Arrow"
+    },
+    "heart": {
+      "alt": "Extra life",
+      "ariaLabel": "Heart"
+    },
+    "secret": {
+      "alt": "Secret",
+      "ariaLabel": "Secret"
+    },
+    "dragonball": {
+      "alt": "Dragon ball",
+      "ariaLabel": "Dragon ball"
     }
   }
 }
