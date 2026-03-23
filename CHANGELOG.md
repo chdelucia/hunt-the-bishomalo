@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.56.2](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.56.1...v7.56.2) (2026-03-23)
+
+
+### Bug Fixes
+
+* resolve failing E2E tests and routing mismatches ([48a8e12](https://github.com/chdelucia/hunt-the-bishomalo/commit/48a8e1282d6c3af959c8e4592a3cd682ea96bdb4))
+
 ### [7.56.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.56.0...v7.56.1) (2026-03-22)
 
 ## [7.56.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.14.7...v7.56.0) (2026-03-22)
