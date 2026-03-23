@@ -6,6 +6,7 @@ module.exports = withNativeFederation({
 
   shared: {
     ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+    '@jsverse/transloco': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
   },
 
   skip: [
