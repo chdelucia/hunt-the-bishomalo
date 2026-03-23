@@ -20,8 +20,13 @@
     }
   ],
   "rewrites": [
-    { "source": "/remotes/achievements-remote/(.*)", "destination": "/remotes/achievements-remote/$1" },
-    { "source": "/remotes/achievements-remote", "destination": "/remotes/achievements-remote/index.html" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/remotes/achievements-remote/(.*)",
+      "destination": "/remotes/achievements-remote/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ]
 }

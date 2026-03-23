@@ -3,10 +3,6 @@
   "version": "7.56.4",
   "license": "MIT",
   "packageManager": "bun@1.2.14",
-  "engines": {
-    "node": ">=20.0.0",
-    "bun": ">=1.2.14"
-  },
   "scripts": {
     "start": "nx run-many -t serve --projects hunt-the-bishomalo,achievements-remote",
     "start:shell": "nx serve hunt-the-bishomalo",
