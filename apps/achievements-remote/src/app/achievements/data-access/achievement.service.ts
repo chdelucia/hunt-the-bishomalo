@@ -22,6 +22,16 @@ export class AchievementService implements IAchievementService {
 
   constructor() {
     this.syncAchievementsWithStorage();
+    this.listenForExternalAchievements();
+  }
+
+  private listenForExternalAchievements(): void {
+    window.addEventListener('achievement-unlocked', (event: any) => {
+      const id = event.detail?.id;
+      if (id) {
+        this.activeAchievement(id);
+      }
+    });
   }
 
   private updateLocalStorageWithNewId(id: string): void {

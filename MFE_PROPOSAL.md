@@ -1,10 +1,10 @@
 # Microfrontend Migration Proposal: Hunt The Bishomalo
 
-This document outlines a proposal for decomposing the **Hunt The Bishomalo** monorepo into a microfrontend (MFE) architecture using `@angular-architects/native-federation`.
+This document outlines the architectural proposal and best practices for decomposing the **Hunt The Bishomalo** monorepo into a microfrontend (MFE) architecture using `@angular-architects/native-federation`.
 
 ## 1. Architectural Vision
 
-The application will be divided into a **Shell** application and several **Remote** applications. This transition allows for independent development, deployment, and testing of different game modules while maintaining a cohesive user experience.
+The application is divided into a **Shell** (Host) application and several **Remote** applications. Each remote represents a strictly isolated domain.
 
 ### Shell Application
 - **Responsibility**: Hosting the main layout, navigation, global configuration, and loading remotes.
@@ -12,81 +12,60 @@ The application will be divided into a **Shell** application and several **Remot
 - **Security**: Centralized guards (like `homeGuard` and `secretGuard`).
 
 ### Remote Applications
-Each remote will represent a significant domain of the application:
+Remotes are self-contained applications that expose specific features:
 1. **Game Remote**: Core gameplay (Hunt the Wumpus, Boss fight).
-2. **Achievements Remote**: Achievement management and display.
+2. **Achievements Remote**: (Pilot) Achievement management and display.
 3. **Shop Remote**: Item store and gold management.
 4. **Gamestats Remote**: Leaderboards and post-game results.
-5. **Config Remote**: Game settings and character selection.
 
-## 2. Technology Choice: Native Federation
+## 2. Core Principles for Microfrontends
 
-Given that the project uses **Angular 21** and **esbuild** (as specified in `package.json` and `project.json`), we recommend **Native Federation** over traditional Webpack-based Module Federation.
+To ensure true independence and avoid runtime coupling, all MFEs must adhere to these rules:
 
-### Why Native Federation?
-- **Framework Agnostic**: Works without being tied to a specific bundler (it uses ES Modules).
-- **Esbuild Support**: Fully compatible with Angular's modern build system.
-- **Performance**: Faster builds and smaller bundles through native browser capabilities.
+### 2.1 Independent Runtimes & DI
+Each MFE must be able to run independently. They should not rely on the Shell providing complex service instances via Dependency Injection.
+- **Rule**: Never share Angular service *implementations* between MFEs.
+- **Implementation**: Implementation logic (Services, Components, Stores) must reside within the Remote's source directory (`apps/remote-name/src/app/...`).
 
-## 3. Implementation Strategy
+### 2.2 Communication via Events and Storage
+MFEs should communicate through decoupled mechanisms rather than direct service method calls.
+- **Primary Mechanism**: `CustomEvent` dispatched on the `window` object.
+- **Secondary Mechanism**: Shared persistent storage (`localStorage`) for state synchronization across sessions.
+- **Event Naming**: Use clear, domain-prefixed event names (e.g., `achievement-unlocked`, `gold-updated`).
 
-### Step 1: Install Dependencies
-```bash
-bun add @angular-architects/native-federation -D
-```
+### 2.3 Strict Domain Isolation
+- **API Libraries**: Use `libs/domain/api` for sharing interfaces, DTOs, and `InjectionToken`s. These are the only libraries the Shell should import from a Remote's domain.
+- **No Cross-Remote Imports**: A Remote must never import from another Remote or another domain's `data-access` library.
+- **Relative Imports**: Inside a Remote, use relative imports (`./`, `../`) to ensure it doesn't depend on Nx library path mappings that might point to external code.
 
-### Step 2: Configure the Shell
-The `src/app/app.routes.ts` will be updated to load remotes dynamically:
+## 3. Technology Choice: Native Federation
 
-```typescript
-export const appRoutes: Route[] = [
-  {
-    path: RouteTypes.ACHIEVEMENTS,
-    loadChildren: () => loadRemoteModule('achievements', './Component').then(m => m.AchievementsModule),
-  },
-  // ... other remotes
-];
-```
+Given that the project uses **Angular 21** and **esbuild**, we use **Native Federation**.
 
-### Step 3: Configure Remotes
-Each remote will expose its main entry point via a `federation.config.js`:
+### Configuration (federation.config.js)
+Both Shell and Remotes must configure shared libraries carefully:
+- **Singletons**: Core Angular libraries (`@angular/core`, etc.) and internal `api` libraries must be shared as singletons.
+- **Strict Versioning**: Use `strictVersion: true` to prevent runtime conflicts between different versions of the same library.
 
 ```javascript
-// libs/achievements/shell/federation.config.js
-const { withNativeFederation, shareAll } = require('@angular-architects/native-federation/config');
-
-module.exports = withNativeFederation({
-  name: 'achievements',
-  exposes: {
-    './Component': './libs/achievements/shell/src/index.ts',
-  },
-  shared: {
-    ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
-  },
-});
+shared: {
+  ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+  '@hunt-the-bishomalo/core/api': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+  // ... other API/Contract libraries
+},
 ```
 
-## 4. Shared State Management
+## 4. Implementation Strategy (The "Isolation" Pattern)
 
-The `CoreStore` (currently in `libs/core/data-access`) must remain a **singleton** shared across the Shell and all Remotes.
+When migrating a domain to an MFE:
+1. **Move Code**: Move all logic from `libs/domain/*` into `apps/remote-name/src/app/domain`.
+2. **Refactor**: Update all imports to be relative within the new directory.
+3. **Expose Routes**: Expose the domain's entry routes via `federation.config.js`.
+4. **Decouple Shell**: Remove concrete service imports from the Shell's `app.config.ts`. Replace them with lightweight "Shell Services" that implement the domain's interface but only perform essential tracking or dispatch events.
+5. **Sync State**: Use `window.addEventListener` in the Remote to listen for events dispatched by the Shell (and vice versa).
 
-- **Solution**: Mark `@hunt-the-bishomalo/core/api` and `@hunt-the-bishomalo/core/data-access` as shared libraries in the Federation configuration.
-- This ensures that when a Remote updates the player's gold or health, the Shell and other Remotes see the same data in real-time.
-
-## 5. Domain Isolation & API Tokens
-
-The project already follows a strict domain isolation (enforced by ESLINT). To make MFE migration successful:
-- Continue using `InjectionToken`s defined in `api` libraries.
-- Remotes should not import from each other directly; they should interact via the Shell or shared `api` libraries.
-
-## 6. Impact on Workflow
-
-- **Local Development**: `nx serve-many --projects shell,game-remote,shop-remote` will allow running parts of the system.
-- **CI/CD**: Only the affected remote application needs to be rebuilt and redeployed on changes.
-- **Versioning**: Each remote can be versioned independently.
-
-## 7. Recommended Roadmap
-1. **Pilot**: Migrate `achievements` (it's the most isolated domain).
+## 5. Recommended Roadmap
+1. **Pilot (Completed)**: `achievements-remote` isolated and using `CustomEvent` communication.
 2. **Expansion**: Migrate `shop` and `gamestats`.
 3. **Core**: Migrate `game` and `boss`.
-4. **Shell Cleanup**: Remove the heavy library dependencies from the Shell application.
+4. **Final Polish**: Complete removal of domain-specific implementation libraries from the monorepo root.

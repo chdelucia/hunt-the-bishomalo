@@ -53,6 +53,9 @@ class ShellAchievementService {
       this.analytics.trackAchievementUnlocked(id, id);
       const dummyAchieve: unknown = { id, title: id, description: '', icon: '', svgIcon: '', rarity: 'common', unlocked: true };
       this.completed.set(dummyAchieve as Achievement);
+
+      // Notify other MFEs via CustomEvent
+      window.dispatchEvent(new CustomEvent('achievement-unlocked', { detail: { id } }));
     }
   }
   isAllCompleted(): void {}
