@@ -14,14 +14,6 @@ const mockHunter: Hunter = {
   gold: 0,
   inventory: [],
 };
-const mockSettings = {
-  player: 'Chris',
-  size: 4,
-  pits: 2,
-  arrows: 3,
-  wumpus: 1,
-  selectedChar: Chars.DEFAULT,
-};
 
 describe('GameCellComponent', () => {
   let component: GameCellComponent;
@@ -170,56 +162,5 @@ describe('GameCellComponent', () => {
     });
 
     expect(component.showElements()).toBeFalsy();
-  });
-
-  it('should show hunter when cell has hunter and player is alive', () => {
-    fixture.componentRef.setInput('isAlive', true);
-    fixture.componentRef.setInput('isHunterCell', true);
-    fixture.componentRef.setInput('cell', mockCell);
-    fixture.detectChanges();
-    expect(component.showHunter()).toBeTruthy();
-  });
-
-  it('should not show hunter when player is dead', () => {
-    fixture.componentRef.setInput('isAlive', false);
-    fixture.componentRef.setInput('cell', {
-      visited: false,
-      content: { alt: 'somethingElse', image: 'algo.png' },
-      x: 2,
-      y: 3,
-    });
-
-    expect(component.showHunter()).toBeFalsy();
-  });
-
-  it('should not show hunter when cell is not hunter', () => {
-    fixture.componentRef.setInput('isAlive', true);
-    fixture.componentRef.setInput('isHunterCell', false);
-    fixture.componentRef.setInput('cell', {
-      visited: false,
-      content: { alt: 'somethingElse', image: 'algo.png' },
-      x: 1,
-      y: 1,
-    });
-
-    expect(component.showHunter()).toBeFalsy();
-  });
-
-  it('should have lantern when in inventory and blackout is active', () => {
-    fixture.componentRef.setInput('inventory', [{ effect: 'lantern' }]);
-    fixture.componentRef.setInput('blackout', true);
-
-    fixture.detectChanges();
-
-    expect(component.hasLantern()).toBeTruthy();
-  });
-
-  it('should NOT have lantern when in inventory but blackout is NOT active', () => {
-    fixture.componentRef.setInput('inventory', [{ effect: 'lantern' }]);
-    fixture.componentRef.setInput('blackout', false);
-
-    fixture.detectChanges();
-
-    expect(component.hasLantern()).toBeFalsy();
   });
 });

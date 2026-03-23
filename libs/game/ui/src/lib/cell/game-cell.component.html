@@ -1,6 +1,7 @@
-@let content = cell().content;
+@let cellValue = cell();
+@let content = cellValue.content;
 
-<div class="cell" [class.visited]="cell().visited">
+<div class="cell" [class.visited]="cellValue.visited">
   @if (showElements() && content) {
     <lib-cell-content [content]="content" />
   } @else if (showHunter()) {
