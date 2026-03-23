@@ -45,9 +45,9 @@ export const appConfig: ApplicationConfig = {
     { provide: ANALYTICS_SERVICE_TOKEN, useExisting: AnalyticsService },
     { provide: GAME_EVENT_SERVICE_TOKEN, useExisting: GameEventService },
     { provide: ACHIEVEMENTS_LIST_TOKEN, useValue: ACHIEVEMENTS_LIST },
-    { provide: ACHIEVEMENT_SERVICE, useExisting: AchievementService },
-    { provide: LEADERBOARD_SERVICE, useExisting: LeaderboardService },
-    { provide: GAME_ENGINE_TOKEN, useExisting: GameEngineService },
+    { provide: ACHIEVEMENT_SERVICE, useClass: AchievementService },
+    { provide: LEADERBOARD_SERVICE, useClass: LeaderboardService },
+    { provide: GAME_ENGINE_TOKEN, useClass: GameEngineService },
     {
       provide: APP_INITIALIZER,
       useFactory: (monitoringService: MonitoringService) => () => monitoringService.init(),
