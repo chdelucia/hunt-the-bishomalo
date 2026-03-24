@@ -1,0 +1,31 @@
+.card {
+  @apply flex flex-col w-full border-4;
+  background-color: var(--color-panel);
+  border-color: var(--color-border);
+  font-family: 'Press Start 2P', monospace;
+  box-shadow: 8px 8px 0px 0px rgba(0, 0, 0, 0.5);
+}
+
+.card-header {
+  @apply p-4 border-b-4;
+  border-color: var(--color-border);
+  background-color: var(--color-gray-950);
+}
+
+.card-title {
+  @apply m-0 text-sm font-bold;
+  color: var(--color-primary);
+}
+
+.card-content {
+  @apply p-6 flex-grow;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.card-footer {
+  @apply p-4 mt-auto border-t-4;
+  border-color: var(--color-border);
+  background-color: var(--color-gray-900);
+}

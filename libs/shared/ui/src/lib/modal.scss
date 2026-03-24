@@ -1,0 +1,50 @@
+.modal-overlay {
+  @apply fixed inset-0 z-50 flex items-center justify-center p-4;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  font-family: 'Press Start 2P', monospace;
+}
+
+.modal-container {
+  @apply relative w-full max-w-lg border-4 flex flex-col;
+  background-color: var(--color-panel);
+  border-color: var(--color-border);
+  box-shadow: 10px 10px 0px 0px rgba(0, 0, 0, 0.6);
+  max-height: 90vh;
+}
+
+.modal-header {
+  @apply p-4 border-b-4 flex items-center justify-between;
+  border-color: var(--color-border);
+  background-color: var(--color-gray-950);
+}
+
+.modal-title {
+  @apply m-0 text-sm font-bold;
+  color: var(--color-primary);
+}
+
+.modal-close-btn {
+  @apply text-2xl font-bold p-0 leading-none bg-transparent border-none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  width: auto;
+
+  &:hover {
+    color: var(--color-red-500);
+    background-color: transparent;
+  }
+}
+
+.modal-content {
+  @apply p-6 overflow-y-auto;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.modal-footer {
+  @apply p-4 border-t-4 flex justify-end gap-4;
+  border-color: var(--color-border);
+  background-color: var(--color-gray-900);
+}

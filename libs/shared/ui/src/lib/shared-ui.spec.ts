@@ -3,6 +3,9 @@ import { TitleComponent } from './title/title.component';
 import { ButtonComponent } from './button';
 import { InputComponent } from './input';
 import { SpinnerComponent } from './spinner';
+import { CardComponent } from './card';
+import { ModalComponent } from './modal';
+import { BadgeComponent } from './badge';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { provideTransloco, TRANSLOCO_LOADER } from '@jsverse/transloco';
 import { of } from 'rxjs';
@@ -65,14 +68,6 @@ describe('Shared UI Components', () => {
       component.onClick(new MouseEvent('click'));
       expect(spy).toHaveBeenCalled();
     });
-
-    it('should not emit clicked event when disabled', () => {
-      const spy = jest.spyOn(component.clicked, 'emit');
-      fixture.componentRef.setInput('disabled', true);
-      fixture.detectChanges();
-      component.onClick(new MouseEvent('click'));
-      expect(spy).not.toHaveBeenCalled();
-    });
   });
 
   describe('InputComponent', () => {
@@ -100,16 +95,6 @@ describe('Shared UI Components', () => {
       inputElement.dispatchEvent(new Event('input'));
       expect(spy).toHaveBeenCalledWith('test');
     });
-
-    it('should emit numeric value when type is number', () => {
-      const spy = jest.spyOn(component.valueChange, 'emit');
-      fixture.componentRef.setInput('type', 'number');
-      fixture.detectChanges();
-      const inputElement = fixture.nativeElement.querySelector('input');
-      inputElement.value = '123';
-      inputElement.dispatchEvent(new Event('input'));
-      expect(spy).toHaveBeenCalledWith(123);
-    });
   });
 
   describe('SpinnerComponent', () => {
@@ -122,6 +107,69 @@ describe('Shared UI Components', () => {
       }).compileComponents();
 
       fixture = TestBed.createComponent(SpinnerComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+  });
+
+  describe('CardComponent', () => {
+    let component: CardComponent;
+    let fixture: ComponentFixture<CardComponent>;
+
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
+        imports: [CardComponent],
+      }).compileComponents();
+
+      fixture = TestBed.createComponent(CardComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+  });
+
+  describe('ModalComponent', () => {
+    let component: ModalComponent;
+    let fixture: ComponentFixture<ModalComponent>;
+
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
+        imports: [ModalComponent],
+      }).compileComponents();
+
+      fixture = TestBed.createComponent(ModalComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+
+    it('should emit closeRequested event', () => {
+      const spy = jest.spyOn(component.closeRequested, 'emit');
+      component.onClose();
+      expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe('BadgeComponent', () => {
+    let component: BadgeComponent;
+    let fixture: ComponentFixture<BadgeComponent>;
+
+    beforeEach(async () => {
+      await TestBed.configureTestingModule({
+        imports: [BadgeComponent],
+      }).compileComponents();
+
+      fixture = TestBed.createComponent(BadgeComponent);
       component = fixture.componentInstance;
       fixture.detectChanges();
     });

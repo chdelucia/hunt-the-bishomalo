@@ -1,0 +1,33 @@
+.badge {
+  @apply inline-flex items-center justify-center px-2 py-1 text-center font-bold border-2;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 0.625rem;
+  line-height: 1;
+  text-transform: uppercase;
+  min-width: 40px;
+
+  &.common {
+    background-color: var(--color-gray-700);
+    border-color: var(--color-gray-600);
+    color: var(--color-gray-200);
+  }
+
+  &.rare {
+    background-color: var(--color-blue-700);
+    border-color: var(--color-blue-600);
+    color: var(--color-blue-300);
+  }
+
+  &.epic {
+    background-color: var(--color-purple-500);
+    border-color: #d1b3ff;
+    color: #ffffff;
+  }
+
+  &.legendary {
+    background-color: var(--color-yellow-500);
+    border-color: var(--color-yellow-400);
+    color: var(--color-black);
+    box-shadow: 0 0 5px var(--color-yellow-400);
+  }
+}

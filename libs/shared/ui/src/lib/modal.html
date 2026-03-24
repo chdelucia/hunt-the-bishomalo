@@ -1,0 +1,18 @@
+@if (isOpen()) {
+  <div class="modal-overlay" (click)="onBackdropClick($event)" role="presentation">
+    <div class="modal-container" role="dialog" aria-modal="true" [attr.aria-labelledby]="title() ? 'modal-title' : null">
+      <div class="modal-header">
+        @if (title()) {
+          <h2 id="modal-title" class="modal-title">{{ title() }}</h2>
+        }
+        <button class="modal-close-btn" (click)="onClose()" aria-label="Close modal">×</button>
+      </div>
+      <div class="modal-content">
+        <ng-content></ng-content>
+      </div>
+      <div class="modal-footer">
+        <ng-content select="[modal-footer]"></ng-content>
+      </div>
+    </div>
+  </div>
+}
