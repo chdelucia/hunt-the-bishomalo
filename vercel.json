@@ -1,26 +1,10 @@
 {
   "version": 2,
-  "public": true,
   "cleanUrls": true,
-  "headers": [
+  "rewrites": [
     {
       "source": "/(.*)",
-      "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" }
-      ]
-    }
-  ],
-  "routes": [
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "^/remotes/(.*)",
-      "dest": "/remotes/$1"
-    },
-    {
-      "src": "^(?!/remotes/).*",
-      "dest": "/index.html"
+      "destination": "/index.html"
     }
   ]
 }

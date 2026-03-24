@@ -9,6 +9,27 @@
     "type:app"
   ],
   "targets": {
+    "build-with-remotes": {
+    "executor": "nx:run-commands",
+    "dependsOn": [
+      {
+        "target": "build",
+        "projects": "self"
+      },
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ],
+    "options": {
+      "commands": [
+        "nx build hunt-the-bishomalo --configuration=production",
+        "nx build achievements-remote --configuration=production",
+        "mkdir -p dist/browser/remotes",
+        "cp -r dist/apps/achievements-remote dist/browser/remotes/achievements-remote"
+      ]
+    }
+    },
     "build": {
       "executor": "@angular-architects/native-federation:build",
       "options": {},
