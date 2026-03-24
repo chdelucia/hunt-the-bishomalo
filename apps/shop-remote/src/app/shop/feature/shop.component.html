@@ -1,0 +1,111 @@
+<div class="tienda-container">
+  <div class="tienda-content">
+    <div class="tienda-info-panel">
+      <h1 class="tienda-titulo">{{ 'shop.title' | transloco }}</h1>
+      <p class="tienda-subtitulo">{{ 'shop.subtitle' | transloco }}</p>
+
+      <div class="monedas-inventario">
+        <div class="monedas-container">
+          <img
+            ngSrc="boardicons/gold.svg"
+            alt="{{ 'shop.goldAlt' | transloco }}"
+            width="40"
+            height="40"
+            priority
+          />
+          <span class="monedas-texto">{{ gold() }} {{ 'shop.coinsSuffix' | transloco }}</span>
+        </div>
+
+        <div class="inventario-container">
+          @for (entry of inventory(); track entry.name) {
+          <div class="inventario-item">
+            <img
+              [ngSrc]="'shop/' + entry.icon"
+              alt="{{ entry.name | transloco }}"
+              width="40"
+              height="40"
+            />x1
+          </div>
+          }
+        </div>
+      </div>
+
+      <div class="next-button">
+        <button type="button" class="boton-siguiente" (click)="nextLevel()">
+          {{ 'shop.nextLevelButton' | transloco }}
+        </button>
+      </div>
+    </div>
+
+    @if(gold() < 60) {
+    <p class="disclaimer">{{ 'shop.notEnoughGoldMessage' | transloco }}</p>
+    }@else{
+
+    <div class="productos-grid">
+      @for (producto of productos(); track producto.name) {
+      <div class="producto-card">
+        <div class="producto-content">
+          <div class="producto-icono-container">
+            <img
+              [ngSrc]="'shop/' + producto.icon"
+              alt="{{ producto.name | transloco }}"
+              width="90"
+              height="90"
+            />
+          </div>
+          <div class="producto-info">
+            <p class="producto-name">{{ producto.name | transloco }}</p>
+            <p class="producto-descripcion">{{ producto.description | transloco }}</p>
+            <div class="producto-footer">
+              <div class="producto-price">
+                <img
+                  ngSrc="boardicons/gold.svg"
+                  alt="{{ 'shop.goldAlt' | transloco }}"
+                  width="20"
+                  height="20"
+                />
+                <span class="price-texto">{{ producto.price }}</span>
+              </div>
+              <button
+                type="button"
+                class="boton-comprar"
+                [disabled]="isOwned(producto)"
+                (click)="buyProduct(producto)"
+                [attr.aria-label]="
+                  isOwned(producto)
+                    ? ('shop.alreadyOwnedAriaLabel' | transloco: { productName: (producto.name | transloco) })
+                    : ('shop.buyButtonAriaLabel'
+                      | transloco: { productName: (producto.name | transloco), price: producto.price })
+                "
+              >
+                {{ (isOwned(producto) ? 'shop.alreadyOwned' : 'shop.buyButton') | transloco }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+    <p class="disclaimer">
+      <small>{{ 'shop.disclaimer1' | transloco }}</small>
+      <b>{{ 'shop.disclaimerTag' | transloco }}</b>
+    </p>
+
+    <p class="disclaimer">
+      <small>{{ 'shop.disclaimer2' | transloco }}</small>
+    </p>
+    }
+  </div>
+</div>
+
+@if(message()){
+<output aria-live="polite">
+  <button
+    type="button"
+    class="mensaje-compra"
+    (click)="clearMessage()"
+  >
+    {{ message() }}
+  </button>
+</output>
+}
