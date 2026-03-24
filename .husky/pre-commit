@@ -1,6 +1,3 @@
 bun x prettier --write "src/**/*.{ts,tsx,js,json,css,scss,html,md}"
 bun x nx affected -t test --parallel
 bun x nx affected -t lint --parallel
-
-# bun x jest --color
-# bun x nx run-many -t lint --parallel

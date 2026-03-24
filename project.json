@@ -5,25 +5,115 @@
   "projectType": "application",
   "prefix": "app",
   "sourceRoot": "./src",
-  "tags": ["type:app"],
+  "tags": [
+    "type:app"
+  ],
   "targets": {
+    "build-with-remotes": {
+    "executor": "nx:run-commands",
+    "dependsOn": [
+      {
+        "target": "build",
+        "projects": "self"
+      },
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ],
+    "options": {
+      "commands": [
+        "nx build hunt-the-bishomalo --configuration=production",
+        "nx build achievements-remote --configuration=production",
+        "mkdir -p dist/browser/remotes",
+        "cp -r dist/apps/achievements-remote dist/browser/remotes/achievements-remote"
+      ]
+    }
+    },
     "build": {
-      "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@angular-architects/native-federation:build",
+      "options": {},
+      "configurations": {
+        "production": {
+          "target": "hunt-the-bishomalo:esbuild:production"
+        },
+        "development": {
+          "target": "hunt-the-bishomalo:esbuild:development",
+          "dev": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-architects/native-federation:build",
       "options": {
-        "outputPath": "dist/hunt-the-bishomalo",
+        "target": "hunt-the-bishomalo:serve-original:development",
+        "proxyConfig": "proxy.conf.json",
+        "rebuildDelay": 500,
+        "dev": true,
+        "cacheExternalArtifacts": false,
+        "port": 0
+      },
+      "continuous": true
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "hunt-the-bishomalo:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": [
+          "./src"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectName}"
+      ],
+      "options": {
+        "jestConfig": "jest.config.app.ts"
+      }
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "hunt-the-bishomalo:build",
+        "port": 4200,
+        "staticFilePath": "dist/hunt-the-bishomalo/browser",
+        "spa": true
+      }
+    },
+    "esbuild": {
+      "executor": "@angular/build:application",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/",
         "index": "./src/index.html",
         "browser": "./src/main.ts",
-        "polyfills": [],
+        "polyfills": [
+          "es-module-shims"
+        ],
         "tsConfig": "tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
             "input": "public"
-          }
+          },
+          "src/favicon.ico",
+          "src/assets"
         ],
-        "styles": ["./src/styles.scss"],
+        "styles": [
+          "./src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -50,46 +140,21 @@
       },
       "defaultConfiguration": "production"
     },
-    "serve": {
+    "serve-original": {
       "continuous": true,
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "hunt-the-bishomalo:build:production"
+          "buildTarget": "hunt-the-bishomalo:esbuild:production"
         },
         "development": {
-          "buildTarget": "hunt-the-bishomalo:build:development"
+          "buildTarget": "hunt-the-bishomalo:esbuild:development"
         }
       },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "hunt-the-bishomalo:build"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["./src"]
-      }
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectName}"],
-      "options": {
-        "jestConfig": "jest.config.app.ts"
-      }
-    },
-    "serve-static": {
-      "continuous": true,
-      "executor": "@nx/web:file-server",
-      "options": {
-        "buildTarget": "hunt-the-bishomalo:build",
         "port": 4200,
-        "staticFilePath": "dist/hunt-the-bishomalo/browser",
-        "spa": true
+        "proxyConfig": "proxy.conf.json"
       }
     }
   }
