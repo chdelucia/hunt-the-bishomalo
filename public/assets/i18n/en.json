@@ -181,6 +181,8 @@
     "soundToggle": "Sound"
   },
   "mobileControls": {
+    "turnLeftAriaLabel": "Turn Left",
+    "turnLeftAlt": "Turn Left",
     "turnRightAriaLabel": "Turn Right",
     "turnRightAlt": "Turn Right",
     "shootArrowAriaLabel": "Shoot Arrow",

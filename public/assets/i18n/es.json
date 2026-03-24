@@ -181,6 +181,8 @@
     "soundToggle": "Sonido"
   },
   "mobileControls": {
+    "turnLeftAriaLabel": "Girar a la izquierda",
+    "turnLeftAlt": "Girar a la izquierda",
     "turnRightAriaLabel": "Girar a la derecha",
     "turnRightAlt": "Girar a la derecha",
     "shootArrowAriaLabel": "Disparar flecha",
