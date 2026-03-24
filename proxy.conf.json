@@ -1,0 +1,9 @@
+{
+  "/remotes/achievements-remote": {
+    "target": "http://localhost:4201",
+    "secure": false,
+    "pathRewrite": {
+      "^/remotes/achievements-remote": ""
+    }
+  }
+}

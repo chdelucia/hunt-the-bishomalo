@@ -18,7 +18,7 @@ export class SentryService {
   /**
    * Captures an exception in Sentry.
    */
-  public captureException(exception: any): void {
+  public captureException(exception: unknown): void {
     if (isDevMode()) {
       return;
     }

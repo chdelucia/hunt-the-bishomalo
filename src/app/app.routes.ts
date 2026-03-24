@@ -2,12 +2,13 @@ import { Route } from '@angular/router';
 import { secretGuard } from './guards/secret.guard';
 import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
 import { homeGuard } from './guards/home.guard';
+import { loadRemoteModule } from '@angular-architects/native-federation';
 
 export const appRoutes: Route[] = [
   {
     path: RouteTypes.ACHIEVEMENTS,
     loadChildren: () =>
-      import('@hunt-the-bishomalo/achievements/shell').then((mod) => mod.achievementsRoutes),
+      loadRemoteModule('achievements', './Routes').then((mod) => mod.achievementsRoutes),
     title: 'Logros | Bisho malo',
   },
   {
