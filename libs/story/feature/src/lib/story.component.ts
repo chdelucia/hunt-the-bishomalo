@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { GameStoryService } from './game-story.service';
 import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 
 @Component({
   selector: 'lib-story',
@@ -24,6 +25,7 @@ export class StoryComponent implements OnInit, OnDestroy {
   private readonly router = inject(Router);
   private readonly storyService = inject(GameStoryService);
   private readonly translocoService = inject(TranslocoService);
+  private readonly gameStore = inject(GAME_STORE_TOKEN);
 
   readonly story = this.storyService.getStory();
 
@@ -83,18 +85,21 @@ export class StoryComponent implements OnInit, OnDestroy {
     utterBody.rate = 0.8;
 
     speechSynthesis.cancel();
-    utterChapter.onend = () => {
-      speechSynthesis.speak(utterTitle);
-    };
-    utterTitle.onend = () => {
-      speechSynthesis.speak(utterBody);
-    };
 
-    utterBody.onend = () => {
-      this.showExtraInfo.set(true);
-    };
+    if (this.gameStore.soundEnabled()) {
+      utterChapter.onend = () => {
+        speechSynthesis.speak(utterTitle);
+      };
+      utterTitle.onend = () => {
+        speechSynthesis.speak(utterBody);
+      };
 
-    speechSynthesis.speak(utterChapter);
+      utterBody.onend = () => {
+        this.showExtraInfo.set(true);
+      };
+
+      speechSynthesis.speak(utterChapter);
+    }
 
     let i = 0;
     this.intervalId = setInterval(() => {
@@ -104,6 +109,9 @@ export class StoryComponent implements OnInit, OnDestroy {
       if (i >= bodyText.length) {
         clearInterval(this.intervalId);
         this.reading.set(false);
+        if (!this.gameStore.soundEnabled()) {
+          this.showExtraInfo.set(true);
+        }
       }
     }, 90);
   }

@@ -1,7 +1,4 @@
-
-> @hunt-the-bishomalo/source@7.57.0 start:shell
-> nx serve hunt-the-bishomalo
-
+$ nx serve hunt-the-bishomalo
 
 > nx run hunt-the-bishomalo:serve
 
@@ -20,26 +17,56 @@
 [1mLazy chunk files[22m   [2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
 [32mchunk-3SXCSS7S.js[37m  [2m | [22m[2mbootstrap[22m    [2m | [22m [36m17.73 kB[37m[2m | [22m
 [32mchunk-6SQLDPIH.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m14.23 kB[37m[2m | [22m
-Application bundle generation complete. [7.616 seconds] - 2026-03-24T16:31:08.415Z
+Application bundle generation complete. [5.546 seconds] - 2026-03-24T18:59:10.932Z
 [39m
 [37mWatch mode enabled. Watching for file changes...[39m
 [37mNOTE: Raw file sizes do not reflect development server per-request transformations.[39m
   [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4200[22m/[39m
-[2m4:31:39 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+[2m6:59:29 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
 AggregateError [ECONNREFUSED]:
     at internalConnectMultiple (node:net:1134:18)
     at afterConnectMultiple (node:net:1715:7)
-[2m4:32:12 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+[2m6:59:32 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
 AggregateError [ECONNREFUSED]:
     at internalConnectMultiple (node:net:1134:18)
     at afterConnectMultiple (node:net:1715:7)
-[2m4:32:43 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+[2m7:01:12 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
 AggregateError [ECONNREFUSED]:
     at internalConnectMultiple (node:net:1134:18)
     at afterConnectMultiple (node:net:1715:7)
-Task "hunt-the-bishomalo:serve" is continuous but exited with code 143
-npm notice
-npm notice New minor version of npm available! 11.11.0 -> 11.12.0
-npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.12.0
-npm notice To update run: npm install -g npm@11.12.0
-npm notice
+[2m7:01:17 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m7:02:10 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m7:02:49 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m7:03:34 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m7:04:22 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m7:04:31 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m7:05:21 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m7:06:43 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m7:06:44 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
