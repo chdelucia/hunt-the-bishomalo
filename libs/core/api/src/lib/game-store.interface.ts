@@ -1,5 +1,13 @@
 import { InjectionToken, Signal } from '@angular/core';
-import { Cell, GameSettings, Hunter, Chars, GameState, GameDificulty } from '@hunt-the-bishomalo/shared-data';
+import {
+  Cell,
+  GameSettings,
+  Hunter,
+  Chars,
+  GameState,
+  GameDificulty,
+  GameItem,
+} from '@hunt-the-bishomalo/shared-data';
 
 export interface IGameStore {
   readonly board: Signal<Cell[][]>;
@@ -13,7 +21,7 @@ export interface IGameStore {
   readonly lives: Signal<number>;
   readonly hasGold: Signal<boolean>;
   readonly currentCell: Signal<Cell | null>;
-  readonly inventory: Signal<unknown[]>; // Use any or a generic item type if needed
+  readonly inventory: Signal<GameItem[]>; // Use any or a generic item type if needed
   readonly hunter: Signal<Hunter>;
   readonly unlockedChars: Signal<Chars[]>;
   readonly wumpusKilled: Signal<number>;
