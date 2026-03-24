@@ -2,6 +2,37 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.57.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.56.7...v7.57.0) (2026-03-24)
+
+
+### Features
+
+* implement achievements microfrontend pilot ([04683bf](https://github.com/chdelucia/hunt-the-bishomalo/commit/04683bf711133e0a6c958f6010bf298ae3994eb2))
+* implement microfrontend architecture with native federation pilot ([aa3b9d2](https://github.com/chdelucia/hunt-the-bishomalo/commit/aa3b9d2249250278c205d40c5dbfb63d423c7f83))
+* isolate Achievements domain into standalone microfrontend ([994d747](https://github.com/chdelucia/hunt-the-bishomalo/commit/994d7470b4b207f48f254ba3c1d20d9b4e013eee))
+* **mfe:** implement achievements mfe with production routing and vercel config ([176cec0](https://github.com/chdelucia/hunt-the-bishomalo/commit/176cec0196949c3bfb21dd7d85f997e3bf7e7a25))
+* **mfe:** isolate achievements and configure for Vercel deployment ([78de4ce](https://github.com/chdelucia/hunt-the-bishomalo/commit/78de4ce973251b71f0731e913f3ba927674e3b47))
+* **mfe:** isolate achievements remote and implement event communication ([50ca105](https://github.com/chdelucia/hunt-the-bishomalo/commit/50ca1054cc9ea173727c1a96a757a1106dd46f19))
+* **mfe:** isolate achievements with local proxy and Vercel support ([cb1bd1a](https://github.com/chdelucia/hunt-the-bishomalo/commit/cb1bd1a5093e2f960c13ff8a53e3fbb8b3f6f229))
+* microfrontend pilot with achievements remote and testing ([da1bb03](https://github.com/chdelucia/hunt-the-bishomalo/commit/da1bb030dd0cd1fa344bdd1445a47e6aed7b8142))
+
+
+### Bug Fixes
+
+* add missing rotate-l.svg asset ([26bb203](https://github.com/chdelucia/hunt-the-bishomalo/commit/26bb2030a1e00609a1f342028a34a49874f3329d))
+* deploy ([b4a2040](https://github.com/chdelucia/hunt-the-bishomalo/commit/b4a204064c4b1225f510e429a50da6047a6a0876))
+* deploy ([b69beef](https://github.com/chdelucia/hunt-the-bishomalo/commit/b69beefec5b5188390df717744a2ecc8191746e8))
+* deploy ([d9815d8](https://github.com/chdelucia/hunt-the-bishomalo/commit/d9815d8f2fc406a3c40dac2673e0a524e22e483d))
+* deploy ([9de1498](https://github.com/chdelucia/hunt-the-bishomalo/commit/9de149891ff5bf59d9d79d0f2ac1bf642189b41b))
+* deploy ([69b0ebd](https://github.com/chdelucia/hunt-the-bishomalo/commit/69b0ebdcac78132846edac70a47e590b66197064))
+* deploy ([793cce1](https://github.com/chdelucia/hunt-the-bishomalo/commit/793cce14c79fab0f4cab3bc397c5720c6a4e8c8a))
+* deploy ([41e760a](https://github.com/chdelucia/hunt-the-bishomalo/commit/41e760aa40a03acbfb67f25c751c942a0983e1d5))
+* deploy ([6413f3e](https://github.com/chdelucia/hunt-the-bishomalo/commit/6413f3eca13bda207f29a5f7e882b9ebb07812f3))
+* deploy 909 ([dcc90af](https://github.com/chdelucia/hunt-the-bishomalo/commit/dcc90afffb850b0b610a9552463ee413ca6f7bb3))
+* deploy9 ([b143708](https://github.com/chdelucia/hunt-the-bishomalo/commit/b143708c0f062d3a5a867f19e42dcf3bf3bcfb5f))
+* lint ([b6e97cb](https://github.com/chdelucia/hunt-the-bishomalo/commit/b6e97cbe7c0265fc34e9f70678944f9a1f92b315))
+* remotes ([d84834f](https://github.com/chdelucia/hunt-the-bishomalo/commit/d84834f49816f4eb47c3fa3416d450a87906fb7a))
+
 ### [7.56.7](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.56.6...v7.56.7) (2026-03-23)
 
 ### [7.56.6](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.56.5...v7.56.6) (2026-03-23)
