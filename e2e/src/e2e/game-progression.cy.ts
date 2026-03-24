@@ -7,7 +7,7 @@ describe('Game Setup and Progression', () => {
 
   it('should complete game configuration with different characters', () => {
     // Test character selection
-    cy.get('.char-selector img').each(($img, index) => {
+    cy.get('.char-selector img').each(($img) => {
         cy.wrap($img).click();
         // cy.screenshot(`game-setup-char-${index}`);
     });

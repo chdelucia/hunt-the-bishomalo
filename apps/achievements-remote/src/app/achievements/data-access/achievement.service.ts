@@ -26,8 +26,9 @@ export class AchievementService implements IAchievementService {
   }
 
   private listenForExternalAchievements(): void {
-    window.addEventListener('achievement-unlocked', (event: any) => {
-      const id = event.detail?.id;
+    window.addEventListener('achievement-unlocked', (event: Event) => {
+      const customEvent = event as CustomEvent;
+      const id = customEvent.detail?.id;
       if (id) {
         this.activeAchievement(id);
       }

@@ -4,7 +4,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 import { Achievement } from '@hunt-the-bishomalo/shared-data';
 
 @Component({
-  selector: 'lib-achievement-item',
+  selector: 'app-achievement-item',
   standalone: true,
   imports: [NgOptimizedImage, TranslocoModule],
   templateUrl: './achievement-item.component.html',

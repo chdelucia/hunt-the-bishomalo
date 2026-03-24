@@ -10,7 +10,7 @@ import {
 } from '../ui/index';
 
 @Component({
-  selector: 'lib-achievements',
+  selector: 'app-achievements',
   standalone: true,
   imports: [
     RouterModule,

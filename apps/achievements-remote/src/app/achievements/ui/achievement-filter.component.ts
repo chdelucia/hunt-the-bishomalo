@@ -4,7 +4,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 type AchievementFilterType = 'all' | 'unlocked' | 'locked';
 
 @Component({
-  selector: 'lib-achievement-filter',
+  selector: 'app-achievement-filter',
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './achievement-filter.component.html',

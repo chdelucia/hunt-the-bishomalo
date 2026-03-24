@@ -28,8 +28,33 @@ export const appConfig: ApplicationConfig = {
     }),
     { provide: ACHIEVEMENTS_LIST_TOKEN, useValue: ACHIEVEMENTS_LIST },
     { provide: ACHIEVEMENT_SERVICE, useClass: AchievementService },
-    { provide: GAME_SOUND_TOKEN, useValue: { stop: () => {}, playSound: () => {} } },
-    { provide: ANALYTICS_SERVICE_TOKEN, useValue: { trackAchievementUnlocked: () => {} } },
-    { provide: LOCALSTORAGE_SERVICE_TOKEN, useValue: { getValue: () => [], setValue: () => {} } },
+    {
+      provide: GAME_SOUND_TOKEN,
+      useValue: {
+        stop: () => {
+          /* Method intentionally left empty. */
+        },
+        playSound: () => {
+          /* Method intentionally left empty. */
+        },
+      },
+    },
+    {
+      provide: ANALYTICS_SERVICE_TOKEN,
+      useValue: {
+        trackAchievementUnlocked: () => {
+          /* Method intentionally left empty. */
+        },
+      },
+    },
+    {
+      provide: LOCALSTORAGE_SERVICE_TOKEN,
+      useValue: {
+        getValue: () => [],
+        setValue: () => {
+          /* Method intentionally left empty. */
+        },
+      },
+    },
   ],
 };

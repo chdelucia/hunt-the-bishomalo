@@ -12,18 +12,18 @@
         <span class="emoji">🏆</span> {{ 'achievements.progressTitle' | transloco }}
       </h2>
 
-      <lib-achievement-progress
+      <app-achievement-progress
         [unlockedCount]="unlockedCount()"
         [totalCount]="achievements().length"
         [percentage]="percentage()"
       />
 
-      <lib-achievement-filter [currentFilter]="filter()" (filterChanged)="setFilter($event)" />
+      <app-achievement-filter [currentFilter]="filter()" (filterChanged)="setFilter($event)" />
     </div>
 
     <div class="achievement-list">
       @for (achievement of filteredAchievements(); track achievement.id; let i = $index) {
-        <lib-achievement-item [achievement]="achievement" [style.--index]="i" />
+        <app-achievement-item [achievement]="achievement" [style.--index]="i" />
       }
     </div>
 

@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
 
 @Component({
-  selector: 'lib-achievement-progress',
+  selector: 'app-achievement-progress',
   standalone: true,
   imports: [TranslocoModule],
   templateUrl: './achievement-progress.component.html',

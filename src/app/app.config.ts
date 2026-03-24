@@ -66,7 +66,9 @@ class ShellAchievementService {
       window.dispatchEvent(new CustomEvent('achievement-unlocked', { detail: { id } }));
     }
   }
-  isAllCompleted(): void {}
+  isAllCompleted(): void {
+    // Method intentionally left empty.
+  }
 }
 
 export const appConfig: ApplicationConfig = {

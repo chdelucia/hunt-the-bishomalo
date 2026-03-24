@@ -19,13 +19,13 @@ describe('Microfrontend Integration: Achievements Remote', () => {
     cy.url().should('include', '#/logros');
 
     // Verify that the remote component from 'achievements-remote' is rendered
-    cy.get('lib-achievements', { timeout: 15000 }).should('be.visible');
+    cy.get('app-achievements', { timeout: 15000 }).should('be.visible');
 
     // Check for achievement progress component
-    cy.get('lib-achievement-progress').should('be.visible');
+    cy.get('app-achievement-progress').should('be.visible');
 
     // Verify that we have a list of achievements loaded from the remote
-    cy.get('lib-achievement-item').should('have.length.at.least', 1);
+    cy.get('app-achievement-item').should('have.length.at.least', 1);
   });
 
   it('should maintain state consistency when navigating between shell and remote', () => {
@@ -40,7 +40,7 @@ describe('Microfrontend Integration: Achievements Remote', () => {
     // Navigate to Achievements (Remote)
     cy.get('.menu-toggle').click();
     cy.get('.mobile-menu button').contains('Logros').click();
-    cy.get('lib-achievements').should('be.visible');
+    cy.get('app-achievements').should('be.visible');
 
     // Go back to Home (Spanish: Inicio)
     cy.get('.menu-toggle').click();
