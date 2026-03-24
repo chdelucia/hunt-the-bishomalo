@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.57.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.57.0...v7.57.1) (2026-03-24)
+
+
+### Bug Fixes
+
+* add missing translations for mobile controls ([c2c402d](https://github.com/chdelucia/hunt-the-bishomalo/commit/c2c402d11af72a28d25942078be726cc4e092bed))
+
 ## [7.57.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.56.7...v7.57.0) (2026-03-24)
 
 
