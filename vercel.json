@@ -19,14 +19,17 @@
       ]
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/remotes/achievements-remote/(.*)",
-      "destination": "/remotes/achievements-remote/$1"
+      "handle": "filesystem"
     },
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "^/remotes/achievements-remote/(.*)",
+      "dest": "/remotes/achievements-remote/$1"
+    },
+    {
+      "src": "^(.*)$",
+      "dest": "/index.html"
     }
   ]
 }
