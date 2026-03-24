@@ -164,8 +164,8 @@ jobs:
             ~/.bun/install/cache
           key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
       - run: bun install --frozen-lockfile
-      - name: Build production (Nx)
-        run: bun x nx run-many -t build --configuration=production
+      - name: Build production (Vercel script)
+        run: bun run build:vercel
 
   release:
     if: github.event_name == 'push' && github.ref == 'refs/heads/master'
