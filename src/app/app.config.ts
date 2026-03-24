@@ -51,7 +51,15 @@ class ShellAchievementService {
       const newIds = [...storedIds, id];
       this.localStoreService.setValue(this.storageKey, newIds);
       this.analytics.trackAchievementUnlocked(id, id);
-      const dummyAchieve: unknown = { id, title: id, description: '', icon: '', svgIcon: '', rarity: 'common', unlocked: true };
+      const dummyAchieve: unknown = {
+        id,
+        title: id,
+        description: '',
+        icon: '',
+        svgIcon: '',
+        rarity: 'common',
+        unlocked: true,
+      };
       this.completed.set(dummyAchieve as Achievement);
 
       // Notify other MFEs via CustomEvent

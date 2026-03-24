@@ -11,9 +11,8 @@ jest.mock('@angular-architects/native-federation', () => ({
 }));
 
 describe('appRoutes', () => {
-
   it('should call loadRemoteModule for achievements route', async () => {
-    const route = appRoutes.find(r => r.path === 'logros');
+    const route = appRoutes.find((r) => r.path === 'logros');
     expect(route).toBeDefined();
     if (route?.loadChildren) {
       await (route.loadChildren() as any);

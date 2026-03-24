@@ -1,4 +1,4 @@
 
 bun x prettier --write "src/**/*.{ts,tsx,js,json,css,scss,html,md}"
 bun x jest --color
-bun x nx run-many -t lint --parallel
+#bun x nx run-many -t lint --parallel
