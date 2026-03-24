@@ -173,4 +173,4 @@ jobs:
           key: ${{ runner.os }}-bun-${{ hashFiles('bun.lock') }}
 
       - run: bun install --frozen-lockfile
-      - run: bun x nx affected -t build --configuration=production --parallel --base=${{ needs.validate.outputs.base }}
+      - run: bun run build:vercel

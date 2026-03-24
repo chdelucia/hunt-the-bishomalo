@@ -15,7 +15,7 @@
     "changelog": "standard-version --skip.tag=true --skip.commit=true",
     "i18n:extract": "transloco-keys-manager extract",
     "i18n:find": "transloco-keys-manager find",
-    "build:vercel": "nx build hunt-the-bishomalo --configuration=production && nx build achievements-remote --configuration=production"
+    "build:vercel": "bash infra/scripts/build-vercel.sh"
   },
   "private": true,
   "dependencies": {
