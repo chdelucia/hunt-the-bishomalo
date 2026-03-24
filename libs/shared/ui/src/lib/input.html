@@ -1,0 +1,21 @@
+<div class="input-container" [class.has-error]="error()">
+  @if (label()) {
+    <label [for]="id()" class="input-label">
+      {{ label() }}
+    </label>
+  }
+  <input
+    [id]="id()"
+    [type]="type()"
+    [placeholder]="placeholder()"
+    [value]="value()"
+    [disabled]="disabled()"
+    class="input-field"
+    (input)="onInput($event)"
+  />
+  @if (error()) {
+    <span class="input-error" role="alert">
+      {{ error() }}
+    </span>
+  }
+</div>

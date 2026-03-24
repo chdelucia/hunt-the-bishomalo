@@ -51,3 +51,5 @@ e2e/src/snapshots/diff
 .nx/polygraph
 .claude/worktrees
 .claude/settings.local.json
+
+storybook-static
