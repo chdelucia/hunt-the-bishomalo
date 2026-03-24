@@ -15,8 +15,7 @@
     "changelog": "standard-version --skip.tag=true --skip.commit=true",
     "i18n:extract": "transloco-keys-manager extract",
     "i18n:find": "transloco-keys-manager find",
-    "build:vercel8": "nx build hunt-the-bishomalo --configuration=production && nx build achievements-remote --configuration=production --output-path=dist/browser/remotes/achievements-remote",
-    "build:vercel": "nx build achievements-remote --configuration=production --output-path=dist/tmp/achievements-remote && nx build hunt-the-bishomalo --configuration=production && mkdir -p dist/browser/remotes && cp -r dist/tmp/achievements-remote dist/browser/remotes/achievements-remote"
+    "build:vercel": "nx build hunt-the-bishomalo --configuration=production && nx build achievements-remote --configuration=production"
   },
   "private": true,
   "dependencies": {
