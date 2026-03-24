@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { GameStoryService } from './game-story.service';
 import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
+import { signal } from '@angular/core';
 
 const mockRouter = {
   navigate: jest.fn(),
@@ -19,6 +21,10 @@ const mockStory = {
 const mockGameStoryService = {
   getStory: jest.fn(() => mockStory),
   checkLevelTrigger: jest.fn(),
+};
+
+const mockGameStore = {
+  soundEnabled: signal(true),
 };
 
 (global as unknown as { SpeechSynthesisUtterance: unknown }).SpeechSynthesisUtterance = class {
@@ -49,6 +55,7 @@ describe('StoryComponent', () => {
       providers: [
         { provide: Router, useValue: mockRouter },
         { provide: GameStoryService, useValue: mockGameStoryService },
+        { provide: GAME_STORE_TOKEN, useValue: mockGameStore },
       ],
     }).compileComponents();
 
@@ -109,6 +116,28 @@ describe('StoryComponent', () => {
 
     jest.runAllTimers();
     expect(component.showExtraInfo()).toBe(true);
+    jest.useRealTimers();
+  });
+
+  it('should not call speechSynthesis.speak when soundEnabled is false', () => {
+    jest.useFakeTimers();
+    mockGameStore.soundEnabled.set(false);
+    const speakSpy = jest.spyOn(global.speechSynthesis, 'speak');
+
+    component['startReading'](mockStory.text);
+
+    expect(speakSpy).not.toHaveBeenCalled();
+
+    // Advance timers for text animation
+    for (let i = 0; i < mockStory.text.length; i++) {
+      jest.advanceTimersByTime(90);
+    }
+
+    expect(component.displayedText()).toBe(mockStory.text);
+    expect(component.reading()).toBe(false);
+    expect(component.showExtraInfo()).toBe(true);
+
+    mockGameStore.soundEnabled.set(true); // Reset for other tests
     jest.useRealTimers();
   });
 });
