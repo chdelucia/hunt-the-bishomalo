@@ -14,14 +14,6 @@ const mockHunter: Hunter = {
   gold: 0,
   inventory: [],
 };
-const mockSettings = {
-  player: 'Chris',
-  size: 4,
-  pits: 2,
-  arrows: 3,
-  wumpus: 1,
-  selectedChar: Chars.DEFAULT,
-};
 
 describe('GameCellComponent', () => {
   let component: GameCellComponent;

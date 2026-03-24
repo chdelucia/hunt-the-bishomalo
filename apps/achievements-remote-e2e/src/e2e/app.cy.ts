@@ -3,7 +3,7 @@ describe('achievements-remote', () => {
     // We visit the shell which will load the remote
     cy.visit('/#/logros');
     // Wait for the app to initialize and transloco to load
-    cy.wait(2000);
+    cy.get('.achievement-list', { timeout: 15000 }).should('exist');
   });
 
   it('should display the achievements list container', () => {
