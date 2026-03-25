@@ -54,7 +54,7 @@
     "@nx/eslint-plugin": "22.5.4",
     "@nx/jest": "22.5.4",
     "@nx/js": "22.5.4",
-    "@nx/web": "22.5.4",
+    "@nx/web": "22.6.1",
     "@schematics/angular": "21.2.2",
     "@softarc/native-federation-runtime": "^3.5.5",
     "@swc-node/register": "1.11.1",
