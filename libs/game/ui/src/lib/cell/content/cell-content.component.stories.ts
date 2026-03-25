@@ -4,19 +4,23 @@ import { expect } from 'storybook/test';
 
 const meta: Meta<CellContentComponent> = {
   component: CellContentComponent,
-  title: 'CellContentComponent',
+  title: 'Atoms/CellContent',
+  tags: ['autodocs'],
 };
 export default meta;
 
 type Story = StoryObj<CellContentComponent>;
 
 export const Primary: Story = {
-  args: {},
-};
-
-export const Heading: Story = {
-  args: {},
+  args: {
+    content: {
+      type: 'wumpus',
+      image: 'chars/link/wumpus.png',
+      alt: 'wumpus',
+      ariaLabel: 'wumpus',
+    },
+  },
   play: async ({ canvas }) => {
-    await expect(canvas.getByText(/cell-content/gi)).toBeTruthy();
+    await expect(canvas.getByRole('img')).toBeTruthy();
   },
 };

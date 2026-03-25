@@ -4,19 +4,20 @@ import { expect } from 'storybook/test';
 
 const meta: Meta<GameMessageActionsComponent> = {
   component: GameMessageActionsComponent,
-  title: 'GameMessageActionsComponent',
+  title: 'Atoms/GameMessageActions',
+  tags: ['autodocs'],
 };
 export default meta;
 
 type Story = StoryObj<GameMessageActionsComponent>;
 
 export const Primary: Story = {
-  args: {},
-};
-
-export const Heading: Story = {
-  args: {},
+  args: {
+    shouldShowRetry: true,
+    shouldShowNextLevel: false,
+    showCongrats: false,
+  },
   play: async ({ canvas }) => {
-    await expect(canvas.getByText(/game-message-actions/gi)).toBeTruthy();
+    await expect(canvas.getByRole('button', { name: /retry/i })).toBeTruthy();
   },
 };

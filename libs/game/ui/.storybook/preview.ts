@@ -7,6 +7,7 @@ import { from } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class StorybookTranslocoLoader implements TranslocoLoader {
   getTranslation(lang: string) {
+    // Assets are now served from root in Storybook
     return from(
       fetch(`/assets/i18n/${lang}.json`).then((res) => res.json() as Promise<Translation>)
     );

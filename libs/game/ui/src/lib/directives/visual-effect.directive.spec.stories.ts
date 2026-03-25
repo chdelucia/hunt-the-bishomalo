@@ -1,15 +1,25 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { TestHostComponent } from './visual-effect.directive.spec';
 import { expect } from 'storybook/test';
+import { Component } from '@angular/core';
+import { VisualEffectDirective } from './visual-effect.directive';
 
-const meta: Meta<TestHostComponent> = {
-  component: TestHostComponent,
+@Component({
+  template: `<div [libVisualEffect]="effect"></div>`,
+  standalone: true,
+  imports: [VisualEffectDirective],
+})
+export class StoryHostComponent {
+  effect = '';
+}
+
+const meta: Meta<StoryHostComponent> = {
+  component: StoryHostComponent,
   title: 'Directives/VisualEffect',
   tags: ['autodocs'],
 };
 export default meta;
 
-type Story = StoryObj<TestHostComponent>;
+type Story = StoryObj<StoryHostComponent>;
 
 export const Breeze: Story = {
   args: {

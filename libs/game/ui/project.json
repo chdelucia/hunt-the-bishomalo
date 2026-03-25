@@ -23,7 +23,14 @@
         "port": 4400,
         "configDir": "libs/game/ui/.storybook",
         "browserTarget": "game-ui:build-storybook",
-        "compodoc": false
+        "compodoc": false,
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "public",
+            "output": "/"
+          }
+        ]
       },
       "configurations": {
         "ci": {
@@ -38,7 +45,14 @@
         "outputDir": "dist/storybook/game-ui",
         "configDir": "libs/game/ui/.storybook",
         "browserTarget": "game-ui:build-storybook",
-        "compodoc": false
+        "compodoc": false,
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "public",
+            "output": "/"
+          }
+        ]
       },
       "configurations": {
         "ci": {

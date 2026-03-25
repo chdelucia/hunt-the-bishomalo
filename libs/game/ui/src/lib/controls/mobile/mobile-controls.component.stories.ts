@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { MobileControlsComponent } from './mobile-controls.component';
-import { fn } from 'storybook/test';
+import { expect, fn } from 'storybook/test';
 
 const meta: Meta<MobileControlsComponent> = {
   component: MobileControlsComponent,
@@ -20,6 +20,12 @@ export const Default: Story = {
     turnRightRequested: fn(),
     shootArrowRequested: fn(),
     toggleSoundRequested: fn(),
+  },
+  play: async ({ canvas }) => {
+    await expect(canvas.getByRole('button', { name: /forward/i })).toBeTruthy();
+    await expect(canvas.getByRole('button', { name: /left/i })).toBeTruthy();
+    await expect(canvas.getByRole('button', { name: /right/i })).toBeTruthy();
+    await expect(canvas.getByRole('button', { name: /shoot/i })).toBeTruthy();
   },
 };
 

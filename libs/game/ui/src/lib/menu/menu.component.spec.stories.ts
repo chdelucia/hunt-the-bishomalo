@@ -1,15 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { DummyComponent } from './menu.component.spec';
 import { expect } from 'storybook/test';
+import { Component } from '@angular/core';
 
-const meta: Meta<DummyComponent> = {
-  component: DummyComponent,
+@Component({
+  template: '',
+  standalone: true,
+})
+export class StoryDummyComponent {}
+
+const meta: Meta<StoryDummyComponent> = {
+  component: StoryDummyComponent,
   title: 'Atoms/Dummy',
   tags: ['autodocs'],
 };
 export default meta;
 
-type Story = StoryObj<DummyComponent>;
+type Story = StoryObj<StoryDummyComponent>;
 
 export const Primary: Story = {
   args: {},
