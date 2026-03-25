@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.58.2](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.58.1...v7.58.2) (2026-03-25)
+
+
+### Bug Fixes
+
+* **core-data-access:** stop all sounds when sound is disabled ([e0476b6](https://github.com/chdelucia/hunt-the-bishomalo/commit/e0476b616eec6b6d67bbdcde4612bf85bfe3dc6b))
+* **game-ui:** export TestHostComponent and DummyComponent from spec files ([61e2b35](https://github.com/chdelucia/hunt-the-bishomalo/commit/61e2b353afb0ec867b7a4bd8a60a3dc32468b032)), closes [#TS2459](https://github.com/chdelucia/hunt-the-bishomalo/issues/TS2459)
+
 ### [7.58.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.58.0...v7.58.1) (2026-03-25)
 
 ## [7.58.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.57.1...v7.58.0) (2026-03-25)
