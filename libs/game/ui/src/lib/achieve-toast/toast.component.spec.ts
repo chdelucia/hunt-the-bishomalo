@@ -11,7 +11,7 @@ describe('ToastComponent', () => {
     id: '1',
     title: 'Achievement Title',
     description: 'Achievement Description',
-    svgIcon: '<svg></svg>',
+    svgIcon: String.raw`<svg></svg>`,
     unlocked: true,
     rarity: 'common',
   } as Achievement;
