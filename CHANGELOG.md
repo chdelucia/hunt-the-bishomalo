@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.58.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.57.1...v7.58.0) (2026-03-25)
+
+
+### Features
+
+* **config:** improve character selection accessibility and focus visibility ([11362b0](https://github.com/chdelucia/hunt-the-bishomalo/commit/11362b09b980b2734b06a3243bc86c2e8770c235))
+
+
+### Bug Fixes
+
+* **story:** respect soundEnabled setting for story narration ([b220819](https://github.com/chdelucia/hunt-the-bishomalo/commit/b22081968252d8263f9b40f1c17bcc67cd586262))
+
 ### [7.57.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.57.0...v7.57.1) (2026-03-24)
 
 
