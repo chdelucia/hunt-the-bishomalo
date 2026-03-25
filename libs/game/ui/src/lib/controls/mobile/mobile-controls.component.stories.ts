@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { MobileControlsComponent } from './mobile-controls.component';
-import { expect, fn } from 'storybook/test';
+import { expect, fn, userEvent } from 'storybook/test';
 
 const meta: Meta<MobileControlsComponent> = {
   component: MobileControlsComponent,

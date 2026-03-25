@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "outDir": "../../dist/out-tsc",
+    "types": ["node"]
+  },
+  "files": ["./main.ts", "./preview.ts"],
+  "include": ["../src/app/**/*.stories.ts", "../src/app/**/*.stories.js", "../src/app/**/*.stories.jsx", "../src/app/**/*.stories.tsx", "../src/app/**/*.stories.mdx"]
+}
