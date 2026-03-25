@@ -1,5 +1,6 @@
 {
   "lockfileVersion": 1,
+  "configVersion": 0,
   "workspaces": {
     "": {
       "name": "@hunt-the-bishomalo/source",
@@ -9,7 +10,7 @@
         "@angular/compiler": "21.2.4",
         "@angular/core": "21.2.4",
         "@angular/forms": "21.2.4",
-        "@angular/platform-browser": "21.2.4",
+        "@angular/platform-browser": "21.2.5",
         "@angular/platform-browser-dynamic": "21.2.4",
         "@angular/router": "21.2.4",
         "@ngrx/signals": "21.0.1",
@@ -147,7 +148,7 @@
 
     "@angular/language-service": ["@angular/language-service@21.2.4", "", {}, "sha512-seWlXWhayTwuL62Cfz+Ky/Wv67oYLX+cXplYoIinDVJPgQaU9jXpakLfKq8RwdRXVmgTE0HQ5dyoTozuWgJ8Nw=="],
 
-    "@angular/platform-browser": ["@angular/platform-browser@21.2.4", "", { "dependencies": { "tslib": "^2.3.0" }, "peerDependencies": { "@angular/animations": "21.2.4", "@angular/common": "21.2.4", "@angular/core": "21.2.4" }, "optionalPeers": ["@angular/animations"] }, "sha512-1A9e/cQVu+3BkRCktLcO3RZGuw8NOTHw1frUUrpAz+iMyvIT4sDRFbL+U1g8qmOCZqRNC1Pi1HZfZ1kl6kvrcQ=="],
+    "@angular/platform-browser": ["@angular/platform-browser@21.2.5", "", { "dependencies": { "tslib": "^2.3.0" }, "peerDependencies": { "@angular/animations": "21.2.5", "@angular/common": "21.2.5", "@angular/core": "21.2.5" }, "optionalPeers": ["@angular/animations"] }, "sha512-VuuYguxjgyI4XWuoXrKynmuA3FB991pXbkNhxHeCW0yX+7DGOnGLPF1oierd4/X+IvskmN8foBZLfjyg9u4Ffg=="],
 
     "@angular/platform-browser-dynamic": ["@angular/platform-browser-dynamic@21.2.4", "", { "dependencies": { "tslib": "^2.3.0" }, "peerDependencies": { "@angular/common": "21.2.4", "@angular/compiler": "21.2.4", "@angular/core": "21.2.4", "@angular/platform-browser": "21.2.4" } }, "sha512-LRJLnGh4rdgD0+S5xuDd4YRm5bV8WP2e6F1Pe5rIr6N4V9ofgpB0/uOjYy9se99FJZjoyPnpxaKsp8+XA753Zg=="],
 
