@@ -1,5 +1,5 @@
 import { Component, effect, input, OnDestroy, signal } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 import { Achievement } from '@hunt-the-bishomalo/shared-data';
 
 interface ToastData {
@@ -11,7 +11,7 @@ interface ToastData {
 @Component({
   selector: 'lib-toast',
   standalone: true,
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, NgClass],
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss',
 })
@@ -19,7 +19,7 @@ export class ToastComponent implements OnDestroy {
   achievement = input<Achievement | undefined>();
 
   private idCounter = 0;
-  readonly toasts = signal<ToastData[]>([]);
+  readonly toasts = signal<(ToastData & { broken?: boolean })[]>([]);
   private readonly toastTimeouts = new Map<number, ReturnType<typeof setTimeout>>();
 
   constructor() {
@@ -29,6 +29,10 @@ export class ToastComponent implements OnDestroy {
         this.addToast(achievement);
       }
     });
+  }
+
+  onImageError(id: number): void {
+    this.toasts.update((prev) => prev.map((t) => (t.id === id ? { ...t, broken: true } : t)));
   }
 
   private addToast(achievement: Achievement) {

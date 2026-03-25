@@ -43,7 +43,8 @@
       "@hunt-the-bishomalo/config/feature": ["libs/config/feature/src/index.ts"],
       "@hunt-the-bishomalo/config/shell": ["libs/config/shell/src/index.ts"],
       "@hunt-the-bishomalo/chars/feature": ["libs/chars/feature/src/index.ts"],
-      "@hunt-the-bishomalo/chars/shell": ["libs/chars/shell/src/index.ts"]
+      "@hunt-the-bishomalo/chars/shell": ["libs/chars/shell/src/index.ts"],
+      "@hunt-the-bishomalo/achievements/data-access": ["libs/achievements/data-access/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

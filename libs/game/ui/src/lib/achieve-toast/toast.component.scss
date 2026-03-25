@@ -28,6 +28,10 @@
   flex-direction: column;
 }
 
+.broken-image {
+  visibility: hidden;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

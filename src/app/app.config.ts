@@ -27,6 +27,7 @@ import {
   GAME_EVENT_SERVICE_TOKEN,
 } from '@hunt-the-bishomalo/core/api';
 import { ACHIEVEMENT_SERVICE, ACHIEVEMENTS_LIST_TOKEN } from '@hunt-the-bishomalo/achievements/api';
+import { ACHIEVEMENTS_LIST } from '@hunt-the-bishomalo/achievements/data-access';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { LeaderboardService } from '@hunt-the-bishomalo/gamestats/data-access';
@@ -40,7 +41,8 @@ import { Achievement } from '@hunt-the-bishomalo/shared-data';
 @Injectable({ providedIn: 'root' })
 class ShellAchievementService {
   private readonly storageKey = 'hunt_the_bishomalo_achievements';
-  readonly achievements: Achievement[] = [];
+  private readonly _achievementsList = inject(ACHIEVEMENTS_LIST_TOKEN);
+  readonly achievements: Achievement[] = this._achievementsList;
   readonly completed = signal<Achievement | undefined>(undefined);
   private readonly localStoreService = inject(LOCALSTORAGE_SERVICE_TOKEN);
   private readonly analytics = inject(ANALYTICS_SERVICE_TOKEN);
@@ -50,17 +52,24 @@ class ShellAchievementService {
     if (!storedIds.includes(id)) {
       const newIds = [...storedIds, id];
       this.localStoreService.setValue(this.storageKey, newIds);
-      this.analytics.trackAchievementUnlocked(id, id);
-      const dummyAchieve: unknown = {
-        id,
-        title: id,
-        description: '',
-        icon: '',
-        svgIcon: '',
-        rarity: 'common',
-        unlocked: true,
-      };
-      this.completed.set(dummyAchieve as Achievement);
+
+      const achievement = this.achievements.find((a) => a.id === id);
+      if (achievement) {
+        this.analytics.trackAchievementUnlocked(id, achievement.title);
+        this.completed.set({ ...achievement, unlocked: true });
+      } else {
+        this.analytics.trackAchievementUnlocked(id, id);
+        const dummyAchieve: unknown = {
+          id,
+          title: id,
+          description: '',
+          icon: '',
+          svgIcon: '',
+          rarity: 'common',
+          unlocked: true,
+        };
+        this.completed.set(dummyAchieve as Achievement);
+      }
 
       // Notify other MFEs via CustomEvent
       window.dispatchEvent(new CustomEvent('achievement-unlocked', { detail: { id } }));
@@ -78,7 +87,7 @@ export const appConfig: ApplicationConfig = {
     { provide: LOCALSTORAGE_SERVICE_TOKEN, useExisting: LocalstorageService },
     { provide: ANALYTICS_SERVICE_TOKEN, useExisting: AnalyticsService },
     { provide: GAME_EVENT_SERVICE_TOKEN, useExisting: GameEventService },
-    { provide: ACHIEVEMENTS_LIST_TOKEN, useValue: [] },
+    { provide: ACHIEVEMENTS_LIST_TOKEN, useValue: ACHIEVEMENTS_LIST },
     { provide: ACHIEVEMENT_SERVICE, useClass: ShellAchievementService },
     { provide: LEADERBOARD_SERVICE, useClass: LeaderboardService },
     { provide: GAME_ENGINE_TOKEN, useClass: GameEngineService },
