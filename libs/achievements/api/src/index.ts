@@ -1,2 +1,2 @@
-export * from './lib/achievement-service.interface';
-export * from './lib/achievements.const';
+export * from '@hunt-the-bishomalo/core/api';
+export { ACHIEVEMENTS_LIST } from '@hunt-the-bishomalo/shared-data';

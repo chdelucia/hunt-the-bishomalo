@@ -7,8 +7,8 @@ import {
   GAME_SOUND_TOKEN,
   LOCALSTORAGE_SERVICE_TOKEN,
   GAME_STORE_TOKEN,
+  ACHIEVEMENT_SERVICE,
 } from '@hunt-the-bishomalo/core/api';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { IGameEngineService } from '@hunt-the-bishomalo/game/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import {

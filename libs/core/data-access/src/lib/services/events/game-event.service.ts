@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Cell, GameEventEffectType, GameItem, GameSound, CauseOfDeath, AchieveTypes } from '@hunt-the-bishomalo/shared-data';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
-import { GAME_STORE_TOKEN, IGameEventService, GAME_SOUND_TOKEN } from '@hunt-the-bishomalo/core/api';
+import { GAME_STORE_TOKEN, IGameEventService, GAME_SOUND_TOKEN, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/api';
 import { createGameEventEffects } from './effects';
 
 export interface GameEventEffect {

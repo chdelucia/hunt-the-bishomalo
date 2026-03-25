@@ -5,7 +5,7 @@ import { ToastComponent, MenuComponent, GameControlsComponent } from '@hunt-the-
 import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { KeyboardManagerService } from '@hunt-the-bishomalo/game/data-access';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/api';
 import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
 
 @Component({

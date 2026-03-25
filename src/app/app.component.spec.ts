@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { KeyboardManagerService } from '@hunt-the-bishomalo/game/data-access';
 import {
@@ -10,6 +9,7 @@ import {
   LOCALSTORAGE_SERVICE_TOKEN,
   GAME_SOUND_TOKEN,
   GAME_EVENT_SERVICE_TOKEN,
+  ACHIEVEMENT_SERVICE,
 } from '@hunt-the-bishomalo/core/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { signal } from '@angular/core';

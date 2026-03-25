@@ -30,9 +30,19 @@ export class AchievementService implements IAchievementService {
       const customEvent = event as CustomEvent;
       const id = customEvent.detail?.id;
       if (id) {
-        this.activeAchievement(id);
+        this.unlockLocally(id);
       }
     });
+  }
+
+  private unlockLocally(id: AchieveTypes | string): void {
+    const achieve = this.achievements.find((item) => item.id === id);
+    if (achieve && !achieve.unlocked) {
+      achieve.unlocked = true;
+      this.completed.set(achieve);
+      this.updateLocalStorageWithNewId(achieve.id);
+      this.analytics.trackAchievementUnlocked(achieve.id, achieve.title);
+    }
   }
 
   private updateLocalStorageWithNewId(id: string): void {
@@ -54,10 +64,9 @@ export class AchievementService implements IAchievementService {
   activeAchievement(id: AchieveTypes | string): void {
     const achieve = this.achievements.find((item) => item.id === id);
     if (achieve && !achieve.unlocked) {
-      achieve.unlocked = true;
-      this.completed.set(achieve);
-      this.updateLocalStorageWithNewId(achieve.id);
-      this.analytics.trackAchievementUnlocked(achieve.id, achieve.title);
+      this.unlockLocally(id);
+      // Notify other MFEs via CustomEvent
+      window.dispatchEvent(new CustomEvent('achievement-unlocked', { detail: { id } }));
     }
   }
 

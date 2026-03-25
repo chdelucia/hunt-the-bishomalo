@@ -10,4 +10,5 @@ export * from './game-item.model';
 export * from './routes.enum';
 export * from './game-state.model';
 export * from './achievements.model';
+export * from './achievements.const';
 export * from './interfaces/game-store.interface';

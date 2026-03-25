@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { GameEventService } from './game-event.service';
-import { GAME_SOUND_TOKEN, GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { GAME_SOUND_TOKEN, GAME_STORE_TOKEN, ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/api';
 import { Cell, GameSound, AchieveTypes } from '@hunt-the-bishomalo/shared-data';
 import { signal } from '@angular/core';
 

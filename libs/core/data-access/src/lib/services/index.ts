@@ -5,3 +5,4 @@ export * from './events/game-event.service';
 export * from './monitoring/logrocket.service';
 export * from './monitoring/sentry.service';
 export * from './monitoring/monitoring.service';
+export * from './achievements/shell-achievement.service';
