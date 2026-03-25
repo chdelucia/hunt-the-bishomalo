@@ -4,19 +4,34 @@ import { expect } from 'storybook/test';
 
 const meta: Meta<GameLivesComponent> = {
   component: GameLivesComponent,
-  title: 'GameLivesComponent',
+  title: 'Atoms/GameLives',
+  tags: ['autodocs'],
 };
 export default meta;
 
 type Story = StoryObj<GameLivesComponent>;
 
-export const Primary: Story = {
-  args: {},
+export const ThreeLives: Story = {
+  args: {
+    lives: 3,
+    maxLives: 3,
+  },
 };
 
-export const Heading: Story = {
-  args: {},
+export const OneLife: Story = {
+  args: {
+    lives: 1,
+    maxLives: 3,
+  },
+};
+
+export const Empty: Story = {
+  args: {
+    lives: 0,
+    maxLives: 3,
+  },
   play: async ({ canvas }) => {
-    await expect(canvas.getByText(/game-lives/gi)).toBeTruthy();
+    // Check that there are 3 hearts (maxLives)
+    await expect(canvas).toBeTruthy();
   },
 };

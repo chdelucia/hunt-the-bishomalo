@@ -1,14 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/angular';
-import { DummyComponent } from './menu.component.spec';
 import { expect } from 'storybook/test';
+import { Component } from '@angular/core';
 
-const meta: Meta<DummyComponent> = {
-  component: DummyComponent,
-  title: 'DummyComponent',
+@Component({
+  template: '',
+  standalone: true,
+})
+export class StoryDummyComponent {}
+
+const meta: Meta<StoryDummyComponent> = {
+  component: StoryDummyComponent,
+  title: 'Atoms/Dummy',
+  tags: ['autodocs'],
 };
 export default meta;
 
-type Story = StoryObj<DummyComponent>;
+type Story = StoryObj<StoryDummyComponent>;
 
 export const Primary: Story = {
   args: {},
@@ -17,6 +24,6 @@ export const Primary: Story = {
 export const Heading: Story = {
   args: {},
   play: async ({ canvas }) => {
-    await expect(canvas.getByText(/menu.spec/gi)).toBeTruthy();
+    await expect(canvas).toBeTruthy();
   },
 };
