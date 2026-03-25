@@ -1,0 +1,68 @@
+[12:21:10.180] [INFO] Storybook upgrade - v10.3.3
+[12:21:10.185] [INFO] detect-projects-spinner-start: Detecting projects...
+[12:21:10.187] [DEBUG] Finding Storybook projects...
+[12:21:10.558] [DEBUG] Found 1 Storybook projects
+[12:21:10.561] [INFO] detect-projects-spinner: Detecting projects: 1 projects
+[12:21:10.561] [DEBUG] Getting Storybook data...
+[12:21:10.561] [DEBUG] Getting Storybook info...
+[12:21:10.748] [DEBUG] SB_CORE-SERVER_0007 (MainFileEvaluationError): Storybook couldn't evaluate your [33mlibs\game\ui\.storybook\main.ts[39m file.
+
+Original error:
+[37mError [ERR_MODULE_NOT_FOUND]: Cannot find package '@storybook/addon-a11y' imported from \libs\game\ui\.storybook\main.ts
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at nextResolve (node:internal/modules/esm/hooks:748:28)
+    at Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+    at MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+    at MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)[39m
+[12:21:10.748] [INFO] detect-projects-spinner-stop: 1 project detected
+[12:21:10.749] [DEBUG] Found 0 valid projects and 1 error projects
+[12:21:10.751] [ERROR] Failed to get projects
+[12:21:10.752] [ERROR] [38;2;241;97;97mError: ❌ Storybook found errors while collecting data for the following projects:
+C:/Users/User/Desktop/hunt-the-bishomalo/libs/game/ui/.storybook:
+SB_CORE-SERVER_0007 (MainFileEvaluationError): Storybook couldn't evaluate your [33mlibs\game\ui\.storybook\main.ts[39m file.
+
+Original error:
+[37mError [ERR_MODULE_NOT_FOUND]: Cannot find package '@storybook/addon-a11y' imported from \libs\game\ui\.storybook\main.ts
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at nextResolve (node:internal/modules/esm/hooks:748:28)
+    at Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+    at MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+    at MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)[39m
+    at loadMainConfig (file:///C:/Users/User/AppData/Local/npm-cache/_npx/7f0b12aa0cbfbce2/node_modules/storybook/dist/_node-chunks/chunk-NQBOIYE4.js:11709:11)
+    at async getStorybookInfo (file:///C:/Users/User/AppData/Local/npm-cache/_npx/7f0b12aa0cbfbce2/node_modules/storybook/dist/_node-chunks/chunk-NQBOIYE4.js:11798:59)
+    at async getStorybookData (file:///C:/Users/User/AppData/Local/npm-cache/_npx/7f0b12aa0cbfbce2/node_modules/@storybook/cli/dist/_node-chunks/chunk-BH3XEHG4.js:169:7)
+    at async processProject (file:///C:/Users/User/AppData/Local/npm-cache/_npx/7f0b12aa0cbfbce2/node_modules/@storybook/cli/dist/_node-chunks/chunk-BH3XEHG4.js:304:9)
+Please fix the errors and run the upgrade command again.[39m
+    at getProjects (file:///C:/Users/User/AppData/Local/npm-cache/_npx/7f0b12aa0cbfbce2/node_modules/@storybook/cli/dist/_node-chunks/chunk-BH3XEHG4.js:477:13)
+    at async upgrade (file:///C:/Users/User/AppData/Local/npm-cache/_npx/7f0b12aa0cbfbce2/node_modules/@storybook/cli/dist/_node-chunks/run-NTMEAVO5.js:9468:24)
+    at async file:///C:/Users/User/AppData/Local/npm-cache/_npx/7f0b12aa0cbfbce2/node_modules/@storybook/cli/dist/_node-chunks/run-NTMEAVO5.js:9666:70
+    at async withTelemetry (file:///C:/Users/User/AppData/Local/npm-cache/_npx/7f0b12aa0cbfbce2/node_modules/storybook/dist/_node-chunks/chunk-6PADJQ3N.js:218:12)
+    at async Command.<anonymous> (file:///C:/Users/User/AppData/Local/npm-cache/_npx/7f0b12aa0cbfbce2/node_modules/@storybook/cli/dist/_node-chunks/run-NTMEAVO5.js:9662:3)
+[12:21:11.359] [ERROR] Error: ❌ Storybook found errors while collecting data for the following projects:
+C:/Users/User/Desktop/hunt-the-bishomalo/libs/game/ui/.storybook:
+SB_CORE-SERVER_0007 (MainFileEvaluationError): Storybook couldn't evaluate your [33mlibs\game\ui\.storybook\main.ts[39m file.
+
+Original error:
+[37mError [ERR_MODULE_NOT_FOUND]: Cannot find package '@storybook/addon-a11y' imported from \libs\game\ui\.storybook\main.ts
+    at Object.getPackageJSONURL (node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at nextResolve (node:internal/modules/esm/hooks:748:28)
+    at Hooks.resolve (node:internal/modules/esm/hooks:240:30)
+    at MessagePort.handleMessage (node:internal/modules/esm/worker:199:24)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:843:20)
+    at MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)[39m
+    at loadMainConfig (file:///C:/Users/User/AppData/Local/npm-cache/_npx/7f0b12aa0cbfbce2/node_modules/storybook/dist/_node-chunks/chunk-NQBOIYE4.js:11709:11)
+    at async getStorybookInfo (file:///C:/Users/User/AppData/Local/npm-cache/_npx/7f0b12aa0cbfbce2/node_modules/storybook/dist/_node-chunks/chunk-NQBOIYE4.js:11798:59)
+    at async getStorybookData (file:///C:/Users/User/AppData/Local/npm-cache/_npx/7f0b12aa0cbfbce2/node_modules/@storybook/cli/dist/_node-chunks/chunk-BH3XEHG4.js:169:7)
+    at async processProject (file:///C:/Users/User/AppData/Local/npm-cache/_npx/7f0b12aa0cbfbce2/node_modules/@storybook/cli/dist/_node-chunks/chunk-BH3XEHG4.js:304:9)
+Please fix the errors and run the upgrade command again.
