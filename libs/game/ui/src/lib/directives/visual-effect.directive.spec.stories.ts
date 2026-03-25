@@ -50,3 +50,9 @@ export const Combined: Story = {
     effect: 'brisa hedor brillo',
   },
 };
+
+export const BreezeAndStench: Story = {
+  args: {
+    effect: 'brisa hedor',
+  },
+};

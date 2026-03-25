@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { HunterComponent } from './hunter.component';
 import { expect } from 'storybook/test';
-import { Direction } from '@hunt-the-bishomalo/shared-data';
+import { Chars, Direction } from '@hunt-the-bishomalo/shared-data';
 
 const meta: Meta<HunterComponent> = {
   component: HunterComponent,
@@ -16,7 +16,7 @@ export const Default: Story = {
   args: {
     direction: Direction.RIGHT,
     arrows: 3,
-    selectedChar: 'default',
+    selectedChar: Chars.DEFAULT,
     hasGold: false,
     size: 4,
     hasLantern: false,
@@ -28,7 +28,7 @@ export const WithGold: Story = {
   args: {
     direction: Direction.DOWN,
     arrows: 1,
-    selectedChar: 'link',
+    selectedChar: Chars.LINK,
     hasGold: true,
     size: 4,
     hasLantern: true,
@@ -40,7 +40,7 @@ export const LargeGrid: Story = {
   args: {
     direction: Direction.LEFT,
     arrows: 0,
-    selectedChar: 'lara',
+    selectedChar: Chars.LARA,
     hasGold: true,
     size: 15,
     hasLantern: false,
@@ -49,5 +49,29 @@ export const LargeGrid: Story = {
   play: async ({ canvas }) => {
     // Large grid, hasGold: true, size 15. gold icon shouldn't be visible
     await expect(canvas.queryByAltText(/gold/i)).toBeNull();
+  },
+};
+
+export const Up: Story = {
+  args: {
+    direction: Direction.UP,
+    arrows: 3,
+    selectedChar: Chars.DEFAULT,
+    hasGold: false,
+    size: 4,
+    hasLantern: false,
+    hasShield: false,
+  },
+};
+
+export const Left: Story = {
+  args: {
+    direction: Direction.LEFT,
+    arrows: 3,
+    selectedChar: Chars.DEFAULT,
+    hasGold: false,
+    size: 4,
+    hasLantern: false,
+    hasShield: false,
   },
 };
