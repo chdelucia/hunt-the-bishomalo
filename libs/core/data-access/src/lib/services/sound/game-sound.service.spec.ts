@@ -109,4 +109,16 @@ describe('GameSoundService', () => {
 
     expect(audioMock.play).not.toHaveBeenCalled();
   });
+
+  it('should stop all sounds when soundEnabled is set to false', () => {
+    service.playSound(GameSound.WUMPUS, true);
+    expect(audioMock.play).toHaveBeenCalled();
+
+    gameStoreMock.soundEnabled.set(false);
+
+    // Trigger effect
+    TestBed.flushEffects();
+
+    expect(audioMock.pause).toHaveBeenCalled();
+  });
 });
