@@ -1,1 +1,1 @@
-export * from './lib/achievements.const';
+export * from '@hunt-the-bishomalo/achievements/api';
