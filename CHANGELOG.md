@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.59.5](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.59.4...v7.59.5) (2026-03-25)
+
+
+### Bug Fixes
+
+* **achievements:** address SonarCloud warning and coverage ([e4a8017](https://github.com/chdelucia/hunt-the-bishomalo/commit/e4a8017c732672d6a2167a9b1e678302aa8cbdd6))
+* **achievements:** fix broken images in achievement toast ([8dbe969](https://github.com/chdelucia/hunt-the-bishomalo/commit/8dbe969c763f08046521dad8fe125e4eceef309f))
+* resolve nx module boundary violations and build failures ([9a1529d](https://github.com/chdelucia/hunt-the-bishomalo/commit/9a1529dfa3b459ce45d68e48cdd52207ece0d28b))
+* resolve nx module boundary violations and storybook lint warnings ([7e76bc6](https://github.com/chdelucia/hunt-the-bishomalo/commit/7e76bc6bb8876a08b2502ccd2304d4bd8595ebb7))
+
 ### [7.59.4](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.59.3...v7.59.4) (2026-03-25)
 
 ### [7.59.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.59.2...v7.59.3) (2026-03-25)
