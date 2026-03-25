@@ -43,7 +43,7 @@
 <div class="form-group">
   <label for="selectedChar">{{ 'config.selectCharacterLabel' | transloco }}</label>
 </div>
-<div class="char-selector">
+<div class="char-selector" role="radiogroup" [attr.aria-label]="'config.selectCharacterLabel' | transloco">
   @for(char of chars; track $index) {
     <label
       class="char-btn"
@@ -56,10 +56,11 @@
         [value]="char"
         (change)="selectChar(char)"
         class="sr-only"
+        [attr.aria-label]="'charName.' + char | transloco"
       />
       <img
         [ngSrc]="$index === 0 ? `chars/${char}/bow.svg` : `chars/${char}/bow.png`"
-        [alt]="char"
+        alt=""
         draggable="false"
         width="60"
         height="80"
