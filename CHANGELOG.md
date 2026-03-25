@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.60.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.59.5...v7.60.0) (2026-03-25)
+
+
+### Features
+
+* **game-ui:** organize Storybook with Atomic Design and autodocs ([69550ae](https://github.com/chdelucia/hunt-the-bishomalo/commit/69550aefbfbc852e2e6ee0b920037bb350022db4))
+
+
+### Bug Fixes
+
+* **game-ui:** organize and fix storybook stories with atomic design and autodocs ([89a4e2d](https://github.com/chdelucia/hunt-the-bishomalo/commit/89a4e2de31033b98d5624ae9e2e11e38fa5b608e))
+
 ### [7.59.5](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.59.4...v7.59.5) (2026-03-25)
 
 
