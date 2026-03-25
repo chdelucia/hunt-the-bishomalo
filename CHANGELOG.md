@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.59.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.58.2...v7.59.0) (2026-03-25)
+
+
+### Features
+
+* **storybook:** add storybook ([7d9e11c](https://github.com/chdelucia/hunt-the-bishomalo/commit/7d9e11ceb87392fdc276a85ab155e394f7ffbd69))
+
 ### [7.58.2](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.58.1...v7.58.2) (2026-03-25)
 
 
