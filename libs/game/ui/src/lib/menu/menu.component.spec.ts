@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 
 @Component({ template: '' })
-class DummyComponent {}
+export class DummyComponent {}
 
 const routes = [
   { path: '', component: DummyComponent },
