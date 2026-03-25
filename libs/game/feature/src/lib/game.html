@@ -1,8 +1,11 @@
 @let board = game.board(); @let boardSize = board.length; @let isAlive = game.isAlive();
 @let hasWon = game.hasWon(); @let settings = game.settings();
-@let currentCell = game.currentCell();
+@let currentCell = game.currentCell(); @let message = game.message();
+@let selectedChar = game.selectedChar(); @let size = game.size();
+@let hunter = game.hunter(); @let inventory = game.inventory();
+@let lives = game.lives(); @let difficulty = game.difficulty();
 
-<main [libVisualEffect]="game.message()" class="main-container">
+<main [libVisualEffect]="message" class="main-container">
   <lib-title [blackout]="settings.blackout || false" />
 
   @if (settings?.blackout && isAlive && !hasWon) {
@@ -16,12 +19,12 @@
           [cell]="cell"
           [isAlive]="isAlive"
           [hasWon]="hasWon"
-          [inventory]="currentCell === cell ? game.inventory() : emptyInventory"
-          [selectedChar]="game.selectedChar()"
-          [size]="game.size()"
+          [inventory]="currentCell === cell ? inventory : emptyInventory"
+          [selectedChar]="selectedChar"
+          [size]="size"
           [blackout]="settings.blackout || false"
           [isHunterCell]="currentCell === cell"
-          [hunter]="currentCell === cell ? game.hunter() : null"
+          [hunter]="currentCell === cell ? hunter : null"
         />
       }
     }
@@ -29,7 +32,7 @@
     @if (deathByWumpus()) {
       @defer (on timer(100ms)) {
         <lib-wumpus-attack-animation
-          [selectedChar]="game.selectedChar()"
+          [selectedChar]="selectedChar"
           (closeAnimation)="handleclose()"
         />
       }
@@ -37,20 +40,20 @@
   </section>
 
   <section class="player-info">
-    <lib-game-level [size]="game.size()"></lib-game-level>
+    <lib-game-level [size]="size"></lib-game-level>
     <lib-game-lives
-      [lives]="game.lives()"
-      [maxLives]="game.difficulty().maxLives"
+      [lives]="lives"
+      [maxLives]="difficulty.maxLives"
     ></lib-game-lives>
   </section>
 
   <lib-game-message
-    [message]="game.message()"
+    [message]="message"
     [isAlive]="isAlive"
     [hasWon]="hasWon"
-    [size]="game.size()"
-    [maxLevels]="game.difficulty().maxLevels"
-    [lives]="game.lives()"
+    [size]="size"
+    [maxLevels]="difficulty.maxLevels"
+    [lives]="lives"
     (restartRequested)="gameEngine.initGame()"
   />
 

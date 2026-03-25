@@ -11,11 +11,18 @@ export class VisualEffectDirective {
   private readonly renderer = inject(Renderer2);
   private readonly destroyRef = inject(DestroyRef);
   private animationFrameId: number | null = null;
+  private currentCues = '';
 
   constructor() {
     effect(() => {
       const perceptionValue = this.perception();
-      this.scheduleUpdate(perceptionValue);
+      const newCues = this.extractCues(perceptionValue);
+
+      // Only schedule update if the environmental cues have actually changed
+      if (newCues !== this.currentCues) {
+        this.currentCues = newCues;
+        this.scheduleUpdate(newCues);
+      }
     });
 
     this.destroyRef.onDestroy(() => {
@@ -23,14 +30,25 @@ export class VisualEffectDirective {
     });
   }
 
+  private extractCues(perception: string): string {
+    const cues = [];
+    const p = perception.toLowerCase();
+    if (p.includes('brisa') || p.includes('breeze')) cues.push('breeze');
+    if (p.includes('hedor') || p.includes('stench')) cues.push('stench');
+    if (p.includes('brillo') || p.includes('shine')) cues.push('shine');
+
+    cues.sort((a, b) => a.localeCompare(b));
+    return cues.join('|');
+  }
+
   /**
    * Schedules the update of visual effects using requestAnimationFrame
    * to batch DOM manipulations and improve Interaction to Next Paint (INP).
    */
-  private scheduleUpdate(perception: string): void {
+  private scheduleUpdate(cues: string): void {
     this.cancelScheduledUpdate();
     this.animationFrameId = requestAnimationFrame(() => {
-      this.updateEffects(perception);
+      this.updateEffects(cues);
       this.animationFrameId = null;
     });
   }
@@ -42,21 +60,21 @@ export class VisualEffectDirective {
     }
   }
 
-  private updateEffects(perception: string): void {
+  private updateEffects(cues: string): void {
     this.clearEffects();
 
     const container = this.renderer.createElement('div');
     this.renderer.addClass(container, 'effect-layer');
 
-    if (perception.includes('brisa') || perception.includes('breeze')) {
+    if (cues.includes('breeze')) {
       this.addClouds(container);
     }
 
-    if (perception.includes('hedor') || perception.includes('stench')) {
+    if (cues.includes('stench')) {
       this.addStink(container);
     }
 
-    if (perception.includes('brillo') || perception.includes('shine')) {
+    if (cues.includes('shine')) {
       this.addSparkles(container);
     }
 
@@ -79,8 +97,8 @@ export class VisualEffectDirective {
         height: `${30 + Math.random() * 40}px`,
         top: `${Math.random() * 100}%`,
         left: `${Math.random() * 100}%`,
-        animationDuration: `${10 + Math.random() * 10}s`,
-        animationDelay: `${Math.random() * 5}s`,
+        'animation-duration': `${10 + Math.random() * 10}s`,
+        'animation-delay': `${Math.random() * 5}s`,
       });
       this.renderer.appendChild(container, cloud);
     }
@@ -96,8 +114,8 @@ export class VisualEffectDirective {
         height: `${size}px`,
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
-        animationDuration: `${6 + Math.random() * 5}s`,
-        animationDelay: `${Math.random() * 3}s`,
+        'animation-duration': `${6 + Math.random() * 5}s`,
+        'animation-delay': `${Math.random() * 3}s`,
       });
       this.renderer.appendChild(container, stink);
     }
@@ -110,8 +128,8 @@ export class VisualEffectDirective {
       this.setStyles(sparkle, {
         top: `${Math.random() * 100}%`,
         left: `${Math.random() * 100}%`,
-        animationDuration: `${2 + Math.random() * 3}s`,
-        animationDelay: `${Math.random() * 2}s`,
+        'animation-duration': `${2 + Math.random() * 3}s`,
+        'animation-delay': `${Math.random() * 2}s`,
       });
       this.renderer.appendChild(container, sparkle);
     }
@@ -119,12 +137,8 @@ export class VisualEffectDirective {
 
   private setStyles(el: HTMLElement, styles: Record<string, string>) {
     for (const [key, value] of Object.entries(styles)) {
-      this.renderer.setStyle(el, this.camelToKebab(key), value);
+      this.renderer.setStyle(el, key, value);
     }
-  }
-
-  private camelToKebab(str: string): string {
-    return str.replaceAll(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
   }
 
   private clearEffects(): void {
