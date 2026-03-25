@@ -31,7 +31,7 @@
     "@ngrx/signals": "21.0.1",
     "@sentry/angular": "^10.44.0",
     "@softarc/native-federation-node": "^3.3.4",
-    "es-module-shims": "^1.5.12",
+    "es-module-shims": "^2.8.0",
     "logrocket": "^12.1.0",
     "rxjs": "~7.8.2"
   },
