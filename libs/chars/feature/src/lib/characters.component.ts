@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { Chars, RouteTypes, AchieveTypes } from '@hunt-the-bishomalo/shared-data';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/api';
 import { Router } from '@angular/router';
 import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { TranslocoModule } from '@jsverse/transloco';

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ElementRef, viewChild, signal, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AchieveTypes } from '@hunt-the-bishomalo/shared-data';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/core/api';
 
 @Component({
   selector: 'lib-jedi-mind-trick-animation',
