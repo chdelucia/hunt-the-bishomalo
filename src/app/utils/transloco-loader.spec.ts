@@ -22,7 +22,7 @@ describe('TranslocoHttpLoader', () => {
 
   it('should fetch translation file', () => {
     const lang = 'en';
-    loader.getTranslation(lang).subscribe((data) => {
+    loader.getTranslation(lang).subscribe((data: unknown) => {
       expect(data).toEqual({ key: 'value' });
     });
 

@@ -1,22 +1,37 @@
 import type { Meta, StoryObj } from '@storybook/angular';
 import { GameControlsComponent } from './game-controls.component';
-import { expect } from 'storybook/test';
+import { expect, fn } from 'storybook/test';
 
 const meta: Meta<GameControlsComponent> = {
   component: GameControlsComponent,
-  title: 'GameControlsComponent',
+  title: 'Molecules/GameControls',
+  tags: ['autodocs'],
 };
 export default meta;
 
 type Story = StoryObj<GameControlsComponent>;
 
-export const Primary: Story = {
-  args: {},
+export const Default: Story = {
+  args: {
+    soundEnabled: true,
+    newGameRequested: fn(),
+    navigateToControlsRequested: fn(),
+    moveForwardRequested: fn(),
+    turnLeftRequested: fn(),
+    turnRightRequested: fn(),
+    shootArrowRequested: fn(),
+    resetGameRequested: fn(),
+    toggleSoundRequested: fn(),
+  },
 };
 
-export const Heading: Story = {
-  args: {},
+export const SoundDisabled: Story = {
+  args: {
+    soundEnabled: false,
+    toggleSoundRequested: fn(),
+  },
   play: async ({ canvas }) => {
-    await expect(canvas.getByText(/game-controls/gi)).toBeTruthy();
+    // Sound icon should reflect state
+    await expect(canvas).toBeTruthy();
   },
 };

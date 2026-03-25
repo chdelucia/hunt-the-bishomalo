@@ -4,19 +4,25 @@ import { expect } from 'storybook/test';
 
 const meta: Meta<GameLevelComponent> = {
   component: GameLevelComponent,
-  title: 'GameLevelComponent',
+  title: 'Atoms/GameLevel',
+  tags: ['autodocs'],
 };
 export default meta;
 
 type Story = StoryObj<GameLevelComponent>;
 
-export const Primary: Story = {
-  args: {},
+export const LevelOne: Story = {
+  args: {
+    size: 4,
+  },
 };
 
-export const Heading: Story = {
-  args: {},
+export const LevelTwo: Story = {
+  args: {
+    size: 5,
+  },
   play: async ({ canvas }) => {
-    await expect(canvas.getByText(/game-level/gi)).toBeTruthy();
+    // 5 - 4 + 1 = 2
+    await expect(canvas.getByText(/2/i)).toBeTruthy();
   },
 };

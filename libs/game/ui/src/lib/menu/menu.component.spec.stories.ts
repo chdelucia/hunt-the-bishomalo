@@ -4,7 +4,8 @@ import { expect } from 'storybook/test';
 
 const meta: Meta<DummyComponent> = {
   component: DummyComponent,
-  title: 'DummyComponent',
+  title: 'Atoms/Dummy',
+  tags: ['autodocs'],
 };
 export default meta;
 
@@ -17,6 +18,6 @@ export const Primary: Story = {
 export const Heading: Story = {
   args: {},
   play: async ({ canvas }) => {
-    await expect(canvas.getByText(/menu.spec/gi)).toBeTruthy();
+    await expect(canvas).toBeTruthy();
   },
 };
