@@ -36,7 +36,9 @@ export class VisualEffectDirective {
     if (p.includes('brisa') || p.includes('breeze')) cues.push('breeze');
     if (p.includes('hedor') || p.includes('stench')) cues.push('stench');
     if (p.includes('brillo') || p.includes('shine')) cues.push('shine');
-    return cues.sort().join('|');
+
+    cues.sort((a, b) => a.localeCompare(b));
+    return cues.join('|');
   }
 
   /**
