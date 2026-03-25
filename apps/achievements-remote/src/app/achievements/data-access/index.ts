@@ -1,2 +1,2 @@
 export * from './achievement.service';
-export * from './achievements.const';
+export * from '@hunt-the-bishomalo/achievements/data-access';
