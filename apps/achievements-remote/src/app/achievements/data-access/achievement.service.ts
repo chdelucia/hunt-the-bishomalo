@@ -1,11 +1,8 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { Achievement, AchieveTypes, GameSound } from '@hunt-the-bishomalo/shared-data';
-import {
-  ANALYTICS_SERVICE_TOKEN,
-  GAME_SOUND_TOKEN,
-  LOCALSTORAGE_SERVICE_TOKEN,
-} from '@hunt-the-bishomalo/core/api';
-import { IAchievementService, ACHIEVEMENTS_LIST_TOKEN } from '@hunt-the-bishomalo/achievements/api';
+import { Achievement, AchieveTypes } from '../models/achievements.model';
+import { GameSound } from '../models/game-sound.enum';
+import { ANALYTICS_SERVICE_TOKEN, GAME_SOUND_TOKEN } from '../api/tokens';
+import { IAchievementService, ACHIEVEMENTS_LIST_TOKEN } from '../api/achievement-service.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +15,6 @@ export class AchievementService implements IAchievementService {
 
   private readonly gameSound = inject(GAME_SOUND_TOKEN);
   private readonly analytics = inject(ANALYTICS_SERVICE_TOKEN);
-  private readonly localStoreService = inject(LOCALSTORAGE_SERVICE_TOKEN);
 
   constructor() {
     this.syncAchievementsWithStorage();
@@ -47,7 +43,7 @@ export class AchievementService implements IAchievementService {
 
   private updateLocalStorageWithNewId(id: string): void {
     const storedIds = this.getStoredAchievementIds();
-    this.localStoreService.setValue<string[]>(this.storageKey, [...storedIds, id]);
+    localStorage.setItem(this.storageKey, JSON.stringify([...storedIds, id]));
   }
 
   private syncAchievementsWithStorage(): void {
@@ -58,7 +54,12 @@ export class AchievementService implements IAchievementService {
   }
 
   private getStoredAchievementIds(): string[] {
-    return this.localStoreService.getValue<string[]>(this.storageKey) || [];
+    try {
+      const stored = localStorage.getItem(this.storageKey);
+      return stored ? JSON.parse(stored) : [];
+    } catch {
+      return [];
+    }
   }
 
   activeAchievement(id: AchieveTypes | string): void {
@@ -69,7 +70,6 @@ export class AchievementService implements IAchievementService {
       window.dispatchEvent(new CustomEvent('achievement-unlocked', { detail: { id } }));
     }
   }
-
 
   isAllCompleted(): void {
     const victory = this.achievements.filter((x) => x.unlocked);

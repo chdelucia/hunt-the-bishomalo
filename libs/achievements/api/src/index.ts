@@ -1,2 +1,3 @@
-export * from '@hunt-the-bishomalo/core/api';
-export { ACHIEVEMENTS_LIST } from '@hunt-the-bishomalo/shared-data';
+// This library is intentionally empty to break direct coupling between MFEs.
+// Use shared-data and core-api for shared contracts.
+export {};

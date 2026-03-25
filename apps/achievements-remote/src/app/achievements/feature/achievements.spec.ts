@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AchievementsComponent } from './achievements';
-import { Achievement } from '@hunt-the-bishomalo/shared-data';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { Achievement } from '../models/achievements.model';
+import { ACHIEVEMENT_SERVICE } from '../api/achievement-service.interface';
 import {
   AchievementFilterComponent,
   AchievementItemComponent,

@@ -1,0 +1,17 @@
+export enum GameSound {
+  WALK = 'walk',
+  SHOOT = 'shoot',
+  HITWALL = 'hitwall',
+  PICKUP = 'pickup',
+  PAIN = 'pain',
+  WHONOR = 'whonor',
+  PITDIE = 'pitdie',
+  SCREAM = 'scream',
+  SUCCESS = 'success',
+  REWIND = 'rewind',
+  SHIELD = 'shield',
+  FF7 = 'ff7',
+  FINISH = 'finish',
+  GAMEOVER = 'gameover',
+  DRAGONBALL = 'dragonball',
+}

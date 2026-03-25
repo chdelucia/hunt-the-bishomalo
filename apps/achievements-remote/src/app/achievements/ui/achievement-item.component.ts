@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Achievement } from '@hunt-the-bishomalo/shared-data';
+import { Achievement } from '../models/achievements.model';
 
 @Component({
   selector: 'app-achievement-item',
