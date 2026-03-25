@@ -41,6 +41,13 @@ export class GameSoundService implements IGameSoundService {
   private readonly gameStore = inject(GAME_STORE_TOKEN);
   constructor() {
     effect(() => this.gameOver());
+    effect(() => this.checkSoundEnabled());
+  }
+
+  private checkSoundEnabled(): void {
+    if (!this.gameStore.soundEnabled()) {
+      this.stop();
+    }
   }
 
   private gameOver(): void {
