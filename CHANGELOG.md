@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.62.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.62.0...v7.62.1) (2026-03-26)
+
+
+### Bug Fixes
+
+* terraform ([9922bb0](https://github.com/chdelucia/hunt-the-bishomalo/commit/9922bb0093389a77be22bcace9a760ea7fab1012))
+
 ## [7.62.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.61.5...v7.62.0) (2026-03-26)
 
 
