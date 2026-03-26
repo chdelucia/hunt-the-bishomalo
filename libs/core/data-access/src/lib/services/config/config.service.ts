@@ -1,5 +1,8 @@
 import { Injectable, InjectionToken, inject } from '@angular/core';
-import { RemoteConfig } from './config-loader';
+
+export interface RemoteConfig {
+  remotes: Record<string, string>;
+}
 
 export const REMOTE_CONFIG_TOKEN = new InjectionToken<RemoteConfig>('REMOTE_CONFIG_TOKEN');
 

@@ -18,7 +18,6 @@ import {
   LocalstorageService,
   AnalyticsService,
   GameEventService,
-  ConfigService,
   RemoteConfig,
   REMOTE_CONFIG_TOKEN,
 } from '@hunt-the-bishomalo/core/data-access';
