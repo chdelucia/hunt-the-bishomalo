@@ -1,6 +1,6 @@
 import { signal } from '@angular/core';
-import { Achievement } from '@hunt-the-bishomalo/shared-data';
-import { IAchievementService } from '@hunt-the-bishomalo/achievements/api';
+import { Achievement } from './achievement.model';
+import { IAchievementService } from './achievement-service.interface';
 
 export const mockAchievementService: IAchievementService = {
   achievements: signal<Achievement[]>([

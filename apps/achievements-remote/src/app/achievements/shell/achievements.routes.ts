@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { ACHIEVEMENT_SERVICE } from '../data-access/achievement-service.interface';
 import { AchievementService } from '../data-access/index';
 
 export const achievementsRoutes: Routes = [

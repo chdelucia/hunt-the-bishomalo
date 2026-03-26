@@ -5,12 +5,14 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideTransloco } from '@jsverse/transloco';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { AchievementService } from './achievements/data-access/index';
-import { ACHIEVEMENT_SERVICE, ACHIEVEMENTS_LIST_TOKEN } from '@hunt-the-bishomalo/achievements/api';
+import { ACHIEVEMENT_SERVICE, ACHIEVEMENTS_LIST_TOKEN } from './achievements/data-access/achievement-service.interface';
 import {
-  GAME_SOUND_TOKEN,
   ANALYTICS_SERVICE_TOKEN,
   LOCALSTORAGE_SERVICE_TOKEN,
-} from '@hunt-the-bishomalo/core/api';
+} from './achievements/data-access/core-api.model';
+import { InjectionToken } from '@angular/core';
+
+export const GAME_SOUND_TOKEN = new InjectionToken<any>('GAME_SOUND_TOKEN');
 
 export const appConfig: ApplicationConfig = {
   providers: [
