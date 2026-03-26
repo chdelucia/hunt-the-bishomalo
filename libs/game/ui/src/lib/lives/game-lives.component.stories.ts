@@ -35,3 +35,10 @@ export const Empty: Story = {
     await expect(canvas).toBeTruthy();
   },
 };
+
+export const FiveLivesMax: Story = {
+  args: {
+    lives: 2,
+    maxLives: 5,
+  },
+};

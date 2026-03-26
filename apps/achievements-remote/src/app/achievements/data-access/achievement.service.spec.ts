@@ -6,6 +6,7 @@ import {
   ANALYTICS_SERVICE_TOKEN,
 } from '../api/tokens';
 import { AchieveTypes } from '../models/achievements.model';
+import { GameSound } from '../models/game-sound.enum';
 
 describe('AchievementService', () => {
   let service: AchievementService;
@@ -28,7 +29,10 @@ describe('AchievementService', () => {
     TestBed.configureTestingModule({
       providers: [
         AchievementService,
-        { provide: ACHIEVEMENTS_LIST_TOKEN, useValue: [] },
+        {
+          provide: ACHIEVEMENTS_LIST_TOKEN,
+          useValue: [{ id: AchieveTypes.GAMER, title: 'Gamer' }],
+        },
         { provide: GAME_SOUND_TOKEN, useValue: soundMock },
         { provide: ANALYTICS_SERVICE_TOKEN, useValue: analyticsMock },
       ],
@@ -44,7 +48,7 @@ describe('AchievementService', () => {
   it('should unlock achievement when activeAchievement is called', () => {
     service.achievements.push({ id: AchieveTypes.GAMER, unlocked: false, title: 'Gamer' } as any);
     service.activeAchievement(AchieveTypes.GAMER);
-    const gamer = service.achievements.find(a => a.id === AchieveTypes.GAMER);
+    const gamer = service.achievements.find((a) => a.id === AchieveTypes.GAMER);
     expect(gamer?.unlocked).toBe(true);
   });
 
@@ -52,6 +56,9 @@ describe('AchievementService', () => {
     service.achievements.push({ id: AchieveTypes.FINAL, unlocked: false, title: 'Final' } as any);
     service.achievements.forEach(a => a.unlocked = true);
     service.isAllCompleted();
-    expect(service.achievements.find(a => a.id === AchieveTypes.FINAL)?.unlocked).toBe(true);
+    expect(service.achievements.find((a) => a.id === AchieveTypes.FINAL)?.unlocked).toBe(true);
+    expect(soundMock.stop).toHaveBeenCalled();
+    expect(soundMock.playSound).toHaveBeenCalledWith(GameSound.FF7, false);
   });
+
 });

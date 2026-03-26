@@ -42,3 +42,29 @@ export const MultipleToasts: Story = {
     });
   },
 };
+
+export const EpicAchievement: Story = {
+  args: {
+    achievement: {
+      id: '2',
+      title: 'Epic Win',
+      description: 'You won an epic game!',
+      svgIcon: 'trophy',
+      unlocked: true,
+      rarity: 'epic',
+    } as Achievement,
+  },
+};
+
+export const LegendaryAchievement: Story = {
+  args: {
+    achievement: {
+      id: '3',
+      title: 'Legendary Win',
+      description: 'You are a legend!',
+      svgIcon: 'trophy',
+      unlocked: true,
+      rarity: 'legendary',
+    } as Achievement,
+  },
+};

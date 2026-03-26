@@ -35,3 +35,10 @@ export const FinishedGame: Story = {
     soundEnabled: true,
   },
 };
+
+export const SoundDisabled: Story = {
+  args: {
+    isFinish: false,
+    soundEnabled: false,
+  },
+};

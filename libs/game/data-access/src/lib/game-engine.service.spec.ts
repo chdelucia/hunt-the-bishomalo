@@ -13,7 +13,7 @@ import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { BoardGeneratorService } from './board-generator.service';
 import { PerceptionService } from './perception.service';
 import { signal } from '@angular/core';
-import { Direction, AchieveTypes, RouteTypes } from '@hunt-the-bishomalo/shared-data';
+import { Direction, AchieveTypes, RouteTypes, GameSound } from '@hunt-the-bishomalo/shared-data';
 import { of } from 'rxjs';
 
 describe('GameEngineService', () => {
@@ -245,30 +245,6 @@ describe('GameEngineService', () => {
      expect(storeMock.updateHunter).toHaveBeenCalledWith({ x: 1, y: 0 });
   });
 
-  it('should handle arrow flight in multiple directions', () => {
-     storeMock.hunter.set({ x: 1, y: 1, direction: Direction.UP, arrows: 1 });
-     service.shootArrow();
-
-     storeMock.hunter.set({ x: 1, y: 1, direction: Direction.DOWN, arrows: 1 });
-     service.shootArrow();
-
-     storeMock.hunter.set({ x: 1, y: 1, direction: Direction.LEFT, arrows: 1 });
-     service.shootArrow();
-  });
-
-  it('should handle wumpus drop on hit', () => {
-     const board = createMockBoard(4);
-     const cell = board[0][1];
-     cell.content = { type: 'wumpus' } as any;
-     storeMock.board.set(board);
-     storeMock.hunter.set({ x: 0, y: 0, direction: Direction.RIGHT, arrows: 1 });
-
-     const randomSpy = jest.spyOn(Math, 'random').mockReturnValue(0.01);
-     service.shootArrow();
-     expect(cell.content).toBeDefined();
-     randomSpy.mockRestore();
-  });
-
   it('should handle wall hit achievement', () => {
      storeMock.hunter.set({ x: 0, y: 0, direction: Direction.UP });
      storeMock.message.set('gameMessages.wallCollision');
@@ -346,5 +322,93 @@ describe('GameEngineService', () => {
       (service as any).cartographyAchieve();
       expect(achieveMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.EXPERTCARTO);
     });
+
+  it('should handle wasted arrows and speedrunner achievements', () => {
+    storeMock.wumpusKilled.set(0);
+    storeMock.hunter.set({ arrows: 2 });
+    service.calcVictoryAchieve(5);
+    expect(achieveMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.WASTEDARROWS);
+    // calcVictoryAchieve has an 'else' block for wasted arrows, speedrunner is inside that else
+    // Oh wait, arrows > 1 && !wumpusKilled triggers WASTEDARROWS and skip others.
+    // To trigger speedrunner, we need wumpusKilled > 0 or arrows <= 1
+    achieveMock.activeAchievement.mockClear();
+    storeMock.wumpusKilled.set(1);
+    service.calcVictoryAchieve(5);
+    expect(achieveMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.SPEEDRUNNER);
+  });
+
+  it('should handle blind wumpus killed achievement', () => {
+    storeMock.settings.set({ blackout: true });
+    service.handleWumpusKillAchieve({ x: 0, y: 1 } as any);
+    expect(achieveMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.BLINDWUMPUSKILLED);
+  });
+
+  it('should handle calcDistance with non-aligned coordinates', () => {
+    const distance = (service as any).calcDistance({ x: 1, y: 1 });
+    expect(distance).toBe(0);
+  });
+
+  it('should handle getDrop with different rolls', () => {
+    const cell: any = { content: undefined };
+    storeMock.settings.set({ difficulty: { luck: 0 } });
+
+    const randomSpy = jest.spyOn(Math, 'random');
+
+    randomSpy.mockReturnValue(0.01);
+    (service as any).getDrop(cell);
+    expect(cell.content.type).toBe('wumpus'); // CELL_CONTENTS.extrawumpus.type is 'wumpus'
+
+    randomSpy.mockReturnValue(0.1);
+    (service as any).getDrop(cell);
+    expect(cell.content.type).toBe('heart'); // CELL_CONTENTS.extraheart.type is 'heart'
+
+    randomSpy.mockReturnValue(0.25);
+    (service as any).getDrop(cell);
+    expect(cell.content.type).toBe('gold'); // CELL_CONTENTS.extragold.type is 'gold'
+
+    randomSpy.mockReturnValue(0.38);
+    (service as any).getDrop(cell);
+    expect(cell.content.type).toBe('arrow'); // CELL_CONTENTS.extraarrow.type is 'arrow'
+
+    randomSpy.mockRestore();
+  });
+
+  it('should handle cannot shoot when no arrows', () => {
+    storeMock.hunter.set({ arrows: 0 });
+    service.shootArrow();
+    expect(storeMock.setMessage).toHaveBeenCalledWith('gameMessages.noArrows');
+  });
+
+  it('should handle wumpus killed at normal distance', () => {
+    storeMock.hunter.set({ x: 0, y: 0 });
+    service.handleWumpusKillAchieve({ x: 0, y: 2 } as any);
+    expect(achieveMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.WUMPUSKILLED);
+  });
+
+  it('should handle distance for vertical alignment', () => {
+    storeMock.hunter.set({ x: 0, y: 0 });
+    const distance = (service as any).calcDistance({ x: 2, y: 0 });
+    expect(distance).toBe(2);
+  });
+
+  it('should play finish sound when reaching max levels', () => {
+    storeMock.settings.set({ size: 13, difficulty: { maxLevels: 10 } });
+    (service as any).playVictorySound();
+    expect(soundMock.playSound).toHaveBeenCalledWith(GameSound.FINISH, false);
+  });
+
+  it('should handle victory with exit call', () => {
+    storeMock.hunter.set({ hasGold: true, gold: 100 });
+    storeMock.currentCell.mockReturnValue({ x: 0, y: 0 });
+    service.exit();
+    expect(storeMock.updateGame).toHaveBeenCalledWith(expect.objectContaining({ hasWon: true }));
+  });
+
+  it('should apply effect by cell content when content is present', () => {
+    const cell = { x: 1, y: 1, content: { type: 'gold' } };
+    storeMock.currentCell.mockReturnValue(cell);
+    (service as any).checkCurrentCell(0, 0);
+    expect(gameEventMock.applyEffectByCellContent).toHaveBeenCalledWith(cell);
+  });
   });
 });

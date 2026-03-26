@@ -56,3 +56,67 @@ export const BlackoutWithLantern: Story = {
     isHunterCell: false,
   },
 };
+
+export const Wumpus: Story = {
+  args: {
+    cell: {
+      x: 0,
+      y: 0,
+      visited: true,
+      content: {
+        type: 'wumpus',
+        image: 'chars/default/wumpus.svg',
+        alt: 'wumpus',
+        ariaLabel: 'wumpus',
+      },
+    },
+    isAlive: true,
+    hasWon: false,
+    inventory: [],
+    selectedChar: Chars.DEFAULT,
+    size: 4,
+    blackout: false,
+    isHunterCell: false,
+  },
+};
+
+export const Pit: Story = {
+  args: {
+    cell: {
+      x: 0,
+      y: 0,
+      visited: true,
+      content: { type: 'pit', image: 'boardicons/pit.svg', alt: 'pit', ariaLabel: 'pit' },
+    },
+    isAlive: true,
+    hasWon: false,
+    inventory: [],
+    selectedChar: Chars.DEFAULT,
+    size: 4,
+    blackout: false,
+    isHunterCell: false,
+  },
+};
+
+export const SecretGold: Story = {
+  args: {
+    cell: {
+      x: 0,
+      y: 0,
+      visited: false,
+      content: {
+        type: 'extragold',
+        image: 'boardicons/question.png',
+        alt: 'secret',
+        ariaLabel: 'secret',
+      },
+    },
+    isAlive: true,
+    hasWon: false,
+    inventory: [],
+    selectedChar: Chars.DEFAULT,
+    size: 4,
+    blackout: false,
+    isHunterCell: false,
+  },
+};
