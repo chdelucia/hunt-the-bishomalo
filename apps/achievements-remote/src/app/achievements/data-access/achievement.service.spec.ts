@@ -3,7 +3,7 @@ import { AchievementService } from './achievement.service';
 import {
   LOCALSTORAGE_SERVICE_TOKEN,
   ANALYTICS_SERVICE_TOKEN,
-} from '@hunt-the-bishomalo/core/api';
+} from './core-api.model';
 import { AchieveTypes } from './achievement.model';
 import { AchievementsFacade } from './achievements.facade';
 import { signal, WritableSignal } from '@angular/core';
