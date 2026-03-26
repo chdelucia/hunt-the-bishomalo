@@ -1,6 +1,6 @@
-import { effect, inject, Injectable, signal } from '@angular/core';
+import { effect, inject, Injectable, signal, untracked } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Achievement, AchieveTypes } from '@hunt-the-bishomalo/shared-data';
+import { Achievement, AchieveTypes } from './achievement.model';
 import {
   ANALYTICS_SERVICE_TOKEN,
   LOCALSTORAGE_SERVICE_TOKEN,
@@ -14,7 +14,7 @@ import { AchievementsFacade } from './achievements.facade';
 export class AchievementService implements IAchievementService {
   readonly achievementsSignal = signal<Achievement[]>([]);
   get achievements() {
-    return this.achievementsSignal();
+    return this.achievementsSignal;
   }
   private readonly storageKey = 'hunt_the_bishomalo_achievements';
   readonly completed = signal<Achievement | undefined>(undefined);
@@ -23,6 +23,8 @@ export class AchievementService implements IAchievementService {
   private readonly localStoreService = inject(LOCALSTORAGE_SERVICE_TOKEN);
   private readonly facade = inject(AchievementsFacade);
   private readonly http = inject(HttpClient);
+
+  private activeBuffer: (AchieveTypes | string)[] = [];
 
   constructor() {
     this.listenForExternalAchievements();
@@ -33,11 +35,14 @@ export class AchievementService implements IAchievementService {
       this.http.get<Achievement[]>(`/assets/achievements/${config.appId}.json`).subscribe({
         next: (data) => {
           this.achievementsSignal.set(data);
-          this.syncAchievementsWithStorage();
+          untracked(() => {
+            this.syncAchievementsWithStorage();
+            this.processBuffer();
+          });
         },
         error: (err) => {
           // eslint-disable-next-line no-console
-          console.error('Remote AchievementService error:', err);
+          console.error('Remote AchievementService: Error loading JSON', err);
         },
       });
     });
@@ -51,6 +56,12 @@ export class AchievementService implements IAchievementService {
         this.activeAchievement(id);
       }
     });
+  }
+
+  private processBuffer(): void {
+    const buffer = [...this.activeBuffer];
+    this.activeBuffer = [];
+    buffer.forEach((id) => this.activeAchievement(id));
   }
 
   private updateLocalStorageWithNewId(id: string): void {
@@ -74,6 +85,11 @@ export class AchievementService implements IAchievementService {
 
   activeAchievement(id: AchieveTypes | string): void {
     const achievements = this.achievementsSignal();
+    if (achievements.length === 0) {
+      this.activeBuffer.push(id);
+      return;
+    }
+
     const achieve = achievements.find((item) => item.id === id);
     if (achieve && !achieve.unlocked) {
       this.achievementsSignal.update((list) =>

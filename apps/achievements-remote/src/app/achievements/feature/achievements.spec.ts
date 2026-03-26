@@ -44,7 +44,7 @@ describe('AchievementsComponent', () => {
   ];
 
   const achievementServiceMock = {
-    achievements: mockAchievements,
+    achievements: signal(mockAchievements),
     completed: signal(undefined),
   };
 

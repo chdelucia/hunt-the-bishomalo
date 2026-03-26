@@ -2,7 +2,7 @@ import { InjectionToken, Signal } from '@angular/core';
 import { Achievement, AchieveTypes } from '@hunt-the-bishomalo/shared-data';
 
 export interface IAchievementService {
-  achievements: Achievement[];
+  achievements: Signal<Achievement[]>;
   completed: Signal<Achievement | undefined>;
   activeAchievement: (id: AchieveTypes | string) => void;
   isAllCompleted: () => void;

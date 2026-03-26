@@ -4,15 +4,18 @@ import {
   LOCALSTORAGE_SERVICE_TOKEN,
   ANALYTICS_SERVICE_TOKEN,
 } from '@hunt-the-bishomalo/core/api';
-import { AchieveTypes } from '@hunt-the-bishomalo/shared-data';
+import { AchieveTypes } from './achievement.model';
 import { AchievementsFacade } from './achievements.facade';
-import { signal } from '@angular/core';
+import { signal, WritableSignal } from '@angular/core';
+import { of, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 describe('AchievementService', () => {
   let service: AchievementService;
   let localStorageMock: any;
   let analyticsMock: any;
-  let facadeMock: any;
+  let facadeMock: { config: WritableSignal<any> };
+  let httpMock: any;
 
   beforeEach(() => {
     localStorageMock = {
@@ -28,12 +31,17 @@ describe('AchievementService', () => {
       config: signal(null),
     };
 
+    httpMock = {
+      get: jest.fn(),
+    };
+
     TestBed.configureTestingModule({
       providers: [
         AchievementService,
         { provide: LOCALSTORAGE_SERVICE_TOKEN, useValue: localStorageMock },
         { provide: ANALYTICS_SERVICE_TOKEN, useValue: analyticsMock },
         { provide: AchievementsFacade, useValue: facadeMock },
+        { provide: HttpClient, useValue: httpMock },
       ],
     });
 
@@ -49,7 +57,7 @@ describe('AchievementService', () => {
       { id: AchieveTypes.GAMER, title: 'Gamer', unlocked: false } as any,
     ]);
     service.activeAchievement(AchieveTypes.GAMER);
-    const gamer = service.achievements.find((a) => a.id === AchieveTypes.GAMER);
+    const gamer = service.achievements().find((a) => a.id === AchieveTypes.GAMER);
     expect(gamer?.unlocked).toBe(true);
   });
 
@@ -59,7 +67,7 @@ describe('AchievementService', () => {
       { id: AchieveTypes.FINAL, unlocked: false } as any,
     ]);
     service.isAllCompleted();
-    expect(service.achievements.find((a) => a.id === AchieveTypes.FINAL)?.unlocked).toBe(true);
+    expect(service.achievements().find((a) => a.id === AchieveTypes.FINAL)?.unlocked).toBe(true);
   });
 
   it('should sync achievements with storage', () => {
@@ -68,8 +76,31 @@ describe('AchievementService', () => {
     ]);
     localStorageMock.getValue.mockReturnValue([AchieveTypes.GAMER]);
     (service as any).syncAchievementsWithStorage();
-    const gamer = service.achievements.find((a) => a.id === AchieveTypes.GAMER);
+    const gamer = service.achievements().find((a) => a.id === AchieveTypes.GAMER);
     expect(gamer?.unlocked).toBe(true);
+  });
+
+  it('should buffer activeAchievement if list not loaded', () => {
+    service.activeAchievement(AchieveTypes.GAMER);
+    expect(service.achievements().length).toBe(0);
+    expect((service as any).activeBuffer).toContain(AchieveTypes.GAMER);
+  });
+
+  it('should process buffer after list is loaded', () => {
+    const mockAchieve = { id: AchieveTypes.GAMER, unlocked: false, title: 'G' };
+    httpMock.get.mockReturnValue(of([mockAchieve]));
+
+    service.activeAchievement(AchieveTypes.GAMER);
+    expect((service as any).activeBuffer).toContain(AchieveTypes.GAMER);
+
+    facadeMock.config.set({ appId: 'test' });
+    TestBed.flushEffects();
+
+    expect(service.achievements().length).toBe(1);
+    expect(service.achievements()[0].id).toBe(AchieveTypes.GAMER);
+    // Note: processBuffer calls activeAchievement which updates the signal
+    expect(service.achievements()[0].unlocked).toBe(true);
+    expect((service as any).activeBuffer.length).toBe(0);
   });
 
   it('should handle achievement-unlocked window event', () => {

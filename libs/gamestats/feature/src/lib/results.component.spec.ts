@@ -32,9 +32,9 @@ const mockLeaderboard: ScoreEntry[] = [
 ];
 
 const mockAchievementService = {
-  achievements: [
+  achievements: signal([
     { id: '1', title: 'Logro 1', unlocked: true, rarity: 'common', description: '', svgIcon: '' },
-  ],
+  ]),
   completed: signal(undefined),
 };
 
@@ -85,7 +85,7 @@ describe('ResultsComponent', () => {
   });
 
   it('should compute unlocked achievements correctly', () => {
-    expect(component.unlockedAchievements).toBe(1);
+    expect(component.unlockedAchievementsCount()).toBe(1);
   });
 
   it('should return the fastest level', () => {

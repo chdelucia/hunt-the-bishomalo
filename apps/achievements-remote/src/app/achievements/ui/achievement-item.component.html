@@ -8,9 +8,8 @@
       [class.grayscale]="!achievement().unlocked"
     >
       <img
-        [ngSrc]="'/achievements/' + achievement().svgIcon"
+        [src]="'/achievements/' + achievement().svgIcon"
         [alt]="achievement().title"
-        fill
         class="achievement-icon"
       />
     </div>

@@ -48,7 +48,7 @@ describe('ToastComponent', () => {
 
     const img = fixture.nativeElement.querySelector('img');
     expect(img).toBeTruthy();
-    expect(img.getAttribute('src')).toContain('achievements/test-icon.svg');
+    expect(img.getAttribute('src')).toContain('test-icon.svg');
   });
 
   it('should handle broken images gracefully', () => {

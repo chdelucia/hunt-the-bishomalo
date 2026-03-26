@@ -28,7 +28,7 @@ import {
   GAME_EVENT_SERVICE_TOKEN,
   MINI_BUS_SERVICE_TOKEN,
 } from '@hunt-the-bishomalo/core/api';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { ACHIEVEMENT_SERVICE, IAchievementService } from '@hunt-the-bishomalo/achievements/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { LeaderboardService } from '@hunt-the-bishomalo/gamestats/data-access';
@@ -40,9 +40,10 @@ import { Injectable, signal, inject } from '@angular/core';
 import { Achievement, AchieveTypes, GameSound } from '@hunt-the-bishomalo/shared-data';
 
 @Injectable({ providedIn: 'root' })
-class ShellAchievementService {
+class ShellAchievementService implements IAchievementService {
   private readonly storageKey = 'hunt_the_bishomalo_achievements';
-  readonly achievements = signal<Achievement[]>([]);
+  private readonly achievementsSignal = signal<Achievement[]>([]);
+  get achievements() { return this.achievementsSignal; }
   readonly completed = signal<Achievement | undefined>(undefined);
   private readonly localStoreService = inject(LOCALSTORAGE_SERVICE_TOKEN);
   private readonly analytics = inject(ANALYTICS_SERVICE_TOKEN);
@@ -50,25 +51,27 @@ class ShellAchievementService {
   private readonly gameSound = inject(GAME_SOUND_TOKEN);
   private readonly http = inject(HttpClient);
 
+  private activeBuffer: string[] = [];
+
   constructor() {
     this.miniBus.listen('ACHIEVEMENTS_CONFIG', (config: { appId: string }) => {
-      this.http.get<Achievement[]>(`/assets/achievements/${config.appId}.json`)
-        .subscribe({
-          next: (data) => {
-            this.achievements.set(data);
-            this.syncAchievementsWithStorage();
-          },
-          error: (err) => {
-            // eslint-disable-next-line no-console
-            console.error('ShellAchievementService error:', err);
-          }
-        });
+      this.http.get<Achievement[]>(`/assets/achievements/${config.appId}.json`).subscribe({
+        next: (data) => {
+          this.achievementsSignal.set(data);
+          this.syncAchievementsWithStorage();
+          this.processBuffer();
+        },
+        error: (err) => {
+          // eslint-disable-next-line no-console
+          console.error('ShellAchievementService: Error loading JSON', err);
+        }
+      });
     });
   }
 
   private syncAchievementsWithStorage(): void {
     const storedIds = this.localStoreService.getValue<string[]>(this.storageKey) || [];
-    this.achievements.update((list) =>
+    this.achievementsSignal.update((list) =>
       list.map((ach) => ({
         ...ach,
         unlocked: storedIds.includes(ach.id),
@@ -76,13 +79,25 @@ class ShellAchievementService {
     );
   }
 
+  private processBuffer(): void {
+    const buffer = [...this.activeBuffer];
+    this.activeBuffer = [];
+    buffer.forEach((id) => this.activeAchievement(id));
+  }
+
   activeAchievement(id: string): void {
+    const achievements = this.achievementsSignal();
+    if (achievements.length === 0) {
+      this.activeBuffer.push(id);
+      return;
+    }
+
     const storedIds = this.localStoreService.getValue<string[]>(this.storageKey) || [];
     if (!storedIds.includes(id)) {
       const newIds = [...storedIds, id];
       this.localStoreService.setValue(this.storageKey, newIds);
 
-      const achievement = this.achievements().find((a) => a.id === id);
+      const achievement = achievements.find((a) => a.id === id);
       if (achievement) {
         this.analytics.trackAchievementUnlocked(id, achievement.title);
         this.completed.set({ ...achievement, unlocked: true });
@@ -108,7 +123,7 @@ class ShellAchievementService {
 
   isAllCompleted(): void {
     const storedIds = this.localStoreService.getValue<string[]>(this.storageKey) || [];
-    const achievements = this.achievements();
+    const achievements = this.achievementsSignal();
     if (achievements.length > 0 && achievements.length - storedIds.length <= 1) {
       this.activeAchievement(AchieveTypes.FINAL);
       this.gameSound.stop();
