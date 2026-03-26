@@ -22,13 +22,13 @@ export class MenuComponent {
     this.isOpen.update((open) => !open);
   }
 
-  nagivateTo(url: string): void {
+  navigateTo(url: string): void {
     this.toggleMenu();
     this.router.navigateByUrl(`/${url}`);
   }
 
   newGame(): void {
     this.newGameRequested.emit();
-    this.nagivateTo(RouteTypes.SETTINGS);
+    this.navigateTo(RouteTypes.SETTINGS);
   }
 }

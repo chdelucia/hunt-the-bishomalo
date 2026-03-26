@@ -16,20 +16,19 @@
 @if (opened) {
   <div class="mobile-menu" id="mobile-navigation">
     <ul>
-      <li><button>&nbsp;</button></li>
       <li>
-        <button (click)="nagivateTo(ROUTES.HOME)">{{ 'menu.home' | transloco }}</button>
+        <button (click)="navigateTo(ROUTES.HOME)">{{ 'menu.home' | transloco }}</button>
       </li>
       <li>
-        <button (click)="nagivateTo(ROUTES.ACHIEVEMENTS)">
+        <button (click)="navigateTo(ROUTES.ACHIEVEMENTS)">
           {{ 'menu.achievements' | transloco }}
         </button>
       </li>
       <li>
-        <button (click)="nagivateTo(ROUTES.RULES)">{{ 'menu.instructions' | transloco }}</button>
+        <button (click)="navigateTo(ROUTES.RULES)">{{ 'menu.instructions' | transloco }}</button>
       </li>
       <li>
-        <button (click)="nagivateTo(ROUTES.CREDITS)">{{ 'menu.credits' | transloco }}</button>
+        <button (click)="navigateTo(ROUTES.CREDITS)">{{ 'menu.credits' | transloco }}</button>
       </li>
       <li>
         <button (click)="newGame()" class="newgame">{{ 'menu.newGame' | transloco }}</button>
