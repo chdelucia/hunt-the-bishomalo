@@ -71,6 +71,16 @@
           {
             "glob": "**/*",
             "input": "apps/achievements-remote/public"
+          },
+          {
+            "glob": "**/*",
+            "input": "public/achievements",
+            "output": "achievements"
+          },
+          {
+            "glob": "**/*",
+            "input": "public/assets/achievements",
+            "output": "assets/achievements"
           }
         ],
         "styles": [

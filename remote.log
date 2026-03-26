@@ -1,37 +1,26 @@
 
-> nx run hunt-the-bishomalo:serve-original:development --port 4200
+> nx run achievements-remote:serve-original:development --port 4201
 
 [33m❯[39m Building...
 [32m✔[39m Building...
-[37m[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
-[32mpolyfills.js[37m       [2m | [22m[2mpolyfills[22m    [2m | [22m[36m112.65 kB[37m[2m | [22m
-[32mstyles.css[37m         [2m | [22m[2mstyles[22m       [2m | [22m  [36m4.44 kB[37m[2m | [22m
-[32mmain.js[37m            [2m | [22m[2mmain[22m         [2m | [22m[36m276 bytes[37m[2m | [22m
-[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m117.37 kB[22m
-[1mLazy chunk files[22m   [2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
-[32mchunk-ZH4LMYDQ.js[37m  [2m | [22m[2m-[22m            [2m | [22m[36m125.75 kB[37m[2m | [22m
-[32mchunk-ACSHISH3.js[37m  [2m | [22m[2mbootstrap[22m    [2m | [22m [36m63.57 kB[37m[2m | [22m
-[32mchunk-DRUZ6XDR.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m36.04 kB[37m[2m | [22m
-[32mchunk-COUUKOM3.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m35.83 kB[37m[2m | [22m
-[32mchunk-DDAGRVTM.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m31.98 kB[37m[2m | [22m
-[32mchunk-G5XFLDAR.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m27.66 kB[37m[2m | [22m
-[32mchunk-CN64RGAN.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m26.75 kB[37m[2m | [22m
-[32mchunk-64KMFGAA.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m25.80 kB[37m[2m | [22m
-[32mchunk-QGJIPYEN.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m23.59 kB[37m[2m | [22m
-[32mchunk-MAZYCKVR.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m23.38 kB[37m[2m | [22m
-[32mchunk-TK6GV2NL.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m15.04 kB[37m[2m | [22m
-[32mchunk-WYLADQ3L.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m13.27 kB[37m[2m | [22m
-[32mchunk-FSVQ2D2Y.js[37m  [2m | [22m[2m-[22m            [2m | [22m [36m10.06 kB[37m[2m | [22m
-[32mch[39m[37munk-MAPPXDNE.js[37m  [2m | [22m[2m-[22m            [2m | [22m  [36m7.52 kB[37m[2m | [22m
-[32mchunk-GOMI4DH3.js[37m  [2m | [22m[2m-[22m            [2m | [22m  [36m1.37 kB[37m[2m | [22m
-[2m...and 12 more lazy chunks files. Use "--verbose" to show all the files.[22m
-Application bundle generation complete. [8.780 seconds] - 2026-03-26T19:42:16.803Z
+[37m[1mInitial chunk files[22m[2m | [22m[1mNames[22m              [2m | [22m [1mRaw size[22m
+[32mpolyfills.js[37m       [2m | [22m[2mpolyfills[22m          [2m | [22m[36m112.65 kB[37m[2m | [22m
+[32mmain.js[37m            [2m | [22m[2mmain[22m               [2m | [22m[36m275 bytes[37m[2m | [22m
+[32mstyles.css[37m         [2m | [22m[2mstyles[22m             [2m | [22m[36m121 bytes[37m[2m | [22m
+[1m [22m                  [2m | [22m[1mInitial total[22m      [2m | [22m[1m113.05 kB[22m
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m              [2m | [22m [1mRaw size[22m
+[32mchunk-GUB5JC6E.js[37m  [2m | [22m[2machievements[22m       [2m | [22m [36m40.00 kB[37m[2m | [22m
+[32mchunk-YPL7PJ5G.js[37m  [2m | [22m[2m-[22m                  [2m | [22m  [36m8.84 kB[37m[2m | [22m
+[32mchunk-OE5AHOTU.js[37m  [2m | [22m[2mbootstrap[22m          [2m | [22m  [36m4.72 kB[37m[2m | [22m
+[32mchunk-BGQTUWQU.js[37m  [2m | [22m[2m-[22m                  [2m | [22m  [36m1.25 kB[37m[2m | [22m
+[32mchunk-5UYZ2ATZ.js[37m  [2m | [22m[2machievements-routes[22m[2m | [22m[36m598 bytes[37m[2m | [22m
+Application bundle generation complete. [5.189 seconds] - 2026-03-26T19:42:13.212Z
 [39m
 [37mWatch mode enabled. Watching for file changes...[39m
 [37mNOTE: Raw file sizes do not reflect development server per-request transformations.[39m
-  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4200[22m/[39m
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4201[22m/[39m
 [2m7:42:31 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
-[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[36m/app/.angular/vite-root/achievements-remote/polyfills.js[33m
 [0m136 |      b2.apply(this, arguments);
 137 |    };
 138 |    const dynamicImport = (u2, _errUrl) => import(u2);
@@ -42,9 +31,9 @@ The above dynamic import cannot be analyzed by Vite.
 See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
 [33m[39m
   Plugin: [35mvite:import-analysis[39m
-  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+  File: [36m/app/.angular/vite-root/achievements-remote/polyfills.js[39m
 [2m7:42:31 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
-[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[36m/app/.angular/vite-root/achievements-remote/polyfills.js[33m
 [0m366 |      if (!hasDocument)
 367 |        return Promise.all([
 368 |          import(createBlob(`import"${createBlob("{}", "text/json")}"with{type:"json"}`)).then(
@@ -55,9 +44,9 @@ The above dynamic import cannot be analyzed by Vite.
 See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
 [33m[39m
   Plugin: [35mvite:import-analysis[39m
-  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+  File: [36m/app/.angular/vite-root/achievements-remote/polyfills.js[39m
 [2m7:42:31 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
-[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[36m/app/.angular/vite-root/achievements-remote/polyfills.js[33m
 [0m367 |        return Promise.all([
 368 |          import(createBlob(`import"${createBlob("{}", "text/json")}"with{type:"json"}`)).then(
 369 |  ...rtsJsonType = true, import(createBlob(`import"${createBlob("", "text/css")}"with{type:"css"}`)).then(
@@ -68,9 +57,9 @@ The above dynamic import cannot be analyzed by Vite.
 See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
 [33m[39m
   Plugin: [35mvite:import-analysis[39m
-  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+  File: [36m/app/.angular/vite-root/achievements-remote/polyfills.js[39m
 [2m7:42:31 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
-[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[36m/app/.angular/vite-root/achievements-remote/polyfills.js[33m
 [0m373 |            noop
 374 |          ),
 375 |  ...eEnabled && import(createBlob(`import"${createBlob(new Uint8Array(wasmBytes), "application/wasm")}"`)).then(
@@ -81,9 +70,9 @@ The above dynamic import cannot be analyzed by Vite.
 See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
 [33m[39m
   Plugin: [35mvite:import-analysis[39m
-  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+  File: [36m/app/.angular/vite-root/achievements-remote/polyfills.js[39m
 [2m7:42:31 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
-[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[36m/app/.angular/vite-root/achievements-remote/polyfills.js[33m
 [0m377 |            noop
 378 |          ),
 379 |  ...d && import(createBlob(`import source x from"${createBlob(new Uint8Array(wasmBytes), "application/wasm")}"`)).then(
@@ -94,9 +83,9 @@ The above dynamic import cannot be analyzed by Vite.
 See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
 [33m[39m
   Plugin: [35mvite:import-analysis[39m
-  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+  File: [36m/app/.angular/vite-root/achievements-remote/polyfills.js[39m
 [2m7:42:31 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
-[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[36m/app/.angular/vite-root/achievements-remote/polyfills.js[33m
 [0m2567 |        firstPolyfillLoad = false;
 2568 |      }
 2569 |  ...oaded && source ? dynamicImport(load.b, load.u) : import(load.u));
@@ -107,9 +96,9 @@ The above dynamic import cannot be analyzed by Vite.
 See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
 [33m[39m
   Plugin: [35mvite:import-analysis[39m
-  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+  File: [36m/app/.angular/vite-root/achievements-remote/polyfills.js[39m
 [2m7:42:31 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
-[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[36m/app/.angular/vite-root/achievements-remote/polyfills.js[33m
 [0m2728 |    let esmsTsTransform;
 2729 |    const initTs = async () => {
 2730 |      const m = await import(tsTransform);
@@ -120,27 +109,6 @@ The above dynamic import cannot be analyzed by Vite.
 See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
 [33m[39m
   Plugin: [35mvite:import-analysis[39m
-  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+  File: [36m/app/.angular/vite-root/achievements-remote/polyfills.js[39m
 fatal error: all goroutines are asleep - deadlock!
-goroutine 1 [chan receive]:
-github.com/evanw/esbuild/internal/helpers.(*ThreadSafeWaitGroup).Wait(...)
-	github.com/evanw/esbuild/internal/helpers/waitgroup.go:36
-main.runService.func2()
-	github.com/evanw/esbuild/cmd/esbuild/service.go:114 +0x53
-main.runService(0x1)
-	github.com/evanw/esbuild/cmd/esbuild/service.go:160 +0x4c3
-main.main()
-	github.com/evanw/esbuild/cmd/esbuild/main.go:252 +0xb75
-goroutine 7 [chan receive]:
-main.runService.func1()
-	github.com/evanw/esbuild/cmd/esbuild/service.go:98 +0x45
-created by main.runService in goroutine 1
-	github.com/evanw/esbuild/cmd/esbuild/service.go:97 +0x1ce
-goroutine 8 [chan receive]:
-main.(*serviceType).sendRequest(0xc0000daed0, {0x9f48c0, 0xc000379650})
-	github.com/evanw/esbuild/cmd/esbuild/service.go:192 +0x12b
-main.runService.func3()
-	github.com/evanw/esbuild/cmd/esbuild/service.go:125 +0x3e
-created by main.runService in goroutine 1
-	github.com/evanw/esbuild/cmd/esbuild/service.go:122 +0x2d0
-Task "hunt-the-bishomalo:serve-original:development" is continuous but exited with code 143
+Task "achievements-remote:serve-original:development" is continuous but exited with code 143
