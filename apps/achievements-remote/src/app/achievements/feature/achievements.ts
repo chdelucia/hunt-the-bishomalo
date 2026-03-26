@@ -1,7 +1,6 @@
 import { Component, inject, signal, computed } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Achievement } from '@hunt-the-bishomalo/shared-data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import {
   AchievementFilterComponent,
@@ -26,7 +25,7 @@ export class AchievementsComponent {
   private readonly achieveService = inject(ACHIEVEMENT_SERVICE);
 
   readonly filter = signal<'all' | 'unlocked' | 'locked'>('all');
-  readonly achievements = signal<Achievement[]>(this.achieveService.achievements);
+  readonly achievements = computed(() => this.achieveService.achievements);
 
   readonly filteredAchievements = computed(() => {
     const currentFilter = this.filter();
