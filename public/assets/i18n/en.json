@@ -178,7 +178,9 @@
     "turn": "Turn",
     "shoot": "Shoot",
     "newGame": "New Game",
-    "soundToggle": "Sound"
+    "soundToggle": "Sound",
+    "muteSound": "Mute sound",
+    "unmuteSound": "Unmute sound"
   },
   "mobileControls": {
     "turnLeftAriaLabel": "Turn Left",

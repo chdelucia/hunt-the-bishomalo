@@ -24,7 +24,11 @@
     <li><span class="key">↩</span> {{ 'controls.shoot' | transloco }}</li>
     <li><span class="key">N</span> {{ 'controls.newGame' | transloco }}</li>
     <li>
-      <button class="sound-toggle" (click)="toggleSound()">
+      <button
+        class="sound-toggle"
+        (click)="toggleSound()"
+        [attr.aria-label]="(soundEnabled() ? 'controls.muteSound' : 'controls.unmuteSound') | transloco"
+      >
         <span class="key">{{ soundEnabled() ? '🔊' : '🔇' }}</span>
         {{ 'controls.soundToggle' | transloco }}
       </button>
