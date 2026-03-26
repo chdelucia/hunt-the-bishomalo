@@ -4,8 +4,8 @@ import { Achievement, AchieveTypes } from './achievement.model';
 import {
   ANALYTICS_SERVICE_TOKEN,
   LOCALSTORAGE_SERVICE_TOKEN,
-} from '@hunt-the-bishomalo/core/api';
-import { IAchievementService } from '@hunt-the-bishomalo/achievements/api';
+} from './core-api.model';
+import { IAchievementService } from './achievement-service.interface';
 import { AchievementsFacade } from './achievements.facade';
 
 @Injectable({

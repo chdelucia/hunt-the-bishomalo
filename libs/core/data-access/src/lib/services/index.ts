@@ -5,4 +5,5 @@ export * from './events/game-event.service';
 export * from './monitoring/logrocket.service';
 export * from './monitoring/sentry.service';
 export * from './monitoring/monitoring.service';
+export * from './config/config.service';
 export * from './mini-bus.service';

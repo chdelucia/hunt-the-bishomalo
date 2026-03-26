@@ -18,6 +18,8 @@ import {
   LocalstorageService,
   AnalyticsService,
   GameEventService,
+  RemoteConfig,
+  REMOTE_CONFIG_TOKEN,
   MiniBusService,
 } from '@hunt-the-bishomalo/core/data-access';
 import {
@@ -143,6 +145,10 @@ export const appConfig: ApplicationConfig = {
     { provide: ACHIEVEMENT_SERVICE, useClass: ShellAchievementService },
     { provide: LEADERBOARD_SERVICE, useClass: LeaderboardService },
     { provide: GAME_ENGINE_TOKEN, useClass: GameEngineService },
+    {
+      provide: REMOTE_CONFIG_TOKEN,
+      useFactory: () => (window as unknown as { _REMOTE_CONFIG: RemoteConfig })._REMOTE_CONFIG,
+    },
     {
       provide: APP_INITIALIZER,
       useFactory: (monitoringService: MonitoringService) => () => monitoringService.init(),

@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.64.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.0...v7.64.1) (2026-03-26)
+
+## [7.64.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.63.1...v7.64.0) (2026-03-26)
+
+
+### Features
+
+* dynamic native federation manifest with cdn remotes and local shared libs ([ebacf14](https://github.com/chdelucia/hunt-the-bishomalo/commit/ebacf14c864b23f5eb3e60aaa96b75d14fb50cf2))
+* implement dynamic native federation manifest loading from CDN ([903c469](https://github.com/chdelucia/hunt-the-bishomalo/commit/903c46915d6afb31d4786e634b9d4394c729a69f))
+
+### [7.63.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.63.0...v7.63.1) (2026-03-26)
+
 ## [7.63.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.62.1...v7.63.0) (2026-03-26)
 
 
