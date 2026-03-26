@@ -8,7 +8,7 @@
       [class.grayscale]="!achievement().unlocked"
     >
       <img
-        [ngSrc]="'achievements/' + achievement().svgIcon"
+        [ngSrc]="'/achievements/' + achievement().svgIcon"
         [alt]="achievement().title"
         fill
         class="achievement-icon"
@@ -24,7 +24,7 @@
   <div class="details">
     <div class="details-header">
       <h3 class="title">
-        {{ 'achievements.' + achievement().id + '.title' | transloco }}
+        {{ 'achievements.' + achievement().id + '.title' | transloco : { default: achievement().title } }}
       </h3>
       <span
         class="rarity-badge"
@@ -34,7 +34,7 @@
       </span>
     </div>
     <p class="description">
-      {{ 'achievements.' + achievement().id + '.description' | transloco }}
+      {{ 'achievements.' + achievement().id + '.description' | transloco : { default: achievement().description } }}
     </p>
   </div>
 </div>

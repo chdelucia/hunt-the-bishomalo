@@ -1,0 +1,16 @@
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="20" height="20" rx="2" fill="#4c1d95" />
+          <path d="M5 5 L 19 5" stroke="#c4b5fd" stroke-width="1" stroke-linecap="round" />
+          <path d="M5 8 L 19 8" stroke="#c4b5fd" stroke-width="1" stroke-linecap="round" />
+          <path d="M5 11 L 19 11" stroke="#c4b5fd" stroke-width="1" stroke-linecap="round" />
+          <path d="M5 14 L 19 14" stroke="#c4b5fd" stroke-width="1" stroke-linecap="round" />
+          <path d="M5 17 L 19 17" stroke="#c4b5fd" stroke-width="1" stroke-linecap="round" />
+          <path d="M5 5 L 5 19" stroke="#c4b5fd" stroke-width="1" stroke-linecap="round" />
+          <path d="M8 5 L 8 19" stroke="#c4b5fd" stroke-width="1" stroke-linecap="round" />
+          <path d="M11 5 L 11 19" stroke="#c4b5fd" stroke-width="1" stroke-linecap="round" />
+          <path d="M14 5 L 14 19" stroke="#c4b5fd" stroke-width="1" stroke-linecap="round" />
+          <path d="M17 5 L 17 19" stroke="#c4b5fd" stroke-width="1" stroke-linecap="round" />
+          <circle cx="12" cy="12" r="3" fill="#8b5cf6" />
+          <path d="M12 9 L 12 15" stroke="#c4b5fd" stroke-width="1" stroke-linecap="round" />
+          <path d="M9 12 L 15 12" stroke="#c4b5fd" stroke-width="1" stroke-linecap="round" />
+        </svg>

@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Achievement } from '@hunt-the-bishomalo/shared-data';
 
 @Component({
   selector: 'app-achievement-item',
@@ -12,7 +11,7 @@ import { Achievement } from '@hunt-the-bishomalo/shared-data';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AchievementItemComponent {
-  readonly achievement = input.required<Achievement>();
+  readonly achievement = input.required<any>();
 
   readonly rarityClasses: Record<string, string> = {
     common: 'rarity-common',

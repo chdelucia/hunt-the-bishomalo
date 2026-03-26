@@ -1,6 +1,7 @@
 import { Component, effect, input, OnDestroy, signal } from '@angular/core';
 import { NgClass, NgOptimizedImage } from '@angular/common';
 import { Achievement } from '@hunt-the-bishomalo/shared-data';
+import { TranslocoModule } from '@jsverse/transloco';
 
 interface ToastData {
   id: number;
@@ -11,7 +12,7 @@ interface ToastData {
 @Component({
   selector: 'lib-toast',
   standalone: true,
-  imports: [NgOptimizedImage, NgClass],
+  imports: [NgOptimizedImage, NgClass, TranslocoModule],
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss',
 })

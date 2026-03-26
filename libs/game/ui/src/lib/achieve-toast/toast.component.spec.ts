@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ToastComponent } from './toast.component';
 import { CommonModule } from '@angular/common';
 import { Achievement } from '@hunt-the-bishomalo/shared-data';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 
 describe('ToastComponent', () => {
   let component: ToastComponent;
@@ -18,7 +19,7 @@ describe('ToastComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CommonModule, ToastComponent],
+      imports: [CommonModule, ToastComponent, getTranslocoTestingModule()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ToastComponent);

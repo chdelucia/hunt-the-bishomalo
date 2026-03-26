@@ -8,7 +8,7 @@ import {
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withHashLocation, withInMemoryScrolling, Router } from '@angular/router';
 import { appRoutes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { TranslocoHttpLoader } from './utils/transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
 import { GameStore } from '@hunt-the-bishomalo/core/data-access';
@@ -48,15 +48,32 @@ class ShellAchievementService {
   private readonly analytics = inject(ANALYTICS_SERVICE_TOKEN);
   private readonly miniBus = inject(MINI_BUS_SERVICE_TOKEN);
   private readonly gameSound = inject(GAME_SOUND_TOKEN);
+  private readonly http = inject(HttpClient);
 
   constructor() {
     this.miniBus.listen('ACHIEVEMENTS_CONFIG', (config: { appId: string }) => {
-      fetch(`/assets/achievements/${config.appId}.json`)
-        .then((r) => r.json())
-        .then((data) => {
-          this.achievements.set(data);
+      this.http.get<Achievement[]>(`/assets/achievements/${config.appId}.json`)
+        .subscribe({
+          next: (data) => {
+            this.achievements.set(data);
+            this.syncAchievementsWithStorage();
+          },
+          error: (err) => {
+            // eslint-disable-next-line no-console
+            console.error('ShellAchievementService error:', err);
+          }
         });
     });
+  }
+
+  private syncAchievementsWithStorage(): void {
+    const storedIds = this.localStoreService.getValue<string[]>(this.storageKey) || [];
+    this.achievements.update((list) =>
+      list.map((ach) => ({
+        ...ach,
+        unlocked: storedIds.includes(ach.id),
+      })),
+    );
   }
 
   activeAchievement(id: string): void {
@@ -76,7 +93,7 @@ class ShellAchievementService {
           title: id,
           description: '',
           icon: '',
-          svgIcon: '',
+          svgIcon: `${id}.png`,
           rarity: 'common',
           unlocked: true,
         };

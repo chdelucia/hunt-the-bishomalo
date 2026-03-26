@@ -21,6 +21,12 @@
   box-shadow: 0 4px 12px rgb(0 0 0 / 20%);
   animation: fadeIn 0.3s ease-in;
   max-width: 350px;
+  border: 2px solid var(--color-primary);
+}
+
+.icon {
+  flex-shrink: 0;
+  object-fit: contain;
 }
 
 .text {

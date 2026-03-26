@@ -1,4 +1,5 @@
 import { effect, inject, Injectable, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Achievement, AchieveTypes } from '@hunt-the-bishomalo/shared-data';
 import {
   ANALYTICS_SERVICE_TOKEN,
@@ -21,6 +22,7 @@ export class AchievementService implements IAchievementService {
   private readonly analytics = inject(ANALYTICS_SERVICE_TOKEN);
   private readonly localStoreService = inject(LOCALSTORAGE_SERVICE_TOKEN);
   private readonly facade = inject(AchievementsFacade);
+  private readonly http = inject(HttpClient);
 
   constructor() {
     this.listenForExternalAchievements();
@@ -28,12 +30,16 @@ export class AchievementService implements IAchievementService {
       const config = this.facade.config();
       if (!config) return;
 
-      fetch(`/assets/achievements/${config.appId}.json`)
-        .then((r) => r.json())
-        .then((data) => {
+      this.http.get<Achievement[]>(`/assets/achievements/${config.appId}.json`).subscribe({
+        next: (data) => {
           this.achievementsSignal.set(data);
           this.syncAchievementsWithStorage();
-        });
+        },
+        error: (err) => {
+          // eslint-disable-next-line no-console
+          console.error('Remote AchievementService error:', err);
+        },
+      });
     });
   }
 
@@ -79,6 +85,8 @@ export class AchievementService implements IAchievementService {
         this.updateLocalStorageWithNewId(updatedAchieve.id);
         this.analytics.trackAchievementUnlocked(updatedAchieve.id, updatedAchieve.title);
       }
+    } else if (achieve && achieve.unlocked) {
+      this.completed.set(achieve);
     }
   }
 
