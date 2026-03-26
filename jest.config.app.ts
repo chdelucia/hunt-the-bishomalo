@@ -39,6 +39,9 @@ export default {
   collectCoverageFrom: [
     'src/app/**/*.ts',
     '!src/app/**/*.spec.ts',
+    '!src/app/**/*.stories.ts',
+    '!src/app/**/*.interface.ts',
+    '!src/app/**/*.model.ts',
     '!src/app/app.config.ts',
   ],
 };
