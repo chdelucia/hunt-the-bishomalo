@@ -43,5 +43,6 @@ export default {
     '!src/app/**/*.interface.ts',
     '!src/app/**/*.model.ts',
     '!src/app/app.config.ts',
+    '!src/bootstrap.ts',
   ],
 };
