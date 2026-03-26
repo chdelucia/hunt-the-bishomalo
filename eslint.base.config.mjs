@@ -33,7 +33,6 @@ export default [
                 'type:feature',
                 'type:ui',
                 'type:api',
-                'type:data-access',
                 'type:model',
                 'type:util',
               ],
@@ -42,7 +41,6 @@ export default [
               sourceTag: 'type:feature',
               onlyDependOnLibsWithTags: [
                 'type:ui',
-                'type:data-access',
                 'type:api',
                 'type:model',
                 'type:util',
@@ -58,16 +56,19 @@ export default [
                 'type:api',
                 'type:model',
                 'type:util',
-                'type:data-access',
               ],
             },
             {
               sourceTag: 'type:api',
-              onlyDependOnLibsWithTags: ['type:model', 'type:util', 'type:data-access'],
+              onlyDependOnLibsWithTags: ['type:model', 'type:util'],
             },
             {
               sourceTag: 'type:model',
               onlyDependOnLibsWithTags: ['type:model', 'type:util'],
+            },
+            {
+              sourceTag: 'type:util',
+              onlyDependOnLibsWithTags: ['type:util'],
             },
             {
               sourceTag: 'scope:shared',
@@ -78,44 +79,40 @@ export default [
               onlyDependOnLibsWithTags: ['scope:shared', 'scope:core', 'type:api', 'type:model', 'type:util'],
             },
             {
-              sourceTag: 'type:util',
-              onlyDependOnLibsWithTags: ['type:util'],
-            },
-            {
               sourceTag: 'scope:achievements',
-              onlyDependOnLibsWithTags: ['scope:achievements', 'type:api', 'type:model', 'type:util', 'type:ui'],
+              onlyDependOnLibsWithTags: ['scope:achievements', 'scope:shared', 'scope:core', 'type:api', 'type:model', 'type:util'],
             },
             {
               sourceTag: 'scope:boss',
-              onlyDependOnLibsWithTags: ['scope:boss', 'type:api', 'type:model', 'type:util', 'type:ui'],
+              onlyDependOnLibsWithTags: ['scope:boss', 'scope:shared', 'scope:core', 'type:api', 'type:model', 'type:util'],
             },
             {
               sourceTag: 'scope:chars',
-              onlyDependOnLibsWithTags: ['scope:chars', 'type:api', 'type:model', 'type:util', 'type:ui'],
+              onlyDependOnLibsWithTags: ['scope:chars', 'scope:shared', 'scope:core', 'type:api', 'type:model', 'type:util'],
             },
             {
               sourceTag: 'scope:config',
-              onlyDependOnLibsWithTags: ['scope:config', 'type:api', 'type:model', 'type:util', 'type:ui'],
+              onlyDependOnLibsWithTags: ['scope:config', 'scope:shared', 'scope:core', 'type:api', 'type:model', 'type:util'],
             },
             {
               sourceTag: 'scope:credits',
-              onlyDependOnLibsWithTags: ['scope:credits', 'type:api', 'type:model', 'type:util', 'type:ui'],
+              onlyDependOnLibsWithTags: ['scope:credits', 'scope:shared', 'scope:core', 'type:api', 'type:model', 'type:util'],
             },
             {
               sourceTag: 'scope:game',
-              onlyDependOnLibsWithTags: ['scope:game', 'type:api', 'type:model', 'type:util', 'type:ui'],
+              onlyDependOnLibsWithTags: ['scope:game', 'scope:shared', 'scope:core', 'type:api', 'type:model', 'type:util'],
             },
             {
               sourceTag: 'scope:gamestats',
-              onlyDependOnLibsWithTags: ['scope:gamestats', 'type:api', 'type:model', 'type:util', 'type:ui'],
+              onlyDependOnLibsWithTags: ['scope:gamestats', 'scope:shared', 'scope:core', 'type:api', 'type:model', 'type:util'],
             },
             {
               sourceTag: 'scope:instructions',
-              onlyDependOnLibsWithTags: ['scope:instructions', 'type:api', 'type:model', 'type:util', 'type:ui'],
+              onlyDependOnLibsWithTags: ['scope:instructions', 'scope:shared', 'scope:core', 'type:api', 'type:model', 'type:util'],
             },
             {
               sourceTag: 'scope:shop',
-              onlyDependOnLibsWithTags: ['scope:shop', 'type:api', 'type:model', 'type:util', 'type:ui'],
+              onlyDependOnLibsWithTags: ['scope:shop', 'scope:shared', 'scope:core', 'type:api', 'type:model', 'type:util'],
             },
           ],
         },

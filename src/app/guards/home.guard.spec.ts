@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { CanActivateFn, Router, RouterModule } from '@angular/router';
 import { homeGuard } from './home.guard';
-import { GameStore } from '@hunt-the-bishomalo/core/data-access';
-import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
+import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
+import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
 
 const mockGameStore = {
@@ -27,8 +27,8 @@ describe('homeGuard (Jest)', () => {
       imports: [RouterModule.forRoot([])],
       providers: [
         { provide: Router, useValue: mockRouter },
-        { provide: GameStore, useValue: mockGameStore },
-        { provide: GameEngineService, useValue: mockGameEngine },
+        { provide: GAME_STORE_TOKEN, useValue: mockGameStore },
+        { provide: GAME_ENGINE_TOKEN, useValue: mockGameEngine },
       ],
     });
   });
