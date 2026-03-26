@@ -8,7 +8,7 @@ import {
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withHashLocation, withInMemoryScrolling, Router } from '@angular/router';
 import { appRoutes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { TranslocoHttpLoader } from './utils/transloco-loader';
 import { provideTransloco } from '@jsverse/transloco';
 import { GameStore } from '@hunt-the-bishomalo/core/data-access';
@@ -20,6 +20,7 @@ import {
   GameEventService,
   RemoteConfig,
   REMOTE_CONFIG_TOKEN,
+  MiniBusService,
 } from '@hunt-the-bishomalo/core/data-access';
 import {
   GAME_STORE_TOKEN,
@@ -27,8 +28,9 @@ import {
   LOCALSTORAGE_SERVICE_TOKEN,
   ANALYTICS_SERVICE_TOKEN,
   GAME_EVENT_SERVICE_TOKEN,
+  MINI_BUS_SERVICE_TOKEN,
 } from '@hunt-the-bishomalo/core/api';
-import { ACHIEVEMENT_SERVICE, ACHIEVEMENTS_LIST_TOKEN, ACHIEVEMENTS_LIST } from '@hunt-the-bishomalo/achievements/api';
+import { ACHIEVEMENT_SERVICE, IAchievementService } from '@hunt-the-bishomalo/achievements/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { LeaderboardService } from '@hunt-the-bishomalo/gamestats/data-access';
@@ -37,24 +39,67 @@ import * as Sentry from '@sentry/angular';
 
 // Achievements implementation is in the remote, but we still need it functional in the shell for tracking.
 import { Injectable, signal, inject } from '@angular/core';
-import { Achievement } from '@hunt-the-bishomalo/shared-data';
+import { Achievement, AchieveTypes, GameSound } from '@hunt-the-bishomalo/shared-data';
 
 @Injectable({ providedIn: 'root' })
-class ShellAchievementService {
+class ShellAchievementService implements IAchievementService {
   private readonly storageKey = 'hunt_the_bishomalo_achievements';
-  private readonly _achievementsList = inject(ACHIEVEMENTS_LIST_TOKEN);
-  readonly achievements: Achievement[] = this._achievementsList;
+  private readonly achievementsSignal = signal<Achievement[]>([]);
+  get achievements() { return this.achievementsSignal; }
   readonly completed = signal<Achievement | undefined>(undefined);
   private readonly localStoreService = inject(LOCALSTORAGE_SERVICE_TOKEN);
   private readonly analytics = inject(ANALYTICS_SERVICE_TOKEN);
+  private readonly miniBus = inject(MINI_BUS_SERVICE_TOKEN);
+  private readonly gameSound = inject(GAME_SOUND_TOKEN);
+  private readonly http = inject(HttpClient);
+
+  private activeBuffer: string[] = [];
+
+  constructor() {
+    this.miniBus.listen('ACHIEVEMENTS_CONFIG', (config: { appId: string }) => {
+      this.http.get<Achievement[]>(`/assets/achievements/${config.appId}.json`).subscribe({
+        next: (data) => {
+          this.achievementsSignal.set(data);
+          this.syncAchievementsWithStorage();
+          this.processBuffer();
+        },
+        error: (err) => {
+          // eslint-disable-next-line no-console
+          console.error('ShellAchievementService: Error loading JSON', err);
+        }
+      });
+    });
+  }
+
+  private syncAchievementsWithStorage(): void {
+    const storedIds = this.localStoreService.getValue<string[]>(this.storageKey) || [];
+    this.achievementsSignal.update((list) =>
+      list.map((ach) => ({
+        ...ach,
+        unlocked: storedIds.includes(ach.id),
+      })),
+    );
+  }
+
+  private processBuffer(): void {
+    const buffer = [...this.activeBuffer];
+    this.activeBuffer = [];
+    buffer.forEach((id) => this.activeAchievement(id));
+  }
 
   activeAchievement(id: string): void {
+    const achievements = this.achievementsSignal();
+    if (achievements.length === 0) {
+      this.activeBuffer.push(id);
+      return;
+    }
+
     const storedIds = this.localStoreService.getValue<string[]>(this.storageKey) || [];
     if (!storedIds.includes(id)) {
       const newIds = [...storedIds, id];
       this.localStoreService.setValue(this.storageKey, newIds);
 
-      const achievement = this.achievements.find((a) => a.id === id);
+      const achievement = achievements.find((a) => a.id === id);
       if (achievement) {
         this.analytics.trackAchievementUnlocked(id, achievement.title);
         this.completed.set({ ...achievement, unlocked: true });
@@ -65,7 +110,7 @@ class ShellAchievementService {
           title: id,
           description: '',
           icon: '',
-          svgIcon: '',
+          svgIcon: `${id}.png`,
           rarity: 'common',
           unlocked: true,
         };
@@ -74,10 +119,18 @@ class ShellAchievementService {
 
       // Notify other MFEs via CustomEvent
       window.dispatchEvent(new CustomEvent('achievement-unlocked', { detail: { id } }));
+      this.isAllCompleted();
     }
   }
+
   isAllCompleted(): void {
-    // Method intentionally left empty.
+    const storedIds = this.localStoreService.getValue<string[]>(this.storageKey) || [];
+    const achievements = this.achievementsSignal();
+    if (achievements.length > 0 && achievements.length - storedIds.length <= 1) {
+      this.activeAchievement(AchieveTypes.FINAL);
+      this.gameSound.stop();
+      this.gameSound.playSound(GameSound.FF7, false);
+    }
   }
 }
 
@@ -88,7 +141,7 @@ export const appConfig: ApplicationConfig = {
     { provide: LOCALSTORAGE_SERVICE_TOKEN, useExisting: LocalstorageService },
     { provide: ANALYTICS_SERVICE_TOKEN, useExisting: AnalyticsService },
     { provide: GAME_EVENT_SERVICE_TOKEN, useExisting: GameEventService },
-    { provide: ACHIEVEMENTS_LIST_TOKEN, useValue: ACHIEVEMENTS_LIST },
+    { provide: MINI_BUS_SERVICE_TOKEN, useExisting: MiniBusService },
     { provide: ACHIEVEMENT_SERVICE, useClass: ShellAchievementService },
     { provide: LEADERBOARD_SERVICE, useClass: LeaderboardService },
     { provide: GAME_ENGINE_TOKEN, useClass: GameEngineService },

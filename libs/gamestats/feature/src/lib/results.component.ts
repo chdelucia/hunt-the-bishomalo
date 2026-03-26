@@ -17,7 +17,10 @@ import { TranslocoModule } from '@jsverse/transloco';
 export class ResultsComponent {
   readonly tabActiva = signal<'general' | 'niveles'>('general');
   leaderboard: ScoreEntry[] = [];
-  unlockedAchievements = 0;
+  unlockedAchievementsCount = computed(() => {
+    const list = this.achieve.achievements();
+    return list.filter((item: any) => item.unlocked).length;
+  });
 
   private readonly gameStore = inject(GAME_STORE_TOKEN);
   private readonly leaderboardService = inject(LEADERBOARD_SERVICE);
@@ -26,7 +29,6 @@ export class ResultsComponent {
   private readonly routeSnapshot = inject(ActivatedRoute);
 
   constructor() {
-    this.unlockedAchievements = this.achieve.achievements.filter((item) => item.unlocked).length;
     this.leaderboard = this.leaderboardService.leaderboard;
   }
 

@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.63.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.63.0...v7.63.1) (2026-03-26)
+
+## [7.63.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.62.1...v7.63.0) (2026-03-26)
+
+
+### Features
+
+* **achievements:** fully decouple achievements MFE with Architecture PRO ([7c7918b](https://github.com/chdelucia/hunt-the-bishomalo/commit/7c7918bbef9126fc66044ca7d36ff37cc659c796))
+* decouple achievements MFE and enable dynamic configuration ([3f49043](https://github.com/chdelucia/hunt-the-bishomalo/commit/3f490435ec68de57109e9eed4cabd8f5bd30596b))
+* fully decouple achievements MFE and enable dynamic configuration ([65ac683](https://github.com/chdelucia/hunt-the-bishomalo/commit/65ac6833d6a13bb762a1b49b0fd559d8923c7496))
+
+### [7.62.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.62.0...v7.62.1) (2026-03-26)
+
+
+### Bug Fixes
+
+* terraform ([9922bb0](https://github.com/chdelucia/hunt-the-bishomalo/commit/9922bb0093389a77be22bcace9a760ea7fab1012))
+
+## [7.62.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.61.5...v7.62.0) (2026-03-26)
+
+
+### Features
+
+* **terraform:** remotes ([032a2db](https://github.com/chdelucia/hunt-the-bishomalo/commit/032a2db9dd2ae2ff5defd8321fb6357886850a05))
+
+
+### Bug Fixes
+
+* linter ([20b9d14](https://github.com/chdelucia/hunt-the-bishomalo/commit/20b9d1487b86e59cc3e4d69c2f592bdbea51f01e))
+
 ### [7.61.5](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.61.4...v7.61.5) (2026-03-26)
 
 

@@ -1,12 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Achievement } from '@hunt-the-bishomalo/shared-data';
+import { Achievement } from '../data-access/achievement.model';
 
 @Component({
   selector: 'app-achievement-item',
   standalone: true,
-  imports: [NgOptimizedImage, TranslocoModule],
+  imports: [TranslocoModule],
   templateUrl: './achievement-item.component.html',
   styleUrl: './achievement-item.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

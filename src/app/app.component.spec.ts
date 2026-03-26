@@ -10,6 +10,7 @@ import {
   LOCALSTORAGE_SERVICE_TOKEN,
   GAME_SOUND_TOKEN,
   GAME_EVENT_SERVICE_TOKEN,
+  MINI_BUS_SERVICE_TOKEN,
 } from '@hunt-the-bishomalo/core/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { signal } from '@angular/core';
@@ -43,6 +44,7 @@ describe('AppComponent', () => {
           useValue: { applyEffectsOnDeath: jest.fn(), applyEffectByCellContent: jest.fn() },
         },
         { provide: KeyboardManagerService, useValue: { handleKeyDown: jest.fn() } },
+        { provide: MINI_BUS_SERVICE_TOKEN, useValue: { emit: jest.fn(), listen: jest.fn() } },
         {
           provide: GAME_STORE_TOKEN,
           useValue: {

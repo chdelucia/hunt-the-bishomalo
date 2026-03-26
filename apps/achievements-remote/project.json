@@ -43,7 +43,7 @@
         "{workspaceRoot}/coverage/{projectRoot}"
       ],
       "options": {
-        "jestConfig": "apps/achievements-remote/jest.config.cts",
+        "jestConfig": "apps/achievements-remote/jest.config.ts",
         "tsConfig": "apps/achievements-remote/tsconfig.spec.json"
       }
     },

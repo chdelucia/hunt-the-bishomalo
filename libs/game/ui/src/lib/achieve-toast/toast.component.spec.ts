@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ToastComponent } from './toast.component';
 import { CommonModule } from '@angular/common';
 import { Achievement } from '@hunt-the-bishomalo/shared-data';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 
 describe('ToastComponent', () => {
   let component: ToastComponent;
@@ -18,7 +19,7 @@ describe('ToastComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CommonModule, ToastComponent],
+      imports: [CommonModule, ToastComponent, getTranslocoTestingModule()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ToastComponent);
@@ -47,7 +48,7 @@ describe('ToastComponent', () => {
 
     const img = fixture.nativeElement.querySelector('img');
     expect(img).toBeTruthy();
-    expect(img.getAttribute('src')).toContain('achievements/test-icon.svg');
+    expect(img.getAttribute('src')).toContain('test-icon.svg');
   });
 
   it('should handle broken images gracefully', () => {

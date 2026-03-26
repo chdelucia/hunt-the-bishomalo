@@ -31,3 +31,10 @@ export interface IGameEventService {
 }
 
 export const GAME_EVENT_SERVICE_TOKEN = new InjectionToken<IGameEventService>('GAME_EVENT_SERVICE_TOKEN');
+
+export interface IMiniBusService {
+  emit(event: string, detail: unknown): void;
+  listen(event: string, callback: (data: any) => void): void;
+}
+
+export const MINI_BUS_SERVICE_TOKEN = new InjectionToken<IMiniBusService>('MINI_BUS_SERVICE_TOKEN');
