@@ -4,6 +4,7 @@
 @let selectedChar = game.selectedChar(); @let size = game.size();
 @let hunter = game.hunter(); @let inventory = game.inventory();
 @let lives = game.lives(); @let difficulty = game.difficulty();
+@let hasGold = game.hasGold();
 
 <main [libVisualEffect]="message" class="main-container">
   <lib-title [blackout]="settings.blackout || false" />
@@ -13,18 +14,20 @@
   }
   <section class="board" [style.--board-size]="boardSize">
     @for (row of board; track $index; let rowIndex = $index) {
+      @let isFirstRow = !rowIndex;
       @for (cell of row; track cell) {
+        @let isHunterCell = currentCell === cell;
         <lib-game-cell
-          [class.escape]="!rowIndex && $first && game.hasGold()"
+          [class.escape]="isFirstRow && $first && hasGold"
           [cell]="cell"
           [isAlive]="isAlive"
           [hasWon]="hasWon"
-          [inventory]="currentCell === cell ? inventory : emptyInventory"
+          [inventory]="isHunterCell ? inventory : emptyInventory"
           [selectedChar]="selectedChar"
           [size]="size"
           [blackout]="settings.blackout || false"
-          [isHunterCell]="currentCell === cell"
-          [hunter]="currentCell === cell ? hunter : null"
+          [isHunterCell]="isHunterCell"
+          [hunter]="isHunterCell ? hunter : null"
         />
       }
     }
