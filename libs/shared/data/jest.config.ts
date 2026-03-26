@@ -1,5 +1,5 @@
 export default {
-  displayName: 'data',
+  displayName: 'shared-data',
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory: '../../../coverage/libs/shared/data',
@@ -8,11 +8,11 @@ export default {
       'jest-preset-angular',
       {
         tsconfig: '<rootDir>/tsconfig.spec.json',
-        stringifyContentPathRegex: '\\.(html|svg)$',
+        stringifyContentPathRegex: String.raw`\.(html|svg)$`,
       },
     ],
   },
-  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$|@jsverse)'],
+  transformIgnorePatterns: [String.raw`node_modules/(?!.*\.mjs$|@jsverse)`],
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',

@@ -1,18 +1,18 @@
-module.exports = {
-  displayName: 'achievements-remote',
-  preset: '../../jest.preset.js',
+export default {
+  displayName: 'achievements-data-access',
+  preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/apps/achievements-remote',
+  coverageDirectory: '../../../coverage/libs/achievements/data-access',
   transform: {
-    '^.+.(ts|mjs|js|html)$': [
+    '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
       {
         tsconfig: '<rootDir>/tsconfig.spec.json',
-        stringifyContentPathRegex: '.(html|svg)$',
+        stringifyContentPathRegex: String.raw`\.(html|svg)$`,
       },
     ],
   },
-  transformIgnorePatterns: ['node_modules/(?!.*.mjs$|@jsverse)'],
+  transformIgnorePatterns: [String.raw`node_modules/(?!.*\.mjs$|@jsverse)`],
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',
