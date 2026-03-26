@@ -11,3 +11,7 @@
 ## 2026-03-23 - [Angular Template Control Flow & Signal Caching]
 **Learning:** While @let improves signal read efficiency in templates, moving O(N) logic (like inventory scans) from class-level computed signals into template expressions removes caching benefits and can lead to redundant work on every change detection cycle. Additionally, the 'as' variable alias is supported in @if but NOT in @else if blocks.
 **Action:** Keep complex logic in computed signals to leverage caching, and use @let in templates primarily for aliasing and reducing multiple signal reads. Always use nested @if or @let instead of 'as' in @else if blocks.
+
+## 2026-03-26 - [Loop-level @let Optimization in Grids]
+**Learning:** Identity comparisons (like `currentCell === cell`) or signal reads performed multiple times within a single iteration of a large `@for` loop can be cached using the `@let` syntax. This significantly reduces the total number of operations per change detection cycle, especially in grid-based UIs.
+**Action:** Always hoist repeated loop-specific expressions and signal reads into `@let` variables within the loop body to optimize performance in high-frequency rendering paths.
