@@ -1,7 +1,7 @@
 import { Component, inject, signal, computed } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Achievement } from '@hunt-the-bishomalo/shared-data';
+import { Achievement } from '../data-access/achievement.model';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import {
   AchievementFilterComponent,
@@ -26,11 +26,11 @@ export class AchievementsComponent {
   private readonly achieveService = inject(ACHIEVEMENT_SERVICE);
 
   readonly filter = signal<'all' | 'unlocked' | 'locked'>('all');
-  readonly achievements = signal<Achievement[]>(this.achieveService.achievements);
+  readonly achievements = this.achieveService.achievements;
 
   readonly filteredAchievements = computed(() => {
     const currentFilter = this.filter();
-    return this.achievements().filter((achievement) => {
+    return this.achievements().filter((achievement: Achievement) => {
       if (currentFilter === 'all') return true;
       if (currentFilter === 'unlocked') return achievement.unlocked;
       if (currentFilter === 'locked') return !achievement.unlocked;
@@ -38,7 +38,7 @@ export class AchievementsComponent {
     });
   });
 
-  readonly unlockedCount = computed(() => this.achievements().filter((a) => a.unlocked).length);
+  readonly unlockedCount = computed(() => this.achievements().filter((a: Achievement) => a.unlocked).length);
   readonly percentage = computed(() => {
     const total = this.achievements().length;
     if (total === 0) return 0;
