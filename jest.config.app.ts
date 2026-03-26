@@ -8,14 +8,14 @@ export default {
       'jest-preset-angular',
       {
         tsconfig: '<rootDir>/tsconfig.spec.json',
-        stringifyContentPathRegex: '\\.(html|svg)$',
+        stringifyContentPathRegex: String.raw`\.(html|svg)$`,
         diagnostics: {
           ignoreCodes: [151001],
         },
       },
     ],
   },
-  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$|@jsverse|@angular-architects)'],
+  transformIgnorePatterns: [String.raw`node_modules/(?!.*\.mjs$|@jsverse|@angular-architects)`],
   moduleNameMapper: {
     '^@angular/core/testing$': '<rootDir>/node_modules/@angular/core/fesm2022/testing.mjs',
     '^@angular/common/testing$': '<rootDir>/node_modules/@angular/common/fesm2022/testing.mjs',
