@@ -61,7 +61,7 @@
     <button
       class="control-btn"
       (click)="toggleSound()"
-      [attr.aria-label]="'controls.soundToggle' | transloco"
+      [attr.aria-label]="(soundEnabled() ? 'controls.muteSound' : 'controls.unmuteSound') | transloco"
     >
       <span class="sound-icon">{{ soundEnabled() ? '🔊' : '🔇' }}</span>
     </button>

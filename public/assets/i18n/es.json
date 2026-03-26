@@ -178,7 +178,9 @@
     "turn": "Girar",
     "shoot": "Disparar",
     "newGame": "Nueva partida",
-    "soundToggle": "Sonido"
+    "soundToggle": "Sonido",
+    "muteSound": "Silenciar sonido",
+    "unmuteSound": "Activar sonido"
   },
   "mobileControls": {
     "turnLeftAriaLabel": "Girar a la izquierda",

@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.62.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.61.5...v7.62.0) (2026-03-26)
+
+
+### Features
+
+* **terraform:** remotes ([032a2db](https://github.com/chdelucia/hunt-the-bishomalo/commit/032a2db9dd2ae2ff5defd8321fb6357886850a05))
+
+
+### Bug Fixes
+
+* linter ([20b9d14](https://github.com/chdelucia/hunt-the-bishomalo/commit/20b9d1487b86e59cc3e4d69c2f592bdbea51f01e))
+
+### [7.61.5](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.61.4...v7.61.5) (2026-03-26)
+
+
+### Bug Fixes
+
+* **game-ui:** align menu hover colors with app palette ([d6ed9de](https://github.com/chdelucia/hunt-the-bishomalo/commit/d6ed9deffeda91110eb7dbaffdbb0ef8d880dc83))
+
+### [7.61.4](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.61.3...v7.61.4) (2026-03-26)
+
+### [7.61.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.61.2...v7.61.3) (2026-03-26)
+
+### [7.61.2](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.61.1...v7.61.2) (2026-03-26)
+
 ### [7.61.1](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.61.0...v7.61.1) (2026-03-25)
 
 ## [7.61.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.60.0...v7.61.0) (2026-03-25)

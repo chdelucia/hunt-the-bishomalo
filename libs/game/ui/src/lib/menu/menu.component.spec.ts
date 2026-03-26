@@ -47,7 +47,7 @@ describe('MenuComponent', () => {
 
   it('should navigate to given url and toggle menu', () => {
     component.isOpen.set(true);
-    component.nagivateTo('test-url');
+    component.navigateTo('test-url');
     expect(component.isOpen()).toBe(false);
     expect(router.navigateByUrl).toHaveBeenCalledWith('/test-url');
   });
