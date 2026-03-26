@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.62.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.61.5...v7.62.0) (2026-03-26)
+
+
+### Features
+
+* **terraform:** remotes ([032a2db](https://github.com/chdelucia/hunt-the-bishomalo/commit/032a2db9dd2ae2ff5defd8321fb6357886850a05))
+
+
+### Bug Fixes
+
+* linter ([20b9d14](https://github.com/chdelucia/hunt-the-bishomalo/commit/20b9d1487b86e59cc3e4d69c2f592bdbea51f01e))
+
 ### [7.61.5](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.61.4...v7.61.5) (2026-03-26)
 
 
