@@ -8,7 +8,7 @@ export const REMOTE_CONFIG_TOKEN = new InjectionToken<RemoteConfig>('REMOTE_CONF
 
 @Injectable({ providedIn: 'root' })
 export class ConfigService {
-  private config = inject(REMOTE_CONFIG_TOKEN);
+  private readonly config = inject(REMOTE_CONFIG_TOKEN);
 
   get remotes(): Record<string, string> {
     return this.config?.remotes ?? {};
