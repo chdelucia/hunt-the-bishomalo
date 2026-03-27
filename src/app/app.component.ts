@@ -17,6 +17,7 @@ import {
 } from '@angular/router';
 import { filter } from 'rxjs';
 import { loadRemoteModule } from '@angular-architects/native-federation';
+import { TranslocoModule } from '@jsverse/transloco';
 
 import { ToastComponent, MenuComponent, GameControlsComponent } from '@hunt-the-bishomalo/game/ui';
 import { GAME_STORE_TOKEN, MINI_BUS_SERVICE_TOKEN } from '@hunt-the-bishomalo/core/api';
@@ -26,7 +27,7 @@ import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
 
 @Component({
-  imports: [RouterOutlet, ToastComponent, MenuComponent, GameControlsComponent],
+  imports: [RouterOutlet, ToastComponent, MenuComponent, GameControlsComponent, TranslocoModule],
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
