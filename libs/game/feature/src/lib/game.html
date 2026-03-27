@@ -12,6 +12,7 @@
   @if (settings?.blackout && isAlive && !hasWon) {
     <lib-blackout />
   }
+
   <section class="board" [style.--board-size]="boardSize">
     @for (row of board; track $index; let rowIndex = $index) {
       @let isFirstRow = !rowIndex;

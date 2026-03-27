@@ -13,8 +13,7 @@
     z-index: 20;
   }
 
-  &:hover,
-  &:focus-visible {
+  &:hover {
     transform: scale(1.1);
   }
 }

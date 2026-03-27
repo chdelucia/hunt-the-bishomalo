@@ -1,11 +1,10 @@
-<output class="toast-container" aria-live="polite">
+<div class="toast-container">
   @for (toast of toasts(); track toast.id) {
     <div class="toast">
       <img
         class="icon"
         [src]="'/achievements/' + toast.achievement.svgIcon"
-        alt=""
-        aria-hidden="true"
+        [alt]="'achievements.' + toast.achievement.id + '.title' | transloco : { default: toast.achievement.title }"
         [ngClass]="{ 'broken-image': toast.broken }"
         (error)="onImageError(toast.id)"
         width="40"
@@ -16,4 +15,4 @@
       </div>
     </div>
   }
-</output>
+</div>

@@ -2,39 +2,6 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [7.64.12](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.11...v7.64.12) (2026-03-27)
-
-
-### Bug Fixes
-
-* **game:** stop sounds on navigation and preserve game state ([a095ffa](https://github.com/chdelucia/hunt-the-bishomalo/commit/a095ffab98bb3c328ab0169fd7b88ecbcbfd6ec8))
-
-### [7.64.11](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.10...v7.64.11) (2026-03-27)
-
-
-### Bug Fixes
-
-* resolve CORS error by serving MFE config from same origin ([52fb612](https://github.com/chdelucia/hunt-the-bishomalo/commit/52fb61293997e3ed97f5ecdacd22ec552efa411c))
-
-### [7.64.10](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.9...v7.64.10) (2026-03-27)
-
-
-### Bug Fixes
-
-* **story:** stop narrator when sound is disabled ([8886225](https://github.com/chdelucia/hunt-the-bishomalo/commit/8886225aff8402584efe0da6d630899e0b4ea6be))
-
-### [7.64.9](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.8...v7.64.9) (2026-03-27)
-
-### [7.64.8](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.7...v7.64.8) (2026-03-27)
-
-### [7.64.7](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.6...v7.64.7) (2026-03-27)
-
-### [7.64.6](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.5...v7.64.6) (2026-03-27)
-
-### [7.64.5](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.4...v7.64.5) (2026-03-26)
-
-### [7.64.4](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.3...v7.64.4) (2026-03-26)
-
 ### [7.64.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.2...v7.64.3) (2026-03-26)
 
 

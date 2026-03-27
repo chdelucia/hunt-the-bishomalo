@@ -25,7 +25,7 @@
 .back-link {
   display: flex;
   align-items: center;
-  color: var(--color-primary); // Changed from #00ff5e
+  color: var(--color-primary);
   margin-right: 1rem;
   text-decoration: none;
   transition: color 0.3s;
@@ -70,26 +70,26 @@
   line-height: 2rem;
   font-weight: 700;
   color: var(--color-white);
-  margin-bottom: 1.5rem; // mb-6
-  display: flex; // flex
-  align-items: center; // items-center
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
 
   .emoji {
-    margin-right: 0.5rem; // mr-2
+    margin-right: 0.5rem;
   }
 }
 
 .achievement-list {
-  display: grid; // grid
-  grid-template-columns: repeat(1, minmax(0, 1fr)); // grid-cols-1
-  gap: 1rem; // gap-4
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
 
   @media (min-width: 768px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr)); // md:grid-cols-2
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   @media (min-width: 1024px) {
-    grid-template-columns: repeat(3, minmax(0, 1fr)); // lg:grid-cols-3
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -103,7 +103,20 @@
 }
 
 .empty-message {
-  color: var(--color-text-secondary); // Changed from #9ca3af
-  font-size: 1.125rem; // text-lg
-  font-style: italic; // italic
+  color: var(--color-text-secondary);
+  font-size: 1.125rem;
+  font-style: italic;
+}
+
+.loading-state {
+  text-align: center;
+  padding: 2rem;
+  color: var(--color-primary);
+}
+
+.placeholder-state {
+  text-align: center;
+  padding: 2rem;
+  color: var(--color-primary);
+  opacity: 0.5;
 }

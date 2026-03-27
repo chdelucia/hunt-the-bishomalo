@@ -15,7 +15,3 @@
 ## 2026-03-26 - [Loop-level @let Optimization in Grids]
 **Learning:** Identity comparisons (like `currentCell === cell`) or signal reads performed multiple times within a single iteration of a large `@for` loop can be cached using the `@let` syntax. This significantly reduces the total number of operations per change detection cycle, especially in grid-based UIs.
 **Action:** Always hoist repeated loop-specific expressions and signal reads into `@let` variables within the loop body to optimize performance in high-frequency rendering paths.
-
-## 2026-03-27 - [Consolidated State Transitions & I/O Reduction]
-**Learning:** Sequential updates to a SignalStore that implements synchronous persistence (like `localStorage.setItem` in a `persistGameState` method) create significant I/O bottlenecks and redundant change detection cycles.
-**Action:** Consolidate multiple related state changes (e.g., during level transitions or game resets) into a single `patchState` or `store.updateGame` call to ensure only one disk write and one UI update cycle occur.

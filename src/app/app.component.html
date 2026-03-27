@@ -16,4 +16,15 @@
 
 <router-outlet></router-outlet>
 
-<lib-toast [achievement]="achieve.completed()" />
+@if (isRouteLoading()) {
+  <div class="route-loader">
+    <div class="loader-text">{{ 'loading.data' | transloco }}</div>
+    <div class="loader-bar-container">
+      <div class="loader-bar"></div>
+    </div>
+  </div>
+}
+
+@defer (on timer(1000ms)) {
+  <lib-toast [achievement]="achieve.completed()" />
+}
