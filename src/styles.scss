@@ -113,6 +113,9 @@ button {
     outline: 3px solid var(--color-focus);
     outline-offset: 2px;
   }
+  &:active {
+    transform: translateY(2px);
+  }
 }
 
 a:focus-visible {
@@ -249,5 +252,12 @@ a:focus-visible {
     height: 100%;
     background-color: #00ff5e;
     animation: loadingBar 2s infinite ease-in-out;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cloud,
+  .stink,
+  .sparkle {
+    animation: none !important;
   }
 }

@@ -3,18 +3,18 @@ export interface RemoteConfig {
 }
 
 export async function fetchRemoteConfig(isDev: boolean): Promise<RemoteConfig> {
-  const url = isDev
-    ? 'https://bold-mouse-42af.c-heredia-naranjo.workers.dev/mfe-remotes.dev.json'
-    : 'https://bold-mouse-42af.c-heredia-naranjo.workers.dev/mfe-remotes.prod.json';
+  const url = isDev ? '/mfe-remotes.dev.json' : '/mfe-remotes.prod.json';
 
-  // Fallback / Debug Override (localStorage)
-  const localOverride = localStorage.getItem('MFE_REMOTES_OVERRIDE');
-  if (localOverride) {
-    try {
-      return JSON.parse(localOverride) as RemoteConfig;
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.warn('Invalid MFE_REMOTES_OVERRIDE found in localStorage', e);
+  // Fallback / Debug Override (localStorage) - ONLY in Dev mode
+  if (isDev) {
+    const localOverride = localStorage.getItem('MFE_REMOTES_OVERRIDE');
+    if (localOverride) {
+      try {
+        return JSON.parse(localOverride) as RemoteConfig;
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.warn('Invalid MFE_REMOTES_OVERRIDE found in localStorage', e);
+      }
     }
   }
 

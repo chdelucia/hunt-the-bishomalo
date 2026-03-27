@@ -140,4 +140,17 @@ describe('StoryComponent', () => {
     mockGameStore.soundEnabled.set(true); // Reset for other tests
     jest.useRealTimers();
   });
+
+  it('should cancel speechSynthesis when soundEnabled is toggled to false', () => {
+    mockGameStore.soundEnabled.set(true);
+    fixture.detectChanges(); // Trigger effect
+
+    const cancelSpy = jest.spyOn(global.speechSynthesis, 'cancel');
+
+    mockGameStore.soundEnabled.set(false);
+    fixture.detectChanges(); // Trigger effect again
+
+    expect(cancelSpy).toHaveBeenCalled();
+    mockGameStore.soundEnabled.set(true); // Reset
+  });
 });

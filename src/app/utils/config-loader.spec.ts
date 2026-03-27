@@ -15,9 +15,7 @@ describe('config-loader', () => {
 
       const config = await fetchRemoteConfig(true);
 
-      expect(global.fetch).toHaveBeenCalledWith(
-        'https://bold-mouse-42af.c-heredia-naranjo.workers.dev/mfe-remotes.dev.json'
-      );
+      expect(global.fetch).toHaveBeenCalledWith('/mfe-remotes.dev.json');
       expect(config).toEqual(mockConfig);
     });
 
@@ -29,9 +27,7 @@ describe('config-loader', () => {
 
       const config = await fetchRemoteConfig(false);
 
-      expect(global.fetch).toHaveBeenCalledWith(
-        'https://bold-mouse-42af.c-heredia-naranjo.workers.dev/mfe-remotes.prod.json'
-      );
+      expect(global.fetch).toHaveBeenCalledWith('/mfe-remotes.prod.json');
       expect(config).toEqual(mockConfig);
     });
 
@@ -44,6 +40,20 @@ describe('config-loader', () => {
 
       expect(config).toEqual(mockOverride);
       expect(global.fetch).not.toHaveBeenCalled();
+    });
+
+    it('should NOT use localStorage override if isDev is false', async () => {
+      const mockOverride = { remotes: { override: 'local' } };
+      const mockConfig = { remotes: { mfe1: 'url1' } };
+      localStorage.setItem('MFE_REMOTES_OVERRIDE', JSON.stringify(mockOverride));
+      global.fetch = jest.fn().mockResolvedValue({
+        json: jest.fn().mockResolvedValue(mockConfig),
+      });
+
+      const config = await fetchRemoteConfig(false);
+
+      expect(config).toEqual(mockConfig);
+      expect(global.fetch).toHaveBeenCalled();
     });
 
     it('should warn and continue if localStorage override is invalid', async () => {
