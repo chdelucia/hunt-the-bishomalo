@@ -1,13 +1,12 @@
 import { inject, Injectable, isDevMode } from '@angular/core';
 import { Router } from '@angular/router';
-import { GameEngineService } from './game-engine.service';
+import { GAME_ENGINE_TOKEN, GAME_ACHIEVEMENT_TRACKER_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { AchieveTypes, RouteTypes } from '@hunt-the-bishomalo/shared-data';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 
 @Injectable({ providedIn: 'root' })
 export class KeyboardManagerService {
-  private readonly game = inject(GameEngineService);
-  private readonly achieve = inject(ACHIEVEMENT_SERVICE);
+  private readonly game = inject(GAME_ENGINE_TOKEN);
+  private readonly achievementTracker = inject(GAME_ACHIEVEMENT_TRACKER_TOKEN);
   private readonly router = inject(Router);
 
   handleKeyDown(event: KeyboardEvent): void {
@@ -34,15 +33,15 @@ export class KeyboardManagerService {
     },
     KeyW: () => {
       this.game.moveForward();
-      this.achieve.activeAchievement(AchieveTypes.GAMER);
+      this.achievementTracker.activeAchievement(AchieveTypes.GAMER);
     },
     KeyA: () => {
       this.game.turnLeft();
-      this.achieve.activeAchievement(AchieveTypes.GAMER);
+      this.achievementTracker.activeAchievement(AchieveTypes.GAMER);
     },
     KeyD: () => {
       this.game.turnRight();
-      this.achieve.activeAchievement(AchieveTypes.GAMER);
+      this.achievementTracker.activeAchievement(AchieveTypes.GAMER);
     },
     KeyN: () => {
       this.game.newGame();

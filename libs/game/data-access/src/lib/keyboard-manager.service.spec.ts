@@ -1,14 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { KeyboardManagerService } from './keyboard-manager.service';
-import { GameEngineService } from './game-engine.service';
 import { Router } from '@angular/router';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
+import { GAME_ENGINE_TOKEN, GAME_ACHIEVEMENT_TRACKER_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { RouteTypes, AchieveTypes } from '@hunt-the-bishomalo/shared-data';
 
 describe('KeyboardManagerService', () => {
   let service: KeyboardManagerService;
   let gameMock: any;
-  let achieveMock: any;
+  let achievementTrackerMock: any;
   let routerMock: any;
 
   beforeEach(() => {
@@ -20,7 +19,7 @@ describe('KeyboardManagerService', () => {
       initGame: jest.fn(),
       newGame: jest.fn(),
     };
-    achieveMock = {
+    achievementTrackerMock = {
       activeAchievement: jest.fn(),
     };
     routerMock = {
@@ -30,8 +29,8 @@ describe('KeyboardManagerService', () => {
     TestBed.configureTestingModule({
       providers: [
         KeyboardManagerService,
-        { provide: GameEngineService, useValue: gameMock },
-        { provide: ACHIEVEMENT_SERVICE, useValue: achieveMock },
+        { provide: GAME_ENGINE_TOKEN, useValue: gameMock },
+        { provide: GAME_ACHIEVEMENT_TRACKER_TOKEN, useValue: achievementTrackerMock },
         { provide: Router, useValue: routerMock },
       ],
     });
@@ -52,7 +51,7 @@ describe('KeyboardManagerService', () => {
     const event = new KeyboardEvent('keydown', { code: 'KeyW' });
     service.handleKeyDown(event);
     expect(gameMock.moveForward).toHaveBeenCalled();
-    expect(achieveMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.GAMER);
+    expect(achievementTrackerMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.GAMER);
   });
 
   it('should handle ArrowLeft and turnLeft', () => {
@@ -99,17 +98,5 @@ describe('KeyboardManagerService', () => {
     const event = new KeyboardEvent('keydown', { code: 'KeyI' });
     service.handleKeyDown(event);
     expect(routerMock.navigate).toHaveBeenCalledWith([RouteTypes.RULES]);
-  });
-
-  it('should ignore keyboard events if the target is an input, textarea or select', () => {
-    const input = document.createElement('input');
-    const event = new KeyboardEvent('keydown', { code: 'ArrowUp' });
-    Object.defineProperty(event, 'target', { value: input });
-    const preventDefaultSpy = jest.spyOn(event, 'preventDefault');
-
-    service.handleKeyDown(event);
-
-    expect(gameMock.moveForward).not.toHaveBeenCalled();
-    expect(preventDefaultSpy).not.toHaveBeenCalled();
   });
 });

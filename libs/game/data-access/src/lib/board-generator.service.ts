@@ -43,11 +43,6 @@ export class BoardGeneratorService {
     const chance = (base: number, max: number) =>
       Math.min(base + ((size - 4) / (difficulty.maxLevels - 4)) * (max - base), max);
 
-    /**
-     * Security Hotspot Justification:
-     * Math.random() is used here for game mechanics (random event placement).
-     * It does not involve any security-sensitive operations.
-     */
     if (
       Math.random() < chance(difficulty.baseChance, difficulty.maxChance) &&
       currentLives < difficulty.maxLives
@@ -63,11 +58,6 @@ export class BoardGeneratorService {
     const size = settings.size;
     let cell: Cell;
     do {
-      /**
-       * Security Hotspot Justification:
-       * Math.random() is used here for game mechanics (random coordinate selection).
-       * It does not involve any security-sensitive operations.
-       */
       const x = Math.floor(Math.random() * size);
       const y = Math.floor(Math.random() * size);
       cell = board[x][y];
