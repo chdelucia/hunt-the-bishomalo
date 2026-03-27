@@ -5,7 +5,7 @@ import { fetchRemoteConfig } from './app/utils/config-loader';
   // We can't use isDevMode() from @angular/core here to avoid early loading of Angular
   const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
-  // Parallelize loading of remote configuration and local manifest
+  // Parallelize remote configuration fetching and local manifest retrieval
   const [config, localManifest] = await Promise.all([
     fetchRemoteConfig(isDev),
     fetch('federation.manifest.json')
@@ -17,10 +17,9 @@ import { fetchRemoteConfig } from './app/utils/config-loader';
       }),
   ]);
 
-  // Merge manifest and initialize federation
   await initFederation({
     ...(localManifest as Record<string, string>),
-    ...config,
+    ...config.remotes,
   });
 
   // Store config in a global variable to be picked up by the app

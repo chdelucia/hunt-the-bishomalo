@@ -1,4 +1,6 @@
-export type RemoteConfig = Record<string, string>;
+export interface RemoteConfig {
+  remotes: Record<string, string>;
+}
 
 export async function fetchRemoteConfig(isDev: boolean): Promise<RemoteConfig> {
   const url = isDev
@@ -18,12 +20,14 @@ export async function fetchRemoteConfig(isDev: boolean): Promise<RemoteConfig> {
 
   try {
     const res = await fetch(url);
-    return (await res.json()) as RemoteConfig;
+    const data = (await res.json()) as Record<string, string>;
+    // Ensure we return the RemoteConfig interface structure
+    return { remotes: data };
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Failed to load remote configuration from CDN', error);
     // Fallback to empty remotes if fetch fails
-    return {};
+    return { remotes: {} };
   }
 }
 
