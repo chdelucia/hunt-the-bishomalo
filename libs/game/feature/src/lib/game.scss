@@ -4,6 +4,11 @@ main {
   min-height: 100vh;
   background-image: url('/scenarios/9.png');
   background-size: cover;
+  padding-bottom: 120px;
+
+  @media (min-width: 768px) {
+    padding-bottom: 0;
+  }
 }
 
 .board {
@@ -30,4 +35,10 @@ lib-title {
 
 .escape {
   --exit-color: var(--color-text);
+}
+
+lib-mobile-controls {
+  @media (min-width: 768px) {
+    display: none;
+  }
 }

@@ -8,6 +8,10 @@
   &.finish {
     @apply translate-y-full;
   }
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 }
 
 .controls-grid {

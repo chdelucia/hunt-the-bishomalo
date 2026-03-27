@@ -300,7 +300,7 @@
       "revealHint": "You discover a hidden clue",
       "maxLivesUp": "Your maximum life increases",
       "maxChanceDown": "Your maximum chance decreases",
-      "maxLivesDown": "You maximum life decreases",
+      "maxLivesDown": "Your maximum life decreases",
       "fogOfWar": "Parts of the map are hidden",
       "trapIncrease": "Traps in the level increase",
       "bossReveal": "The final boss is revealed",
@@ -319,7 +319,7 @@
     "timeFormat": "{{hours}}h {{minutes}}m {{seconds}}s",
     "levelsCompleted": "Levels Completed",
     "achievementsUnlocked": "Achievements Unlocked",
-    "personal RecordsTitle": "Personal Records",
+    "personalRecordsTitle": "Personal Records",
     "fastestLevel": "Fastest Level",
     "fastestLevelDetails": "Level {{level}} - {{time}}s",
     "fewestStepsLevel": "Level with Fewest Steps",
@@ -464,7 +464,7 @@
       },
       "12": {
         "title": "Final Decisions",
-        "text": "Every move is crucial. You feel that the cave itself conspires to stop you, and the final confrontation approaches inexorableically."
+        "text": "Every move is crucial. You feel that the cave itself conspires to stop you, and the final confrontation approaches inexorably."
       },
       "13": {
         "title": "The Enemy's Face",

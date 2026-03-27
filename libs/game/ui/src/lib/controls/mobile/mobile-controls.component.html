@@ -15,14 +15,14 @@
 
       <lib-control-button
         [label]="t('moveForwardAriaLabel')"
-        icon="move"
+        icon="go"
         customClass="move-btn"
         (clickEvent)="moveForward()"
       ></lib-control-button>
 
       <lib-control-button
         [label]="soundEnabled() ? t('muteSound') : t('unmuteSound')"
-        [icon]="soundEnabled() ? 'mute' : 'unmute'"
+        icon="controller"
         (clickEvent)="toggleSound()"
       ></lib-control-button>
     </div>
