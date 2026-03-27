@@ -23,6 +23,12 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .newgame {
+    animation: none;
+  }
+}
+
 @media (max-width: 1024px) {
   .game-message {
     font-size: medium;
