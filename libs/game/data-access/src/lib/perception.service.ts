@@ -9,34 +9,41 @@ export class PerceptionService {
   private readonly transloco = inject(TranslocoService);
   private readonly sound = inject(GAME_SOUND_TOKEN);
 
+  /**
+   * Generates a perception message based on adjacent cells and triggers unique sounds.
+   * Optimization: Uses Sets to ensure each unique perception and sound is only
+   * processed once, even if multiple identical hazards are adjacent.
+   */
   getPerceptionMessage(adjacentCells: Cell[]): Observable<string> {
-    const perceptions: string[] = [];
+    const perceptions = new Set<string>();
+    const sounds = new Set<GameSound>();
 
     for (const cell of adjacentCells) {
-      const perception = this.getPerceptionFromCell(cell);
-      if (perception) perceptions.push(perception);
+      this.analyzeCellPerception(cell, perceptions, sounds);
     }
 
-    if (perceptions.length > 0) {
-      return of(perceptions.join(' '));
+    // Trigger unique sounds only once per perception check
+    sounds.forEach((s) => this.sound.playSound(s));
+
+    if (perceptions.size > 0) {
+      return of(Array.from(perceptions).join(' '));
     } else {
       return this.transloco.selectTranslate('gameMessages.perceptionNothingSuspicious');
     }
   }
 
-  private getPerceptionFromCell(cell: Cell): string | null {
+  private analyzeCellPerception(cell: Cell, perceptions: Set<string>, sounds: Set<GameSound>): void {
     if (cell.content?.type === 'wumpus') {
-      this.sound.playSound(GameSound.WUMPUS);
-      return this.transloco.translate('gameMessages.perceptionStench');
+      sounds.add(GameSound.WUMPUS);
+      perceptions.add(this.transloco.translate('gameMessages.perceptionStench'));
     }
     if (cell.content === CELL_CONTENTS.pit) {
-      this.sound.playSound(GameSound.WIND);
-      return this.transloco.translate('gameMessages.perceptionBreeze');
+      sounds.add(GameSound.WIND);
+      perceptions.add(this.transloco.translate('gameMessages.perceptionBreeze'));
     }
     if (cell.content === CELL_CONTENTS.gold) {
-      this.sound.playSound(GameSound.GOLD);
-      return this.transloco.translate('gameMessages.perceptionShine');
+      sounds.add(GameSound.GOLD);
+      perceptions.add(this.transloco.translate('gameMessages.perceptionShine'));
     }
-    return null;
   }
 }
