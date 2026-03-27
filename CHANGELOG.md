@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.64.10](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.9...v7.64.10) (2026-03-27)
+
+
+### Bug Fixes
+
+* **story:** stop narrator when sound is disabled ([8886225](https://github.com/chdelucia/hunt-the-bishomalo/commit/8886225aff8402584efe0da6d630899e0b4ea6be))
+
 ### [7.64.9](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.8...v7.64.9) (2026-03-27)
 
 ### [7.64.8](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.7...v7.64.8) (2026-03-27)
