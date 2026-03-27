@@ -1,0 +1,8 @@
+.heart {
+  @apply transition-colors duration-300;
+  fill: transparent;
+
+  &.active {
+    fill: var(--color-red-600);
+  }
+}

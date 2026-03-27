@@ -184,12 +184,14 @@
   },
   "mobileControls": {
     "turnLeftAriaLabel": "Girar a la izquierda",
-    "turnLeftAlt": "Girar a la izquierda",
+    "turnLeftAlt": "Girar L",
     "turnRightAriaLabel": "Girar a la derecha",
-    "turnRightAlt": "Girar a la derecha",
+    "turnRightAlt": "Girar R",
     "shootArrowAriaLabel": "Disparar flecha",
     "shootArrowAlt": "Disparar",
-    "moveForwardAriaLabel": "Avanzar"
+    "moveForwardAriaLabel": "Avanzar",
+    "muteSound": "Silenciar",
+    "unmuteSound": "Activar"
   },
   "level": {
     "display": "Nivel {{level}}"

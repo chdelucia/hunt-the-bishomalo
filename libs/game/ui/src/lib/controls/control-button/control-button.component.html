@@ -1,0 +1,11 @@
+<button
+  type="button"
+  [attr.aria-label]="ariaLabel() || label()"
+  [ngClass]="customClass()"
+  (click)="onClick()"
+>
+  @if (icon()) {
+    <img [src]="icon() + '.svg'" [alt]="label()" class="button-icon" aria-hidden="true" />
+  }
+  <span>{{ label() }}</span>
+</button>

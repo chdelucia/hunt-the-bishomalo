@@ -1,69 +1,46 @@
-@if (!isFinish()) {
-  <div class="mobile-controls">
-    <button
-      class="control-btn"
-      (click)="turnLeft()"
-      [attr.aria-label]="'mobileControls.turnLeftAriaLabel' | transloco"
-    >
-      <img
-        ngSrc="rotate-l.svg"
-        width="32"
-        height="32"
-        alt="{{ 'mobileControls.turnLeftAlt' | transloco }}"
-        priority
-      />
-    </button>
+<div
+  class="mobile-controls-container"
+  [class.finish]="isFinish()"
+  *transloco="let t; read: 'mobileControls'"
+>
+  <div class="controls-grid">
+    <div class="center-controls">
+      <lib-control-button
+        [label]="t('shootArrowAlt')"
+        [ariaLabel]="t('shootArrowAriaLabel')"
+        icon="shoot"
+        customClass="arrow-btn"
+        (clickEvent)="shootArrow()"
+      ></lib-control-button>
 
-    <button
-      class="control-btn"
-      (click)="turnRight()"
-      [attr.aria-label]="'mobileControls.turnRightAriaLabel' | transloco"
-    >
-      <img
-        ngSrc="rotate-r.svg"
-        width="32"
-        height="32"
-        alt="{{ 'mobileControls.turnRightAlt' | transloco }}"
-        priority
-      />
-    </button>
+      <lib-control-button
+        [label]="t('moveForwardAriaLabel')"
+        icon="move"
+        customClass="move-btn"
+        (clickEvent)="moveForward()"
+      ></lib-control-button>
 
-    <button
-      class="control-btn"
-      (click)="shootArrow()"
-      [attr.aria-label]="'mobileControls.shootArrowAriaLabel' | transloco"
-    >
-      <img
-        ngSrc="shoot.svg"
-        width="32"
-        height="32"
-        alt="{{ 'mobileControls.shootArrowAlt' | transloco }}"
-        priority
-      />
-    </button>
+      <lib-control-button
+        [label]="soundEnabled() ? t('muteSound') : t('unmuteSound')"
+        [icon]="soundEnabled() ? 'mute' : 'unmute'"
+        (clickEvent)="toggleSound()"
+      ></lib-control-button>
+    </div>
 
-    <button
-      class="control-btn"
-      (click)="moveForward()"
-      [attr.aria-label]="'mobileControls.moveForwardAriaLabel' | transloco"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="32"
-        height="32"
-        fill="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path d="M12 2l8 8h-6v8h-4v-8H4z" />
-      </svg>
-    </button>
+    <div class="rotation-controls">
+      <lib-control-button
+        [label]="t('turnLeftAlt')"
+        [ariaLabel]="t('turnLeftAriaLabel')"
+        icon="rotate-l"
+        (clickEvent)="turnLeft()"
+      ></lib-control-button>
 
-    <button
-      class="control-btn"
-      (click)="toggleSound()"
-      [attr.aria-label]="(soundEnabled() ? 'controls.muteSound' : 'controls.unmuteSound') | transloco"
-    >
-      <span class="sound-icon">{{ soundEnabled() ? '🔊' : '🔇' }}</span>
-    </button>
+      <lib-control-button
+        [label]="t('turnRightAlt')"
+        [ariaLabel]="t('turnRightAriaLabel')"
+        icon="rotate-r"
+        (clickEvent)="turnRight()"
+      ></lib-control-button>
+    </div>
   </div>
-}
+</div>

@@ -184,12 +184,14 @@
   },
   "mobileControls": {
     "turnLeftAriaLabel": "Turn Left",
-    "turnLeftAlt": "Turn Left",
+    "turnLeftAlt": "Turn L",
     "turnRightAriaLabel": "Turn Right",
-    "turnRightAlt": "Turn Right",
+    "turnRightAlt": "Turn R",
     "shootArrowAriaLabel": "Shoot Arrow",
     "shootArrowAlt": "Shoot",
-    "moveForwardAriaLabel": "Move Forward"
+    "moveForwardAriaLabel": "Move Forward",
+    "muteSound": "Mute",
+    "unmuteSound": "Unmute"
   },
   "level": {
     "display": "Level {{level}}"
@@ -298,7 +300,7 @@
       "revealHint": "You discover a hidden clue",
       "maxLivesUp": "Your maximum life increases",
       "maxChanceDown": "Your maximum chance decreases",
-      "maxLivesDown": "Your maximum life decreases",
+      "maxLivesDown": "You maximum life decreases",
       "fogOfWar": "Parts of the map are hidden",
       "trapIncrease": "Traps in the level increase",
       "bossReveal": "The final boss is revealed",
@@ -317,7 +319,7 @@
     "timeFormat": "{{hours}}h {{minutes}}m {{seconds}}s",
     "levelsCompleted": "Levels Completed",
     "achievementsUnlocked": "Achievements Unlocked",
-    "personalRecordsTitle": "Personal Records",
+    "personal RecordsTitle": "Personal Records",
     "fastestLevel": "Fastest Level",
     "fastestLevelDetails": "Level {{level}} - {{time}}s",
     "fewestStepsLevel": "Level with Fewest Steps",
@@ -462,7 +464,7 @@
       },
       "12": {
         "title": "Final Decisions",
-        "text": "Every move is crucial. You feel that the cave itself conspires to stop you, and the final confrontation approaches inexorably."
+        "text": "Every move is crucial. You feel that the cave itself conspires to stop you, and the final confrontation approaches inexorableically."
       },
       "13": {
         "title": "The Enemy's Face",

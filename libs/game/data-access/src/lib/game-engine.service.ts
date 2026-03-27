@@ -8,20 +8,19 @@ import {
   LOCALSTORAGE_SERVICE_TOKEN,
   GAME_STORE_TOKEN,
 } from '@hunt-the-bishomalo/core/api';
-import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { IGameEngineService } from '@hunt-the-bishomalo/game/api';
-import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import {
   Cell,
   CELL_CONTENTS,
   Direction,
   GameSound,
   RouteTypes,
-  AchieveTypes
 } from '@hunt-the-bishomalo/shared-data';
 import { take } from 'rxjs';
 import { BoardGeneratorService } from './board-generator.service';
 import { PerceptionService } from './perception.service';
+import { GameAchievementTrackerService } from './game-achievement-tracker.service';
+import { GameStatsTrackerService } from './game-stats-tracker.service';
 
 @Injectable({ providedIn: 'root' })
 export class GameEngineService implements IGameEngineService {
@@ -29,53 +28,31 @@ export class GameEngineService implements IGameEngineService {
   private readonly _settings = this.store.settings;
   private readonly _hunter = this.store.hunter;
   private readonly sound = inject(GAME_SOUND_TOKEN);
-  private readonly leaderBoard = inject(LEADERBOARD_SERVICE);
 
   private countSteps = 0;
-  private readonly achieve = inject(ACHIEVEMENT_SERVICE);
   private readonly router = inject(Router);
   private readonly localStorageService = inject(LOCALSTORAGE_SERVICE_TOKEN);
   private readonly gameEvents = inject(GAME_EVENT_SERVICE_TOKEN);
   private readonly transloco = inject(TranslocoService);
   private readonly boardGenerator = inject(BoardGeneratorService);
   private readonly perceptionService = inject(PerceptionService);
+  private readonly achievementTracker = inject(GameAchievementTrackerService);
+  private readonly statsTracker = inject(GameStatsTrackerService);
   private readonly destroyRef = inject(DestroyRef);
 
   constructor() {
     effect(() => this.trackSteps());
-    effect(() => this.handleGameOver());
+    effect(() => {
+      this.statsTracker.handleGameOver(this.countSteps);
+      if (this.store.hasWon() || !this.store.isAlive()) {
+        this.countSteps = 0;
+      }
+    });
   }
 
   private trackSteps(): void {
     const { x, y } = this._hunter();
     if (x || y) this.countSteps += 1;
-  }
-
-  private handleGameOver(): void {
-    if (this.store.hasWon() || !this.store.isAlive()) {
-      const { player, blackout, size } = this._settings();
-      const endTime = new Date();
-      const seconds = this.calculateElapsedSeconds(endTime);
-
-      this.leaderBoard.addEntry({
-        playerName: player,
-        timeInSeconds: seconds,
-        date: endTime,
-        level: size - 4 + 1,
-        blackout: !!blackout,
-        wumpusKilled: this.store.wumpusKilled(),
-        steps: this.countSteps,
-        deads: this.store.isAlive() ? 0 : 1,
-      });
-
-      this.countSteps = 0;
-      if (this.store.hasWon()) this.calcVictoryAchieve(seconds);
-    }
-  }
-
-  private calculateElapsedSeconds(endTime: Date): number {
-    const startime = new Date(this.store.startTime());
-    return startime ? Math.round((endTime.getTime() - startime.getTime()) / 1000) : 0;
   }
 
   initGame(): void {
@@ -115,7 +92,7 @@ export class GameEngineService implements IGameEngineService {
   newGame(): void {
     this.sound.stop();
     this.store.resetStore();
-    this.leaderBoard.clear();
+    this.statsTracker.clearStats();
     this.router.navigate([RouteTypes.SETTINGS]);
   }
 
@@ -164,7 +141,7 @@ export class GameEngineService implements IGameEngineService {
     if (newX < 0 || newY < 0 || newX >= size || newY >= size) {
       const wallCollisionMessage = this.transloco.translate('gameMessages.wallCollision');
       if (this.store.message() === wallCollisionMessage) {
-        this.achieve.activeAchievement(AchieveTypes.HARDHEAD);
+        this.achievementTracker.handleWallHitAchieve();
       }
       this.store.setMessage(wallCollisionMessage);
       this.sound.playSound(GameSound.HITWALL, false);
@@ -261,17 +238,12 @@ export class GameEngineService implements IGameEngineService {
     this.sound.stopWumpus();
     this.sound.playSound(GameSound.PAIN, false);
     this.store.countWumpusKilled();
-    this.handleWumpusKillAchieve(cell);
+    this.achievementTracker.handleWumpusKillAchieve(cell);
     this.getDrop(cell);
   }
 
   private getDrop(cell: Cell): void {
     const { luck } = this._settings().difficulty;
-    /**
-     * Security Hotspot Justification:
-     * Math.random() is used here for game mechanics (random item drop calculation).
-     * It does not involve any security-sensitive operations.
-     */
     const roll = Math.random() * 100;
     if (roll < 2) cell.content = CELL_CONTENTS.extrawumpus;
     else if (roll < 20 + luck) cell.content = CELL_CONTENTS.extraheart;
@@ -281,58 +253,17 @@ export class GameEngineService implements IGameEngineService {
 
   private handleMissedArrow(): void {
     this.store.setMessage(this.transloco.translate('gameMessages.arrowMissed'));
-    if (!this._hunter().arrows) this.achieve.activeAchievement(AchieveTypes.MISSEDSHOT);
+    if (!this._hunter().arrows) {
+      this.achievementTracker.handleMissedArrowAchieve();
+    }
   }
 
   calcVictoryAchieve(seconds: number): void {
-    const wumpusKilled = this.store.wumpusKilled();
-    const { arrows } = this._hunter();
-    const { blackout, size } = this._settings();
-
-    if (blackout) this.achieve.activeAchievement(AchieveTypes.WINBLACKWOUT);
-    if (arrows > 1 && !wumpusKilled) this.achieve.activeAchievement(AchieveTypes.WASTEDARROWS);
-    else {
-      if (size >= 12) this.achieve.activeAchievement(AchieveTypes.WINLARGEMAP);
-      if (seconds <= 10) this.achieve.activeAchievement(AchieveTypes.SPEEDRUNNER);
-      if (!wumpusKilled) this.achieve.activeAchievement(AchieveTypes.WRAT);
-      if (wumpusKilled) this.achieve.activeAchievement(AchieveTypes.WINHERO);
-      this.cartographyAchieve();
-    }
-    this.achieve.isAllCompleted();
+    this.achievementTracker.calcVictoryAchieve(seconds);
   }
 
   handleWumpusKillAchieve(cell: Cell): void {
-    const { blackout } = this._settings();
-    const distance = this.calcDistance(cell);
-    if (blackout) this.achieve.activeAchievement(AchieveTypes.BLINDWUMPUSKILLED);
-    else if (distance > 3) this.achieve.activeAchievement(AchieveTypes.SNIPER);
-    else if (distance === 1) this.achieve.activeAchievement(AchieveTypes.DEATHDUEL);
-    else this.achieve.activeAchievement(AchieveTypes.WUMPUSKILLED);
-  }
-
-  private calcDistance(cell: Cell): number {
-    const { x, y } = this._hunter();
-    if (x === cell.x) return Math.abs(y - cell.y);
-    if (y === cell.y) return Math.abs(x - cell.x);
-    return 0;
-  }
-
-  private countVisitedCells(): number {
-    const board = this.store.board();
-    let count = 0;
-    for (const row of board) {
-      for (const cell of row) {
-        if (cell.visited) count++;
-      }
-    }
-    return count;
-  }
-
-  private cartographyAchieve(): void {
-    const visited = this.countVisitedCells();
-    const { size, pits } = this._settings();
-    if (size * size - pits === visited) this.achieve.activeAchievement(AchieveTypes.EXPERTCARTO);
-    if (visited > size * size * 0.5) this.achieve.activeAchievement(AchieveTypes.NOVICECARTO);
+    this.achievementTracker.handleWumpusKillAchieve(cell);
   }
 
   exit(): void {
@@ -409,11 +340,6 @@ export class GameEngineService implements IGameEngineService {
   }
 
   private applyBlackoutChance(): boolean {
-    /**
-     * Security Hotspot Justification:
-     * Math.random() is used here for game mechanics (random blackout chance).
-     * It does not involve any security-sensitive operations.
-     */
     return Math.random() < 0.08;
   }
 }

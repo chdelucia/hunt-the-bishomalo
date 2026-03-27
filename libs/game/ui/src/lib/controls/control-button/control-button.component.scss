@@ -1,0 +1,22 @@
+button {
+  @apply flex flex-col items-center justify-center;
+  @apply bg-black/60 text-white rounded-full p-2 w-14 h-14;
+  @apply border-2 border-white/20 active:scale-95 transition-transform;
+  @apply text-[9px] uppercase font-bold;
+
+  &:focus {
+    @apply outline-none ring-2 ring-white/50;
+  }
+
+  .button-icon {
+    @apply w-5 h-5 mb-1 filter invert;
+  }
+
+  &.arrow-btn {
+    @apply bg-yellow-600/80;
+  }
+
+  &.move-btn {
+    @apply bg-green-600/80;
+  }
+}

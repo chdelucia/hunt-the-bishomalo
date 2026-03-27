@@ -1,6 +1,6 @@
 import { Component, input, output } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
+import { ControlButtonComponent } from '../control-button/control-button.component';
 
 /**
  * @description
@@ -9,7 +9,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 @Component({
   selector: 'lib-mobile-controls',
   standalone: true,
-  imports: [NgOptimizedImage, TranslocoModule],
+  imports: [TranslocoModule, ControlButtonComponent],
   templateUrl: './mobile-controls.component.html',
   styleUrl: './mobile-controls.component.scss',
 })

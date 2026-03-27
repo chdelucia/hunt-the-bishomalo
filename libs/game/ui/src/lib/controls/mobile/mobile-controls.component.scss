@@ -1,36 +1,25 @@
-.mobile-controls {
-  display: none;
+.mobile-controls-container {
+  @apply fixed bottom-0 left-0 right-0 p-4;
+  @apply bg-gradient-to-t from-black/80 to-transparent;
+  @apply pointer-events-auto;
+  @apply transition-transform duration-500 ease-in-out;
+  z-index: 10000;
 
-  @media (max-width: 1024px) {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    bottom: 1rem;
-    left: 0;
-    right: 0;
-    padding: 1rem;
-    z-index: 1000;
-    position: relative;
-  }
-  button {
-    min-width: 100px;
+  &.finish {
+    @apply translate-y-full;
   }
 }
 
-.control-btn {
-  font-size: 1rem;
-  background: var(--color-neon-alt);
-  color: var(--color-black);
-  padding: 1rem 1.5rem;
-  border: none;
-  border-radius: 8px;
-  font-family: 'Press Start 2P', monospace;
-  box-shadow: 0 0 6px var(--color-neon-alt);
-  cursor: pointer;
-  transition: background 0.2s;
+.controls-grid {
+  @apply flex flex-col items-center gap-2;
+  position: relative;
+  z-index: 10001;
+}
 
-  &:hover,
-  &:active {
-    background: var(--color-cyan-dark);
-  }
+.center-controls {
+  @apply flex items-center justify-around w-full max-w-sm;
+}
+
+.rotation-controls {
+  @apply flex items-center justify-center gap-8 w-full;
 }

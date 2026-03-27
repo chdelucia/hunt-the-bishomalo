@@ -1,4 +1,5 @@
 import { Directive, ElementRef, Renderer2, inject, input, effect, DestroyRef } from '@angular/core';
+import { EffectFactoryService } from './effect-factory.service';
 
 @Directive({
   selector: '[libVisualEffect]',
@@ -9,6 +10,7 @@ export class VisualEffectDirective {
 
   private readonly el = inject(ElementRef);
   private readonly renderer = inject(Renderer2);
+  private readonly effectFactory = inject(EffectFactoryService);
   private readonly destroyRef = inject(DestroyRef);
   private animationFrameId: number | null = null;
   private currentCues = '';
@@ -63,81 +65,22 @@ export class VisualEffectDirective {
   private updateEffects(cues: string): void {
     this.clearEffects();
 
-    const container = this.renderer.createElement('div');
-    this.renderer.addClass(container, 'effect-layer');
+    const container = this.effectFactory.createEffectContainer();
 
     if (cues.includes('breeze')) {
-      this.addClouds(container);
+      this.effectFactory.addClouds(container);
     }
 
     if (cues.includes('stench')) {
-      this.addStink(container);
+      this.effectFactory.addStink(container);
     }
 
     if (cues.includes('shine')) {
-      this.addSparkles(container);
+      this.effectFactory.addSparkles(container);
     }
 
     if (container.childNodes.length > 0) {
       this.renderer.appendChild(this.el.nativeElement, container);
-    }
-  }
-
-  private addClouds(container: HTMLElement) {
-    for (let i = 0; i < 8; i++) {
-      const cloud = this.renderer.createElement('div');
-      this.renderer.addClass(cloud, 'cloud');
-      /**
-       * Security Hotspot Justification:
-       * Math.random() is used here for visual effects (randomizing cloud positions and sizes).
-       * It does not involve any security-sensitive operations.
-       */
-      this.setStyles(cloud, {
-        width: `${50 + Math.random() * 80}px`,
-        height: `${30 + Math.random() * 40}px`,
-        top: `${Math.random() * 100}%`,
-        left: `${Math.random() * 100}%`,
-        'animation-duration': `${10 + Math.random() * 10}s`,
-        'animation-delay': `${Math.random() * 5}s`,
-      });
-      this.renderer.appendChild(container, cloud);
-    }
-  }
-
-  private addStink(container: HTMLElement) {
-    for (let i = 0; i < 5; i++) {
-      const stink = this.renderer.createElement('div');
-      this.renderer.addClass(stink, 'stink');
-      const size = 60 + Math.random() * 60;
-      this.setStyles(stink, {
-        width: `${size}px`,
-        height: `${size}px`,
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        'animation-duration': `${6 + Math.random() * 5}s`,
-        'animation-delay': `${Math.random() * 3}s`,
-      });
-      this.renderer.appendChild(container, stink);
-    }
-  }
-
-  private addSparkles(container: HTMLElement) {
-    for (let i = 0; i < 12; i++) {
-      const sparkle = this.renderer.createElement('div');
-      this.renderer.addClass(sparkle, 'sparkle');
-      this.setStyles(sparkle, {
-        top: `${Math.random() * 100}%`,
-        left: `${Math.random() * 100}%`,
-        'animation-duration': `${2 + Math.random() * 3}s`,
-        'animation-delay': `${Math.random() * 2}s`,
-      });
-      this.renderer.appendChild(container, sparkle);
-    }
-  }
-
-  private setStyles(el: HTMLElement, styles: Record<string, string>) {
-    for (const [key, value] of Object.entries(styles)) {
-      this.renderer.setStyle(el, key, value);
     }
   }
 
