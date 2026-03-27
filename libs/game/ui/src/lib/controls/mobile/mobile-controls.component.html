@@ -6,7 +6,7 @@
       [attr.aria-label]="'mobileControls.turnLeftAriaLabel' | transloco"
     >
       <img
-        ngSrc="rotate-l.svg"
+        [ngSrc]="ASSETS_BASE_URL + '/rotate-l.svg'"
         width="32"
         height="32"
         alt="{{ 'mobileControls.turnLeftAlt' | transloco }}"
@@ -20,7 +20,7 @@
       [attr.aria-label]="'mobileControls.turnRightAriaLabel' | transloco"
     >
       <img
-        ngSrc="rotate-r.svg"
+        [ngSrc]="ASSETS_BASE_URL + '/rotate-r.svg'"
         width="32"
         height="32"
         alt="{{ 'mobileControls.turnRightAlt' | transloco }}"
@@ -34,7 +34,7 @@
       [attr.aria-label]="'mobileControls.shootArrowAriaLabel' | transloco"
     >
       <img
-        ngSrc="shoot.svg"
+        [ngSrc]="ASSETS_BASE_URL + '/shoot.svg'"
         width="32"
         height="32"
         alt="{{ 'mobileControls.shootArrowAlt' | transloco }}"

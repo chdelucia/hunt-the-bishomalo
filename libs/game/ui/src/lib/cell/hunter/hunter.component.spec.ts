@@ -53,13 +53,13 @@ describe('HunterComponent', () => {
   it('should return correct bow image for default char with arrows', () => {
     fixture.componentRef.setInput('selectedChar', Chars.DEFAULT);
     fixture.componentRef.setInput('arrows', 1);
-    expect(component.bowImage()).toBe('chars/default/bow.svg');
+    expect(component.bowImage()).toContain('chars/default/bow.svg');
   });
 
   it('should return empty bow image for default char without arrows', () => {
     fixture.componentRef.setInput('selectedChar', Chars.DEFAULT);
     fixture.componentRef.setInput('arrows', 0);
-    expect(component.bowImage()).toBe('chars/default/bowempty.svg');
+    expect(component.bowImage()).toContain('chars/default/bowempty.svg');
   });
 
   it('should show gold icon when hasGold is true and size is less than 12', () => {

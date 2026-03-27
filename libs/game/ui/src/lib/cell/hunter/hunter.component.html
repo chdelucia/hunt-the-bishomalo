@@ -11,7 +11,7 @@
 @if (showGoldIcon()) {
   <img
     class="gold"
-    ngSrc="boardicons/gold.svg"
+    [ngSrc]="ASSETS_BASE_URL + '/boardicons/gold.svg'"
     alt="{{ 'cell.altGold' | transloco }}"
     [width]="20 - size() / 2"
     [height]="20 - size() / 2"

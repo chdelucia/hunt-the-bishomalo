@@ -5,6 +5,7 @@ import { TranslocoModule } from '@jsverse/transloco';
 import { GAME_SOUND_TOKEN, GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import {
+  ASSETS_BASE_URL,
   Chars,
   DIFFICULTY_CONFIGS,
   DifficultyTypes,
@@ -23,6 +24,7 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameConfigComponent {
+  protected readonly ASSETS_BASE_URL = ASSETS_BASE_URL;
   readonly gameStore = inject(GAME_STORE_TOKEN);
   private readonly gameEngine = inject(GAME_ENGINE_TOKEN);
   private readonly fb = inject(FormBuilder);

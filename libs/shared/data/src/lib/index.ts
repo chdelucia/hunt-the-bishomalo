@@ -1,4 +1,5 @@
 export * from './cell.model';
+export * from './constants';
 export * from './direction.enum';
 export * from './hunter.model';
 export * from './game-settings.model';

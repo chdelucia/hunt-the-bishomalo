@@ -8,7 +8,7 @@
       [class.grayscale]="!achievement().unlocked"
     >
       <img
-        [src]="'/achievements/' + achievement().svgIcon"
+        [src]="ASSETS_BASE_URL + '/achievements/' + achievement().svgIcon"
         [alt]="achievement().title"
         class="achievement-icon"
       />

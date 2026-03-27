@@ -1,7 +1,7 @@
 import { Component, inject, output, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
-import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
+import { ASSETS_BASE_URL, RouteTypes } from '@hunt-the-bishomalo/shared-data';
 
 @Component({
   selector: 'lib-menu',
@@ -11,6 +11,7 @@ import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
   styleUrl: './menu.component.scss',
 })
 export class MenuComponent {
+  protected readonly ASSETS_BASE_URL = ASSETS_BASE_URL;
   readonly isOpen = signal(false);
   readonly newGameRequested = output<void>();
 

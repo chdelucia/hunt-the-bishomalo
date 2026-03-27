@@ -3,7 +3,7 @@
     <div class="toast">
       <img
         class="icon"
-        [src]="'/achievements/' + toast.achievement.svgIcon"
+        [src]="ASSETS_BASE_URL + '/achievements/' + toast.achievement.svgIcon"
         alt=""
         aria-hidden="true"
         [ngClass]="{ 'broken-image': toast.broken }"

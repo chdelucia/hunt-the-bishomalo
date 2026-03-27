@@ -1,0 +1,19 @@
+$ nx run-many -t serve --projects hunt-the-bishomalo,achievements-remote
+
+ NX   Running target serve for 2 projects:
+
+- hunt-the-bishomalo
+- achievements-remote
+
+
+Waiting for achievements-remote:serve in another nx process
+Waiting for hunt-the-bishomalo:serve in another nx process
+Task "achievements-remote:serve" is continuous but exited with code 0
+Task "hunt-the-bishomalo:serve" is continuous but exited with code 0
+
+
+
+ NX   Successfully ran target serve for 2 projects
+
+
+error: script "start" exited with code 130

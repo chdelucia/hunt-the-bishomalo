@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { timer } from 'rxjs';
+import { ASSETS_BASE_URL } from '@hunt-the-bishomalo/shared-data';
 
 @Component({
   selector: 'lib-wumpus-attack-animation',
@@ -21,6 +22,7 @@ import { timer } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppWumpusAttackAnimationComponent implements OnInit {
+  protected readonly ASSETS_BASE_URL = ASSETS_BASE_URL;
   readonly step = signal(1);
   readonly selectedChar = input.required<string>();
   readonly closeAnimation = output<void>();

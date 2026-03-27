@@ -42,7 +42,7 @@
     <a [routerLink]="['/', ROUTES.ACHIEVEMENTS]" class="achievement-link">
       <img
         class="achivements"
-        src="trophy.svg"
+        [src]="ASSETS_BASE_URL + '/trophy.svg'"
         alt="{{ 'menu.achievementsAlt' | transloco }}"
       />
     </a>

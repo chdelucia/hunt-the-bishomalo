@@ -21,6 +21,8 @@ export interface CellContent {
   ariaLabel: string;
 }
 
+import { ASSETS_BASE_URL } from './constants';
+
 export interface Cell {
   x: number;
   y: number;
@@ -33,85 +35,85 @@ export type CharacterType = 'default' | 'link' | 'lara' | 'legolas';
 export const CELL_CONTENTS: Record<CellContentType, CellContent> = {
   wumpus: {
     type: 'wumpus',
-    image: 'chars/link/wumpu.png',
+    image: `${ASSETS_BASE_URL}/chars/link/wumpu.png`,
     alt: 'wumpus',
     ariaLabel: 'wumpus',
   },
   wumpusdefault: {
     type: 'wumpus',
-    image: 'chars/default/wumpus.svg',
+    image: `${ASSETS_BASE_URL}/chars/default/wumpus.svg`,
     alt: 'wumpus',
     ariaLabel: 'wumpus',
   },
   wumpuslara: {
     type: 'wumpus',
-    image: 'chars/lara/wumpus.png',
+    image: `${ASSETS_BASE_URL}/chars/lara/wumpus.png`,
     alt: 'wumpus',
     ariaLabel: 'wumpus',
   },
   wumpuslink: {
     type: 'wumpus',
-    image: 'chars/link/wumpus.png',
+    image: `${ASSETS_BASE_URL}/chars/link/wumpus.png`,
     alt: 'wumpus',
     ariaLabel: 'wumpus',
   },
   wumpuslegolas: {
     type: 'wumpus',
-    image: 'chars/legolas/wumpus.png',
+    image: `${ASSETS_BASE_URL}/chars/legolas/wumpus.png`,
     alt: 'wumpus',
     ariaLabel: 'wumpus',
   },
   gold: {
     type: 'gold',
-    image: 'boardicons/gold.svg',
+    image: `${ASSETS_BASE_URL}/boardicons/gold.svg`,
     alt: 'gold coin',
     ariaLabel: 'gold',
   },
   pit: {
     type: 'pit',
-    image: 'boardicons/pit.svg',
+    image: `${ASSETS_BASE_URL}/boardicons/pit.svg`,
     alt: 'pit',
     ariaLabel: 'pit',
   },
   arrow: {
     type: 'arrow',
-    image: 'boardicons/arrow.svg',
+    image: `${ASSETS_BASE_URL}/boardicons/arrow.svg`,
     alt: 'arrow',
     ariaLabel: 'arrow',
   },
   heart: {
     type: 'heart',
-    image: 'boardicons/heart.svg',
+    image: `${ASSETS_BASE_URL}/boardicons/heart.svg`,
     alt: 'extra life',
     ariaLabel: 'heart',
   },
   extrawumpus: {
     type: 'wumpus',
-    image: 'boardicons/question.png',
+    image: `${ASSETS_BASE_URL}/boardicons/question.png`,
     alt: 'wumpus',
     ariaLabel: 'wumpus',
   },
   extragold: {
     type: 'gold',
-    image: 'boardicons/question.png',
+    image: `${ASSETS_BASE_URL}/boardicons/question.png`,
     alt: 'secret',
     ariaLabel: 'secret',
   },
   extraheart: {
     type: 'heart',
-    image: 'boardicons/question.png',
+    image: `${ASSETS_BASE_URL}/boardicons/question.png`,
     alt: 'secret',
     ariaLabel: 'secret',
   },
   extraarrow: {
     type: 'arrow',
-    image: 'boardicons/question.png',
+    image: `${ASSETS_BASE_URL}/boardicons/question.png`,
     alt: 'secret',
     ariaLabel: 'secret',
   },
   dragonball: {
     type: 'dragonball',
-    image: 'boardicons/b4.png',
+    image: `${ASSETS_BASE_URL}/boardicons/b4.png`,
     alt: 'dragonball',
     ariaLabel: 'dragonball',
   },

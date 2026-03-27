@@ -1,3 +1,5 @@
+export const ASSETS_BASE_URL = 'https://bold-mouse-42af.c-heredia-naranjo.workers.dev';
+
 export interface Achievement {
   id: string;
   title: string;
