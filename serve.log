@@ -1,0 +1,402 @@
+
+> nx run hunt-the-bishomalo:serve --hmr=false
+
+[42m[38;5;15m INFO [39m[49m [Federation SSE] Local reloader initialized with endpoint /@angular-architects/native-federation:build-notifications
+[42m[38;5;15m INFO [39m[49m Building federation artefacts
+[42m[38;5;15m INFO [39m[49m Preparing shared npm packages for the platform browser-shared
+[103m[30m NOTE [39m[49m This only needs to be done once, as results are cached
+[103m[30m NOTE [39m[49m Skip packages you don't want to share in your federation config
+[33m❯[39m Building...
+[32m✔[39m Building...
+[37m[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mpolyfills.js[37m       [2m | [22m[2mpolyfills[22m    [2m | [22m[36m112.65 kB[37m[2m | [22m
+[32mstyles.css[37m         [2m | [22m[2mstyles[22m       [2m | [22m  [36m5.21 kB[37m[2m | [22m
+[32mmain.js[37m            [2m | [22m[2mmain[22m         [2m | [22m  [36m1.62 kB[37m[2m | [22m
+[32mchunk-VUJOFXKG.js[37m  [2m | [22m[2m-[22m            [2m | [22m[36m938 bytes[37m[2m | [22m
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m120.42 kB[22m
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mchunk-4GG5IDBM.js[37m  [2m | [22m[2mbootstrap[22m    [2m | [22m [36m24.20 kB[37m[2m | [22m
+[32mchunk-ONK5P54I.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m14.26 kB[37m[2m | [22m
+Application bundle generation complete. [6.271 seconds] - 2026-03-27T08:14:11.226Z
+[39m
+[37mWatch mode enabled. Watching for file changes...[39m
+[37mNOTE: Raw file sizes do not reflect development server per-request transformations.[39m
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4200[22m/[39m
+[2m8:14:56 AM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m136 |      b2.apply(this, arguments);
+137 |    };
+138 |    const dynamicImport = (u2, _errUrl) => import(u2);
+    |                                                  ^^
+139 |    const defineValue = (obj, prop, value) => Object.defineProperty(obj, prop, { writable: false, configurable: false, ...
+140 |    const optionsScript = hasDocument ? document.querySelector("script[type=esms-options]") : void 0;[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[2m8:14:56 AM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m366 |      if (!hasDocument)
+367 |        return Promise.all([
+368 |          import(createBlob(`import"${createBlob("{}", "text/json")}"with{type:"json"}`)).then(
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+369 |            () => (supportsJsonType = true, import(createBlob(`import"${createBlob("", "text/css")}"with{type:"css"}`))...
+370 |              () => supportsCssType = true,[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[2m8:14:56 AM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m367 |        return Promise.all([
+368 |          import(createBlob(`import"${createBlob("{}", "text/json")}"with{type:"json"}`)).then(
+369 |  ...rtsJsonType = true, import(createBlob(`import"${createBlob("", "text/css")}"with{type:"css"}`)).then(
+    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+370 |              () => supportsCssType = true,
+371 |              noop[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[2m8:14:56 AM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m373 |            noop
+374 |          ),
+375 |  ...eEnabled && import(createBlob(`import"${createBlob(new Uint8Array(wasmBytes), "application/wasm")}"`)).then(
+    |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+376 |            () => supportsWasmInstancePhase = true,
+377 |            noop[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[2m8:14:56 AM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m377 |            noop
+378 |          ),
+379 |  ...d && import(createBlob(`import source x from"${createBlob(new Uint8Array(wasmBytes), "application/wasm")}"`)).then(
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+380 |            () => supportsWasmSourcePhase = true,
+381 |            noop[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[2m8:14:56 AM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m2567 |        firstPolyfillLoad = false;
+2568 |      }
+2569 |  ...oaded && source ? dynamicImport(load.b, load.u) : import(load.u));
+     |                                                              ^^^^^^
+2570 |      if (load.s) (await dynamicImport(load.s, load.u)).u$_(module);
+2571 |      revokeObjectURLs(Object.keys(seen));[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[2m8:14:56 AM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m2728 |    let esmsTsTransform;
+2729 |    const initTs = async () => {
+2730 |      const m = await import(tsTransform);
+     |                             ^^^^^^^^^^^
+2731 |      if (!esmsTsTransform) esmsTsTransform = m.transform;
+2732 |    };[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[37m[1mInitial chunk files[22m[2m | [22m[1mNames[22m    [2m | [22m[1mRaw size[22m
+[32mmain.js[37m            [2m | [22m[2mmain[22m     [2m | [22m [36m1.62 kB[37m[2m | [22m
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m    [2m | [22m[1mRaw size[22m
+[32mchunk-W3R4D22U.js[37m  [2m | [22m[2mbootstrap[22m[2m | [22m[36m24.14 kB[37m[2m | [22m
+Application bundle generation complete. [15.398 seconds] - 2026-03-27T09:32:55.894Z
+[39m
+[37mPage reload sent to client(s).[39m
+[42m[38;5;15m INFO [39m[49m Building federation artefacts
+[42m[38;5;15m INFO [39m[49m Done!
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[37m
+No output file changes.
+Application bundle generation complete. [0.113 seconds] - 2026-03-27T09:33:49.459Z
+[39m
+[42m[38;5;15m INFO [39m[49m Building federation artefacts
+[42m[38;5;15m INFO [39m[49m Done!
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[37m[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mpolyfills.js[37m       [2m | [22m[2mpolyfills[22m    [2m | [22m[36m112.65 kB[37m[2m | [22m
+[32mstyles.css[37m         [2m | [22m[2mstyles[22m       [2m | [22m  [36m5.21 kB[37m[2m | [22m
+[32mmain.js[37m            [2m | [22m[2mmain[22m         [2m | [22m  [36m1.62 kB[37m[2m | [22m
+[32mchunk-VUJOFXKG.js[37m  [2m | [22m[2m-[22m            [2m | [22m[36m938 bytes[37m[2m | [22m
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m120.42 kB[22m
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mchunk-W3R4D22U.js[37m  [2m | [22m[2mbootstrap[22m    [2m | [22m [36m24.14 kB[37m[2m | [22m
+[32mchunk-ONK5P54I.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m14.26 kB[37m[2m | [22m
+Application bundle generation complete. [0.274 seconds] - 2026-03-27T09:34:34.358Z
+[39m
+[37mPage reload sent to client(s).[39m
+[42m[38;5;15m INFO [39m[49m Building federation artefacts
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[37m[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mpolyfills.js[37m       [2m | [22m[2mpolyfills[22m    [2m | [22m[36m112.65 kB[37m[2m | [22m
+[32mstyles.css[37m         [2m | [22m[2mstyles[22m       [2m | [22m  [36m5.21 kB[37m[2m | [22m
+[32mmain.js[37m            [2m | [22m[2mmain[22m         [2m | [22m  [36m1.62 kB[37m[2m | [22m
+[32mchunk-VUJOFXKG.js[37m  [2m | [22m[2m-[22m            [2m | [22m[36m938 bytes[37m[2m | [22m
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m120.42 kB[22m
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mchunk-W3R4D22U.js[37m  [2m | [22m[2mbootstrap[22m    [2m | [22m [36m24.14 kB[37m[2m | [22m
+[32mchunk-ONK5P54I.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m14.26 kB[37m[2m | [22m
+Application bundle generation complete. [0.048 seconds] - 2026-03-27T09:34:36.509Z
+[39m
+[42m[38;5;15m INFO [39m[49m Aborting 1 bundling task(s)..
+[37mPage reload sent to client(s).[39m
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[37mApplication bundle generation failed. [3.054 seconds] - 2026-03-27T09:34:42.246Z
+[39m
+[1m[31m[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG8004: No pipe found with name 'transloco'.[0m [1m[35m[plugin angular-compiler][0m
+    src/app/app.component.html:21:49:
+[37m      21 │     <div class="loader-text">{{ 'loading.data' | [32mtransloco[37m }}</div>
+         ╵                                                  [32m~~~~~~~~~[0m
+  Error occurs in the template of component AppComponent.
+    src/app/app.component.ts:31:15:
+[37m      31 │   templateUrl: [32m'./app.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+[39m[22m
+[42m[38;5;15m INFO [39m[49m Aborting 1 bundling task(s)..
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[37mApplication bundle generation failed. [2.962 seconds] - 2026-03-27T09:34:45.259Z
+[39m
+[1m[31m[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG8004: No pipe found with name 'transloco'.[0m [1m[35m[plugin angular-compiler][0m
+    libs/game/feature/src/lib/game.html:47:30:
+[37m      47 │       <p>{{ 'loading.board' | [32mtransloco[37m }}</p>
+         ╵                               [32m~~~~~~~~~[0m
+  Error occurs in the template of component Game.
+    libs/game/feature/src/lib/game.ts:33:15:
+[37m      33 │   templateUrl: [32m'./game.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~[0m
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG8004: No pipe found with name 'transloco'.[0m [1m[35m[plugin angular-compiler][0m
+    src/app/app.component.html:21:49:
+[37m      21 │     <div class="loader-text">{{ 'loading.data' | [32mtransloco[37m }}</div>
+         ╵                                                  [32m~~~~~~~~~[0m
+  Error occurs in the template of component AppComponent.
+    src/app/app.component.ts:31:15:
+[37m      31 │   templateUrl: [32m'./app.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+[39m[22m
+[42m[38;5;15m INFO [39m[49m Aborting 1 bundling task(s)..
+✘ [ERROR] NG8004: No pipe found with name 'transloco'. [plugin angular-compiler]
+    libs/game/feature/src/lib/game.html:47:30:
+      47 │       <p>{{ 'loading.board' | transloco }}</p>
+         ╵                               ~~~~~~~~~
+  Error occurs in the template of component Game.
+    libs/game/feature/src/lib/game.ts:33:15:
+      33 │   templateUrl: './game.html',
+         ╵                ~~~~~~~~~~~~~
+✘ [ERROR] NG8004: No pipe found with name 'transloco'. [plugin angular-compiler]
+    src/app/app.component.html:21:49:
+      21 │     <div class="loader-text">{{ 'loading.data' | transloco }}</div>
+         ╵                                                  ~~~~~~~~~
+  Error occurs in the template of component AppComponent.
+    src/app/app.component.ts:31:15:
+      31 │   templateUrl: './app.component.html',
+         ╵                ~~~~~~~~~~~~~~~~~~~~~~
+[41m[38;5;15m ERRR [39m[49m Error building federation artefacts
+[41m[38;5;15m ERRR [39m[49m Federation rebuild failed!
+[42m[38;5;15m INFO [39m[49m Building federation artefacts
+[42m[38;5;15m INFO [39m[49m Building federation artefacts
+[42m[38;5;15m INFO [39m[49m Building federation artefacts
+✘ [ERROR] NG8004: No pipe found with name 'transloco'. [plugin angular-compiler]
+    libs/game/feature/src/lib/game.html:47:30:
+      47 │       <p>{{ 'loading.board' | transloco }}</p>
+         ╵                               ~~~~~~~~~
+  Error occurs in the template of component Game.
+    libs/game/feature/src/lib/game.ts:33:15:
+      33 │   templateUrl: './game.html',
+         ╵                ~~~~~~~~~~~~~
+✘ [ERROR] NG8004: No pipe found with name 'transloco'. [plugin angular-compiler]
+    src/app/app.component.html:21:49:
+      21 │     <div class="loader-text">{{ 'loading.data' | transloco }}</div>
+         ╵                                                  ~~~~~~~~~
+  Error occurs in the template of component AppComponent.
+    src/app/app.component.ts:31:15:
+      31 │   templateUrl: './app.component.html',
+         ╵                ~~~~~~~~~~~~~~~~~~~~~~
+[41m[38;5;15m ERRR [39m[49m Error building federation artefacts
+[41m[38;5;15m ERRR [39m[49m Federation rebuild failed!
+✘ [ERROR] NG8004: No pipe found with name 'transloco'. [plugin angular-compiler]
+    libs/game/feature/src/lib/game.html:47:30:
+      47 │       <p>{{ 'loading.board' | transloco }}</p>
+         ╵                               ~~~~~~~~~
+  Error occurs in the template of component Game.
+    libs/game/feature/src/lib/game.ts:33:15:
+      33 │   templateUrl: './game.html',
+         ╵                ~~~~~~~~~~~~~
+✘ [ERROR] NG8004: No pipe found with name 'transloco'. [plugin angular-compiler]
+    src/app/app.component.html:21:49:
+      21 │     <div class="loader-text">{{ 'loading.data' | transloco }}</div>
+         ╵                                                  ~~~~~~~~~
+  Error occurs in the template of component AppComponent.
+    src/app/app.component.ts:31:15:
+      31 │   templateUrl: './app.component.html',
+         ╵                ~~~~~~~~~~~~~~~~~~~~~~
+✘ [ERROR] NG8004: No pipe found with name 'transloco'. [plugin angular-compiler]
+    libs/game/feature/src/lib/game.html:47:30:
+      47 │       <p>{{ 'loading.board' | transloco }}</p>
+         ╵                               ~~~~~~~~~
+  Error occurs in the template of component Game.
+    libs/game/feature/src/lib/game.ts:33:15:
+      33 │   templateUrl: './game.html',
+         ╵                ~~~~~~~~~~~~~
+✘ [ERROR] NG8004: No pipe found with name 'transloco'. [plugin angular-compiler]
+    src/app/app.component.html:21:49:
+      21 │     <div class="loader-text">{{ 'loading.data' | transloco }}</div>
+         ╵                                                  ~~~~~~~~~
+  Error occurs in the template of component AppComponent.
+    src/app/app.component.ts:31:15:
+      31 │   templateUrl: './app.component.html',
+         ╵                ~~~~~~~~~~~~~~~~~~~~~~
+[41m[38;5;15m ERRR [39m[49m Error building federation artefacts
+[41m[38;5;15m ERRR [39m[49m Federation rebuild failed!
+[41m[38;5;15m ERRR [39m[49m Error building federation artefacts
+[41m[38;5;15m ERRR [39m[49m Federation rebuild failed!
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[37mApplication bundle generation failed. [0.009 seconds] - 2026-03-27T09:35:16.429Z
+[39m
+[1m[31m[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG8004: No pipe found with name 'transloco'.[0m [1m[35m[plugin angular-compiler][0m
+    libs/game/feature/src/lib/game.html:47:30:
+[37m      47 │       <p>{{ 'loading.board' | [32mtransloco[37m }}</p>
+         ╵                               [32m~~~~~~~~~[0m
+  Error occurs in the template of component Game.
+    libs/game/feature/src/lib/game.ts:33:15:
+[37m      33 │   templateUrl: [32m'./game.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~[0m
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG8004: No pipe found with name 'transloco'.[0m [1m[35m[plugin angular-compiler][0m
+    src/app/app.component.html:21:49:
+[37m      21 │     <div class="loader-text">{{ 'loading.data' | [32mtransloco[37m }}</div>
+         ╵                                                  [32m~~~~~~~~~[0m
+  Error occurs in the template of component AppComponent.
+    src/app/app.component.ts:31:15:
+[37m      31 │   templateUrl: [32m'./app.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+[39m[22m
+[42m[38;5;15m INFO [39m[49m Building federation artefacts
+✘ [ERROR] NG8004: No pipe found with name 'transloco'. [plugin angular-compiler]
+    libs/game/feature/src/lib/game.html:47:30:
+      47 │       <p>{{ 'loading.board' | transloco }}</p>
+         ╵                               ~~~~~~~~~
+  Error occurs in the template of component Game.
+    libs/game/feature/src/lib/game.ts:33:15:
+      33 │   templateUrl: './game.html',
+         ╵                ~~~~~~~~~~~~~
+✘ [ERROR] NG8004: No pipe found with name 'transloco'. [plugin angular-compiler]
+    src/app/app.component.html:21:49:
+      21 │     <div class="loader-text">{{ 'loading.data' | transloco }}</div>
+         ╵                                                  ~~~~~~~~~
+  Error occurs in the template of component AppComponent.
+    src/app/app.component.ts:31:15:
+      31 │   templateUrl: './app.component.html',
+         ╵                ~~~~~~~~~~~~~~~~~~~~~~
+[41m[38;5;15m ERRR [39m[49m Error building federation artefacts
+[41m[38;5;15m ERRR [39m[49m Federation rebuild failed!
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[37mApplication bundle generation failed. [1.332 seconds] - 2026-03-27T09:36:03.949Z
+[39m
+[1m[31m[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG8004: No pipe found with name 'transloco'.[0m [1m[35m[plugin angular-compiler][0m
+    libs/game/feature/src/lib/game.html:47:30:
+[37m      47 │       <p>{{ 'loading.board' | [32mtransloco[37m }}</p>
+         ╵                               [32m~~~~~~~~~[0m
+  Error occurs in the template of component Game.
+    libs/game/feature/src/lib/game.ts:33:15:
+[37m      33 │   templateUrl: [32m'./game.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~[0m
+[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG8004: No pipe found with name 'transloco'.[0m [1m[35m[plugin angular-compiler][0m
+    src/app/app.component.html:21:49:
+[37m      21 │     <div class="loader-text">{{ 'loading.data' | [32mtransloco[37m }}</div>
+         ╵                                                  [32m~~~~~~~~~[0m
+  Error occurs in the template of component AppComponent.
+    src/app/app.component.ts:31:15:
+[37m      31 │   templateUrl: [32m'./app.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+[39m[22m
+[42m[38;5;15m INFO [39m[49m Building federation artefacts
+✘ [ERROR] NG8004: No pipe found with name 'transloco'. [plugin angular-compiler]
+    libs/game/feature/src/lib/game.html:47:30:
+      47 │       <p>{{ 'loading.board' | transloco }}</p>
+         ╵                               ~~~~~~~~~
+  Error occurs in the template of component Game.
+    libs/game/feature/src/lib/game.ts:33:15:
+      33 │   templateUrl: './game.html',
+         ╵                ~~~~~~~~~~~~~
+✘ [ERROR] NG8004: No pipe found with name 'transloco'. [plugin angular-compiler]
+    src/app/app.component.html:21:49:
+      21 │     <div class="loader-text">{{ 'loading.data' | transloco }}</div>
+         ╵                                                  ~~~~~~~~~
+  Error occurs in the template of component AppComponent.
+    src/app/app.component.ts:31:15:
+      31 │   templateUrl: './app.component.html',
+         ╵                ~~~~~~~~~~~~~~~~~~~~~~
+[41m[38;5;15m ERRR [39m[49m Error building federation artefacts
+[41m[38;5;15m ERRR [39m[49m Federation rebuild failed!
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[37mApplication bundle generation failed. [1.697 seconds] - 2026-03-27T09:41:15.296Z
+[39m
+[1m[31m[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mNG8004: No pipe found with name 'transloco'.[0m [1m[35m[plugin angular-compiler][0m
+    src/app/app.component.html:21:49:
+[37m      21 │     <div class="loader-text">{{ 'loading.data' | [32mtransloco[37m }}</div>
+         ╵                                                  [32m~~~~~~~~~[0m
+  Error occurs in the template of component AppComponent.
+    src/app/app.component.ts:31:15:
+[37m      31 │   templateUrl: [32m'./app.component.html'[37m,
+         ╵                [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+[39m[22m
+[42m[38;5;15m INFO [39m[49m Building federation artefacts
+✘ [ERROR] NG8004: No pipe found with name 'transloco'. [plugin angular-compiler]
+    src/app/app.component.html:21:49:
+      21 │     <div class="loader-text">{{ 'loading.data' | transloco }}</div>
+         ╵                                                  ~~~~~~~~~
+  Error occurs in the template of component AppComponent.
+    src/app/app.component.ts:31:15:
+      31 │   templateUrl: './app.component.html',
+         ╵                ~~~~~~~~~~~~~~~~~~~~~~
+[41m[38;5;15m ERRR [39m[49m Error building federation artefacts
+[41m[38;5;15m ERRR [39m[49m Federation rebuild failed!
+[33m❯[39m Changes detected. Rebuilding...
+[32m✔[39m Changes detected. Rebuilding...
+[37m[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mpolyfills.js[37m       [2m | [22m[2mpolyfills[22m    [2m | [22m[36m112.65 kB[37m[2m | [22m
+[32mstyles.css[37m         [2m | [22m[2mstyles[22m       [2m | [22m  [36m5.21 kB[37m[2m | [22m
+[32mmain.js[37m            [2m | [22m[2mmain[22m         [2m | [22m  [36m1.62 kB[37m[2m | [22m
+[32mchunk-VUJOFXKG.js[37m  [2m | [22m[2m-[22m            [2m | [22m[36m938 bytes[37m[2m | [22m
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m120.42 kB[22m
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mchunk-C4DMJDRQ.js[37m  [2m | [22m[2mbootstrap[22m    [2m | [22m [36m24.37 kB[37m[2m | [22m
+[32mchunk-ONK5P54I.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m14.26 kB[37m[2m | [22m
+Application bundle generation complete. [0.787 seconds] - 2026-03-27T09:43:29.069Z
+[39m
+[37mPage reload sent to client(s).[39m
+[42m[38;5;15m INFO [39m[49m Building federation artefacts
+✘ [ERROR] NG8004: No pipe found with name 'transloco'. [plugin angular-compiler]
+    src/app/app.component.html:21:49:
+      21 │     <div class="loader-text">{{ 'loading.data' | transloco }}</div>
+         ╵                                                  ~~~~~~~~~
+  Error occurs in the template of component AppComponent.
+    src/app/app.component.ts:31:15:
+      31 │   templateUrl: './app.component.html',
+         ╵                ~~~~~~~~~~~~~~~~~~~~~~

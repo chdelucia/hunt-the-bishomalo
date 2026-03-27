@@ -43,14 +43,8 @@
       }
     </section>
   } @placeholder {
-    <section
-      class="board"
-      [style.--board-size]="boardSize"
-      style="display: flex; justify-content: center; align-items: center; background: #000"
-    >
-      <div style="color: #00ff5e; font-family: 'Press Start 2P', cursive; font-size: 14px">
-        PREPARING BOARD...
-      </div>
+    <section class="board board-placeholder" [style.--board-size]="boardSize">
+      <p>{{ 'loading.board' | transloco }}</p>
     </section>
   }
 

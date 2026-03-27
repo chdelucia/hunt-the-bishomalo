@@ -29,6 +29,7 @@ import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
   imports: [RouterOutlet, ToastComponent, MenuComponent, GameControlsComponent],
   selector: 'app-root',
   templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
@@ -57,11 +58,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.miniBus.emit('ACHIEVEMENTS_CONFIG', { appId: 'hunt-the-bishomalo' });
 
-    // Preload achievements remote module to improve transition speed to /logros
-    loadRemoteModule('achievements', './Routes').catch((err) =>
-      // eslint-disable-next-line no-console
-      console.warn('Failed to preload achievements module', err),
-    );
+    loadRemoteModule('achievements', './Routes').catch((err) => {
+      globalThis.console.warn('Failed to preload achievements module', err);
+    });
 
     this.router.events
       .pipe(

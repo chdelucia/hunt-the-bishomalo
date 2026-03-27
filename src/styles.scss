@@ -1,5 +1,4 @@
 :root {
-  /* Generic Colors (Tailwind-like palette) */
   --color-black: #000000;
   --color-white: #ffffff;
 
@@ -41,14 +40,13 @@
 
   --color-purple-500: #a855f7;
 
-  /* Semantic Mappings */
   --color-primary: var(--color-green-accent);
   --color-background: var(--color-gray-900);
   --color-panel: var(--color-gray-800);
   --color-border: var(--color-gray-700);
 
-  --color-text: var(--color-green-300); /* Improved contrast on dark bg */
-  --color-text-secondary: var(--color-gray-300); /* Improved contrast from gray-400 */
+  --color-text: var(--color-green-300);
+  --color-text-secondary: var(--color-gray-300);
   --color-text-muted: var(--color-gray-400);
   --color-text-white: var(--color-white);
 
@@ -59,7 +57,7 @@
   --color-button-disabled: var(--color-gray-500);
 
   --color-yellow: var(--color-yellow-400);
-  --color-red: var(--color-red-600); /* Improved contrast for white text */
+  --color-red: var(--color-red-600);
   --color-blue: var(--color-blue-400);
   --color-purple: var(--color-purple-500);
 
@@ -67,7 +65,6 @@
   --color-neon: var(--color-cyan-accent);
   --color-neon-alt: var(--color-cyan-dark);
 
-  /* Effects */
   --color-cloud: rgb(42 117 198 / 95%);
   --color-stink-1: rgb(93 255 93 / 33%);
   --color-stink-2: rgb(46 139 87 / 33%);
@@ -216,5 +213,41 @@ a:focus-visible {
   }
   100% {
     width: 0%;
+  }
+}
+
+.initial-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #111827;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #00ff5e;
+  font-family: 'Press Start 2P', cursive;
+  z-index: 9999;
+
+  .loader-text {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #00ff5e;
+  }
+
+  .loader-bar-container {
+    width: 200px;
+    height: 10px;
+    border: 2px solid #00ff5e;
+    padding: 2px;
+  }
+
+  .loader-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #00ff5e;
+    animation: loadingBar 2s infinite ease-in-out;
   }
 }

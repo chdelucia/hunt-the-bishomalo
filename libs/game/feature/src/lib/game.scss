@@ -31,3 +31,15 @@ lib-title {
 .escape {
   --exit-color: var(--color-text);
 }
+
+.board-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--color-black);
+
+  p {
+    color: var(--color-primary);
+    font-size: 14px;
+  }
+}

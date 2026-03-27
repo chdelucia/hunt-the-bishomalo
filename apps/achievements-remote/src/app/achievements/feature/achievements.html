@@ -34,12 +34,12 @@
         }
       </div>
     } @loading {
-      <div class="loading-state" style="text-align: center; padding: 2rem; color: #00ff5e; font-family: 'Press Start 2P', cursive;">
-        <p>LOADING ACHIEVEMENTS...</p>
+      <div class="loading-state">
+        <p>{{ 'loading.achievements' | transloco }}</p>
       </div>
     } @placeholder {
-      <div class="placeholder-state" style="text-align: center; padding: 2rem; color: #00ff5e; font-family: 'Press Start 2P', cursive; opacity: 0.5;">
-        <p>INITIALIZING ARCHIVE...</p>
+      <div class="placeholder-state">
+        <p>{{ 'loading.archive' | transloco }}</p>
       </div>
     }
   </div>

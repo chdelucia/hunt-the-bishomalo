@@ -6,11 +6,6 @@
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
-    <!--
-      Security Hotspot Justification:
-      Subresource Integrity (SRI) is not used for Google Fonts because the CSS and font files
-      are dynamically served and can change based on the user's browser and platform.
-    -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,7 +18,6 @@
       Explora laberintos, esquiva peligros y atrapa al escurridizo Wumpus antes de que te atrape a ti. ¿Estás listo para el desafío?"
     />
 
-    <!-- Open Graph para Facebook, LinkedIn y más -->
     <meta property="og:title" content="Hunt the Bishomalo - Juego de estrategia retro" />
     <meta
       property="og:description"
@@ -35,58 +29,15 @@
   </head>
   <body>
     <app-root>
-      <div
-        style="
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background-color: #111827;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          color: #00ff5e;
-          font-family: 'Press Start 2P', cursive;
-          z-index: 9999;
-        "
-      >
-        <div style="font-size: 20px; margin-bottom: 20px; text-shadow: 0 0 10px #00ff5e">
-          LOADING SYSTEM...
+      <div class="initial-loader">
+        <div class="loader-text">CARGANDO SISTEMA...</div>
+        <div class="loader-bar-container">
+          <div class="loader-bar"></div>
         </div>
-        <div style="width: 200px; height: 10px; border: 2px solid #00ff5e; padding: 2px">
-          <div
-            style="
-              width: 0%;
-              height: 100%;
-              background-color: #00ff5e;
-              animation: loadingBar 2s infinite ease-in-out;
-            "
-          ></div>
-        </div>
-        <style>
-          @keyframes loadingBar {
-            0% {
-              width: 0%;
-            }
-            50% {
-              width: 100%;
-            }
-            100% {
-              width: 0%;
-            }
-          }
-        </style>
       </div>
     </app-root>
   </body>
 
-  <!--
-    Security Hotspot Justification:
-    Subresource Integrity (SRI) is not used for Google Tag Manager because the script is
-    dynamically generated and managed by Google.
-  -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-298LKLF45E"></script>
   <script>
     globalThis.dataLayer = globalThis.dataLayer || [];

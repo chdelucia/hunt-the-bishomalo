@@ -17,36 +17,10 @@
 <router-outlet></router-outlet>
 
 @if (isRouteLoading()) {
-  <div
-    style="
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(17, 24, 39, 0.8);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #00ff5e;
-      font-family: 'Press Start 2P', cursive;
-      z-index: 9999;
-      backdrop-filter: blur(4px);
-    "
-  >
-    <div style="font-size: 20px; margin-bottom: 20px; text-shadow: 0 0 10px #00ff5e">
-      LOADING DATA...
-    </div>
-    <div style="width: 200px; height: 10px; border: 2px solid #00ff5e; padding: 2px">
-      <div
-        style="
-          width: 0%;
-          height: 100%;
-          background-color: #00ff5e;
-          animation: loadingBar 1.5s infinite ease-in-out;
-        "
-      ></div>
+  <div class="route-loader">
+    <div class="loader-text">{{ 'loading.data' | transloco }}</div>
+    <div class="loader-bar-container">
+      <div class="loader-bar"></div>
     </div>
   </div>
 }

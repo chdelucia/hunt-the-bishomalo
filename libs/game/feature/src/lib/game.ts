@@ -11,6 +11,7 @@ import {
 } from '@hunt-the-bishomalo/game/ui';
 import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
 import { RouterModule } from '@angular/router';
+import { TranslocoModule } from '@jsverse/transloco';
 import { GAME_STORE_TOKEN, GAME_SOUND_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
@@ -20,6 +21,7 @@ import { AchieveTypes, GameSound, GameItem } from '@hunt-the-bishomalo/shared-da
   selector: 'lib-game',
   imports: [
     RouterModule,
+    TranslocoModule,
     GameCellComponent,
     VisualEffectDirective,
     AppWumpusAttackAnimationComponent,

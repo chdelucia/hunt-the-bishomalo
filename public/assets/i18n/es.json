@@ -141,6 +141,13 @@
       "description": "Has ganado una partida teniendo todos los logros del juego. ¡Eres una leyenda!"
     }
   },
+"loading": {
+  "system": "CARGANDO SISTEMA...",
+  "data": "CARGANDO DATOS...",
+  "board": "PREPARANDO TABLERO...",
+  "achievements": "CARGANDO LOGROS...",
+  "archive": "INICIALIZANDO ARCHIVO..."
+},
   "rarity": {
     "common": "Común",
     "uncommon": "Poco común",
