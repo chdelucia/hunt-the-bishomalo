@@ -144,7 +144,6 @@
 "loading": {
   "system": "CARGANDO SISTEMA...",
   "data": "CARGANDO DATOS...",
-  "board": "PREPARANDO TABLERO...",
   "achievements": "CARGANDO LOGROS...",
   "archive": "INICIALIZANDO ARCHIVO..."
 },

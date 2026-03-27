@@ -144,7 +144,6 @@
 "loading": {
   "system": "LOADING SYSTEM...",
   "data": "LOADING DATA...",
-  "board": "PREPARING BOARD...",
   "achievements": "LOADING ACHIEVEMENTS...",
   "archive": "INITIALIZING ARCHIVE..."
 },
