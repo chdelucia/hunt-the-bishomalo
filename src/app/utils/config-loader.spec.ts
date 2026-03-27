@@ -30,7 +30,7 @@ describe('config-loader', () => {
       const config = await fetchRemoteConfig(false);
 
       expect(global.fetch).toHaveBeenCalledWith(
-        'https://bold-mouse-42af.c-heredia-naranjo.workers.dev/mfe-remotes.prod.json',
+        'https://huntthebishomalo.c-heredia-naranjo.workers.dev/mfe-remotes.prod.json',
       );
       expect(config).toEqual(mockConfig);
     });

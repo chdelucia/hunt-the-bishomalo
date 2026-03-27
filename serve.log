@@ -6,14 +6,208 @@ $ nx run-many -t serve --projects hunt-the-bishomalo,achievements-remote
 - achievements-remote
 
 
-Waiting for achievements-remote:serve in another nx process
-Waiting for hunt-the-bishomalo:serve in another nx process
-Task "achievements-remote:serve" is continuous but exited with code 0
-Task "hunt-the-bishomalo:serve" is continuous but exited with code 0
+
+> nx run achievements-remote:serve
 
 
+> nx run hunt-the-bishomalo:serve
 
- NX   Successfully ran target serve for 2 projects
-
-
-error: script "start" exited with code 130
+[42m[38;5;15m INFO [39m[49m [Federation SSE] Local reloader initialized with endpoint /@angular-architects/native-federation:build-notifications
+[42m[38;5;15m INFO [39m[49m Building federation artefacts
+[42m[38;5;15m INFO [39m[49m [Federation SSE] Local reloader initialized with endpoint /@angular-architects/native-federation:build-notifications
+[42m[38;5;15m INFO [39m[49m Building federation artefacts
+[41m[38;5;15m ERRR [39m[49m Error building federation artefacts
+[41m[38;5;15m ERRR [39m[49m ENOENT: no such file or directory, open 'dist/browser/remotes/achievements-remote/browser/Routes.js.map'
+Task "achievements-remote:serve" is continuous but exited with code 1
+[42m[38;5;15m INFO [39m[49m Preparing shared npm packages for the platform browser-shared
+[103m[30m NOTE [39m[49m This only needs to be done once, as results are cached
+[103m[30m NOTE [39m[49m Skip packages you don't want to share in your federation config
+[33m❯[39m Building...
+[32m✔[39m Building...
+[37m[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mpolyfills.js[37m       [2m | [22m[2mpolyfills[22m    [2m | [22m[36m112.65 kB[37m[2m | [22m
+[32mstyles.css[37m         [2m | [22m[2mstyles[22m       [2m | [22m  [36m4.60 kB[37m[2m | [22m
+[32mmain.js[37m            [2m | [22m[2mmain[22m         [2m | [22m  [36m1.66 kB[37m[2m | [22m
+[32mchunk-VUJOFXKG.js[37m  [2m | [22m[2m-[22m            [2m | [22m[36m938 bytes[37m[2m | [22m
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m119.85 kB[22m
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mchunk-ZHABGJDP.js[37m  [2m | [22m[2mbootstrap[22m    [2m | [22m [36m20.52 kB[37m[2m | [22m
+[32mchunk-ONK5P54I.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m14.26 kB[37m[2m | [22m
+Application bundle generation complete. [6.752 seconds] - 2026-03-27T23:07:10.717Z
+[39m
+[37mWatch mode enabled. Watching for file changes...[39m
+[37mNOTE: Raw file sizes do not reflect development server per-request transformations.[39m
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4200[22m/[39m
+[2m11:07:26 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m136 |      b2.apply(this, arguments);
+137 |    };
+138 |    const dynamicImport = (u2, _errUrl) => import(u2);
+    |                                                  ^^
+139 |    const defineValue = (obj, prop, value) => Object.defineProperty(obj, prop, { writable: false, configurable: false, ...
+140 |    const optionsScript = hasDocument ? document.querySelector("script[type=esms-options]") : void 0;[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[2m11:07:26 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m366 |      if (!hasDocument)
+367 |        return Promise.all([
+368 |          import(createBlob(`import"${createBlob("{}", "text/json")}"with{type:"json"}`)).then(
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+369 |            () => (supportsJsonType = true, import(createBlob(`import"${createBlob("", "text/css")}"with{type:"css"}`))...
+370 |              () => supportsCssType = true,[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[2m11:07:26 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m367 |        return Promise.all([
+368 |          import(createBlob(`import"${createBlob("{}", "text/json")}"with{type:"json"}`)).then(
+369 |  ...rtsJsonType = true, import(createBlob(`import"${createBlob("", "text/css")}"with{type:"css"}`)).then(
+    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+370 |              () => supportsCssType = true,
+371 |              noop[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[2m11:07:26 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m373 |            noop
+374 |          ),
+375 |  ...eEnabled && import(createBlob(`import"${createBlob(new Uint8Array(wasmBytes), "application/wasm")}"`)).then(
+    |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+376 |            () => supportsWasmInstancePhase = true,
+377 |            noop[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[2m11:07:26 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m377 |            noop
+378 |          ),
+379 |  ...d && import(createBlob(`import source x from"${createBlob(new Uint8Array(wasmBytes), "application/wasm")}"`)).then(
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+380 |            () => supportsWasmSourcePhase = true,
+381 |            noop[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[2m11:07:26 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m2567 |        firstPolyfillLoad = false;
+2568 |      }
+2569 |  ...oaded && source ? dynamicImport(load.b, load.u) : import(load.u));
+     |                                                              ^^^^^^
+2570 |      if (load.s) (await dynamicImport(load.s, load.u)).u$_(module);
+2571 |      revokeObjectURLs(Object.keys(seen));[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[2m11:07:26 PM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m2728 |    let esmsTsTransform;
+2729 |    const initTs = async () => {
+2730 |      const m = await import(tsTransform);
+     |                             ^^^^^^^^^^^
+2731 |      if (!esmsTsTransform) esmsTsTransform = m.transform;
+2732 |    };[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[2m11:07:28 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m11:07:33 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m11:07:38 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m11:07:42 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m11:07:50 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m11:08:02 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m11:08:05 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m11:08:09 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m11:08:17 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m11:08:24 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m11:08:27 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m11:08:37 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m11:08:40 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m11:08:45 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m11:08:48 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m11:08:50 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m11:08:53 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m11:08:55 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m11:09:00 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m11:09:05 PM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+Task "hunt-the-bishomalo:serve" is continuous but exited with code 143
+error: script "start" exited with code 143
