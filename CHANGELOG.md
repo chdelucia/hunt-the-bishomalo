@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.65.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.12...v7.65.0) (2026-03-27)
+
+
+### Features
+
+* improve initial load experience and MFE transitions ([35d789d](https://github.com/chdelucia/hunt-the-bishomalo/commit/35d789d582d8743957848dd0a8f085022b4bddab))
+* improve initial loading experience and optimize MFE performance ([0862e33](https://github.com/chdelucia/hunt-the-bishomalo/commit/0862e33b7d72d88de148e379845a660e8dd1cd7a))
+* improve initial loading experience and optimize MFE transitions ([125279d](https://github.com/chdelucia/hunt-the-bishomalo/commit/125279de316e240fbfb7d29a56ae045550006fed))
+* improve initial loading experience with loaders, placeholders, and preloading ([662724e](https://github.com/chdelucia/hunt-the-bishomalo/commit/662724ebef504ba2aa4f0b5dd2ec65c35635e355))
+* optimize initial load, transitions and preloading coverage ([7d437d5](https://github.com/chdelucia/hunt-the-bishomalo/commit/7d437d5c426ef60ce4a7cc83f1e63f5c5bf19521))
+* optimize loading experience with shell loader and preloading ([d931aa3](https://github.com/chdelucia/hunt-the-bishomalo/commit/d931aa3947ca7634fc4855208d86c1934c5fb793))
+* **shell,achievements:** improve initial loading experience with placeholders and preloading ([d14f6b8](https://github.com/chdelucia/hunt-the-bishomalo/commit/d14f6b832af0adce03293ec2b8b40c494ac2150e))
+
 ### [7.64.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.2...v7.64.3) (2026-03-26)
 
 
