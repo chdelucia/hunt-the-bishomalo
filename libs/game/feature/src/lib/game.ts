@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  effect,
-  inject,
-  OnDestroy,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core';
 import {
   AppWumpusAttackAnimationComponent,
   BlackoutComponent,
@@ -43,7 +36,7 @@ import { AchieveTypes, GameSound, GameItem } from '@hunt-the-bishomalo/shared-da
   styleUrl: './game.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Game implements OnDestroy {
+export class Game {
   readonly game = inject(GAME_STORE_TOKEN);
   readonly gameEngine = inject(GAME_ENGINE_TOKEN);
   private readonly achieve = inject(ACHIEVEMENT_SERVICE);
@@ -92,9 +85,5 @@ export class Game implements OnDestroy {
   handleMobileShootArrow(): void {
     this.gameEngine.shootArrow();
     this.achieve.activeAchievement(AchieveTypes.GAMER);
-  }
-
-  ngOnDestroy(): void {
-    this.sound.stop();
   }
 }

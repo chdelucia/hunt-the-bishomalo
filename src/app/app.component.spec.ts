@@ -4,6 +4,7 @@ import { Router, NavigationStart, NavigationEnd, ActivatedRoute } from '@angular
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
+import { KeyboardManagerService } from '@hunt-the-bishomalo/game/data-access';
 import {
   GAME_STORE_TOKEN,
   LOCALSTORAGE_SERVICE_TOKEN,
@@ -78,7 +79,7 @@ describe('AppComponent', () => {
           provide: GAME_EVENT_SERVICE_TOKEN,
           useValue: { applyEffectsOnDeath: jest.fn(), applyEffectByCellContent: jest.fn() },
         },
-        { provide: KEYBOARD_MANAGER_TOKEN, useValue: { handleKeyDown: jest.fn() } },
+        { provide: KeyboardManagerService, useValue: { handleKeyDown: jest.fn() } },
         { provide: MINI_BUS_SERVICE_TOKEN, useValue: { emit: jest.fn(), listen: jest.fn() } },
         {
           provide: GAME_STORE_TOKEN,
@@ -127,7 +128,7 @@ describe('AppComponent', () => {
 
   it('should handle keyboard events', () => {
     const event = new KeyboardEvent('keydown', { key: 'ArrowUp' });
-    const keyboardManager = TestBed.inject(KEYBOARD_MANAGER_TOKEN);
+    const keyboardManager = TestBed.inject(KeyboardManagerService);
     component.handleKeyDown(event);
     expect(keyboardManager.handleKeyDown).toHaveBeenCalledWith(event);
   });

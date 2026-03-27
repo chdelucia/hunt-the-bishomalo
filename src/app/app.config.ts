@@ -12,8 +12,8 @@ import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { TranslocoHttpLoader } from './utils/transloco-loader';
 import { IdlePreloadingStrategy } from './utils/preloading-strategy';
 import { provideTransloco } from '@jsverse/transloco';
+import { GameStore } from '@hunt-the-bishomalo/core/data-access';
 import {
-  GameStore,
   MonitoringService,
   GameSoundService,
   LocalstorageService,
@@ -32,10 +32,10 @@ import {
   MINI_BUS_SERVICE_TOKEN,
 } from '@hunt-the-bishomalo/core/api';
 import { ACHIEVEMENT_SERVICE, IAchievementService } from '@hunt-the-bishomalo/achievements/api';
-import { GAME_ENGINE_TOKEN, KEYBOARD_MANAGER_TOKEN } from '@hunt-the-bishomalo/game/api';
+import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { LeaderboardService } from '@hunt-the-bishomalo/gamestats/data-access';
-import { GameEngineService, KeyboardManagerService } from '@hunt-the-bishomalo/game/data-access';
+import { GameEngineService } from '@hunt-the-bishomalo/game/data-access';
 import * as Sentry from '@sentry/angular';
 
 // Achievements implementation is in the remote, but we still need it functional in the shell for tracking.
@@ -146,7 +146,6 @@ export const appConfig: ApplicationConfig = {
     { provide: ACHIEVEMENT_SERVICE, useClass: ShellAchievementService },
     { provide: LEADERBOARD_SERVICE, useClass: LeaderboardService },
     { provide: GAME_ENGINE_TOKEN, useClass: GameEngineService },
-    { provide: KEYBOARD_MANAGER_TOKEN, useClass: KeyboardManagerService },
     {
       provide: REMOTE_CONFIG_TOKEN,
       useFactory: () => (window as unknown as { _REMOTE_CONFIG: RemoteConfig })._REMOTE_CONFIG,

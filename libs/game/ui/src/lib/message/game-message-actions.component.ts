@@ -72,11 +72,6 @@ import { TranslocoModule } from '@jsverse/transloco';
         opacity: 0;
       }
     }
-    @media (prefers-reduced-motion: reduce) {
-      .newgame {
-        animation: none;
-      }
-    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
