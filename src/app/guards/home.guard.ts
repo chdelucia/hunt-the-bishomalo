@@ -10,9 +10,12 @@ export const homeGuard: CanActivateFn = () => {
   const gameEngine = inject(GAME_ENGINE_TOKEN);
 
   const hasSettings = gameStore.settings().size;
+  const boardSize = gameStore.board().length;
 
   if (hasSettings) {
-    gameEngine.initGame();
+    if (boardSize === 0) {
+      gameEngine.initGame();
+    }
     return true;
   }
   router.navigateByUrl(RouteTypes.SETTINGS);
