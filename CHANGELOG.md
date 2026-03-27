@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.64.12](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.11...v7.64.12) (2026-03-27)
+
+
+### Bug Fixes
+
+* **game:** stop sounds on navigation and preserve game state ([a095ffa](https://github.com/chdelucia/hunt-the-bishomalo/commit/a095ffab98bb3c328ab0169fd7b88ecbcbfd6ec8))
+
 ### [7.64.11](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.10...v7.64.11) (2026-03-27)
 
 
