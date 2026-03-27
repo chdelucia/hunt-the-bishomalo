@@ -16,8 +16,8 @@ import {
   NavigationError,
 } from '@angular/router';
 import { filter } from 'rxjs';
-import { loadRemoteModule } from '@angular-architects/native-federation';
 import { TranslocoModule } from '@jsverse/transloco';
+import { loadRemoteModule } from '@angular-architects/native-federation';
 
 import { ToastComponent, MenuComponent, GameControlsComponent } from '@hunt-the-bishomalo/game/ui';
 import { GAME_STORE_TOKEN, MINI_BUS_SERVICE_TOKEN } from '@hunt-the-bishomalo/core/api';
@@ -44,6 +44,7 @@ export class AppComponent implements OnInit {
   private readonly miniBus = inject(MINI_BUS_SERVICE_TOKEN);
 
   readonly isRouteLoading = signal(false);
+  private loaderTimer: ReturnType<typeof setTimeout> | undefined;
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent): void {
@@ -59,9 +60,11 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.miniBus.emit('ACHIEVEMENTS_CONFIG', { appId: 'hunt-the-bishomalo' });
 
-    loadRemoteModule('achievements', './Routes').catch((err) => {
-      globalThis.console.warn('Failed to preload achievements module', err);
-    });
+    globalThis.setTimeout(() => {
+      loadRemoteModule('achievements', './Routes').catch((err) => {
+        globalThis.console.warn('Preload failed', err);
+      });
+    }, 2000);
 
     this.router.events
       .pipe(
@@ -75,8 +78,11 @@ export class AppComponent implements OnInit {
       )
       .subscribe((event) => {
         if (event instanceof NavigationStart) {
-          this.isRouteLoading.set(true);
+          this.loaderTimer = globalThis.setTimeout(() => {
+            this.isRouteLoading.set(true);
+          }, 300);
         } else {
+          globalThis.clearTimeout(this.loaderTimer);
           this.isRouteLoading.set(false);
         }
       });

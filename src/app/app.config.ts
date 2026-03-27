@@ -6,10 +6,11 @@ import {
   ErrorHandler,
 } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideRouter, withHashLocation, withInMemoryScrolling, Router } from '@angular/router';
+import { provideRouter, withHashLocation, withInMemoryScrolling, Router, withPreloading } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { TranslocoHttpLoader } from './utils/transloco-loader';
+import { IdlePreloadingStrategy } from './utils/preloading-strategy';
 import { provideTransloco } from '@jsverse/transloco';
 import { GameStore } from '@hunt-the-bishomalo/core/data-access';
 import {
@@ -176,6 +177,7 @@ export const appConfig: ApplicationConfig = {
       appRoutes,
       withInMemoryScrolling({ scrollPositionRestoration: 'enabled' }),
       withHashLocation(),
+      withPreloading(IdlePreloadingStrategy),
     ),
     provideHttpClient(),
     provideTransloco({
