@@ -1,11 +1,9 @@
-export interface RemoteConfig {
-  remotes: Record<string, string>;
-}
+export type RemoteConfig = Record<string, string>;
 
 export async function fetchRemoteConfig(isDev: boolean): Promise<RemoteConfig> {
   const url = isDev
     ? '/mfe-remotes.dev.json'
-    : '/mfe-remotes.prod.json';
+    : 'https://huntthebishomalo.c-heredia-naranjo.workers.dev/mfe-remotes.prod.json';
 
   // Fallback / Debug Override (localStorage)
   const localOverride = localStorage.getItem('MFE_REMOTES_OVERRIDE');
@@ -25,7 +23,7 @@ export async function fetchRemoteConfig(isDev: boolean): Promise<RemoteConfig> {
     // eslint-disable-next-line no-console
     console.error('Failed to load remote configuration from CDN', error);
     // Fallback to empty remotes if fetch fails
-    return { remotes: {} };
+    return {};
   }
 }
 

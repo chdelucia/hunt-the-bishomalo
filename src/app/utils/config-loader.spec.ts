@@ -8,7 +8,7 @@ describe('config-loader', () => {
 
   describe('fetchRemoteConfig', () => {
     it('should fetch dev config when isDev is true', async () => {
-      const mockConfig = { remotes: { mfe1: 'url1' } };
+      const mockConfig = { mfe1: 'url1' };
       global.fetch = jest.fn().mockResolvedValue({
         json: jest.fn().mockResolvedValue(mockConfig),
       });
@@ -22,7 +22,7 @@ describe('config-loader', () => {
     });
 
     it('should fetch prod config when isDev is false', async () => {
-      const mockConfig = { remotes: { mfe1: 'url1' } };
+      const mockConfig = { mfe1: 'url1' };
       global.fetch = jest.fn().mockResolvedValue({
         json: jest.fn().mockResolvedValue(mockConfig),
       });
@@ -30,13 +30,13 @@ describe('config-loader', () => {
       const config = await fetchRemoteConfig(false);
 
       expect(global.fetch).toHaveBeenCalledWith(
-        '/mfe-remotes.prod.json'
+        'https://huntthebishomalo.c-heredia-naranjo.workers.dev/mfe-remotes.prod.json'
       );
       expect(config).toEqual(mockConfig);
     });
 
     it('should use localStorage override if available', async () => {
-      const mockOverride = { remotes: { override: 'local' } };
+      const mockOverride = { override: 'local' };
       localStorage.setItem('MFE_REMOTES_OVERRIDE', JSON.stringify(mockOverride));
       global.fetch = jest.fn();
 
@@ -48,7 +48,7 @@ describe('config-loader', () => {
 
     it('should warn and continue if localStorage override is invalid', async () => {
       localStorage.setItem('MFE_REMOTES_OVERRIDE', 'invalid json');
-      const mockConfig = { remotes: { mfe1: 'url1' } };
+      const mockConfig = { mfe1: 'url1' };
       global.fetch = jest.fn().mockResolvedValue({
         json: jest.fn().mockResolvedValue(mockConfig),
       });
@@ -67,7 +67,7 @@ describe('config-loader', () => {
       const config = await fetchRemoteConfig(true);
 
       expect(consoleSpy).toHaveBeenCalled();
-      expect(config).toEqual({ remotes: {} });
+      expect(config).toEqual({});
     });
   });
 

@@ -20,7 +20,7 @@ import { fetchRemoteConfig } from './app/utils/config-loader';
   // Merge manifest and initialize federation
   await initFederation({
     ...(localManifest as Record<string, string>),
-    ...config.remotes,
+    ...config,
   });
 
   // Store config in a global variable to be picked up by the app
