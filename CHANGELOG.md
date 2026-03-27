@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.64.11](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.10...v7.64.11) (2026-03-27)
+
+
+### Bug Fixes
+
+* resolve CORS error by serving MFE config from same origin ([52fb612](https://github.com/chdelucia/hunt-the-bishomalo/commit/52fb61293997e3ed97f5ecdacd22ec552efa411c))
+
 ### [7.64.10](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.9...v7.64.10) (2026-03-27)
 
 
