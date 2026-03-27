@@ -34,7 +34,52 @@
     <meta property="og:image" content="https://hunt-the-bishomalo.vercel.app/screenshot.png" />
   </head>
   <body>
-    <app-root></app-root>
+    <app-root>
+      <div
+        style="
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: #111827;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          color: #00ff5e;
+          font-family: 'Press Start 2P', cursive;
+          z-index: 9999;
+        "
+      >
+        <div style="font-size: 20px; margin-bottom: 20px; text-shadow: 0 0 10px #00ff5e">
+          LOADING SYSTEM...
+        </div>
+        <div style="width: 200px; height: 10px; border: 2px solid #00ff5e; padding: 2px">
+          <div
+            style="
+              width: 0%;
+              height: 100%;
+              background-color: #00ff5e;
+              animation: loadingBar 2s infinite ease-in-out;
+            "
+          ></div>
+        </div>
+        <style>
+          @keyframes loadingBar {
+            0% {
+              width: 0%;
+            }
+            50% {
+              width: 100%;
+            }
+            100% {
+              width: 0%;
+            }
+          }
+        </style>
+      </div>
+    </app-root>
   </body>
 
   <!--

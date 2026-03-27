@@ -1,5 +1,22 @@
-import { ChangeDetectionStrategy, Component, HostListener, inject, isDevMode, OnInit } from '@angular/core';
-import { RouterOutlet, Router } from '@angular/router';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  inject,
+  isDevMode,
+  OnInit,
+  signal,
+} from '@angular/core';
+import {
+  RouterOutlet,
+  Router,
+  NavigationStart,
+  NavigationEnd,
+  NavigationCancel,
+  NavigationError,
+} from '@angular/router';
+import { filter } from 'rxjs';
+import { loadRemoteModule } from '@angular-architects/native-federation';
 
 import { ToastComponent, MenuComponent, GameControlsComponent } from '@hunt-the-bishomalo/game/ui';
 import { GAME_STORE_TOKEN, MINI_BUS_SERVICE_TOKEN } from '@hunt-the-bishomalo/core/api';
@@ -24,6 +41,8 @@ export class AppComponent implements OnInit {
   private readonly keyboardManager = inject(KeyboardManagerService);
   private readonly miniBus = inject(MINI_BUS_SERVICE_TOKEN);
 
+  readonly isRouteLoading = signal(false);
+
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent): void {
     this.keyboardManager.handleKeyDown(event);
@@ -37,5 +56,29 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.miniBus.emit('ACHIEVEMENTS_CONFIG', { appId: 'hunt-the-bishomalo' });
+
+    // Preload achievements remote module to improve transition speed to /logros
+    loadRemoteModule('achievements', './Routes').catch((err) =>
+      // eslint-disable-next-line no-console
+      console.warn('Failed to preload achievements module', err),
+    );
+
+    this.router.events
+      .pipe(
+        filter(
+          (event) =>
+            event instanceof NavigationStart ||
+            event instanceof NavigationEnd ||
+            event instanceof NavigationCancel ||
+            event instanceof NavigationError,
+        ),
+      )
+      .subscribe((event) => {
+        if (event instanceof NavigationStart) {
+          this.isRouteLoading.set(true);
+        } else {
+          this.isRouteLoading.set(false);
+        }
+      });
   }
 }
