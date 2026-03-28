@@ -3,10 +3,9 @@ import { Router } from '@angular/router';
 import { GameEngineService } from './game-engine.service';
 import { AchieveTypes, RouteTypes } from '@hunt-the-bishomalo/shared-data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
-import { IKeyboardManagerService } from '@hunt-the-bishomalo/game/api';
 
 @Injectable({ providedIn: 'root' })
-export class KeyboardManagerService implements IKeyboardManagerService {
+export class KeyboardManagerService {
   private readonly game = inject(GameEngineService);
   private readonly achieve = inject(ACHIEVEMENT_SERVICE);
   private readonly router = inject(Router);

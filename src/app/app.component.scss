@@ -1,0 +1,35 @@
+.route-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 24, 39, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-primary);
+  z-index: 9999;
+  backdrop-filter: blur(4px);
+
+  .loader-text {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px var(--color-primary);
+  }
+
+  .loader-bar-container {
+    width: 200px;
+    height: 10px;
+    border: 2px solid var(--color-primary);
+    padding: 2px;
+  }
+
+  .loader-bar {
+    width: 0%;
+    height: 100%;
+    background-color: var(--color-primary);
+    animation: loadingBar 1.5s infinite ease-in-out;
+  }
+}

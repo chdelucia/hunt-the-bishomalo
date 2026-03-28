@@ -141,6 +141,12 @@
       "description": "You have won a game having all the achievements in the game. You are a legend!"
     }
   },
+"loading": {
+  "system": "LOADING SYSTEM...",
+  "data": "LOADING DATA...",
+  "achievements": "LOADING ACHIEVEMENTS...",
+  "archive": "INITIALIZING ARCHIVE..."
+},
   "rarity": {
     "common": "Common",
     "uncommon": "Uncommon",

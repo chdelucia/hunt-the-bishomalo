@@ -14,7 +14,6 @@ import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import {
   Cell,
   CELL_CONTENTS,
-  GameSettings,
   Direction,
   GameSound,
   RouteTypes,
@@ -85,37 +84,32 @@ export class GameEngineService implements IGameEngineService {
     this.checkCurrentCell(0, 0);
   }
 
-  /**
-   * Initializes the game board and sets the hunter's initial state for the level.
-   * Optimization: Batch all state updates (settings, board, hunter, status) into
-   * a single store.updateGame() call to minimize localStorage writes and change detection cycles.
-   *
-   * @param overrideSettings Optional settings to use for the new board (used during level transitions).
-   */
-  public initializeGameBoard(overrideSettings?: GameSettings): void {
-    const settings = overrideSettings ?? this._settings();
+  public initializeGameBoard(): void {
+    const settings = this._settings();
     const board: Cell[][] = this.boardGenerator.createBoard(settings);
     this.boardGenerator.placeGold(board, settings);
     this.boardGenerator.placeWumpus(board, settings);
     this.boardGenerator.placePits(board, settings);
     this.boardGenerator.placeArrows(board, settings);
-    this.boardGenerator.placeEvents(board, settings, this.store.lives(), this.store.dragonballs());
-
-    this.store.updateGame({
-      settings,
+    this.boardGenerator.placeEvents(
       board,
-      wumpusKilled: 0,
-      isAlive: true,
-      hasWon: false,
-      hunter: {
-        ...this.store.hunter(),
-        x: 0,
-        y: 0,
-        direction: Direction.RIGHT,
-        arrows: 1,
-        hasGold: false,
-      },
+      settings,
+      this.store.lives(),
+      this.store.dragonballs(),
+    );
+    this.store.updateGame({ board });
+    this.setHunterForNextLevel();
+  }
+
+  private setHunterForNextLevel(): void {
+    this.store.updateHunter({
+      x: 0,
+      y: 0,
+      direction: Direction.RIGHT,
+      arrows: 1,
+      hasGold: false,
     });
+    this.store.updateGame({ wumpusKilled: 0, isAlive: true, hasWon: false });
   }
 
   newGame(): void {
@@ -135,9 +129,8 @@ export class GameEngineService implements IGameEngineService {
       wumpus: this.boardGenerator.calculateWumpus(size, difficulty.luck),
       blackout: this.applyBlackoutChance(),
     };
-
-    // Transitioning to next level now uses a consolidated update within initializeGameBoard
-    this.initializeGameBoard(newSettings);
+    this.store.updateGame({ settings: newSettings });
+    this.initializeGameBoard();
     this.checkCurrentCell(0, 0);
   }
 

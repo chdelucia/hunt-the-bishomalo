@@ -34,7 +34,6 @@ describe('Game', () => {
 
   const GAME_SOUND_MOCK = {
     playSound: jest.fn(),
-    stop: jest.fn(),
   };
 
   const mockGameStore = {
@@ -91,11 +90,6 @@ describe('Game', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should call sound.stop() when destroyed', () => {
-    fixture.destroy();
-    expect(GAME_SOUND_MOCK.stop).toHaveBeenCalled();
   });
 
   it('should compute deathByWumpus correctly', () => {

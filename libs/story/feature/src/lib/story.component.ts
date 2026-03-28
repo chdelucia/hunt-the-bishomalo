@@ -1,12 +1,9 @@
-import { isPlatformBrowser } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  effect,
   inject,
   OnDestroy,
   OnInit,
-  PLATFORM_ID,
   signal,
 } from '@angular/core';
 
@@ -29,7 +26,6 @@ export class StoryComponent implements OnInit, OnDestroy {
   private readonly storyService = inject(GameStoryService);
   private readonly translocoService = inject(TranslocoService);
   private readonly gameStore = inject(GAME_STORE_TOKEN);
-  private readonly platformId = inject(PLATFORM_ID);
 
   readonly story = this.storyService.getStory();
 
@@ -39,14 +35,6 @@ export class StoryComponent implements OnInit, OnDestroy {
 
   private fullText = '';
   private intervalId?: ReturnType<typeof setInterval>;
-
-  constructor() {
-    effect(() => {
-      if (!this.gameStore.soundEnabled() && isPlatformBrowser(this.platformId)) {
-        speechSynthesis.cancel();
-      }
-    });
-  }
 
   ngOnInit(): void {
     if (this.story) {
@@ -58,18 +46,14 @@ export class StoryComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      speechSynthesis.cancel();
-    }
+    speechSynthesis.cancel();
     if (this.intervalId) {
       clearInterval(this.intervalId);
     }
   }
 
   goToGame(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      speechSynthesis.cancel();
-    }
+    speechSynthesis.cancel();
     if (this.story) this.storyService.checkLevelTrigger(this.story);
     this.router.navigate([RouteTypes.HOME]);
   }
@@ -100,11 +84,9 @@ export class StoryComponent implements OnInit, OnDestroy {
     utterBody.pitch = 0.15;
     utterBody.rate = 0.8;
 
-    if (isPlatformBrowser(this.platformId)) {
-      speechSynthesis.cancel();
-    }
+    speechSynthesis.cancel();
 
-    if (this.gameStore.soundEnabled() && isPlatformBrowser(this.platformId)) {
+    if (this.gameStore.soundEnabled()) {
       utterChapter.onend = () => {
         speechSynthesis.speak(utterTitle);
       };

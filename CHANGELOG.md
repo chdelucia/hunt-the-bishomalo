@@ -2,38 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [7.64.12](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.11...v7.64.12) (2026-03-27)
+## [7.65.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.12...v7.65.0) (2026-03-27)
 
 
-### Bug Fixes
+### Features
 
-* **game:** stop sounds on navigation and preserve game state ([a095ffa](https://github.com/chdelucia/hunt-the-bishomalo/commit/a095ffab98bb3c328ab0169fd7b88ecbcbfd6ec8))
-
-### [7.64.11](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.10...v7.64.11) (2026-03-27)
-
-
-### Bug Fixes
-
-* resolve CORS error by serving MFE config from same origin ([52fb612](https://github.com/chdelucia/hunt-the-bishomalo/commit/52fb61293997e3ed97f5ecdacd22ec552efa411c))
-
-### [7.64.10](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.9...v7.64.10) (2026-03-27)
-
-
-### Bug Fixes
-
-* **story:** stop narrator when sound is disabled ([8886225](https://github.com/chdelucia/hunt-the-bishomalo/commit/8886225aff8402584efe0da6d630899e0b4ea6be))
-
-### [7.64.9](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.8...v7.64.9) (2026-03-27)
-
-### [7.64.8](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.7...v7.64.8) (2026-03-27)
-
-### [7.64.7](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.6...v7.64.7) (2026-03-27)
-
-### [7.64.6](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.5...v7.64.6) (2026-03-27)
-
-### [7.64.5](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.4...v7.64.5) (2026-03-26)
-
-### [7.64.4](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.3...v7.64.4) (2026-03-26)
+* improve initial load experience and MFE transitions ([35d789d](https://github.com/chdelucia/hunt-the-bishomalo/commit/35d789d582d8743957848dd0a8f085022b4bddab))
+* improve initial loading experience and optimize MFE performance ([0862e33](https://github.com/chdelucia/hunt-the-bishomalo/commit/0862e33b7d72d88de148e379845a660e8dd1cd7a))
+* improve initial loading experience and optimize MFE transitions ([125279d](https://github.com/chdelucia/hunt-the-bishomalo/commit/125279de316e240fbfb7d29a56ae045550006fed))
+* improve initial loading experience with loaders, placeholders, and preloading ([662724e](https://github.com/chdelucia/hunt-the-bishomalo/commit/662724ebef504ba2aa4f0b5dd2ec65c35635e355))
+* optimize initial load, transitions and preloading coverage ([7d437d5](https://github.com/chdelucia/hunt-the-bishomalo/commit/7d437d5c426ef60ce4a7cc83f1e63f5c5bf19521))
+* optimize loading experience with shell loader and preloading ([d931aa3](https://github.com/chdelucia/hunt-the-bishomalo/commit/d931aa3947ca7634fc4855208d86c1934c5fb793))
+* **shell,achievements:** improve initial loading experience with placeholders and preloading ([d14f6b8](https://github.com/chdelucia/hunt-the-bishomalo/commit/d14f6b832af0adce03293ec2b8b40c494ac2150e))
 
 ### [7.64.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.2...v7.64.3) (2026-03-26)
 

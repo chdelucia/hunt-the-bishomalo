@@ -6,11 +6,6 @@
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="https://bold-mouse-42af.c-heredia-naranjo.workers.dev/favicon.ico" />
-    <!--
-      Security Hotspot Justification:
-      Subresource Integrity (SRI) is not used for Google Fonts because the CSS and font files
-      are dynamically served and can change based on the user's browser and platform.
-    -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://bold-mouse-42af.c-heredia-naranjo.workers.dev" />
@@ -24,7 +19,6 @@
       Explora laberintos, esquiva peligros y atrapa al escurridizo Wumpus antes de que te atrape a ti. ¿Estás listo para el desafío?"
     />
 
-    <!-- Open Graph para Facebook, LinkedIn y más -->
     <meta property="og:title" content="Hunt the Bishomalo - Juego de estrategia retro" />
     <meta
       property="og:description"
@@ -35,14 +29,16 @@
     <meta property="og:image" content="https://bold-mouse-42af.c-heredia-naranjo.workers.dev/screenshot.png" />
   </head>
   <body>
-    <app-root></app-root>
+    <app-root>
+      <div class="initial-loader">
+        <div class="loader-text">CARGANDO SISTEMA...</div>
+        <div class="loader-bar-container">
+          <div class="loader-bar"></div>
+        </div>
+      </div>
+    </app-root>
   </body>
 
-  <!--
-    Security Hotspot Justification:
-    Subresource Integrity (SRI) is not used for Google Tag Manager because the script is
-    dynamically generated and managed by Google.
-  -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-298LKLF45E"></script>
   <script>
     globalThis.dataLayer = globalThis.dataLayer || [];
