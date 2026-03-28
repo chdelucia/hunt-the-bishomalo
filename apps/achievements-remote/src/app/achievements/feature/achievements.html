@@ -7,40 +7,30 @@
       </a>
     </div>
 
-    @defer (on timer(400ms)) {
-      <div class="progress-section">
-        <h2 class="progress-title">
-          <span class="emoji">🏆</span> {{ 'achievements.progressTitle' | transloco }}
-        </h2>
+    <div class="progress-section">
+      <h2 class="progress-title">
+        <span class="emoji">🏆</span> {{ 'achievements.progressTitle' | transloco }}
+      </h2>
 
-        <app-achievement-progress
-          [unlockedCount]="unlockedCount()"
-          [totalCount]="achievements().length"
-          [percentage]="percentage()"
-        />
+      <app-achievement-progress
+        [unlockedCount]="unlockedCount()"
+        [totalCount]="achievements().length"
+        [percentage]="percentage()"
+      />
 
-        <app-achievement-filter [currentFilter]="filter()" (filterChanged)="setFilter($event)" />
-      </div>
+      <app-achievement-filter [currentFilter]="filter()" (filterChanged)="setFilter($event)" />
+    </div>
 
-      <div class="achievement-list">
-        @for (achievement of filteredAchievements(); track achievement.id; let i = $index) {
-          <app-achievement-item [achievement]="achievement" [style.--index]="i" />
-        } @empty {
-          <div class="empty-state">
-            <p class="empty-message">
-              {{ 'achievements.noAchievements' | transloco }}
-            </p>
-          </div>
-        }
-      </div>
-    } @loading {
-      <div class="loading-state">
-        <p>{{ 'loading.achievements' | transloco }}</p>
-      </div>
-    } @placeholder {
-      <div class="placeholder-state">
-        <p>{{ 'loading.archive' | transloco }}</p>
-      </div>
-    }
+    <div class="achievement-list">
+      @for (achievement of filteredAchievements(); track achievement.id; let i = $index) {
+        <app-achievement-item [achievement]="achievement" [style.--index]="i" />
+      } @empty {
+        <div class="empty-state">
+          <p class="empty-message">
+            {{ 'achievements.noAchievements' | transloco }}
+          </p>
+        </div>
+      }
+    </div>
   </div>
 </div>

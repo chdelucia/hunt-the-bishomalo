@@ -4,12 +4,20 @@ import { fetchRemoteConfig, buildMergedManifest } from './app/utils/config-loade
 (async () => {
   // We can't use isDevMode() from @angular/core here to avoid early loading of Angular
   const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-  const config = await fetchRemoteConfig(isDev);
 
-  // We merge local manifest (with shared libs) with the dynamic remotes from CDN
-  const manifest = await buildMergedManifest(config.remotes);
+  const [config, manifest] = await Promise.all([
+    fetchRemoteConfig(isDev),
+    fetch('federation.manifest.json')
+      .then((res) => res.json())
+      .catch(() => ({})),
+  ]);
 
-  await initFederation(manifest);
+  const mergedManifest = {
+    ...(manifest as Record<string, string>),
+    ...config.remotes,
+  };
+
+  await initFederation(mergedManifest);
 
   // Store config in a global variable to be picked up by the app
   (window as unknown as { _REMOTE_CONFIG: unknown })._REMOTE_CONFIG = config;
