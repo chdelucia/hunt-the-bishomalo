@@ -50,7 +50,7 @@ export default [
             },
             {
               sourceTag: 'type:ui',
-              onlyDependOnLibsWithTags: ['type:model', 'type:util', 'type:api'],
+              onlyDependOnLibsWithTags: ['type:model', 'type:util', 'type:api', 'type:data-access'],
             },
             {
               sourceTag: 'type:data-access',
@@ -83,7 +83,16 @@ export default [
             },
             {
               sourceTag: 'scope:achievements',
-              onlyDependOnLibsWithTags: ['scope:achievements', 'type:api', 'type:model', 'type:util', 'type:ui'],
+              onlyDependOnLibsWithTags: [
+                'scope:achievements',
+                'scope:shared',
+                'type:api',
+                'type:model',
+                'type:util',
+                'type:ui',
+                'type:data-access',
+                'type:feature',
+              ],
             },
             {
               sourceTag: 'scope:boss',

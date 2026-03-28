@@ -4,7 +4,7 @@ module.exports = withNativeFederation({
   name: 'achievements-remote',
 
   exposes: {
-    './Routes': './apps/achievements-remote/src/app/achievements/shell/achievements.routes.ts',
+    './Routes': './libs/achievements/shell/src/index.ts',
   },
 
   shared: {
