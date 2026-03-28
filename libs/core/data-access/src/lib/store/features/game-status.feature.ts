@@ -11,6 +11,7 @@ export const initialStatus = {
   message: '',
   wumpusKilled: 0,
   isAlive: true,
+  deathByWumpus: false,
   hasWon: false,
   lives: 8,
 };
@@ -24,6 +25,7 @@ export function withGameStatusFeature() {
         message?: string;
         wumpusKilled?: number;
         isAlive?: boolean;
+        deathByWumpus?: boolean;
         hasWon?: boolean;
         lives?: number;
       }) {

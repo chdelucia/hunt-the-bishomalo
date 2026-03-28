@@ -108,6 +108,7 @@ describe('GameEventService', () => {
       expect(result).toBe(true);
       expect(gameSoundMock.playSound).toHaveBeenCalledWith(GameSound.SCREAM, false);
       expect(achievementMock.activeAchievement).toHaveBeenCalledWith(AchieveTypes.DEATHBYWUMPUES);
+      expect(gameStoreMock.updateGame).toHaveBeenCalledWith({ lives: 2, deathByWumpus: true });
     });
 
     it('should kill player if no effects can be applied', () => {

@@ -63,7 +63,12 @@ export class GameEngineService implements IGameEngineService {
       arrows: 1,
       hasGold: false,
     });
-    this.store.updateGame({ wumpusKilled: 0, isAlive: true, hasWon: false });
+    this.store.updateGame({
+      wumpusKilled: 0,
+      isAlive: true,
+      deathByWumpus: false,
+      hasWon: false,
+    });
     this.statsTracker.resetSteps();
   }
 

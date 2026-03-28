@@ -9,6 +9,7 @@ export class GameFacade implements IGameFacade {
 
   readonly board = this.store.board;
   readonly isAlive = this.store.isAlive;
+  readonly deathByWumpus = this.store.deathByWumpus;
   readonly hasWon = this.store.hasWon;
   readonly settings = this.store.settings;
   readonly message = this.store.message;
@@ -21,10 +22,6 @@ export class GameFacade implements IGameFacade {
   readonly gold = this.store.gold;
   readonly hunter = this.store.hunter;
   readonly blackout = this.store.blackout;
-
-  readonly deathByWumpus = computed(() => {
-    return this.message() === '¡El Wumpus te devoró!';
-  });
 
   moveForward(): void {
     this.engine.moveForward();

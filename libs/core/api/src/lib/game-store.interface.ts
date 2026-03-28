@@ -12,6 +12,7 @@ import {
 export interface IGameStore {
   readonly board: Signal<Cell[][]>;
   readonly isAlive: Signal<boolean>;
+  readonly deathByWumpus: Signal<boolean>;
   readonly hasWon: Signal<boolean>;
   readonly settings: Signal<GameSettings>;
   readonly size: Signal<number>;

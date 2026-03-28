@@ -103,7 +103,10 @@ export class GameEventService implements IGameEventService {
   private handleWumpusDeath(): void {
     this.gameSound.playSound(GameSound.SCREAM, false);
     this.gameAchieve.activeAchievement(AchieveTypes.DEATHBYWUMPUES);
-    this.gameStore.updateGame({ lives: this.gameStore.lives() - 1 });
+    this.gameStore.updateGame({
+      lives: this.gameStore.lives() - 1,
+      deathByWumpus: true,
+    });
   }
 
   private handleDragonball(cell: Cell): void {

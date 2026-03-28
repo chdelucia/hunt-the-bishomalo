@@ -25,6 +25,7 @@ describe('GameFacade', () => {
       gold: signal(0),
       hunter: signal({}),
       blackout: signal(false),
+      deathByWumpus: signal(false),
       toggleSound: jest.fn(),
     };
 
@@ -60,13 +61,10 @@ describe('GameFacade', () => {
     expect(storeMock.toggleSound).toHaveBeenCalled();
   });
 
-  it('should return deathByWumpus true when message is "¡El Wumpus te devoró!"', () => {
-    storeMock.message.set('¡El Wumpus te devoró!');
+  it('should return deathByWumpus from store', () => {
+    storeMock.deathByWumpus.set(true);
     expect(facade.deathByWumpus()).toBe(true);
-  });
-
-  it('should return deathByWumpus false when message is different', () => {
-    storeMock.message.set('Other message');
+    storeMock.deathByWumpus.set(false);
     expect(facade.deathByWumpus()).toBe(false);
   });
 
