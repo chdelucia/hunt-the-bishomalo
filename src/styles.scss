@@ -105,6 +105,9 @@ button {
     cursor: pointer;
     background-color: var(--color-blue-700);
   }
+  &:active {
+    transform: translateY(2px);
+  }
   &:disabled {
     background-color: var(--color-button-disabled);
     cursor: not-allowed;
