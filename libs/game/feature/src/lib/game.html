@@ -1,10 +1,8 @@
-@let board = game.board(); @let boardSize = board.length; @let isAlive = game.isAlive();
-@let hasWon = game.hasWon(); @let settings = game.settings();
-@let currentCell = game.currentCell(); @let message = game.message();
-@let selectedChar = game.selectedChar(); @let size = game.size();
-@let hunter = game.hunter(); @let inventory = game.inventory();
-@let lives = game.lives(); @let difficulty = game.difficulty();
-@let hasGold = game.hasGold();
+@let board = facade.board(); @let boardSize = board.length; @let isAlive = facade.isAlive();
+@let hasWon = facade.hasWon(); @let settings = facade.settings();
+@let currentCell = facade.currentCell(); @let message = facade.message();
+@let hunter = facade.hunter(); @let inventory = facade.inventory();
+@let lives = facade.lives(); @let hasGold = facade.hunter().hasGold;
 
 <main [libVisualEffect]="message" class="main-container">
   <lib-title [blackout]="settings.blackout || false" />
@@ -24,8 +22,8 @@
           [isAlive]="isAlive"
           [hasWon]="hasWon"
           [inventory]="isHunterCell ? inventory : emptyInventory"
-          [selectedChar]="selectedChar"
-          [size]="size"
+          [selectedChar]="settings.selectedChar"
+          [size]="settings.size"
           [blackout]="settings.blackout || false"
           [isHunterCell]="isHunterCell"
           [hunter]="isHunterCell ? hunter : null"
@@ -36,7 +34,7 @@
     @if (deathByWumpus()) {
       @defer (on timer(100ms)) {
         <lib-wumpus-attack-animation
-          [selectedChar]="selectedChar"
+          [selectedChar]="settings.selectedChar"
           (closeAnimation)="handleclose()"
         />
       }
@@ -44,10 +42,10 @@
   </section>
 
   <section class="player-info">
-    <lib-game-level [size]="size"></lib-game-level>
+    <lib-game-level [size]="settings.size"></lib-game-level>
     <lib-game-lives
       [lives]="lives"
-      [maxLives]="difficulty.maxLives"
+      [maxLives]="settings.difficulty.maxLives"
     ></lib-game-lives>
   </section>
 
@@ -55,19 +53,19 @@
     [message]="message"
     [isAlive]="isAlive"
     [hasWon]="hasWon"
-    [size]="size"
-    [maxLevels]="difficulty.maxLevels"
+    [size]="settings.size"
+    [maxLevels]="settings.difficulty.maxLevels"
     [lives]="lives"
-    (restartRequested)="gameEngine.initGame()"
+    (restartRequested)="facade.newGame()"
   />
 
   <lib-mobile-controls
     [isFinish]="hasWon || !isAlive"
-    [soundEnabled]="game.soundEnabled()"
-    (moveForwardRequested)="gameEngine.moveForward()"
-    (turnLeftRequested)="gameEngine.turnLeft()"
-    (turnRightRequested)="gameEngine.turnRight()"
+    [soundEnabled]="facade.soundEnabled()"
+    (moveForwardRequested)="facade.moveForward()"
+    (turnLeftRequested)="facade.turnLeft()"
+    (turnRightRequested)="facade.turnRight()"
     (shootArrowRequested)="handleMobileShootArrow()"
-    (toggleSoundRequested)="game.toggleSound()"
+    (toggleSoundRequested)="facade.toggleSound()"
   />
 </main>
