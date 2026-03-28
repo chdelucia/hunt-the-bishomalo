@@ -210,5 +210,17 @@ describe('GameEventService', () => {
       expect(gameStoreMock.updateHunter).not.toHaveBeenCalled();
       expect(cell.content).toBeDefined();
     });
+
+    it('should do nothing if cell has no matching effect', () => {
+      const cell: Cell = {
+        x: 1,
+        y: 1,
+        visited: true,
+        content: { type: 'unknown' } as any,
+      };
+      service.applyEffectByCellContent(cell);
+
+      expect(gameStoreMock.setMessage).not.toHaveBeenCalled();
+    });
   });
 });

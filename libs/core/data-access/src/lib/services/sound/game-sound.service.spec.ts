@@ -121,4 +121,8 @@ describe('GameSoundService', () => {
 
     expect(audioMock.pause).toHaveBeenCalled();
   });
+
+  it('should not throw when stopWumpus is called before sound is created', () => {
+    expect(() => service.stopWumpus()).not.toThrow();
+  });
 });

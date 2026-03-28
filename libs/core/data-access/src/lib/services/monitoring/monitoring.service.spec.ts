@@ -45,4 +45,12 @@ describe('MonitoringService', () => {
     expect(logRocketService.getSessionURL).toHaveBeenCalled();
     expect(sentryService.setTag).toHaveBeenCalledWith('logrocket_session_url', sessionURL);
   });
+
+  it('should not call setTag if LogRocket session URL is not available', () => {
+    logRocketService.getSessionURL.mockImplementation(() => {});
+
+    service.init();
+
+    expect(sentryService.setTag).not.toHaveBeenCalled();
+  });
 });

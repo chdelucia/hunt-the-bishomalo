@@ -44,6 +44,19 @@ describe('MiniBusService', () => {
 
       service.emit(event, detail);
     });
+
+    it('should not overwrite existing __EVENT_STORE__', () => {
+      const existingStore = { existing: 'data' };
+      (globalThis as any).__EVENT_STORE__ = existingStore;
+
+      service.emit('new-event', 'new-data');
+
+      expect((globalThis as any).__EVENT_STORE__).toBe(existingStore);
+      expect(existingStore as any).toEqual({
+        existing: 'data',
+        'new-event': 'new-data'
+      });
+    });
   });
 
   describe('listen', () => {
@@ -87,21 +100,6 @@ describe('MiniBusService', () => {
       service.emit(event, detail2);
       expect(callback1).toHaveBeenCalledWith(detail2);
       expect(callback2).toHaveBeenCalledWith(detail2);
-    });
-  });
-
-  describe('emit store initialization', () => {
-    it('should not overwrite existing __EVENT_STORE__', () => {
-      const existingStore = { existing: 'data' };
-      (globalThis as any).__EVENT_STORE__ = existingStore;
-
-      service.emit('new-event', 'new-data');
-
-      expect((globalThis as any).__EVENT_STORE__).toBe(existingStore);
-      expect(existingStore as any).toEqual({
-        existing: 'data',
-        'new-event': 'new-data'
-      });
     });
   });
 });

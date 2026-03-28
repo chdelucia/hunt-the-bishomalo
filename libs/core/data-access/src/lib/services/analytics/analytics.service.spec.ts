@@ -51,4 +51,19 @@ describe('AnalyticsService', () => {
       achievement_name: 'First Achievement',
     }));
   });
+
+  describe('gtag not defined', () => {
+    beforeEach(() => {
+      (globalThis as any).gtag = undefined;
+    });
+
+    it('should not throw error on NavigationEnd when gtag is missing', () => {
+      const event = new NavigationEnd(1, '/test', '/test');
+      expect(() => routerEvents.next(event)).not.toThrow();
+    });
+
+    it('should not throw error in sendEvent when gtag is missing', () => {
+      expect(() => service.sendEvent('test')).not.toThrow();
+    });
+  });
 });
