@@ -1,5 +1,5 @@
 import { initFederation } from '@angular-architects/native-federation';
-import { fetchRemoteConfig, buildMergedManifest } from './app/utils/config-loader';
+import { fetchRemoteConfig } from './app/utils/config-loader';
 
 (async () => {
   // We can't use isDevMode() from @angular/core here to avoid early loading of Angular

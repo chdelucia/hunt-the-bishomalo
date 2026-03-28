@@ -19,3 +19,7 @@
 ## 2026-03-27 - [Perception De-duplication in Game Logic]
 **Learning:** Redundant state assessments (like checking multiple adjacent cells for the same hazard) can trigger duplicate expensive side effects (like audio playback) and UI updates (translation lookups), leading to cluttered feedback and wasted CPU cycles.
 **Action:** Use a `Set` to de-duplicate hazard types before processing their associated sensory effects (sounds, messages) to ensure each unique feedback is triggered only once per state change.
+
+## 2026-03-28 - [Local MFE Manifest Optimization]
+**Learning:** Fetching MFE remote configuration from external worker URLs during the bootstrap phase adds unnecessary network latency and creates a potential point of failure. External manifests can also lead to the shell app incorrectly loading itself as a remote if not strictly managed.
+**Action:** Serve MFE remote configuration files locally from the root `public/` directory and use relative paths in `fetchRemoteConfig` to eliminate external latency and ensure the manifest only contains required remotes.

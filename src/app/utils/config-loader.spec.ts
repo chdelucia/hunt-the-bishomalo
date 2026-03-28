@@ -8,31 +8,29 @@ describe('config-loader', () => {
 
   describe('fetchRemoteConfig', () => {
     it('should fetch dev config when isDev is true', async () => {
-      const mockConfig = { remotes: { mfe1: 'url1' } };
+      const mockApiResponse = { mfe1: 'url1' };
+      const expectedConfig = { remotes: { mfe1: 'url1' } };
       global.fetch = jest.fn().mockResolvedValue({
-        json: jest.fn().mockResolvedValue(mockConfig),
+        json: jest.fn().mockResolvedValue(mockApiResponse),
       });
 
       const config = await fetchRemoteConfig(true);
 
-      expect(global.fetch).toHaveBeenCalledWith(
-        'https://bold-mouse-42af.c-heredia-naranjo.workers.dev/mfe-remotes.dev.json',
-      );
-      expect(config).toEqual(mockConfig);
+      expect(global.fetch).toHaveBeenCalledWith('/mfe-remotes.dev.json');
+      expect(config).toEqual(expectedConfig);
     });
 
     it('should fetch prod config when isDev is false', async () => {
-      const mockConfig = { remotes: { mfe1: 'url1' } };
+      const mockApiResponse = { mfe1: 'url1' };
+      const expectedConfig = { remotes: { mfe1: 'url1' } };
       global.fetch = jest.fn().mockResolvedValue({
-        json: jest.fn().mockResolvedValue(mockConfig),
+        json: jest.fn().mockResolvedValue(mockApiResponse),
       });
 
       const config = await fetchRemoteConfig(false);
 
-      expect(global.fetch).toHaveBeenCalledWith(
-        'https://huntthebishomalo.c-heredia-naranjo.workers.dev/mfe-remotes.prod.json',
-      );
-      expect(config).toEqual(mockConfig);
+      expect(global.fetch).toHaveBeenCalledWith('/mfe-remotes.prod.json');
+      expect(config).toEqual(expectedConfig);
     });
 
     it('should use localStorage override if available', async () => {
@@ -48,16 +46,17 @@ describe('config-loader', () => {
 
     it('should warn and continue if localStorage override is invalid', async () => {
       localStorage.setItem('MFE_REMOTES_OVERRIDE', 'invalid json');
-      const mockConfig = { remotes: { mfe1: 'url1' } };
+      const mockApiResponse = { mfe1: 'url1' };
+      const expectedConfig = { remotes: { mfe1: 'url1' } };
       global.fetch = jest.fn().mockResolvedValue({
-        json: jest.fn().mockResolvedValue(mockConfig),
+        json: jest.fn().mockResolvedValue(mockApiResponse),
       });
       const consoleSpy = jest.spyOn(console, 'warn').mockImplementation();
 
       const config = await fetchRemoteConfig(true);
 
       expect(consoleSpy).toHaveBeenCalled();
-      expect(config).toEqual(mockConfig);
+      expect(config).toEqual(expectedConfig);
     });
 
     it('should return empty remotes on fetch failure', async () => {
