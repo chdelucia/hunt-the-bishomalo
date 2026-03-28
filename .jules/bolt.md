@@ -15,3 +15,7 @@
 ## 2026-03-26 - [Loop-level @let Optimization in Grids]
 **Learning:** Identity comparisons (like `currentCell === cell`) or signal reads performed multiple times within a single iteration of a large `@for` loop can be cached using the `@let` syntax. This significantly reduces the total number of operations per change detection cycle, especially in grid-based UIs.
 **Action:** Always hoist repeated loop-specific expressions and signal reads into `@let` variables within the loop body to optimize performance in high-frequency rendering paths.
+
+## 2026-03-27 - [Perception De-duplication in Game Logic]
+**Learning:** Redundant state assessments (like checking multiple adjacent cells for the same hazard) can trigger duplicate expensive side effects (like audio playback) and UI updates (translation lookups), leading to cluttered feedback and wasted CPU cycles.
+**Action:** Use a `Set` to de-duplicate hazard types before processing their associated sensory effects (sounds, messages) to ensure each unique feedback is triggered only once per state change.
