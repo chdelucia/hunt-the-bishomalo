@@ -8,18 +8,21 @@ import { of } from 'rxjs';
 describe('PerceptionService', () => {
   let service: PerceptionService;
   let translocoMock: any;
+  let soundMock: any;
 
   beforeEach(() => {
     translocoMock = {
-      translate: jest.fn(key => key),
+      translate: jest.fn((key) => key),
       selectTranslate: jest.fn(() => of('nothing')),
     };
+
+    soundMock = { playSound: jest.fn() };
 
     TestBed.configureTestingModule({
       providers: [
         PerceptionService,
         { provide: TranslocoService, useValue: translocoMock },
-        { provide: GAME_SOUND_TOKEN, useValue: { playSound: jest.fn() } },
+        { provide: GAME_SOUND_TOKEN, useValue: soundMock },
       ],
     });
     service = TestBed.inject(PerceptionService);
@@ -39,8 +42,23 @@ describe('PerceptionService', () => {
 
   it('should return stench if wumpus is adjacent', (done) => {
     const adjacent: Cell[] = [{ x: 0, y: 1, visited: false, content: { type: 'wumpus' } as any }];
-    service.getPerceptionMessage(adjacent).subscribe(msg => {
+    service.getPerceptionMessage(adjacent).subscribe((msg) => {
       expect(msg).toContain('gameMessages.perceptionStench');
+      done();
+    });
+  });
+
+  it('should de-duplicate hazards and play sound only once', (done) => {
+    const adjacent: Cell[] = [
+      { x: 0, y: 1, visited: false, content: { type: 'wumpus' } as any },
+      { x: 1, y: 0, visited: false, content: { type: 'wumpus' } as any },
+    ];
+
+    service.getPerceptionMessage(adjacent).subscribe((msg) => {
+      // Message should only contain the stench message once
+      expect(msg).toBe('gameMessages.perceptionStench');
+      // Sound should only be played once
+      expect(soundMock.playSound).toHaveBeenCalledTimes(1);
       done();
     });
   });
