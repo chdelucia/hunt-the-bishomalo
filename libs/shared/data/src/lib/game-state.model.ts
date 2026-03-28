@@ -9,6 +9,7 @@ export interface GameState {
   settings: GameSettings;
   wumpusKilled: number;
   isAlive: boolean;
+  deathByWumpus: boolean;
   hasWon: boolean;
   lives: number;
   unlockedChars: Chars[];

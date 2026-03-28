@@ -25,6 +25,7 @@ describe('GameFacade', () => {
       gold: signal(0),
       hunter: signal({}),
       blackout: signal(false),
+      deathByWumpus: signal(false),
       toggleSound: jest.fn(),
     };
 
@@ -58,5 +59,32 @@ describe('GameFacade', () => {
   it('should delegate toggleSound to store', () => {
     facade.toggleSound();
     expect(storeMock.toggleSound).toHaveBeenCalled();
+  });
+
+  it('should return deathByWumpus from store', () => {
+    storeMock.deathByWumpus.set(true);
+    expect(facade.deathByWumpus()).toBe(true);
+    storeMock.deathByWumpus.set(false);
+    expect(facade.deathByWumpus()).toBe(false);
+  });
+
+  it('should delegate turnLeft to engine', () => {
+    facade.turnLeft();
+    expect(engineMock.turnLeft).toHaveBeenCalled();
+  });
+
+  it('should delegate turnRight to engine', () => {
+    facade.turnRight();
+    expect(engineMock.turnRight).toHaveBeenCalled();
+  });
+
+  it('should delegate shootArrow to engine', () => {
+    facade.shootArrow();
+    expect(engineMock.shootArrow).toHaveBeenCalled();
+  });
+
+  it('should delegate newGame to engine', () => {
+    facade.newGame();
+    expect(engineMock.newGame).toHaveBeenCalled();
   });
 });

@@ -19,11 +19,9 @@ import { fetchRemoteConfig } from './app/utils/config-loader';
 
   await initFederation(mergedManifest);
 
-  // Store config in a global variable to be picked up by the app
   (window as unknown as { _REMOTE_CONFIG: unknown })._REMOTE_CONFIG = config;
 
   await import('./bootstrap');
 })().catch((err) => {
-  // eslint-disable-next-line no-console
-  console.error(err);
+  globalThis.console.error(err);
 });

@@ -39,12 +39,10 @@ export const ANALYTICS_SERVICE_TOKEN = new InjectionToken<IAnalyticsService>('AN
 @Injectable({ providedIn: 'root' })
 export class AnalyticsService implements IAnalyticsService {
   sendEvent(eventName: string, params?: Record<string, unknown>): void {
-    // eslint-disable-next-line no-console
     console.log(`[Analytics] Event: ${eventName}`, params);
   }
 
   trackAchievementUnlocked(id: string, title: string): void {
-    // eslint-disable-next-line no-console
     console.log(`[Analytics] Achievement Unlocked: ${id} (${title})`);
   }
 }

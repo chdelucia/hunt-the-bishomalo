@@ -141,4 +141,43 @@ describe('GameEngineService', () => {
     service.shootArrow();
     expect(storeMock.countWumpusKilled).toHaveBeenCalled();
   });
+
+  it('should not shoot if no arrows', () => {
+    storeMock.hunter.set({ x: 0, y: 0, direction: Direction.RIGHT, arrows: 0 });
+    service.shootArrow();
+    expect(storeMock.setMessage).toHaveBeenCalledWith('gameMessages.noArrows');
+  });
+
+  it('should not move if not alive', () => {
+    storeMock.isAlive.set(false);
+    service.moveForward();
+    expect(storeMock.updateHunter).not.toHaveBeenCalled();
+  });
+
+  it('should handle wall collision', () => {
+    storeMock.hunter.set({ x: 0, y: 0, direction: Direction.UP, arrows: 1 });
+    service.moveForward();
+    expect(storeMock.setMessage).toHaveBeenCalledWith('gameMessages.wallCollision');
+    expect(soundMock.playSound).toHaveBeenCalledWith('wall', false);
+  });
+
+  it('should turn left', () => {
+    storeMock.hunter.set({ x: 0, y: 0, direction: Direction.RIGHT, arrows: 1 });
+    service.turnLeft();
+    expect(storeMock.updateHunter).toHaveBeenCalledWith({ direction: Direction.UP });
+  });
+
+  it('should turn right', () => {
+    storeMock.hunter.set({ x: 0, y: 0, direction: Direction.RIGHT, arrows: 1 });
+    service.turnRight();
+    expect(storeMock.updateHunter).toHaveBeenCalledWith({ direction: Direction.DOWN });
+  });
+
+  it('should handle victory when reaching 0,0 with gold', () => {
+    storeMock.currentCell.mockReturnValue({ x: 0, y: 0 });
+    storeMock.hunter.set({ x: 0, y: 0, direction: Direction.RIGHT, arrows: 1, hasGold: true, gold: 0 });
+    service.exit();
+    expect(storeMock.setMessage).toHaveBeenCalledWith('gameMessages.victory');
+    expect(storeMock.updateGame).toHaveBeenCalledWith(expect.objectContaining({ hasWon: true }));
+  });
 });
