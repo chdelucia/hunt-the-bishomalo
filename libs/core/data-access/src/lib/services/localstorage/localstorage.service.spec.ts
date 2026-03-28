@@ -1,5 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { LocalstorageService } from './localstorage.service';
+import { isDevMode } from '@angular/core';
+
+jest.mock('@angular/core', () => ({
+  ...jest.requireActual('@angular/core'),
+  isDevMode: jest.fn(),
+}));
 
 describe('LocalstorageService', () => {
   let service: LocalstorageService;
@@ -26,9 +32,22 @@ describe('LocalstorageService', () => {
       expect(service.getValue('test-key')).toEqual(data);
     });
 
-    it('should return null and log error if parsing fails', () => {
+    it('should return null and log error if parsing fails in dev mode', () => {
+      (isDevMode as jest.Mock).mockReturnValue(true);
+      const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
       localStorage.setItem('test-key', 'invalid-json');
       expect(service.getValue('test-key')).toBeNull();
+      expect(consoleSpy).toHaveBeenCalled();
+      consoleSpy.mockRestore();
+    });
+
+    it('should return null and NOT log error if parsing fails in production mode', () => {
+      (isDevMode as jest.Mock).mockReturnValue(false);
+      const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
+      localStorage.setItem('test-key', 'invalid-json');
+      expect(service.getValue('test-key')).toBeNull();
+      expect(consoleSpy).not.toHaveBeenCalled();
+      consoleSpy.mockRestore();
     });
   });
 

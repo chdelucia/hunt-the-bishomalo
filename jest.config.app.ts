@@ -42,6 +42,7 @@ export default {
     '!src/app/**/*.stories.ts',
     '!src/app/**/*.interface.ts',
     '!src/app/**/*.model.ts',
+    '!src/app/**/index.ts',
     '!src/app/app.config.ts',
     '!src/bootstrap.ts',
   ],

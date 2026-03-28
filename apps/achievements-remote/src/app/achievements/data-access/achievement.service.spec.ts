@@ -118,4 +118,15 @@ describe('AchievementService', () => {
     service.activeAchievement('test-id');
     expect(localStorageMock.setValue).toHaveBeenCalledWith(expect.any(String), ['old-id', 'test-id']);
   });
+
+  it('should log error when loading achievements JSON fails', () => {
+    const consoleSpy = jest.spyOn(console, 'error').mockImplementation();
+    httpMock.get.mockReturnValue(throwError(() => new Error('HTTP error')));
+
+    facadeMock.config.set({ appId: 'test' });
+    TestBed.flushEffects();
+
+    expect(consoleSpy).toHaveBeenCalledWith('Remote AchievementService: Error loading JSON', expect.any(Error));
+    consoleSpy.mockRestore();
+  });
 });

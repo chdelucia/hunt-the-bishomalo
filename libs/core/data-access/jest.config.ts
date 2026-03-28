@@ -22,5 +22,6 @@ export default {
     'src/lib/**/*.ts',
     '!src/lib/**/*.spec.ts',
     '!src/lib/**/*.interface.ts',
+    '!src/lib/**/index.ts',
   ],
 };

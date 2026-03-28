@@ -99,6 +99,13 @@ describe('GameStore (SignalStore)', () => {
     expect(store.lives()).toBe(5);
   });
 
+  it('should update game status with empty object', () => {
+    const initialMessage = store.message();
+    store.updateGame({});
+    expect(store.message()).toBe(initialMessage);
+    expect(localStorageServiceMock.setValue).toHaveBeenCalled();
+  });
+
   it('should count wumpus killed', () => {
     const initial = store.wumpusKilled();
     store.countWumpusKilled();
