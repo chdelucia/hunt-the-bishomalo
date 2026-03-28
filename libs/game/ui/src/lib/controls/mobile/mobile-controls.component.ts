@@ -1,7 +1,7 @@
 import { Component, input, output } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { ASSETS_BASE_URL } from '@hunt-the-bishomalo/shared-data';
+import { ControlButtonComponent } from '../button/control-button.component';
 
 /**
  * @description
@@ -10,7 +10,7 @@ import { ASSETS_BASE_URL } from '@hunt-the-bishomalo/shared-data';
 @Component({
   selector: 'lib-mobile-controls',
   standalone: true,
-  imports: [NgOptimizedImage, TranslocoModule],
+  imports: [TranslocoModule, ControlButtonComponent],
   templateUrl: './mobile-controls.component.html',
   styleUrl: './mobile-controls.component.scss',
 })
