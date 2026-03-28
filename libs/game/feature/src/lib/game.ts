@@ -39,10 +39,6 @@ export class Game {
 
   readonly emptyInventory: GameItem[] = [];
 
-  readonly deathByWumpus = computed(() => {
-    return this.facade.message() === '¡El Wumpus te devoró!';
-  });
-
   handleclose(): void {
     this.facade.newGame();
   }

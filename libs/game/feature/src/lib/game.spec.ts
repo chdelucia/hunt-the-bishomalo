@@ -36,6 +36,7 @@ describe('Game', () => {
       hasGold: false,
     }),
     blackout: signal(false),
+    deathByWumpus: signal(false),
     newGame: jest.fn(),
     shootArrow: jest.fn(),
     moveForward: jest.fn(),
@@ -59,14 +60,14 @@ describe('Game', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should compute deathByWumpus correctly', () => {
-    mockGameFacade.message.set('¡El Wumpus te devoró!');
+  it('should return deathByWumpus from facade', () => {
+    mockGameFacade.deathByWumpus.set(true);
     fixture.detectChanges();
-    expect(component.deathByWumpus()).toBe(true);
+    expect(component.facade.deathByWumpus()).toBe(true);
 
-    mockGameFacade.message.set('Something else');
+    mockGameFacade.deathByWumpus.set(false);
     fixture.detectChanges();
-    expect(component.deathByWumpus()).toBe(false);
+    expect(component.facade.deathByWumpus()).toBe(false);
   });
 
   it('should handle close and call newGame', () => {

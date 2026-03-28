@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { computed, inject, Injectable } from '@angular/core';
 import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { IGameFacade, GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 
@@ -21,6 +21,10 @@ export class GameFacade implements IGameFacade {
   readonly gold = this.store.gold;
   readonly hunter = this.store.hunter;
   readonly blackout = this.store.blackout;
+
+  readonly deathByWumpus = computed(() => {
+    return this.message() === '¡El Wumpus te devoró!';
+  });
 
   moveForward(): void {
     this.engine.moveForward();

@@ -41,7 +41,6 @@ export class AchievementService implements IAchievementService {
           });
         },
         error: (err) => {
-          // eslint-disable-next-line no-console
           console.error('Remote AchievementService: Error loading JSON', err);
         },
       });

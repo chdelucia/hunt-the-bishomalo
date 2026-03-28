@@ -59,4 +59,34 @@ describe('GameFacade', () => {
     facade.toggleSound();
     expect(storeMock.toggleSound).toHaveBeenCalled();
   });
+
+  it('should return deathByWumpus true when message is "¡El Wumpus te devoró!"', () => {
+    storeMock.message.set('¡El Wumpus te devoró!');
+    expect(facade.deathByWumpus()).toBe(true);
+  });
+
+  it('should return deathByWumpus false when message is different', () => {
+    storeMock.message.set('Other message');
+    expect(facade.deathByWumpus()).toBe(false);
+  });
+
+  it('should delegate turnLeft to engine', () => {
+    facade.turnLeft();
+    expect(engineMock.turnLeft).toHaveBeenCalled();
+  });
+
+  it('should delegate turnRight to engine', () => {
+    facade.turnRight();
+    expect(engineMock.turnRight).toHaveBeenCalled();
+  });
+
+  it('should delegate shootArrow to engine', () => {
+    facade.shootArrow();
+    expect(engineMock.shootArrow).toHaveBeenCalled();
+  });
+
+  it('should delegate newGame to engine', () => {
+    facade.newGame();
+    expect(engineMock.newGame).toHaveBeenCalled();
+  });
 });
