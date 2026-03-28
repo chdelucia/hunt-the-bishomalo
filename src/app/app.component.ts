@@ -60,11 +60,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.miniBus.emit('ACHIEVEMENTS_CONFIG', { appId: 'hunt-the-bishomalo' });
 
-    globalThis.setTimeout(() => {
-      loadRemoteModule('achievements', './Routes').catch((err) => {
-        globalThis.console.warn('Preload failed', err);
-      });
-    }, 2000);
+    loadRemoteModule('achievements', './Routes').catch((err) => {
+      globalThis.console.warn('Preload failed', err);
+    });
 
     this.router.events
       .pipe(
