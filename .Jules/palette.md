@@ -7,3 +7,7 @@
 **Learning:** Using Angular `effect()` within services is a powerful way to decouple reactive logic (like sound or auto-achievements) from imperative engine actions. However, `effect()` MUST be called within an injection context, typically the constructor. Attempting to call `effect()` in an initialization method called after the service is instantiated will result in a runtime error unless a manual `Injector` is provided. To avoid memory leaks and ensure the effect's lifecycle is correctly managed, prefer registering effects once in the constructor.
 
 **Action:** Consolidate reactive side effects into specialized services that register Angular `effect()` calls in their constructor, ensuring zero-overhead orchestration of UI and audio responses to state changes.
+## 2025-03-23 - Tactile Feedback for Game Interactions
+**Learning:** In pixel-art games, visual feedback for interactions is crucial for immersion. Adding a simple `translateY(2px)` to the `:active` state of buttons provides a tactile "press" feel that significantly improves the user's perception of responsiveness, especially on mobile devices where audio feedback might be muted.
+
+**Action:** Implement tactile feedback using `transform: translateY(2px)` on the `:active` state for all interactive game elements globally.

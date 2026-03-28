@@ -1,6 +1,7 @@
 import { Component, input, output } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
+import { ASSETS_BASE_URL } from '@hunt-the-bishomalo/shared-data';
 
 /**
  * @description
@@ -14,6 +15,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   styleUrl: './mobile-controls.component.scss',
 })
 export class MobileControlsComponent {
+  protected readonly ASSETS_BASE_URL = ASSETS_BASE_URL;
   isFinish = input.required<boolean>();
   soundEnabled = input.required<boolean>();
 

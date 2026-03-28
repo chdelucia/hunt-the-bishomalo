@@ -27,10 +27,16 @@
   font-family: 'Press Start 2P', monospace;
   box-shadow: 0 0 6px var(--color-neon-alt);
   cursor: pointer;
-  transition: background 0.2s;
+  transition:
+    background 0.2s,
+    transform 0.1s ease-in-out;
 
-  &:hover,
+  &:hover {
+    background: var(--color-cyan-dark);
+  }
+
   &:active {
     background: var(--color-cyan-dark);
+    transform: translateY(2px);
   }
 }

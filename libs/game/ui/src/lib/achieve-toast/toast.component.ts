@@ -1,6 +1,6 @@
 import { Component, effect, input, OnDestroy, signal } from '@angular/core';
 import { NgClass } from '@angular/common';
-import { Achievement } from '@hunt-the-bishomalo/shared-data';
+import { ASSETS_BASE_URL, Achievement } from '@hunt-the-bishomalo/shared-data';
 import { TranslocoModule } from '@jsverse/transloco';
 
 interface ToastData {
@@ -17,6 +17,7 @@ interface ToastData {
   styleUrl: './toast.component.scss',
 })
 export class ToastComponent implements OnDestroy {
+  protected readonly ASSETS_BASE_URL = ASSETS_BASE_URL;
   achievement = input<Achievement | undefined>();
 
   private idCounter = 0;

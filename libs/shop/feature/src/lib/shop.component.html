@@ -7,7 +7,7 @@
       <div class="monedas-inventario">
         <div class="monedas-container">
           <img
-            ngSrc="boardicons/gold.svg"
+            [ngSrc]="ASSETS_BASE_URL + '/boardicons/gold.svg'"
             alt="{{ 'shop.goldAlt' | transloco }}"
             width="40"
             height="40"
@@ -20,7 +20,7 @@
           @for (entry of inventory(); track entry.name) {
           <div class="inventario-item">
             <img
-              [ngSrc]="'shop/' + entry.icon"
+              [ngSrc]="entry.icon"
               alt="{{ entry.name | transloco }}"
               width="40"
               height="40"
@@ -47,7 +47,7 @@
         <div class="producto-content">
           <div class="producto-icono-container">
             <img
-              [ngSrc]="'shop/' + producto.icon"
+              [ngSrc]="producto.icon"
               alt="{{ producto.name | transloco }}"
               width="90"
               height="90"
@@ -59,7 +59,7 @@
             <div class="producto-footer">
               <div class="producto-price">
                 <img
-                  ngSrc="boardicons/gold.svg"
+                  [ngSrc]="ASSETS_BASE_URL + '/boardicons/gold.svg'"
                   alt="{{ 'shop.goldAlt' | transloco }}"
                   width="20"
                   height="20"

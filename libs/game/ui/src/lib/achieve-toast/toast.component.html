@@ -3,8 +3,9 @@
     <div class="toast">
       <img
         class="icon"
-        [src]="'/achievements/' + toast.achievement.svgIcon"
-        [alt]="'achievements.' + toast.achievement.id + '.title' | transloco : { default: toast.achievement.title }"
+        [src]="ASSETS_BASE_URL + '/achievements/' + toast.achievement.svgIcon"
+        alt=""
+        aria-hidden="true"
         [ngClass]="{ 'broken-image': toast.broken }"
         (error)="onImageError(toast.id)"
         width="40"

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Chars, Direction } from '@hunt-the-bishomalo/shared-data';
+import { ASSETS_BASE_URL, Chars, Direction } from '@hunt-the-bishomalo/shared-data';
 
 @Component({
   selector: 'lib-hunter',
@@ -12,6 +12,7 @@ import { Chars, Direction } from '@hunt-the-bishomalo/shared-data';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HunterComponent {
+  protected readonly ASSETS_BASE_URL = ASSETS_BASE_URL;
   readonly direction = input.required<Direction>();
   readonly arrows = input.required<number>();
   readonly selectedChar = input.required<string>();
@@ -40,8 +41,8 @@ export class HunterComponent {
     const char = this.selectedChar();
 
     const extension = char === Chars.DEFAULT ? 'svg' : 'png';
-    if (arrows) return `chars/${char}/bow.${extension}`;
-    return `chars/${char}/bowempty.${extension}`;
+    if (arrows) return `${ASSETS_BASE_URL}/chars/${char}/bow.${extension}`;
+    return `${ASSETS_BASE_URL}/chars/${char}/bowempty.${extension}`;
   });
 
   readonly showGoldIcon = computed(() => this.hasGold() && this.size() < 12);

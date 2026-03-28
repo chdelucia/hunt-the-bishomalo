@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, input, isDevMode, output, signal } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
+import { ASSETS_BASE_URL } from '@hunt-the-bishomalo/shared-data';
 
 /**
  * @description
@@ -15,6 +16,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameControlsComponent {
+  protected readonly ASSETS_BASE_URL = ASSETS_BASE_URL;
   soundEnabled = input.required<boolean>();
   readonly isVisible = signal(false);
 

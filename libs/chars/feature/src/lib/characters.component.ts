@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { Chars, RouteTypes, AchieveTypes } from '@hunt-the-bishomalo/shared-data';
+import { ASSETS_BASE_URL, Chars, RouteTypes, AchieveTypes } from '@hunt-the-bishomalo/shared-data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { Router } from '@angular/router';
 import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
@@ -14,6 +14,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   styleUrl: './characters.component.scss',
 })
 export class CharactersComponent {
+  protected readonly ASSETS_BASE_URL = ASSETS_BASE_URL;
   readonly gameStore = inject(GAME_STORE_TOKEN);
   private readonly router = inject(Router);
   private readonly achieve = inject(ACHIEVEMENT_SERVICE);
