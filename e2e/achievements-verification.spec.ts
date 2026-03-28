@@ -30,7 +30,7 @@ test.describe('Achievements Verification', () => {
 
     // Check if image has correct src and is not broken
     const icon = achievementItem.locator('img.achievement-icon');
-    await expect(icon).toHaveAttribute('src', /.*lara\.png/);
+    await expect(icon).toHaveAttribute('src', /https:\/\/bold-mouse-42af\.c-heredia-naranjo\.workers\.dev\/achievements\/lara\.png/);
   });
 
   test('should show toast with image when achievement unlocked', async ({ page }) => {
@@ -47,6 +47,6 @@ test.describe('Achievements Verification', () => {
     await expect(toast).toBeVisible();
 
     const toastImg = toast.locator('img.icon');
-    await expect(toastImg).toHaveAttribute('src', /.*lara\.png/);
+    await expect(toastImg).toHaveAttribute('src', /https:\/\/bold-mouse-42af\.c-heredia-naranjo\.workers\.dev\/achievements\/lara\.png/);
   });
 });

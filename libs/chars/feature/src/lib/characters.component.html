@@ -20,7 +20,7 @@
         class="sr-only"
       />
       <img
-        [ngSrc]="$index === 0 ? `chars/${char}/bow.svg` : `chars/${char}/bow.png`"
+        [ngSrc]="$index === 0 ? ASSETS_BASE_URL + `/chars/${char}/bow.svg` : ASSETS_BASE_URL + `/chars/${char}/bow.png`"
         [alt]="'charName.' + char | transloco"
         draggable="false"
         width="120"

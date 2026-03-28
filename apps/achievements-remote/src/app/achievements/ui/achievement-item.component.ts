@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
-import { Achievement } from '../data-access/achievement.model';
+import { ASSETS_BASE_URL, Achievement } from '../data-access/achievement.model';
 
 @Component({
   selector: 'app-achievement-item',
@@ -11,6 +11,7 @@ import { Achievement } from '../data-access/achievement.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AchievementItemComponent {
+  protected readonly ASSETS_BASE_URL = ASSETS_BASE_URL;
   readonly achievement = input.required<Achievement>();
 
   readonly rarityClasses: Record<string, string> = {

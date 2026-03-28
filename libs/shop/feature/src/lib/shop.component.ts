@@ -3,7 +3,7 @@ import { NgOptimizedImage } from '@angular/common';
 
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
-import { Product, RouteTypes } from '@hunt-the-bishomalo/shared-data';
+import { ASSETS_BASE_URL, Product, RouteTypes } from '@hunt-the-bishomalo/shared-data';
 import { Router } from '@angular/router';
 import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 
@@ -15,6 +15,7 @@ import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
   styleUrl: './shop.component.scss',
 })
 export class ShopComponent implements OnDestroy {
+  protected readonly ASSETS_BASE_URL = ASSETS_BASE_URL;
   private readonly MESSAGE_TIMEOUT_MS = 3000;
 
   private readonly baseProducts: Product[] = [
@@ -23,28 +24,28 @@ export class ShopComponent implements OnDestroy {
       name: 'product.heart.name',
       description: 'product.heart.description',
       price: 60,
-      icon: 'heart.svg',
+      icon: `${ASSETS_BASE_URL}/shop/heart.svg`,
     },
     {
       effect: 'shield',
       name: 'product.shield.name',
       description: 'product.shield.description',
       price: 150,
-      icon: 'shield.svg',
+      icon: `${ASSETS_BASE_URL}/shop/shield.svg`,
     },
     {
       effect: 'lantern',
       name: 'product.lantern.name',
       description: 'product.lantern.description',
       price: 100,
-      icon: 'lantern.svg',
+      icon: `${ASSETS_BASE_URL}/shop/lantern.svg`,
     },
     {
       effect: 'rewind',
       name: 'product.rewind.name',
       description: 'product.rewind.description',
       price: 200,
-      icon: 'clock.svg',
+      icon: `${ASSETS_BASE_URL}/shop/clock.svg`,
     },
   ];
 
@@ -54,14 +55,14 @@ export class ShopComponent implements OnDestroy {
       name: 'product.dragonball.name',
       description: 'product.dragonball.description',
       price: 125,
-      icon: 'b4.png',
+      icon: `${ASSETS_BASE_URL}/shop/b4.png`,
     },
     {
       effect: 'apple',
       name: 'product.apple.name',
       description: 'product.apple.description',
       price: 85,
-      icon: 'apple.png',
+      icon: `${ASSETS_BASE_URL}/shop/apple.png`,
     },
   ];
 

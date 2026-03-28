@@ -23,6 +23,7 @@ import {
   REMOTE_CONFIG_TOKEN,
   MiniBusService,
 } from '@hunt-the-bishomalo/core/data-access';
+import { ASSETS_BASE_URL } from '@hunt-the-bishomalo/shared-data';
 import {
   GAME_STORE_TOKEN,
   GAME_SOUND_TOKEN,
@@ -111,7 +112,7 @@ class ShellAchievementService implements IAchievementService {
           title: id,
           description: '',
           icon: '',
-          svgIcon: `${id}.png`,
+          svgIcon: `${ASSETS_BASE_URL}/achievements/${id}.png`,
           rarity: 'common',
           unlocked: true,
         };

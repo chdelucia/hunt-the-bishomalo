@@ -59,7 +59,7 @@
         [attr.aria-label]="'charName.' + char | transloco"
       />
       <img
-        [ngSrc]="$index === 0 ? `chars/${char}/bow.svg` : `chars/${char}/bow.png`"
+        [ngSrc]="$index === 0 ? ASSETS_BASE_URL + `/chars/${char}/bow.svg` : ASSETS_BASE_URL + `/chars/${char}/bow.png`"
         alt=""
         draggable="false"
         width="60"
