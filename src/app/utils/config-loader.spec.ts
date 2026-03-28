@@ -16,7 +16,9 @@ describe('config-loader', () => {
 
       const config = await fetchRemoteConfig(true);
 
-      expect(global.fetch).toHaveBeenCalledWith('/mfe-remotes.dev.json');
+      expect(global.fetch).toHaveBeenCalledWith(
+        'https://bold-mouse-42af.c-heredia-naranjo.workers.dev/mfe-remotes.dev.json',
+      );
       expect(config).toEqual(expectedConfig);
     });
 
@@ -29,7 +31,9 @@ describe('config-loader', () => {
 
       const config = await fetchRemoteConfig(false);
 
-      expect(global.fetch).toHaveBeenCalledWith('/mfe-remotes.prod.json');
+      expect(global.fetch).toHaveBeenCalledWith(
+        'https://huntthebishomalo.c-heredia-naranjo.workers.dev/mfe-remotes.prod.json',
+      );
       expect(config).toEqual(expectedConfig);
     });
 

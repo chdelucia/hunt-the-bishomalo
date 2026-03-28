@@ -3,7 +3,9 @@ export interface RemoteConfig {
 }
 
 export async function fetchRemoteConfig(isDev: boolean): Promise<RemoteConfig> {
-  const url = isDev ? '/mfe-remotes.dev.json' : '/mfe-remotes.prod.json';
+  const url = isDev
+    ? 'https://bold-mouse-42af.c-heredia-naranjo.workers.dev/mfe-remotes.dev.json'
+    : 'https://huntthebishomalo.c-heredia-naranjo.workers.dev/mfe-remotes.prod.json';
 
   // Fallback / Debug Override (localStorage) - Restricted to Dev
   if (isDev) {

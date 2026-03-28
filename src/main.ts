@@ -17,7 +17,13 @@ import { fetchRemoteConfig } from './app/utils/config-loader';
     ...config.remotes,
   };
 
-  await initFederation(mergedManifest);
+  // Prevent shell from loading itself as a remote to optimize load time
+  // and avoid redundant remoteEntry requests.
+  const filteredManifest = Object.fromEntries(
+    Object.entries(mergedManifest).filter(([key]) => key !== 'hunt-the-bishomalo'),
+  );
+
+  await initFederation(filteredManifest);
 
   // Store config in a global variable to be picked up by the app
   (window as unknown as { _REMOTE_CONFIG: unknown })._REMOTE_CONFIG = config;
