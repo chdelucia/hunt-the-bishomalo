@@ -21,6 +21,7 @@ import { loadRemoteModule } from '@angular-architects/native-federation';
 
 import { ToastComponent, MenuComponent, GameControlsComponent } from '@hunt-the-bishomalo/game/ui';
 import { GAME_STORE_TOKEN, MINI_BUS_SERVICE_TOKEN } from '@hunt-the-bishomalo/core/api';
+import { REMOTE_CONFIG_TOKEN } from '@hunt-the-bishomalo/core/data-access';
 import { KeyboardManagerService } from '@hunt-the-bishomalo/game/data-access';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
@@ -42,6 +43,7 @@ export class AppComponent implements OnInit {
   readonly router = inject(Router);
   private readonly keyboardManager = inject(KeyboardManagerService);
   private readonly miniBus = inject(MINI_BUS_SERVICE_TOKEN);
+  private readonly remoteConfig = inject(REMOTE_CONFIG_TOKEN, { optional: true });
 
   readonly isRouteLoading = signal(false);
   private loaderTimer: ReturnType<typeof setTimeout> | undefined;
@@ -60,9 +62,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.miniBus.emit('ACHIEVEMENTS_CONFIG', { appId: 'hunt-the-bishomalo' });
 
-    loadRemoteModule('achievements', './Routes').catch((err) => {
-      globalThis.console.warn('Preload failed', err);
-    });
+    this.preloadRemotes();
 
     this.router.events
       .pipe(
@@ -84,5 +84,27 @@ export class AppComponent implements OnInit {
           this.isRouteLoading.set(false);
         }
       });
+  }
+
+  private preloadRemotes(): void {
+    const remotes = this.remoteConfig?.remotes;
+    if (!remotes) return;
+
+    const preloadAction = () => {
+      Object.keys(remotes).forEach((remoteName) => {
+        loadRemoteModule(remoteName, './Routes').catch((err) => {
+          globalThis.console.warn(`Preload failed for remote: ${remoteName}`, err);
+        });
+      });
+    };
+
+    if ('requestIdleCallback' in globalThis) {
+      (globalThis as unknown as { requestIdleCallback: (cb: () => void, opts: { timeout: number }) => void }).requestIdleCallback(
+        preloadAction,
+        { timeout: 5000 },
+      );
+    } else {
+      globalThis.setTimeout(preloadAction, 5000);
+    }
   }
 }
