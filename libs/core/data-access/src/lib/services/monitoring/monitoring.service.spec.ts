@@ -47,7 +47,9 @@ describe('MonitoringService', () => {
   });
 
   it('should not call setTag if LogRocket session URL is not available', () => {
-    logRocketService.getSessionURL.mockImplementation(() => {});
+    logRocketService.getSessionURL.mockImplementation(() => {
+      // No-op for testing
+    });
 
     service.init();
 
