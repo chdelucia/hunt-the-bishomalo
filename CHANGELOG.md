@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.66.4](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.66.3...v7.66.4) (2026-03-28)
+
+
+### Bug Fixes
+
+* correct sonar coverage paths and enable bootstrap.ts coverage ([28eed15](https://github.com/chdelucia/hunt-the-bishomalo/commit/28eed1538fcc9efd56288696e555ff45acdc4106))
+
 ### [7.66.3](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.66.2...v7.66.3) (2026-03-28)
 
 ### [7.66.2](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.66.1...v7.66.2) (2026-03-28)
