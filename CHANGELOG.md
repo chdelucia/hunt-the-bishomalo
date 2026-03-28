@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.66.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.65.0...v7.66.0) (2026-03-28)
+
+
+### Features
+
+* migrate remote config and assets to workers domain ([095a3cc](https://github.com/chdelucia/hunt-the-bishomalo/commit/095a3cc6152f72688663954f46a5542442307daa))
+* migrate remote config and assets to workers domain ([33baded](https://github.com/chdelucia/hunt-the-bishomalo/commit/33badedddce81a78fa5c98abb288546b6c318bab))
+
 ## [7.65.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.64.12...v7.65.0) (2026-03-27)
 
 
