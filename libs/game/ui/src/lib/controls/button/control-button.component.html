@@ -1,0 +1,18 @@
+<button
+  class="control-btn"
+  (click)="onClick()"
+  [attr.aria-label]="ariaLabel()"
+>
+  @if (iconUrl()) {
+    <img
+      [src]="iconUrl()!"
+      width="32"
+      height="32"
+      alt=""
+      aria-hidden="true"
+    />
+  }
+  @if (label()) {
+    <span class="label" aria-hidden="true">{{ label() }}</span>
+  }
+</button>

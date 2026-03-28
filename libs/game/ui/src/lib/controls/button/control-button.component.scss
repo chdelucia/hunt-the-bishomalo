@@ -1,0 +1,28 @@
+.control-btn {
+  font-size: 1rem;
+  background: var(--color-neon-alt);
+  color: var(--color-black);
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Press Start 2P', monospace;
+  box-shadow: 0 0 6px var(--color-neon-alt);
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.1s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 100px;
+
+  &:hover {
+    background: var(--color-cyan-dark);
+  }
+
+  &:active {
+    background: var(--color-cyan-dark);
+    transform: translateY(2px);
+  }
+}

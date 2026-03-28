@@ -1,71 +1,37 @@
 @if (!isFinish()) {
   <div class="mobile-controls">
-    <button
-      class="control-btn"
-      (click)="turnLeft()"
-      [attr.aria-label]="'mobileControls.turnLeftAriaLabel' | transloco"
-    >
-      <img
-        [ngSrc]="ASSETS_BASE_URL + '/rotate-l.svg'"
-        width="32"
-        height="32"
-        alt=""
-        aria-hidden="true"
-        priority
-      />
-    </button>
+    <lib-control-button
+      [iconUrl]="ASSETS_BASE_URL + '/rotate-l.svg'"
+      [ariaLabel]="'mobileControls.turnLeftAriaLabel' | transloco"
+      (clicked)="turnLeft()"
+      [priority]="true"
+    />
 
-    <button
-      class="control-btn"
-      (click)="turnRight()"
-      [attr.aria-label]="'mobileControls.turnRightAriaLabel' | transloco"
-    >
-      <img
-        [ngSrc]="ASSETS_BASE_URL + '/rotate-r.svg'"
-        width="32"
-        height="32"
-        alt=""
-        aria-hidden="true"
-        priority
-      />
-    </button>
+    <lib-control-button
+      [iconUrl]="ASSETS_BASE_URL + '/rotate-r.svg'"
+      [ariaLabel]="'mobileControls.turnRightAriaLabel' | transloco"
+      (clicked)="turnRight()"
+      [priority]="true"
+    />
 
-    <button
-      class="control-btn"
-      (click)="shootArrow()"
-      [attr.aria-label]="'mobileControls.shootArrowAriaLabel' | transloco"
-    >
-      <img
-        [ngSrc]="ASSETS_BASE_URL + '/shoot.svg'"
-        width="32"
-        height="32"
-        alt=""
-        aria-hidden="true"
-        priority
-      />
-    </button>
+    <lib-control-button
+      [iconUrl]="ASSETS_BASE_URL + '/shoot.svg'"
+      [ariaLabel]="'mobileControls.shootArrowAriaLabel' | transloco"
+      (clicked)="shootArrow()"
+      [priority]="true"
+    />
 
-    <button
-      class="control-btn"
-      (click)="moveForward()"
-      [attr.aria-label]="'mobileControls.moveForwardAriaLabel' | transloco"
-    >
-      <img
-        ngSrc="go.svg"
-        width="32"
-        height="32"
-        alt=""
-        aria-hidden="true"
-        priority
-      />
-    </button>
+    <lib-control-button
+      [iconUrl]="ASSETS_BASE_URL + '/go.svg'"
+      [ariaLabel]="'mobileControls.moveForwardAriaLabel' | transloco"
+      (clicked)="moveForward()"
+      [priority]="true"
+    />
 
-    <button
-      class="control-btn"
-      (click)="toggleSound()"
-      [attr.aria-label]="(soundEnabled() ? 'controls.muteSound' : 'controls.unmuteSound') | transloco"
-    >
-      <span class="sound-icon" aria-hidden="true">{{ soundEnabled() ? '🔊' : '🔇' }}</span>
-    </button>
+    <lib-control-button
+      [label]="soundEnabled() ? '🔊' : '🔇'"
+      [ariaLabel]="(soundEnabled() ? 'controls.muteSound' : 'controls.unmuteSound') | transloco"
+      (clicked)="toggleSound()"
+    />
   </div>
 }

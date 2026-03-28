@@ -57,6 +57,78 @@ export const BlackoutWithLantern: Story = {
   },
 };
 
+export const Arrow: Story = {
+  args: {
+    cell: {
+      x: 0,
+      y: 0,
+      visited: true,
+      content: { type: 'arrow', image: 'boardicons/arrow.svg', alt: 'arrow', ariaLabel: 'arrow' },
+    },
+    isAlive: true,
+    hasWon: false,
+    inventory: [],
+    selectedChar: Chars.DEFAULT,
+    size: 4,
+    blackout: false,
+    isHunterCell: false,
+  },
+};
+
+export const Heart: Story = {
+  args: {
+    cell: {
+      x: 0,
+      y: 0,
+      visited: true,
+      content: { type: 'heart', image: 'boardicons/heart.svg', alt: 'extra life', ariaLabel: 'heart' },
+    },
+    isAlive: true,
+    hasWon: false,
+    inventory: [],
+    selectedChar: Chars.DEFAULT,
+    size: 4,
+    blackout: false,
+    isHunterCell: false,
+  },
+};
+
+export const Dragonball: Story = {
+  args: {
+    cell: {
+      x: 0,
+      y: 0,
+      visited: true,
+      content: { type: 'dragonball', image: 'boardicons/b4.png', alt: 'dragonball', ariaLabel: 'dragonball' },
+    },
+    isAlive: true,
+    hasWon: false,
+    inventory: [],
+    selectedChar: Chars.DEFAULT,
+    size: 4,
+    blackout: false,
+    isHunterCell: false,
+  },
+};
+
+export const PitVisible: Story = {
+  args: {
+    cell: {
+      x: 0,
+      y: 0,
+      visited: true,
+      content: { type: 'pit', image: 'boardicons/pit.svg', alt: 'pit', ariaLabel: 'pit' },
+    },
+    isAlive: true,
+    hasWon: false,
+    inventory: [],
+    selectedChar: Chars.DEFAULT,
+    size: 4,
+    blackout: false,
+    isHunterCell: false,
+  },
+};
+
 export const Wumpus: Story = {
   args: {
     cell: {
