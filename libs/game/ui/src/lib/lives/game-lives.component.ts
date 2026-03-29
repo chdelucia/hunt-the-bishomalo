@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
 @Component({
   selector: 'lib-game-lives',
@@ -6,6 +6,7 @@ import { Component, computed, input } from '@angular/core';
   standalone: true,
   templateUrl: './game-lives.component.html',
   styleUrl: './game-lives.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameLivesComponent {
   readonly lives = input.required<number>();

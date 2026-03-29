@@ -1,7 +1,8 @@
+@let currentLives = lives();
 @for (item of livesArray(); track $index) {
   <svg
     class="heart"
-    [class.active]="lives() > $index"
+    [class.active]="currentLives > $index"
     width="24"
     height="24"
     viewBox="0 0 16 16"

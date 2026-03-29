@@ -35,7 +35,7 @@ describe('config-loader', () => {
       expect(config).toEqual(mockConfig);
     });
 
-    it('should use localStorage override if available', async () => {
+    it('should use localStorage override if available and isDev is true', async () => {
       const mockOverride = { remotes: { override: 'local' } };
       localStorage.setItem('MFE_REMOTES_OVERRIDE', JSON.stringify(mockOverride));
       global.fetch = jest.fn();
@@ -46,7 +46,21 @@ describe('config-loader', () => {
       expect(global.fetch).not.toHaveBeenCalled();
     });
 
-    it('should warn and continue if localStorage override is invalid', async () => {
+    it('should ignore localStorage override if isDev is false', async () => {
+      const mockOverride = { remotes: { override: 'local' } };
+      localStorage.setItem('MFE_REMOTES_OVERRIDE', JSON.stringify(mockOverride));
+      const mockConfig = { remotes: { mfe1: 'url1' } };
+      global.fetch = jest.fn().mockResolvedValue({
+        json: jest.fn().mockResolvedValue(mockConfig),
+      });
+
+      const config = await fetchRemoteConfig(false);
+
+      expect(config).toEqual(mockConfig);
+      expect(global.fetch).toHaveBeenCalled();
+    });
+
+    it('should warn and continue if localStorage override is invalid (in dev)', async () => {
       localStorage.setItem('MFE_REMOTES_OVERRIDE', 'invalid json');
       const mockConfig = { remotes: { mfe1: 'url1' } };
       global.fetch = jest.fn().mockResolvedValue({

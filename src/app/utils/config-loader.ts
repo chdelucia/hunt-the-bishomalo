@@ -7,14 +7,16 @@ export async function fetchRemoteConfig(isDev: boolean): Promise<RemoteConfig> {
     ? 'https://bold-mouse-42af.c-heredia-naranjo.workers.dev/mfe-remotes.dev.json'
     : 'https://huntthebishomalo.c-heredia-naranjo.workers.dev/mfe-remotes.prod.json';
 
-  // Fallback / Debug Override (localStorage)
-  const localOverride = localStorage.getItem('MFE_REMOTES_OVERRIDE');
-  if (localOverride) {
-    try {
-      return JSON.parse(localOverride) as RemoteConfig;
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.warn('Invalid MFE_REMOTES_OVERRIDE found in localStorage', e);
+  // Fallback / Debug Override (localStorage) - only for dev
+  if (isDev) {
+    const localOverride = localStorage.getItem('MFE_REMOTES_OVERRIDE');
+    if (localOverride) {
+      try {
+        return JSON.parse(localOverride) as RemoteConfig;
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.warn('Invalid MFE_REMOTES_OVERRIDE found in localStorage', e);
+      }
     }
   }
 
