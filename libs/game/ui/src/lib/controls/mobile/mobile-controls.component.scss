@@ -8,4 +8,8 @@
   padding: 1rem;
   z-index: 1000;
   position: relative;
+
+  @media (min-width: 1025px) {
+    display: none;
+  }
 }
