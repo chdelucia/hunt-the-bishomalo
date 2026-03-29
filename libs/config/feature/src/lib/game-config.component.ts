@@ -1,9 +1,18 @@
-import { ChangeDetectionStrategy, Component, inject, isDevMode } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, inject, isDevMode, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule } from '@jsverse/transloco';
 import { GAME_SOUND_TOKEN, GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
+import {
+  form,
+  FormField,
+  submit,
+  required,
+  maxLength,
+  pattern,
+  min,
+  max,
+} from '@angular/forms/signals';
 import {
   ASSETS_BASE_URL,
   Chars,
@@ -18,7 +27,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'lib-game-config',
   standalone: true,
-  imports: [ReactiveFormsModule, NgOptimizedImage, TranslocoModule],
+  imports: [NgOptimizedImage, TranslocoModule, FormField],
   templateUrl: './game-config.component.html',
   styleUrls: ['./game-config.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,31 +36,40 @@ export class GameConfigComponent {
   protected readonly ASSETS_BASE_URL = ASSETS_BASE_URL;
   readonly gameStore = inject(GAME_STORE_TOKEN);
   private readonly gameEngine = inject(GAME_ENGINE_TOKEN);
-  private readonly fb = inject(FormBuilder);
   private readonly gameSound = inject(GAME_SOUND_TOKEN);
   private readonly router = inject(Router);
 
   isDevMode = isDevMode();
   readonly configs = DIFFICULTY_CONFIGS as Record<string, GameDificulty>;
 
-  configForm: FormGroup = this.fb.group({
-    player: [
-      'Kukuxumushu',
-      [Validators.required, Validators.maxLength(20), Validators.pattern(/^[a-zA-Z0-9\s\-_]*$/)],
-    ],
-    size: [1, [Validators.required, Validators.min(1), Validators.max(20)]],
-    selectedChar: [Chars.DEFAULT, [Validators.required]],
-    difficulty: [DifficultyTypes.EASY, [Validators.required]],
+  model = signal({
+    player: 'Kukuxumushu',
+    size: 1,
+    selectedChar: Chars.DEFAULT as Chars,
+    difficulty: DifficultyTypes.EASY as DifficultyTypes,
+  });
+
+  configForm = form(this.model, (s) => {
+    required(s.player);
+    maxLength(s.player, 20);
+    pattern(s.player, /^[a-zA-Z0-9\s\-_]*$/);
+
+    required(s.size);
+    min(s.size, 1);
+    max(s.size, 20);
+
+    required(s.selectedChar);
+    required(s.difficulty);
   });
 
   submitForm(): void {
-    if (this.configForm.valid) {
-      const difficulty = this.configForm.value.difficulty as DifficultyTypes;
+    submit(this.configForm, async () => {
+      const { difficulty, size } = this.model();
 
       this.gameStore.updateGame({
         settings: {
-          ...this.configForm.value,
-          size: this.configForm.value.size + 3,
+          ...this.model(),
+          size: size + 3,
           blackout: false,
           difficulty: DIFFICULTY_CONFIGS[difficulty],
           startTime: new Date().toISOString(),
@@ -61,7 +79,7 @@ export class GameConfigComponent {
 
       this.gameEngine.initGame();
       this.goToStory();
-    }
+    });
   }
 
   goToStory(): void {
@@ -72,7 +90,7 @@ export class GameConfigComponent {
 
   selectChar(char: Chars): void {
     const matchingSound: GameSound = GameSound[char.toUpperCase() as keyof typeof GameSound];
-    this.configForm.get('selectedChar')?.setValue(char);
+    this.model.update((m) => ({ ...m, selectedChar: char }));
     this.gameSound.stop();
     this.gameSound.playSound(matchingSound, false);
   }

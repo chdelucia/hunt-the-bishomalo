@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   AppWumpusAttackAnimationComponent,
   BlackoutComponent,
@@ -39,7 +39,7 @@ export class Game {
 
   readonly emptyInventory: GameItem[] = [];
 
-  handleclose(): void {
+  handleClose(): void {
     this.facade.newGame();
   }
 

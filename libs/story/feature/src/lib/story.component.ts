@@ -2,9 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   inject,
-  OnDestroy,
-  OnInit,
   signal,
+  DestroyRef,
 } from '@angular/core';
 
 import { Router } from '@angular/router';
@@ -21,11 +20,12 @@ import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
   styleUrl: './story.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class StoryComponent implements OnInit, OnDestroy {
+export class StoryComponent {
   private readonly router = inject(Router);
   private readonly storyService = inject(GameStoryService);
   private readonly translocoService = inject(TranslocoService);
   private readonly gameStore = inject(GAME_STORE_TOKEN);
+  private readonly destroyRef = inject(DestroyRef);
 
   readonly story = this.storyService.getStory();
 
@@ -36,20 +36,20 @@ export class StoryComponent implements OnInit, OnDestroy {
   private fullText = '';
   private intervalId?: ReturnType<typeof setInterval>;
 
-  ngOnInit(): void {
+  constructor() {
     if (this.story) {
       this.fullText = this.story.text;
       this.startReading(this.fullText);
     } else {
       this.goToGame();
     }
-  }
 
-  ngOnDestroy(): void {
-    speechSynthesis.cancel();
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
+    this.destroyRef.onDestroy(() => {
+      speechSynthesis.cancel();
+      if (this.intervalId) {
+        clearInterval(this.intervalId);
+      }
+    });
   }
 
   goToGame(): void {

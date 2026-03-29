@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, signal, inject } from '@angular/core';
+import { Component, signal, inject, DestroyRef } from '@angular/core';
 
 import { Router, RouterModule } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -13,7 +13,7 @@ import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
   templateUrl: './end-credits.component.html',
   styleUrl: './end-credits.component.scss',
 })
-export class EndCreditsComponent implements OnInit, OnDestroy {
+export class EndCreditsComponent {
   readonly scrollPosition = signal(0);
   readonly autoScroll = signal(true);
   readonly MAX_SCROLL_POSITION = 1350;
@@ -39,6 +39,18 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
   private readonly gameEngine = inject(GAME_ENGINE_TOKEN);
   private readonly gameSound = inject(GAME_SOUND_TOKEN);
   protected readonly store = inject(GAME_STORE_TOKEN);
+  private readonly destroyRef = inject(DestroyRef);
+
+  constructor() {
+    this.gameSound.stop();
+    this.gameSound.playSound(GameSound.GOKU, false);
+    this.startAutoScroll();
+
+    this.destroyRef.onDestroy(() => {
+      cancelAnimationFrame(this.animationFrameId);
+      this.gameSound.stop();
+    });
+  }
 
   private startAutoScroll(): void {
     const animate = (time: number) => {
@@ -62,17 +74,6 @@ export class EndCreditsComponent implements OnInit, OnDestroy {
     };
 
     this.animationFrameId = requestAnimationFrame(animate);
-  }
-
-  ngOnInit(): void {
-    this.gameSound.stop();
-    this.gameSound.playSound(GameSound.GOKU, false);
-    this.startAutoScroll();
-  }
-
-  ngOnDestroy(): void {
-    cancelAnimationFrame(this.animationFrameId);
-    this.gameSound.stop();
   }
 
   newGame(): void {

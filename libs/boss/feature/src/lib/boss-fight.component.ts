@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
 import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
@@ -14,7 +14,7 @@ import { BossStore, BossCell } from './boss-store';
   styleUrl: './boss-fight.component.scss',
   providers: [BossStore],
 })
-export class BossFightComponent implements OnInit {
+export class BossFightComponent {
   readonly gameStore = inject(GAME_STORE_TOKEN);
   readonly bossStore = inject(BossStore);
   private readonly router = inject(Router);
@@ -22,7 +22,7 @@ export class BossFightComponent implements OnInit {
 
   readonly _settings = this.gameStore.settings;
 
-  ngOnInit(): void {
+  constructor() {
     this.bossStore.resetGame(this._settings());
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ElementRef, viewChild, signal, inject } from '@angular/core';
+import { Component, ElementRef, viewChild, signal, inject, DestroyRef } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AchieveTypes } from '@hunt-the-bishomalo/shared-data';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
@@ -10,7 +10,7 @@ import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
   templateUrl: './jedi-mind-trick-animation.component.html',
   styleUrls: ['./jedi-mind-trick-animation.component.scss'],
 })
-export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
+export class JediMindTrickAnimationComponent {
   readonly audioContainer = viewChild<ElementRef>('audioContainer');
 
   readonly step = signal(1);
@@ -20,8 +20,9 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
   private readonly timers: ReturnType<typeof setTimeout>[] = [];
 
   private readonly achieveService = inject(ACHIEVEMENT_SERVICE);
+  private readonly destroyRef = inject(DestroyRef);
 
-  ngOnInit(): void {
+  constructor() {
     const schedule = [
       { delay: 500, action: () => this.step.set(2) },
       {
@@ -56,18 +57,18 @@ export class JediMindTrickAnimationComponent implements OnInit, OnDestroy {
         }, item.delay),
       );
     });
-  }
 
-  ngOnDestroy(): void {
-    this.timers.forEach((timer) => clearTimeout(timer));
-    if (this.audioContext && this.audioContext.state !== 'closed') {
-      this.audioContext.close();
-    }
-    if (globalThis.speechSynthesis) {
-      globalThis.speechSynthesis.cancel();
-    }
+    this.destroyRef.onDestroy(() => {
+      this.timers.forEach((timer) => clearTimeout(timer));
+      if (this.audioContext && this.audioContext.state !== 'closed') {
+        this.audioContext.close();
+      }
+      if (globalThis.speechSynthesis) {
+        globalThis.speechSynthesis.cancel();
+      }
 
-    this.achieveService.activeAchievement(AchieveTypes.JEDI);
+      this.achieveService.activeAchievement(AchieveTypes.JEDI);
+    });
   }
 
   playForceSound(): void {

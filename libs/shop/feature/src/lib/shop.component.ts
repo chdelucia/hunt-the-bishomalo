@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnDestroy, signal } from '@angular/core';
+import { Component, computed, inject, signal, DestroyRef } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
@@ -14,7 +14,7 @@ import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss',
 })
-export class ShopComponent implements OnDestroy {
+export class ShopComponent {
   protected readonly ASSETS_BASE_URL = ASSETS_BASE_URL;
   private readonly MESSAGE_TIMEOUT_MS = 3000;
 
@@ -71,6 +71,7 @@ export class ShopComponent implements OnDestroy {
   private readonly gameEngine = inject(GAME_ENGINE_TOKEN);
   private readonly router = inject(Router);
   private readonly transloco = inject(TranslocoService);
+  private readonly destroyRef = inject(DestroyRef);
 
   readonly gold = this.gameStore.gold;
   readonly inventory = this.gameStore.inventory;
@@ -89,6 +90,14 @@ export class ShopComponent implements OnDestroy {
     }
     return this.baseProducts;
   });
+
+  constructor() {
+    this.destroyRef.onDestroy(() => {
+      if (this.messageTimeout) {
+        clearTimeout(this.messageTimeout);
+      }
+    });
+  }
 
   buyProduct(product: Product): void {
     const gold = this.gold();
@@ -164,11 +173,5 @@ export class ShopComponent implements OnDestroy {
       gold: gold - price,
       inventory: [...inventory, product],
     });
-  }
-
-  ngOnDestroy(): void {
-    if (this.messageTimeout) {
-      clearTimeout(this.messageTimeout);
-    }
   }
 }
