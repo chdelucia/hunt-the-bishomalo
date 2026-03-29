@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 
 import { TranslocoModule } from '@jsverse/transloco';
 
@@ -7,6 +7,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   imports: [TranslocoModule],
   templateUrl: './game-level.component.html',
   styleUrl: './game-level.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GameLevelComponent {
   readonly size = input.required<number>();

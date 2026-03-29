@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
 import { ASSETS_BASE_URL } from '@hunt-the-bishomalo/shared-data';
 import { ControlButtonComponent } from '../button/control-button.component';
@@ -13,6 +13,7 @@ import { ControlButtonComponent } from '../button/control-button.component';
   imports: [TranslocoModule, ControlButtonComponent],
   templateUrl: './mobile-controls.component.html',
   styleUrl: './mobile-controls.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MobileControlsComponent {
   protected readonly ASSETS_BASE_URL = ASSETS_BASE_URL;

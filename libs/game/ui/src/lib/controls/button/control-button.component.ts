@@ -1,11 +1,13 @@
-import { Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'lib-control-button',
   standalone: true,
-  imports: [],
+  imports: [NgOptimizedImage],
   templateUrl: './control-button.component.html',
   styleUrl: './control-button.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ControlButtonComponent {
   ariaLabel = input.required<string>();
