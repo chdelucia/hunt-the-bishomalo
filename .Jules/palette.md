@@ -11,3 +11,8 @@
 **Learning:** In pixel-art games, visual feedback for interactions is crucial for immersion. Adding a simple `translateY(2px)` to the `:active` state of buttons provides a tactile "press" feel that significantly improves the user's perception of responsiveness, especially on mobile devices where audio feedback might be muted.
 
 **Action:** Implement tactile feedback using `transform: translateY(2px)` on the `:active` state for all interactive game elements globally.
+
+## 2026-03-29 - Global Motion Accessibility Reset
+**Learning:** For users with vestibular disorders or motion sensitivities, animations like the blinking "New Game" button or rapid slide transitions can be disorienting or physically distressing. Implementing a global `prefers-reduced-motion: reduce` media query in the base stylesheet that resets animation and transition durations to a near-zero value ensures that the application remains accessible without requiring manual intervention in every component. This pattern is a fundamental accessibility "fail-safe" for motion-intensive interfaces like games.
+
+**Action:** Always include a global `prefers-reduced-motion` reset in the main stylesheet and specifically target high-intensity animations (like blinking or flashing) in component-level styles.

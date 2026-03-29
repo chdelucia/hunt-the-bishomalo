@@ -66,6 +66,10 @@ import { TranslocoModule } from '@jsverse/transloco';
       &:hover {
         cursor: pointer;
       }
+
+      @media (prefers-reduced-motion: reduce) {
+        animation: none;
+      }
     }
     @keyframes blink {
       20% {
