@@ -37,6 +37,7 @@ describe('Game', () => {
     }),
     blackout: signal(false),
     deathByWumpus: signal(false),
+    hasGold: signal(false),
     newGame: jest.fn(),
     shootArrow: jest.fn(),
     moveForward: jest.fn(),
@@ -71,7 +72,7 @@ describe('Game', () => {
   });
 
   it('should handle close and call newGame', () => {
-    component.handleclose();
+    component.handleClose();
     expect(mockGameFacade.newGame).toHaveBeenCalled();
   });
 

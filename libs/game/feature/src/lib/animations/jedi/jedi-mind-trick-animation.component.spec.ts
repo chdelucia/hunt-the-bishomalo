@@ -97,7 +97,7 @@ describe('JediMindTrickAnimationComponent', () => {
   });
 
   it('should cleanup on destroy and call achievement service', () => {
-    component.ngOnDestroy();
+    fixture.destroy();
     expect(mockSpeechSynthesis.cancel).toHaveBeenCalled();
     expect(mockAchievementService.activeAchievement).toHaveBeenCalledWith(AchieveTypes.JEDI);
   });
@@ -115,25 +115,25 @@ describe('JediMindTrickAnimationComponent', () => {
     expect(mockSpeechSynthesis.speak).toHaveBeenCalledTimes(3);
   });
 
-  it('should handle ngOnDestroy when audioContext is null', () => {
+  it('should handle onDestroy when audioContext is null', () => {
     (component as any).audioContext = null;
     mockAudioContext.close.mockClear();
-    component.ngOnDestroy();
+    fixture.destroy();
     expect(mockAudioContext.close).not.toHaveBeenCalled();
     expect(mockAchievementService.activeAchievement).toHaveBeenCalled();
   });
 
-  it('should handle ngOnDestroy when audioContext is closed', () => {
+  it('should handle onDestroy when audioContext is closed', () => {
     const closedAudioContext = { ...mockAudioContext, state: 'closed', close: jest.fn() };
     (component as any).audioContext = closedAudioContext;
-    component.ngOnDestroy();
+    fixture.destroy();
     expect(closedAudioContext.close).not.toHaveBeenCalled();
   });
 
-  it('should handle ngOnDestroy when speechSynthesis is missing', () => {
+  it('should handle onDestroy when speechSynthesis is missing', () => {
     const originalSpeechSynthesis = globalThis.speechSynthesis;
     (globalThis as any).speechSynthesis = undefined;
-    component.ngOnDestroy();
+    fixture.destroy();
     expect(mockAchievementService.activeAchievement).toHaveBeenCalled();
     (globalThis as any).speechSynthesis = originalSpeechSynthesis;
   });

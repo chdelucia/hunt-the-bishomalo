@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameConfigComponent } from './game-config.component';
-import { ReactiveFormsModule } from '@angular/forms';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { GAME_SOUND_TOKEN, GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { provideRouter, Router } from '@angular/router';
 import { Chars, DifficultyTypes, RouteTypes, GameSound } from '@hunt-the-bishomalo/shared-data';
+import { signal } from '@angular/core';
 
 const mockGameEngine = {
   initGame: jest.fn(),
@@ -24,7 +24,7 @@ describe('GameConfigComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GameConfigComponent, ReactiveFormsModule, getTranslocoTestingModule()],
+      imports: [GameConfigComponent, getTranslocoTestingModule()],
       providers: [
         { provide: GAME_ENGINE_TOKEN, useValue: mockGameEngine },
         { provide: GAME_SOUND_TOKEN, useValue: mockGameSound },
@@ -33,6 +33,7 @@ describe('GameConfigComponent', () => {
           useValue: {
             updateGame: jest.fn(),
             unlockedChars: jest.fn().mockReturnValue([]),
+            soundEnabled: signal(true),
           },
         },
         provideRouter([
@@ -57,7 +58,7 @@ describe('GameConfigComponent', () => {
   });
 
   it('should initialize with default form values', () => {
-    expect(component.configForm.value).toEqual({
+    expect(component.model()).toEqual({
       player: 'Kukuxumushu',
       size: 1,
       selectedChar: Chars.DEFAULT,
@@ -66,26 +67,30 @@ describe('GameConfigComponent', () => {
   });
 
   it('should not submit if form is invalid', () => {
-    component.configForm.patchValue({ player: '' });
+    component.model.update(m => ({ ...m, player: '' }));
+    fixture.detectChanges();
     component.submitForm();
     expect(mockGameEngine.initGame).not.toHaveBeenCalled();
   });
 
   it('should be invalid if player name exceeds 20 characters', () => {
-    component.configForm.patchValue({ player: 'a'.repeat(21) });
-    expect(component.configForm.get('player')?.valid).toBeFalsy();
-    expect(component.configForm.get('player')?.hasError('maxlength')).toBeTruthy();
+    component.model.update(m => ({ ...m, player: 'a'.repeat(21) }));
+    fixture.detectChanges();
+    expect(component.configForm.player().valid()).toBeFalsy();
+    expect(component.configForm.player().errors()[0].kind).toBe('maxLength');
   });
 
   it('should be invalid if player name contains prohibited characters', () => {
-    component.configForm.patchValue({ player: 'Player!@#' });
-    expect(component.configForm.get('player')?.valid).toBeFalsy();
-    expect(component.configForm.get('player')?.hasError('pattern')).toBeTruthy();
+    component.model.update(m => ({ ...m, player: 'Player!@#' }));
+    fixture.detectChanges();
+    expect(component.configForm.player().valid()).toBeFalsy();
+    expect(component.configForm.player().errors()[0].kind).toBe('pattern');
   });
 
   it('should be valid with alphanumeric characters, spaces, hyphens and underscores', () => {
-    component.configForm.patchValue({ player: 'Player 1-abc_XYZ' });
-    expect(component.configForm.get('player')?.valid).toBeTruthy();
+    component.model.update(m => ({ ...m, player: 'Player 1-abc_XYZ' }));
+    fixture.detectChanges();
+    expect(component.configForm.player().valid()).toBeTruthy();
   });
 
   it('should submit and navigate if form is valid', () => {
@@ -94,16 +99,18 @@ describe('GameConfigComponent', () => {
 
     component.submitForm();
 
-    expect(updateGameSpy).toHaveBeenCalled();
-    expect(mockGameEngine.initGame).toHaveBeenCalled();
-    expect(navigateSpy).toHaveBeenCalledWith([RouteTypes.STORY], {
-      state: { fromSecretPath: true },
+    setTimeout(() => {
+      expect(updateGameSpy).toHaveBeenCalled();
+      expect(mockGameEngine.initGame).toHaveBeenCalled();
+      expect(navigateSpy).toHaveBeenCalledWith([RouteTypes.STORY], {
+        state: { fromSecretPath: true },
+      });
     });
   });
 
   it('should select character and play sound', () => {
     component.selectChar(Chars.LINK);
-    expect(component.configForm.get('selectedChar')?.value).toBe(Chars.LINK);
+    expect(component.model().selectedChar).toBe(Chars.LINK);
     expect(mockGameSound.stop).toHaveBeenCalled();
     expect(mockGameSound.playSound).toHaveBeenCalledWith(GameSound.LINK, false);
   });
