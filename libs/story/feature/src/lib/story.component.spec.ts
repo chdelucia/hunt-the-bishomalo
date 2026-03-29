@@ -58,9 +58,6 @@ describe('StoryComponent', () => {
         { provide: GAME_STORE_TOKEN, useValue: mockGameStore },
       ],
     }).compileComponents();
-
-    fixture = TestBed.createComponent(StoryComponent);
-    component = fixture.componentInstance;
   });
 
   afterEach(() => {
@@ -69,19 +66,26 @@ describe('StoryComponent', () => {
   });
 
   it('should create the component', () => {
+    fixture = TestBed.createComponent(StoryComponent);
+    component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 
   it('should initialize with story and call startReading', () => {
     jest.useFakeTimers();
-    const spy = jest.spyOn<StoryComponent, 'startReading'>(component, 'startReading' as any);
+    const spy = jest.spyOn<any, any>(StoryComponent.prototype, 'startReading');
+    fixture = TestBed.createComponent(StoryComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
     expect(component['fullText']).toBe(mockStory.text);
     expect(spy).toHaveBeenCalledWith(mockStory.text);
     jest.useRealTimers();
+    spy.mockRestore();
   });
 
   it('should navigate to HOME when goToGame is called', () => {
+    fixture = TestBed.createComponent(StoryComponent);
+    component = fixture.componentInstance;
     component.goToGame();
     expect(mockGameStoryService.checkLevelTrigger).toHaveBeenCalled();
     expect(mockRouter.navigate).toHaveBeenCalledWith([RouteTypes.HOME]);
@@ -105,8 +109,9 @@ describe('StoryComponent', () => {
       cancel: jest.fn(),
     } as unknown as SpeechSynthesis;
 
-    component['startReading'](mockStory.text);
-    // Move past interval calls
+    fixture = TestBed.createComponent(StoryComponent);
+    component = fixture.componentInstance;
+
     for (let i = 0; i < mockStory.text.length; i++) {
       jest.advanceTimersByTime(90);
     }
@@ -124,11 +129,11 @@ describe('StoryComponent', () => {
     mockGameStore.soundEnabled.set(false);
     const speakSpy = jest.spyOn(global.speechSynthesis, 'speak');
 
-    component['startReading'](mockStory.text);
+    fixture = TestBed.createComponent(StoryComponent);
+    component = fixture.componentInstance;
 
     expect(speakSpy).not.toHaveBeenCalled();
 
-    // Advance timers for text animation
     for (let i = 0; i < mockStory.text.length; i++) {
       jest.advanceTimersByTime(90);
     }
@@ -137,7 +142,7 @@ describe('StoryComponent', () => {
     expect(component.reading()).toBe(false);
     expect(component.showExtraInfo()).toBe(true);
 
-    mockGameStore.soundEnabled.set(true); // Reset for other tests
+    mockGameStore.soundEnabled.set(true);
     jest.useRealTimers();
   });
 });

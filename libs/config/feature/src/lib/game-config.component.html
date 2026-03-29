@@ -1,23 +1,23 @@
 @let chars = gameStore.unlockedChars();
 
-<form [formGroup]="configForm" (ngSubmit)="submitForm()" class="config-form">
+<form (submit)="submitForm(); $event.preventDefault()" class="config-form">
   <h2>{{ 'config.title' | transloco }}</h2>
 
   <div class="form-group">
     <label for="player">{{ 'config.playerNameLabel' | transloco }}</label>
-    <input id="player" type="text" formControlName="player" maxlength="20" />
+    <input id="player" type="text" [formField]="configForm.player" />
   </div>
 
   <div class="form-group">
     <label for="difficulty">{{ 'config.difficultyLabel' | transloco }}</label>
-    <select id="difficulty" formControlName="difficulty">
+    <select id="difficulty" [formField]="configForm.difficulty">
       <option value="easy">{{ 'config.difficultyEasy' | transloco }}</option>
       <option value="normal">{{ 'config.difficultyNormal' | transloco }}</option>
       <option value="hard">{{ 'config.difficultyHard' | transloco }}</option>
     </select>
   </div>
 
-  @let options = configs[this.configForm.get('difficulty')?.value];
+  @let options = configs[this.model().difficulty];
 
   <div class="difficulty-description">
     <p>
@@ -36,7 +36,7 @@
 @if (isDevMode) {
   <div class="form-group">
     <label for="size">{{ 'config.levelLabel' | transloco }}</label>
-    <input id="size" type="number" formControlName="size" min="1" max="20" />
+    <input id="size" type="number" [formField]="configForm.size" />
   </div>
 }
 
@@ -47,12 +47,12 @@
   @for(char of chars; track $index) {
     <label
       class="char-btn"
-      [class.active]="configForm.get('selectedChar')?.value === char"
-      [class.grayscale]="configForm.get('selectedChar')?.value !== char"
+      [class.active]="model().selectedChar === char"
+      [class.grayscale]="model().selectedChar !== char"
     >
       <input
         type="radio"
-        formControlName="selectedChar"
+        [formField]="configForm.selectedChar"
         [value]="char"
         (change)="selectChar(char)"
         class="sr-only"
@@ -69,7 +69,7 @@
   }
 </div>
 
-  <button type="submit" [disabled]="configForm.invalid" class="start-game">
+  <button type="submit" [disabled]="configForm().invalid()" class="start-game">
     {{ 'config.playButton' | transloco }}
   </button>
 </form>

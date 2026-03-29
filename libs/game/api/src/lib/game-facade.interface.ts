@@ -17,6 +17,7 @@ export interface IGameFacade {
   readonly hunter: Signal<any>;
   readonly blackout: Signal<boolean>;
   readonly deathByWumpus: Signal<boolean>;
+  readonly hasGold: Signal<boolean>;
 
   moveForward(): void;
   turnLeft(): void;

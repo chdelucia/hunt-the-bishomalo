@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
   output,
   signal,
   computed,
@@ -21,7 +20,7 @@ import { ASSETS_BASE_URL } from '@hunt-the-bishomalo/shared-data';
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppWumpusAttackAnimationComponent implements OnInit {
+export class AppWumpusAttackAnimationComponent {
   protected readonly ASSETS_BASE_URL = ASSETS_BASE_URL;
   readonly step = signal(1);
   readonly selectedChar = input.required<string>();
@@ -29,7 +28,7 @@ export class AppWumpusAttackAnimationComponent implements OnInit {
 
   private readonly destroyRef = inject(DestroyRef);
 
-  ngOnInit(): void {
+  constructor() {
     const steps = [500, 1000, 1500, 2000, 3500];
 
     steps.forEach((delay, index) => {

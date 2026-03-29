@@ -53,7 +53,6 @@ describe('EndCreditsComponent', () => {
   });
 
   it('should call gameSound.stop and playSound on init', () => {
-    component.ngOnInit();
     expect(mockGameSoundService.stop).toHaveBeenCalled();
     expect(mockGameSoundService.playSound).toHaveBeenCalled();
   });
@@ -99,7 +98,7 @@ describe('EndCreditsComponent', () => {
   });
 
   it('should stop sound on destroy', () => {
-    component.ngOnDestroy();
+    fixture.destroy();
     expect(mockGameSoundService.stop).toHaveBeenCalled();
   });
 

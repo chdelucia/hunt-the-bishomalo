@@ -2,7 +2,7 @@
 @let hasWon = facade.hasWon(); @let settings = facade.settings();
 @let currentCell = facade.currentCell(); @let message = facade.message();
 @let hunter = facade.hunter(); @let inventory = facade.inventory();
-@let lives = facade.lives(); @let hasGold = hunter.hasGold;
+@let lives = facade.lives(); @let hasGold = facade.hasGold();
 
 <main [libVisualEffect]="message" class="main-container">
   <lib-title [blackout]="settings.blackout || false" />
@@ -35,7 +35,7 @@
       @defer (on timer(100ms)) {
         <lib-wumpus-attack-animation
           [selectedChar]="settings.selectedChar"
-          (closeAnimation)="handleclose()"
+          (closeAnimation)="handleClose()"
         />
       }
     }

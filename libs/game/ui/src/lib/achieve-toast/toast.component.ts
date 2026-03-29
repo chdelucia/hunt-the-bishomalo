@@ -1,4 +1,4 @@
-import { Component, effect, input, OnDestroy, signal } from '@angular/core';
+import { Component, effect, input, signal, inject, DestroyRef } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { ASSETS_BASE_URL, Achievement } from '@hunt-the-bishomalo/shared-data';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -16,13 +16,14 @@ interface ToastData {
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss',
 })
-export class ToastComponent implements OnDestroy {
+export class ToastComponent {
   protected readonly ASSETS_BASE_URL = ASSETS_BASE_URL;
   achievement = input<Achievement | undefined>();
 
   private idCounter = 0;
   readonly toasts = signal<(ToastData & { broken?: boolean })[]>([]);
   private readonly toastTimeouts = new Map<number, ReturnType<typeof setTimeout>>();
+  private readonly destroyRef = inject(DestroyRef);
 
   constructor() {
     effect(() => {
@@ -30,6 +31,11 @@ export class ToastComponent implements OnDestroy {
       if (achievement) {
         this.addToast(achievement);
       }
+    });
+
+    this.destroyRef.onDestroy(() => {
+      this.toastTimeouts.forEach((timeout) => clearTimeout(timeout));
+      this.toastTimeouts.clear();
     });
   }
 
@@ -53,10 +59,5 @@ export class ToastComponent implements OnDestroy {
     }, 3000);
 
     this.toastTimeouts.set(id, timeout);
-  }
-
-  ngOnDestroy(): void {
-    this.toastTimeouts.forEach((timeout) => clearTimeout(timeout));
-    this.toastTimeouts.clear();
   }
 }
