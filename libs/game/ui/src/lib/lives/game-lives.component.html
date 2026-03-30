@@ -1,17 +1,22 @@
 @let currentLives = lives();
-@for (item of livesArray(); track $index) {
-  <svg
-    class="heart"
-    [class.active]="currentLives > $index"
-    width="24"
-    height="24"
-    viewBox="0 0 16 16"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M2 4h2V2h2v2h2V2h2v2h2v2h-2v2H8v2H6V8H4V6H2V4z"
-      stroke="var(--color-red-700)"
-      stroke-width="1"
-    />
-  </svg>
-}
+<div class="lives-container" role="status" aria-live="polite">
+  <span class="sr-only">{{ 'level.lives' | transloco: { lives: currentLives } }}</span>
+  @for (item of livesArray(); track $index) {
+    <svg
+      class="heart"
+      [class.active]="currentLives > $index"
+      [class.danger]="currentLives === 1"
+      width="24"
+      height="24"
+      viewBox="0 0 16 16"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path
+        d="M2 4h2V2h2v2h2V2h2v2h2v2h-2v2H8v2H6V8H4V6H2V4z"
+        stroke="var(--color-red-700)"
+        stroke-width="1"
+      />
+    </svg>
+  }
+</div>

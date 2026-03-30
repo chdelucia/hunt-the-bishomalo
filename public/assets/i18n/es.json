@@ -198,7 +198,8 @@
     "moveForwardAriaLabel": "Avanzar"
   },
   "level": {
-    "display": "Nivel {{level}}"
+    "display": "Nivel {{level}}",
+    "lives": "Vidas: {{lives}}"
   },
   "message": {
     "gameOver": "GAME OVER! Te quedaste sin vidas. #haberestudiao",

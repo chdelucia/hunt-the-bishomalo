@@ -198,7 +198,8 @@
     "moveForwardAriaLabel": "Move Forward"
   },
   "level": {
-    "display": "Level {{level}}"
+    "display": "Level {{level}}",
+    "lives": "Lives: {{lives}}"
   },
   "message": {
     "gameOver": "GAME OVER! You ran out of lives. #shouldhavestudied",
