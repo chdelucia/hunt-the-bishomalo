@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.66.14](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.66.13...v7.66.14) (2026-03-30)
+
+
+### Bug Fixes
+
+* **game:** continue level if lives remaining after death ([183343b](https://github.com/chdelucia/hunt-the-bishomalo/commit/183343b2851a24efd9642123093baad6d7ae26ea))
+
 ### [7.66.13](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.66.12...v7.66.13) (2026-03-30)
 
 ### [7.66.12](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.66.11...v7.66.12) (2026-03-29)
