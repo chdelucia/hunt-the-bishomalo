@@ -24,6 +24,7 @@ export interface IGameFacade {
   turnRight(): void;
   shootArrow(): void;
   newGame(): void;
+  initGame(): void;
   toggleSound(): void;
 }
 

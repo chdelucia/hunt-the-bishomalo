@@ -40,7 +40,11 @@ export class Game {
   readonly emptyInventory: GameItem[] = [];
 
   handleClose(): void {
-    this.facade.newGame();
+    if (this.facade.lives() > 0) {
+      this.facade.initGame();
+    } else {
+      this.facade.newGame();
+    }
   }
 
   handleMobileShootArrow(): void {

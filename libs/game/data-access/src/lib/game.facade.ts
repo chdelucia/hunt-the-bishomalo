@@ -45,6 +45,10 @@ export class GameFacade implements IGameFacade {
     this.engine.newGame();
   }
 
+  initGame(): void {
+    this.engine.initGame();
+  }
+
   toggleSound(): void {
     this.store.toggleSound();
   }
