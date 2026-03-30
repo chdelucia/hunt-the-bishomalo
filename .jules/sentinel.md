@@ -7,3 +7,8 @@
 **Vulnerability:** The application allowed overriding micro-frontend remote URLs via `localStorage['MFE_REMOTES_OVERRIDE']` in all environments, including production.
 **Learning:** Debugging features that allow dynamic configuration changes can become a persistent hijacking vector if not strictly restricted to non-production environments.
 **Prevention:** Always wrap environment-specific debugging or configuration override logic in strict checks (e.g., `if (isDev)`) to ensure they cannot be exploited in production.
+
+## 2026-03-30 - [Hardening CSP: Removing unsafe-inline from script-src]
+**Vulnerability:** The application used `'unsafe-inline'` in its Content Security Policy for `script-src`, allowing potential XSS via inline script injection.
+**Learning:** Legacy inline scripts (like GTM or initialization logic) in `index.html` often prevent hardening CSP. These must be moved to external files in the `public/` directory.
+**Prevention:** Avoid inline scripts in `index.html`. Place all initialization logic in external JS files within `public/assets/scripts/` and reference them via `<script src="...">`.
