@@ -39,6 +39,7 @@ describe('Game', () => {
     deathByWumpus: signal(false),
     hasGold: signal(false),
     newGame: jest.fn(),
+    initGame: jest.fn(),
     shootArrow: jest.fn(),
     moveForward: jest.fn(),
     turnLeft: jest.fn(),
@@ -71,9 +72,18 @@ describe('Game', () => {
     expect(component.facade.deathByWumpus()).toBe(false);
   });
 
-  it('should handle close and call newGame', () => {
+  it('should handle close and call newGame when lives are 0', () => {
+    mockGameFacade.lives.set(0);
     component.handleClose();
     expect(mockGameFacade.newGame).toHaveBeenCalled();
+  });
+
+  it('should call initGame when lives > 0', () => {
+    jest.clearAllMocks();
+    mockGameFacade.lives.set(3);
+    component.handleClose();
+    expect(mockGameFacade.initGame).toHaveBeenCalled();
+    expect(mockGameFacade.newGame).not.toHaveBeenCalled();
   });
 
   it('should call facade shootArrow on mobile shoot', () => {
