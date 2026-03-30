@@ -19,3 +19,7 @@
 ## 2026-03-27 - [Perception De-duplication in Game Logic]
 **Learning:** Redundant state assessments (like checking multiple adjacent cells for the same hazard) can trigger duplicate expensive side effects (like audio playback) and UI updates (translation lookups), leading to cluttered feedback and wasted CPU cycles.
 **Action:** Use a `Set` to de-duplicate hazard types before processing their associated sensory effects (sounds, messages) to ensure each unique feedback is triggered only once per state change.
+
+## 2026-03-30 - [Host Filtering in Native Federation Manifest]
+**Learning:** Native Federation attempts to load all remotes listed in the manifest, including the host itself if present. This results in a redundant and failing/redundant fetch for `remoteEntry.json` of the host application during the bootstrap phase.
+**Action:** Always filter out the host application name from the merged manifest before calling `initFederation` in `main.ts` to optimize initial network requests and bootstrap speed.
