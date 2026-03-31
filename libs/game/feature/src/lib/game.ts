@@ -10,10 +10,10 @@ import {
   VisualEffectDirective,
 } from '@hunt-the-bishomalo/game/ui';
 import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { GAME_FACADE_TOKEN, GAME_SIDE_EFFECT_TOKEN } from '@hunt-the-bishomalo/game/api';
-import { GameItem } from '@hunt-the-bishomalo/shared-data';
+import { GameItem, RouteTypes } from '@hunt-the-bishomalo/shared-data';
 
 @Component({
   selector: 'lib-game',
@@ -37,6 +37,7 @@ import { GameItem } from '@hunt-the-bishomalo/shared-data';
 export class Game {
   readonly facade = inject(GAME_FACADE_TOKEN);
   private readonly sideEffects = inject(GAME_SIDE_EFFECT_TOKEN);
+  private readonly router = inject(Router);
 
   readonly emptyInventory: GameItem[] = [];
 
@@ -44,7 +45,9 @@ export class Game {
     if (this.facade.lives() > 0) {
       this.facade.initGame();
     } else {
-      this.facade.newGame();
+      this.router.navigate([RouteTypes.RESULTS], {
+        state: { fromSecretPath: true },
+      });
     }
   }
 
