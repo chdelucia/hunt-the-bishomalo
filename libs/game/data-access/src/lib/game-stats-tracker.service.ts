@@ -10,11 +10,18 @@ export class GameStatsTrackerService implements IGameStatsTracker {
   private readonly achievementTracker = inject(GAME_ACHIEVEMENT_TRACKER_TOKEN);
 
   private countSteps = 0;
+  private lastPos: { x: number; y: number } | null = null;
 
   trackSteps(): void {
     const { x, y } = this.store.hunter();
-    if (x || y) {
+    if (this.lastPos === null) {
+      this.lastPos = { x, y };
+      return;
+    }
+
+    if (x !== this.lastPos.x || y !== this.lastPos.y) {
       this.countSteps += 1;
+      this.lastPos = { x, y };
     }
   }
 
@@ -44,6 +51,7 @@ export class GameStatsTrackerService implements IGameStatsTracker {
 
   resetSteps(): void {
     this.countSteps = 0;
+    this.lastPos = null;
   }
 
   private calculateElapsedSeconds(endTime: Date): number {

@@ -3,7 +3,7 @@ import { Game } from './game';
 import { RouterModule } from '@angular/router';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { signal } from '@angular/core';
-import { GAME_FACADE_TOKEN } from '@hunt-the-bishomalo/game/api';
+import { GAME_FACADE_TOKEN, GAME_SIDE_EFFECT_TOKEN } from '@hunt-the-bishomalo/game/api';
 
 describe('Game', () => {
   let component: Game;
@@ -50,7 +50,10 @@ describe('Game', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [Game, RouterModule.forRoot([]), getTranslocoTestingModule()],
-      providers: [{ provide: GAME_FACADE_TOKEN, useValue: mockGameFacade }],
+      providers: [
+        { provide: GAME_FACADE_TOKEN, useValue: mockGameFacade },
+        { provide: GAME_SIDE_EFFECT_TOKEN, useValue: { brand: 'IGameSideEffect' } },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(Game);
