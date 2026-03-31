@@ -23,3 +23,7 @@
 ## 2026-03-30 - [Host Filtering in Native Federation Manifest]
 **Learning:** Native Federation attempts to load all remotes listed in the manifest, including the host itself if present. This results in a redundant and failing/redundant fetch for `remoteEntry.json` of the host application during the bootstrap phase.
 **Action:** Always filter out the host application name from the merged manifest before calling `initFederation` in `main.ts` to optimize initial network requests and bootstrap speed.
+
+## 2026-03-31 - [Hoisting State Evaluations in Large Grids]
+**Learning:** For large grid components (up to 225 cells), calculating common state flags (like game-over or inventory-based effects) inside each child component via `computed` signals can lead to excessive re-evaluations and signal overhead.
+**Action:** Hoist common computations to the parent component using the `@let` syntax and pass pre-calculated boolean results to children as simple inputs. This reduces the number of signal reads and re-computations from O(N) to O(1) for global states.
