@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.66.16](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.66.15...v7.66.16) (2026-03-31)
+
+
+### Bug Fixes
+
+* ensure game statistics are tracked and displayed correctly ([307d751](https://github.com/chdelucia/hunt-the-bishomalo/commit/307d7516c00173ae034f1df65d0f7252ebb8e52c))
+* ensure game stats tracking and navigation to results on death ([4997153](https://github.com/chdelucia/hunt-the-bishomalo/commit/4997153d57f9fcc2f55dc7d560db1e0c5671c9c4))
+
 ### [7.66.15](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.66.14...v7.66.15) (2026-03-31)
 
 ### [7.66.14](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.66.13...v7.66.14) (2026-03-30)
