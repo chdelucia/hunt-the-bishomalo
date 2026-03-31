@@ -1,13 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Game } from './game';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { signal } from '@angular/core';
-import { GAME_FACADE_TOKEN } from '@hunt-the-bishomalo/game/api';
+import { GAME_FACADE_TOKEN, GAME_SIDE_EFFECT_TOKEN } from '@hunt-the-bishomalo/game/api';
+import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
 
 describe('Game', () => {
   let component: Game;
   let fixture: ComponentFixture<Game>;
+  let router: Router;
 
   const mockGameFacade = {
     board: signal([]),
@@ -49,9 +51,19 @@ describe('Game', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Game, RouterModule.forRoot([]), getTranslocoTestingModule()],
-      providers: [{ provide: GAME_FACADE_TOKEN, useValue: mockGameFacade }],
+      imports: [
+        Game,
+        RouterModule.forRoot([{ path: RouteTypes.RESULTS, redirectTo: '' }]),
+        getTranslocoTestingModule(),
+      ],
+      providers: [
+        { provide: GAME_FACADE_TOKEN, useValue: mockGameFacade },
+        { provide: GAME_SIDE_EFFECT_TOKEN, useValue: { brand: 'IGameSideEffect' } },
+      ],
     }).compileComponents();
+
+    router = TestBed.inject(Router);
+    jest.spyOn(router, 'navigate');
 
     fixture = TestBed.createComponent(Game);
     component = fixture.componentInstance;
@@ -72,10 +84,12 @@ describe('Game', () => {
     expect(component.facade.deathByWumpus()).toBe(false);
   });
 
-  it('should handle close and call newGame when lives are 0', () => {
+  it('should handle close and navigate to RESULTS when lives are 0', () => {
     mockGameFacade.lives.set(0);
     component.handleClose();
-    expect(mockGameFacade.newGame).toHaveBeenCalled();
+    expect(router.navigate).toHaveBeenCalledWith([RouteTypes.RESULTS], {
+      state: { fromSecretPath: true },
+    });
   });
 
   it('should call initGame when lives > 0', () => {
