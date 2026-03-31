@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GameLivesComponent } from './game-lives.component';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 
 describe('GameLivesComponent', () => {
   let component: GameLivesComponent;
@@ -7,7 +8,7 @@ describe('GameLivesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GameLivesComponent],
+      imports: [GameLivesComponent, getTranslocoTestingModule()],
     }).compileComponents();
 
     fixture = TestBed.createComponent(GameLivesComponent);
@@ -23,5 +24,10 @@ describe('GameLivesComponent', () => {
 
   it('should have correct livesArray length matching maxLives input', () => {
     expect(component.livesArray().length).toBe(component.maxLives());
+  });
+
+  it('should show sr-only status for lives', () => {
+    const srOnlyEl = fixture.nativeElement.querySelector('.sr-only');
+    expect(srOnlyEl?.textContent).toContain('lives.status');
   });
 });
