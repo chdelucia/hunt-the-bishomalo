@@ -21,7 +21,7 @@
         "rxjs": "~7.8.2",
       },
       "devDependencies": {
-        "@angular-architects/native-federation": "^21.2.2",
+        "@angular-architects/native-federation": "^21.2.3",
         "@angular-devkit/build-angular": "21.2.2",
         "@angular-devkit/core": "21.2.2",
         "@angular-devkit/schematics": "21.2.2",
@@ -113,7 +113,7 @@
 
     "@ampproject/remapping": ["@ampproject/remapping@2.3.0", "", { "dependencies": { "@jridgewell/gen-mapping": "^0.3.5", "@jridgewell/trace-mapping": "^0.3.24" } }, "sha512-30iZtAPgz+LTIYoeivqYo853f02jBYSd5uGnGpkFV0M3xOt9aN73erkgYAmZU43x4VfqcnLxW9Kpg3R5LC4YYw=="],
 
-    "@angular-architects/native-federation": ["@angular-architects/native-federation@21.2.2", "", { "dependencies": { "@angular-devkit/build-angular": "^21.2.0", "@angular/build": "^21.2.0", "@babel/core": "^7.19.0", "@chialab/esbuild-plugin-commonjs": "^0.19.0", "@softarc/native-federation": "~3.5.1", "@softarc/native-federation-runtime": "~3.5.1", "esbuild": "^0.27.1", "mrmime": "^2.0.1", "process": "0.11.10", "signale": "^1.4.0" } }, "sha512-kNSfboZW4WaWEw2NMiQNVwF5XHWejJ4H9a5wWupQ/OyK8ZKJyC7Vs4wBm+TwtXgceecim0nz1QVuY/uVjyTbFA=="],
+    "@angular-architects/native-federation": ["@angular-architects/native-federation@21.2.3", "", { "dependencies": { "@angular-devkit/build-angular": "^21.2.0", "@angular/build": "^21.2.0", "@babel/core": "^7.19.0", "@chialab/esbuild-plugin-commonjs": "^0.19.0", "@softarc/native-federation": "~3.5.1", "@softarc/native-federation-runtime": "~3.5.1", "esbuild": ">=0.27.1 <0.27.4 || >0.27.4", "mrmime": "^2.0.1", "process": "0.11.10", "signale": "^1.4.0" } }, "sha512-Go9Xhc5/AuVh4+32YxyjM1SokjyU4LncrnC8Cx2PBCp8X6vRBdb/5n73ewFMAJxTVaY3BLRUXtVbqem+EWdMLg=="],
 
     "@angular-devkit/architect": ["@angular-devkit/architect@0.2102.2", "", { "dependencies": { "@angular-devkit/core": "21.2.2", "rxjs": "7.8.2" }, "bin": { "architect": "bin/cli.js" } }, "sha512-CDvFtXwyBtMRkTQnm+LfBNLL0yLV8ZGskrM1T6VkcGwXGFDott1FxUdj96ViodYsYL5fbJr0MNA6TlLcanV3kQ=="],
 
