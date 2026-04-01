@@ -23,3 +23,7 @@
 ## 2026-03-30 - [Host Filtering in Native Federation Manifest]
 **Learning:** Native Federation attempts to load all remotes listed in the manifest, including the host itself if present. This results in a redundant and failing/redundant fetch for `remoteEntry.json` of the host application during the bootstrap phase.
 **Action:** Always filter out the host application name from the merged manifest before calling `initFederation` in `main.ts` to optimize initial network requests and bootstrap speed.
+
+## 2026-04-02 - [Logic Hoisting to Parent Template in Grids]
+**Learning:** Moving complex state derived logic (e.g., `inventory.some()`) from child component `computed` signals into the parent component's template using `@let` significantly reduces overhead. In a grid, this prevents the logic from being re-evaluated for every single cell independently, instead computing it once and passing it as a simple boolean input.
+**Action:** Identify expensive computations within repeated child components and hoist them to the parent template using `@let` to transform complex state into primitive inputs.

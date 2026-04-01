@@ -1,8 +1,17 @@
-@let board = facade.board(); @let boardSize = board.length; @let isAlive = facade.isAlive();
-@let hasWon = facade.hasWon(); @let settings = facade.settings();
-@let currentCell = facade.currentCell(); @let message = facade.message();
-@let hunter = facade.hunter(); @let inventory = facade.inventory();
-@let lives = facade.lives(); @let hasGold = facade.hasGold();
+@let board = facade.board();
+@let boardSize = board.length;
+@let isAlive = facade.isAlive();
+@let hasWon = facade.hasWon();
+@let isGameOver = !isAlive || hasWon;
+@let settings = facade.settings();
+@let currentCell = facade.currentCell();
+@let message = facade.message();
+@let hunter = facade.hunter();
+@let inventory = facade.inventory();
+@let lives = facade.lives();
+@let hasGold = facade.hasGold();
+@let hasLantern = !!settings?.blackout && inventory.some(x => x.effect === 'lantern');
+@let hasShield = inventory.some(x => x.effect === 'shield');
 
 <main [libVisualEffect]="message" class="main-container">
   <lib-title [blackout]="settings.blackout || false" />
@@ -16,15 +25,18 @@
       @let isFirstRow = !rowIndex;
       @for (cell of row; track cell) {
         @let isHunterCell = currentCell === cell;
+        @let showElements = isGameOver || cell.visited || cell.content?.alt === 'secret';
+        @let showHunter = isHunterCell && isAlive && !!hunter;
+
         <lib-game-cell
           [class.escape]="isFirstRow && $first && hasGold"
           [cell]="cell"
-          [isAlive]="isAlive"
-          [hasWon]="hasWon"
-          [inventory]="isHunterCell ? inventory : emptyInventory"
+          [showElements]="showElements"
+          [showHunter]="showHunter"
+          [hasLantern]="isHunterCell ? hasLantern : false"
+          [hasShield]="isHunterCell ? hasShield : false"
           [selectedChar]="settings.selectedChar"
           [size]="settings.size"
-          [blackout]="settings.blackout || false"
           [isHunterCell]="isHunterCell"
           [hunter]="isHunterCell ? hunter : null"
         />
