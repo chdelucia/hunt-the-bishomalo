@@ -12,3 +12,8 @@
 **Vulnerability:** The application used an inline script for Google Tag Manager, requiring `'unsafe-inline'` in the CSP's `script-src` directive, which increased the risk of XSS.
 **Learning:** Inline scripts, even for legitimate purposes like analytics, create a significant security gap. Moving them to external files allows for a much stricter CSP.
 **Prevention:** Always move inline scripts to external files and strictly avoid `'unsafe-inline'` in the `script-src` CSP directive to minimize the attack surface for script injection.
+
+## 2026-04-01 - [Nginx add_header Inheritance Vulnerability]
+**Vulnerability:** Security headers defined at the server level were not being applied to static assets because the static assets location block had its own add_header directive, which overrides all parent add_header directives in Nginx.
+**Learning:** In Nginx, add_header directives do not merge across levels. If a child block (like a location block for static assets) defines any add_header, it must explicitly repeat all security headers from the parent level.
+**Prevention:** Always ensure that security headers (HSTS, CSP, XSS protection) are explicitly repeated in any Nginx location block that uses the add_header directive, or use an include file to manage common headers across blocks.
