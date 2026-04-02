@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [7.67.0](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.66.25...v7.67.0) (2026-04-02)
+
+
+### Features
+
+* **game-ui:** add smooth transitions to game controls panel ([03d1eb9](https://github.com/chdelucia/hunt-the-bishomalo/commit/03d1eb9bc196572d930b3a327ec747a8c2f1e9f4))
+
 ### [7.66.25](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.66.24...v7.66.25) (2026-04-02)
 
 ### [7.66.24](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.66.23...v7.66.24) (2026-04-02)
