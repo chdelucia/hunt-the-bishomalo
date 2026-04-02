@@ -17,3 +17,8 @@
 **Vulnerability:** Security headers defined at the server level were not being applied to static assets because the static assets location block had its own add_header directive, which overrides all parent add_header directives in Nginx.
 **Learning:** In Nginx, add_header directives do not merge across levels. If a child block (like a location block for static assets) defines any add_header, it must explicitly repeat all security headers from the parent level.
 **Prevention:** Always ensure that security headers (HSTS, CSP, XSS protection) are explicitly repeated in any Nginx location block that uses the add_header directive, or use an include file to manage common headers across blocks.
+
+## 2026-04-02 - [Harden CSP and Permissions-Policy wildcard]
+**Vulnerability:** The application's Content Security Policy used a wildcard `*.workers.dev` in `img-src` and `connect-src` directives, which allowed any Cloudflare Worker subdomain to serve images or receive data from the app. Additionally, the `Permissions-Policy` was missing several recommended privacy and security restrictions.
+**Learning:** Wildcards in CSP should be avoided whenever possible, especially on platforms where subdomains are easily attainable by third parties. A more restrictive `Permissions-Policy` reduces the attack surface for browser-based features that the application does not utilize.
+**Prevention:** Always use specific, trusted domains in CSP instead of wildcards like `*.workers.dev`. Regularly audit and harden `Permissions-Policy` to disable unused browser features like `payment`, `usb`, and `interest-cohort`.
