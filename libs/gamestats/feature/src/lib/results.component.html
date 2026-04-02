@@ -2,7 +2,7 @@
 <div class="resultados-panel">
   <h1 class="resultados-titulo">{{ 'results.title' | transloco }}</h1>
 
-  @if(leaderboard.length){
+  @if(leaderboard().length){
     <div class="tabs-container" role="tablist">
       <button
         type="button"
@@ -122,7 +122,7 @@
             </tr>
           </thead>
           <tbody>
-            @for (entry of leaderboard; track entry) {
+            @for (entry of leaderboard(); track entry) {
               <tr>
                 <td>{{ entry.timeInSeconds }}s</td>
                 <td>{{ entry.steps }}</td>

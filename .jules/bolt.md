@@ -27,3 +27,7 @@
 ## 2026-04-02 - [Logic Hoisting to Parent Template in Grids]
 **Learning:** Moving complex state derived logic (e.g., `inventory.some()`) from child component `computed` signals into the parent component's template using `@let` significantly reduces overhead. In a grid, this prevents the logic from being re-evaluated for every single cell independently, instead computing it once and passing it as a simple boolean input.
 **Action:** Identify expensive computations within repeated child components and hoist them to the parent template using `@let` to transform complex state into primitive inputs.
+
+## 2026-04-02 - [Consolidated Stats Calculation in Results]
+**Learning:** Performing multiple independent iterations (via `reduce`, `sort`, etc.) over a dataset in separate `computed` signals can be inefficient. Consolidating these into a single O(N) pass within a private `computed` signal and then deriving the public signals from it significantly reduces overhead.
+**Action:** Identify opportunities to consolidate multiple O(N) or O(N log N) operations into a single O(N) pass when they all depend on the same underlying signal.
