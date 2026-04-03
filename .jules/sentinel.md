@@ -22,3 +22,8 @@
 **Vulnerability:** The application's Content Security Policy used a wildcard `*.workers.dev` in `img-src` and `connect-src` directives, which allowed any Cloudflare Worker subdomain to serve images or receive data from the app. Additionally, the `Permissions-Policy` was missing several recommended privacy and security restrictions.
 **Learning:** Wildcards in CSP should be avoided whenever possible, especially on platforms where subdomains are easily attainable by third parties. A more restrictive `Permissions-Policy` reduces the attack surface for browser-based features that the application does not utilize.
 **Prevention:** Always use specific, trusted domains in CSP instead of wildcards like `*.workers.dev`. Regularly audit and harden `Permissions-Policy` to disable unused browser features like `payment`, `usb`, and `interest-cohort`.
+
+## 2026-04-03 - [Harden Nginx headers with always and expanded Permissions-Policy]
+**Vulnerability:** Nginx `add_header` directives were missing the `always` parameter, meaning security headers were not sent on error responses (like 4xx or 5xx). Additionally, the `Permissions-Policy` was only partially restricted, and several other recommended headers were missing.
+**Learning:** Security headers should be sent for all responses, including errors, to maintain protection. A comprehensive `Permissions-Policy` and the use of `upgrade-insecure-requests` in CSP provide a much stronger defense-in-depth posture.
+**Prevention:** Always use the `always` parameter for `add_header` directives in Nginx. Explicitly disable all unused browser features in `Permissions-Policy` and use `X-XSS-Protection "0"` to prevent legacy filter exploits.
