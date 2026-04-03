@@ -200,6 +200,9 @@
   "level": {
     "display": "Level {{level}}"
   },
+  "lives": {
+    "status": "Lives: {{current}} of {{max}}"
+  },
   "message": {
     "gameOver": "GAME OVER! You ran out of lives. #shouldhavestudied",
     "newGameAriaLabel": "New Game",

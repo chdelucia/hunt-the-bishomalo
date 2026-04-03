@@ -200,6 +200,9 @@
   "level": {
     "display": "Nivel {{level}}"
   },
+  "lives": {
+    "status": "Vidas: {{current}} de {{max}}"
+  },
   "message": {
     "gameOver": "GAME OVER! Te quedaste sin vidas. #haberestudiao",
     "newGameAriaLabel": "Nueva partida",
