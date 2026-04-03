@@ -1,4 +1,4 @@
-import { computed, inject, Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { IGameFacade, GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 
@@ -12,6 +12,9 @@ export class GameFacade implements IGameFacade {
   readonly deathByWumpus = this.store.deathByWumpus;
   readonly hasWon = this.store.hasWon;
   readonly settings = this.store.settings;
+  readonly size = this.store.size;
+  readonly selectedChar = this.store.selectedChar;
+  readonly difficulty = this.store.difficulty;
   readonly message = this.store.message;
   readonly lives = this.store.lives;
   readonly currentCell = this.store.currentCell;
@@ -20,10 +23,15 @@ export class GameFacade implements IGameFacade {
   readonly soundEnabled = this.store.soundEnabled;
   readonly dragonballs = this.store.dragonballs;
   readonly gold = this.store.gold;
+  readonly arrows = this.store.arrows;
   readonly hunter = this.store.hunter;
+  readonly x = this.store.x;
+  readonly y = this.store.y;
+  readonly direction = this.store.direction;
+  readonly hasLantern = this.store.hasLantern;
+  readonly hasShield = this.store.hasShield;
   readonly blackout = this.store.blackout;
-
-  readonly hasGold = computed(() => this.hunter().hasGold);
+  readonly hasGold = this.store.hasGold;
 
   moveForward(): void {
     this.engine.moveForward();

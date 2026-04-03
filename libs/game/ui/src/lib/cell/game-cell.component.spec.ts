@@ -32,7 +32,9 @@ describe('GameCellComponent', () => {
     fixture.componentRef.setInput('selectedChar', Chars.DEFAULT);
     fixture.componentRef.setInput('size', 4);
     fixture.componentRef.setInput('isHunterCell', true);
-    fixture.componentRef.setInput('hunter', mockHunter);
+    fixture.componentRef.setInput('hunterDirection', mockHunter.direction);
+    fixture.componentRef.setInput('hunterArrows', mockHunter.arrows);
+    fixture.componentRef.setInput('hunterHasGold', mockHunter.hasGold);
     fixture.componentRef.setInput('showElements', false);
     fixture.componentRef.setInput('showHunter', true);
     fixture.componentRef.setInput('hasLantern', false);

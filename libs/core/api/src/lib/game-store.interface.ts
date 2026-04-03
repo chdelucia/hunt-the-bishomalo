@@ -24,6 +24,11 @@ export interface IGameStore {
   readonly currentCell: Signal<Cell | null>;
   readonly inventory: Signal<GameItem[]>; // Use any or a generic item type if needed
   readonly hunter: Signal<Hunter>;
+  readonly x: Signal<number>;
+  readonly y: Signal<number>;
+  readonly direction: Signal<number>;
+  readonly hasLantern: Signal<boolean>;
+  readonly hasShield: Signal<boolean>;
   readonly unlockedChars: Signal<Chars[]>;
   readonly wumpusKilled: Signal<number>;
   readonly startTime: Signal<string>;
@@ -31,6 +36,7 @@ export interface IGameStore {
   readonly soundEnabled: Signal<boolean>;
   readonly dragonballs: Signal<number>;
   readonly gold: Signal<number>;
+  readonly arrows: Signal<number>;
 
   updateHunter(partial: Partial<Hunter>): void;
   updateGame(partial: Partial<GameState>): void;

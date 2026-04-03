@@ -165,6 +165,26 @@ describe('GameStore (SignalStore)', () => {
     store.updateHunter({ dragonballs: 7 });
     expect(store.dragonballs()).toBe(7);
 
+    // new granular hunter signals
+    store.updateHunter({ x: 2, y: 3, direction: Direction.DOWN });
+    expect(store.x()).toBe(2);
+    expect(store.y()).toBe(3);
+    expect(store.direction()).toBe(Direction.DOWN);
+
+    // hasLantern / hasShield signals
+    store.updateGame({ settings: { ...mockSettings, blackout: true } });
+    store.updateHunter({ inventory: [{ effect: 'lantern' }] });
+    expect(store.hasLantern()).toBe(true);
+    expect(store.hasShield()).toBe(false);
+
+    store.updateHunter({ inventory: [{ effect: 'shield' }] });
+    expect(store.hasLantern()).toBe(false);
+    expect(store.hasShield()).toBe(true);
+
+    store.updateGame({ settings: { ...mockSettings, blackout: false } });
+    store.updateHunter({ inventory: [{ effect: 'lantern' }] });
+    expect(store.hasLantern()).toBe(false);
+
     store.updateGame({ settings: { ...mockSettings, blackout: true } });
     expect(store.blackout()).toBe(true);
     expect(store.size()).toBe(mockSettings.size);

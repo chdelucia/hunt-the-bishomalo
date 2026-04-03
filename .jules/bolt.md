@@ -31,3 +31,7 @@
 ## 2026-04-02 - [Consolidated Stats Calculation in Results]
 **Learning:** Performing multiple independent iterations (via `reduce`, `sort`, etc.) over a dataset in separate `computed` signals can be inefficient. Consolidating these into a single O(N) pass within a private `computed` signal and then deriving the public signals from it significantly reduces overhead.
 **Action:** Identify opportunities to consolidate multiple O(N) or O(N log N) operations into a single O(N) pass when they all depend on the same underlying signal.
+
+## 2026-04-03 - [Granular State Tracking for Grid Performance]
+**Learning:** Depending on large, frequently changing state objects (like a `hunter` object) in a grid-based rendering loop causes unnecessary re-evaluations of the entire grid, even if the specific properties used by components (like coordinates) haven't changed. This is especially impactful in zoneless Angular where signal updates drive all checks.
+**Action:** Deconstruct large objects into granular computed signals at the store level. In templates and child components, consume only the specific primitive signals needed. This ensures that unrelated property updates (e.g., updating `gold` or `stats`) do not trigger expensive rendering cycles on the game board.

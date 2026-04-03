@@ -1,11 +1,14 @@
 import { InjectionToken, Signal } from '@angular/core';
-import { Cell, GameSettings, GameItem } from '@hunt-the-bishomalo/shared-data';
+import { Cell, GameSettings, GameItem, Chars } from '@hunt-the-bishomalo/shared-data';
 
 export interface IGameFacade {
   readonly board: Signal<Cell[][]>;
   readonly isAlive: Signal<boolean>;
   readonly hasWon: Signal<boolean>;
   readonly settings: Signal<GameSettings>;
+  readonly size: Signal<number>;
+  readonly selectedChar: Signal<Chars>;
+  readonly difficulty: Signal<any>;
   readonly message: Signal<string>;
   readonly lives: Signal<number>;
   readonly currentCell: Signal<Cell | null>;
@@ -14,7 +17,13 @@ export interface IGameFacade {
   readonly soundEnabled: Signal<boolean>;
   readonly dragonballs: Signal<number>;
   readonly gold: Signal<number>;
+  readonly arrows: Signal<number>;
   readonly hunter: Signal<any>;
+  readonly x: Signal<number>;
+  readonly y: Signal<number>;
+  readonly direction: Signal<number>;
+  readonly hasLantern: Signal<boolean>;
+  readonly hasShield: Signal<boolean>;
   readonly blackout: Signal<boolean>;
   readonly deathByWumpus: Signal<boolean>;
   readonly hasGold: Signal<boolean>;
