@@ -18,6 +18,8 @@ export interface IGameFacade {
   readonly blackout: Signal<boolean>;
   readonly deathByWumpus: Signal<boolean>;
   readonly hasGold: Signal<boolean>;
+  readonly hasLantern: Signal<boolean>;
+  readonly hasShield: Signal<boolean>;
 
   moveForward(): void;
   turnLeft(): void;

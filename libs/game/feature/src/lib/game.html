@@ -7,11 +7,10 @@
 @let currentCell = facade.currentCell();
 @let message = facade.message();
 @let hunter = facade.hunter();
-@let inventory = facade.inventory();
 @let lives = facade.lives();
 @let hasGold = facade.hasGold();
-@let hasLantern = !!settings?.blackout && inventory.some(x => x.effect === 'lantern');
-@let hasShield = inventory.some(x => x.effect === 'shield');
+@let hasLantern = !!settings?.blackout && facade.hasLantern();
+@let hasShield = facade.hasShield();
 
 <main [libVisualEffect]="message" class="main-container">
   <lib-title [blackout]="settings.blackout || false" />
