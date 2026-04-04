@@ -16,3 +16,8 @@
 **Learning:** For users with vestibular disorders or motion sensitivities, animations like the blinking "New Game" button or rapid slide transitions can be disorienting or physically distressing. Implementing a global `prefers-reduced-motion: reduce` media query in the base stylesheet that resets animation and transition durations to a near-zero value ensures that the application remains accessible without requiring manual intervention in every component. This pattern is a fundamental accessibility "fail-safe" for motion-intensive interfaces like games.
 
 **Action:** Always include a global `prefers-reduced-motion` reset in the main stylesheet and specifically target high-intensity animations (like blinking or flashing) in component-level styles.
+
+## 2026-04-04 - Accessible HUD Status Announcements
+**Learning:** In fast-paced or HUD-intensive interfaces, changes to critical status indicators (like lives or level progress) must be announced to screen reader users without them having to manually navigate to those elements. Using a container with `role="status"` and `aria-live="polite"`, combined with a hidden `.sr-only` descriptive label, ensures that updates are communicated naturally as they occur. Centralizing the `.sr-only` utility in a global stylesheet also prevents redundant CSS definitions and ensures a consistent accessibility pattern workspace-wide.
+
+**Action:** For all HUD or real-time status indicators, use a `role="status"` container with `aria-live="polite"` and an `.sr-only` descriptive label that includes current and maximum values where applicable.
