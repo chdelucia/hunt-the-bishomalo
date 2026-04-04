@@ -13,7 +13,13 @@ Sentry.init({
   // Tracing
   tracesSampleRate: 1, //  Capture 100% of the transactions
   // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
-  tracePropagationTargets: ['localhost', /^https:\/\/yourserver\.io\/api/],
+  // Whitelist specific domains for distributed tracing to prevent leaking tracing headers to untrusted third parties.
+  tracePropagationTargets: [
+    'localhost',
+    /^https:\/\/hunt-the-bishomalo\.vercel\.app/,
+    'bold-mouse-42af.c-heredia-naranjo.workers.dev',
+    'huntthebishomalo.c-heredia-naranjo.workers.dev',
+  ],
   // Session Replay
   replaysSessionSampleRate: 0.1, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
   replaysOnErrorSampleRate: 1, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.

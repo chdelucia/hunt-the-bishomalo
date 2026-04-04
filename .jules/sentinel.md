@@ -27,3 +27,8 @@
 **Vulnerability:** Nginx `add_header` directives were missing the `always` parameter, meaning security headers were not sent on error responses (like 4xx or 5xx). Additionally, the `Permissions-Policy` was only partially restricted, and several other recommended headers were missing.
 **Learning:** Security headers should be sent for all responses, including errors, to maintain protection. A comprehensive `Permissions-Policy` and the use of `upgrade-insecure-requests` in CSP provide a much stronger defense-in-depth posture.
 **Prevention:** Always use the `always` parameter for `add_header` directives in Nginx. Explicitly disable all unused browser features in `Permissions-Policy` and use `X-XSS-Protection "0"` to prevent legacy filter exploits.
+
+## 2026-04-04 - [Hardening Sentry tracePropagationTargets]
+**Vulnerability:** Sentry's `tracePropagationTargets` contained a placeholder domain (`yourserver.io`), which could lead to leaking tracing headers (and potentially sensitive metadata) to an untrusted external domain.
+**Learning:** Default or placeholder configurations for monitoring tools can create security gaps if not reviewed and updated to reflect the actual environment. Whitelisting only trusted domains prevents accidental data leakage.
+**Prevention:** Always audit monitoring tool configurations (like Sentry, LogRocket, etc.) to ensure that only authorized domains are whitelisted for sensitive operations like distributed tracing header propagation.
