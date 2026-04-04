@@ -26,6 +26,12 @@ export const GameStore = signalStore(
       const currentBoard = board();
       return currentBoard?.[x]?.[y] ?? null;
     }),
+    hasLantern: computed(() => {
+      return hunter().inventory.some((x) => x.effect === 'lantern');
+    }),
+    hasShield: computed(() => {
+      return hunter().inventory.some((x) => x.effect === 'shield');
+    }),
   })),
   withMethods((store, localStorage = inject(LOCALSTORAGE_SERVICE_TOKEN)) => {
     const persistGameState = () => {

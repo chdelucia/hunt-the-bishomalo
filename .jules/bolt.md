@@ -31,3 +31,7 @@
 ## 2026-04-02 - [Consolidated Stats Calculation in Results]
 **Learning:** Performing multiple independent iterations (via `reduce`, `sort`, etc.) over a dataset in separate `computed` signals can be inefficient. Consolidating these into a single O(N) pass within a private `computed` signal and then deriving the public signals from it significantly reduces overhead.
 **Action:** Identify opportunities to consolidate multiple O(N) or O(N log N) operations into a single O(N) pass when they all depend on the same underlying signal.
+
+## 2026-04-05 - [Store-level Memoization for Global Inventory Checks]
+**Learning:** Hoisting O(N) logic (like `inventory.some`) to parent template `@let` blocks still triggers the scan on every change detection cycle of the parent. Moving this logic into a `computed` signal within the Store ensures the scan only runs when the underlying `inventory` signal actually changes.
+**Action:** Prefer store-level `computed` signals for expensive state derivations (scans, filters, maps) over template-level `@let` expressions to maximize the benefits of signal memoization.

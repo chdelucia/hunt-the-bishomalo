@@ -31,6 +31,8 @@ export interface IGameStore {
   readonly soundEnabled: Signal<boolean>;
   readonly dragonballs: Signal<number>;
   readonly gold: Signal<number>;
+  readonly hasLantern: Signal<boolean>;
+  readonly hasShield: Signal<boolean>;
 
   updateHunter(partial: Partial<Hunter>): void;
   updateGame(partial: Partial<GameState>): void;

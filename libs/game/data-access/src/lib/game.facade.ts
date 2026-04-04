@@ -22,8 +22,10 @@ export class GameFacade implements IGameFacade {
   readonly gold = this.store.gold;
   readonly hunter = this.store.hunter;
   readonly blackout = this.store.blackout;
+  readonly hasLantern = this.store.hasLantern;
+  readonly hasShield = this.store.hasShield;
 
-  readonly hasGold = computed(() => this.hunter().hasGold);
+  readonly hasGold = this.store.hasGold;
 
   moveForward(): void {
     this.engine.moveForward();

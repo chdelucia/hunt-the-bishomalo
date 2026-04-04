@@ -40,6 +40,8 @@ describe('Game', () => {
     blackout: signal(false),
     deathByWumpus: signal(false),
     hasGold: signal(false),
+    hasLantern: signal(false),
+    hasShield: signal(false),
     newGame: jest.fn(),
     initGame: jest.fn(),
     shootArrow: jest.fn(),
