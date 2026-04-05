@@ -35,3 +35,7 @@
 ## 2026-04-05 - [Store-level Memoization for Global Inventory Checks]
 **Learning:** Hoisting O(N) logic (like `inventory.some`) to parent template `@let` blocks still triggers the scan on every change detection cycle of the parent. Moving this logic into a `computed` signal within the Store ensures the scan only runs when the underlying `inventory` signal actually changes.
 **Action:** Prefer store-level `computed` signals for expensive state derivations (scans, filters, maps) over template-level `@let` expressions to maximize the benefits of signal memoization.
+
+## 2026-04-05 - [Specific Dependency for Derived Computed Signals]
+**Learning:** Derived computed signals (like `hasLantern`) that depend on broad state objects (like `hunter`) will re-evaluate whenever any property of that object changes (e.g., position), even if the relevant property (e.g., `inventory`) remains the same.
+**Action:** Make derived computed signals depend on the most granular computed signals available (e.g., `inventory()`) instead of broad state signals (e.g., `hunter()`) to fully leverage signal memoization and prevent redundant re-evaluations during frequent state changes like movement.
