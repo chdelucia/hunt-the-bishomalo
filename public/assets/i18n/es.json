@@ -172,7 +172,12 @@
     "levelLabel": "Nivel (max 20):",
     "selectCharacterLabel": "Selecciona personaje:",
     "playButton": "Jugar",
-    "difficultyDescription": "{{maxLives}} vidas, {{maxLevels}} niveles, suerte: {{chance}}%"
+    "difficultyDescription": "{{maxLives}} vidas, {{maxLevels}} niveles, suerte: {{chance}}%",
+    "error": {
+      "required": "El nombre es obligatorio",
+      "maxLength": "Máximo 20 caracteres",
+      "pattern": "Solo letras, números, espacios, - y _"
+    }
   },
   "controls": {
     "openControlsAriaLabel": "Abrir controles del juego",

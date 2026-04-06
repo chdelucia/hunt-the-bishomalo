@@ -172,7 +172,12 @@
     "levelLabel": "Level (max 20):",
     "selectCharacterLabel": "Select Character:",
     "playButton": "Play",
-    "difficultyDescription": "{{maxLives}} lives, {{maxLevels}} levels, luck: {{chance}}%"
+    "difficultyDescription": "{{maxLives}} lives, {{maxLevels}} levels, luck: {{chance}}%",
+    "error": {
+      "required": "Name is required",
+      "maxLength": "Maximum 20 characters",
+      "pattern": "Only letters, numbers, spaces, - and _"
+    }
   },
   "controls": {
     "openControlsAriaLabel": "Open game controls",
