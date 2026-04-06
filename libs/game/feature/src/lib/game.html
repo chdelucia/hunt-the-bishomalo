@@ -29,6 +29,8 @@
 
         <lib-game-cell
           [class.escape]="isFirstRow && $first && hasGold"
+          [active]="isHunterCell && !isGameOver"
+          [attr.tabindex]="isHunterCell && !isGameOver ? 0 : null"
           [cell]="cell"
           [showElements]="showElements"
           [showHunter]="showHunter"
