@@ -9,7 +9,7 @@
 @let hunter = facade.hunter();
 @let lives = facade.lives();
 @let hasGold = facade.hasGold();
-@let hasLantern = !!settings?.blackout && facade.hasLantern();
+@let hasLantern = facade.hasLantern();
 @let hasShield = facade.hasShield();
 
 <main [libVisualEffect]="message" class="main-container">

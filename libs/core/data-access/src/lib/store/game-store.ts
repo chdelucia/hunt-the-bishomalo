@@ -20,17 +20,20 @@ export const GameStore = signalStore(
   withHunterFeature(),
   withConfigFeature(),
   withGameStatusFeature(),
-  withComputed(({ hunter, board }) => ({
+  withComputed(({ x, y, inventory, board, blackout }) => ({
     currentCell: computed(() => {
-      const { x, y } = hunter();
       const currentBoard = board();
-      return currentBoard?.[x]?.[y] ?? null;
+      const currentX = x();
+      const currentY = y();
+      return currentBoard?.[currentX]?.[currentY] ?? null;
     }),
     hasLantern: computed(() => {
-      return hunter().inventory.some((x) => x.effect === 'lantern');
+      // Optimization: First check if blackout is active to short-circuit the inventory scan.
+      // This also consolidates the template check into the store.
+      return !!blackout() && inventory().some((item) => item.effect === 'lantern');
     }),
     hasShield: computed(() => {
-      return hunter().inventory.some((x) => x.effect === 'shield');
+      return inventory().some((item) => item.effect === 'shield');
     }),
   })),
   withMethods((store, localStorage = inject(LOCALSTORAGE_SERVICE_TOKEN)) => {
