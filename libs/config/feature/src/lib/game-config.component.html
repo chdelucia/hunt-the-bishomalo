@@ -4,8 +4,19 @@
   <h2>{{ 'config.title' | transloco }}</h2>
 
   <div class="form-group">
+    @let playerState = configForm.player();
     <label for="player">{{ 'config.playerNameLabel' | transloco }}</label>
-    <input id="player" type="text" [formField]="configForm.player" />
+    <div class="input-wrapper">
+      <input id="player" type="text" [formField]="configForm.player" />
+      <span class="char-counter" [class.limit-reached]="playerState.value().length >= 20">
+        {{ playerState.value().length }}/20
+      </span>
+    </div>
+    @if (playerState.touched() && playerState.errors().length > 0) {
+      <span class="error-message" role="alert">
+        {{ 'config.error.' + playerState.errors()[0].kind | transloco }}
+      </span>
+    }
   </div>
 
   <div class="form-group">

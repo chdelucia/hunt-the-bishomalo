@@ -122,4 +122,26 @@ describe('GameConfigComponent', () => {
       state: { fromSecretPath: true },
     });
   });
+
+  it('should show error message when player name is invalid and touched', () => {
+    component.model.update((m) => ({ ...m, player: '' }));
+    component.configForm.player().markAsTouched();
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    const errorMessage = compiled.querySelector('.error-message');
+    expect(errorMessage).toBeTruthy();
+    expect(errorMessage?.textContent).toContain('config.error.required');
+  });
+
+  it('should show character counter with correct length', () => {
+    const playerName = 'TestPlayer';
+    component.model.update((m) => ({ ...m, player: playerName }));
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    const charCounter = compiled.querySelector('.char-counter');
+    expect(charCounter).toBeTruthy();
+    expect(charCounter?.textContent).toContain(`${playerName.length}/20`);
+  });
 });
