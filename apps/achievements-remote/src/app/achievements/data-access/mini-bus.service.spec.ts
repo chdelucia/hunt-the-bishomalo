@@ -12,7 +12,7 @@ describe('MiniBusService', () => {
       providers: [MiniBusService],
     });
     service = TestBed.inject(MiniBusService);
-    (globalThis as any).__EVENT_STORE__ = {};
+    (globalThis as any).__EVENT_STORE__ = Object.create(null);
   });
 
   afterEach(() => {
@@ -24,6 +24,18 @@ describe('MiniBusService', () => {
   });
 
   describe('emit', () => {
+    it('should block prototype-related keys', () => {
+      const callback = jest.fn();
+      const protoKey = '__proto__';
+      const detail = { malicious: 'data' };
+
+      service.listen(protoKey, callback);
+      service.emit(protoKey, detail);
+
+      expect(callback).not.toHaveBeenCalled();
+      expect((globalThis as any).__EVENT_STORE__[protoKey]).toBeUndefined();
+    });
+
     it('should update the event store', () => {
       const event = getUniqueEventName();
       const detail = { foo: 'bar' };
