@@ -13,7 +13,17 @@ export const LOCALSTORAGE_SERVICE_TOKEN = new InjectionToken<ILocalstorageServic
 export class LocalstorageService implements ILocalstorageService {
   getValue<T>(key: string): T | null {
     const value = localStorage.getItem(key);
-    return value ? JSON.parse(value) : null;
+    if (!value) {
+      return null;
+    }
+
+    try {
+      return JSON.parse(value);
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.warn('Error parsing localStorage key: ' + key, e);
+      return null;
+    }
   }
 
   setValue<T>(key: string, value: T): void {

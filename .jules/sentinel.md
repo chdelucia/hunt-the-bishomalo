@@ -32,3 +32,13 @@
 **Vulnerability:** Sentry's `tracePropagationTargets` contained a placeholder domain (`yourserver.io`), which could lead to leaking tracing headers (and potentially sensitive metadata) to an untrusted external domain.
 **Learning:** Default or placeholder configurations for monitoring tools can create security gaps if not reviewed and updated to reflect the actual environment. Whitelisting only trusted domains prevents accidental data leakage.
 **Prevention:** Always audit monitoring tool configurations (like Sentry, LogRocket, etc.) to ensure that only authorized domains are whitelisted for sensitive operations like distributed tracing header propagation.
+
+## 2025-05-23 - [Prototype Pollution in MiniBusService]
+**Vulnerability:** The `MiniBusService` used a plain object as an event store, making it susceptible to Prototype Pollution if malicious event names (e.g., `__proto__`) were emitted.
+**Learning:** Shared event systems that persist state in plain objects must be hardened against prototype-related keys to prevent global object pollution.
+**Prevention:** Use `Object.create(null)` for internal stores and explicitly block forbidden keys like `__proto__`, `constructor`, and `prototype`.
+
+## 2025-05-23 - [Client-side Path Traversal in AchievementService]
+**Vulnerability:** The `AchievementService` used the `appId` from an external event directly in a fetch URL, which could allow fetching unauthorized local files if manipulated.
+**Learning:** Data received from cross-component communication or events should be treated as untrusted and sanitized before use in security-sensitive operations like URL construction.
+**Prevention:** Always sanitize identifiers using strict regex (e.g., `/[^a-zA-Z0-9\-_]/g`) before including them in file paths or API requests.

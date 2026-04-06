@@ -71,7 +71,10 @@ class ShellAchievementService implements IAchievementService {
 
   constructor() {
     this.miniBus.listen('ACHIEVEMENTS_CONFIG', (config: { appId: string }) => {
-      this.http.get<Achievement[]>(`/assets/achievements/${config.appId}.json`).subscribe({
+      if (!config?.appId) return;
+      const sanitizedAppId = config.appId.replace(/[^a-zA-Z0-9\-_]/g, '');
+
+      this.http.get<Achievement[]>(`/assets/achievements/${sanitizedAppId}.json`).subscribe({
         next: (data) => {
           this.achievementsSignal.set(data);
           this.syncAchievementsWithStorage();

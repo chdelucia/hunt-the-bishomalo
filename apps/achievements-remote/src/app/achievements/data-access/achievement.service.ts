@@ -32,7 +32,9 @@ export class AchievementService implements IAchievementService {
       const config = this.facade.config();
       if (!config) return;
 
-      this.http.get<Achievement[]>(`/assets/achievements/${config.appId}.json`).subscribe({
+      const sanitizedAppId = config.appId.replace(/[^a-zA-Z0-9\-_]/g, '');
+
+      this.http.get<Achievement[]>(`/assets/achievements/${sanitizedAppId}.json`).subscribe({
         next: (data) => {
           this.achievementsSignal.set(data);
           untracked(() => {
