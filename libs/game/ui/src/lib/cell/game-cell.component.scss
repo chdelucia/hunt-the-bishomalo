@@ -23,6 +23,14 @@
     top: 5px;
     right: 5px;
   }
+
+}
+
+:host:focus-visible .cell,
+.cell.active {
+  outline: 4px solid var(--color-focus);
+  outline-offset: -4px;
+  z-index: 10;
 }
 
 @keyframes fadeFog {

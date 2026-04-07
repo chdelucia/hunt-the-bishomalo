@@ -24,4 +24,5 @@ export class GameCellComponent {
   readonly showHunter = input.required<boolean>();
   readonly hasLantern = input.required<boolean>();
   readonly hasShield = input.required<boolean>();
+  readonly active = input<boolean>(false);
 }
