@@ -49,6 +49,37 @@ describe('LocalstorageService', () => {
       expect(consoleSpy).not.toHaveBeenCalled();
       consoleSpy.mockRestore();
     });
+
+    it('should sanitize parsed objects to prevent prototype pollution', () => {
+      const malicious = '{"__proto__": {"polluted": true}, "foo": "bar"}';
+      localStorage.setItem('test-key', malicious);
+
+      const result = service.getValue<any>('test-key');
+
+      expect(result.foo).toBe('bar');
+      expect(result.__proto__).toBeUndefined();
+      expect(Object.getPrototypeOf(result)).toBeNull();
+      expect(({} as any).polluted).toBeUndefined();
+    });
+
+    it('should recursively sanitize nested objects and arrays', () => {
+      const complex = {
+        a: [1, { b: 2, __proto__: { c: 3 } }],
+        d: { e: 4, prototype: { f: 5 } },
+      };
+      localStorage.setItem('test-key', JSON.stringify(complex));
+
+      const result = service.getValue<any>('test-key');
+
+      expect(result.a[0]).toBe(1);
+      expect(result.a[1].b).toBe(2);
+      expect(result.a[1].__proto__).toBeUndefined();
+      expect(Object.getPrototypeOf(result.a[1])).toBeNull();
+
+      expect(result.d.e).toBe(4);
+      expect(result.d.prototype).toBeUndefined();
+      expect(Object.getPrototypeOf(result.d)).toBeNull();
+    });
   });
 
   describe('setValue', () => {

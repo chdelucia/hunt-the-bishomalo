@@ -91,17 +91,16 @@ describe('MiniBusService', () => {
   });
 
   describe('emit store initialization', () => {
-    it('should not overwrite existing __EVENT_STORE__', () => {
+    it('should ensure __EVENT_STORE__ is prototype-less', () => {
       const existingStore = { existing: 'data' };
       (globalThis as any).__EVENT_STORE__ = existingStore;
 
       service.emit('new-event', 'new-data');
 
-      expect((globalThis as any).__EVENT_STORE__).toBe(existingStore);
-      expect(existingStore as any).toEqual({
-        existing: 'data',
-        'new-event': 'new-data'
-      });
+      const currentStore = (globalThis as any).__EVENT_STORE__;
+      expect(Object.getPrototypeOf(currentStore)).toBeNull();
+      expect(currentStore.existing).toBe('data');
+      expect(currentStore['new-event']).toBe('new-data');
     });
   });
 });

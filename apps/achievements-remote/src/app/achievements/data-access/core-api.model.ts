@@ -18,7 +18,8 @@ export class LocalstorageService implements ILocalstorageService {
     }
 
     try {
-      return JSON.parse(value);
+      const parsed = JSON.parse(value);
+      return this.sanitize(parsed);
     } catch (e) {
       // eslint-disable-next-line no-console
       console.warn('Error parsing localStorage key: ' + key, e);
@@ -36,6 +37,27 @@ export class LocalstorageService implements ILocalstorageService {
 
   clearAll(): void {
     localStorage.clear();
+  }
+
+  private sanitize<T>(obj: T): T {
+    if (obj === null || typeof obj !== 'object') {
+      return obj;
+    }
+
+    if (Array.isArray(obj)) {
+      return obj.map((v) => this.sanitize(v)) as unknown as T;
+    }
+
+    const sanitized = Object.create(null);
+    const forbiddenKeys = ['__proto__', 'constructor', 'prototype'];
+
+    for (const key in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, key) && !forbiddenKeys.includes(key)) {
+        sanitized[key] = this.sanitize((obj as any)[key]);
+      }
+    }
+
+    return sanitized;
   }
 }
 
