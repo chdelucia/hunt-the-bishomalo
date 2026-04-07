@@ -21,3 +21,8 @@
 **Learning:** In fast-paced or HUD-intensive interfaces, changes to critical status indicators (like lives or level progress) must be announced to screen reader users without them having to manually navigate to those elements. Using a container with `role="status"` and `aria-live="polite"`, combined with a hidden `.sr-only` descriptive label, ensures that updates are communicated naturally as they occur. Centralizing the `.sr-only` utility in a global stylesheet also prevents redundant CSS definitions and ensures a consistent accessibility pattern workspace-wide.
 
 **Action:** For all HUD or real-time status indicators, use a `role="status"` container with `aria-live="polite"` and an `.sr-only` descriptive label that includes current and maximum values where applicable.
+
+## 2026-04-07 - Contextual Form Accessibility and SVG Labeling
+**Learning:** For users of screen readers, ensuring that inputs have full context (like character limits and real-time error messages) is essential for a smooth form-filling experience. Associating these elements with the input using `aria-describedby` provides this context without extra navigation. Additionally, complex SVG-based branding should be treated as a single informative image by using `role="img"` and a descriptive `aria-label`, while hiding internal animated elements to prevent "visual noise" for screen readers.
+
+**Action:** Always link form inputs with character counters and error spans using `aria-describedby`. For SVG titles, use `role="img"` and `aria-label` on the root tag and `aria-hidden="true"` on internal paths/groups.
