@@ -21,6 +21,12 @@ export class GameFacade implements IGameFacade {
   readonly dragonballs = this.store.dragonballs;
   readonly gold = this.store.gold;
   readonly hunter = this.store.hunter;
+  readonly hunterX = this.store.x;
+  readonly hunterY = this.store.y;
+  readonly direction = this.store.direction;
+  readonly size = this.store.size;
+  readonly selectedChar = this.store.selectedChar;
+  readonly difficulty = this.store.difficulty;
   readonly blackout = this.store.blackout;
   readonly hasLantern = this.store.hasLantern;
   readonly hasShield = this.store.hasShield;

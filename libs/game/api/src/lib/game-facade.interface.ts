@@ -15,6 +15,12 @@ export interface IGameFacade {
   readonly dragonballs: Signal<number>;
   readonly gold: Signal<number>;
   readonly hunter: Signal<any>;
+  readonly hunterX: Signal<number>;
+  readonly hunterY: Signal<number>;
+  readonly direction: Signal<number>;
+  readonly size: Signal<number>;
+  readonly selectedChar: Signal<string>;
+  readonly difficulty: Signal<any>;
   readonly blackout: Signal<boolean>;
   readonly deathByWumpus: Signal<boolean>;
   readonly hasGold: Signal<boolean>;

@@ -3,29 +3,32 @@
 @let isAlive = facade.isAlive();
 @let hasWon = facade.hasWon();
 @let isGameOver = !isAlive || hasWon;
-@let settings = facade.settings();
-@let currentCell = facade.currentCell();
+@let hunterX = facade.hunterX();
+@let hunterY = facade.hunterY();
+@let size = facade.size();
+@let selectedChar = facade.selectedChar();
+@let difficulty = facade.difficulty();
 @let message = facade.message();
-@let hunter = facade.hunter();
 @let lives = facade.lives();
 @let hasGold = facade.hasGold();
-@let hasLantern = !!settings?.blackout && facade.hasLantern();
+@let blackout = facade.blackout();
+@let hasLantern = !!blackout && facade.hasLantern();
 @let hasShield = facade.hasShield();
 
 <main [libVisualEffect]="message" class="main-container">
-  <lib-title [blackout]="settings.blackout || false" />
+  <lib-title [blackout]="blackout || false" />
 
-  @if (settings?.blackout && isAlive && !hasWon) {
+  @if (blackout && isAlive && !hasWon) {
     <lib-blackout />
   }
 
   <section class="board" [style.--board-size]="boardSize">
     @for (row of board; track $index; let rowIndex = $index) {
       @let isFirstRow = !rowIndex;
-      @for (cell of row; track cell) {
-        @let isHunterCell = currentCell === cell;
+      @for (cell of row; track cell; let colIndex = $index) {
+        @let isHunterCell = hunterX === rowIndex && hunterY === colIndex;
         @let showElements = isGameOver || cell.visited || cell.content?.alt === 'secret';
-        @let showHunter = isHunterCell && isAlive && !!hunter;
+        @let showHunter = isHunterCell && isAlive;
 
         <lib-game-cell
           [class.escape]="isFirstRow && $first && hasGold"
@@ -34,10 +37,10 @@
           [showHunter]="showHunter"
           [hasLantern]="isHunterCell ? hasLantern : false"
           [hasShield]="isHunterCell ? hasShield : false"
-          [selectedChar]="settings.selectedChar"
-          [size]="settings.size"
+          [selectedChar]="$any(selectedChar)"
+          [size]="size"
           [isHunterCell]="isHunterCell"
-          [hunter]="isHunterCell ? hunter : null"
+          [hunter]="isHunterCell ? facade.hunter() : null"
         />
       }
     }
@@ -45,7 +48,7 @@
     @if (facade.deathByWumpus()) {
       @defer (on timer(100ms)) {
         <lib-wumpus-attack-animation
-          [selectedChar]="settings.selectedChar"
+          [selectedChar]="$any(selectedChar)"
           (closeAnimation)="handleClose()"
         />
       }
@@ -53,10 +56,10 @@
   </section>
 
   <section class="player-info">
-    <lib-game-level [size]="settings.size"></lib-game-level>
+    <lib-game-level [size]="size"></lib-game-level>
     <lib-game-lives
       [lives]="lives"
-      [maxLives]="settings.difficulty.maxLives"
+      [maxLives]="difficulty.maxLives"
     ></lib-game-lives>
   </section>
 
@@ -64,8 +67,8 @@
     [message]="message"
     [isAlive]="isAlive"
     [hasWon]="hasWon"
-    [size]="settings.size"
-    [maxLevels]="settings.difficulty.maxLevels"
+    [size]="size"
+    [maxLevels]="difficulty.maxLevels"
     [lives]="lives"
     (restartRequested)="facade.initGame()"
   />

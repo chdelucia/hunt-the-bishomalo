@@ -27,6 +27,9 @@ export function withHunterFeature() {
       hasGold: computed(() => hunter().hasGold),
       gold: computed(() => hunter().gold),
       inventory: computed(() => hunter().inventory),
+      x: computed(() => hunter().x),
+      y: computed(() => hunter().y),
+      direction: computed(() => hunter().direction),
     })),
     withMethods((store) => ({
       $_updateHunter(partial: Partial<Hunter>) {

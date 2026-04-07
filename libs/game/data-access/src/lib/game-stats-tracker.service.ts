@@ -13,7 +13,8 @@ export class GameStatsTrackerService implements IGameStatsTracker {
   private lastPos: { x: number; y: number } | null = null;
 
   trackSteps(): void {
-    const { x, y } = this.store.hunter();
+    const x = this.store.x();
+    const y = this.store.y();
     if (this.lastPos === null) {
       this.lastPos = { x, y };
       return;

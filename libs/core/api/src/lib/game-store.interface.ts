@@ -4,6 +4,7 @@ import {
   GameSettings,
   Hunter,
   Chars,
+  Direction,
   GameState,
   GameDificulty,
   GameItem,
@@ -22,6 +23,9 @@ export interface IGameStore {
   readonly lives: Signal<number>;
   readonly hasGold: Signal<boolean>;
   readonly currentCell: Signal<Cell | null>;
+  readonly x: Signal<number>;
+  readonly y: Signal<number>;
+  readonly direction: Signal<Direction>;
   readonly inventory: Signal<GameItem[]>; // Use any or a generic item type if needed
   readonly hunter: Signal<Hunter>;
   readonly unlockedChars: Signal<Chars[]>;

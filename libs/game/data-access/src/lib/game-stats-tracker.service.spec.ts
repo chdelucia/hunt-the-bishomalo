@@ -16,6 +16,8 @@ describe('GameStatsTrackerService', () => {
       hasWon: signal(false),
       isAlive: signal(true),
       hunter: signal({ x: 0, y: 0 }),
+      x: signal(0),
+      y: signal(0),
       settings: signal({ player: 'Test', size: 5 }),
       startTime: signal(new Date().toISOString()),
       wumpusKilled: signal(0),
@@ -46,7 +48,7 @@ describe('GameStatsTrackerService', () => {
 
   it('should track steps when hunter moves', () => {
     service.trackSteps(); // initialize lastPos with (0,0)
-    storeMock.hunter.set({ x: 1, y: 0 });
+    storeMock.x.set(1);
     service.trackSteps(); // detect movement from (0,0) to (1,0)
     storeMock.hasWon.set(true);
     service.handleGameOver();
@@ -55,7 +57,7 @@ describe('GameStatsTrackerService', () => {
 
   it('should not track duplicate steps if position has not changed', () => {
     service.trackSteps(); // (0,0)
-    storeMock.hunter.set({ x: 1, y: 0 });
+    storeMock.x.set(1);
     service.trackSteps(); // (1,0)
     service.trackSteps(); // (1,0) again
     storeMock.hasWon.set(true);
@@ -65,12 +67,13 @@ describe('GameStatsTrackerService', () => {
 
   it('should reset steps correctly', () => {
     service.trackSteps(); // (0,0)
-    storeMock.hunter.set({ x: 1, y: 0 });
+    storeMock.x.set(1);
     service.trackSteps(); // (1,0)
     service.resetSteps();
-    storeMock.hunter.set({ x: 1, y: 1 });
+    storeMock.x.set(1);
+    storeMock.y.set(1);
     service.trackSteps(); // initialize lastPos with (1,1)
-    storeMock.hunter.set({ x: 2, y: 1 });
+    storeMock.x.set(2);
     service.trackSteps(); // (2,1)
     storeMock.hasWon.set(true);
     service.handleGameOver();
