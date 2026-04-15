@@ -60,7 +60,10 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.miniBus.emit('ACHIEVEMENTS_CONFIG', { appId: 'hunt-the-bishomalo' });
+    this.miniBus.emit('ACHIEVEMENTS_CONFIG', {
+      appId: 'hunt-the-bishomalo',
+      finalAchievementId: 'completionist',
+    });
 
     this.preloadRemotes();
 

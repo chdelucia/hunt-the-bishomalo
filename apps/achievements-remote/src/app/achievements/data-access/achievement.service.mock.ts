@@ -1,4 +1,4 @@
-import { signal } from '@angular/core';
+import { Signal, signal } from '@angular/core';
 import { Achievement } from './achievement.model';
 import { IAchievementService } from './achievement-service.interface';
 
