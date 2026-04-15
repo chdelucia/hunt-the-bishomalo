@@ -138,35 +138,17 @@ describe('AppComponent', () => {
     expect(component.game).toBeDefined();
   });
 
-  it('should set isRouteLoading to true after 300ms on NavigationStart', () => {
-    jest.useFakeTimers();
+  it('should set isRouteLoading to true immediately on NavigationStart', () => {
     component.ngOnInit();
     routerEventsSubject.next(new NavigationStart(1, '/test'));
-    expect(component.isRouteLoading()).toBe(false);
-    jest.advanceTimersByTime(300);
     expect(component.isRouteLoading()).toBe(true);
-    jest.useRealTimers();
   });
 
   it('should set isRouteLoading to false on NavigationEnd', () => {
-    jest.useFakeTimers();
     component.ngOnInit();
     routerEventsSubject.next(new NavigationStart(1, '/test'));
-    jest.advanceTimersByTime(300);
     expect(component.isRouteLoading()).toBe(true);
     routerEventsSubject.next(new NavigationEnd(1, '/test', '/test'));
     expect(component.isRouteLoading()).toBe(false);
-    jest.useRealTimers();
-  });
-
-  it('should cancel loader timer if navigation ends before 300ms', () => {
-    jest.useFakeTimers();
-    component.ngOnInit();
-    routerEventsSubject.next(new NavigationStart(1, '/test'));
-    jest.advanceTimersByTime(100);
-    routerEventsSubject.next(new NavigationEnd(1, '/test', '/test'));
-    jest.advanceTimersByTime(200);
-    expect(component.isRouteLoading()).toBe(false);
-    jest.useRealTimers();
   });
 });

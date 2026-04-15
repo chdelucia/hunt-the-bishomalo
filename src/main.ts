@@ -10,7 +10,7 @@ import { fetchRemoteConfig } from './app/utils/config-loader';
     fetch('federation.manifest.json')
       .then((res) => res.json())
       .catch(() => ({})),
-  ]);
+  ]).catch(() => [{ remotes: {} }, {}]);
 
   const mergedManifest = {
     ...(manifest as Record<string, string>),
@@ -25,7 +25,7 @@ import { fetchRemoteConfig } from './app/utils/config-loader';
    * Expected Impact: Reduces 1 unnecessary network request and minor overhead.
    */
   const filteredManifest = Object.fromEntries(
-    Object.entries(mergedManifest).filter(([name]) => name !== 'hunt-the-bishomalo'),
+    Object.entries(mergedManifest).filter(([name]) => name !== 'hunt-the-bishomalo' && name !== 'host'),
   );
 
   await initFederation(filteredManifest);
