@@ -21,7 +21,11 @@ export async function fetchRemoteConfig(isDev: boolean): Promise<RemoteConfig> {
   }
 
   try {
-    const res = await fetch(url);
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), 2000);
+
+    const res = await fetch(url, { signal: controller.signal });
+    clearTimeout(id);
     return (await res.json()) as RemoteConfig;
   } catch (error) {
     // eslint-disable-next-line no-console

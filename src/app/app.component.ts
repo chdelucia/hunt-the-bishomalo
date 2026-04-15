@@ -76,11 +76,8 @@ export class AppComponent implements OnInit {
       )
       .subscribe((event) => {
         if (event instanceof NavigationStart) {
-          this.loaderTimer = globalThis.setTimeout(() => {
-            this.isRouteLoading.set(true);
-          }, 300);
+          this.isRouteLoading.set(true);
         } else {
-          globalThis.clearTimeout(this.loaderTimer);
           this.isRouteLoading.set(false);
         }
       });
@@ -103,10 +100,10 @@ export class AppComponent implements OnInit {
     if ('requestIdleCallback' in globalThis) {
       (globalThis as unknown as { requestIdleCallback: (cb: () => void, opts: { timeout: number }) => void }).requestIdleCallback(
         preloadAction,
-        { timeout: 5000 },
+        { timeout: 0 },
       );
     } else {
-      globalThis.setTimeout(preloadAction, 5000);
+      globalThis.setTimeout(preloadAction, 0);
     }
   }
 }

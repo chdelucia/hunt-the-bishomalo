@@ -45,7 +45,7 @@
     }
 
     @if (facade.deathByWumpus()) {
-      @defer (on timer(100ms)) {
+      @defer {
         <lib-wumpus-attack-animation
           [selectedChar]="settings.selectedChar"
           (closeAnimation)="handleClose()"

@@ -17,6 +17,7 @@ describe('config-loader', () => {
 
       expect(global.fetch).toHaveBeenCalledWith(
         'https://bold-mouse-42af.c-heredia-naranjo.workers.dev/mfe-remotes.dev.json',
+        expect.objectContaining({ signal: expect.any(AbortSignal) }),
       );
       expect(config).toEqual(mockConfig);
     });
@@ -31,6 +32,7 @@ describe('config-loader', () => {
 
       expect(global.fetch).toHaveBeenCalledWith(
         'https://huntthebishomalo.c-heredia-naranjo.workers.dev/mfe-remotes.prod.json',
+        expect.objectContaining({ signal: expect.any(AbortSignal) }),
       );
       expect(config).toEqual(mockConfig);
     });
