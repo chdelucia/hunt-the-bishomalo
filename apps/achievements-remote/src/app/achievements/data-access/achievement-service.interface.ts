@@ -1,10 +1,10 @@
 import { InjectionToken, Signal } from '@angular/core';
-import { Achievement, AchieveTypes } from './achievement.model';
+import { Achievement } from './achievement.model';
 
 export interface IAchievementService {
   achievements: Signal<Achievement[]>;
   completed: Signal<Achievement | undefined>;
-  activeAchievement: (id: AchieveTypes | string) => void;
+  activeAchievement: (id: string) => void;
   isAllCompleted: () => void;
 }
 

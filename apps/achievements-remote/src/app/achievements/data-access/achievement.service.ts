@@ -1,6 +1,6 @@
 import { effect, inject, Injectable, signal, untracked } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Achievement, AchieveTypes } from './achievement.model';
+import { Achievement } from './achievement.model';
 import {
   ANALYTICS_SERVICE_TOKEN,
   LOCALSTORAGE_SERVICE_TOKEN,
@@ -24,7 +24,7 @@ export class AchievementService implements IAchievementService {
   private readonly facade = inject(AchievementsFacade);
   private readonly http = inject(HttpClient);
 
-  private activeBuffer: (AchieveTypes | string)[] = [];
+  private activeBuffer: string[] = [];
 
   constructor() {
     this.listenForExternalAchievements();
@@ -84,7 +84,7 @@ export class AchievementService implements IAchievementService {
     return this.localStoreService.getValue<string[]>(this.storageKey) || [];
   }
 
-  activeAchievement(id: AchieveTypes | string): void {
+  activeAchievement(id: string): void {
     const achievements = this.achievementsSignal();
     if (achievements.length === 0) {
       this.activeBuffer.push(id);
@@ -110,8 +110,9 @@ export class AchievementService implements IAchievementService {
   isAllCompleted(): void {
     const achievements = this.achievementsSignal();
     const victory = achievements.filter((x) => x.unlocked);
-    if (achievements.length > 0 && achievements.length - victory.length <= 1) {
-      this.activeAchievement(AchieveTypes.FINAL);
+    const finalId = this.facade.config()?.finalAchievementId;
+    if (finalId && achievements.length > 0 && achievements.length - victory.length <= 1) {
+      this.activeAchievement(finalId);
     }
   }
 }
