@@ -83,7 +83,15 @@ export default [
             },
             {
               sourceTag: 'scope:achievements',
-              onlyDependOnLibsWithTags: ['scope:achievements', 'type:api', 'type:model', 'type:util', 'type:ui'],
+              onlyDependOnLibsWithTags: [
+                'scope:achievements',
+                'scope:core',
+                'scope:shared',
+                'type:api',
+                'type:model',
+                'type:util',
+                'type:ui',
+              ],
             },
             {
               sourceTag: 'scope:boss',

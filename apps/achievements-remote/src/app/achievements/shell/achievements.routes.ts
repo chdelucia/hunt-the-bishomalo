@@ -1,13 +1,15 @@
 import { Routes } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
-import { ACHIEVEMENT_SERVICE } from '../data-access/achievement-service.interface';
+import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { AchievementService } from '../data-access/index';
 import {
   ANALYTICS_SERVICE_TOKEN,
-  AnalyticsService,
   LOCALSTORAGE_SERVICE_TOKEN,
+} from '@hunt-the-bishomalo/core/api';
+import {
+  AnalyticsService,
   LocalstorageService,
-} from '../data-access/core-api.model';
+} from '@hunt-the-bishomalo/core/data-access';
 
 export const achievementsRoutes: Routes = [
   {

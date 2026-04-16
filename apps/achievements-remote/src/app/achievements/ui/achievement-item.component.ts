@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input } from '@angular/core';
 import { TranslocoModule } from '@jsverse/transloco';
-import { ASSETS_BASE_URL, Achievement } from '../data-access/achievement.model';
+import { ASSETS_BASE_URL, Achievement } from '@hunt-the-bishomalo/shared-data';
 
 @Component({
   selector: 'app-achievement-item',

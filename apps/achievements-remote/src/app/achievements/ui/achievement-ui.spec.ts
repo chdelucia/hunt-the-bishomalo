@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AchievementFilterComponent } from './achievement-filter.component';
 import { AchievementProgressComponent } from './achievement-progress.component';
-import { getTranslocoTestingModule } from '../data-access/transloco-testing';
+import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 
 describe('Achievement UI Components', () => {
   describe('AchievementFilterComponent', () => {

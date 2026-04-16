@@ -1,5 +1,5 @@
 import { inject, Injectable, signal } from '@angular/core';
-import { MiniBusService } from './mini-bus.service';
+import { MiniBusService } from '@hunt-the-bishomalo/core/data-access';
 
 const ACHIEVEMENTS_EVENT = 'ACHIEVEMENTS_CONFIG';
 
