@@ -8,13 +8,12 @@ module.exports = withNativeFederation({
   },
 
   shared: {
-    ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
-    '@jsverse/transloco': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-    '@hunt-the-bishomalo/achievements/api': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-    '@hunt-the-bishomalo/shared-data': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-    '@hunt-the-bishomalo/core/api': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-    '@hunt-the-bishomalo/game/api': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-    '@hunt-the-bishomalo/gamestats/api': { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+    ...shareAll({
+      singleton: true,
+      strictVersion: true,
+      requiredVersion: 'auto',
+      includeSecondaries: false,
+    }),
   },
 
   skip: [
@@ -25,6 +24,6 @@ module.exports = withNativeFederation({
   ],
 
   features: {
-    ignoreUnusedDeps: true
-  }
+    ignoreUnusedDeps: true,
+  },
 });

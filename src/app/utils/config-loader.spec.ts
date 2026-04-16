@@ -10,6 +10,7 @@ describe('config-loader', () => {
     it('should fetch dev config when isDev is true', async () => {
       const mockConfig = { remotes: { mfe1: 'url1' } };
       global.fetch = jest.fn().mockResolvedValue({
+        ok: true,
         json: jest.fn().mockResolvedValue(mockConfig),
       });
 
@@ -25,6 +26,7 @@ describe('config-loader', () => {
     it('should fetch prod config when isDev is false', async () => {
       const mockConfig = { remotes: { mfe1: 'url1' } };
       global.fetch = jest.fn().mockResolvedValue({
+        ok: true,
         json: jest.fn().mockResolvedValue(mockConfig),
       });
 
@@ -53,6 +55,7 @@ describe('config-loader', () => {
       localStorage.setItem('MFE_REMOTES_OVERRIDE', JSON.stringify(mockOverride));
       const mockConfig = { remotes: { mfe1: 'url1' } };
       global.fetch = jest.fn().mockResolvedValue({
+        ok: true,
         json: jest.fn().mockResolvedValue(mockConfig),
       });
 
@@ -66,6 +69,7 @@ describe('config-loader', () => {
       localStorage.setItem('MFE_REMOTES_OVERRIDE', 'invalid json');
       const mockConfig = { remotes: { mfe1: 'url1' } };
       global.fetch = jest.fn().mockResolvedValue({
+        ok: true,
         json: jest.fn().mockResolvedValue(mockConfig),
       });
       const consoleSpy = jest.spyOn(console, 'warn').mockImplementation();
@@ -92,6 +96,7 @@ describe('config-loader', () => {
       const localManifest = { shared: 'v1' };
       const cdnRemotes = { mfe1: 'url1' };
       global.fetch = jest.fn().mockResolvedValue({
+        ok: true,
         json: jest.fn().mockResolvedValue(localManifest),
       });
 
