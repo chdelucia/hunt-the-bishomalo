@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.67.12](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.67.11...v7.67.12) (2026-04-16)
+
 ### [7.67.11](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.67.10...v7.67.11) (2026-04-15)
 
 ### [7.67.10](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.67.9...v7.67.10) (2026-04-15)
