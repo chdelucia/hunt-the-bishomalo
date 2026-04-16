@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { AchievementsFacade } from './achievements.facade';
-import { MiniBusService } from './mini-bus.service';
+import { MiniBusService } from '@hunt-the-bishomalo/core/data-access';
 
 describe('AchievementsFacade', () => {
   let facade: AchievementsFacade;

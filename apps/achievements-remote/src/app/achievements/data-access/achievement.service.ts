@@ -1,11 +1,11 @@
 import { effect, inject, Injectable, signal, untracked } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Achievement } from './achievement.model';
+import { Achievement } from '@hunt-the-bishomalo/shared-data';
 import {
   ANALYTICS_SERVICE_TOKEN,
   LOCALSTORAGE_SERVICE_TOKEN,
-} from './core-api.model';
-import { IAchievementService } from './achievement-service.interface';
+} from '@hunt-the-bishomalo/core/api';
+import { IAchievementService } from '@hunt-the-bishomalo/achievements/api';
 import { AchievementsFacade } from './achievements.facade';
 
 @Injectable({
