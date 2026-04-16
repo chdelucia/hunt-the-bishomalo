@@ -25,6 +25,6 @@ module.exports = withNativeFederation({
   ],
 
   features: {
-    ignoreUnusedDeps: true
-  }
+    ignoreUnusedDeps: true,
+  },
 });

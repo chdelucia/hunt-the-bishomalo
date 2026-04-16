@@ -91,22 +91,19 @@ export class AppComponent implements OnInit {
     if (!remotes) return;
 
     const preloadAction = () => {
-      Object.keys(remotes)
-        .filter((name) => name !== 'hunt-the-bishomalo')
-        .forEach((remoteName) => {
-          loadRemoteModule(remoteName, './Routes').catch((err) => {
-            globalThis.console.warn(`Preload failed for remote: ${remoteName}`, err);
-          });
+      Object.keys(remotes).forEach((remoteName) => {
+        loadRemoteModule(remoteName, './Routes').catch((err) => {
+          globalThis.console.warn(`Preload failed for remote: ${remoteName}`, err);
         });
+      });
     };
 
     if ('requestIdleCallback' in globalThis) {
-      (globalThis as unknown as { requestIdleCallback: (cb: () => void, opts: { timeout: number }) => void }).requestIdleCallback(
-        preloadAction,
-        { timeout: 0 },
-      );
+      (
+        globalThis as unknown as { requestIdleCallback: (cb: () => void, opts: { timeout: number }) => void }
+      ).requestIdleCallback(preloadAction, { timeout: 5000 });
     } else {
-      globalThis.setTimeout(preloadAction, 0);
+      globalThis.setTimeout(preloadAction, 2000);
     }
   }
 }
