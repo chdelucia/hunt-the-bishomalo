@@ -48,7 +48,12 @@ export async function buildMergedManifest(cdnRemotes: Record<string, string>): P
   let localManifest: Record<string, string> = {};
 
   try {
-    const response = await fetch('federation.manifest.json');
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 1000);
+
+    const response = await fetch('federation.manifest.json', { signal: controller.signal });
+    clearTimeout(timeoutId);
+
     if (response.ok) {
       localManifest = (await response.json()) as Record<string, string>;
     }

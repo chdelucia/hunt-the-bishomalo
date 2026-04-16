@@ -102,7 +102,10 @@ describe('config-loader', () => {
 
       const result = await buildMergedManifest(cdnRemotes);
 
-      expect(global.fetch).toHaveBeenCalledWith('federation.manifest.json');
+      expect(global.fetch).toHaveBeenCalledWith(
+        'federation.manifest.json',
+        expect.objectContaining({ signal: expect.any(AbortSignal) }),
+      );
       expect(result).toEqual({ ...localManifest, ...cdnRemotes });
     });
 

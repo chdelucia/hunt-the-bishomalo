@@ -14,5 +14,9 @@ import { fetchRemoteConfig, buildMergedManifest } from './app/utils/config-loade
     await import('./bootstrap');
   } catch (err) {
     globalThis.console.error('Critical error during application bootstrap:', err);
+    // Even if federation fails, we try to import bootstrap to show a potential error UI or fallback
+    import('./bootstrap').catch((bootErr) => {
+      globalThis.console.error('Final fallback bootstrap failed:', bootErr);
+    });
   }
 })();
