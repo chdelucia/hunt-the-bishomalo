@@ -20,11 +20,10 @@ export const GameStore = signalStore(
   withHunterFeature(),
   withConfigFeature(),
   withGameStatusFeature(),
-  withComputed(({ hunter, board, inventory }) => ({
+  withComputed(({ x, y, board, inventory }) => ({
     currentCell: computed(() => {
-      const { x, y } = hunter();
       const currentBoard = board();
-      return currentBoard?.[x]?.[y] ?? null;
+      return currentBoard?.[x()]?.[y()] ?? null;
     }),
     hasLantern: computed(() => {
       return inventory().some((x) => x.effect === 'lantern');
