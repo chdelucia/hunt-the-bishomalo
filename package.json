@@ -1,6 +1,6 @@
 {
   "name": "@hunt-the-bishomalo/source",
-  "version": "7.67.16",
+  "version": "7.67.17",
   "license": "MIT",
   "packageManager": "bun@1.2.14",
   "scripts": {
