@@ -20,6 +20,10 @@ export interface IGameStore {
   readonly difficulty: Signal<GameDificulty>;
   readonly message: Signal<string>;
   readonly lives: Signal<number>;
+  readonly x: Signal<number>;
+  readonly y: Signal<number>;
+  readonly direction: Signal<number>;
+  readonly arrows: Signal<number>;
   readonly hasGold: Signal<boolean>;
   readonly currentCell: Signal<Cell | null>;
   readonly inventory: Signal<GameItem[]>; // Use any or a generic item type if needed

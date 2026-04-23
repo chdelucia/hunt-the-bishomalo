@@ -4,9 +4,11 @@
 @let hasWon = facade.hasWon();
 @let isGameOver = !isAlive || hasWon;
 @let settings = facade.settings();
-@let currentCell = facade.currentCell();
 @let message = facade.message();
-@let hunter = facade.hunter();
+@let hunterX = facade.x();
+@let hunterY = facade.y();
+@let hunterDirection = facade.direction();
+@let hunterArrows = facade.arrows();
 @let lives = facade.lives();
 @let hasGold = facade.hasGold();
 @let hasLantern = !!settings?.blackout && facade.hasLantern();
@@ -23,9 +25,9 @@
     @for (row of board; track $index; let rowIndex = $index) {
       @let isFirstRow = !rowIndex;
       @for (cell of row; track cell) {
-        @let isHunterCell = currentCell === cell;
+        @let isHunterCell = cell.x === hunterX && cell.y === hunterY;
         @let showElements = isGameOver || cell.visited || cell.content?.alt === 'secret';
-        @let showHunter = isHunterCell && isAlive && !!hunter;
+        @let showHunter = isHunterCell && isAlive;
 
         <lib-game-cell
           [class.escape]="isFirstRow && $first && hasGold"
@@ -39,7 +41,9 @@
           [selectedChar]="settings.selectedChar"
           [size]="settings.size"
           [isHunterCell]="isHunterCell"
-          [hunter]="isHunterCell ? hunter : null"
+          [hunterDirection]="isHunterCell ? hunterDirection : 0"
+          [hunterArrows]="isHunterCell ? hunterArrows : 0"
+          [hunterHasGold]="isHunterCell ? hasGold : false"
         />
       }
     }

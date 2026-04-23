@@ -8,6 +8,10 @@ export interface IGameFacade {
   readonly settings: Signal<GameSettings>;
   readonly message: Signal<string>;
   readonly lives: Signal<number>;
+  readonly x: Signal<number>;
+  readonly y: Signal<number>;
+  readonly direction: Signal<number>;
+  readonly arrows: Signal<number>;
   readonly currentCell: Signal<Cell | null>;
   readonly inventory: Signal<GameItem[]>;
   readonly wumpusKilled: Signal<number>;

@@ -14,6 +14,10 @@ export class GameFacade implements IGameFacade {
   readonly settings = this.store.settings;
   readonly message = this.store.message;
   readonly lives = this.store.lives;
+  readonly x = this.store.x;
+  readonly y = this.store.y;
+  readonly direction = this.store.direction;
+  readonly arrows = this.store.arrows;
   readonly currentCell = this.store.currentCell;
   readonly inventory = this.store.inventory;
   readonly wumpusKilled = this.store.wumpusKilled;

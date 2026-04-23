@@ -17,7 +17,9 @@ export class GameCellComponent {
   readonly selectedChar = input.required<Chars>();
   readonly size = input.required<number>();
   readonly isHunterCell = input.required<boolean>();
-  readonly hunter = input<Hunter | null>(null);
+  readonly hunterDirection = input<number>(0);
+  readonly hunterArrows = input<number>(0);
+  readonly hunterHasGold = input<boolean>(false);
 
   // Optimized inputs: pre-computed boolean flags to avoid signal overhead in large grids
   readonly showElements = input.required<boolean>();

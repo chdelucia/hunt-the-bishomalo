@@ -22,6 +22,9 @@ export function withHunterFeature() {
   return signalStoreFeature(
     withState({ hunter: initialHunter }),
     withComputed(({ hunter }) => ({
+      x: computed(() => hunter().x),
+      y: computed(() => hunter().y),
+      direction: computed(() => hunter().direction),
       arrows: computed(() => hunter().arrows),
       dragonballs: computed(() => hunter().dragonballs),
       hasGold: computed(() => hunter().hasGold),
