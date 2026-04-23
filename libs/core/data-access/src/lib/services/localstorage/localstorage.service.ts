@@ -5,6 +5,8 @@ import { ILocalstorageService } from '@hunt-the-bishomalo/core/api';
   providedIn: 'root',
 })
 export class LocalstorageService implements ILocalstorageService {
+  private readonly forbiddenKeys = ['__proto__', 'constructor', 'prototype'];
+
   getValue<T>(key: string): T | null {
     const item = localStorage.getItem(key);
     if (!item) {
@@ -12,7 +14,12 @@ export class LocalstorageService implements ILocalstorageService {
     }
 
     try {
-      return JSON.parse(item);
+      return JSON.parse(item, (k, v) => {
+        if (this.forbiddenKeys.includes(k)) {
+          return undefined;
+        }
+        return v;
+      });
     } catch (e) {
       if (isDevMode()) console.log(e);
       return null;

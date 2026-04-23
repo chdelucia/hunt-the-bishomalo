@@ -32,6 +32,21 @@ describe('LocalstorageService', () => {
       expect(service.getValue('test-key')).toEqual(data);
     });
 
+    it('should sanitize the parsed object to prevent prototype pollution', () => {
+      const maliciousJson = '{"foo": "bar", "__proto__": {"polluted": true}}';
+      localStorage.setItem('test-key', maliciousJson);
+
+      const result = service.getValue<any>('test-key');
+
+      expect(result.foo).toBe('bar');
+      expect(result.polluted).toBeUndefined();
+
+      // Ensure it's still a standard object with Object prototype
+      expect(Object.getPrototypeOf(result)).toBe(Object.prototype);
+      // Ensure the prototype itself is not polluted
+      expect((Object.prototype as any).polluted).toBeUndefined();
+    });
+
     it('should return null and log error if parsing fails in dev mode', () => {
       (isDevMode as jest.Mock).mockReturnValue(true);
       const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
