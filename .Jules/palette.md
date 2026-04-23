@@ -21,3 +21,8 @@
 **Learning:** In fast-paced or HUD-intensive interfaces, changes to critical status indicators (like lives or level progress) must be announced to screen reader users without them having to manually navigate to those elements. Using a container with `role="status"` and `aria-live="polite"`, combined with a hidden `.sr-only` descriptive label, ensures that updates are communicated naturally as they occur. Centralizing the `.sr-only` utility in a global stylesheet also prevents redundant CSS definitions and ensures a consistent accessibility pattern workspace-wide.
 
 **Action:** For all HUD or real-time status indicators, use a `role="status"` container with `aria-live="polite"` and an `.sr-only` descriptive label that includes current and maximum values where applicable.
+
+## 2026-04-23 - Accessible Form Metadata and Tactile Consistency
+**Learning:** Providing real-time feedback (like character counters or error messages) is only half the battle for accessibility; these elements must be explicitly associated with their inputs using `aria-describedby` so screen reader users receive the context as they interact with the field. Furthermore, maintaining a consistent tactile feedback pattern (like `translateY(2px)` on `:active`) across all interactive components—including form buttons and character selectors—reinforces the application's "physical" feel and improves perceived responsiveness.
+
+**Action:** Always link form inputs to character counters and error messages via `aria-describedby`, and ensure all interactive elements (not just primary buttons) implement the tactile `:active` transform pattern.

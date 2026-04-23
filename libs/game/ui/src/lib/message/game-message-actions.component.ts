@@ -62,9 +62,14 @@ import { TranslocoModule } from '@jsverse/transloco';
       padding: 0.75rem;
       font-weight: bold;
       width: fit-content;
+      transition: transform 0.1s ease-in-out;
 
       &:hover {
         cursor: pointer;
+      }
+
+      &:active {
+        transform: translateY(2px);
       }
 
       @media (prefers-reduced-motion: reduce) {

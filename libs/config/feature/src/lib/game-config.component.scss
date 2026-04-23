@@ -86,8 +86,14 @@
     padding: 1rem 2rem;
     cursor: pointer;
     color: white;
+    transition:
+      background-color 0.2s,
+      transform 0.1s ease-in-out;
     &:hover {
       background-color: var(--color-button-hover);
+    }
+    &:active {
+      transform: translateY(2px);
     }
   }
 }
@@ -105,9 +111,15 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  transition: filter 0.3s ease, transform 0.2s ease;
+  transition:
+    filter 0.3s ease,
+    transform 0.1s ease-in-out;
   border-radius: 6px;
   display: block;
+
+  &:active {
+    transform: translateY(2px);
+  }
 
   &.grayscale {
     filter: grayscale(100%);

@@ -7,13 +7,23 @@
     @let playerState = configForm.player();
     <label for="player">{{ 'config.playerNameLabel' | transloco }}</label>
     <div class="input-wrapper">
-      <input id="player" type="text" [formField]="configForm.player" />
-      <span class="char-counter" [class.limit-reached]="playerState.value().length >= 20">
+      <input
+        id="player"
+        type="text"
+        [formField]="configForm.player"
+        [attr.aria-describedby]="'player-counter' + (playerState.touched() && playerState.errors().length > 0 ? ' player-error' : '')"
+        [attr.aria-invalid]="playerState.touched() && playerState.errors().length > 0"
+      />
+      <span
+        id="player-counter"
+        class="char-counter"
+        [class.limit-reached]="playerState.value().length >= 20"
+      >
         {{ playerState.value().length }}/20
       </span>
     </div>
     @if (playerState.touched() && playerState.errors().length > 0) {
-      <span class="error-message" role="alert">
+      <span id="player-error" class="error-message" role="alert">
         {{ 'config.error.' + playerState.errors()[0].kind | transloco }}
       </span>
     }
@@ -21,7 +31,11 @@
 
   <div class="form-group">
     <label for="difficulty">{{ 'config.difficultyLabel' | transloco }}</label>
-    <select id="difficulty" [formField]="configForm.difficulty">
+    <select
+      id="difficulty"
+      [formField]="configForm.difficulty"
+      aria-describedby="difficulty-desc"
+    >
       <option value="easy">{{ 'config.difficultyEasy' | transloco }}</option>
       <option value="normal">{{ 'config.difficultyNormal' | transloco }}</option>
       <option value="hard">{{ 'config.difficultyHard' | transloco }}</option>
@@ -30,7 +44,7 @@
 
   @let options = configs[this.model().difficulty];
 
-  <div class="difficulty-description">
+  <div id="difficulty-desc" class="difficulty-description">
     <p>
       {{
       'config.difficultyDescription'
