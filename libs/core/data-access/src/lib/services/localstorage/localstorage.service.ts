@@ -1,5 +1,6 @@
 import { Injectable, isDevMode } from '@angular/core';
 import { ILocalstorageService } from '@hunt-the-bishomalo/core/api';
+import { prototypePollutionReviver } from '@hunt-the-bishomalo/shared-util';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class LocalstorageService implements ILocalstorageService {
     }
 
     try {
-      return JSON.parse(item);
+      return JSON.parse(item, prototypePollutionReviver);
     } catch (e) {
       if (isDevMode()) console.log(e);
       return null;

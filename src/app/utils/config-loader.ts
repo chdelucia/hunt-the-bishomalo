@@ -15,7 +15,10 @@ export async function fetchRemoteConfig(isDev: boolean): Promise<RemoteConfig> {
     const localOverride = localStorage.getItem('MFE_REMOTES_OVERRIDE');
     if (localOverride) {
       try {
-        return JSON.parse(localOverride) as RemoteConfig;
+        // Use a reviver to prevent prototype pollution from local storage overrides.
+        // This ensures that malicious keys like __proto__ are not injected into the config object.
+        const { prototypePollutionReviver } = await import('@hunt-the-bishomalo/shared-util');
+        return JSON.parse(localOverride, prototypePollutionReviver) as RemoteConfig;
       } catch (e) {
         globalThis.console.warn('Invalid MFE_REMOTES_OVERRIDE found in localStorage', e);
       }

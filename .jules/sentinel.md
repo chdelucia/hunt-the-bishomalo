@@ -33,7 +33,6 @@
 **Learning:** Default or placeholder configurations for monitoring tools can create security gaps if not reviewed and updated to reflect the actual environment. Whitelisting only trusted domains prevents accidental data leakage.
 **Prevention:** Always audit monitoring tool configurations (like Sentry, LogRocket, etc.) to ensure that only authorized domains are whitelisted for sensitive operations like distributed tracing header propagation.
 
-<<<<<<< sentinel/harden-services-and-sanitize-inputs-4627285246135265910
 ## 2025-05-23 - [Prototype Pollution in MiniBusService]
 **Vulnerability:** The `MiniBusService` used a plain object as an event store, making it susceptible to Prototype Pollution if malicious event names (e.g., `__proto__`) were emitted.
 **Learning:** Shared event systems that persist state in plain objects must be hardened against prototype-related keys to prevent global object pollution.
@@ -43,9 +42,13 @@
 **Vulnerability:** The `AchievementService` used the `appId` from an external event directly in a fetch URL, which could allow fetching unauthorized local files if manipulated.
 **Learning:** Data received from cross-component communication or events should be treated as untrusted and sanitized before use in security-sensitive operations like URL construction.
 **Prevention:** Always sanitize identifiers using strict regex (e.g., `/[^a-zA-Z0-9\-_]/g`) before including them in file paths or API requests.
-=======
+
 ## 2026-04-05 - [Harden Sentry tracePropagationTargets with Anchored Regex]
 **Vulnerability:** Sentry's `tracePropagationTargets` used loose string matches and unanchored regular expressions, which could allow sensitive tracing headers (`sentry-trace`, `baggage`) to be leaked to malicious domains that included the whitelisted domain as a substring or prefix (e.g., `hunt-the-bishomalo.vercel.app.malicious.com`).
 **Learning:** String entries in `tracePropagationTargets` are treated as substring matches by Sentry. Without anchors (`^`, `$`) and proper delimiter handling, whitelists can be easily bypassed via subdomain or path-based exploitation.
 **Prevention:** Always use strict, anchored regular expressions (e.g., `/^https:\/\/domain\.com($|\/)/`) for `tracePropagationTargets` to ensure tracing headers are only propagated to verified, exact origins.
->>>>>>> master
+
+## 2025-05-24 - [Centralized Prototype Pollution Protection]
+**Vulnerability:** Parsing untrusted JSON data from `localStorage` (e.g., game state, settings, or MFE configuration overrides) without sanitization can lead to Prototype Pollution if malicious keys like `__proto__` are present.
+**Learning:** While modern JS engines might not directly pollute the global prototype via `JSON.parse`, these properties can still be exploited during subsequent object merges or clones.
+**Prevention:** Use a centralized `prototypePollutionReviver` with `JSON.parse` at all entry points for external data to strip forbidden keys (`__proto__`, `constructor`, `prototype`) at the source.

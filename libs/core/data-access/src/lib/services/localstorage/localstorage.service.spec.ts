@@ -32,6 +32,17 @@ describe('LocalstorageService', () => {
       expect(service.getValue('test-key')).toEqual(data);
     });
 
+    it('should strip prototype pollution keys when retrieving value', () => {
+      const maliciousData = '{"foo": "bar", "__proto__": {"polluted": "true"}}';
+      localStorage.setItem('test-key', maliciousData);
+
+      const retrieved = service.getValue<Record<string, any>>('test-key');
+      expect(retrieved?.['foo']).toBe('bar');
+      // Use bracket notation or cast to any to check for __proto__ presence without triggering pollution in the check
+      expect(Object.prototype.hasOwnProperty.call(retrieved!, '__proto__')).toBe(false);
+      expect(Object.getPrototypeOf(retrieved!)).toBe(Object.prototype);
+    });
+
     it('should return null and log error if parsing fails in dev mode', () => {
       (isDevMode as jest.Mock).mockReturnValue(true);
       const consoleSpy = jest.spyOn(console, 'log').mockImplementation();
