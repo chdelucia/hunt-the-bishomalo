@@ -24,7 +24,7 @@
   <section class="board" [style.--board-size]="boardSize">
     @for (row of board; track $index; let rowIndex = $index) {
       @let isFirstRow = !rowIndex;
-      @for (cell of row; track cell) {
+      @for (cell of row; track cell.x + '-' + cell.y) {
         @let isHunterCell = cell.x === hunterX && cell.y === hunterY;
         @let showElements = isGameOver || cell.visited || cell.content?.alt === 'secret';
         @let showHunter = isHunterCell && isAlive;
