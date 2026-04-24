@@ -21,3 +21,8 @@
 **Learning:** In fast-paced or HUD-intensive interfaces, changes to critical status indicators (like lives or level progress) must be announced to screen reader users without them having to manually navigate to those elements. Using a container with `role="status"` and `aria-live="polite"`, combined with a hidden `.sr-only` descriptive label, ensures that updates are communicated naturally as they occur. Centralizing the `.sr-only` utility in a global stylesheet also prevents redundant CSS definitions and ensures a consistent accessibility pattern workspace-wide.
 
 **Action:** For all HUD or real-time status indicators, use a `role="status"` container with `aria-live="polite"` and an `.sr-only` descriptive label that includes current and maximum values where applicable.
+
+## 2026-04-24 - Contextual Accessibility for Dynamic Forms
+**Learning:** For forms with real-time feedback (like character counters or validation errors using Signal Forms), simple labels are insufficient. Assistive technologies need programmatic association to announce these updates. Using `aria-describedby` to link inputs with their specific helper text and error message IDs ensures that screen readers provide the full context (e.g., "3 of 20 characters" and "Name is required") when the input is focused or the error appears.
+
+**Action:** Always associate form inputs with their corresponding character counters, helper text, and error messages using `aria-describedby`, ensuring IDs are unique and dynamically managed if necessary.
