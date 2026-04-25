@@ -43,19 +43,19 @@ export class GameEngineService implements IGameEngineService {
     this.checkCurrentCell(0, 0);
   }
 
-  public initializeGameBoard(): void {
-    const settings = this.store.settings();
+  /**
+   * Optimized game board initialization: consolidates store updates.
+   * This reduces synchronous localStorage I/O and change detection cycles.
+   */
+  public initializeGameBoard(newSettings?: GameSettings): void {
+    const settings = newSettings || this.store.settings();
     const board: Cell[][] = this.boardGenerator.createBoard(settings);
     this.boardGenerator.placeGold(board, settings);
     this.boardGenerator.placeWumpus(board, settings);
     this.boardGenerator.placePits(board, settings);
     this.boardGenerator.placeArrows(board, settings);
     this.boardGenerator.placeEvents(board, settings, this.store.lives(), this.store.dragonballs());
-    this.store.updateGame({ board });
-    this.setHunterForNextLevel();
-  }
 
-  private setHunterForNextLevel(): void {
     this.store.updateHunter({
       x: 0,
       y: 0,
@@ -63,12 +63,16 @@ export class GameEngineService implements IGameEngineService {
       arrows: 1,
       hasGold: false,
     });
+
     this.store.updateGame({
+      board,
+      settings,
       wumpusKilled: 0,
       isAlive: true,
       deathByWumpus: false,
       hasWon: false,
     });
+
     this.statsTracker.resetSteps();
   }
 
@@ -84,12 +88,11 @@ export class GameEngineService implements IGameEngineService {
     const newSettings = {
       ...this.store.settings(),
       size: newSize,
-      pits: this.boardGenerator.calculatePits(size, difficulty.luck),
-      wumpus: this.boardGenerator.calculateWumpus(size, difficulty.luck),
+      pits: this.boardGenerator.calculatePits(newSize, difficulty.luck),
+      wumpus: this.boardGenerator.calculateWumpus(newSize, difficulty.luck),
       blackout: this.applyBlackoutChance(),
     };
-    this.store.updateGame({ settings: newSettings });
-    this.initializeGameBoard();
+    this.initializeGameBoard(newSettings);
     this.checkCurrentCell(0, 0);
   }
 

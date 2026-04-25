@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Cell, CELL_CONTENTS, CellContentType, GameSettings } from '@hunt-the-bishomalo/shared-data';
 
+const START_CELL_SET = new Set(['0,0']);
+const PIT_EXCLUDED_SET = new Set(['0,0', '0,1', '1,0']);
+
 @Injectable({ providedIn: 'root' })
 export class BoardGeneratorService {
   createBoard(settings: GameSettings): Cell[][] {
@@ -21,8 +24,9 @@ export class BoardGeneratorService {
   }
 
   placePits(board: Cell[][], settings: GameSettings): void {
+    // Hoist Set creation to avoid redundant allocations in the loop
     for (let i = 0; i < settings.pits; i++) {
-      this.placeRandom(board, settings, new Set(['0,0', '0,1', '1,0'])).content = CELL_CONTENTS.pit;
+      this.placeRandom(board, settings, PIT_EXCLUDED_SET).content = CELL_CONTENTS.pit;
     }
   }
 
@@ -54,7 +58,7 @@ export class BoardGeneratorService {
     }
   }
 
-  private placeRandom(board: Cell[][], settings: GameSettings, excluded = new Set(['0,0'])): Cell {
+  private placeRandom(board: Cell[][], settings: GameSettings, excluded = START_CELL_SET): Cell {
     const size = settings.size;
     let cell: Cell;
     do {
