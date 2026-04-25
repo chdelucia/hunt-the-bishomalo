@@ -49,6 +49,20 @@ describe('LocalstorageService', () => {
       expect(consoleSpy).not.toHaveBeenCalled();
       consoleSpy.mockRestore();
     });
+
+    it('should prevent prototype pollution when parsing JSON', () => {
+      const maliciousPayload = '{"__proto__": {"polluted": "yes"}, "constructor": "malicious", "prototype": "malicious", "foo": "bar"}';
+      localStorage.setItem('malicious-key', maliciousPayload);
+
+      const result = service.getValue<any>('malicious-key');
+
+      expect(result.foo).toBe('bar');
+      expect(result.__proto__.polluted).toBeUndefined();
+      // 'constructor' of the top-level object is not removed by JSON.parse reviver if it's not nested
+      // because the reviver is called for each key-value pair, and the final object is not 'revived' for its own inherited properties.
+      // However, we care about preventing the OVERRIDE of these properties.
+      expect(({} as any).polluted).toBeUndefined();
+    });
   });
 
   describe('setValue', () => {

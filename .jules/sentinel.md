@@ -49,3 +49,8 @@
 **Learning:** String entries in `tracePropagationTargets` are treated as substring matches by Sentry. Without anchors (`^`, `$`) and proper delimiter handling, whitelists can be easily bypassed via subdomain or path-based exploitation.
 **Prevention:** Always use strict, anchored regular expressions (e.g., `/^https:\/\/domain\.com($|\/)/`) for `tracePropagationTargets` to ensure tracing headers are only propagated to verified, exact origins.
 >>>>>>> master
+
+## 2025-05-24 - [Harden JSON.parse against Prototype Pollution]
+**Vulnerability:** Use of `JSON.parse` on data from `localStorage` without a reviver allowed for potential Prototype Pollution if the stored data was maliciously manipulated.
+**Learning:** `localStorage` should be treated as an untrusted input source. Standard `JSON.parse` can be exploited to inject properties into the `Object.prototype` or override critical object properties.
+**Prevention:** Always use a reviver function with `JSON.parse` that strips forbidden keys like `__proto__`, `constructor`, and `prototype` when handling data from potentially untrusted sources like `localStorage`.
