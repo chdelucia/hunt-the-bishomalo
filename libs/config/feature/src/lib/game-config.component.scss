@@ -89,6 +89,10 @@
     &:hover {
       background-color: var(--color-button-hover);
     }
+
+    &:active {
+      transform: translateY(2px);
+    }
   }
 }
 
@@ -123,6 +127,10 @@
   &:focus-within {
     outline: 3px solid var(--color-focus);
     outline-offset: 2px;
+  }
+
+  &:active {
+    transform: translateY(2px);
   }
 }
 

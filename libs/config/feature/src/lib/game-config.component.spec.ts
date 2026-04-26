@@ -144,4 +144,28 @@ describe('GameConfigComponent', () => {
     expect(charCounter).toBeTruthy();
     expect(charCounter?.textContent).toContain(`${playerName.length}/20`);
   });
+
+  it('should have accessibility attributes', () => {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const playerInput = compiled.querySelector('#player');
+    const playerCounter = compiled.querySelector('#player-counter');
+    const difficultySelect = compiled.querySelector('#difficulty');
+    const difficultyDesc = compiled.querySelector('#difficulty-desc');
+
+    expect(playerInput?.getAttribute('aria-describedby')).toBe('player-counter player-error');
+    expect(playerCounter?.id).toBe('player-counter');
+    expect(difficultySelect?.getAttribute('aria-describedby')).toBe('difficulty-desc');
+    expect(difficultyDesc?.id).toBe('difficulty-desc');
+  });
+
+  it('should show error message with correct id when player name is invalid and touched', () => {
+    component.model.update((m) => ({ ...m, player: '' }));
+    component.configForm.player().markAsTouched();
+    fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+    const errorMessage = compiled.querySelector('.error-message');
+    expect(errorMessage).toBeTruthy();
+    expect(errorMessage?.id).toBe('player-error');
+  });
 });
