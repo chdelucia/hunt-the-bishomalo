@@ -1,3 +1,5 @@
+import { prototypePollutionReviver, sanitizeObject } from '@hunt-the-bishomalo/shared-util';
+
 export interface RemoteConfig {
   remotes: Record<string, string>;
 }
@@ -15,7 +17,7 @@ export async function fetchRemoteConfig(isDev: boolean): Promise<RemoteConfig> {
     const localOverride = localStorage.getItem('MFE_REMOTES_OVERRIDE');
     if (localOverride) {
       try {
-        return JSON.parse(localOverride) as RemoteConfig;
+        return JSON.parse(localOverride, prototypePollutionReviver) as RemoteConfig;
       } catch (e) {
         globalThis.console.warn('Invalid MFE_REMOTES_OVERRIDE found in localStorage', e);
       }
@@ -33,7 +35,8 @@ export async function fetchRemoteConfig(isDev: boolean): Promise<RemoteConfig> {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    return (await response.json()) as RemoteConfig;
+    const data = await response.json();
+    return sanitizeObject(data) as RemoteConfig;
   } catch (error) {
     globalThis.console.error('Failed to load remote configuration from CDN', error);
     return { remotes: {} };
@@ -55,7 +58,8 @@ export async function buildMergedManifest(cdnRemotes: Record<string, string>): P
     clearTimeout(timeoutId);
 
     if (response.ok) {
-      localManifest = (await response.json()) as Record<string, string>;
+      const data = await response.json();
+      localManifest = sanitizeObject(data) as Record<string, string>;
     }
   } catch (error) {
     globalThis.console.warn('Local federation.manifest.json not found or inaccessible', error);

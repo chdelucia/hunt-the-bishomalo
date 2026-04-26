@@ -75,4 +75,16 @@ describe('LocalstorageService', () => {
       expect(localStorage.length).toBe(0);
     });
   });
+
+  describe('security', () => {
+    it('should prevent prototype pollution during parsing', () => {
+      const pollutedPayload = '{"__proto__": {"polluted": true}, "normal": "value"}';
+      localStorage.setItem('polluted', pollutedPayload);
+
+      const value = service.getValue<any>('polluted');
+
+      expect(value.normal).toBe('value');
+      expect(Object.prototype.hasOwnProperty.call(value, '__proto__')).toBe(false);
+    });
+  });
 });
