@@ -39,3 +39,7 @@
 ## 2026-04-05 - [Specific Dependency for Derived Computed Signals]
 **Learning:** Derived computed signals (like `hasLantern`) that depend on broad state objects (like `hunter`) will re-evaluate whenever any property of that object changes (e.g., position), even if the relevant property (e.g., `inventory`) remains the same.
 **Action:** Make derived computed signals depend on the most granular computed signals available (e.g., `inventory()`) instead of broad state signals (e.g., `hunter()`) to fully leverage signal memoization and prevent redundant re-evaluations during frequent state changes like movement.
+
+## 2025-05-15 - [Hoisting Set allocations in BoardGeneratorService]
+**Learning:** Creating new Set instances within loops or as default function parameters in frequently called services (like BoardGeneratorService during level initialization) leads to unnecessary object allocation and garbage collection pressure.
+**Action:** Hoist static exclusion sets or configuration objects to static readonly constants to reuse the same instance and improve performance in initialization paths.
