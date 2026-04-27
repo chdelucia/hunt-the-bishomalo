@@ -39,3 +39,7 @@
 ## 2026-04-05 - [Specific Dependency for Derived Computed Signals]
 **Learning:** Derived computed signals (like `hasLantern`) that depend on broad state objects (like `hunter`) will re-evaluate whenever any property of that object changes (e.g., position), even if the relevant property (e.g., `inventory`) remains the same.
 **Action:** Make derived computed signals depend on the most granular computed signals available (e.g., `inventory()`) instead of broad state signals (e.g., `hunter()`) to fully leverage signal memoization and prevent redundant re-evaluations during frequent state changes like movement.
+
+## 2026-04-06 - [Consolidated Board Initialization & Set Hoisting]
+**Learning:** Performance in game initialization and level transitions can be improved by consolidating multiple sequential state updates (board, settings, hunter, status) into a single Store update, reducing `localStorage` I/O and change detection cycles. Additionally, hoisting coordinate exclusion sets to static constants in board generation logic reduces object allocation overhead and GC pressure.
+**Action:** Always batch related state updates into a single call when using `signalStore` with persistent storage, and hoist static data structures used in frequently called generation methods.

@@ -3,6 +3,9 @@ import { Cell, CELL_CONTENTS, CellContentType, GameSettings } from '@hunt-the-bi
 
 @Injectable({ providedIn: 'root' })
 export class BoardGeneratorService {
+  private static readonly START_CELL_EXCLUSION = new Set(['0,0']);
+  private static readonly PIT_EXCLUSION = new Set(['0,0', '0,1', '1,0']);
+
   createBoard(settings: GameSettings): Cell[][] {
     return Array.from({ length: settings.size }, (_, x) =>
       Array.from({ length: settings.size }, (_, y) => ({ x, y, visited: false })),
@@ -22,7 +25,8 @@ export class BoardGeneratorService {
 
   placePits(board: Cell[][], settings: GameSettings): void {
     for (let i = 0; i < settings.pits; i++) {
-      this.placeRandom(board, settings, new Set(['0,0', '0,1', '1,0'])).content = CELL_CONTENTS.pit;
+      this.placeRandom(board, settings, BoardGeneratorService.PIT_EXCLUSION).content =
+        CELL_CONTENTS.pit;
     }
   }
 
@@ -39,7 +43,7 @@ export class BoardGeneratorService {
     dragonballs: number | undefined,
   ): void {
     const { difficulty, size } = settings;
-    const ex = new Set(['0,0']);
+    const ex = BoardGeneratorService.START_CELL_EXCLUSION;
     const chance = (base: number, max: number) =>
       Math.min(base + ((size - 4) / (difficulty.maxLevels - 4)) * (max - base), max);
 
@@ -54,7 +58,11 @@ export class BoardGeneratorService {
     }
   }
 
-  private placeRandom(board: Cell[][], settings: GameSettings, excluded = new Set(['0,0'])): Cell {
+  private placeRandom(
+    board: Cell[][],
+    settings: GameSettings,
+    excluded = BoardGeneratorService.START_CELL_EXCLUSION,
+  ): Cell {
     const size = settings.size;
     let cell: Cell;
     do {
