@@ -75,4 +75,28 @@ describe('LocalstorageService', () => {
       expect(localStorage.length).toBe(0);
     });
   });
+
+  describe('Security', () => {
+    it('should strip prototype pollution keys when getting value', () => {
+      const maliciousData = '{"foo":"bar","__proto__":{"polluted":"yes"}}';
+      localStorage.setItem('malicious', maliciousData);
+
+      const result = service.getValue<any>('malicious');
+
+      expect(result.foo).toBe('bar');
+      // Assert it is not an own property. Direct access may still return Object.prototype
+      expect(Object.prototype.hasOwnProperty.call(result, '__proto__')).toBe(false);
+      expect((result as any).polluted).toBeUndefined();
+    });
+
+    it('should strip constructor and prototype keys', () => {
+      const maliciousData = '{"constructor":{"polluted":"yes"},"prototype":{"polluted":"yes"}}';
+      localStorage.setItem('malicious', maliciousData);
+
+      const result = service.getValue<any>('malicious');
+
+      expect(result.constructor).not.toEqual({ polluted: 'yes' });
+      expect(result.prototype).toBeUndefined();
+    });
+  });
 });

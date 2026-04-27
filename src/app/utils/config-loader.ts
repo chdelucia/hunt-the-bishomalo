@@ -1,3 +1,5 @@
+import { prototypePollutionReviver } from '@hunt-the-bishomalo/shared-util';
+
 export interface RemoteConfig {
   remotes: Record<string, string>;
 }
@@ -15,7 +17,7 @@ export async function fetchRemoteConfig(isDev: boolean): Promise<RemoteConfig> {
     const localOverride = localStorage.getItem('MFE_REMOTES_OVERRIDE');
     if (localOverride) {
       try {
-        return JSON.parse(localOverride) as RemoteConfig;
+        return JSON.parse(localOverride, prototypePollutionReviver) as RemoteConfig;
       } catch (e) {
         globalThis.console.warn('Invalid MFE_REMOTES_OVERRIDE found in localStorage', e);
       }

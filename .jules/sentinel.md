@@ -48,4 +48,9 @@
 **Vulnerability:** Sentry's `tracePropagationTargets` used loose string matches and unanchored regular expressions, which could allow sensitive tracing headers (`sentry-trace`, `baggage`) to be leaked to malicious domains that included the whitelisted domain as a substring or prefix (e.g., `hunt-the-bishomalo.vercel.app.malicious.com`).
 **Learning:** String entries in `tracePropagationTargets` are treated as substring matches by Sentry. Without anchors (`^`, `$`) and proper delimiter handling, whitelists can be easily bypassed via subdomain or path-based exploitation.
 **Prevention:** Always use strict, anchored regular expressions (e.g., `/^https:\/\/domain\.com($|\/)/`) for `tracePropagationTargets` to ensure tracing headers are only propagated to verified, exact origins.
+
+## 2025-05-24 - [Harden JSON.parse against Prototype Pollution]
+**Vulnerability:** The application used `JSON.parse` on untrusted data from `localStorage` without a reviver, making it susceptible to Prototype Pollution if malicious keys like `__proto__` were present.
+**Learning:** Even data stored in `localStorage` should be treated as untrusted, especially in applications that allow configuration overrides via storage. Global objects can be compromised if JSON parsing isn't hardened.
+**Prevention:** Always use a reviver function with `JSON.parse` to strip forbidden keys (`__proto__`, `constructor`, `prototype`). Centralize this logic in a security utility and apply it to all data access services.
 >>>>>>> master
