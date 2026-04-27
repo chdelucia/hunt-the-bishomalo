@@ -99,7 +99,8 @@ button {
   border: none;
   transition:
     background-color 0.2s ease,
-    outline 0.1s ease;
+    outline 0.1s ease,
+    transform 0.1s ease-in-out;
 
   &:hover {
     cursor: pointer;
@@ -251,7 +252,7 @@ a:focus-visible {
     width: 0%;
     height: 100%;
     background-color: #00ff5e;
-    animation: loadingBar 2s infinite ease-in-out;
+    animation: loadingBar 1.5s infinite ease-in-out;
   }
 }
 

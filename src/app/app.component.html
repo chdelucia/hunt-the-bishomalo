@@ -17,7 +17,7 @@
 <router-outlet></router-outlet>
 
 @if (isRouteLoading()) {
-  <div class="route-loader">
+  <div class="route-loader" role="status" aria-live="polite">
     <div class="loader-text">{{ 'loading.data' | transloco }}</div>
     <div class="loader-bar-container">
       <div class="loader-bar"></div>

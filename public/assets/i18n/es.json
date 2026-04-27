@@ -142,8 +142,8 @@
     }
   },
 "loading": {
-  "system": "CARGANDO SISTEMA...",
-  "data": "CARGANDO DATOS...",
+  "system": "CARGANDO...",
+  "data": "CARGANDO...",
   "achievements": "CARGANDO LOGROS...",
   "archive": "INICIALIZANDO ARCHIVO..."
 },

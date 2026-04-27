@@ -1,11 +1,16 @@
 import { initFederation } from '@angular-architects/native-federation';
-import { fetchRemoteConfig, buildMergedManifest } from './app/utils/config-loader';
+import { fetchRemoteConfig, fetchLocalManifest, buildMergedManifest } from './app/utils/config-loader';
 
 (async () => {
   try {
     const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-    const remoteConfig = await fetchRemoteConfig(isDev);
-    const manifest = await buildMergedManifest(remoteConfig.remotes);
+
+    const [remoteConfig, localManifest] = await Promise.all([
+      fetchRemoteConfig(isDev),
+      fetchLocalManifest(),
+    ]);
+
+    const manifest = buildMergedManifest(localManifest, remoteConfig.remotes);
 
     await initFederation(manifest);
 

@@ -1,4 +1,4 @@
-import { fetchRemoteConfig, buildMergedManifest } from './config-loader';
+import { fetchRemoteConfig, fetchLocalManifest, buildMergedManifest } from './config-loader';
 
 describe('config-loader', () => {
   beforeEach(() => {
@@ -11,7 +11,7 @@ describe('config-loader', () => {
       const mockConfig = { remotes: { mfe1: 'url1' } };
       global.fetch = jest.fn().mockResolvedValue({
         ok: true,
-        json: jest.fn().mockResolvedValue(mockConfig),
+        text: jest.fn().mockResolvedValue(JSON.stringify(mockConfig)),
       });
 
       const config = await fetchRemoteConfig(true);
@@ -27,7 +27,7 @@ describe('config-loader', () => {
       const mockConfig = { remotes: { mfe1: 'url1' } };
       global.fetch = jest.fn().mockResolvedValue({
         ok: true,
-        json: jest.fn().mockResolvedValue(mockConfig),
+        text: jest.fn().mockResolvedValue(JSON.stringify(mockConfig)),
       });
 
       const config = await fetchRemoteConfig(false);
@@ -56,7 +56,7 @@ describe('config-loader', () => {
       const mockConfig = { remotes: { mfe1: 'url1' } };
       global.fetch = jest.fn().mockResolvedValue({
         ok: true,
-        json: jest.fn().mockResolvedValue(mockConfig),
+        text: jest.fn().mockResolvedValue(JSON.stringify(mockConfig)),
       });
 
       const config = await fetchRemoteConfig(false);
@@ -70,7 +70,7 @@ describe('config-loader', () => {
       const mockConfig = { remotes: { mfe1: 'url1' } };
       global.fetch = jest.fn().mockResolvedValue({
         ok: true,
-        json: jest.fn().mockResolvedValue(mockConfig),
+        text: jest.fn().mockResolvedValue(JSON.stringify(mockConfig)),
       });
       const consoleSpy = jest.spyOn(console, 'warn').mockImplementation();
 
@@ -91,33 +91,42 @@ describe('config-loader', () => {
     });
   });
 
-  describe('buildMergedManifest', () => {
-    it('should merge local manifest with cdn remotes', async () => {
+  describe('fetchLocalManifest', () => {
+    it('should fetch local manifest', async () => {
       const localManifest = { shared: 'v1' };
-      const cdnRemotes = { mfe1: 'url1' };
       global.fetch = jest.fn().mockResolvedValue({
         ok: true,
-        json: jest.fn().mockResolvedValue(localManifest),
+        text: jest.fn().mockResolvedValue(JSON.stringify(localManifest)),
       });
 
-      const result = await buildMergedManifest(cdnRemotes);
+      const result = await fetchLocalManifest();
 
       expect(global.fetch).toHaveBeenCalledWith(
         'federation.manifest.json',
         expect.objectContaining({ signal: expect.any(AbortSignal) }),
       );
-      expect(result).toEqual({ ...localManifest, ...cdnRemotes });
+      expect(result).toEqual(localManifest);
     });
 
-    it('should return only cdn remotes if local manifest fails to load', async () => {
-      const cdnRemotes = { mfe1: 'url1' };
+    it('should return empty object if local manifest fails to load', async () => {
       global.fetch = jest.fn().mockRejectedValue(new Error('Fetch error'));
       const consoleSpy = jest.spyOn(console, 'warn').mockImplementation();
 
-      const result = await buildMergedManifest(cdnRemotes);
+      const result = await fetchLocalManifest();
 
       expect(consoleSpy).toHaveBeenCalled();
-      expect(result).toEqual(cdnRemotes);
+      expect(result).toEqual({});
+    });
+  });
+
+  describe('buildMergedManifest', () => {
+    it('should merge local manifest with cdn remotes', () => {
+      const localManifest = { shared: 'v1' };
+      const cdnRemotes = { mfe1: 'url1' };
+
+      const result = buildMergedManifest(localManifest, cdnRemotes);
+
+      expect(result).toEqual({ ...localManifest, ...cdnRemotes });
     });
   });
 });
