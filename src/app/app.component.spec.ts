@@ -138,13 +138,22 @@ describe('AppComponent', () => {
     expect(component.game).toBeDefined();
   });
 
-  it('should set isRouteLoading to true immediately on NavigationStart', () => {
+  it('should not set isRouteLoading to true on initial NavigationStart', () => {
+    (component.router as any).navigated = false;
+    component.ngOnInit();
+    routerEventsSubject.next(new NavigationStart(1, '/test'));
+    expect(component.isRouteLoading()).toBe(false);
+  });
+
+  it('should set isRouteLoading to true on subsequent NavigationStart', () => {
+    (component.router as any).navigated = true;
     component.ngOnInit();
     routerEventsSubject.next(new NavigationStart(1, '/test'));
     expect(component.isRouteLoading()).toBe(true);
   });
 
   it('should set isRouteLoading to false on NavigationEnd', () => {
+    (component.router as any).navigated = true;
     component.ngOnInit();
     routerEventsSubject.next(new NavigationStart(1, '/test'));
     expect(component.isRouteLoading()).toBe(true);

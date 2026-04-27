@@ -23,11 +23,7 @@ export async function fetchRemoteConfig(isDev: boolean): Promise<RemoteConfig> {
   }
 
   try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 2000);
-
-    const response = await fetch(url, { signal: controller.signal });
-    clearTimeout(timeoutId);
+    const response = await fetch(url);
 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -45,11 +41,7 @@ export async function fetchRemoteConfig(isDev: boolean): Promise<RemoteConfig> {
  */
 export async function fetchLocalManifest(): Promise<Record<string, string>> {
   try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 1000);
-
-    const response = await fetch('federation.manifest.json', { signal: controller.signal });
-    clearTimeout(timeoutId);
+    const response = await fetch('federation.manifest.json');
 
     if (response.ok) {
       return (await response.json()) as Record<string, string>;
