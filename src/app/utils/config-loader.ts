@@ -41,12 +41,9 @@ export async function fetchRemoteConfig(isDev: boolean): Promise<RemoteConfig> {
 }
 
 /**
- * Merges the local federation manifest with the remotes fetched from the CDN.
- * Remote configurations take precedence over local ones.
+ * Fetches the local federation manifest.
  */
-export async function buildMergedManifest(cdnRemotes: Record<string, string>): Promise<Record<string, string>> {
-  let localManifest: Record<string, string> = {};
-
+export async function fetchLocalManifest(): Promise<Record<string, string>> {
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 1000);
@@ -55,12 +52,22 @@ export async function buildMergedManifest(cdnRemotes: Record<string, string>): P
     clearTimeout(timeoutId);
 
     if (response.ok) {
-      localManifest = (await response.json()) as Record<string, string>;
+      return (await response.json()) as Record<string, string>;
     }
   } catch (error) {
     globalThis.console.warn('Local federation.manifest.json not found or inaccessible', error);
   }
+  return {};
+}
 
+/**
+ * Merges the local federation manifest with the remotes fetched from the CDN.
+ * Remote configurations take precedence over local ones.
+ */
+export function buildMergedManifest(
+  localManifest: Record<string, string>,
+  cdnRemotes: Record<string, string>,
+): Record<string, string> {
   return {
     ...localManifest,
     ...cdnRemotes,
