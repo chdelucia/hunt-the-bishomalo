@@ -15,14 +15,7 @@ export class IdlePreloadingStrategy implements PreloadingStrategy {
           });
         };
 
-        if ('requestIdleCallback' in globalThis) {
-          (globalThis as unknown as { requestIdleCallback: (cb: () => void, opts: { timeout: number }) => void }).requestIdleCallback(
-            loadRoute,
-            { timeout: 0 },
-          );
-        } else {
-          loadRoute();
-        }
+        loadRoute();
       });
     }
     return of(null);

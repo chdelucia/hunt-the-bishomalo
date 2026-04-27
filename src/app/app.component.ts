@@ -46,7 +46,6 @@ export class AppComponent implements OnInit {
   private readonly remoteConfig = inject(REMOTE_CONFIG_TOKEN, { optional: true });
 
   readonly isRouteLoading = signal(false);
-  private loaderTimer: ReturnType<typeof setTimeout> | undefined;
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent): void {
@@ -79,7 +78,11 @@ export class AppComponent implements OnInit {
       )
       .subscribe((event) => {
         if (event instanceof NavigationStart) {
-          this.isRouteLoading.set(true);
+          // Avoid showing the route loader during the initial application bootstrap
+          // to prevent flickering with the initial loader in index.html
+          if (this.router.navigated) {
+            this.isRouteLoading.set(true);
+          }
         } else {
           this.isRouteLoading.set(false);
         }
@@ -90,20 +93,10 @@ export class AppComponent implements OnInit {
     const remotes = this.remoteConfig?.remotes;
     if (!remotes) return;
 
-    const preloadAction = () => {
-      Object.keys(remotes).forEach((remoteName) => {
-        loadRemoteModule(remoteName, './Routes').catch((err) => {
-          globalThis.console.warn(`Preload failed for remote: ${remoteName}`, err);
-        });
+    Object.keys(remotes).forEach((remoteName) => {
+      loadRemoteModule(remoteName, './Routes').catch((err) => {
+        globalThis.console.warn(`Preload failed for remote: ${remoteName}`, err);
       });
-    };
-
-    if ('requestIdleCallback' in globalThis) {
-      (
-        globalThis as unknown as { requestIdleCallback: (cb: () => void, opts: { timeout: number }) => void }
-      ).requestIdleCallback(preloadAction, { timeout: 2 });
-    } else {
-      globalThis.setTimeout(preloadAction, 1);
-    }
+    });
   }
 }
