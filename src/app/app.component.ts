@@ -101,9 +101,9 @@ export class AppComponent implements OnInit {
     if ('requestIdleCallback' in globalThis) {
       (
         globalThis as unknown as { requestIdleCallback: (cb: () => void, opts: { timeout: number }) => void }
-      ).requestIdleCallback(preloadAction, { timeout: 5000 });
+      ).requestIdleCallback(preloadAction, { timeout: 2000 });
     } else {
-      globalThis.setTimeout(preloadAction, 2000);
+      globalThis.setTimeout(preloadAction, 1000);
     }
   }
 }

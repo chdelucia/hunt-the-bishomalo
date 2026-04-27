@@ -142,8 +142,8 @@
     }
   },
 "loading": {
-  "system": "LOADING...",
-  "data": "LOADING...",
+  "system": "LOADING SYSTEM...",
+  "data": "LOADING DATA...",
   "achievements": "LOADING ACHIEVEMENTS...",
   "archive": "INITIALIZING ARCHIVE..."
 },

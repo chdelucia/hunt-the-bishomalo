@@ -11,7 +11,7 @@ describe('config-loader', () => {
       const mockConfig = { remotes: { mfe1: 'url1' } };
       global.fetch = jest.fn().mockResolvedValue({
         ok: true,
-        text: jest.fn().mockResolvedValue(JSON.stringify(mockConfig)),
+        json: jest.fn().mockResolvedValue(mockConfig),
       });
 
       const config = await fetchRemoteConfig(true);
@@ -27,7 +27,7 @@ describe('config-loader', () => {
       const mockConfig = { remotes: { mfe1: 'url1' } };
       global.fetch = jest.fn().mockResolvedValue({
         ok: true,
-        text: jest.fn().mockResolvedValue(JSON.stringify(mockConfig)),
+        json: jest.fn().mockResolvedValue(mockConfig),
       });
 
       const config = await fetchRemoteConfig(false);
@@ -56,7 +56,7 @@ describe('config-loader', () => {
       const mockConfig = { remotes: { mfe1: 'url1' } };
       global.fetch = jest.fn().mockResolvedValue({
         ok: true,
-        text: jest.fn().mockResolvedValue(JSON.stringify(mockConfig)),
+        json: jest.fn().mockResolvedValue(mockConfig),
       });
 
       const config = await fetchRemoteConfig(false);
@@ -70,7 +70,7 @@ describe('config-loader', () => {
       const mockConfig = { remotes: { mfe1: 'url1' } };
       global.fetch = jest.fn().mockResolvedValue({
         ok: true,
-        text: jest.fn().mockResolvedValue(JSON.stringify(mockConfig)),
+        json: jest.fn().mockResolvedValue(mockConfig),
       });
       const consoleSpy = jest.spyOn(console, 'warn').mockImplementation();
 
@@ -96,7 +96,7 @@ describe('config-loader', () => {
       const localManifest = { shared: 'v1' };
       global.fetch = jest.fn().mockResolvedValue({
         ok: true,
-        text: jest.fn().mockResolvedValue(JSON.stringify(localManifest)),
+        json: jest.fn().mockResolvedValue(localManifest),
       });
 
       const result = await fetchLocalManifest();
