@@ -39,3 +39,11 @@
 ## 2026-04-05 - [Specific Dependency for Derived Computed Signals]
 **Learning:** Derived computed signals (like `hasLantern`) that depend on broad state objects (like `hunter`) will re-evaluate whenever any property of that object changes (e.g., position), even if the relevant property (e.g., `inventory`) remains the same.
 **Action:** Make derived computed signals depend on the most granular computed signals available (e.g., `inventory()`) instead of broad state signals (e.g., `hunter()`) to fully leverage signal memoization and prevent redundant re-evaluations during frequent state changes like movement.
+
+## 2026-04-08 - [Consolidated Store Updates for Game Initialization]
+**Learning:** Multiple sequential state updates (e.g., `updateGame` for board, then `updateHunter` for position) in core services can trigger redundant change detection cycles and multiple synchronous `localStorage` I/O operations if the store is persisted.
+**Action:** Consolidate initialization and reset logic into a single `patchState` or batch store update call to minimize overhead. Acceptance of optional parameters (like `newSettings`) in initialization methods allows for further reduction of redundant store reads/writes.
+
+## 2026-04-08 - [Static Hoisting of Coordinate Exclusion Sets]
+**Learning:** Allocating new `Set` objects for coordinate exclusion (e.g., `new Set(['0,0'])`) inside frequently called methods or loops (like board generation) increases memory allocation overhead and garbage collection pressure.
+**Action:** Hoist fixed coordinate exclusion sets into `private static readonly` constants to reuse a single instance across all service calls, improving performance in memory-sensitive paths.
