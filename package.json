@@ -52,7 +52,7 @@
     "@jsverse/transloco-keys-manager": "^8.1.0",
     "@nx/angular": "22.6.4",
     "@nx/cypress": "22.5.4",
-    "@nx/eslint": "22.5.4",
+    "@nx/eslint": "22.7.1",
     "@nx/eslint-plugin": "22.5.4",
     "@nx/jest": "22.5.4",
     "@nx/js": "22.6.1",
