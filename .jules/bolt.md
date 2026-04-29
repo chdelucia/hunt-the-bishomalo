@@ -39,3 +39,7 @@
 ## 2026-04-05 - [Specific Dependency for Derived Computed Signals]
 **Learning:** Derived computed signals (like `hasLantern`) that depend on broad state objects (like `hunter`) will re-evaluate whenever any property of that object changes (e.g., position), even if the relevant property (e.g., `inventory`) remains the same.
 **Action:** Make derived computed signals depend on the most granular computed signals available (e.g., `inventory()`) instead of broad state signals (e.g., `hunter()`) to fully leverage signal memoization and prevent redundant re-evaluations during frequent state changes like movement.
+
+## 2026-05-20 - [Batching State Updates and Static Resource Hoisting]
+**Learning:** Performing multiple independent store updates during a single logical operation (like game initialization) triggers redundant change detection cycles and excessive I/O (e.g., localStorage writes). Additionally, creating short-lived utility objects like `Set` within loops or frequently called methods increases GC pressure.
+**Action:** Consolidate multiple state transitions into a single batch update call to the store. Hoist static data structures used for lookups into `private static readonly` constants to minimize object allocation overhead.

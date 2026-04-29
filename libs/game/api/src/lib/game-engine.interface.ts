@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { Cell } from '@hunt-the-bishomalo/shared-data';
+import { Cell, GameSettings } from '@hunt-the-bishomalo/shared-data';
 
 export interface IGameEngineService {
   initGame(): void;
@@ -10,7 +10,7 @@ export interface IGameEngineService {
   turnRight(): void;
   shootArrow(): void;
   exit(): void;
-  initializeGameBoard(): void;
+  initializeGameBoard(settings?: GameSettings): void;
   calcVictoryAchieve(seconds: number): void;
   handleWumpusKillAchieve(cell: Cell): void;
 }

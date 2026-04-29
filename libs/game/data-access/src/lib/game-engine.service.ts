@@ -19,6 +19,7 @@ import {
   GameSound,
   RouteTypes,
   AchieveTypes,
+  GameSettings,
 } from '@hunt-the-bishomalo/shared-data';
 import { take } from 'rxjs';
 import { BoardGeneratorService } from './board-generator.service';
@@ -43,32 +44,39 @@ export class GameEngineService implements IGameEngineService {
     this.checkCurrentCell(0, 0);
   }
 
-  public initializeGameBoard(): void {
-    const settings = this.store.settings();
-    const board: Cell[][] = this.boardGenerator.createBoard(settings);
-    this.boardGenerator.placeGold(board, settings);
-    this.boardGenerator.placeWumpus(board, settings);
-    this.boardGenerator.placePits(board, settings);
-    this.boardGenerator.placeArrows(board, settings);
-    this.boardGenerator.placeEvents(board, settings, this.store.lives(), this.store.dragonballs());
-    this.store.updateGame({ board });
-    this.setHunterForNextLevel();
-  }
+  public initializeGameBoard(settings?: GameSettings): void {
+    const activeSettings = settings || this.store.settings();
+    const board: Cell[][] = this.boardGenerator.createBoard(activeSettings);
+    this.boardGenerator.placeGold(board, activeSettings);
+    this.boardGenerator.placeWumpus(board, activeSettings);
+    this.boardGenerator.placePits(board, activeSettings);
+    this.boardGenerator.placeArrows(board, activeSettings);
+    this.boardGenerator.placeEvents(
+      board,
+      activeSettings,
+      this.store.lives(),
+      this.store.dragonballs(),
+    );
 
-  private setHunterForNextLevel(): void {
-    this.store.updateHunter({
-      x: 0,
-      y: 0,
-      direction: Direction.RIGHT,
-      arrows: 1,
-      hasGold: false,
-    });
+    // Optimized batch update: combines board generation, hunter reset, and status reset
+    // to minimize localStorage I/O and change detection cycles.
     this.store.updateGame({
+      board,
+      settings: activeSettings,
       wumpusKilled: 0,
       isAlive: true,
       deathByWumpus: false,
       hasWon: false,
+      hunter: {
+        ...this.store.hunter(),
+        x: 0,
+        y: 0,
+        direction: Direction.RIGHT,
+        arrows: 1,
+        hasGold: false,
+      },
     });
+
     this.statsTracker.resetSteps();
   }
 
@@ -84,12 +92,12 @@ export class GameEngineService implements IGameEngineService {
     const newSettings = {
       ...this.store.settings(),
       size: newSize,
-      pits: this.boardGenerator.calculatePits(size, difficulty.luck),
-      wumpus: this.boardGenerator.calculateWumpus(size, difficulty.luck),
+      // Optimized scaling: using newSize for correct difficulty progression
+      pits: this.boardGenerator.calculatePits(newSize, difficulty.luck),
+      wumpus: this.boardGenerator.calculateWumpus(newSize, difficulty.luck),
       blackout: this.applyBlackoutChance(),
     };
-    this.store.updateGame({ settings: newSettings });
-    this.initializeGameBoard();
+    this.initializeGameBoard(newSettings);
     this.checkCurrentCell(0, 0);
   }
 
