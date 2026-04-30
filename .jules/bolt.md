@@ -39,3 +39,7 @@
 ## 2026-04-05 - [Specific Dependency for Derived Computed Signals]
 **Learning:** Derived computed signals (like `hasLantern`) that depend on broad state objects (like `hunter`) will re-evaluate whenever any property of that object changes (e.g., position), even if the relevant property (e.g., `inventory`) remains the same.
 **Action:** Make derived computed signals depend on the most granular computed signals available (e.g., `inventory()`) instead of broad state signals (e.g., `hunter()`) to fully leverage signal memoization and prevent redundant re-evaluations during frequent state changes like movement.
+
+## 2026-04-10 - [Consolidated Board Initialization & Numeric Key Optimization]
+**Learning:** Performing multiple independent `patchState` or `updateGame` calls during complex sequences like level transitions triggers redundant `localStorage` I/O and Angular change detection cycles. Additionally, using string interpolation for `Set` keys in tight generation loops (e.g., `placeRandom`) creates unnecessary GC pressure.
+**Action:** Consolidate state updates into a single Store operation using an optional parameter in initialization methods. Use numeric coordinate hashing (e.g., `x * 100 + y`) for exclusion sets to avoid string allocation in hot loops.
