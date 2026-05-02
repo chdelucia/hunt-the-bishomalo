@@ -39,3 +39,7 @@
 ## 2026-04-05 - [Specific Dependency for Derived Computed Signals]
 **Learning:** Derived computed signals (like `hasLantern`) that depend on broad state objects (like `hunter`) will re-evaluate whenever any property of that object changes (e.g., position), even if the relevant property (e.g., `inventory`) remains the same.
 **Action:** Make derived computed signals depend on the most granular computed signals available (e.g., `inventory()`) instead of broad state signals (e.g., `hunter()`) to fully leverage signal memoization and prevent redundant re-evaluations during frequent state changes like movement.
+
+## 2026-04-08 - [Numeric Key Optimization for Coordinate Sets]
+**Learning:** Using string keys (e.g., `${x},${y}`) for coordinate lookups in frequently accessed `Set` or `Map` structures during intensive logic (like board generation) incurs significant string interpolation overhead and GC pressure.
+**Action:** Use numeric keys (e.g., `x * 100 + y`) for O(1) lookups in coordinate-based collections to avoid string allocation and reduce memory churn. Hoist static exclusion sets to constants to avoid redundant allocations.
