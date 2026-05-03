@@ -39,3 +39,7 @@
 ## 2026-04-05 - [Specific Dependency for Derived Computed Signals]
 **Learning:** Derived computed signals (like `hasLantern`) that depend on broad state objects (like `hunter`) will re-evaluate whenever any property of that object changes (e.g., position), even if the relevant property (e.g., `inventory`) remains the same.
 **Action:** Make derived computed signals depend on the most granular computed signals available (e.g., `inventory()`) instead of broad state signals (e.g., `hunter()`) to fully leverage signal memoization and prevent redundant re-evaluations during frequent state changes like movement.
+
+## 2026-04-08 - [Atomic State Updates & Numeric Coordinate Hashing]
+**Learning:** Batching multiple state updates (board, settings, hunter, status) into a single `patchState` (via `updateGame`) significantly reduces `localStorage` I/O and change detection cycles. Additionally, using numeric hashes (`x * 100 + y`) for coordinate lookups in tight loops (like board generation) avoids string interpolation overhead and reduces GC pressure compared to string-based keys (`'x,y'`).
+**Action:** Consolidate related store updates into atomic operations and prefer numeric keys for spatial lookups in performance-critical loops.

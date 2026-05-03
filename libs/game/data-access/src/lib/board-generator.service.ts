@@ -3,6 +3,13 @@ import { Cell, CELL_CONTENTS, CellContentType, GameSettings } from '@hunt-the-bi
 
 @Injectable({ providedIn: 'root' })
 export class BoardGeneratorService {
+  /**
+   * Optimized coordinate lookups using numeric keys to reduce string interpolation overhead and GC pressure.
+   * Format: x * 100 + y
+   */
+  private static readonly INITIAL_CELL_KEY = 0; // 0 * 100 + 0
+  private static readonly EXCLUDED_PIT_KEYS = new Set([0, 1, 100]); // (0,0), (0,1), (1,0)
+
   createBoard(settings: GameSettings): Cell[][] {
     return Array.from({ length: settings.size }, (_, x) =>
       Array.from({ length: settings.size }, (_, y) => ({ x, y, visited: false })),
@@ -14,15 +21,19 @@ export class BoardGeneratorService {
   }
 
   placeWumpus(board: Cell[][], settings: GameSettings): void {
-    for (let i = 0; i < (settings.wumpus || 1); i++) {
-      const type = `wumpus${settings.selectedChar}` as CellContentType;
-      this.placeRandom(board, settings).content = CELL_CONTENTS[type];
+    const type = `wumpus${settings.selectedChar}` as CellContentType;
+    const content = CELL_CONTENTS[type];
+    const wumpusCount = settings.wumpus || 1;
+
+    for (let i = 0; i < wumpusCount; i++) {
+      this.placeRandom(board, settings).content = content;
     }
   }
 
   placePits(board: Cell[][], settings: GameSettings): void {
+    const content = CELL_CONTENTS.pit;
     for (let i = 0; i < settings.pits; i++) {
-      this.placeRandom(board, settings, new Set(['0,0', '0,1', '1,0'])).content = CELL_CONTENTS.pit;
+      this.placeRandom(board, settings, BoardGeneratorService.EXCLUDED_PIT_KEYS).content = content;
     }
   }
 
@@ -39,7 +50,7 @@ export class BoardGeneratorService {
     dragonballs: number | undefined,
   ): void {
     const { difficulty, size } = settings;
-    const ex = new Set(['0,0']);
+    const ex = new Set([BoardGeneratorService.INITIAL_CELL_KEY]);
     const chance = (base: number, max: number) =>
       Math.min(base + ((size - 4) / (difficulty.maxLevels - 4)) * (max - base), max);
 
@@ -54,14 +65,16 @@ export class BoardGeneratorService {
     }
   }
 
-  private placeRandom(board: Cell[][], settings: GameSettings, excluded = new Set(['0,0'])): Cell {
+  private placeRandom(board: Cell[][], settings: GameSettings, excluded = new Set([0])): Cell {
     const size = settings.size;
     let cell: Cell;
+    let x: number;
+    let y: number;
     do {
-      const x = Math.floor(Math.random() * size);
-      const y = Math.floor(Math.random() * size);
+      x = Math.floor(Math.random() * size);
+      y = Math.floor(Math.random() * size);
       cell = board[x][y];
-    } while (cell.content || excluded.has(`${cell.x},${cell.y}`));
+    } while (cell.content || excluded.has(x * 100 + y));
     return cell;
   }
 
