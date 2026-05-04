@@ -39,3 +39,7 @@
 ## 2026-04-05 - [Specific Dependency for Derived Computed Signals]
 **Learning:** Derived computed signals (like `hasLantern`) that depend on broad state objects (like `hunter`) will re-evaluate whenever any property of that object changes (e.g., position), even if the relevant property (e.g., `inventory`) remains the same.
 **Action:** Make derived computed signals depend on the most granular computed signals available (e.g., `inventory()`) instead of broad state signals (e.g., `hunter()`) to fully leverage signal memoization and prevent redundant re-evaluations during frequent state changes like movement.
+
+## 2026-05-04 - [Board Generation Optimization]
+**Learning:** In services that perform repeated random placements on a grid (like board generation), string-based coordinate tracking (`'x,y'`) and inline `Set` allocations in loops create significant GC pressure and overhead. Numeric keys (`x * 100 + y`) and hoisted `Set` constants for static exclusion zones significantly improve efficiency.
+**Action:** Hoist `Set` allocations to static constants and use primitive numeric keys for coordinate lookups to minimize string interpolation and allocation overhead in high-frequency loops.
