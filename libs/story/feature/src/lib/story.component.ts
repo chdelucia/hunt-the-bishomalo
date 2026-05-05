@@ -34,7 +34,6 @@ export class StoryComponent {
   readonly showExtraInfo = signal(false);
 
   private fullText = '';
-  private intervalId?: ReturnType<typeof setInterval>;
 
   constructor() {
     if (this.story) {
@@ -46,9 +45,6 @@ export class StoryComponent {
 
     this.destroyRef.onDestroy(() => {
       speechSynthesis.cancel();
-      if (this.intervalId) {
-        clearInterval(this.intervalId);
-      }
     });
   }
 
@@ -59,8 +55,10 @@ export class StoryComponent {
   }
 
   private startReading(text: string): void {
-    this.reading.set(true);
-    this.displayedText.set('');
+    this.reading.set(false);
+    this.displayedText.set(text);
+    this.showExtraInfo.set(true);
+
     const activeLang = this.translocoService.getActiveLang();
 
     const chapterText = `${this.translocoService.translate('storyPage.chapterPrefix')}${
@@ -94,25 +92,7 @@ export class StoryComponent {
         speechSynthesis.speak(utterBody);
       };
 
-      utterBody.onend = () => {
-        this.showExtraInfo.set(true);
-      };
-
       speechSynthesis.speak(utterChapter);
     }
-
-    let i = 0;
-    this.intervalId = setInterval(() => {
-      const current = this.displayedText();
-      this.displayedText.set(current + bodyText[i]);
-      i++;
-      if (i >= bodyText.length) {
-        clearInterval(this.intervalId);
-        this.reading.set(false);
-        if (!this.gameStore.soundEnabled()) {
-          this.showExtraInfo.set(true);
-        }
-      }
-    }, 90);
   }
 }

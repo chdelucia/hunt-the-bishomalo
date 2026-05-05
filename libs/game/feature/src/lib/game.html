@@ -49,12 +49,10 @@
     }
 
     @if (facade.deathByWumpus()) {
-      @defer {
-        <lib-wumpus-attack-animation
-          [selectedChar]="settings.selectedChar"
-          (closeAnimation)="handleClose()"
-        />
-      }
+      <lib-wumpus-attack-animation
+        [selectedChar]="settings.selectedChar"
+        (closeAnimation)="handleClose()"
+      />
     }
   </section>
 

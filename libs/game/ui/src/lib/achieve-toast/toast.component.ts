@@ -22,7 +22,6 @@ export class ToastComponent {
 
   private idCounter = 0;
   readonly toasts = signal<(ToastData & { broken?: boolean })[]>([]);
-  private readonly toastTimeouts = new Map<number, ReturnType<typeof setTimeout>>();
   private readonly destroyRef = inject(DestroyRef);
 
   constructor() {
@@ -31,11 +30,6 @@ export class ToastComponent {
       if (achievement) {
         this.addToast(achievement);
       }
-    });
-
-    this.destroyRef.onDestroy(() => {
-      this.toastTimeouts.forEach((timeout) => clearTimeout(timeout));
-      this.toastTimeouts.clear();
     });
   }
 
@@ -52,12 +46,5 @@ export class ToastComponent {
     };
 
     this.toasts.update((prev) => [...prev, toast]);
-
-    const timeout = setTimeout(() => {
-      this.toasts.update((prev) => prev.filter((t) => t.id !== id));
-      this.toastTimeouts.delete(id);
-    }, 3000);
-
-    this.toastTimeouts.set(id, timeout);
   }
 }

@@ -5,17 +5,8 @@ import {
   inject,
   isDevMode,
   OnInit,
-  signal,
 } from '@angular/core';
-import {
-  RouterOutlet,
-  Router,
-  NavigationStart,
-  NavigationEnd,
-  NavigationCancel,
-  NavigationError,
-} from '@angular/router';
-import { filter } from 'rxjs';
+import { RouterOutlet, Router } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { loadRemoteModule } from '@angular-architects/native-federation';
 
@@ -45,8 +36,6 @@ export class AppComponent implements OnInit {
   private readonly miniBus = inject(MINI_BUS_SERVICE_TOKEN);
   private readonly remoteConfig = inject(REMOTE_CONFIG_TOKEN, { optional: true });
 
-  readonly isRouteLoading = signal(false);
-
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent): void {
     this.keyboardManager.handleKeyDown(event);
@@ -65,28 +54,6 @@ export class AppComponent implements OnInit {
     });
 
     this.preloadRemotes();
-
-    this.router.events
-      .pipe(
-        filter(
-          (event) =>
-            event instanceof NavigationStart ||
-            event instanceof NavigationEnd ||
-            event instanceof NavigationCancel ||
-            event instanceof NavigationError,
-        ),
-      )
-      .subscribe((event) => {
-        if (event instanceof NavigationStart) {
-          // Avoid showing the route loader during the initial application bootstrap
-          // to prevent flickering with the initial loader in index.html
-          if (this.router.navigated) {
-            this.isRouteLoading.set(true);
-          }
-        } else {
-          this.isRouteLoading.set(false);
-        }
-      });
   }
 
   private preloadRemotes(): void {

@@ -16,7 +16,6 @@ import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 })
 export class ShopComponent {
   protected readonly ASSETS_BASE_URL = ASSETS_BASE_URL;
-  private readonly MESSAGE_TIMEOUT_MS = 3000;
 
   private readonly baseProducts: Product[] = [
     {
@@ -77,7 +76,6 @@ export class ShopComponent {
   readonly inventory = this.gameStore.inventory;
 
   readonly message = signal('');
-  private messageTimeout?: ReturnType<typeof setTimeout>;
 
   readonly productos = computed(() => {
     /**
@@ -92,11 +90,7 @@ export class ShopComponent {
   });
 
   constructor() {
-    this.destroyRef.onDestroy(() => {
-      if (this.messageTimeout) {
-        clearTimeout(this.messageTimeout);
-      }
-    });
+    // Empty constructor for shop component
   }
 
   buyProduct(product: Product): void {
@@ -108,7 +102,6 @@ export class ShopComponent {
     const canBuy = gold >= price;
 
     this.clearMessage();
-    this.messageTimeout = setTimeout(() => this.message.set(''), this.MESSAGE_TIMEOUT_MS);
 
     if (!canBuy) {
       this.message.set(this.transloco.translate('shop.purchaseMessageNotEnoughCoins'));
@@ -142,10 +135,6 @@ export class ShopComponent {
 
   clearMessage(): void {
     this.message.set('');
-    if (this.messageTimeout) {
-      clearTimeout(this.messageTimeout);
-      this.messageTimeout = undefined;
-    }
   }
 
   nextLevel(): void {
