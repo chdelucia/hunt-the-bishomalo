@@ -41,11 +41,7 @@ export class VisualEffectDirective {
   }
 
   private scheduleUpdate(cues: string): void {
-    this.cancelScheduledUpdate();
-    this.animationFrameId = requestAnimationFrame(() => {
-      this.updateEffects(cues);
-      this.animationFrameId = null;
-    });
+    this.updateEffects(cues);
   }
 
   private cancelScheduledUpdate(): void {
@@ -88,7 +84,7 @@ export class VisualEffectDirective {
         top: `${Math.random() * 100}%`,
         left: `${Math.random() * 100}%`,
         'animation-duration': `${10 + Math.random() * 10}s`,
-        'animation-delay': `${Math.random() * 5}s`,
+        'animation-delay': `0s`,
       });
       this.renderer.appendChild(container, cloud);
     }
@@ -105,7 +101,7 @@ export class VisualEffectDirective {
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
         'animation-duration': `${6 + Math.random() * 5}s`,
-        'animation-delay': `${Math.random() * 3}s`,
+        'animation-delay': `0s`,
       });
       this.renderer.appendChild(container, stink);
     }
@@ -119,7 +115,7 @@ export class VisualEffectDirective {
         top: `${Math.random() * 100}%`,
         left: `${Math.random() * 100}%`,
         'animation-duration': `${2 + Math.random() * 3}s`,
-        'animation-delay': `${Math.random() * 2}s`,
+        'animation-delay': `0s`,
       });
       this.renderer.appendChild(container, sparkle);
     }

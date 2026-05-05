@@ -25,19 +25,10 @@ describe('AppWumpusAttackAnimationComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should update step over time and emit closeAnimation', (done) => {
-    jest.useFakeTimers();
-    // Re-create component with fake timers active so ngOnInit uses them
-    fixture = TestBed.createComponent(AppWumpusAttackAnimationComponent);
-    component = fixture.componentInstance;
-    fixture.componentRef.setInput('selectedChar', 'default');
-    fixture.detectChanges();
-
-    expect(component.step()).toBe(1);
-    jest.advanceTimersByTime(3500);
-    expect(component.step()).toBe(5);
-    jest.useRealTimers();
-    done();
+  it('should emit closeAnimation on ngOnInit', () => {
+    const emitSpy = jest.spyOn(component.closeAnimation, 'emit');
+    component.ngOnInit();
+    expect(emitSpy).toHaveBeenCalled();
   });
 
   it('should return correct player position', () => {

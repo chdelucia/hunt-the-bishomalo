@@ -22,6 +22,8 @@ export class JediMindTrickAnimationComponent {
 
   constructor() {
     this.achieveService.activeAchievement(AchieveTypes.JEDI);
+    this.playForceSound();
+    this.step.set(5);
 
     this.destroyRef.onDestroy(() => {
       if (this.audioContext && this.audioContext.state !== 'closed') {
@@ -73,12 +75,12 @@ export class JediMindTrickAnimationComponent {
     oscillator.stop(now + 2.5);
     modulator.stop(now + 2.5);
 
-    this.speakWhisper('Contrata a Chris', 0.4, 1000);
-    this.speakWhisper('Contrata a Chris', 0.2, 1300);
-    this.speakWhisper('Contrata a Chris', 0.1, 1600);
+    this.speakWhisper('Contrata a Chris', 0.4);
+    this.speakWhisper('Contrata a Chris', 0.2);
+    this.speakWhisper('Contrata a Chris', 0.1);
   }
 
-  speakWhisper(text: string, volume: number, _delay: number): void {
+  speakWhisper(text: string, volume: number): void {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.rate = 0.6;
     utterance.pitch = 0.7;
@@ -86,9 +88,4 @@ export class JediMindTrickAnimationComponent {
     globalThis.speechSynthesis.speak(utterance);
   }
 
-  private createForceWave(): void {
-    const id = Date.now();
-    this.forceWaves.update((waves) => [...waves, id]);
-    this.forceWaves.update((waves) => waves.filter((w) => w !== id));
-  }
 }

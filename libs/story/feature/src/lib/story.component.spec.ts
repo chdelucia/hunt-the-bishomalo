@@ -92,40 +92,16 @@ describe('StoryComponent', () => {
   });
 
 
-  it('should show text gradually and activate showExtraInfo at end of audio', () => {
-    jest.useFakeTimers();
-    const speakMock = jest.fn((utterance) => {
-      if (utterance.text.includes('Capítulo')) {
-        setTimeout(() => utterance.onend?.(), 10);
-      } else if (utterance.text.includes(mockStory.title)) {
-        setTimeout(() => utterance.onend?.(), 20);
-      } else {
-        setTimeout(() => utterance.onend?.(), 30);
-      }
-    });
-
-    global.speechSynthesis = {
-      speak: speakMock,
-      cancel: jest.fn(),
-    } as unknown as SpeechSynthesis;
-
+  it('should show text immediately and activate showExtraInfo (no typewriter)', () => {
     fixture = TestBed.createComponent(StoryComponent);
     component = fixture.componentInstance;
 
-    for (let i = 0; i < mockStory.text.length; i++) {
-      jest.advanceTimersByTime(90);
-    }
-
     expect(component.displayedText()).toBe('Texto de prueba.');
     expect(component.reading()).toBe(false);
-
-    jest.runAllTimers();
     expect(component.showExtraInfo()).toBe(true);
-    jest.useRealTimers();
   });
 
   it('should not call speechSynthesis.speak when soundEnabled is false', () => {
-    jest.useFakeTimers();
     mockGameStore.soundEnabled.set(false);
     const speakSpy = jest.spyOn(global.speechSynthesis, 'speak');
 
@@ -133,16 +109,10 @@ describe('StoryComponent', () => {
     component = fixture.componentInstance;
 
     expect(speakSpy).not.toHaveBeenCalled();
-
-    for (let i = 0; i < mockStory.text.length; i++) {
-      jest.advanceTimersByTime(90);
-    }
-
     expect(component.displayedText()).toBe(mockStory.text);
     expect(component.reading()).toBe(false);
     expect(component.showExtraInfo()).toBe(true);
 
     mockGameStore.soundEnabled.set(true);
-    jest.useRealTimers();
   });
 });

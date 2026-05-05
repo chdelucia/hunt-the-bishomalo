@@ -66,8 +66,7 @@ describe('ShopComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should buy a product if gold is sufficient and effect is not heart', (done) => {
-    jest.useFakeTimers();
+  it('should buy a product if gold is sufficient and effect is not heart', () => {
     const product: Product = {
       name: 'product.lantern.name',
       effect: 'lantern',
@@ -82,10 +81,6 @@ describe('ShopComponent', () => {
       inventory: [product],
     });
     expect(component.message()).toContain('shop.purchaseMessageSuccess');
-    jest.advanceTimersByTime(3000);
-    expect(component.message()).toBe('');
-    jest.useRealTimers();
-    done();
   });
 
   it('should increase lives if product effect is heart', () => {
