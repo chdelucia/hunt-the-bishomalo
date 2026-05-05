@@ -3,6 +3,9 @@ import { Cell, CELL_CONTENTS, CellContentType, GameSettings } from '@hunt-the-bi
 
 @Injectable({ providedIn: 'root' })
 export class BoardGeneratorService {
+  private static readonly DEFAULT_EXCLUDED = new Set([0]); // 0,0
+  private static readonly PITS_EXCLUDED = new Set([0, 1, 100]); // 0,0; 0,1; 1,0
+
   createBoard(settings: GameSettings): Cell[][] {
     return Array.from({ length: settings.size }, (_, x) =>
       Array.from({ length: settings.size }, (_, y) => ({ x, y, visited: false })),
@@ -10,25 +13,31 @@ export class BoardGeneratorService {
   }
 
   placeGold(board: Cell[][], settings: GameSettings): void {
-    this.placeRandom(board, settings).content = CELL_CONTENTS.gold;
+    const goldContent = CELL_CONTENTS.gold;
+    this.placeRandom(board, settings.size, BoardGeneratorService.DEFAULT_EXCLUDED).content = goldContent;
   }
 
   placeWumpus(board: Cell[][], settings: GameSettings): void {
-    for (let i = 0; i < (settings.wumpus || 1); i++) {
-      const type = `wumpus${settings.selectedChar}` as CellContentType;
-      this.placeRandom(board, settings).content = CELL_CONTENTS[type];
+    const type = `wumpus${settings.selectedChar}` as CellContentType;
+    const wumpusContent = CELL_CONTENTS[type];
+    const iterations = settings.wumpus || 1;
+    for (let i = 0; i < iterations; i++) {
+      this.placeRandom(board, settings.size, BoardGeneratorService.DEFAULT_EXCLUDED).content = wumpusContent;
     }
   }
 
   placePits(board: Cell[][], settings: GameSettings): void {
+    const pitContent = CELL_CONTENTS.pit;
     for (let i = 0; i < settings.pits; i++) {
-      this.placeRandom(board, settings, new Set(['0,0', '0,1', '1,0'])).content = CELL_CONTENTS.pit;
+      this.placeRandom(board, settings.size, BoardGeneratorService.PITS_EXCLUDED).content = pitContent;
     }
   }
 
   placeArrows(board: Cell[][], settings: GameSettings): void {
-    for (let i = 0; i < (settings.wumpus || 1) - 1; i++) {
-      this.placeRandom(board, settings).content = CELL_CONTENTS.arrow;
+    const arrowContent = CELL_CONTENTS.arrow;
+    const iterations = (settings.wumpus || 1) - 1;
+    for (let i = 0; i < iterations; i++) {
+      this.placeRandom(board, settings.size, BoardGeneratorService.DEFAULT_EXCLUDED).content = arrowContent;
     }
   }
 
@@ -39,7 +48,6 @@ export class BoardGeneratorService {
     dragonballs: number | undefined,
   ): void {
     const { difficulty, size } = settings;
-    const ex = new Set(['0,0']);
     const chance = (base: number, max: number) =>
       Math.min(base + ((size - 4) / (difficulty.maxLevels - 4)) * (max - base), max);
 
@@ -47,21 +55,22 @@ export class BoardGeneratorService {
       Math.random() < chance(difficulty.baseChance, difficulty.maxChance) &&
       currentLives < difficulty.maxLives
     ) {
-      this.placeRandom(board, settings, ex).content = CELL_CONTENTS.heart;
+      const heartContent = CELL_CONTENTS.heart;
+      this.placeRandom(board, size, BoardGeneratorService.DEFAULT_EXCLUDED).content = heartContent;
     }
     if (Math.random() < difficulty.baseChance && !dragonballs) {
-      this.placeRandom(board, settings, ex).content = CELL_CONTENTS.dragonball;
+      const dragonballContent = CELL_CONTENTS.dragonball;
+      this.placeRandom(board, size, BoardGeneratorService.DEFAULT_EXCLUDED).content = dragonballContent;
     }
   }
 
-  private placeRandom(board: Cell[][], settings: GameSettings, excluded = new Set(['0,0'])): Cell {
-    const size = settings.size;
+  private placeRandom(board: Cell[][], size: number, excluded: Set<number>): Cell {
     let cell: Cell;
     do {
       const x = Math.floor(Math.random() * size);
       const y = Math.floor(Math.random() * size);
       cell = board[x][y];
-    } while (cell.content || excluded.has(`${cell.x},${cell.y}`));
+    } while (cell.content || excluded.has(cell.x * 100 + cell.y));
     return cell;
   }
 

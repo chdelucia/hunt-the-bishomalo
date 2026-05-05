@@ -39,3 +39,7 @@
 ## 2026-04-05 - [Specific Dependency for Derived Computed Signals]
 **Learning:** Derived computed signals (like `hasLantern`) that depend on broad state objects (like `hunter`) will re-evaluate whenever any property of that object changes (e.g., position), even if the relevant property (e.g., `inventory`) remains the same.
 **Action:** Make derived computed signals depend on the most granular computed signals available (e.g., `inventory()`) instead of broad state signals (e.g., `hunter()`) to fully leverage signal memoization and prevent redundant re-evaluations during frequent state changes like movement.
+
+## 2026-04-08 - [Efficient 2D Grid Coordinate Hashing]
+**Learning:** Using string templates for 2D coordinate lookups (e.g., `Set(['0,0'])`) in high-frequency generation loops causes excessive string allocation and GC pressure.
+**Action:** Use numeric hashing (e.g., `x * 100 + y`) for 2D grid lookups in performance-critical paths (like board generation) to leverage faster numeric comparisons and reduce memory overhead.
