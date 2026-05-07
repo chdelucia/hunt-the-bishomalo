@@ -59,7 +59,7 @@
     "@nx/storybook": "22.6.1",
     "@nx/web": "22.6.1",
     "@schematics/angular": "21.2.2",
-    "@softarc/native-federation-runtime": "^3.5.5",
+    "@softarc/native-federation-runtime": "^4.1.1",
     "@storybook/addon-a11y": "^10.3.3",
     "@storybook/addon-docs": "10.3.3",
     "@storybook/angular": "10.3.5",
