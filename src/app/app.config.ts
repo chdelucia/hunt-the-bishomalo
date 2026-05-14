@@ -37,12 +37,14 @@ import {
   GAME_ACHIEVEMENT_TRACKER_TOKEN,
   GAME_ENGINE_TOKEN,
   GAME_FACADE_TOKEN,
+  GAME_RULES_TOKEN,
   GAME_SIDE_EFFECT_TOKEN,
   GAME_STATS_TRACKER_TOKEN,
 } from '@hunt-the-bishomalo/game/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
 import { LeaderboardService } from '@hunt-the-bishomalo/gamestats/data-access';
 import {
+  BishomaloRulesService,
   GameAchievementTrackerService,
   GameEngineService,
   GameFacade,
@@ -162,6 +164,7 @@ export const appConfig: ApplicationConfig = {
     { provide: ACHIEVEMENT_SERVICE, useClass: ShellAchievementService },
     { provide: LEADERBOARD_SERVICE, useClass: LeaderboardService },
     { provide: GAME_ENGINE_TOKEN, useClass: GameEngineService },
+    { provide: GAME_RULES_TOKEN, useClass: BishomaloRulesService },
     { provide: GAME_ACHIEVEMENT_TRACKER_TOKEN, useClass: GameAchievementTrackerService },
     { provide: GAME_STATS_TRACKER_TOKEN, useClass: GameStatsTrackerService },
     { provide: GAME_SIDE_EFFECT_TOKEN, useClass: GameSideEffectService },

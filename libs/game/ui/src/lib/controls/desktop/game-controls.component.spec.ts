@@ -62,9 +62,9 @@ describe('GameControlsComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should emit shootArrowRequested', () => {
-    const spy = jest.spyOn(component.shootArrowRequested, 'emit');
-    component.shootArrow();
+  it('should emit performActionRequested', () => {
+    const spy = jest.spyOn(component.performActionRequested, 'emit');
+    component.performAction();
     expect(spy).toHaveBeenCalled();
   });
 

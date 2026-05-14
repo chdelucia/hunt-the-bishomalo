@@ -28,6 +28,7 @@ export interface IGameFacade {
   moveForward(): void;
   turnLeft(): void;
   turnRight(): void;
+  performAction(): void;
   shootArrow(): void;
   newGame(): void;
   initGame(): void;

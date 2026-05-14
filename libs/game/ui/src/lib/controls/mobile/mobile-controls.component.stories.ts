@@ -18,7 +18,7 @@ export const Default: Story = {
     moveForwardRequested: fn(),
     turnLeftRequested: fn(),
     turnRightRequested: fn(),
-    shootArrowRequested: fn(),
+    performActionRequested: fn(),
     toggleSoundRequested: fn(),
   },
   play: async ({ canvasElement, args }) => {
@@ -39,7 +39,7 @@ export const Default: Story = {
     await expect(args.turnRightRequested).toHaveBeenCalled();
 
     await userEvent.click(shootBtn);
-    await expect(args.shootArrowRequested).toHaveBeenCalled();
+    await expect(args.performActionRequested).toHaveBeenCalled();
 
     await userEvent.click(soundBtn);
     await expect(args.toggleSoundRequested).toHaveBeenCalled();

@@ -13,6 +13,7 @@ describe('KeyboardManagerService', () => {
   beforeEach(() => {
     gameMock = {
       moveForward: jest.fn(),
+      performAction: jest.fn(),
       shootArrow: jest.fn(),
       turnLeft: jest.fn(),
       turnRight: jest.fn(),
@@ -66,14 +67,14 @@ describe('KeyboardManagerService', () => {
     expect(gameMock.turnRight).toHaveBeenCalled();
   });
 
-  it('should handle Space/Enter and shootArrow', () => {
+  it('should handle Space/Enter and performAction', () => {
     const eventSpace = new KeyboardEvent('keydown', { code: 'Space' });
     service.handleKeyDown(eventSpace);
-    expect(gameMock.shootArrow).toHaveBeenCalledTimes(1);
+    expect(gameMock.performAction).toHaveBeenCalledTimes(1);
 
     const eventEnter = new KeyboardEvent('keydown', { code: 'Enter' });
     service.handleKeyDown(eventEnter);
-    expect(gameMock.shootArrow).toHaveBeenCalledTimes(2);
+    expect(gameMock.performAction).toHaveBeenCalledTimes(2);
   });
 
   it('should handle KeyA and turnLeft', () => {

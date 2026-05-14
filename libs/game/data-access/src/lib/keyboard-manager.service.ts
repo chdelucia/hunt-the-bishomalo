@@ -24,10 +24,10 @@ export class KeyboardManagerService {
 
   private readonly keyActionMap: Record<string, () => void> = {
     ArrowUp: () => this.game.moveForward(),
-    Space: () => this.game.shootArrow(),
+    Space: () => this.game.performAction(),
     ArrowLeft: () => this.game.turnLeft(),
     ArrowRight: () => this.game.turnRight(),
-    Enter: () => this.game.shootArrow(),
+    Enter: () => this.game.performAction(),
     KeyR: () => {
       if (isDevMode()) this.game.initGame();
     },

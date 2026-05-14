@@ -6,3 +6,4 @@ export * from './lib/game-achievement-tracker.service';
 export * from './lib/game-stats-tracker.service';
 export * from './lib/game-side-effect.service';
 export * from './lib/game.facade';
+export * from './lib/bishomalo-rules.service';

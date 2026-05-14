@@ -52,6 +52,6 @@ export class Game {
   }
 
   handleMobileShootArrow(): void {
-    this.facade.shootArrow();
+    this.facade.performAction();
   }
 }

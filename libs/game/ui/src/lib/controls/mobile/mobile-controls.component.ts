@@ -23,7 +23,7 @@ export class MobileControlsComponent {
   readonly moveForwardRequested = output<void>();
   readonly turnLeftRequested = output<void>();
   readonly turnRightRequested = output<void>();
-  readonly shootArrowRequested = output<void>();
+  readonly performActionRequested = output<void>();
   readonly toggleSoundRequested = output<void>();
 
   moveForward(): void {
@@ -38,8 +38,8 @@ export class MobileControlsComponent {
     this.turnRightRequested.emit();
   }
 
-  shootArrow(): void {
-    this.shootArrowRequested.emit();
+  performAction(): void {
+    this.performActionRequested.emit();
   }
 
   toggleSound(): void {

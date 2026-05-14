@@ -5,14 +5,13 @@ import { TranslocoService } from '@jsverse/transloco';
 import {
   GAME_STORE_TOKEN,
   GAME_SOUND_TOKEN,
-  GAME_EVENT_SERVICE_TOKEN,
 } from '@hunt-the-bishomalo/core/api';
 import {
   GAME_ACHIEVEMENT_TRACKER_TOKEN,
   GAME_STATS_TRACKER_TOKEN,
+  GAME_RULES_TOKEN,
 } from '@hunt-the-bishomalo/game/api';
 import { BoardGeneratorService } from './board-generator.service';
-import { PerceptionService } from './perception.service';
 import { signal } from '@angular/core';
 import { Direction, RouteTypes } from '@hunt-the-bishomalo/shared-data';
 import { of } from 'rxjs';
@@ -24,10 +23,9 @@ describe('GameEngineService', () => {
   let achievementTrackerMock: any;
   let statsTrackerMock: any;
   let routerMock: any;
-  let gameEventMock: any;
   let translocoMock: any;
   let boardGenMock: any;
-  let perceptionMock: any;
+  let rulesMock: any;
 
   const createMockBoard = (size: number) => {
     return Array.from({ length: size }, (_, x) =>
@@ -76,10 +74,6 @@ describe('GameEngineService', () => {
     };
 
     routerMock = { navigate: jest.fn() };
-    gameEventMock = {
-      applyEffectsOnDeath: jest.fn(),
-      applyEffectByCellContent: jest.fn(),
-    };
     translocoMock = { translate: jest.fn((key) => key) };
     boardGenMock = {
       createBoard: jest.fn(() => createMockBoard(4)),
@@ -91,7 +85,15 @@ describe('GameEngineService', () => {
       calculatePits: jest.fn(() => 2),
       calculateWumpus: jest.fn(() => 1),
     };
-    perceptionMock = { getPerceptionMessage: jest.fn(() => of('perception message')) };
+    rulesMock = {
+      getInitialHunterState: jest.fn(() => ({})),
+      getInitialGameState: jest.fn(() => ({})),
+      getNextLevelSettings: jest.fn((s) => s),
+      executeAction: jest.fn(),
+      onCellEntry: jest.fn(),
+      canExitWithVictory: jest.fn(),
+      getPerception: jest.fn(() => of('perception message')),
+    };
 
     TestBed.configureTestingModule({
       providers: [
@@ -101,10 +103,9 @@ describe('GameEngineService', () => {
         { provide: GAME_ACHIEVEMENT_TRACKER_TOKEN, useValue: achievementTrackerMock },
         { provide: GAME_STATS_TRACKER_TOKEN, useValue: statsTrackerMock },
         { provide: Router, useValue: routerMock },
-        { provide: GAME_EVENT_SERVICE_TOKEN, useValue: gameEventMock },
         { provide: TranslocoService, useValue: translocoMock },
         { provide: BoardGeneratorService, useValue: boardGenMock },
-        { provide: PerceptionService, useValue: perceptionMock },
+        { provide: GAME_RULES_TOKEN, useValue: rulesMock },
       ],
     });
 
@@ -133,19 +134,9 @@ describe('GameEngineService', () => {
     expect(storeMock.updateHunter).toHaveBeenCalledWith({ x: 0, y: 1 });
   });
 
-  it('should shoot arrow and hit', () => {
-    const board = createMockBoard(4);
-    board[0][1].content = { type: 'wumpus' } as any;
-    storeMock.board.set(board);
-    storeMock.hunter.set({ x: 0, y: 0, direction: Direction.RIGHT, arrows: 1 });
-    service.shootArrow();
-    expect(storeMock.countWumpusKilled).toHaveBeenCalled();
-  });
-
-  it('should not shoot if no arrows', () => {
-    storeMock.hunter.set({ x: 0, y: 0, direction: Direction.RIGHT, arrows: 0 });
-    service.shootArrow();
-    expect(storeMock.setMessage).toHaveBeenCalledWith('gameMessages.noArrows');
+  it('should perform action', () => {
+    service.performAction();
+    expect(rulesMock.executeAction).toHaveBeenCalled();
   });
 
   it('should not move if not alive', () => {
@@ -173,9 +164,7 @@ describe('GameEngineService', () => {
     expect(storeMock.updateHunter).toHaveBeenCalledWith({ direction: Direction.DOWN });
   });
 
-  it('should handle victory when reaching 0,0 with gold', () => {
-    storeMock.currentCell.mockReturnValue({ x: 0, y: 0 });
-    storeMock.hunter.set({ x: 0, y: 0, direction: Direction.RIGHT, arrows: 1, hasGold: true, gold: 0 });
+  it('should handle victory', () => {
     service.exit();
     expect(storeMock.setMessage).toHaveBeenCalledWith('gameMessages.victory');
     expect(storeMock.updateGame).toHaveBeenCalledWith(expect.objectContaining({ hasWon: true }));

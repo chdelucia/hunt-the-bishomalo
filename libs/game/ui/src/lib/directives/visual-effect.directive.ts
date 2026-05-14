@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Renderer2, inject, input, effect, DestroyRef } from '@angular/core';
+import { Directive, ElementRef, Renderer2, inject, input, effect } from '@angular/core';
 
 @Directive({
   selector: '[libVisualEffect]',
@@ -9,8 +9,6 @@ export class VisualEffectDirective {
 
   private readonly el = inject(ElementRef);
   private readonly renderer = inject(Renderer2);
-  private readonly destroyRef = inject(DestroyRef);
-  private animationFrameId: number | null = null;
   private currentCues = '';
 
   constructor() {
@@ -20,12 +18,8 @@ export class VisualEffectDirective {
 
       if (newCues !== this.currentCues) {
         this.currentCues = newCues;
-        this.scheduleUpdate(newCues);
+        this.updateEffects(newCues);
       }
-    });
-
-    this.destroyRef.onDestroy(() => {
-      this.cancelScheduledUpdate();
     });
   }
 
@@ -38,21 +32,6 @@ export class VisualEffectDirective {
 
     cues.sort((a, b) => a.localeCompare(b));
     return cues.join('|');
-  }
-
-  private scheduleUpdate(cues: string): void {
-    this.cancelScheduledUpdate();
-    this.animationFrameId = requestAnimationFrame(() => {
-      this.updateEffects(cues);
-      this.animationFrameId = null;
-    });
-  }
-
-  private cancelScheduledUpdate(): void {
-    if (this.animationFrameId !== null) {
-      cancelAnimationFrame(this.animationFrameId);
-      this.animationFrameId = null;
-    }
   }
 
   private updateEffects(cues: string): void {

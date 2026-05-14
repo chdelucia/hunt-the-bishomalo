@@ -48,6 +48,7 @@ describe('Game', () => {
     hasShield: signal(false),
     newGame: jest.fn(),
     initGame: jest.fn(),
+    performAction: jest.fn(),
     shootArrow: jest.fn(),
     moveForward: jest.fn(),
     turnLeft: jest.fn(),
@@ -106,8 +107,8 @@ describe('Game', () => {
     expect(mockGameFacade.newGame).not.toHaveBeenCalled();
   });
 
-  it('should call facade shootArrow on mobile shoot', () => {
+  it('should call facade performAction on mobile shoot', () => {
     component.handleMobileShootArrow();
-    expect(mockGameFacade.shootArrow).toHaveBeenCalled();
+    expect(mockGameFacade.performAction).toHaveBeenCalled();
   });
 });
