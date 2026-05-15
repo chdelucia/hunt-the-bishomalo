@@ -33,6 +33,7 @@ describe('GameFacade', () => {
       moveForward: jest.fn(),
       turnLeft: jest.fn(),
       turnRight: jest.fn(),
+      performAction: jest.fn(),
       shootArrow: jest.fn(),
       newGame: jest.fn(),
     };
@@ -78,9 +79,9 @@ describe('GameFacade', () => {
     expect(engineMock.turnRight).toHaveBeenCalled();
   });
 
-  it('should delegate shootArrow to engine', () => {
-    facade.shootArrow();
-    expect(engineMock.shootArrow).toHaveBeenCalled();
+  it('should delegate performAction to engine', () => {
+    facade.performAction();
+    expect(engineMock.performAction).toHaveBeenCalled();
   });
 
   it('should delegate newGame to engine', () => {

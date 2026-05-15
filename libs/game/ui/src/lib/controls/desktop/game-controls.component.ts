@@ -25,7 +25,7 @@ export class GameControlsComponent {
   readonly moveForwardRequested = output<void>();
   readonly turnLeftRequested = output<void>();
   readonly turnRightRequested = output<void>();
-  readonly shootArrowRequested = output<void>();
+  readonly performActionRequested = output<void>();
   readonly resetGameRequested = output<void>();
   readonly toggleSoundRequested = output<void>();
 
@@ -49,8 +49,8 @@ export class GameControlsComponent {
     this.turnRightRequested.emit();
   }
 
-  shootArrow(): void {
-    this.shootArrowRequested.emit();
+  performAction(): void {
+    this.performActionRequested.emit();
   }
 
   resetGame(): void {

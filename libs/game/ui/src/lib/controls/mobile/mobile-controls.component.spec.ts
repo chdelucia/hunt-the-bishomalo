@@ -34,9 +34,9 @@ describe('MobileControlsComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should emit shootArrowRequested when shootArrow() is called', () => {
-    const spy = jest.spyOn(component.shootArrowRequested, 'emit');
-    component.shootArrow();
+  it('should emit performActionRequested when performAction() is called', () => {
+    const spy = jest.spyOn(component.performActionRequested, 'emit');
+    component.performAction();
     expect(spy).toHaveBeenCalled();
   });
 

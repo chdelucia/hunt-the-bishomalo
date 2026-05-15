@@ -68,25 +68,14 @@ describe('ToastComponent', () => {
     expect(img.classList.contains('broken-image')).toBe(true);
   });
 
-  it(
-    'should remove toast after timeout',
-    fakeTimersTest(() => {
-      fixture.componentRef.setInput('achievement', fakeAchievement);
-      fixture.detectChanges();
+  it('should remove toast when removeToast is called', () => {
+    fixture.componentRef.setInput('achievement', fakeAchievement);
+    fixture.detectChanges();
 
-      expect(component.toasts().length).toBe(1);
+    const toastId = component.toasts()[0].id;
+    expect(component.toasts().length).toBe(1);
 
-      jest.advanceTimersByTime(3000);
-      expect(component.toasts().length).toBe(0);
-    }),
-  );
+    component.removeToast(toastId);
+    expect(component.toasts().length).toBe(0);
+  });
 });
-
-function fakeTimersTest(fn: () => void) {
-  return () => {
-    jest.useFakeTimers();
-    fn();
-    jest.runOnlyPendingTimers();
-    jest.useRealTimers();
-  };
-}

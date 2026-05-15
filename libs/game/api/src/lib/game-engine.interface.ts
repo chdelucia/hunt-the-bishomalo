@@ -8,6 +8,7 @@ export interface IGameEngineService {
   moveForward(): void;
   turnLeft(): void;
   turnRight(): void;
+  performAction(): void;
   shootArrow(): void;
   exit(): void;
   initializeGameBoard(): void;

@@ -4,12 +4,9 @@ import {
   output,
   signal,
   computed,
-  inject,
-  DestroyRef,
   input,
+  OnInit,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { timer } from 'rxjs';
 import { ASSETS_BASE_URL } from '@hunt-the-bishomalo/shared-data';
 
 @Component({
@@ -20,28 +17,15 @@ import { ASSETS_BASE_URL } from '@hunt-the-bishomalo/shared-data';
   imports: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppWumpusAttackAnimationComponent {
+export class AppWumpusAttackAnimationComponent implements OnInit {
   protected readonly ASSETS_BASE_URL = ASSETS_BASE_URL;
   readonly step = signal(1);
   readonly selectedChar = input.required<string>();
   readonly closeAnimation = output<void>();
 
-  private readonly destroyRef = inject(DestroyRef);
-
-  constructor() {
-    const steps = [500, 1000, 1500, 2000, 3500];
-
-    steps.forEach((delay, index) => {
-      timer(delay)
-        .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe(() => {
-          if (index < 4) {
-            this.step.set(index + 2);
-          } else {
-            this.closeAnimation.emit();
-          }
-        });
-    });
+  ngOnInit(): void {
+    this.step.set(5);
+    this.closeAnimation.emit();
   }
 
   readonly getPlayerLeft = computed(() => {

@@ -19,7 +19,7 @@ export const Default: Story = {
     moveForwardRequested: fn(),
     turnLeftRequested: fn(),
     turnRightRequested: fn(),
-    shootArrowRequested: fn(),
+    performActionRequested: fn(),
     resetGameRequested: fn(),
     toggleSoundRequested: fn(),
   },
