@@ -1,6 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { IGameFacade, GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
+import { GameState } from '@hunt-the-bishomalo/shared-data';
 
 @Injectable({ providedIn: 'root' })
 export class GameFacade implements IGameFacade {
@@ -61,5 +62,9 @@ export class GameFacade implements IGameFacade {
 
   toggleSound(): void {
     this.store.toggleSound();
+  }
+
+  updateGame(partial: Partial<GameState>): void {
+    this.store.updateGame(partial);
   }
 }

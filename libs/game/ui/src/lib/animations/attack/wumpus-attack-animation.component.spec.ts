@@ -25,20 +25,17 @@ describe('AppWumpusAttackAnimationComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set step to 5 immediately and emit closeAnimation', (done) => {
+  it('should set step to 5 immediately and NOT emit closeAnimation automatically', () => {
     const testFixture = TestBed.createComponent(AppWumpusAttackAnimationComponent);
     const testComponent = testFixture.componentInstance;
     testFixture.componentRef.setInput('selectedChar', 'default');
 
     const spy = jest.spyOn(testComponent.closeAnimation, 'emit');
 
-    testComponent.closeAnimation.subscribe(() => {
-      expect(testComponent.step()).toBe(5);
-      expect(spy).toHaveBeenCalled();
-      done();
-    });
-
     testFixture.detectChanges();
+
+    expect(testComponent.step()).toBe(5);
+    expect(spy).not.toHaveBeenCalled();
   });
 
   it('should return correct player position', () => {
