@@ -41,7 +41,6 @@ describe('GameEngineService', () => {
       }),
       hunter: signal({ x: 0, y: 0, direction: Direction.RIGHT, arrows: 1, hasGold: false, gold: 0 }),
       lives: signal(3),
-      dragonballs: signal(0),
       board: signal(createMockBoard(4)),
       message: signal(''),
       isAlive: signal(true),
@@ -92,7 +91,7 @@ describe('GameEngineService', () => {
       executeAction: jest.fn(),
       onCellEntry: jest.fn(),
       canExitWithVictory: jest.fn(),
-      getPerception: jest.fn(() => of('perception message')),
+      getPerception: jest.fn(() => 'perception message'),
     };
 
     TestBed.configureTestingModule({

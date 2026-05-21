@@ -11,8 +11,7 @@ export type CellContentType =
   | 'extragold'
   | 'extraheart'
   | 'extrawumpus'
-  | 'extraarrow'
-  | 'dragonball';
+  | 'extraarrow';
 
 export interface CellContent {
   type: CellContentType;
@@ -110,11 +109,5 @@ export const CELL_CONTENTS: Record<CellContentType, CellContent> = {
     image: `${ASSETS_BASE_URL}/boardicons/question.png`,
     alt: 'secret',
     ariaLabel: 'secret',
-  },
-  dragonball: {
-    type: 'dragonball',
-    image: `${ASSETS_BASE_URL}/boardicons/b4.png`,
-    alt: 'dragonball',
-    ariaLabel: 'dragonball',
   },
 };

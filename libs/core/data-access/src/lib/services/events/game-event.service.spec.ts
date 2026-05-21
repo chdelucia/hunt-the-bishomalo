@@ -24,7 +24,6 @@ describe('GameEventService', () => {
       inventory: signal([]),
       hunter: signal({ arrows: 1, gold: 0 }),
       lives: signal(3),
-      dragonballs: signal(0),
       gold: signal(0),
       settings: signal({
         difficulty: {
@@ -138,21 +137,6 @@ describe('GameEventService', () => {
       expect(cell.content).toBeUndefined();
     });
 
-    it('should handle dragonball pickup', () => {
-      gameStoreMock.inventory.set([{ effect: 'dragonballs' }]);
-      const cell: Cell = {
-        x: 1,
-        y: 1,
-        visited: true,
-        content: { type: 'dragonball' } as any,
-      };
-      service.applyEffectByCellContent(cell);
-
-      expect(gameStoreMock.updateHunter).toHaveBeenCalledWith({ dragonballs: 1 });
-      expect(gameSoundMock.playSound).toHaveBeenCalledWith(GameSound.SUCCESS, false);
-      expect(cell.content).toBeUndefined();
-    });
-
     it('should handle arrow pickup', () => {
       gameStoreMock.inventory.set([{ effect: 'flecha-extra' }]);
       const cell: Cell = {
@@ -196,20 +180,6 @@ describe('GameEventService', () => {
       service.applyEffectByCellContent(cell);
 
       expect(gameStoreMock.updateGame).toHaveBeenCalledWith({ lives: 8 });
-    });
-
-    it('should not pickup second dragonball if already have one', () => {
-      gameStoreMock.dragonballs.set(1);
-      const cell: Cell = {
-        x: 1,
-        y: 1,
-        visited: true,
-        content: { type: 'dragonball' } as any,
-      };
-      service.applyEffectByCellContent(cell);
-
-      expect(gameStoreMock.updateHunter).not.toHaveBeenCalled();
-      expect(cell.content).toBeDefined();
     });
 
     it('should do nothing if cell has no matching effect', () => {

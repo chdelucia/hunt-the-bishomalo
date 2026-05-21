@@ -7,7 +7,6 @@ export type EffectsContext = {
   handlePickupArrow: (cell: Cell) => void;
   handlePitDeath: () => void;
   handleWumpusDeath: () => void;
-  handleDragonball: (cell: Cell) => void;
   extraHeart: (cell: Cell) => void;
   extraGold: (cell: Cell) => void;
   removeFirstItemByEffect: (name: string) => GameItem[];
@@ -19,7 +18,7 @@ export function createGameEventEffects(ctx: EffectsContext): Array<{
   canApply: (cause?: CauseOfDeath) => boolean;
   message: string;
 }> {
-  type SimpleHandlerName = 'handlePickupArrow' | 'extraHeart' | 'extraGold' | 'handleDragonball';
+  type SimpleHandlerName = 'handlePickupArrow' | 'extraHeart' | 'extraGold';
 
   type SimpleEffectDescriptor = {
     type: GameEventEffectType;
@@ -101,13 +100,6 @@ export function createGameEventEffects(ctx: EffectsContext): Array<{
       canApply: () => ctx.hasItem('extra-wumpus'),
       apply: () => ctx.handleWumpusDeath(),
       message: '¡El Wumpus te devoró!',
-    },
-    {
-      type: 'dragonball',
-      itemName: 'dragonball',
-      canApply: () => ctx.hasItem('dragonballs'),
-      apply: (cell: Cell) => ctx.handleDragonball(cell),
-      message: '¡Conseguiste una bola de drac con 4 estrellas!',
     },
   ];
 }

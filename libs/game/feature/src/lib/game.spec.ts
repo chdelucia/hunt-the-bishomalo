@@ -34,7 +34,6 @@ describe('Game', () => {
     inventory: signal([]),
     wumpusKilled: signal(0),
     soundEnabled: signal(true),
-    dragonballs: signal(0),
     gold: signal(0),
     hunter: signal({
       direction: 0,

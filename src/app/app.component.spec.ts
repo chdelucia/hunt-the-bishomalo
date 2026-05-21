@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { Router, NavigationStart, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { LEADERBOARD_SERVICE } from '@hunt-the-bishomalo/gamestats/api';
@@ -89,7 +89,6 @@ describe('AppComponent', () => {
             settings: signal({ size: 4, difficulty: { luck: 5 } }),
             hunter: signal({ x: 0, y: 0, direction: 0, arrows: 1 }),
             lives: signal(3),
-            dragonballs: signal(0),
             board: signal([]),
             message: signal(''),
             isAlive: signal(true),

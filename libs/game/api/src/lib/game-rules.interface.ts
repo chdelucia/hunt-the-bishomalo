@@ -1,6 +1,5 @@
 import { InjectionToken } from '@angular/core';
 import { Cell, Hunter, GameState, GameSettings } from '@hunt-the-bishomalo/shared-data';
-import { Observable } from 'rxjs';
 
 export interface IGameRules {
   executeAction(): void;
@@ -8,7 +7,7 @@ export interface IGameRules {
   canExitWithVictory(cell: Cell, hunter: Hunter): boolean;
   getInitialHunterState(): Partial<Hunter>;
   getInitialGameState(): Partial<GameState>;
-  getPerception(adjacentCells: Cell[]): Observable<string>;
+  getPerception(adjacentCells: Cell[]): string;
   getNextLevelSettings(currentSettings: GameSettings): GameSettings;
 }
 

@@ -19,7 +19,6 @@ import {
   GameState,
   GameSettings,
 } from '@hunt-the-bishomalo/shared-data';
-import { Observable, of } from 'rxjs';
 import { BoardGeneratorService } from './board-generator.service';
 
 @Injectable({ providedIn: 'root' })
@@ -93,7 +92,7 @@ export class BishomaloRulesService implements IGameRules {
     return !cell.x && !cell.y && hunter.hasGold;
   }
 
-  getPerception(adjacentCells: Cell[]): Observable<string> {
+  getPerception(adjacentCells: Cell[]): string {
     const uniqueHazards = new Set<string>();
 
     for (const cell of adjacentCells) {
@@ -103,10 +102,10 @@ export class BishomaloRulesService implements IGameRules {
 
     if (uniqueHazards.size > 0) {
       const messages = Array.from(uniqueHazards).map((hazard) => this.processHazard(hazard));
-      return of(messages.join(' '));
+      return messages.join(' ');
     }
 
-    return this.transloco.selectTranslate('gameMessages.perceptionNothingSuspicious');
+    return this.transloco.translate('gameMessages.perceptionNothingSuspicious');
   }
 
   private canShoot(): boolean {

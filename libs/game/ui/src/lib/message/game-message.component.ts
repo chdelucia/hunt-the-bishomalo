@@ -24,7 +24,6 @@ export class GameMessageComponent {
   readonly maxLevels = input.required<number>();
   readonly lives = input.required<number>();
 
-  readonly _bolaDrac = computed(() => this.message().includes('drac'));
   readonly _hasMessage = computed(() => !!this.message() && !!this.size());
   readonly _shouldShowRetry = computed(() => !this.isAlive() && !!this.size());
   readonly _shouldShowNextLevel = computed(() => this.hasWon() && !!this.size());

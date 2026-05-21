@@ -2,14 +2,13 @@ import { inject, Injectable } from '@angular/core';
 import { TranslocoService } from '@jsverse/transloco';
 import { Cell, CELL_CONTENTS, GameSound } from '@hunt-the-bishomalo/shared-data';
 import { GAME_SOUND_TOKEN } from '@hunt-the-bishomalo/core/api';
-import { Observable, of } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class PerceptionService {
   private readonly transloco = inject(TranslocoService);
   private readonly sound = inject(GAME_SOUND_TOKEN);
 
-  getPerceptionMessage(adjacentCells: Cell[]): Observable<string> {
+  getPerceptionMessage(adjacentCells: Cell[]): string {
     const uniqueHazards = new Set<string>();
 
     for (const cell of adjacentCells) {
@@ -19,10 +18,10 @@ export class PerceptionService {
 
     if (uniqueHazards.size > 0) {
       const messages = Array.from(uniqueHazards).map((hazard) => this.processHazard(hazard));
-      return of(messages.join(' '));
+      return messages.join(' ');
     }
 
-    return this.transloco.selectTranslate('gameMessages.perceptionNothingSuspicious');
+    return this.transloco.translate('gameMessages.perceptionNothingSuspicious');
   }
 
   private identifyHazard(cell: Cell): string | null {

@@ -21,7 +21,6 @@ describe('GameFacade', () => {
       inventory: signal([]),
       wumpusKilled: signal(0),
       soundEnabled: signal(true),
-      dragonballs: signal(0),
       gold: signal(0),
       hunter: signal({}),
       blackout: signal(false),

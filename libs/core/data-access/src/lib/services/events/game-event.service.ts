@@ -21,7 +21,6 @@ export class GameEventService implements IGameEventService {
     handlePickupArrow: this.handlePickupArrow.bind(this),
     handlePitDeath: this.handlePitDeath.bind(this),
     handleWumpusDeath: this.handleWumpusDeath.bind(this),
-    handleDragonball: this.handleDragonball.bind(this),
     extraHeart: this.extraHeart.bind(this),
     extraGold: this.extraGold.bind(this),
     removeFirstItemByEffect: this.removeFirstItemByEffect.bind(this),
@@ -107,15 +106,6 @@ export class GameEventService implements IGameEventService {
       lives: this.gameStore.lives() - 1,
       deathByWumpus: true,
     });
-  }
-
-  private handleDragonball(cell: Cell): void {
-    const dragonballs = this.gameStore.dragonballs() ?? 0;
-    if (!dragonballs) {
-      this.gameStore.updateHunter({ dragonballs: 1 });
-      cell.content = undefined;
-      this.gameSound.playSound(GameSound.SUCCESS, false);
-    }
   }
 
   private extraHeart(cell: Cell): void {

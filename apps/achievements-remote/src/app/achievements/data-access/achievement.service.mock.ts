@@ -1,4 +1,4 @@
-import { Signal, signal } from '@angular/core';
+import { signal } from '@angular/core';
 import { Achievement } from '@hunt-the-bishomalo/shared-data';
 import { IAchievementService } from '@hunt-the-bishomalo/achievements/api';
 

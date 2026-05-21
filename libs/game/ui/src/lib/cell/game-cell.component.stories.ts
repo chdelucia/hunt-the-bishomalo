@@ -93,24 +93,6 @@ export const Heart: Story = {
   },
 };
 
-export const Dragonball: Story = {
-  args: {
-    cell: {
-      x: 0,
-      y: 0,
-      visited: true,
-      content: { type: 'dragonball', image: 'boardicons/b4.png', alt: 'dragonball', ariaLabel: 'dragonball' },
-    },
-    isAlive: true,
-    hasWon: false,
-    inventory: [],
-    selectedChar: Chars.DEFAULT,
-    size: 4,
-    blackout: false,
-    isHunterCell: false,
-  },
-};
-
 export const PitVisible: Story = {
   args: {
     cell: {
