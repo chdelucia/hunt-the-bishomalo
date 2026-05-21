@@ -161,10 +161,6 @@ describe('GameStore (SignalStore)', () => {
   });
 
   it('should test remaining computed properties', () => {
-    // dragonballs computed
-    store.updateHunter({ dragonballs: 7 });
-    expect(store.dragonballs()).toBe(7);
-
     store.updateGame({ settings: { ...mockSettings, blackout: true } });
     expect(store.blackout()).toBe(true);
     expect(store.size()).toBe(mockSettings.size);

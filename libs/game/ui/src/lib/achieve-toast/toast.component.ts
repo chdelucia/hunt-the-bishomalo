@@ -1,4 +1,4 @@
-import { Component, effect, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, signal } from '@angular/core';
 import { NgClass } from '@angular/common';
 import { ASSETS_BASE_URL, Achievement } from '@hunt-the-bishomalo/shared-data';
 import { TranslocoModule } from '@jsverse/transloco';
@@ -15,6 +15,7 @@ interface ToastData {
   imports: [NgClass, TranslocoModule],
   templateUrl: './toast.component.html',
   styleUrl: './toast.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToastComponent {
   protected readonly ASSETS_BASE_URL = ASSETS_BASE_URL;

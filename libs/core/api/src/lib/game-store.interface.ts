@@ -33,7 +33,6 @@ export interface IGameStore {
   readonly startTime: Signal<string>;
   readonly blackout: Signal<boolean>;
   readonly soundEnabled: Signal<boolean>;
-  readonly dragonballs: Signal<number>;
   readonly gold: Signal<number>;
   readonly hasLantern: Signal<boolean>;
   readonly hasShield: Signal<boolean>;

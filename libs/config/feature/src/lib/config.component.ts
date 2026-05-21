@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { GameConfigComponent } from './game-config.component';
 import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
@@ -10,5 +10,6 @@ import { TranslocoModule } from '@jsverse/transloco';
   imports: [GameConfigComponent, TitleComponent, TranslocoModule],
   templateUrl: './config.component.html',
   styleUrl: './config.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConfigComponent {}

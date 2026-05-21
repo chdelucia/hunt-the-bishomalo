@@ -32,10 +32,6 @@
       "title": "Lord of the Archers",
       "description": "Unlock Legolas"
     },
-    "collect_dragonballs": {
-      "title": "Better than a lamp",
-      "description": "You have collected 7 crystal balls, how strange..."
-    },
     "kill_wumpus": {
       "title": "You killed the bisho malo",
       "description": "You eliminated a Wumpus with a well-aimed arrow"
@@ -213,7 +209,6 @@
     "gameOver": "GAME OVER! You ran out of lives. #shouldhavestudied",
     "newGameAriaLabel": "New Game",
     "newGameButton": "Start a new game",
-    "dragonBallAlt": "Dragon Ball",
     "defaultInstructions": "Activate the sound, collect the coin, and return to the start.",
     "restartGameAriaLabel": "Restart game",
     "tryAgainButton": "Click to try again",
@@ -419,14 +414,6 @@
     "rewind": {
       "name": "Hourglass",
       "description": "Rewinds time and prevents you from falling to the bottom of a pit."
-    },
-    "dragonball": {
-      "name": "A 4-star ball",
-      "description": "I don't really know what it's for, I found it in a bush. I'll give it to you cheap..."
-    },
-    "apple": {
-      "name": "An apple",
-      "description": "One is always good for hunger. It will get you out of some trouble."
     }
   },
   "story": {

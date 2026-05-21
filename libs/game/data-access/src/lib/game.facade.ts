@@ -23,7 +23,6 @@ export class GameFacade implements IGameFacade {
   readonly inventory = this.store.inventory;
   readonly wumpusKilled = this.store.wumpusKilled;
   readonly soundEnabled = this.store.soundEnabled;
-  readonly dragonballs = this.store.dragonballs;
   readonly gold = this.store.gold;
   readonly hunter = this.store.hunter;
   readonly blackout = this.store.blackout;

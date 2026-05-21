@@ -68,14 +68,3 @@ export const Heart: Story = {
     },
   },
 };
-
-export const Dragonball: Story = {
-  args: {
-    content: {
-      type: 'dragonball',
-      image: 'boardicons/b4.png',
-      alt: 'dragonball',
-      ariaLabel: 'dragonball',
-    },
-  },
-};

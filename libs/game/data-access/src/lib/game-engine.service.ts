@@ -47,7 +47,7 @@ export class GameEngineService implements IGameEngineService {
     this.boardGenerator.placeWumpus(board, settings);
     this.boardGenerator.placePits(board, settings);
     this.boardGenerator.placeArrows(board, settings);
-    this.boardGenerator.placeEvents(board, settings, this.store.lives(), this.store.dragonballs());
+    this.boardGenerator.placeEvents(board, settings, this.store.lives());
 
     this.store.updateGame({
       board,
@@ -186,10 +186,8 @@ export class GameEngineService implements IGameEngineService {
     this.rules.onCellEntry(cell, { x, y });
 
     if (this.store.isAlive() && !this.store.hasWon()) {
-      this.rules
-        .getPerception(this.getAdjacentCells())
-        .pipe(take(1), takeUntilDestroyed(this.destroyRef))
-        .subscribe((msg) => this.store.setMessage(msg));
+      const msg = this.rules.getPerception(this.getAdjacentCells());
+      this.store.setMessage(msg);
     }
   }
 

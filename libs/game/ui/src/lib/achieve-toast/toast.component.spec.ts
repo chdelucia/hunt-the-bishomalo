@@ -51,12 +51,13 @@ describe('ToastComponent', () => {
     expect(img.getAttribute('src')).toContain('test-icon.svg');
   });
 
-  it('should handle broken images gracefully', () => {
+  it('should handle broken images gracefully', async () => {
     fixture.componentRef.setInput('achievement', {
       ...fakeAchievement,
       svgIcon: 'invalid.svg',
     });
     fixture.detectChanges();
+    await fixture.whenStable();
 
     const img = fixture.nativeElement.querySelector('img') as HTMLImageElement;
     expect(img).toBeTruthy();
@@ -64,6 +65,7 @@ describe('ToastComponent', () => {
     // Simulate error event
     component.onImageError(component.toasts()[0].id);
     fixture.detectChanges();
+    await fixture.whenStable();
 
     expect(img.classList.contains('broken-image')).toBe(true);
   });

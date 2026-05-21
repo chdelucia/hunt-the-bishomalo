@@ -47,7 +47,7 @@ describe('BoardGeneratorService', () => {
 
   it('should place events', () => {
     const board = service.createBoard(mockSettings);
-    service.placeEvents(board, mockSettings, 5, 0);
+    service.placeEvents(board, mockSettings, 5);
   });
 
   it('should calculate counts', () => {

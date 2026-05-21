@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal, DestroyRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal, DestroyRef } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 
 import { TranslocoModule, TranslocoService } from '@jsverse/transloco';
@@ -13,6 +13,7 @@ import { GAME_STORE_TOKEN } from '@hunt-the-bishomalo/core/api';
   imports: [TranslocoModule, NgOptimizedImage],
   templateUrl: './shop.component.html',
   styleUrl: './shop.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShopComponent {
   protected readonly ASSETS_BASE_URL = ASSETS_BASE_URL;
@@ -49,23 +50,6 @@ export class ShopComponent {
     },
   ];
 
-  private readonly baseRandomProducts: Product[] = [
-    {
-      effect: 'dragonball',
-      name: 'product.dragonball.name',
-      description: 'product.dragonball.description',
-      price: 125,
-      icon: `${ASSETS_BASE_URL}/shop/b4.png`,
-    },
-    {
-      effect: 'apple',
-      name: 'product.apple.name',
-      description: 'product.apple.description',
-      price: 85,
-      icon: `${ASSETS_BASE_URL}/shop/apple.png`,
-    },
-  ];
-
   private readonly gameStore = inject(GAME_STORE_TOKEN);
   private readonly settings = this.gameStore.settings;
   private readonly gameEngine = inject(GAME_ENGINE_TOKEN);
@@ -78,17 +62,7 @@ export class ShopComponent {
 
   readonly message = signal('');
 
-  readonly productos = computed(() => {
-    /**
-     * Security Hotspot Justification:
-     * Math.random() is used here for game mechanics (randomizing shop inventory).
-     * It does not involve any security-sensitive operations.
-     */
-    if (Math.random() < this.settings().difficulty.maxChance) {
-      return [...this.baseProducts, ...this.baseRandomProducts];
-    }
-    return this.baseProducts;
-  });
+  readonly productos = signal(this.baseProducts);
 
   buyProduct(product: Product): void {
     const gold = this.gold();

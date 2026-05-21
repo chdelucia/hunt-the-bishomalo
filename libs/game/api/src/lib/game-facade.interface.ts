@@ -16,7 +16,6 @@ export interface IGameFacade {
   readonly inventory: Signal<GameItem[]>;
   readonly wumpusKilled: Signal<number>;
   readonly soundEnabled: Signal<boolean>;
-  readonly dragonballs: Signal<number>;
   readonly gold: Signal<number>;
   readonly hunter: Signal<any>;
   readonly blackout: Signal<boolean>;

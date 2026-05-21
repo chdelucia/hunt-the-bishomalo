@@ -41,31 +41,34 @@ describe('GameMessageComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should display message when present', () => {
+  it('should display message when present', async () => {
     fixture.componentRef.setInput('message', '¡Has ganado!');
     fixture.componentRef.setInput('size', 5);
 
     fixture.detectChanges();
+    await fixture.whenStable();
 
     const messageEl = fixture.nativeElement.querySelector('p');
     expect(messageEl?.textContent).toContain('¡Has ganado!');
   });
 
-  it('should show retry button when player is dead', () => {
+  it('should show retry button when player is dead', async () => {
     fixture.componentRef.setInput('isAlive', false);
     fixture.componentRef.setInput('size', 5);
 
     fixture.detectChanges();
+    await fixture.whenStable();
 
     const button = fixture.nativeElement.querySelector('button.newgame');
     expect(button?.textContent).toContain('message.tryAgainButton');
   });
 
-  it('should call restartGame when retry button is clicked', () => {
+  it('should call restartGame when retry button is clicked', async () => {
     const spy = jest.spyOn(component.restartRequested, 'emit');
     fixture.componentRef.setInput('isAlive', false);
     fixture.componentRef.setInput('size', 5);
     fixture.detectChanges();
+    await fixture.whenStable();
 
     const button = fixture.nativeElement.querySelector('button.newgame');
     button.click();
@@ -73,21 +76,23 @@ describe('GameMessageComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should show next level button when player has won', () => {
+  it('should show next level button when player has won', async () => {
     fixture.componentRef.setInput('hasWon', true);
     fixture.componentRef.setInput('size', 6); // size < 20
 
     fixture.detectChanges();
+    await fixture.whenStable();
 
     const button = fixture.nativeElement.querySelector('button.newgame');
     expect(button?.textContent).toContain('message.congratsNextLevelButton');
   });
 
-  it('should show final message when level 20 is reached', () => {
+  it('should show final message when level 20 is reached', async () => {
     fixture.componentRef.setInput('hasWon', true);
     fixture.componentRef.setInput('size', 18);
 
     fixture.detectChanges();
+    await fixture.whenStable();
 
     const button = fixture.nativeElement.querySelector('button.newgame');
     expect(button?.textContent).toContain('message.congratsBossButton');

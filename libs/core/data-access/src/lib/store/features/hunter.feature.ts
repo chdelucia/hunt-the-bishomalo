@@ -26,7 +26,6 @@ export function withHunterFeature() {
       y: computed(() => hunter().y),
       direction: computed(() => hunter().direction),
       arrows: computed(() => hunter().arrows),
-      dragonballs: computed(() => hunter().dragonballs),
       hasGold: computed(() => hunter().hasGold),
       gold: computed(() => hunter().gold),
       inventory: computed(() => hunter().inventory),

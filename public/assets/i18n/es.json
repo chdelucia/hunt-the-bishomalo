@@ -32,10 +32,6 @@
       "title": "Señor de los arqueros",
       "description": "Desbloquea a Legolas"
     },
-    "collect_dragonballs": {
-      "title": "Mejor que una lámpara",
-      "description": "Has recogido 7 bolas de cristal, qué extrañas..."
-    },
     "kill_wumpus": {
       "title": "Has matado al bisho malo",
       "description": "Eliminaste a un Wumpus con una flecha bien dirigida"
@@ -213,7 +209,6 @@
     "gameOver": "GAME OVER! Te quedaste sin vidas. #haberestudiao",
     "newGameAriaLabel": "Nueva partida",
     "newGameButton": "Empezar una nueva partida",
-    "dragonBallAlt": "Bola de Dragón",
     "defaultInstructions": "Activa el sonido, recoge la moneda y vuelve al inicio.",
     "restartGameAriaLabel": "Reiniciar el juego",
     "tryAgainButton": "Haz click para intentarlo de nuevo",
@@ -402,14 +397,6 @@
     "rewind": {
       "name": "Reloj de arena",
       "description": "Rebobina el tiempo y evita que caigas al fondo de un pozo."
-    },
-    "dragonball": {
-      "name": "Una bola 4",
-      "description": "No se muy bien para que sirve, la encontré en un arbusto. Te la dejo baratita..."
-    },
-    "apple": {
-      "name": "Una manzana",
-      "description": "Siempre va bien una para el hambre. De algun apuro te sacará."
     }
   },
   "storyPage": {
@@ -453,10 +440,6 @@
     "secret": {
       "alt": "Secreto",
       "ariaLabel": "Secreto"
-    },
-    "dragonball": {
-      "alt": "Bola de dragón",
-      "ariaLabel": "Bola de dragón"
     }
   },
   "story": {

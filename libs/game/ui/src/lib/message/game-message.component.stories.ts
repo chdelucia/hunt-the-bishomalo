@@ -44,18 +44,3 @@ export const GameLost: Story = {
     restartRequested: fn(),
   },
 };
-
-export const DragonBall: Story = {
-  args: {
-    message: 'Found drac!',
-    isAlive: true,
-    hasWon: false,
-    size: 4,
-    maxLevels: 3,
-    lives: 3,
-  },
-  play: async ({ canvas }) => {
-    // Should see dragonball icon
-    await expect(canvas.getByRole('img', { hidden: true })).toBeTruthy();
-  },
-};

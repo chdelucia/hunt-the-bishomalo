@@ -27,15 +27,6 @@
     "svgIcon": "legolas.png"
   },
   {
-    "id": "collect_dragonballs",
-    "title": "Mejor que una lampara",
-    "description": "Has recogido 7 bolas de cristal, que extrañas...",
-    "unlocked": false,
-    "rarity": "legendary",
-    "date": "12 May, 2025",
-    "svgIcon": "dragonball.png"
-  },
-  {
     "id": "kill_wumpus",
     "title": "Has matado al bisho malo",
     "description": "Eliminaste a un Wumpus con una flecha bien dirigida",

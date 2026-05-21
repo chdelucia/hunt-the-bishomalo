@@ -36,7 +36,6 @@ export class BoardGeneratorService {
     board: Cell[][],
     settings: GameSettings,
     currentLives: number,
-    dragonballs: number | undefined,
   ): void {
     const { difficulty, size } = settings;
     const ex = new Set(['0,0']);
@@ -48,9 +47,6 @@ export class BoardGeneratorService {
       currentLives < difficulty.maxLives
     ) {
       this.placeRandom(board, settings, ex).content = CELL_CONTENTS.heart;
-    }
-    if (Math.random() < difficulty.baseChance && !dragonballs) {
-      this.placeRandom(board, settings, ex).content = CELL_CONTENTS.dragonball;
     }
   }
 

@@ -13,7 +13,6 @@ export enum AchieveTypes {
   WRAT = 'escape_rat',
   PICKARROW = 'collect_arrow',
   PICKHEART = 'collect_heart',
-  PICKBALLS = 'collect_dragonballs',
   WINHERO = 'hero_escape',
   BLACKOUT = 'survive_blackout',
   WINBLACKWOUT = 'survive_blackout_complete',
