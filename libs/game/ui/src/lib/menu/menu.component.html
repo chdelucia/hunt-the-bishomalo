@@ -28,6 +28,12 @@
         <button (click)="navigateTo(ROUTES.RULES)">{{ 'menu.instructions' | transloco }}</button>
       </li>
       <li>
+        <button (click)="navigateTo(ROUTES.SHOP)">{{ 'menu.shop' | transloco }}</button>
+      </li>
+      <li>
+        <button (click)="navigateTo(ROUTES.STORY)">{{ 'menu.story' | transloco }}</button>
+      </li>
+      <li>
         <button (click)="navigateTo(ROUTES.CREDITS)">{{ 'menu.credits' | transloco }}</button>
       </li>
       <li>
@@ -39,11 +45,39 @@
 
 <div class="menu-desktop">
   <div class="left-icons">
-    <a [routerLink]="['/', ROUTES.ACHIEVEMENTS]" class="achievement-link">
+    <a [routerLink]="['/', ROUTES.HOME]" class="menu-link" [title]="'menu.home' | transloco">
       <img
-        class="achivements"
+        class="icon"
+        [src]="ASSETS_BASE_URL + '/go.svg'"
+        alt="{{ 'menu.home' | transloco }}"
+      />
+    </a>
+    <a [routerLink]="['/', ROUTES.ACHIEVEMENTS]" class="menu-link" [title]="'menu.achievements' | transloco">
+      <img
+        class="icon"
         [src]="ASSETS_BASE_URL + '/trophy.svg'"
         alt="{{ 'menu.achievementsAlt' | transloco }}"
+      />
+    </a>
+    <a [routerLink]="['/', ROUTES.RULES]" class="menu-link" [title]="'menu.instructions' | transloco">
+      <img
+        class="icon"
+        [src]="ASSETS_BASE_URL + '/controller.svg'"
+        alt="{{ 'menu.instructions' | transloco }}"
+      />
+    </a>
+    <a [routerLink]="['/', ROUTES.SHOP]" class="menu-link" [title]="'menu.shop' | transloco">
+      <img
+        class="icon"
+        [src]="ASSETS_BASE_URL + '/shop/shield.svg'"
+        alt="{{ 'menu.shop' | transloco }}"
+      />
+    </a>
+    <a [routerLink]="['/', ROUTES.STORY]" class="menu-link" [title]="'menu.story' | transloco">
+      <img
+        class="icon"
+        [src]="ASSETS_BASE_URL + '/info.PNG'"
+        alt="{{ 'menu.story' | transloco }}"
       />
     </a>
   </div>
