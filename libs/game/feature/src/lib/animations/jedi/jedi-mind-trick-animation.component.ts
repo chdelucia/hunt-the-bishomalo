@@ -13,53 +13,16 @@ import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 export class JediMindTrickAnimationComponent {
   readonly audioContainer = viewChild<ElementRef>('audioContainer');
 
-  readonly step = signal(1);
+  readonly step = signal(6);
   readonly forceWaves = signal<number[]>([]);
 
   private audioContext: AudioContext | null = null;
-  private readonly timers: ReturnType<typeof setTimeout>[] = [];
 
   private readonly achieveService = inject(ACHIEVEMENT_SERVICE);
   private readonly destroyRef = inject(DestroyRef);
 
   constructor() {
-    const schedule = [
-      { delay: 500, action: () => this.step.set(2) },
-      {
-        delay: 1000,
-        action: () => {
-          this.step.set(3);
-          this.playForceSound();
-          this.createForceWave();
-        },
-      },
-      {
-        delay: 1500,
-        action: () => {
-          this.step.set(4);
-          this.createForceWave();
-        },
-      },
-      {
-        delay: 2000,
-        action: () => {
-          this.step.set(5);
-          this.createForceWave();
-        },
-      },
-      { delay: 2500, action: () => this.step.set(6) },
-    ];
-
-    schedule.forEach((item) => {
-      this.timers.push(
-        setTimeout(() => {
-          item.action();
-        }, item.delay),
-      );
-    });
-
     this.destroyRef.onDestroy(() => {
-      this.timers.forEach((timer) => clearTimeout(timer));
       if (this.audioContext && this.audioContext.state !== 'closed') {
         this.audioContext.close();
       }
@@ -110,32 +73,18 @@ export class JediMindTrickAnimationComponent {
     modulator.start(now);
     oscillator.stop(now + 2.5);
     modulator.stop(now + 2.5);
-
-    this.speakWhisper('Contrata a Chris', 0.4, 1000);
-    this.speakWhisper('Contrata a Chris', 0.2, 1300);
-    this.speakWhisper('Contrata a Chris', 0.1, 1600);
   }
 
-  speakWhisper(text: string, volume: number, delay: number): void {
-    this.timers.push(
-      setTimeout(() => {
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.rate = 0.6;
-        utterance.pitch = 0.7;
-        utterance.volume = volume;
-        globalThis.speechSynthesis.speak(utterance);
-      }, delay),
-    );
+  speakWhisper(text: string, volume: number): void {
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.6;
+    utterance.pitch = 0.7;
+    utterance.volume = volume;
+    globalThis.speechSynthesis.speak(utterance);
   }
 
   private createForceWave(): void {
     const id = Date.now();
     this.forceWaves.update((waves) => [...waves, id]);
-
-    this.timers.push(
-      setTimeout(() => {
-        this.forceWaves.update((waves) => waves.filter((w) => w !== id));
-      }, 2000),
-    );
   }
 }

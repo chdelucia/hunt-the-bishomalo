@@ -5,17 +5,10 @@ import {
   inject,
   isDevMode,
   OnInit,
-  signal,
 } from '@angular/core';
 import {
   RouterOutlet,
-  Router,
-  NavigationStart,
-  NavigationEnd,
-  NavigationCancel,
-  NavigationError,
 } from '@angular/router';
-import { filter } from 'rxjs';
 import { TranslocoModule } from '@jsverse/transloco';
 import { loadRemoteModule } from '@angular-architects/native-federation';
 
@@ -40,12 +33,9 @@ export class AppComponent implements OnInit {
   readonly game = inject(GAME_STORE_TOKEN);
   readonly achieve = inject(ACHIEVEMENT_SERVICE);
   readonly gameEngine = inject(GAME_ENGINE_TOKEN);
-  readonly router = inject(Router);
   private readonly keyboardManager = inject(KeyboardManagerService);
   private readonly miniBus = inject(MINI_BUS_SERVICE_TOKEN);
   private readonly remoteConfig = inject(REMOTE_CONFIG_TOKEN, { optional: true });
-
-  readonly isRouteLoading = signal(false);
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent): void {
@@ -65,28 +55,6 @@ export class AppComponent implements OnInit {
     });
 
     this.preloadRemotes();
-
-    this.router.events
-      .pipe(
-        filter(
-          (event) =>
-            event instanceof NavigationStart ||
-            event instanceof NavigationEnd ||
-            event instanceof NavigationCancel ||
-            event instanceof NavigationError,
-        ),
-      )
-      .subscribe((event) => {
-        if (event instanceof NavigationStart) {
-          // Avoid showing the route loader during the initial application bootstrap
-          // to prevent flickering with the initial loader in index.html
-          if (this.router.navigated) {
-            this.isRouteLoading.set(true);
-          }
-        } else {
-          this.isRouteLoading.set(false);
-        }
-      });
   }
 
   private preloadRemotes(): void {

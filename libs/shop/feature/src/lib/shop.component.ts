@@ -77,7 +77,6 @@ export class ShopComponent {
   readonly inventory = this.gameStore.inventory;
 
   readonly message = signal('');
-  private messageTimeout?: ReturnType<typeof setTimeout>;
 
   readonly productos = computed(() => {
     /**
@@ -91,14 +90,6 @@ export class ShopComponent {
     return this.baseProducts;
   });
 
-  constructor() {
-    this.destroyRef.onDestroy(() => {
-      if (this.messageTimeout) {
-        clearTimeout(this.messageTimeout);
-      }
-    });
-  }
-
   buyProduct(product: Product): void {
     const gold = this.gold();
     const { price, effect } = product;
@@ -107,8 +98,7 @@ export class ShopComponent {
     const isAlreadyOwned = this.isOwned(product);
     const canBuy = gold >= price;
 
-    this.clearMessage();
-    this.messageTimeout = setTimeout(() => this.message.set(''), this.MESSAGE_TIMEOUT_MS);
+    this.message.set('');
 
     if (!canBuy) {
       this.message.set(this.transloco.translate('shop.purchaseMessageNotEnoughCoins'));
@@ -142,10 +132,6 @@ export class ShopComponent {
 
   clearMessage(): void {
     this.message.set('');
-    if (this.messageTimeout) {
-      clearTimeout(this.messageTimeout);
-      this.messageTimeout = undefined;
-    }
   }
 
   nextLevel(): void {
