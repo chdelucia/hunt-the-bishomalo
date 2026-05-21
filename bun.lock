@@ -13,7 +13,7 @@
         "@angular/platform-browser": "21.2.5",
         "@angular/platform-browser-dynamic": "21.2.4",
         "@angular/router": "21.2.4",
-        "@ngrx/signals": "21.0.1",
+        "@ngrx/signals": "21.1.0",
         "@sentry/angular": "^10.51.0",
         "@softarc/native-federation-node": "^3.3.4",
         "es-module-shims": "^2.8.0",
@@ -819,7 +819,7 @@
 
     "@neoconfetti/react": ["@neoconfetti/react@1.0.0", "", {}, "sha512-klcSooChXXOzIm+SE5IISIAn3bYzYfPjbX7D7HoqZL84oAfgREeSg5vSIaSFH+DaGzzvImTyWe1OyrJ67vik4A=="],
 
-    "@ngrx/signals": ["@ngrx/signals@21.0.1", "", { "dependencies": { "tslib": "^2.3.0" }, "peerDependencies": { "@angular/core": "^21.0.0", "rxjs": "^6.5.3 || ^7.4.0" }, "optionalPeers": ["rxjs"] }, "sha512-krmZDhgHrnmZrxfEJ41bp/aM8Mc55k5B2N7oCLT5w4M3YbOkbnWPkP6bBWMv4XPI+2rqVgkLRW6DaWLwoESaBw=="],
+    "@ngrx/signals": ["@ngrx/signals@21.1.0", "", { "dependencies": { "tslib": "^2.3.0" }, "peerDependencies": { "@angular/core": "^21.0.0", "rxjs": "^6.5.3 || ^7.4.0" }, "optionalPeers": ["rxjs"] }, "sha512-eDGaBs6sssEZe2cLGwDdRnfTwyx9TKD+zpLW8yDov6acWzyi0nW5qxUWjpMRwmIU1i+o0t5MMpQaF/rFMmtHSg=="],
 
     "@ngtools/webpack": ["@ngtools/webpack@21.2.2", "", { "peerDependencies": { "@angular/compiler-cli": "^21.0.0", "typescript": ">=5.9 <6.0", "webpack": "^5.54.0" } }, "sha512-EnDlYg0KWqtvJ2FBIFR03nBHRhs8JFtb4yrdnL5zt7OP6mlRpCcFJ+kXwm6v9OVTEIsKKRdPRe0qpSYOAOdo6w=="],
 
