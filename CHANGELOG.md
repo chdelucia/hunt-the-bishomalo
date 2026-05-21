@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.67.37](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.67.36...v7.67.37) (2026-05-21)
+
+
+### Bug Fixes
+
+* wumpus death flow and map revelation ([adfd959](https://github.com/chdelucia/hunt-the-bishomalo/commit/adfd9598b4ffd1cc71b0b4807b4ff8d1f9c32f60))
+
 ### [7.67.36](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.67.35...v7.67.36) (2026-05-21)
 
 ### [7.67.35](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.67.34...v7.67.35) (2026-05-21)
