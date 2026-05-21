@@ -1,5 +1,5 @@
 import { InjectionToken, Signal } from '@angular/core';
-import { Cell, GameSettings, GameItem } from '@hunt-the-bishomalo/shared-data';
+import { Cell, GameSettings, GameItem, GameState } from '@hunt-the-bishomalo/shared-data';
 
 export interface IGameFacade {
   readonly board: Signal<Cell[][]>;
@@ -33,6 +33,7 @@ export interface IGameFacade {
   newGame(): void;
   initGame(): void;
   toggleSound(): void;
+  updateGame(partial: Partial<GameState>): void;
 }
 
 export const GAME_FACADE_TOKEN = new InjectionToken<IGameFacade>('GAME_FACADE_TOKEN');

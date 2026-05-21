@@ -42,13 +42,7 @@ export class Game {
   readonly emptyInventory: GameItem[] = [];
 
   handleClose(): void {
-    if (this.facade.lives() > 0) {
-      this.facade.initGame();
-    } else {
-      this.router.navigate([RouteTypes.RESULTS], {
-        state: { fromSecretPath: true },
-      });
-    }
+    this.facade.updateGame({ deathByWumpus: false });
   }
 
   handleMobileShootArrow(): void {

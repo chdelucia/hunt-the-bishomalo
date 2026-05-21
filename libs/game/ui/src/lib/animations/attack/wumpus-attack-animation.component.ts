@@ -25,7 +25,6 @@ export class AppWumpusAttackAnimationComponent implements OnInit {
 
   ngOnInit(): void {
     this.step.set(5);
-    this.closeAnimation.emit();
   }
 
   readonly getPlayerLeft = computed(() => {

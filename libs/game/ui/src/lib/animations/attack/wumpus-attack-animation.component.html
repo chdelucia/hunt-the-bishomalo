@@ -1,5 +1,13 @@
 @let selected = selectedChar();
-<div class="overlay">
+<div
+  class="overlay"
+  (click)="closeAnimation.emit()"
+  (keydown.enter)="closeAnimation.emit()"
+  (keydown.space)="closeAnimation.emit()"
+  tabindex="0"
+  role="button"
+  aria-label="Dismiss death animation"
+>
   <div class="animation step-{{ step() }}">
     <div
       class="player"

@@ -54,6 +54,7 @@ describe('Game', () => {
     turnLeft: jest.fn(),
     turnRight: jest.fn(),
     toggleSound: jest.fn(),
+    updateGame: jest.fn(),
   };
 
   beforeEach(async () => {
@@ -91,20 +92,9 @@ describe('Game', () => {
     expect(component.facade.deathByWumpus()).toBe(false);
   });
 
-  it('should handle close and navigate to RESULTS when lives are 0', () => {
-    mockGameFacade.lives.set(0);
+  it('should handle close and update game state', () => {
     component.handleClose();
-    expect(router.navigate).toHaveBeenCalledWith([RouteTypes.RESULTS], {
-      state: { fromSecretPath: true },
-    });
-  });
-
-  it('should call initGame when lives > 0', () => {
-    jest.clearAllMocks();
-    mockGameFacade.lives.set(3);
-    component.handleClose();
-    expect(mockGameFacade.initGame).toHaveBeenCalled();
-    expect(mockGameFacade.newGame).not.toHaveBeenCalled();
+    expect(mockGameFacade.updateGame).toHaveBeenCalledWith({ deathByWumpus: false });
   });
 
   it('should call facade performAction on mobile shoot', () => {
