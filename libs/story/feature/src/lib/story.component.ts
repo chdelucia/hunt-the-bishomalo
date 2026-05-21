@@ -33,22 +33,18 @@ export class StoryComponent {
   readonly reading = signal(false);
   readonly showExtraInfo = signal(false);
 
-  private fullText = '';
-  private intervalId?: ReturnType<typeof setInterval>;
-
   constructor() {
     if (this.story) {
-      this.fullText = this.story.text;
-      this.startReading(this.fullText);
+      this.displayedText.set(this.story.text);
+      this.reading.set(false);
+      this.showExtraInfo.set(true);
+      this.startReading(this.story.text);
     } else {
       this.goToGame();
     }
 
     this.destroyRef.onDestroy(() => {
       speechSynthesis.cancel();
-      if (this.intervalId) {
-        clearInterval(this.intervalId);
-      }
     });
   }
 
@@ -59,8 +55,6 @@ export class StoryComponent {
   }
 
   private startReading(text: string): void {
-    this.reading.set(true);
-    this.displayedText.set('');
     const activeLang = this.translocoService.getActiveLang();
 
     const chapterText = `${this.translocoService.translate('storyPage.chapterPrefix')}${
@@ -94,25 +88,7 @@ export class StoryComponent {
         speechSynthesis.speak(utterBody);
       };
 
-      utterBody.onend = () => {
-        this.showExtraInfo.set(true);
-      };
-
       speechSynthesis.speak(utterChapter);
     }
-
-    let i = 0;
-    this.intervalId = setInterval(() => {
-      const current = this.displayedText();
-      this.displayedText.set(current + bodyText[i]);
-      i++;
-      if (i >= bodyText.length) {
-        clearInterval(this.intervalId);
-        this.reading.set(false);
-        if (!this.gameStore.soundEnabled()) {
-          this.showExtraInfo.set(true);
-        }
-      }
-    }, 90);
   }
 }

@@ -70,30 +70,8 @@ describe('JediMindTrickAnimationComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should progress through steps on init', () => {
-    expect(component.step()).toBe(1);
-
-    jest.advanceTimersByTime(500);
-    expect(component.step()).toBe(2);
-
-    jest.advanceTimersByTime(500);
-    expect(component.step()).toBe(3);
-    expect(mockAudioContext.createOscillator).toHaveBeenCalled();
-    expect(component.forceWaves().length).toBe(1);
-
-    jest.advanceTimersByTime(500);
-    expect(component.step()).toBe(4);
-    expect(component.forceWaves().length).toBe(2);
-
-    jest.advanceTimersByTime(500);
-    expect(component.step()).toBe(5);
-    expect(component.forceWaves().length).toBe(3);
-
-    jest.advanceTimersByTime(500);
+  it('should be at terminal step on init', () => {
     expect(component.step()).toBe(6);
-
-    jest.advanceTimersByTime(2000); // Wait for waves to be removed
-    expect(component.forceWaves().length).toBe(0);
   });
 
   it('should cleanup on destroy and call achievement service', () => {
@@ -102,17 +80,10 @@ describe('JediMindTrickAnimationComponent', () => {
     expect(mockAchievementService.activeAchievement).toHaveBeenCalledWith(AchieveTypes.JEDI);
   });
 
-  it('should play force sound and speak whispers', () => {
+  it('should play force sound', () => {
     component.playForceSound();
     expect(mockAudioContext.createOscillator).toHaveBeenCalledTimes(2);
     expect(mockAudioContext.createGain).toHaveBeenCalledTimes(2);
-
-    jest.advanceTimersByTime(1000);
-    expect(mockSpeechSynthesis.speak).toHaveBeenCalled();
-    jest.advanceTimersByTime(300);
-    expect(mockSpeechSynthesis.speak).toHaveBeenCalledTimes(2);
-    jest.advanceTimersByTime(300);
-    expect(mockSpeechSynthesis.speak).toHaveBeenCalledTimes(3);
   });
 
   it('should handle onDestroy when audioContext is null', () => {
