@@ -28,7 +28,7 @@
         "@angular/build": "21.2.10",
         "@angular/cli": "21.2.2",
         "@angular/compiler-cli": "21.2.4",
-        "@angular/language-service": "21.2.14",
+        "@angular/language-service": "22.0.0",
         "@chromatic-com/storybook": "^5.0.2",
         "@commitlint/cli": "^21.0.2",
         "@commitlint/config-conventional": "^20.5.0",
@@ -155,7 +155,7 @@
 
     "@angular/forms": ["@angular/forms@21.2.11", "", { "dependencies": { "@standard-schema/spec": "^1.0.0", "tslib": "^2.3.0" }, "peerDependencies": { "@angular/common": "21.2.11", "@angular/core": "21.2.11", "@angular/platform-browser": "21.2.11", "rxjs": "^6.5.3 || ^7.4.0" } }, "sha512-F67V612wHxPXHrbp825VirYfGPKBUM8PvL9atN2Ku1fsdGSFPU3hTxu1HU8fKYLLBpKYVVuqFqzaU/qIpTXGYA=="],
 
-    "@angular/language-service": ["@angular/language-service@21.2.14", "", {}, "sha512-weSWgdToOIfPUTXoMDG/MHnL2qCx/vZ8/96K38ygm8TIItDPaBXidolwQctXc1xtdm1YrgJpOSayzGwC83o3jQ=="],
+    "@angular/language-service": ["@angular/language-service@22.0.0", "", {}, "sha512-ZcAuY0Jnn5Suk4/QlFw/4J12htbumFA6562Up4QrVzBiaTcnSC16AeEqgGGY8Mz1Ye3pPUDV52LTuyVKlfjs+g=="],
 
     "@angular/platform-browser": ["@angular/platform-browser@21.2.5", "", { "dependencies": { "tslib": "^2.3.0" }, "peerDependencies": { "@angular/animations": "21.2.5", "@angular/common": "21.2.5", "@angular/core": "21.2.5" }, "optionalPeers": ["@angular/animations"] }, "sha512-VuuYguxjgyI4XWuoXrKynmuA3FB991pXbkNhxHeCW0yX+7DGOnGLPF1oierd4/X+IvskmN8foBZLfjyg9u4Ffg=="],
 
