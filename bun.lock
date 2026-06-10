@@ -33,7 +33,7 @@
         "@commitlint/cli": "^21.0.2",
         "@commitlint/config-conventional": "^20.5.0",
         "@eslint/js": "9.14.0",
-        "@jsverse/transloco": "^8.2.1",
+        "@jsverse/transloco": "^8.3.0",
         "@jsverse/transloco-keys-manager": "^8.1.0",
         "@nx/angular": "22.7.1",
         "@nx/cypress": "22.5.4",
@@ -673,7 +673,7 @@
 
     "@jsverse/angular-utils": ["@jsverse/angular-utils@1.0.0-beta.6", "", { "dependencies": { "tslib": "^2.3.0" }, "peerDependencies": { "@angular/compiler": ">=18.1.0" } }, "sha512-Gq7jhGX5ktZgWs7HOt9dcMrfUMBFfj+B1voxcn3O2Wyq8UNcyL32vvLd1bD4RpVRrAj5jFLgZ2Goz5mlsfTDNA=="],
 
-    "@jsverse/transloco": ["@jsverse/transloco@8.2.1", "", { "dependencies": { "@jsverse/transloco-utils": "^8.2.1", "@jsverse/utils": "1.0.0-beta.5", "tslib": "^2.2.0" }, "peerDependencies": { "@angular/core": ">=16.0.0", "rxjs": ">=6.0.0" } }, "sha512-uuapT1vNi/P9wqklO2VY/sIj8HPVQJ1h+IJFhPbiQvk1FP/vgn2LLwGz/iIcet2bAMJVKKxO8FXytdrwRXXyvg=="],
+    "@jsverse/transloco": ["@jsverse/transloco@8.3.0", "", { "dependencies": { "@jsverse/transloco-utils": "^8.2.1", "@jsverse/utils": "1.0.0-beta.5", "tslib": "^2.2.0" }, "peerDependencies": { "@angular/core": ">=16.0.0", "rxjs": ">=6.0.0" } }, "sha512-p69/MhhAsTabDAffaiMALx4u9AwAqx24CjdECaCkUKSpCGbiYQUJPCsV4OsWjaSOxDNm9HuIX6NmqbfNZ0S3KA=="],
 
     "@jsverse/transloco-keys-manager": ["@jsverse/transloco-keys-manager@8.1.0", "", { "dependencies": { "@angular/compiler": ">= 21.1.0 < 22.0.0", "@jsverse/angular-utils": "1.0.0-beta.6", "@jsverse/transloco-utils": "8.2.1", "@phenomnomnominal/tsquery": "6.1.4", "chalk": "5.6.2", "cheerio": "1.1.2", "cli-table3": "0.6.5", "command-line-args": "6.0.1", "command-line-usage": "7.0.3", "cosmiconfig": "9.0.0", "debug": "4.4.3", "deep-diff": "1.0.2", "flat": "6.0.1", "fs-extra": "11.3.3", "gettext-parser": "8.0.0", "glob": "13.0.0", "jsonc-parser": "3.3.1", "ora": "9.0.0" }, "bin": { "transloco-keys-manager": "index.js" } }, "sha512-28351t2atYtT+Yenm27MwoX9MOPNA/C2XtSjRWKYUZxEvjcXLBJFM/S8iTq3Q9J65FIlzXPdxzqFfH0CNotCqA=="],
 

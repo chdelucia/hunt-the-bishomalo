@@ -48,7 +48,7 @@
     "@commitlint/cli": "^21.0.2",
     "@commitlint/config-conventional": "^20.5.0",
     "@eslint/js": "9.14.0",
-    "@jsverse/transloco": "^8.2.1",
+    "@jsverse/transloco": "^8.3.0",
     "@jsverse/transloco-keys-manager": "^8.1.0",
     "@nx/angular": "22.7.1",
     "@nx/cypress": "22.5.4",
