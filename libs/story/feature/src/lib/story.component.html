@@ -7,13 +7,13 @@
   >
     <h1 class="chapter">{{ 'storyPage.chapterPrefix' | transloco }}{{ story?.level }}</h1>
     <h2 class="title">
-      {{ story?.titleKey | transloco }}
+      {{ $safeNavigationMigration(story?.titleKey) | transloco }}
     </h2>
     <p class="text">
       @if (reading()) {
         {{ displayedText() }}
       } @else {
-        {{ story?.textKey | transloco }}
+        {{ $safeNavigationMigration(story?.textKey) | transloco }}
       }
     </p>
 

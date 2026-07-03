@@ -7,6 +7,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [RouterModule, TranslocoModule],
   templateUrl: './not-found.component.html',
+
   styleUrls: ['./not-found.component.css'],
 })
 export class NotFoundComponent {}

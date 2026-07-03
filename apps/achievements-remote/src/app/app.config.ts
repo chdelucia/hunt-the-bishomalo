@@ -1,7 +1,7 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { appRoutes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withXhr } from '@angular/common/http';
 import { provideTransloco } from '@jsverse/transloco';
 import { TranslocoHttpLoader } from './transloco-loader';
 import { AchievementService } from './achievements/data-access/index';
@@ -12,13 +12,13 @@ import {
 } from '@hunt-the-bishomalo/core/api';
 import { InjectionToken } from '@angular/core';
 
-export const GAME_SOUND_TOKEN = new InjectionToken<any>('GAME_SOUND_TOKEN');
+export const GAME_SOUND_TOKEN = new InjectionToken<unknown>('GAME_SOUND_TOKEN');
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(appRoutes),
-    provideHttpClient(),
+    provideHttpClient(withXhr()),
     provideTransloco({
       config: {
         availableLangs: ['en', 'es'],

@@ -20,6 +20,7 @@ import {
     AchievementProgressComponent,
   ],
   templateUrl: './achievements.html',
+
   styleUrl: './achievements.scss',
 })
 export class AchievementsComponent {

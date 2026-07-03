@@ -23,6 +23,11 @@ export class VisualEffectDirective {
     });
   }
 
+  /** @internal - For testing purposes */
+  updateEffectsManual(cues: string): void {
+    this.updateEffects(this.extractCues(cues));
+  }
+
   private extractCues(perception: string): string {
     const cues = [];
     const p = perception.toLowerCase();

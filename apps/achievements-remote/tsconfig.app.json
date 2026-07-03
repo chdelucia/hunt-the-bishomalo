@@ -6,7 +6,11 @@
   },
   "include": [
     "src/**/*.ts",
-    "../../libs/achievements/**/*.ts"
+    "../../libs/achievements/**/*.ts",
+    "../../libs/achievements/api/src/index.ts",
+    "../../libs/core/api/src/index.ts",
+    "../../libs/core/data-access/src/index.ts",
+    "../../libs/shared/data/src/index.ts"
   ],
   "exclude": [
     "src/**/*.spec.ts",
@@ -15,5 +19,13 @@
     "../../libs/achievements/**/*.test.ts",
     "jest.config.ts",
     "src/test-setup.ts"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "extendedDiagnostics": {
+      "checks": {
+        "nullishCoalescingNotNullable": "suppress",
+        "optionalChainNotNullable": "suppress"
+      }
+    }
+  }
 }

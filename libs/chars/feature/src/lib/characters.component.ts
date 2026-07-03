@@ -11,6 +11,7 @@ import { TranslocoModule } from '@jsverse/transloco';
   standalone: true,
   imports: [NgOptimizedImage, TranslocoModule],
   templateUrl: './characters.component.html',
+
   styleUrl: './characters.component.scss',
 })
 export class CharactersComponent {

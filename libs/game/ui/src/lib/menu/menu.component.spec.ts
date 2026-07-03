@@ -4,7 +4,8 @@ import { Router, RouterModule } from '@angular/router';
 import { Component } from '@angular/core';
 import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 
-@Component({ template: '' })
+@Component({
+ template: '' })
 export class DummyComponent {}
 
 const routes = [

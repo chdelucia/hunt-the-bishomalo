@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withXhr } from '@angular/common/http';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { AchievementService } from '../data-access/index';
 import {
@@ -17,7 +17,7 @@ export const achievementsRoutes: Routes = [
     loadComponent: () =>
       import('../feature/achievements').then((m) => m.AchievementsComponent),
     providers: [
-      provideHttpClient(),
+      provideHttpClient(withXhr()),
       { provide: ACHIEVEMENT_SERVICE, useClass: AchievementService },
       { provide: ANALYTICS_SERVICE_TOKEN, useClass: AnalyticsService },
       { provide: LOCALSTORAGE_SERVICE_TOKEN, useClass: LocalstorageService },

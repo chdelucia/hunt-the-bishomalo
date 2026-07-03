@@ -12,6 +12,7 @@ import { BossStore, BossCell } from './boss-store';
   imports: [NgOptimizedImage, TranslocoModule],
   templateUrl: './boss-fight.component.html',
   styleUrl: './boss-fight.component.scss',
+
   providers: [BossStore],
 })
 export class BossFightComponent {

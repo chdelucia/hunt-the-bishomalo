@@ -8,7 +8,7 @@ import {
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withHashLocation, withInMemoryScrolling, Router, withPreloading } from '@angular/router';
 import { appRoutes } from './app.routes';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withXhr } from '@angular/common/http';
 import { TranslocoHttpLoader } from './utils/transloco-loader';
 import { IdlePreloadingStrategy } from './utils/preloading-strategy';
 import { provideTransloco } from '@jsverse/transloco';
@@ -202,7 +202,7 @@ export const appConfig: ApplicationConfig = {
       withHashLocation(),
       withPreloading(IdlePreloadingStrategy),
     ),
-    provideHttpClient(),
+    provideHttpClient(withXhr()),
     provideTransloco({
       config: {
         availableLangs: ['en', 'es'],

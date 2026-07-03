@@ -8,6 +8,7 @@ import { ASSETS_BASE_URL, RouteTypes } from '@hunt-the-bishomalo/shared-data';
   standalone: true,
   imports: [RouterModule, TranslocoModule],
   templateUrl: './menu.component.html',
+
   styleUrl: './menu.component.scss',
 })
 export class MenuComponent {

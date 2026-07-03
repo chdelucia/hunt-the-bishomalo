@@ -8,6 +8,7 @@ import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
   standalone: true,
   imports: [RouterModule],
   templateUrl: './jedi-mind-trick-animation.component.html',
+
   styleUrls: ['./jedi-mind-trick-animation.component.scss'],
 })
 export class JediMindTrickAnimationComponent {

@@ -11,6 +11,7 @@ import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
   standalone: true,
   imports: [RouterModule, TranslocoModule],
   templateUrl: './end-credits.component.html',
+
   styleUrl: './end-credits.component.scss',
 })
 export class EndCreditsComponent {

@@ -1,0 +1,123 @@
+
+> nx run hunt-the-bishomalo:serve --port 4200 --watch=false
+
+[42m[38;5;15m INFO [39m[49m Removed unused dependencies.
+[42m[38;5;15m INFO [39m[49m [Federation SSE] Local reloader initialized with endpoint /@angular-architects/native-federation:build-notifications
+[42m[38;5;15m INFO [39m[49m Building federation artifacts
+[103m[30m NOTE [39m[49m Skip packages you don't want to share in your federation config
+[42m[38;5;15m INFO [39m[49m Bundling external npm packages with bundle type 'browser-shared'
+[33m❯[39m Building...
+[32m✔[39m Building...
+[37m[1mInitial chunk files[22m[2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mpolyfills.js[37m       [2m | [22m[2mpolyfills[22m    [2m | [22m[36m115.39 kB[37m[2m | [22m
+[32mchunk-TDPPFTR4.js[37m  [2m | [22m[2m-[22m            [2m | [22m[36m107.93 kB[37m[2m | [22m
+[32mstyles.css[37m         [2m | [22m[2mstyles[22m       [2m | [22m  [36m5.68 kB[37m[2m | [22m
+[32mmain.js[37m            [2m | [22m[2mmain[22m         [2m | [22m  [36m2.17 kB[37m[2m | [22m
+[32mchunk-VUJOFXKG.js[37m  [2m | [22m[2m-[22m            [2m | [22m[36m938 bytes[37m[2m | [22m
+[1m [22m                  [2m | [22m[1mInitial total[22m[2m | [22m[1m232.11 kB[22m
+[1mLazy chunk files[22m   [2m | [22m[1mNames[22m        [2m | [22m [1mRaw size[22m
+[32mchunk-SV74X3DF.js[37m  [2m | [22m[2mbootstrap[22m    [2m | [22m [36m26.31 kB[37m[2m | [22m
+[32mchunk-E34D2Z2W.js[37m  [2m | [22m[2mindex[22m        [2m | [22m [36m15.04 kB[37m[2m | [22m
+Application bundle generation complete. [7.255 seconds] - 2026-07-03T10:16:30.194Z
+[39m
+[37mNOTE: Raw file sizes do not reflect development server per-request transformations.[39m
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m4200[22m/[39m
+[2m10:19:09 AM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m136 |      b2.apply(this, arguments);
+137 |    };
+138 |    const dynamicImport = (u2, _errUrl) => import(u2);
+    |                                                  ^^
+139 |    const defineValue = (obj, prop, value) => Object.defineProperty(obj, prop, { writable: false, configurable: false, ...
+140 |    const optionsScript = hasDocument ? document.querySelector("script[type=esms-options]") : void 0;[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[2m10:19:10 AM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m366 |      if (!hasDocument)
+367 |        return Promise.all([
+368 |          import(createBlob(`import"${createBlob("{}", "text/json")}"with{type:"json"}`)).then(
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+369 |            () => (supportsJsonType = true, import(createBlob(`import"${createBlob("", "text/css")}"with{type:"css"}`))...
+370 |              () => supportsCssType = true,[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[2m10:19:10 AM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m367 |        return Promise.all([
+368 |          import(createBlob(`import"${createBlob("{}", "text/json")}"with{type:"json"}`)).then(
+369 |  ...rtsJsonType = true, import(createBlob(`import"${createBlob("", "text/css")}"with{type:"css"}`)).then(
+    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+370 |              () => supportsCssType = true,
+371 |              noop[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[2m10:19:10 AM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m373 |            noop
+374 |          ),
+375 |  ...eEnabled && import(createBlob(`import"${createBlob(new Uint8Array(wasmBytes), "application/wasm")}"`)).then(
+    |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+376 |            () => supportsWasmInstancePhase = true,
+377 |            noop[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[2m10:19:10 AM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m377 |            noop
+378 |          ),
+379 |  ...d && import(createBlob(`import source x from"${createBlob(new Uint8Array(wasmBytes), "application/wasm")}"`)).then(
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+380 |            () => supportsWasmSourcePhase = true,
+381 |            noop[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[2m10:19:10 AM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m2645 |        firstPolyfillLoad = false;
+2646 |      }
+2647 |  ...oaded && source ? dynamicImport(load.b, load.u) : import(load.u));
+     |                                                              ^^^^^^
+2648 |      if (load.s) (await dynamicImport(load.s, load.u)).u$_(module);
+2649 |      revokeObjectURLs(Object.keys(seen));[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[2m10:19:10 AM[22m [33m[1m[vite][22m[39m [33m[2m(client)[22m[39m [33mwarning:
+[36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[33m
+[0m2806 |    let esmsTsTransform;
+2807 |    const initTs = async () => {
+2808 |      const m = await import(tsTransform);
+     |                             ^^^^^^^^^^^
+2809 |      if (!esmsTsTransform) esmsTsTransform = m.transform;
+2810 |    };[0m[33m
+The above dynamic import cannot be analyzed by Vite.
+See [34mhttps://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations[33m for supported dynamic import formats. If this is intended to be left as-is, you can use the /* @vite-ignore */ comment inside the import() call to suppress this warning.
+[33m[39m
+  Plugin: [35mvite:import-analysis[39m
+  File: [36m/app/.angular/vite-root/hunt-the-bishomalo/polyfills.js[39m
+[2m10:19:11 AM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
+[2m10:21:57 AM[22m [31m[1m[vite][22m[39m [31mhttp proxy error: /browser/remoteEntry.json[39m
+AggregateError [ECONNREFUSED]:
+    at internalConnectMultiple (node:net:1134:18)
+    at afterConnectMultiple (node:net:1715:7)
