@@ -8,7 +8,7 @@
         "@angular/animations": "21.2.14",
         "@angular/common": "21.2.4",
         "@angular/compiler": "22.0.0",
-        "@angular/core": "21.2.7",
+        "@angular/core": "22.0.5",
         "@angular/forms": "21.2.11",
         "@angular/platform-browser": "21.2.5",
         "@angular/platform-browser-dynamic": "21.2.4",
@@ -151,7 +151,7 @@
 
     "@angular/compiler-cli": ["@angular/compiler-cli@21.2.4", "", { "dependencies": { "@babel/core": "7.29.0", "@jridgewell/sourcemap-codec": "^1.4.14", "chokidar": "^5.0.0", "convert-source-map": "^1.5.1", "reflect-metadata": "^0.2.0", "semver": "^7.0.0", "tslib": "^2.3.0", "yargs": "^18.0.0" }, "peerDependencies": { "@angular/compiler": "21.2.4", "typescript": ">=5.9 <6.1" }, "optionalPeers": ["typescript"], "bin": { "ngc": "bundles/src/bin/ngc.js", "ng-xi18n": "bundles/src/bin/ng_xi18n.js" } }, "sha512-vGjd7DZo/Ox50pQCm5EycmBu91JclimPtZoyNXu/2hSxz3oAkzwiHCwlHwk2g58eheSSp+lYtYRLmHAqSVZLjg=="],
 
-    "@angular/core": ["@angular/core@21.2.7", "", { "dependencies": { "tslib": "^2.3.0" }, "peerDependencies": { "@angular/compiler": "21.2.7", "rxjs": "^6.5.3 || ^7.4.0", "zone.js": "~0.15.0 || ~0.16.0" }, "optionalPeers": ["@angular/compiler", "zone.js"] }, "sha512-4bnskeRNNOZMn3buVw47Zz9Py4B8AZgYHe5xBEMOY5/yrldb7OFje5gWCWls23P18FKwhl+Xx1hgnOEPSs29gw=="],
+    "@angular/core": ["@angular/core@22.0.5", "", { "dependencies": { "tslib": "^2.3.0" }, "peerDependencies": { "@angular/compiler": "22.0.5", "rxjs": "^6.5.3 || ^7.4.0", "zone.js": "~0.15.0 || ~0.16.0" }, "optionalPeers": ["@angular/compiler", "zone.js"] }, "sha512-8cc6CLC1u7kNHpUZA15tak0WPHAZTF16DPslXxDdWbw/WIlDGPsNdTW8Nsaeb/G45mLvBcMwcZpOC70R6iRzmA=="],
 
     "@angular/forms": ["@angular/forms@21.2.11", "", { "dependencies": { "@standard-schema/spec": "^1.0.0", "tslib": "^2.3.0" }, "peerDependencies": { "@angular/common": "21.2.11", "@angular/core": "21.2.11", "@angular/platform-browser": "21.2.11", "rxjs": "^6.5.3 || ^7.4.0" } }, "sha512-F67V612wHxPXHrbp825VirYfGPKBUM8PvL9atN2Ku1fsdGSFPU3hTxu1HU8fKYLLBpKYVVuqFqzaU/qIpTXGYA=="],
 
