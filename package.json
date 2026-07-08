@@ -83,7 +83,7 @@
     "jest-environment-node": "30.3.0",
     "jest-preset-angular": "16.1.2",
     "jest-util": "30.3.0",
-    "nx": "22.5.4",
+    "nx": "23.0.1",
     "prettier": "~3.8.1",
     "standard-version": "^9.5.0",
     "storybook": "10.3.5",
