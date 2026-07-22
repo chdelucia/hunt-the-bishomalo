@@ -4,7 +4,43 @@
     "outDir": "./dist/out-tsc",
     "types": []
   },
-  "files": ["src/main.ts"],
-  "include": ["src/**/*.d.ts"],
-  "exclude": ["jest.config.ts", "src/**/*.test.ts", "src/**/*.spec.ts"]
+  "files": [
+    "src/main.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts",
+    "libs/core/data-access/src/index.ts",
+    "libs/shared/data/src/index.ts",
+    "libs/core/api/src/index.ts",
+    "libs/achievements/api/src/index.ts",
+    "libs/game/api/src/index.ts",
+    "libs/gamestats/api/src/index.ts",
+    "libs/gamestats/data-access/src/index.ts",
+    "libs/game/data-access/src/index.ts",
+    "libs/game/shell/src/index.ts",
+    "libs/chars/shell/src/index.ts",
+    "libs/shop/shell/src/index.ts",
+    "libs/credits/shell/src/index.ts",
+    "libs/instructions/shell/src/index.ts",
+    "libs/config/shell/src/index.ts",
+    "libs/gamestats/shell/src/index.ts",
+    "libs/boss/shell/src/index.ts",
+    "libs/story/shell/src/index.ts",
+    "libs/game/feature/src/index.ts",
+    "libs/game/ui/src/index.ts",
+    "libs/shared/ui/src/index.ts",
+    "libs/chars/feature/src/index.ts",
+    "libs/shop/feature/src/index.ts",
+    "libs/credits/feature/src/index.ts",
+    "libs/instructions/feature/src/index.ts",
+    "libs/config/feature/src/index.ts",
+    "libs/gamestats/feature/src/index.ts",
+    "libs/boss/feature/src/index.ts",
+    "libs/story/feature/src/index.ts"
+  ],
+  "exclude": [
+    "jest.config.ts",
+    "src/**/*.test.ts",
+    "src/**/*.spec.ts"
+  ]
 }

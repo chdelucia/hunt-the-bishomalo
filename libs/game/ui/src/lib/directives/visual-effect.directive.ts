@@ -13,14 +13,16 @@ export class VisualEffectDirective {
 
   constructor() {
     effect(() => {
-      const perceptionValue = this.perception();
-      const newCues = this.extractCues(perceptionValue);
-
-      if (newCues !== this.currentCues) {
-        this.currentCues = newCues;
-        this.updateEffects(newCues);
-      }
+      this.updateEffectsManual(this.perception());
     });
+  }
+
+  updateEffectsManual(perception: string): void {
+    const newCues = this.extractCues(perception);
+    if (newCues !== this.currentCues) {
+      this.currentCues = newCues;
+      this.updateEffects(newCues);
+    }
   }
 
   private extractCues(perception: string): string {

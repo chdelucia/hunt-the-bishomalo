@@ -30,83 +30,63 @@ describe('VisualEffectDirective', () => {
     expect(directive).toBeTruthy();
   });
 
-  it('should not render anything if perception is empty', (done) => {
-    fixture.componentInstance.effect = '';
-    fixture.detectChanges();
+  it('should not render anything if perception is empty', () => {
+    const directive = debugEl.injector.get(VisualEffectDirective);
+    directive.updateEffectsManual('');
 
-    requestAnimationFrame(() => {
-      const layer = debugEl.nativeElement.querySelector('.effect-layer');
-      expect(layer).toBeNull();
-      done();
-    });
+    const layer = debugEl.nativeElement.querySelector('.effect-layer');
+    expect(layer).toBeNull();
   });
 
-  it('should render clouds when perception includes "brisa"', (done) => {
-    fixture.componentInstance.effect = 'brisa';
-    fixture.detectChanges();
+  it('should render clouds when perception includes "brisa"', () => {
+    const directive = debugEl.injector.get(VisualEffectDirective);
+    directive.updateEffectsManual('brisa');
 
-    requestAnimationFrame(() => {
-      const layer = debugEl.nativeElement.querySelector('.effect-layer');
-      const clouds = layer.querySelectorAll('.cloud');
-      expect(clouds.length).toBeGreaterThan(0);
-      done();
-    });
+    const layer = debugEl.nativeElement.querySelector('.effect-layer');
+    const clouds = layer.querySelectorAll('.cloud');
+    expect(clouds.length).toBeGreaterThan(0);
   });
 
-  it('should render stink when perception includes "hedor"', (done) => {
-    fixture.componentInstance.effect = 'hedor';
-    fixture.detectChanges();
+  it('should render stink when perception includes "hedor"', () => {
+    const directive = debugEl.injector.get(VisualEffectDirective);
+    directive.updateEffectsManual('hedor');
 
-    requestAnimationFrame(() => {
-      const layer = debugEl.nativeElement.querySelector('.effect-layer');
-      const stinks = layer.querySelectorAll('.stink');
-      expect(stinks.length).toBeGreaterThan(0);
-      done();
-    });
+    const layer = debugEl.nativeElement.querySelector('.effect-layer');
+    const stinks = layer.querySelectorAll('.stink');
+    expect(stinks.length).toBeGreaterThan(0);
   });
 
-  it('should render sparkles when perception includes "brillo"', (done) => {
-    fixture.componentInstance.effect = 'brillo';
-    fixture.detectChanges();
+  it('should render sparkles when perception includes "brillo"', () => {
+    const directive = debugEl.injector.get(VisualEffectDirective);
+    directive.updateEffectsManual('brillo');
 
-    requestAnimationFrame(() => {
-      const layer = debugEl.nativeElement.querySelector('.effect-layer');
-      const sparkles = layer.querySelectorAll('.sparkle');
-      expect(sparkles.length).toBeGreaterThan(0);
-      done();
-    });
+    const layer = debugEl.nativeElement.querySelector('.effect-layer');
+    const sparkles = layer.querySelectorAll('.sparkle');
+    expect(sparkles.length).toBeGreaterThan(0);
   });
 
-  it('should render multiple effects if perception includes multiple cues', (done) => {
-    fixture.componentInstance.effect = 'brisa hedor brillo';
-    fixture.detectChanges();
+  it('should render multiple effects if perception includes multiple cues', () => {
+    const directive = debugEl.injector.get(VisualEffectDirective);
+    directive.updateEffectsManual('brisa hedor brillo');
 
-    requestAnimationFrame(() => {
-      const layer = debugEl.nativeElement.querySelector('.effect-layer');
-      expect(layer.querySelectorAll('.cloud').length).toBeGreaterThan(0);
-      expect(layer.querySelectorAll('.stink').length).toBeGreaterThan(0);
-      expect(layer.querySelectorAll('.sparkle').length).toBeGreaterThan(0);
-      done();
-    });
+    const layer = debugEl.nativeElement.querySelector('.effect-layer');
+    expect(layer.querySelectorAll('.cloud').length).toBeGreaterThan(0);
+    expect(layer.querySelectorAll('.stink').length).toBeGreaterThan(0);
+    expect(layer.querySelectorAll('.sparkle').length).toBeGreaterThan(0);
   });
 
-  it('should clear previous effects on perception change', (done) => {
-    fixture.componentInstance.effect = 'brisa';
-    fixture.detectChanges();
+  it('should clear previous effects on perception change', () => {
+    const directive = debugEl.injector.get(VisualEffectDirective);
+    directive.updateEffectsManual('brisa');
 
-    requestAnimationFrame(() => {
-      let layer = debugEl.nativeElement.querySelector('.effect-layer');
-      expect(layer).not.toBeNull();
+    let layer = debugEl.nativeElement.querySelector('.effect-layer');
+    expect(layer).not.toBeNull();
+    expect(layer.querySelectorAll('.cloud').length).toBeGreaterThan(0);
 
-      fixture.componentInstance.effect = 'brillo';
-      fixture.changeDetectorRef.detectChanges();
+    directive.updateEffectsManual('brillo');
 
-      requestAnimationFrame(() => {
-        layer = debugEl.nativeElement.querySelector('.effect-layer');
-        expect(layer.querySelectorAll('.cloud').length).toBe(0);
-        expect(layer.querySelectorAll('.sparkle').length).toBeGreaterThan(0);
-        done();
-      });
-    });
+    layer = debugEl.nativeElement.querySelector('.effect-layer');
+    expect(layer.querySelectorAll('.cloud').length).toBe(0);
+    expect(layer.querySelectorAll('.sparkle').length).toBeGreaterThan(0);
   });
 });
