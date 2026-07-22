@@ -12,7 +12,7 @@ export default {
       },
     ],
   },
-  transformIgnorePatterns: [String.raw`node_modules/(?!.*\.mjs$|@jsverse)`],
+  transformIgnorePatterns: [String.raw`node_modules/(?!.*\.mjs$|@jsverse|@angular-architects|@softarc)`],
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',
