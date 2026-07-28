@@ -22,11 +22,11 @@ export interface CellContent {
 
 import { ASSETS_BASE_URL } from './constants';
 
-export interface Cell {
+export interface Cell<T = CellContent> {
   x: number;
   y: number;
   visited?: boolean;
-  content?: CellContent;
+  content?: T;
 }
 
 export type CharacterType = 'default' | 'link' | 'lara' | 'legolas';

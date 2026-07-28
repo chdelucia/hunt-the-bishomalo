@@ -1,16 +1,19 @@
 import { Chars } from './hunter.model';
 
-export interface GameSettings {
+export interface BaseGameSettings {
   size: number;
+  player: string;
+  startTime: string;
+  soundEnabled: boolean;
+}
+
+export interface GameSettings extends BaseGameSettings {
   pits: number;
   arrows: number;
-  player: string;
   wumpus: number;
   blackout?: boolean;
   selectedChar: Chars;
   difficulty: GameDificulty;
-  startTime: string;
-  soundEnabled: boolean;
 }
 
 export interface GameDificulty {

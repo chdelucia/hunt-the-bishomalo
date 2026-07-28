@@ -1,12 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Cell, CELL_CONTENTS, CellContentType, GameSettings } from '@hunt-the-bishomalo/shared-data';
+import { inject, Injectable } from '@angular/core';
+import { Cell, CELL_CONTENTS, CellContentType, CellContent, GameSettings } from '@hunt-the-bishomalo/shared-data';
+import { GridGeneratorService } from '@hunt-the-bishomalo/shared-util';
 
 @Injectable({ providedIn: 'root' })
 export class BoardGeneratorService {
+  private readonly gridGenerator = inject(GridGeneratorService);
+
   createBoard(settings: GameSettings): Cell[][] {
-    return Array.from({ length: settings.size }, (_, x) =>
-      Array.from({ length: settings.size }, (_, y) => ({ x, y, visited: false })),
-    );
+    return this.gridGenerator.createGrid<CellContent>(settings.size);
   }
 
   placeGold(board: Cell[][], settings: GameSettings): void {

@@ -36,7 +36,8 @@
     "libs/config/feature/src/index.ts",
     "libs/gamestats/feature/src/index.ts",
     "libs/boss/feature/src/index.ts",
-    "libs/story/feature/src/index.ts"
+    "libs/story/feature/src/index.ts",
+    "libs/shared/util/src/index.ts"
   ],
   "exclude": [
     "jest.config.ts",
