@@ -5,6 +5,7 @@ import { getTranslocoTestingModule } from '@hunt-the-bishomalo/shared-util';
 import { signal } from '@angular/core';
 import { GAME_FACADE_TOKEN, GAME_SIDE_EFFECT_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
+import { KeyboardManagerService } from '@hunt-the-bishomalo/game/data-access';
 
 describe('Game', () => {
   let component: Game;
@@ -56,6 +57,10 @@ describe('Game', () => {
     updateGame: jest.fn(),
   };
 
+  const mockKeyboardManager = {
+    handleKeyDown: jest.fn(),
+  };
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -66,6 +71,7 @@ describe('Game', () => {
       providers: [
         { provide: GAME_FACADE_TOKEN, useValue: mockGameFacade },
         { provide: GAME_SIDE_EFFECT_TOKEN, useValue: { brand: 'IGameSideEffect' } },
+        { provide: KeyboardManagerService, useValue: mockKeyboardManager },
       ],
     }).compileComponents();
 
@@ -99,5 +105,11 @@ describe('Game', () => {
   it('should call facade performAction on mobile shoot', () => {
     component.handleMobileShootArrow();
     expect(mockGameFacade.performAction).toHaveBeenCalled();
+  });
+
+  it('should handle window keydown event and delegate to KeyboardManagerService', () => {
+    const event = new KeyboardEvent('keydown', { code: 'ArrowUp' });
+    window.dispatchEvent(event);
+    expect(mockKeyboardManager.handleKeyDown).toHaveBeenCalledWith(event);
   });
 });
