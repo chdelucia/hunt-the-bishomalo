@@ -3,6 +3,8 @@ import {
   AppWumpusAttackAnimationComponent,
   BlackoutComponent,
   GameCellComponent,
+  CellContentComponent,
+  HunterComponent,
   GameMessageComponent,
   MobileControlsComponent,
   GameLivesComponent,
@@ -13,7 +15,7 @@ import { TitleComponent } from '@hunt-the-bishomalo/shared-ui';
 import { RouterModule, Router } from '@angular/router';
 import { TranslocoModule } from '@jsverse/transloco';
 import { GAME_FACADE_TOKEN, GAME_SIDE_EFFECT_TOKEN } from '@hunt-the-bishomalo/game/api';
-import { GameItem, RouteTypes } from '@hunt-the-bishomalo/shared-data';
+import { GameItem } from '@hunt-the-bishomalo/shared-data';
 
 @Component({
   selector: 'lib-game',
@@ -21,6 +23,8 @@ import { GameItem, RouteTypes } from '@hunt-the-bishomalo/shared-data';
     RouterModule,
     TranslocoModule,
     GameCellComponent,
+    CellContentComponent,
+    HunterComponent,
     VisualEffectDirective,
     AppWumpusAttackAnimationComponent,
     TitleComponent,

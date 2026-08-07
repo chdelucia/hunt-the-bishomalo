@@ -1,7 +1,9 @@
 <main class="main-container">
   <lib-title [blackout]="false" />
   <section class="board">
-    <lib-game-config />
+    @if (configComponent) {
+      <ng-container *ngComponentOutlet="configComponent" />
+    }
   </section>
 
   <p class="message">{{ 'message.defaultInstructions' | transloco }}</p>

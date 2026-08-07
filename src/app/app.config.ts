@@ -51,6 +51,8 @@ import {
   GameSideEffectService,
   GameStatsTrackerService,
 } from '@hunt-the-bishomalo/game/data-access';
+import { GAME_CONFIG_COMPONENT } from '@hunt-the-bishomalo/shared-data';
+import { GameConfigComponent } from '@hunt-the-bishomalo/game/ui';
 import * as Sentry from '@sentry/angular';
 
 // Achievements implementation is in the remote, but we still need it functional in the shell for tracking.
@@ -169,6 +171,7 @@ export const appConfig: ApplicationConfig = {
     { provide: GAME_STATS_TRACKER_TOKEN, useClass: GameStatsTrackerService },
     { provide: GAME_SIDE_EFFECT_TOKEN, useClass: GameSideEffectService },
     { provide: GAME_FACADE_TOKEN, useClass: GameFacade },
+    { provide: GAME_CONFIG_COMPONENT, useValue: GameConfigComponent },
     {
       provide: REMOTE_CONFIG_TOKEN,
       useFactory: () => (window as unknown as { _REMOTE_CONFIG: RemoteConfig })._REMOTE_CONFIG,
