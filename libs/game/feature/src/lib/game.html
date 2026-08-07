@@ -34,17 +34,21 @@
           [active]="isHunterCell && !isGameOver"
           [attr.tabindex]="isHunterCell && !isGameOver ? 0 : null"
           [cell]="cell"
-          [showElements]="showElements"
-          [showHunter]="showHunter"
-          [hasLantern]="isHunterCell ? hasLantern : false"
-          [hasShield]="isHunterCell ? hasShield : false"
-          [selectedChar]="settings.selectedChar"
-          [size]="settings.size"
-          [isHunterCell]="isHunterCell"
-          [hunterDirection]="isHunterCell ? hunterDirection : 0"
-          [hunterArrows]="isHunterCell ? hunterArrows : 0"
-          [hunterHasGold]="isHunterCell ? hasGold : false"
-        />
+        >
+          @if (showElements && cell.content) {
+            <lib-cell-content [content]="cell.content" />
+          } @else if (showHunter) {
+            <lib-hunter
+              [direction]="isHunterCell ? hunterDirection : 0"
+              [arrows]="isHunterCell ? hunterArrows : 0"
+              [selectedChar]="settings.selectedChar"
+              [hasGold]="isHunterCell ? hasGold : false"
+              [size]="settings.size"
+              [hasLantern]="isHunterCell ? hasLantern : false"
+              [hasShield]="isHunterCell ? hasShield : false"
+            />
+          }
+        </lib-game-cell>
       }
     }
 

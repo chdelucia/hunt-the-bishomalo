@@ -1,4 +1,7 @@
 import { Chars } from './hunter.model';
+import { InjectionToken, Type } from '@angular/core';
+
+export const GAME_CONFIG_COMPONENT = new InjectionToken<Type<unknown>>('GAME_CONFIG_COMPONENT');
 
 export interface BaseGameSettings {
   size: number;

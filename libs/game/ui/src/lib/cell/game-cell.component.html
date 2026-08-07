@@ -1,18 +1,5 @@
 @let cellValue = cell();
-@let content = cellValue.content;
 
 <div class="cell" [class.visited]="cellValue.visited" [class.active]="active()">
-  @if (showElements() && content) {
-    <lib-cell-content [content]="content" />
-  } @else if (showHunter()) {
-    <lib-hunter
-      [direction]="hunterDirection()"
-      [arrows]="hunterArrows()"
-      [selectedChar]="selectedChar()"
-      [hasGold]="hunterHasGold()"
-      [size]="size()"
-      [hasLantern]="hasLantern()"
-      [hasShield]="hasShield()"
-    />
-  }
+  <ng-content></ng-content>
 </div>
