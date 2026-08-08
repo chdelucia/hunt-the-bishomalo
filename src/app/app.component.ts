@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  HostListener,
   inject,
   isDevMode,
   OnInit,
@@ -16,7 +15,6 @@ import { loadRemoteModule } from '@angular-architects/native-federation';
 import { ToastComponent, MenuComponent, GameControlsComponent } from '@hunt-the-bishomalo/game/ui';
 import { GAME_STORE_TOKEN, MINI_BUS_SERVICE_TOKEN } from '@hunt-the-bishomalo/core/api';
 import { REMOTE_CONFIG_TOKEN } from '@hunt-the-bishomalo/core/data-access';
-import { KeyboardManagerService } from '@hunt-the-bishomalo/game/data-access';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { ACHIEVEMENT_SERVICE } from '@hunt-the-bishomalo/achievements/api';
 import { RouteTypes } from '@hunt-the-bishomalo/shared-data';
@@ -35,14 +33,8 @@ export class AppComponent implements OnInit {
   readonly achieve = inject(ACHIEVEMENT_SERVICE);
   readonly gameEngine = inject(GAME_ENGINE_TOKEN);
   readonly router = inject(Router);
-  private readonly keyboardManager = inject(KeyboardManagerService);
   private readonly miniBus = inject(MINI_BUS_SERVICE_TOKEN);
   private readonly remoteConfig = inject(REMOTE_CONFIG_TOKEN, { optional: true });
-
-  @HostListener('window:keydown', ['$event'])
-  handleKeyDown(event: KeyboardEvent): void {
-    this.keyboardManager.handleKeyDown(event);
-  }
 
   constructor() {
     if (isDevMode() || (globalThis as unknown as { Cypress: unknown }).Cypress) {

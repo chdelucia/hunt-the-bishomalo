@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, inject } from '@angular/core';
+import { KeyboardManagerService } from '@hunt-the-bishomalo/game/data-access';
 import {
   AppWumpusAttackAnimationComponent,
   BlackoutComponent,
@@ -42,8 +43,14 @@ export class Game {
   readonly facade = inject(GAME_FACADE_TOKEN);
   private readonly sideEffects = inject(GAME_SIDE_EFFECT_TOKEN);
   private readonly router = inject(Router);
+  private readonly keyboardManager = inject(KeyboardManagerService);
 
   readonly emptyInventory: GameItem[] = [];
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent): void {
+    this.keyboardManager.handleKeyDown(event);
+  }
 
   handleClose(): void {
     this.facade.updateGame({ deathByWumpus: false });
