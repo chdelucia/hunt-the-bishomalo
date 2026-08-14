@@ -10,7 +10,7 @@
         "@angular/compiler": "22.0.7",
         "@angular/core": "22.0.7",
         "@angular/forms": "22.0.7",
-        "@angular/platform-browser": "22.0.7",
+        "@angular/platform-browser": "22.1.1",
         "@angular/platform-browser-dynamic": "22.0.7",
         "@angular/router": "22.0.7",
         "@ngrx/signals": "22.0.0-beta.0",
@@ -157,7 +157,7 @@
 
     "@angular/language-service": ["@angular/language-service@22.0.8", "", {}, "sha512-mPSWGX1t09Bf0c+JXtq0xUNbyGAPCnWJndbn+VPA5fmnNDbVZiINuDn8MhXnYZAqK1GCvl/MTtg2TKFUWHnU0g=="],
 
-    "@angular/platform-browser": ["@angular/platform-browser@22.0.7", "", { "dependencies": { "tslib": "^2.3.0" }, "peerDependencies": { "@angular/animations": "22.0.7", "@angular/common": "22.0.7", "@angular/core": "22.0.7" }, "optionalPeers": ["@angular/animations"] }, "sha512-iCuREIWRnDCsd7mI5vn5ovXjcSwseWR4qfd+zo6QUrY2O9zkUNV79YuCqVjSzvWyvU2rtR5iRBvpB5JQgBELeg=="],
+    "@angular/platform-browser": ["@angular/platform-browser@22.1.1", "", { "dependencies": { "tslib": "^2.3.0" }, "peerDependencies": { "@angular/animations": "22.1.1", "@angular/common": "22.1.1", "@angular/core": "22.1.1" }, "optionalPeers": ["@angular/animations"] }, "sha512-u1HMINw++YTUzMbJB9zVhqch1iEiEl5vA88HjZYzoDagBcnIev30GRWI+QEy4Dy9GRg64hrCOl9Fke78dLQgYQ=="],
 
     "@angular/platform-browser-dynamic": ["@angular/platform-browser-dynamic@22.0.7", "", { "dependencies": { "tslib": "^2.3.0" }, "peerDependencies": { "@angular/common": "22.0.7", "@angular/compiler": "22.0.7", "@angular/core": "22.0.7", "@angular/platform-browser": "22.0.7" } }, "sha512-FssnDZLIOYBsUO9EF4oHPHaNZyyCptVV0wYlGV5TlMWEJ6R3UllynUiQi03Zqyg344azgbPr2ieW3qoz0PAbsQ=="],
 
