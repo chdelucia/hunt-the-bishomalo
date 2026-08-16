@@ -1,9 +1,26 @@
-import { fetchRemoteConfig, fetchLocalManifest, buildMergedManifest } from './config-loader';
+import { fetchRemoteConfig, fetchLocalManifest, buildMergedManifest, safeJsonParse } from './config-loader';
 
 describe('config-loader', () => {
   beforeEach(() => {
     jest.restoreAllMocks();
     localStorage.clear();
+  });
+
+  describe('safeJsonParse', () => {
+    it('should neutralize prototype pollution payload keys', () => {
+      const payload = '{"remotes":{"mfe1":"url1"},"__proto__":{"polluted":true}}';
+      const parsed = safeJsonParse<{ remotes: Record<string, string> }>(payload);
+      expect(parsed).toBeDefined();
+      if (parsed) {
+        expect(Object.prototype.hasOwnProperty.call(parsed, '__proto__')).toBe(false);
+        expect((parsed as any).polluted).toBeUndefined();
+      }
+    });
+
+    it('should return null for malformed JSON', () => {
+      const parsed = safeJsonParse('{invalid json}');
+      expect(parsed).toBeNull();
+    });
   });
 
   describe('fetchRemoteConfig', () => {
@@ -122,6 +139,11 @@ describe('config-loader', () => {
       const result = buildMergedManifest(localManifest, cdnRemotes);
 
       expect(result).toEqual({ ...localManifest, ...cdnRemotes });
+    });
+
+    it('should safely handle null or undefined inputs', () => {
+      const result = buildMergedManifest(null, undefined);
+      expect(result).toEqual({});
     });
   });
 });

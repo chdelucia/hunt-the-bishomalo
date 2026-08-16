@@ -53,9 +53,10 @@ export class AppComponent implements OnInit {
 
   private preloadRemotes(): void {
     const remotes = this.remoteConfig?.remotes;
-    if (!remotes) return;
+    if (!remotes || typeof remotes !== 'object') return;
 
     Object.keys(remotes).forEach((remoteName) => {
+      if (!remoteName) return;
       loadRemoteModule(remoteName, './Routes').catch((err) => {
         globalThis.console.warn(`Preload failed for remote: ${remoteName}`, err);
       });

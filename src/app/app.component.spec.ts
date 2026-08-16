@@ -11,6 +11,7 @@ import {
   GAME_EVENT_SERVICE_TOKEN,
   MINI_BUS_SERVICE_TOKEN,
 } from '@hunt-the-bishomalo/core/api';
+import { REMOTE_CONFIG_TOKEN } from '@hunt-the-bishomalo/core/data-access';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
 import { signal, Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Subject, of } from 'rxjs';
@@ -80,6 +81,10 @@ describe('AppComponent', () => {
         },
         { provide: MINI_BUS_SERVICE_TOKEN, useValue: { emit: jest.fn(), listen: jest.fn() } },
         {
+          provide: REMOTE_CONFIG_TOKEN,
+          useValue: { remotes: { achievements: 'http://localhost:4201/remoteEntry.js' } },
+        },
+        {
           provide: GAME_STORE_TOKEN,
           useValue: {
             size: signal(4),
@@ -128,4 +133,7 @@ describe('AppComponent', () => {
     expect(component.game).toBeDefined();
   });
 
+  it('should initialize and trigger remote preloading on ngOnInit', () => {
+    expect(() => component.ngOnInit()).not.toThrow();
+  });
 });

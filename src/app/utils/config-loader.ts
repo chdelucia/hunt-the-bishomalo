@@ -3,8 +3,39 @@ export interface RemoteConfig {
 }
 
 /**
+ * Reviver function for JSON.parse to neutralize prototype pollution keys.
+ */
+function safeJsonReviver(key: string, value: unknown): unknown {
+  if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+    return undefined;
+  }
+  return value;
+}
+
+/**
+ * Safely parses JSON string with prototype pollution neutralization.
+ */
+export function safeJsonParse<T>(jsonString: string): T | null {
+  try {
+    const parsed = JSON.parse(jsonString, safeJsonReviver) as T;
+    if (parsed && typeof parsed === 'object') {
+      if (
+        Object.prototype.hasOwnProperty.call(parsed, '__proto__') ||
+        Object.prototype.hasOwnProperty.call(parsed, 'constructor') ||
+        Object.prototype.hasOwnProperty.call(parsed, 'prototype')
+      ) {
+        return null;
+      }
+    }
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+/**
  * Fetches the remote configuration from the CDN.
- * Includes a timeout to prevent the application from hanging on slow networks.
+ * Includes override handling in dev mode with prototype pollution protection.
  */
 export async function fetchRemoteConfig(isDev: boolean): Promise<RemoteConfig> {
   const url = isDev
@@ -14,11 +45,11 @@ export async function fetchRemoteConfig(isDev: boolean): Promise<RemoteConfig> {
   if (isDev) {
     const localOverride = localStorage.getItem('MFE_REMOTES_OVERRIDE');
     if (localOverride) {
-      try {
-        return JSON.parse(localOverride) as RemoteConfig;
-      } catch (e) {
-        globalThis.console.warn('Invalid MFE_REMOTES_OVERRIDE found in localStorage', e);
+      const parsed = safeJsonParse<RemoteConfig>(localOverride);
+      if (parsed && parsed.remotes && typeof parsed.remotes === 'object') {
+        return parsed;
       }
+      globalThis.console.warn('Invalid MFE_REMOTES_OVERRIDE found in localStorage');
     }
   }
 
@@ -29,7 +60,11 @@ export async function fetchRemoteConfig(isDev: boolean): Promise<RemoteConfig> {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    return (await response.json()) as RemoteConfig;
+    const data = (await response.json()) as RemoteConfig;
+    if (data && typeof data === 'object' && data.remotes && typeof data.remotes === 'object') {
+      return data;
+    }
+    return { remotes: {} };
   } catch (error) {
     globalThis.console.error('Failed to load remote configuration from CDN', error);
     return { remotes: {} };
@@ -44,7 +79,10 @@ export async function fetchLocalManifest(): Promise<Record<string, string>> {
     const response = await fetch('federation.manifest.json');
 
     if (response.ok) {
-      return (await response.json()) as Record<string, string>;
+      const data = (await response.json()) as Record<string, string>;
+      if (data && typeof data === 'object') {
+        return data;
+      }
     }
   } catch (error) {
     globalThis.console.warn('Local federation.manifest.json not found or inaccessible', error);
@@ -57,11 +95,14 @@ export async function fetchLocalManifest(): Promise<Record<string, string>> {
  * Remote configurations take precedence over local ones.
  */
 export function buildMergedManifest(
-  localManifest: Record<string, string>,
-  cdnRemotes: Record<string, string>,
+  localManifest?: Record<string, string> | null,
+  cdnRemotes?: Record<string, string> | null,
 ): Record<string, string> {
+  const safeLocal = localManifest && typeof localManifest === 'object' ? localManifest : {};
+  const safeCdn = cdnRemotes && typeof cdnRemotes === 'object' ? cdnRemotes : {};
+
   return {
-    ...localManifest,
-    ...cdnRemotes,
+    ...safeLocal,
+    ...safeCdn,
   };
 }

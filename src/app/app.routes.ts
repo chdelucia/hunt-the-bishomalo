@@ -8,7 +8,17 @@ export const appRoutes: Route[] = [
   {
     path: RouteTypes.ACHIEVEMENTS,
     loadChildren: () =>
-      loadRemoteModule('achievements', './Routes').then((mod) => mod.achievementsRoutes),
+      loadRemoteModule('achievements', './Routes')
+        .then((mod) => mod.achievementsRoutes)
+        .catch((err) => {
+          globalThis.console.error('Failed to load achievements remote module:', err);
+          return import('./pages').then((mod) => [
+            {
+              path: '',
+              component: mod.NotFoundComponent,
+            },
+          ]);
+        }),
     title: 'Logros | Bisho malo',
     data: { preload: true },
   },
