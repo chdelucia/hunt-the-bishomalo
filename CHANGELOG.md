@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [7.67.52](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.67.51...v7.67.52) (2026-08-16)
+
+
+### Bug Fixes
+
+* **mfe:** harden native federation loader and route resilience ([1dfed7f](https://github.com/chdelucia/hunt-the-bishomalo/commit/1dfed7f367c5c8cd89cfc95ee6aba3785a839be7))
+
 ### [7.67.51](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.67.50...v7.67.51) (2026-08-14)
 
 ### [7.67.50](https://github.com/chdelucia/hunt-the-bishomalo/compare/v7.67.48...v7.67.50) (2026-08-14)
