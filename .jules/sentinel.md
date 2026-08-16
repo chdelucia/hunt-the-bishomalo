@@ -47,3 +47,8 @@
 **Vulnerability:** Sentry's `tracePropagationTargets` used loose string matches and unanchored regular expressions, which could allow sensitive tracing headers (`sentry-trace`, `baggage`) to be leaked to malicious domains that included the whitelisted domain as a substring or prefix (e.g., `hunt-the-bishomalo.vercel.app.malicious.com`).
 **Learning:** String entries in `tracePropagationTargets` are treated as substring matches by Sentry. Without anchors (`^`, `$`) and proper delimiter handling, whitelists can be easily bypassed via subdomain or path-based exploitation.
 **Prevention:** Always use strict, anchored regular expressions (e.g., `/^https:\/\/domain\.com($|\/)/`) for `tracePropagationTargets` to ensure tracing headers are only propagated to verified, exact origins.
+
+## 2026-04-06 - [Prototype Pollution Protection in MFE Config Loader]
+**Vulnerability:** Parsing `MFE_REMOTES_OVERRIDE` from `localStorage` or JSON configs without custom revivers could allow prototype pollution payload injection into the runtime object model.
+**Learning:** `JSON.parse` inherits from `Object.prototype`. Unsanitized object parsing allows attackers or malicious scripts to pollute key properties like `__proto__` or `constructor`.
+**Prevention:** Always pass a custom reviver to `JSON.parse` that filters out `__proto__`, `constructor`, and `prototype`, and verify own-property ownership via `Object.prototype.hasOwnProperty.call`.
