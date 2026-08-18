@@ -1,4 +1,4 @@
-import { computed, inject } from '@angular/core';
+import { computed } from '@angular/core';
 import {
   signalStoreFeature,
   withState,
@@ -7,7 +7,6 @@ import {
   patchState,
 } from '@ngrx/signals';
 import { GameSettings, Chars } from '@hunt-the-bishomalo/shared-data';
-import { LocalstorageService } from '../../services';
 
 export const storageSettingsKey = 'hunt_the_bishomalo_settings';
 
@@ -26,16 +25,23 @@ export function withConfigFeature() {
       startTime: computed(() => settings().startTime),
       soundEnabled: computed(() => settings().soundEnabled ?? true),
     })),
-    withMethods((store, localStorage = inject(LocalstorageService)) => ({
+    withMethods((store) => ({
       $_updateSettings(settings: GameSettings) {
-        patchState(store, { settings });
-        localStorage.setValue(storageSettingsKey, settings);
+        patchState(store, (state) => (state.settings === settings ? state : { settings }));
       },
       $_setUnlockedChars(unlockedChars: Chars[]) {
-        patchState(store, { unlockedChars });
+        patchState(store, (state) => {
+          if (
+            state.unlockedChars === unlockedChars ||
+            (state.unlockedChars.length === unlockedChars.length &&
+              state.unlockedChars.every((val, index) => val === unlockedChars[index]))
+          ) {
+            return state;
+          }
+          return { unlockedChars };
+        });
       },
       $_resetConfig() {
-        localStorage.clearValue(storageSettingsKey);
         patchState(store, { settings: {} as GameSettings });
       },
     })),

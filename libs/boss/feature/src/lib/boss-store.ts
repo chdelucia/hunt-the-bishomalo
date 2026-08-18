@@ -36,6 +36,11 @@ export const BossStore = signalStore(
   withState(initialState),
   withMethods(
     (store, gameSound = inject(GAME_SOUND_TOKEN), translocoService = inject(TranslocoService)) => {
+      const triggerAudio = (sound: GameSound) => {
+        gameSound.stop();
+        gameSound.playSound(sound, false);
+      };
+
       const getHint = (grid: BossCell[][], x: number, y: number): string => {
         const row = grid[x];
         const col = grid.map((r) => r[y]);
@@ -58,8 +63,7 @@ export const BossStore = signalStore(
 
       return {
         resetGame(settings: GameSettings) {
-          gameSound.stop();
-          gameSound.playSound(GameSound.BATTLE, false);
+          triggerAudio(GameSound.BATTLE);
 
           const gridSize = 5;
           const bossParts = 5;
@@ -107,6 +111,7 @@ export const BossStore = signalStore(
           let newPlayerLives = playerLives();
           let newGameOver = gameOver();
           let newMessage = message();
+          let soundToPlay: GameSound | null = null;
 
           const updatedGrid = grid().map((row) =>
             row.map((c) => {
@@ -130,8 +135,7 @@ export const BossStore = signalStore(
           if (newBossRemaining === 0) {
             newMessage = translocoService.translate('bossFightMessages.bossDefeated');
             newGameOver = true;
-            gameSound.stop();
-            gameSound.playSound(GameSound.FINISH, false);
+            soundToPlay = GameSound.FINISH;
           } else if (newPlayerLives === 0) {
             newMessage = translocoService.translate('bossFightMessages.playerDefeated');
             const revealedGrid = revealAllBossParts(updatedGrid);
@@ -141,8 +145,7 @@ export const BossStore = signalStore(
               message: newMessage,
               gameOver: true,
             });
-            gameSound.stop();
-            gameSound.playSound(GameSound.PITDIE, false);
+            triggerAudio(GameSound.PITDIE);
             return;
           }
 
@@ -153,10 +156,14 @@ export const BossStore = signalStore(
             message: newMessage,
             gameOver: newGameOver,
           });
+
+          if (soundToPlay) {
+            triggerAudio(soundToPlay);
+          }
         },
 
         setMessage(message: string) {
-          patchState(store, { message });
+          patchState(store, (state) => (state.message === message ? state : { message }));
         },
       };
     },

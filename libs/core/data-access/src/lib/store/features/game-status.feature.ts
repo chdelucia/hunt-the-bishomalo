@@ -29,10 +29,14 @@ export function withGameStatusFeature() {
         hasWon?: boolean;
         lives?: number;
       }) {
-        patchState(store, (state) => ({ ...state, ...partial }));
+        patchState(store, (state) => {
+          const keys = Object.keys(partial) as (keyof typeof partial)[];
+          const hasChange = keys.some((key) => state[key] !== partial[key]);
+          return hasChange ? { ...state, ...partial } : state;
+        });
       },
       $_setMessage(message: string) {
-        patchState(store, { message });
+        patchState(store, (state) => (state.message === message ? state : { message }));
       },
       $_countWumpusKilled() {
         patchState(store, (state) => ({ wumpusKilled: state.wumpusKilled + 1 }));
