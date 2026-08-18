@@ -61,6 +61,7 @@ export const GameStore = signalStore(
         store.$_resetHunter();
         store.$_resetGameStatus();
         store.$_resetConfig();
+        localStorage.clearValue(storageSettingsKey);
         const gameData = localStorage.getValue<GameLocalStorageInfo>(storageKey);
         if (gameData) {
           store.$_setUnlockedChars(gameData.unlockedChars);
@@ -79,6 +80,7 @@ export const GameStore = signalStore(
 
         if (settings) {
           store.$_updateSettings(settings);
+          localStorage.setValue(storageSettingsKey, settings);
         }
 
         if (hunter) {
@@ -105,10 +107,12 @@ export const GameStore = signalStore(
       },
 
       toggleSound() {
-        store.$_updateSettings({
+        const newSettings = {
           ...store.settings(),
           soundEnabled: !store.soundEnabled(),
-        });
+        };
+        store.$_updateSettings(newSettings);
+        localStorage.setValue(storageSettingsKey, newSettings);
         persistGameState();
       },
     };

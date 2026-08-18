@@ -32,7 +32,11 @@ export function withHunterFeature() {
     })),
     withMethods((store) => ({
       $_updateHunter(partial: Partial<Hunter>) {
-        patchState(store, (state) => ({ hunter: { ...state.hunter, ...partial } }));
+        patchState(store, (state) => {
+          const keys = Object.keys(partial) as (keyof Hunter)[];
+          const hasChange = keys.some((key) => state.hunter[key] !== partial[key]);
+          return hasChange ? { hunter: { ...state.hunter, ...partial } } : state;
+        });
       },
       $_resetHunter() {
         patchState(store, { hunter: initialHunter });

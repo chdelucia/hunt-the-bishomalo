@@ -72,6 +72,18 @@ describe('GameStore (SignalStore)', () => {
     expect(localStorageServiceMock.setValue).not.toHaveBeenCalled();
   });
 
+  it('should not mutate hunter state reference when updateHunter is called with unchanged values', () => {
+    const initialHunterRef = store.hunter();
+    store.updateHunter({ x: initialHunterRef.x, y: initialHunterRef.y });
+    expect(store.hunter()).toBe(initialHunterRef);
+  });
+
+  it('should not mutate game status state reference when updateGame status is unchanged', () => {
+    const initialMsg = store.message();
+    store.updateGame({ message: initialMsg });
+    expect(store.message()).toBe(initialMsg);
+  });
+
   it('should persist when updating hunter inventory or gold', () => {
     store.updateHunter({ gold: 100 });
     expect(localStorageServiceMock.setValue).toHaveBeenCalledWith('hunt_the_bishomalo_hunter', expect.any(Object));
