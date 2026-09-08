@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostListener, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { KeyboardManagerService } from '@hunt-the-bishomalo/game/data-access';
 import {
   AppWumpusAttackAnimationComponent,
@@ -38,6 +38,9 @@ import { GameItem } from '@hunt-the-bishomalo/shared-data';
   templateUrl: './game.html',
   styleUrl: './game.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    '(window:keydown)': 'handleKeyDown($event)',
+  },
 })
 export class Game {
   readonly facade = inject(GAME_FACADE_TOKEN);
@@ -47,7 +50,6 @@ export class Game {
 
   readonly emptyInventory: GameItem[] = [];
 
-  @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent): void {
     this.keyboardManager.handleKeyDown(event);
   }
