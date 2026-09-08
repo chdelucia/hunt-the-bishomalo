@@ -8,14 +8,14 @@
     <label
       class="character"
       [class.selected]="char === selectedChar()"
-      [class.owned]="onwedChars?.includes(char)"
+      [class.owned]="onwedChars.includes(char)"
     >
       <input
         type="radio"
         name="character"
         [value]="char"
         [checked]="char === selectedChar()"
-        [disabled]="onwedChars?.includes(char) ?? false"
+        [disabled]="onwedChars.includes(char)"
         (change)="selectedChar.set(char)"
         class="sr-only"
       />

@@ -1,8 +1,7 @@
-import { Injectable, isDevMode, inject } from '@angular/core';
+import { Injectable, isDevMode, inject, effect } from '@angular/core';
 import { IAnalyticsService } from '@hunt-the-bishomalo/core/api';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
 
 declare global {
   var dataLayer: Record<string, unknown>[];
@@ -14,18 +13,16 @@ declare global {
 })
 export class AnalyticsService implements IAnalyticsService {
   private readonly router = inject(Router);
+  private readonly routerEventsSignal = toSignal(this.router.events);
 
   constructor() {
     this.trackPageViews();
   }
 
   private trackPageViews(): void {
-    this.router.events
-      .pipe(
-        filter((event) => event instanceof NavigationEnd),
-        takeUntilDestroyed(),
-      )
-      .subscribe((event: NavigationEnd) => {
+    effect(() => {
+      const event = this.routerEventsSignal();
+      if (event instanceof NavigationEnd) {
         if (typeof gtag === 'function') {
           gtag('event', 'page_view', {
             page_path: event.urlAfterRedirects,
@@ -33,7 +30,8 @@ export class AnalyticsService implements IAnalyticsService {
             page_title: document.title,
           });
         }
-      });
+      }
+    });
   }
 
   public sendEvent(eventName: string, params?: Record<string, unknown>): void {
