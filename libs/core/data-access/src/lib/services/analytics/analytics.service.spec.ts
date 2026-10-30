@@ -33,6 +33,7 @@ describe('AnalyticsService', () => {
   it('should track page views on NavigationEnd', () => {
     const event = new NavigationEnd(1, '/test', '/test');
     routerEvents.next(event);
+    TestBed.flushEffects();
 
     expect(globalThis.gtag).toHaveBeenCalledWith('event', 'page_view', expect.objectContaining({
       page_path: '/test',
@@ -59,7 +60,10 @@ describe('AnalyticsService', () => {
 
     it('should not throw error on NavigationEnd when gtag is missing', () => {
       const event = new NavigationEnd(1, '/test', '/test');
-      expect(() => routerEvents.next(event)).not.toThrow();
+      expect(() => {
+        routerEvents.next(event);
+        TestBed.flushEffects();
+      }).not.toThrow();
     });
 
     it('should not throw error in sendEvent when gtag is missing', () => {

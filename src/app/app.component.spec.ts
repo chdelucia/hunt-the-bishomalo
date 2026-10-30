@@ -13,18 +13,18 @@ import {
 } from '@hunt-the-bishomalo/core/api';
 import { REMOTE_CONFIG_TOKEN } from '@hunt-the-bishomalo/core/data-access';
 import { GAME_ENGINE_TOKEN } from '@hunt-the-bishomalo/game/api';
-import { signal, Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
+import { signal, Component, input, NO_ERRORS_SCHEMA } from '@angular/core';
 import { Subject, of } from 'rxjs';
 
 @Component({ selector: 'lib-toast', template: '', standalone: true })
-class MockToastComponent { @Input() achievement: any; }
+class MockToastComponent { achievement = input<any>(); }
 
 @Component({ selector: 'lib-menu', template: '<ng-content></ng-content>', standalone: true })
 class MockMenuComponent { }
 
 @Component({ selector: 'lib-game-controls', template: '', standalone: true })
 class MockGameControlsComponent {
-  @Input() soundEnabled: any;
+  soundEnabled = input<any>();
 }
 
 describe('AppComponent', () => {
@@ -79,7 +79,7 @@ describe('AppComponent', () => {
           provide: GAME_EVENT_SERVICE_TOKEN,
           useValue: { applyEffectsOnDeath: jest.fn(), applyEffectByCellContent: jest.fn() },
         },
-        { provide: MINI_BUS_SERVICE_TOKEN, useValue: { emit: jest.fn(), listen: jest.fn() } },
+        { provide: MINI_BUS_SERVICE_TOKEN, useValue: { emit: jest.fn(), listen: jest.fn(), listenSignal: jest.fn().mockReturnValue(signal(undefined)) } },
         {
           provide: REMOTE_CONFIG_TOKEN,
           useValue: { remotes: { achievements: 'http://localhost:4201/remoteEntry.js' } },

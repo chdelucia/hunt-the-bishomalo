@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, Signal } from '@angular/core';
+import { IMiniBusService } from '@hunt-the-bishomalo/core/api';
 
 @Injectable({ providedIn: 'root' })
-export class MiniBusService {
+export class MiniBusService implements IMiniBusService {
   private readonly forbiddenKeys = ['__proto__', 'constructor', 'prototype'];
 
   emit(event: string, detail: unknown) {
@@ -29,5 +30,15 @@ export class MiniBusService {
     globalThis.addEventListener(event, (e: any) => {
       callback(e.detail);
     });
+  }
+
+  listenSignal<T>(event: string): Signal<T | undefined> {
+    if (this.forbiddenKeys.includes(event)) {
+      return signal<T | undefined>(undefined).asReadonly();
+    }
+    const existing = (globalThis as any).__EVENT_STORE__?.[event];
+    const sig = signal<T | undefined>(existing);
+    this.listen(event, (data) => sig.set(data));
+    return sig.asReadonly();
   }
 }

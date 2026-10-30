@@ -1,4 +1,4 @@
-import { InjectionToken } from '@angular/core';
+import { InjectionToken, Signal } from '@angular/core';
 import { GameSound, CauseOfDeath, Cell } from '@hunt-the-bishomalo/shared-data';
 
 export interface IGameSoundService {
@@ -35,6 +35,7 @@ export const GAME_EVENT_SERVICE_TOKEN = new InjectionToken<IGameEventService>('G
 export interface IMiniBusService {
   emit(event: string, detail: unknown): void;
   listen(event: string, callback: (data: any) => void): void;
+  listenSignal<T>(event: string): Signal<T | undefined>;
 }
 
 export const MINI_BUS_SERVICE_TOKEN = new InjectionToken<IMiniBusService>('MINI_BUS_SERVICE_TOKEN');
