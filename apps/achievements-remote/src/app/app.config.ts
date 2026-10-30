@@ -12,7 +12,7 @@ import {
 } from '@hunt-the-bishomalo/core/api';
 import { InjectionToken } from '@angular/core';
 
-export const GAME_SOUND_TOKEN = new InjectionToken<any>('GAME_SOUND_TOKEN');
+export const GAME_SOUND_TOKEN = new InjectionToken<unknown>('GAME_SOUND_TOKEN');
 
 export const appConfig: ApplicationConfig = {
   providers: [

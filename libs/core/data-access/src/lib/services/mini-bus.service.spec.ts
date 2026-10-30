@@ -90,6 +90,23 @@ describe('MiniBusService', () => {
     });
   });
 
+  describe('listenSignal', () => {
+    it('should return a signal that updates when events are emitted', () => {
+      const event = getUniqueEventName();
+      const sig = service.listenSignal<{ value: number }>(event);
+
+      expect(sig()).toBeUndefined();
+
+      service.emit(event, { value: 42 });
+      expect(sig()).toEqual({ value: 42 });
+    });
+
+    it('should return undefined for forbidden keys', () => {
+      const sig = service.listenSignal('__proto__');
+      expect(sig()).toBeUndefined();
+    });
+  });
+
   describe('emit store initialization', () => {
     it('should not overwrite existing __EVENT_STORE__', () => {
       const existingStore = { existing: 'data' };

@@ -1,8 +1,8 @@
-import { Injectable, isDevMode, inject } from '@angular/core';
+import { Injectable, isDevMode, inject, effect } from '@angular/core';
 import { IAnalyticsService } from '@hunt-the-bishomalo/core/api';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { Router, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 
 declare global {
   var dataLayer: Record<string, unknown>[];
@@ -15,25 +15,24 @@ declare global {
 export class AnalyticsService implements IAnalyticsService {
   private readonly router = inject(Router);
 
-  constructor() {
-    this.trackPageViews();
-  }
+  private readonly currentUrl = toSignal(
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+      map((event) => event.urlAfterRedirects),
+    ),
+  );
 
-  private trackPageViews(): void {
-    this.router.events
-      .pipe(
-        filter((event) => event instanceof NavigationEnd),
-        takeUntilDestroyed(),
-      )
-      .subscribe((event: NavigationEnd) => {
-        if (typeof gtag === 'function') {
-          gtag('event', 'page_view', {
-            page_path: event.urlAfterRedirects,
-            page_location: globalThis.location.href,
-            page_title: document.title,
-          });
-        }
-      });
+  constructor() {
+    effect(() => {
+      const url = this.currentUrl();
+      if (url && typeof gtag === 'function') {
+        gtag('event', 'page_view', {
+          page_path: url,
+          page_location: globalThis.location.href,
+          page_title: document.title,
+        });
+      }
+    });
   }
 
   public sendEvent(eventName: string, params?: Record<string, unknown>): void {
